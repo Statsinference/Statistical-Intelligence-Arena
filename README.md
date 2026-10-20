@@ -8,7 +8,13 @@
   <a href="CONTRIBUTING.md" title="Contribution requirements"><img src="docs/assets/badge-contribute.svg" alt="Contribute a Task" height="36" /></a>
 </p>
 
-<p align="center"><sub><strong>Leaderboard Demo:</strong> interactive mock-up with simulated data, not real evaluations. The button will open the website after <a href="docs/LEADERBOARD_DEMO.md">GitHub Pages publishing</a> is enabled.</sub></p>
+<p align="center">
+  <sub>
+    <strong>Leaderboard Demo:</strong>
+    Interactive mock-up with simulated data, not real evaluations.
+    <a href="./site/index.html">Click here to view and download the HTML demo</a>.
+  </sub>
+</p>
 
 <p align="center"><strong>Internal research prototype</strong> · Protocol v0.3 (18 October 2026) · Output schema v0.2.0<br/>
 Initial scope: six causal inference task families · Student onboarding and task templates</p>
