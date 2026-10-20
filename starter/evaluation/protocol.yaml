@@ -1,0 +1,77 @@
+# HUMAN-REVIEWED TEMPLATE; standard-library checker does not parse YAML.
+schema_version: "0.2.0"
+protocol_version: "0.3"
+protocol_date: "2026-10-18"
+status: "not_implemented"
+execution_ready: false
+plan: "configs/evaluate.yaml (relative to package root)"
+dgp_catalog: "dgps/catalog.csv (relative to package root)"
+hyperdistribution: "hyperdistribution.yaml (relative to package root)"
+current_family_ids: [ate, cate, mediation, iv, proximal, did_sc]
+layer_B_required: true
+layer_A_enabled: false
+target_id: "nie"
+target_object: "parameter_ci"
+coverage_scope: "marginal"
+repeated_sampling:
+  fixed_dgp_configs: "TODO: exact parameters, truth and independent-unit definition"
+  sample_sizes_n: "TODO: prespecified grid"
+  repetitions_R: "TODO: per fixed DGP and n, justified by MC precision"
+  seeds: "TODO: immutable ledger"
+  rerun_full_pipeline: true
+  pair_methods_on_same_observed_dataset: true
+  average_over_training_prior_replaces_fixed_dgp_results: false
+  independent_sampling_unit: "TODO: experiment, not correlated query or panel row"
+  model_training_seeds: "TODO: fixed checkpoint or separate variation"
+coverage_gate:
+  nominal_level: "TODO: predeclare; no universal nominal level selected"
+  undercoverage_tolerance: "TODO: register before results"
+  confidence_bound_method_and_level: "TODO: Wilson/exact or design-aware alternative"
+  acceptance_rule: "TODO: e.g. lower bound relative to registered tolerance"
+  coverage_basis: "TODO: valid_output or all_attempt_valid_covering"
+  denominator: "TODO: explicit count and eligibility, including zero-valid-output policy"
+  availability_failure_rule: "TODO: prevent selective abstention passing conditional coverage alone"
+  insufficient_precision: "inconclusive, not pass"
+  universal_cutoff_or_R_minimum: false
+metrics:
+  point: ["bias", "RMSE"]
+  parameter_or_mean_uncertainty: ["empirical estimator variance", "reported variance/SE calibration", "coverage", "length"]
+  legacy_prediction_set: "schema compatibility only; future-response prediction is not a current track"
+  length_comparison: "only among methods passing same target/scope coverage gate; also show overcoverage and availability"
+  global_total_score: "not_defined"
+monte_carlo:
+  independent_binary_trials: "binomial interval and sqrt(p*(1-p)/R)"
+  dependent_queries: "aggregate at independent-replicate level or use design-aware uncertainty"
+  planning_example_only: "p=.95 and R=1000 gives MCSE about .0069; not a result or minimum"
+failures:
+  all_scheduled_attempts_retained: true
+  statuses: ["ok", "unsupported", "abstained", "failed", "not_identified"]
+  report: ["counts and denominators", "valid-output coverage", "all-attempt valid-and-covering rate", "availability", "timeouts/nonfinite/infrastructure reasons"]
+  infinite_lengths_retained: true
+  infrastructure_retry_rule: "TODO: freeze before comparison"
+cost:
+  separate: ["offline_training_seconds", "load_seconds", "warm_end_to_end_seconds"]
+  warm_includes: ["preprocessing", "fitting/calibration/correction", "all model calls", "interval/set construction", "export"]
+  forward_only: "supplementary, never substitute for end-to-end"
+  measurement: "TODO: hardware, precision, threads, batching, warmup and repetitions"
+observed_label_budget:
+  total_per_method: "TODO: matched total observed labels"
+  allocations: "TODO: context/calibration/tuning/other held-out labels per method"
+  different_budget_comparison: "separately labeled with all allocations disclosed"
+contract_limits:
+  output_schema_version: "0.2.0"
+  parameter_ci: "one connected interval, possibly unbounded; empty/disconnected parameter confidence sets need extension"
+  prohibited_coercions: "do not relabel parameter sets as prediction_set or silently take convex hull"
+family_contracts:
+  cate: "fixed x/query grid or groups; declare weighting and coverage scope; correlated queries do not increase independent R"
+  did: "panel/repeated-cross-section design, timing, target, parallel trends, no anticipation and dependence"
+  synthetic_control: "separate donor, pre/post, contamination, counterfactual-model and dependence contract; do not inherit DiD assumptions automatically"
+checks:
+  truth_independent_check: "TODO"
+  positive_and_incorrect_controls: "TODO: wrong target/sign, underestimated variance, leakage, malformed output"
+  public_smoke_command: "TODO"
+  statistical_runner: "TODO: not supplied"
+  private_fixtures: "TODO: separate custodian independent of evaluated-model development"
+optional_later:
+  diagnostics: ["size distortion", "standardized-error skewness", "tail quantiles", "changes with n"]
+  higher_order_accuracy_required: false

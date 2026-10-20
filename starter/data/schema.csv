@@ -1,0 +1,8 @@
+column,role,dtype,required,unit,allowed_values,missingness_policy,description
+row_id,identifier,string,true,observation,,none,Unique observation identifier; not a predictor
+X_1,baseline_covariate,float,true,observation,,TODO,Pretreatment covariate; replace with actual covariate schema
+A,treatment,integer,true,assignment unit,"0;1",none,Binary treatment; assignment unit must be defined separately
+M,mediator,float,true,observation,,TODO,Mediator measured after treatment and before outcome
+Y,outcome,float,true,observation,,TODO,Outcome in the estimand's declared units
+cluster_id,cluster_identifier,string,false,independent cluster,,none when clustering is enabled,Required if the implemented sampling design uses clusters
+propensity,known_assignment_probability,float,false,assignment unit,"0 < p < 1",none when supplied,Include only if known from the permitted assignment design

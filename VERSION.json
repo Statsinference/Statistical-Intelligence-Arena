@@ -1,0 +1,18 @@
+{
+  "project": "Statistical Inference Arena",
+  "protocol_version": "0.3",
+  "output_schema_version": "0.2.0",
+  "date": "2026-10-18",
+  "families": [
+    "ate",
+    "cate",
+    "mediation",
+    "iv",
+    "proximal",
+    "did_sc"
+  ],
+  "stage": "documentation_and_templates",
+  "training_started": false,
+  "reference_demo": "planned_not_implemented",
+  "arena": "template_no_empirical_results"
+}

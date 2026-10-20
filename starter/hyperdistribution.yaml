@@ -1,0 +1,46 @@
+# PLANNED SPECIFICATION ONLY: no sampler or training implementation.
+protocol_version: "0.3"
+protocol_date: "2026-10-18"
+status: "planned_not_implemented"
+catalog: "dgps/catalog.csv"
+current_family_ids: [ate, cate, mediation, iv, proximal, did_sc]
+training_design: "task_conditional_Pi_k"
+task_conditioning:
+  task_id: "mediation-nie-scaffold"
+  family: "mediation"
+  target_id: "nie"
+  target_object: "parameter_ci"
+  role_mapping: {baseline_covariates: [X_1], treatment: A, mediator: M, outcome: Y}
+  query_contract: "population NIE; no query input"
+  first_demo: "single_family_mediation"
+  joint_multi_task: false
+  future_joint_requirements: "explicit task/target/role/query conditioning and compatible output heads; never mix six unlabeled scalar targets"
+mixture:
+  family_weights: {mediation: 1.0} # proposed first-demo scope, not a fitted model
+  mechanism_weights: "TODO: versioned DGP IDs and normalized weights within this task"
+  parameter_ranges: "TODO: per-mechanism support, distributions and dependent parameter rules"
+  constraints: "TODO: identification, positivity/support, finite moments, bridge/IV/design conditions as applicable"
+truth:
+  definition: "scientific_spec.md"
+  implementation: "TODO: independent analytic/numerical oracle and error bound"
+  access: "generator/evaluator only; never supplied to evaluated methods"
+teacher:
+  choice: "TODO: true_parameter, FSP_style, distillation or other justified label"
+  formula_and_inputs: "TODO: derive for the declared target; mediation teacher is not an ATE EIF by substitution"
+  oracle_access_during_offline_training: "TODO: precisely enumerate and disclose"
+  approximation_or_nuisance_error: "TODO: definition, cross-fitting if needed, and error audit"
+  variance_target: "TODO: if used, distinguish V(P), V(P)/n, posterior variance and prediction variance"
+splits:
+  public_train: "TODO: DGP IDs, parameter support, sampling law and seed namespace"
+  public_dev: "TODO: separate tuning/calibration roles and seed namespace"
+  heldout_mechanisms: "TODO: entire withheld mechanisms/equations, custodian and access policy"
+  heldout_parameters: "TODO: withheld parameter regions and relation to train support"
+  fixed_evaluation_grid: "TODO: exact configurations frozen before comparisons"
+  seeds: "TODO: disjoint immutable ledgers for train/dev/evaluation"
+  seed_holdout_implies_mechanism_holdout: false
+  classical_source_implies_unseen: false
+provenance:
+  mixture_version: "TODO"
+  catalog_and_configuration_hashes: "TODO"
+  checkpoint_exposure_record: "TODO: public benchmark/DGP/prior/checkpoint exposure; unknown stays unknown"
+  review_signoff: "TODO"

@@ -1,0 +1,28 @@
+{
+  "schema_version": "0.2.0",
+  "artifact_kind": "illustrative_example",
+  "methods": [
+    {
+      "method_id": "classical-reference",
+      "method_role": "classical_reference",
+      "model_version": "TODO",
+      "support_status": "planned",
+      "execution_mode": "refit",
+      "adaptation_steps": [],
+      "entrypoint": null,
+      "reason": "TODO: implement a suitable reference estimator and interval."
+    },
+    {
+      "method_id": "pfn-adapter",
+      "method_role": "pfn_adapter",
+      "model_version": "TODO: exact PFN/checkpoint",
+      "support_status": "planned",
+      "execution_mode": "adapted",
+      "adaptation_steps": [
+        "TODO: specify any calibration or correction"
+      ],
+      "entrypoint": null,
+      "reason": "TODO: implement adapter or an explicit unsupported response with concrete limitation."
+    }
+  ]
+}
