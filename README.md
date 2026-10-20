@@ -1,4 +1,4 @@
-<h1 align="center"><img src="docs/assets/statsarena-logo.jpg" width="48" height="48" alt="StatsArena logo" /> Statistical Inference Arena</h1>
+<h1 align="center"><img src="docs/assets/statsarena-logo.jpg" width="56" height="56" alt="StatsArena logo" /> Statistical Inference Arena</h1>
 
 <p align="center"><strong>Benchmarking reliable causal inference and uncertainty quantification for tabular foundation models.</strong></p>
 
