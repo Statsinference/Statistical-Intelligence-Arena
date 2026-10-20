@@ -1,0 +1,70 @@
+# PLAN ONLY: standard-library checker verifies existence, not YAML semantics.
+protocol_version: "0.3"
+protocol_date: "2026-10-18"
+status: "planned_not_implemented"
+execution_ready: false
+runner_entrypoint: null
+scientific_policy: "../evaluation/protocol.yaml"
+result_schema: "../evaluation/result.schema.json"
+schema_version: "0.2.0"
+task_id: "mediation-nie-scaffold"
+target_id: "nie"
+target_object: "parameter_ci"
+coverage_scope: "marginal"
+fixed_dgp_experiment:
+  catalog: "../dgps/catalog.csv"
+  configuration_ids: "TODO: immutable exact mechanism + parameter + target + population"
+  n_grid: "TODO"
+  R_per_fixed_dgp_and_n: "TODO: justify by desired Monte Carlo precision"
+  independent_sampling_unit: "TODO"
+  replicate_seed_ledger: "TODO"
+  paired_across_methods: true
+  paired_data_and_query_identity: "same observed dataset, target and permitted query per replicate"
+  rerun_full_pipeline_per_replicate: true
+  checkpoint_policy: "TODO: frozen checkpoint; any adaptation/refit uses only permitted replicate data"
+  method_seed_policy: "TODO: separate algorithm randomness from DGP/checkpoint seeds"
+queries:
+  values_and_weights: "TODO: fixed x/grid for CATE, or not applicable"
+  within_table_queries_are_independent_MC_replicates: false
+  query_or_group_identifiers: "TODO: required when selected coverage scope needs them"
+methods:
+  registry: "../solution/methods.json"
+  classical_reference: "TODO: appropriate target/assumptions; uncertainty procedure and robustness justified"
+  PFN_native_or_adapted: "TODO: distinguish frozen native, correction/calibration, refit, or unsupported"
+  CI_construction_per_method: "TODO: interval formula, nominal level, bootstrap/normal/other details"
+  nominal_levels: "TODO: prespecified; no universal level selected by this template"
+  observed_label_budget_total: "TODO: same total per replicate across comparable methods"
+  allocations: "TODO: context/calibration/tuning/other labels, with allowed reuse and exclusions"
+  compute_and_tuning_budget: "TODO"
+coverage_gate:
+  coverage_basis: "TODO: valid_output or all_attempt_valid_covering"
+  denominator_and_eligibility: "TODO: all scheduled attempts and valid-output counts; zero-valid-output rule"
+  nominal_minus_tolerance: "TODO: discussion decision"
+  Monte_Carlo_interval: "TODO: method and confidence level; design-aware if dependent"
+  gate_rule: "TODO: uncertainty-aware rule, not point estimate alone"
+  availability_minimum_and_failure_policy: "TODO: predeclared; conditional coverage alone cannot pass selective abstention"
+  insufficient_precision: "inconclusive"
+comparison:
+  length: "only after same target/scope coverage AND availability gate"
+  paired_differences: "TODO: paired uncertainty for differences using replicate as independent unit"
+  report_by_fixed_dgp_n_and_target: true
+  prior_mixture_average_replaces_fixed_dgp_results: false
+  global_rank: false
+failures:
+  retain_all_scheduled_attempts: true
+  statuses: [ok, unsupported, abstained, failed, not_identified]
+  preserve_infinite_intervals_and_lengths: true
+  retry_rule: "TODO: freeze infrastructure retries and retain original outcomes"
+  report_valid_output_coverage_and_all_attempt_valid_covering_rate: true
+cost:
+  separate: [offline_training, model_load, warm_end_to_end]
+  warm_includes: [preprocessing, refit_or_adaptation, calibration, all_model_calls, interval_construction, export]
+  hardware_threads_precision_batching: "TODO"
+truth_validation:
+  independent_check: "TODO"
+  numerical_oracle_error_budget: "TODO"
+  controls: "TODO: wrong target/sign, underestimated variance, leakage, malformed outputs"
+scope:
+  current_family_ids: [ate, cate, mediation, iv, proximal, did_sc]
+  future_response_prediction_current_track: false
+  disconnected_parameter_confidence_sets: "require explicit extension; not prediction_set or silent convex hull"

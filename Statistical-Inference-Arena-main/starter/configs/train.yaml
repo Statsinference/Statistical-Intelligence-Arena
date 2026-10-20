@@ -1,0 +1,56 @@
+# PLAN ONLY. There is no training entrypoint; do not launch training from this file.
+protocol_version: "0.3"
+protocol_date: "2026-10-18"
+status: "planned_not_implemented"
+execution_ready: false
+entrypoint: null
+hyperdistribution: "../hyperdistribution.yaml"
+task:
+  task_id: "mediation-nie-scaffold"
+  family: "mediation"
+  target_id: "nie"
+  target_object: "parameter_ci"
+  role_mapping: {baseline_covariates: [X_1], treatment: A, mediator: M, outcome: Y}
+  query_contract: "population NIE; no query input"
+model:
+  plan: "small_PFN_reference_demo"
+  architecture_and_size: "TODO: backbone, table/role encoding, capacity and numerical precision"
+  task_conditioning: "single task; future joint tasks require explicit task identity and output design"
+  outputs:
+    mean_head: "TODO: optional; state whether point parameter or teacher conditional mean"
+    variance_head: "TODO: optional; exact target and positivity transform required"
+    alternative_output: "TODO: quantiles/distribution/other if applicable"
+  uncertainty_construction: "TODO: explicit mapping from heads to CI; heads alone imply no coverage theorem"
+supervision:
+  label_target: "TODO: true_parameter | FSP_style | distillation | other_justified"
+  teacher_rule: "TODO: mathematical target, oracle/observed inputs and stochasticity"
+  teacher_version: "TODO"
+  loss: "TODO: each term, scaling with n, weighting and optimizer"
+  FSP_required: false
+  variance_head_required: false
+training_plan:
+  episodes: "TODO"
+  rows_per_episode_n: "TODO: fixed value or distribution"
+  independent_dgp_draws_vs_repeated_tables: "TODO"
+  initialization_seed: "TODO"
+  training_seed_ledger: "TODO"
+  optimizer_schedule: "TODO"
+  stopping_and_model_selection: "TODO: public development only"
+offline_budget:
+  generated_tasks_and_labels: "TODO"
+  teacher_computation_cost: "TODO"
+  accelerator_cpu_hours_and_memory: "TODO"
+  wall_time_energy_if_measured: "TODO"
+checkpoint_metadata:
+  status: "not_created"
+  path: null
+  hash: null
+  code_and_config_versions: "TODO"
+  training_support_and_exposure: "TODO"
+  model_selection_history: "TODO"
+  weights_license: "TODO"
+evaluation_policy:
+  freeze_checkpoint_before_fixed_dgp_evaluation: true
+  pretraining_seed_variation: "TODO: separate from repeated-dataset variation; do not pool silently"
+  all_contributors_must_retrain: false
+  checkpoint_reuse_or_classical_refit: "allowed under declared methods and matched observed-information budget"

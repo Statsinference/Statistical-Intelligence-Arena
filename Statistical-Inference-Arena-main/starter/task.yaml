@@ -1,0 +1,101 @@
+# TEMPLATE ONLY: no runner, data, fitted methods or accepted task.
+schema_version: "0.2.0"
+task_id: "mediation-nie-scaffold"
+task_version: "0.0.0-scaffold"
+benchmark_working_title: "Statistical Inference Arena"
+protocol_version: "0.3"
+protocol_date: "2026-10-18"
+artifact_status: "scaffold"
+ready_for_evaluation: false
+execution_ready: false
+current_family_ids: [ate, cate, mediation, iv, proximal, did_sc]
+did_sc_subdesign_required: "did or synthetic_control; separate identification and sampling contracts"
+workflow:
+  dgp_catalog: "dgps/catalog.csv"
+  dgp_guidance: "dgps/README.md"
+  illustrative_card: "dgps/cards/mediation_illustrative.md"
+  source_claim: "original illustrative; no external classical source claimed"
+  hyperdistribution: "hyperdistribution.yaml"
+  train_plan: "configs/train.yaml"
+  evaluation_plan: "configs/evaluate.yaml"
+  student_guide: "demo/README.md"
+  stage: "specification_only_no_generator_training_or_evaluation_runner"
+contributors:
+  scientific_owner: "TODO"
+  implementation_owner: "TODO"
+  scientific_reviewer: "TODO: may be same team; independent of evaluated-model development"
+  independent_reproducer: "TODO: named person and independence/conflicts"
+scientific_core:
+  family: "mediation"
+  target_id: "nie"
+  target_object: "parameter_ci"
+  coverage_scope: "marginal"
+  core_output_limit: "one connected parameter interval, possibly unbounded; empty/disconnected parameter sets require extension"
+  estimand: "E[Y(1,M(1))-Y(1,M(0))]"
+  population: "TODO: fixed-DGP superpopulation"
+  scale_units: "TODO"
+  roles: {baseline_covariates: [X_1], treatment: A, mediator: M, outcome: Y}
+  specification: "scientific_spec.md"
+  truth_class: "exact_analytic"
+  truth_status: "proposed_formula_not_implemented_or_independently_checked"
+  truth_implementation: "TODO: independent derivation and implementation"
+  independent_sampling_unit: "TODO: individual for proposed iid example"
+layers:
+  B:
+    required: true
+    inputs: ["observed data", "roles", "target and identification", "design", "budget"]
+    output: "reports/result.json"
+    entrypoint: "TODO: actual command/function"
+  A:
+    enabled: false
+    optional: true
+    output: "reports/analysis.json"
+    input_and_rubric: "TODO: only if A is enabled; keep separate from B"
+data:
+  source_kind: "planned_synthetic"
+  real_paper_required: false
+  generator_or_access: "TODO"
+  schema: "data/schema.csv"
+  rights: "LICENSE.md"
+  observed_inputs_exclude: ["oracle target", "latent variables", "unobserved potential outcomes", "oracle nuisance", "hidden grader labels"]
+methods:
+  registry: "solution/methods.json"
+  classical_reference_required: true
+  pfn_adapter_required: true
+  pfn_unsupported_allowed_with_reason: true
+  pretraining_each_contributor_required: false
+evaluation:
+  protocol: "evaluation/protocol.yaml"
+  output_schema: "evaluation/result.schema.json"
+  fixed_dgp_registry: "dgps/catalog.csv; header-only until reviewed DGPs are registered"
+  sample_sizes: "TODO"
+  independent_replicates: "TODO"
+  seed_ledger: "TODO"
+  paired_datasets_across_methods: true
+  independent_replicates_not_correlated_queries: true
+  coverage_gate: "TODO: nominal, tolerance, MC bound and prespecified rule"
+  coverage_basis: "TODO: valid_output or all_attempt_valid_covering"
+  coverage_denominator: "TODO: explicit scheduled/valid counts and eligibility"
+  availability_failure_rule: "TODO: prevent selective abstention passing on conditional coverage alone"
+  observed_label_budget: "TODO: matched total across methods"
+  per_method_label_allocation: "TODO: context, calibration, tuning and other held-out labels"
+execution:
+  environment: "environment/README.md"
+  smoke_command: "TODO"
+  evaluation_command: "TODO"
+  resources_timeout: "TODO"
+  cost_components: ["offline_training", "load", "warm_end_to_end"]
+splits:
+  public_training_development: "TODO: mechanism families/regions/seeds and allowed uses"
+  restricted_evaluation: "TODO: independently held fixtures, mechanisms and labels"
+  model_exposure: "TODO: checkpoint provenance and prior exposure"
+  seed_holdout_is_mechanism_holdout: false
+review:
+  ai_record: "review/ai_review.md"
+  scientific_signoff: "TODO"
+  independent_rerun: "TODO"
+  acceptance_granted: false
+compatibility:
+  output_schema_version: "0.2.0"
+  future_response_prediction_current_track: false
+  legacy_prediction_set_retained: true
