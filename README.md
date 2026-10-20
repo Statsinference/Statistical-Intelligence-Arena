@@ -1,13 +1,23 @@
-# Statistical Inference Arena
+<h1 align="center">Statistical Inference Arena</h1>
 
-**Benchmarking reliable causal inference and uncertainty quantification for tabular foundation models.**
+<p align="center"><strong>Benchmarking reliable causal inference and uncertainty quantification for tabular foundation models.</strong></p>
 
-**Development status:** Internal research prototype · **Protocol:** v0.3 (18 October 2026) · **Output schema:** v0.2.0  
-**Initial scope:** Six causal inference task families · **Current release:** Documentation, student templates, static site and structural checks
+<p align="center">
+  <img src="docs/assets/statsarena-logo.jpg" width="355" alt="StatsArena — statistical distribution above an arena emblem" />
+</p>
 
-> **New to the project?** Start with [the student walkthrough (English)](docs/student_guide_en.md) / [学生贡献指南（中文）](docs/student_guide_zh.md), then inspect the [reference-demo specification](starter/demo/README.md) and [task starter](starter/README.md). You do **not** need to train a new PFN before proposing your first task.
+<p align="center">
+  <a href="site/leaderboard-demo.html" title="Open the illustrative leaderboard HTML template"><img src="docs/assets/badge-leaderboard.svg" alt="Leaderboard Demo — illustrative HTML template" height="42" /></a>
+  <a href="#getting-started-for-students" title="Student onboarding steps"><img src="docs/assets/badge-start.svg" alt="Getting Started for Students" height="42" /></a>
+  <a href="CONTRIBUTING.md" title="Contribution requirements"><img src="docs/assets/badge-contribute.svg" alt="Contribute a Task" height="42" /></a>
+</p>
 
-[**Get started**](#getting-started-for-students) · [**Six task families**](#task-coverage) · [**How to contribute**](#contributing-a-new-task) · [**Scientific protocol**](#benchmark-design) · [**Citation**](#citation)
+<p align="center"><strong>Internal research prototype</strong> · Protocol v0.3 (18 October 2026) · Output schema v0.2.0<br/>
+Initial scope: six causal inference task families · Student onboarding and task templates</p>
+
+> **For student contributors:** Start with the [English walkthrough](docs/student_guide_en.md) or [中文贡献指南](docs/student_guide_zh.md), review the [reference-demo specification](starter/demo/README.md), then use the [task starter](starter/README.md). A fully runnable reference demo is **not yet included** in this snapshot.
+
+**Quick navigation:** [Overview](#overview) · [Getting Started](#getting-started-for-students) · [Six Task Families](#task-coverage) · [How to Contribute](#contributing-a-new-task) · [Scientific Protocol](#benchmark-design) · [Citation](#citation)
 
 ## Overview
 
@@ -24,6 +34,12 @@ Our goal is to move beyond point-estimation accuracy alone. For each specified c
 The planned workflow is **register a scientifically justified DGP → independently verify its true target → define a task-specific training distribution → implement and compare methods → evaluate CIs on independent repeated datasets at fixed DGP settings**.
 
 This repository is intended **first for collaborating students and researchers building the initial task families**. Public benchmark releases, external submissions and a leaderboard are later milestones, not current services.
+
+### Leaderboard interface preview
+
+The **[Leaderboard Demo](site/leaderboard-demo.html)** is a standalone, interactive HTML **interface template**, included for early discussion of the future results page. **Every rank, score, coverage number, cost and trend in the template is simulated; no benchmark model evaluations have been run.** Its example tabs (including general regression tasks) demonstrate possible UI features and **are not the authoritative six-family task taxonomy**; use [Task Coverage](#task-coverage) below for the initial benchmark scope.
+
+**How to view it during private development:** select `site/leaderboard-demo.html` in GitHub, download the raw HTML file, and open it in a browser. GitHub itself displays HTML source rather than executing the interactive dashboard. A one-click hosted demo can be linked here after the team provisions a protected preview deployment; it is **not live yet**.
 
 ## Getting started for students
 
@@ -143,8 +159,8 @@ Read the [evaluation protocol](starter/evaluation/protocol.yaml), [output JSON s
 
 ```text
 Statistical-Inference-Arena/
-├── README.md                  # This GitHub homepage / student entry point
-├── CONTRIBUTING.md            # Short internal contribution checklist
+├── README.md                  # GitHub homepage with logo and student entry points
+├── CONTRIBUTING.md            # Separate contributor guide / GitHub Contributing tab
 ├── docs/
 │   ├── student_guide_en.md    # Full student walkthrough (English)
 │   ├── student_guide_zh.md    # Full student walkthrough (Chinese)
@@ -157,7 +173,9 @@ Statistical-Inference-Arena/
 │   ├── configs/               # Planned train / evaluation configs
 │   ├── evaluation/            # Protocol and output contract checker
 │   └── reports/               # Illustrative records, NOT measured results
-├── site/                      # Optional static website prototype
+├── site/                      # Static site and standalone leaderboard template
+│   ├── index.html             # Existing project website prototype
+│   └── leaderboard-demo.html  # Interactive MOCK leaderboard (all values simulated)
 ├── scripts/                   # Documentation / site consistency checks
 └── VERSION.json               # Current protocol and implementation status
 ```
@@ -185,7 +203,7 @@ Checkboxes reflect **repository artifacts in this snapshot**, not acceptance of 
 
 ## Academic collaboration and contributors
 
-This is a collaborative research effort involving researchers affiliated with **Shanghai University of Finance and Economics** and **Boston University**. The initial tasks are being developed by the internal research team and student contributors.
+This is a collaborative research effort involving researchers affiliated with **Boston University** and **Shanghai University of Finance and Economics**. The initial tasks are being developed by the internal research team and student contributors.
 
 Named project leadership, task authors, scientific reviewers and any confirmed industry sponsors/supporters will be listed here **after internal confirmation**. Affiliations describe the participants' research context and should not be read as an institutional endorsement.
 

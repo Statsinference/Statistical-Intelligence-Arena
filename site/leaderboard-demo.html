@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="description" content="Research prototype for Statistical Inference Arena: a proposed cross-task uncertainty benchmark. Interactive illustrative data only; no actual model evaluations.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Statistical Inference Arena — Research Prototype">
+<meta property="og:description" content="Explore a proposed benchmark for statistical inference methods. All rankings and metrics are simulated demonstration data.">
+<meta name="theme-color" content="#f4f6f9">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='15' fill='%230e7c86'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-family='sans-serif' font-size='34' fill='white'%3E%CF%83%3C/text%3E%3C/svg%3E">
+<title>Statistical Inference Arena — Research Prototype</title>
+<style>
+/* Layout: arena-style — sticky nav + task tabs, a 2x2 overview grid of cards, then one wide sortable table. */
+:root{
+  --bg:#f4f6f9; --surface:#ffffff; --fg:#141922; --muted:#5d6878; --line:#dde3ea; --line-strong:#c3ccd7;
+  --accent:#1d4ed8; --accent-soft:#e3ecff;
+  --pfn:#0e7c86; --pfn-soft:#dff4f5; --classical:#b45309; --classical-soft:#fdeed7;
+  --good:#15803d; --warn:#b45309; --bad:#b91c1c;
+  --gold:#d4a017; --silver:#9aa4b1; --bronze:#b87333;
+  --display:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --body:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --radius:10px;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0e1116; --surface:#161b22; --fg:#e8edf3; --muted:#97a3b3; --line:#262d37; --line-strong:#39424f;
+    --accent:#7aa2ff; --accent-soft:#1b2744;
+    --pfn:#3fc0c9; --pfn-soft:#0f2e31; --classical:#f0a94a; --classical-soft:#3a2609;
+    --good:#4ade80; --warn:#fbbf24; --bad:#f87171;
+    --gold:#f2c14e; --silver:#b7c0cc; --bronze:#d79a5c;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0e1116; --surface:#161b22; --fg:#e8edf3; --muted:#97a3b3; --line:#262d37; --line-strong:#39424f;
+  --accent:#7aa2ff; --accent-soft:#1b2744;
+  --pfn:#3fc0c9; --pfn-soft:#0f2e31; --classical:#f0a94a; --classical-soft:#3a2609;
+  --good:#4ade80; --warn:#fbbf24; --bad:#f87171;
+  --gold:#f2c14e; --silver:#b7c0cc; --bronze:#d79a5c;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-size:14px;line-height:1.5}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+h1,h2,h3{margin:0;font-family:var(--display);text-wrap:balance;letter-spacing:-.01em}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--surface);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;gap:18px;height:54px}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:800;font-size:17px;white-space:nowrap}
+.brand .mark{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,var(--pfn),var(--accent));display:grid;place-items:center;color:#fff;font-family:var(--mono);font-size:13px;font-weight:500}
+.nav-links{display:flex;gap:4px;margin-left:8px}
+.nav-links a{padding:6px 10px;border-radius:7px;color:var(--muted);font-weight:500}
+.nav-links a.on{color:var(--fg);background:var(--bg)}
+.nav .cta{margin-left:auto;background:var(--fg);color:var(--bg);padding:7px 14px;border-radius:8px;font-weight:600;white-space:nowrap}
+@media (max-width:640px){.nav-links{display:none}}
+
+/* tabs */
+.tabs{background:var(--surface);border-bottom:1px solid var(--line)}
+.tabs .wrap{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+.tabs .wrap::-webkit-scrollbar{display:none}
+.tab{padding:12px 12px 10px;border-bottom:2px solid transparent;color:var(--muted);font-weight:500;white-space:nowrap;margin-bottom:-1px;text-align:left}
+.tab:hover{color:var(--fg)}
+.tab.on{color:var(--fg);border-color:var(--fg)}
+.tab small{display:block;font-size:11px;font-weight:400;color:var(--muted)}
+
+/* hero */
+.hero{padding-block:28px 10px}
+.hero .wrap{display:flex;flex-wrap:wrap;align-items:flex-end;gap:16px 32px}
+.hero h1{font-size:clamp(26px,4vw,38px);font-weight:800;line-height:1.1}
+.hero p{margin:6px 0 0;color:var(--muted);max-width:60ch}
+.stats{display:flex;gap:22px;flex-wrap:wrap;margin-left:auto}
+.stat b{display:block;font-family:var(--display);font-size:22px;font-weight:700;line-height:1.1}
+.stat span{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+
+/* new release ticker */
+.ticker{padding-block:14px 6px}
+.ticker h2{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-family:var(--body);font-weight:600;margin-bottom:8px}
+.ticker-row{display:flex;gap:10px;overflow-x:auto;padding-bottom:4px;scrollbar-width:thin}
+.chip-card{flex:0 0 auto;display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:9px 12px;min-width:240px}
+.chip-card .rk{font-family:var(--display);font-weight:800;font-size:20px;min-width:40px}
+.chip-card .t{font-size:13px}
+.chip-card .t b{display:block;font-weight:600}
+.chip-card .t span{color:var(--muted);font-size:12px}
+
+/* overview grid */
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding-block:12px 8px}
+@media (max-width:860px){.grid{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;min-width:0;display:flex;flex-direction:column}
+.card-head{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.card-head h3{font-size:18px;font-weight:700}
+.card-head .sub{color:var(--muted);font-size:12px}
+.card-foot{margin-top:auto;padding-top:12px;font-size:13px;color:var(--accent);font-weight:500}
+
+.top-list{display:grid;gap:4px}
+.top-row{display:grid;grid-template-columns:26px 1fr auto;align-items:center;gap:4px 10px;padding:6px 8px;border-radius:8px}
+.top-row:hover{background:var(--bg)}
+.top-row .r{font-family:var(--display);font-weight:800;color:var(--muted)}
+.top-row .r.g{color:var(--gold)} .top-row .r.s{color:var(--silver)} .top-row .r.b{color:var(--bronze)}
+.top-row .n{display:flex;align-items:center;gap:8px;min-width:0}
+.top-row .n span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:500}
+.top-row .sc{font-family:var(--mono);font-variant-numeric:tabular-nums;font-weight:500}
+.bar{height:4px;border-radius:2px;background:var(--line);grid-column:2/4;overflow:hidden}
+.bar i{display:block;height:100%;border-radius:2px}
+
+.fam{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;padding:2px 7px;border-radius:999px;letter-spacing:.02em;white-space:nowrap}
+.fam.pfn{background:var(--pfn-soft);color:var(--pfn)}
+.fam.classical{background:var(--classical-soft);color:var(--classical)}
+.fam i{width:6px;height:6px;border-radius:50%;background:currentColor}
+
+svg text{font-family:var(--body);fill:var(--muted);font-size:11px}
+svg .mono{font-family:var(--mono)}
+svg .axis{stroke:var(--line-strong);stroke-width:1}
+svg .gridl{stroke:var(--line);stroke-width:1}
+.chart{width:100%;height:auto;display:block}
+
+.h2h{display:grid;gap:8px}
+.h2h-row{display:grid;grid-template-columns:130px 1fr 44px;align-items:center;gap:10px;font-size:13px}
+.h2h-row .lab{color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.h2h-row .track{height:12px;border-radius:6px;background:var(--classical-soft);position:relative;overflow:hidden}
+.h2h-row .track i{position:absolute;inset:0 auto 0 0;background:var(--pfn);border-radius:6px 0 0 6px}
+.h2h-row .track:after{content:"";position:absolute;left:50%;top:-2px;bottom:-2px;width:1px;background:var(--fg);opacity:.5}
+.h2h-row .v{font-family:var(--mono);font-variant-numeric:tabular-nums;text-align:right;color:var(--pfn);font-weight:500}
+.legend{display:flex;gap:14px;font-size:12px;color:var(--muted);flex-wrap:wrap}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:10px;height:10px;border-radius:3px;display:inline-block}
+
+/* table section */
+.tbl-sec{padding-block:24px 48px}
+.tbl-head{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:12px}
+.tbl-head h2{font-size:22px;font-weight:700;margin-right:auto}
+.chips{display:flex;gap:6px}
+.chip{padding:6px 12px;border:1px solid var(--line-strong);border-radius:999px;font-weight:500;color:var(--muted);font-size:13px}
+.chip.on{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.search{display:flex;align-items:center;gap:6px;background:var(--surface);border:1px solid var(--line-strong);border-radius:999px;padding:5px 12px}
+.search input{border:0;background:none;font:inherit;color:inherit;outline:none;width:150px}
+.search:focus-within{border-color:var(--accent)}
+.tbl-wrap{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:860px}
+th,td{padding:11px 12px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap}
+th{font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:600;cursor:pointer;user-select:none;background:var(--surface)}
+th:hover{color:var(--fg)}
+th.sorted{color:var(--fg)}
+th .arrow{font-size:9px;margin-left:3px;opacity:.7}
+td.r,th.r{text-align:right}
+tbody tr:hover{background:var(--bg)}
+tbody tr:last-child td{border-bottom:0}
+td .rank{font-family:var(--display);font-weight:800;font-size:15px;color:var(--muted)}
+td .rank.g{color:var(--gold)} td .rank.s{color:var(--silver)} td .rank.b{color:var(--bronze)}
+td .mname{font-weight:600}
+td .org{color:var(--muted);font-size:12px;display:block}
+.ci{color:var(--muted);font-size:12px}
+.cov{display:inline-flex;align-items:center;gap:6px}
+.cov i{width:8px;height:8px;border-radius:50%}
+.cov.ok i{background:var(--good)} .cov.under i{background:var(--bad)} .cov.over i{background:var(--warn)}
+.delta{font-size:12px;font-family:var(--mono)}
+.delta.up{color:var(--good)} .delta.down{color:var(--bad)} .delta.flat{color:var(--muted)}
+.empty{padding:28px;text-align:center;color:var(--muted);white-space:normal}
+.note{color:var(--muted);font-size:12px;margin-top:10px;max-width:90ch}
+
+/* methodology */
+.method{border-top:1px solid var(--line);padding-block:32px 40px}
+.method .wrap{display:grid;grid-template-columns:1fr 1fr 1fr;gap:28px}
+@media (max-width:860px){.method .wrap{grid-template-columns:1fr}}
+.method h3{font-size:15px;margin-bottom:6px}
+.method p{margin:0;color:var(--muted);font-size:13px;max-width:52ch}
+.method code{font-family:var(--mono);font-size:12px;background:var(--surface);border:1px solid var(--line);padding:1px 5px;border-radius:4px}
+footer{border-top:1px solid var(--line);padding-block:18px 28px;color:var(--muted);font-size:12px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media (prefers-reduced-motion:no-preference){.bar i{transition:width .5s ease}}
+
+/* Public prototype disclosure: keep visible on every tab and screen size. */
+.prototype-banner{border-bottom:1px solid var(--line);background:var(--accent-soft);padding:11px 0}
+.prototype-banner .wrap{display:flex;gap:8px 14px;align-items:center;flex-wrap:wrap}
+.prototype-banner strong{font-weight:750;color:var(--fg);white-space:nowrap}
+.prototype-banner span{color:var(--fg);opacity:.88;font-size:12px}
+.prototype-banner a{color:var(--accent);font-weight:700;font-size:12px;text-decoration:underline;text-underline-offset:3px}
+.prototype-banner .share-status{color:var(--accent);font-weight:600}
+.demo-flag{display:inline-flex;align-items:center;gap:5px;margin-bottom:8px;padding:3px 9px;border:1px solid var(--line-strong);border-radius:999px;font-size:11px;letter-spacing:.05em;text-transform:uppercase;font-weight:700;color:var(--muted)}
+.nav .cta:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.nav .cta{font-size:12px}
+.demo-note{display:flex;align-items:flex-start;gap:9px;border-left:3px solid var(--accent);padding:10px 13px;background:var(--surface);border-radius:0 9px 9px 0;margin-top:12px;font-size:12px;color:var(--fg)}
+.demo-note strong{font-weight:750}
+@media(max-width:640px){.nav .wrap{gap:8px;height:56px}.brand{font-size:14px}.nav .cta{padding:6px 9px;margin-left:auto}.hero{padding-top:18px}.stats{gap:10px 18px;margin-left:0}.stat b{font-size:18px}.tab{padding-inline:10px}.hero h1{font-size:26px}.tbl-head{justify-content:flex-start}.tbl-head h2{width:100%}}
+@media print{.nav{position:static}.nav .cta{display:none}.tabs{display:none}.prototype-banner{break-inside:avoid}body{background:white;color:#141922}.card{break-inside:avoid}}
+.table-swipe-hint{display:none}
+@media(max-width:800px){.table-swipe-hint{display:block;margin:0 0 8px;color:var(--muted);font-size:12px}}
+</style>
+</head>
+<body>
+
+<nav class="nav"><div class="wrap">
+  <a class="brand" href="#top"><span class="mark">σ̂</span>Statistical Inference Arena</a>
+  <div class="nav-links"><a href="#top" class="on">Leaderboard</a><a href="#h2h">PFN vs Classical</a><a href="#methodology">Methodology</a></div>
+  <button class="cta" type="button" id="share-btn" aria-label="Share this page">Share link ↗</button>
+</div></nav>
+
+<section class="prototype-banner" aria-label="Important prototype disclaimer">
+  <div class="wrap">
+    <strong>RESEARCH PROTOTYPE · ILLUSTRATIVE DATA</strong>
+    <span>Every rank, score, coverage value, run count, cost and trend on this page is simulated. No evaluation runs have been conducted.</span>
+    <a href="#methodology">Read the proposed methodology</a>
+    <span class="share-status" id="share-status" role="status" aria-live="polite"></span>
+  </div>
+</section>
+
+<div class="tabs"><div class="wrap" id="tabs"></div></div>
+
+<header class="hero" id="top"><div class="wrap">
+  <div>
+    <span class="demo-flag">Interactive demo · not a live leaderboard</span>
+    <h1 id="hero-title">Overall rankings</h1>
+    <p id="hero-sub">Prior-data fitted networks (PFNs) and classical estimators, proposed for head-to-head comparison on synthetic data-generating processes with known ground truth.</p>
+  </div>
+  <div class="stats">
+    <div class="stat"><b id="st-methods">—</b><span>Listed methods · demo</span></div>
+    <div class="stat"><b id="st-dgps">—</b><span>DGPs · simulated</span></div>
+    <div class="stat"><b id="st-pairs">—</b><span>Battles · simulated</span></div>
+    <div class="stat"><b>Oct 18, 2026</b><span>Prototype date</span></div>
+  </div>
+</div></header>
+
+<section class="ticker"><div class="wrap">
+  <h2>Illustrative ranking highlights</h2>
+  <div class="ticker-row" id="ticker"></div>
+</div></section>
+
+<section class="wrap grid">
+  <div class="card">
+    <div class="card-head"><h3>Top 10 methods</h3><span class="sub" id="top-sub">Overall</span></div>
+    <div class="top-list" id="top10"></div>
+    <a class="card-foot" href="#table">View all →</a>
+  </div>
+  <div class="card" id="h2h">
+    <div class="card-head"><h3>PFN vs Classical</h3><span class="sub">Simulated matchup win rates · for layout demonstration only</span></div>
+    <div class="h2h" id="h2h-list"></div>
+    <div class="legend" style="margin-top:14px"><span><i style="background:var(--pfn)"></i>PFN wins</span><span><i style="background:var(--classical-soft);border:1px solid var(--classical)"></i>Classical wins</span><span>| = 50%</span></div>
+  </div>
+  <div class="card">
+    <div class="card-head"><h3>Pareto frontier</h3><span class="sub">Illustrative scores and costs · not measured</span></div>
+    <div id="pareto"></div>
+    <div class="legend" style="margin-top:8px"><span><i style="background:var(--pfn)"></i>PFN</span><span><i style="background:var(--classical)"></i>Classical</span><span>Dashed line = frontier</span></div>
+  </div>
+  <div class="card">
+    <div class="card-head"><h3>Leaderboard trends</h3><span class="sub">Invented history · Jan – Oct 2026</span></div>
+    <div id="trend"></div>
+    <div class="legend" id="trend-legend" style="margin-top:8px"></div>
+  </div>
+</section>
+
+<section class="tbl-sec wrap" id="table">
+  <div class="tbl-head">
+    <h2 id="tbl-title">All methods</h2>
+    <div class="chips" id="fam-chips">
+      <button class="chip on" data-fam="all">All</button>
+      <button class="chip" data-fam="pfn">PFN</button>
+      <button class="chip" data-fam="classical">Classical</button>
+    </div>
+    <label class="search"><input id="q" type="search" placeholder="Search method or org" aria-label="Search methods"></label>
+  </div>
+  <p class="table-swipe-hint">Swipe left or right inside the table to see all metrics →</p><div class="tbl-wrap"><table>
+    <thead><tr id="thead"></tr></thead>
+    <tbody id="tbody"></tbody>
+  </table></div>
+  <p class="note">All numbers here are generated in-browser from illustrative placeholder values. They are NOT results of model evaluations. The proposed rating would use pairwise interval scores and Bradley–Terry; interval coverage would count how often a nominal 95% CI contains the known parameter under repeated sampling. The “Rating ±” column is demo rating uncertainty, not a parameter confidence interval. Method/task availability is not verified.</p>
+</section>
+
+<section class="method" id="methodology"><div class="wrap">
+  <div><h3>Proposed battle protocol</h3><p>For each task, draw a data-generating process (DGP) with a known true estimand. Repeat sampling at a fixed DGP; run methods on paired datasets; measure coverage, width, RMSE, and time. A proposed interval score is <code>(hi−lo) + 2/α · max(lo−θ,0) + 2/α · max(θ−hi,0)</code>. This is a design sketch, not an executed benchmark.</p></div>
+  <div><h3>Potential method families</h3><p>Compare native inference PFNs, prediction PFNs with explicit inference wrappers, and classical estimators on the SAME defined estimand. Names shown above are illustrative candidates only; they do not imply a released method supports every listed task. Separate confidence intervals from predictive intervals.</p></div>
+  <div><h3>Proposed submission interface</h3><p>A future harness could accept <code>estimate_and_interval(data, task_spec) → (estimate, lo, hi)</code>, record training/calibration budgets and evaluate fixed-DGP repeated sampling plus held-out families. There is no live submission endpoint or public evaluation service yet.</p></div>
+</div></section>
+
+<footer><div class="wrap"><span>Statistical Inference Arena · Public research prototype · all numbers illustrative</span><span>Proposed methods: interval score · Bradley–Terry ranking · per-DGP diagnostics</span></div></footer>
+
+<script>
+/* ===================== DATA (edit freely) ===================== */
+const TASKS = [
+  {id:'overall',  name:'Overview',             short:'All tasks', desc:'Prior-data fitted networks (PFNs) and classical estimators, proposed for head-to-head comparison on synthetic data-generating processes with known ground truth.'},
+  {id:'ols',      name:'Linear Regression',    short:'β̂, HC-robust CI', desc:'Estimate a single coefficient and its 95% CI under heteroskedastic, possibly heavy-tailed noise. n ∈ [50, 5000], p ∈ [2, 40].'},
+  {id:'iv',       name:'Instrumental Variables', short:'LATE / structural β', desc:'Recover the structural coefficient with 1–5 instruments of varying strength (first-stage F from 3 to 200). Weak-instrument DGPs are 30% of the prior.'},
+  {id:'ate',      name:'Causal ATE',           short:'Observational, confounded', desc:'Average treatment effect under unconfoundedness with 2–20 confounders, nonlinear propensity and outcome models, and overlap violations in 15% of DGPs.'},
+  {id:'cate',     name:'Heterogeneous Effects', short:'CATE / τ(x)', desc:'Conditional treatment effects evaluated at 200 held-out covariate points; scored on pointwise coverage and RMSE of τ(x).'},
+  {id:'glm',      name:'Logistic / GLM',       short:'Log-odds, Poisson rate', desc:'Coefficient inference in binomial and Poisson GLMs, including separation-prone and overdispersed designs.'},
+  {id:'quantile', name:'Quantile Regression',  short:'τ ∈ {0.1, 0.5, 0.9}', desc:'Conditional quantile slopes under skewed and heteroskedastic errors; intervals judged at each τ.'},
+  {id:'panel',    name:'Panel / Fixed Effects', short:'Two-way FE, DiD', desc:'Within-unit effects with unit and time fixed effects, serially correlated errors and staggered adoption in 40% of DGPs.'},
+];
+
+// cost = USD per 1,000 estimates (metered). released = YYYY-MM.
+// All ranking/cost/support values below are fictitious and for UI demonstration only.
+const METHODS = [
+  // ---- PFN family (illustrative entries only) ----
+  {name:'TabPFN v2.5',   org:'Prior Labs',       fam:'pfn', cost:0.62, released:'2025-11', s:{ols:1312,iv:1105,ate:1180,cate:1240,glm:1290,quantile:1260,panel:1150}},
+  {name:'TabPFN v2',     org:'Prior Labs',       fam:'pfn', cost:0.48, released:'2025-01', s:{ols:1270,iv:1060,ate:1140,cate:1200,glm:1250,quantile:1210,panel:1100}},
+  {name:'Do-PFN',        org:'Prior Labs',       fam:'pfn', cost:0.71, released:'2025-06', s:{iv:1190,ate:1335,cate:1310}},
+  {name:'CausalPFN',     org:'Vector Institute', fam:'pfn', cost:0.55, released:'2025-06', s:{iv:1150,ate:1300,cate:1285}},
+  {name:'IV-PFN (preview)', org:'Research preview', fam:'pfn', cost:0.80, released:'2026-09', s:{iv:1290,ate:1200}},
+  {name:'LimiX',         org:'Stable AI',        fam:'pfn', cost:0.94, released:'2025-09', s:{ols:1255,glm:1235,quantile:1180,panel:1120}},
+  {name:'Mitra',         org:'Amazon',           fam:'pfn', cost:0.58, released:'2025-07', s:{ols:1245,ate:1090,glm:1225,quantile:1170}},
+  {name:'TabICL',        org:'Inria / Soda',     fam:'pfn', cost:0.21, released:'2025-02', s:{ols:1230,glm:1215,quantile:1150}},
+  {name:'TabDPT',        org:'Layer 6',          fam:'pfn', cost:0.33, released:'2024-10', s:{ols:1210,glm:1190}},
+  {name:'FE-PFN (preview)', org:'Research preview', fam:'pfn', cost:0.66, released:'2026-10', s:{panel:1265,ols:1240}},
+  // ---- Classical / per-dataset fit ----
+  {name:'OLS + HC3',     org:'statsmodels',      fam:'classical', cost:0.01, released:'1980-01', s:{ols:1340,panel:1180}},
+  {name:'Bootstrap-OLS (percentile)', org:'scipy', fam:'classical', cost:0.09, released:'1979-01', s:{ols:1300}},
+  {name:'Bayesian LR (NUTS)', org:'PyMC',        fam:'classical', cost:0.42, released:'2014-01', s:{ols:1325,glm:1300,quantile:1100}},
+  {name:'Ridge (CV)',    org:'scikit-learn',     fam:'classical', cost:0.02, released:'1970-01', s:{ols:1280,glm:1200}},
+  {name:'Debiased Lasso', org:'hdm',             fam:'classical', cost:0.07, released:'2014-01', s:{ols:1260,cate:1120}},
+  {name:'2SLS',          org:'linearmodels',     fam:'classical', cost:0.01, released:'1953-01', s:{iv:1320}},
+  {name:'LIML',          org:'linearmodels',     fam:'classical', cost:0.02, released:'1949-01', s:{iv:1335}},
+  {name:'GMM (2-step)',  org:'linearmodels',     fam:'classical', cost:0.03, released:'1982-01', s:{iv:1300,panel:1250}},
+  {name:'Logistic (MLE)', org:'statsmodels',     fam:'classical', cost:0.01, released:'1958-01', s:{glm:1330}},
+  {name:'Quantile Reg. (Koenker–Bassett)', org:'statsmodels', fam:'classical', cost:0.03, released:'1978-01', s:{quantile:1330}},
+  {name:'Double ML',     org:'DoubleML',         fam:'classical', cost:0.31, released:'2018-01', s:{iv:1270,ate:1310,cate:1230}},
+  {name:'AIPW',          org:'EconML',           fam:'classical', cost:0.18, released:'1994-01', s:{ate:1325}},
+  {name:'IPW',           org:'EconML',           fam:'classical', cost:0.04, released:'1952-01', s:{ate:1200}},
+  {name:'Propensity Matching', org:'MatchIt',    fam:'classical', cost:0.06, released:'1983-01', s:{ate:1130}},
+  {name:'Causal Forest', org:'grf',              fam:'classical', cost:0.27, released:'2018-01', s:{ate:1280,cate:1335}},
+  {name:'X-learner',     org:'EconML',           fam:'classical', cost:0.22, released:'2019-01', s:{cate:1260}},
+  {name:'Two-way FE',    org:'fixest',           fam:'classical', cost:0.02, released:'1990-01', s:{panel:1340}},
+  {name:'DiD (Callaway–Sant’Anna)', org:'did',  fam:'classical', cost:0.11, released:'2021-01', s:{panel:1290,ate:1150}},
+];
+
+// Pairwise win rate (%) of best PFN vs best classical, per task.
+const H2H = {ols:38, iv:22, ate:51, cate:47, glm:44, quantile:40, panel:31};
+// Prototype-only mock totals. These are NOT measured benchmark counts.
+const N_DGPS = 12400, N_BATTLES = 418212;
+
+/* ===================== DERIVED ===================== */
+const FAM_LABEL = {pfn:'PFN', classical:'Classical'};
+const TASK_BY_ID = Object.fromEntries(TASKS.map(t=>[t.id,t]));
+// deterministic jitter so secondary metrics are stable
+function hash(str){let h=2166136261;for(const c of str){h^=c.charCodeAt(0);h=Math.imul(h,16777619)}return ((h>>>0)%1000)/1000}
+function overall(m){const v=Object.values(m.s);return v.reduce((a,b)=>a+b,0)/v.length}
+function metricsFor(m, task){
+  const sc = task==='overall' ? overall(m) : m.s[task];
+  if(sc==null) return null;
+  const key = m.name+task;
+  const j = hash(key), j2 = hash(key+'x');
+  const ci = Math.round(6 + j*10);                                      // ± rating points
+  const gap = (1340 - sc)/340;                                          // 0 (best) .. ~1
+  let cov = 95 - gap*(m.fam==='pfn'? 9 : 4) + (j2-0.5)*2.4;             // weak PFNs under-cover
+  if(m.fam==='classical' && gap>0.5) cov = 95 + gap*3 + (j2-0.5)*2;    // weak classical over-cover
+  cov = Math.max(80, Math.min(99.5, cov));
+  const rmse = +(1 + gap*0.9 + j*0.12).toFixed(2);                      // relative to oracle (1.00)
+  const tasks = Object.keys(m.s).length;
+  const delta = m.fam==='pfn' ? Math.round(2 + j*14) : Math.round((j-0.55)*6);
+  return {score:Math.round(sc), ci, cov:+cov.toFixed(1), rmse, tasks, delta};
+}
+function rows(task){
+  return METHODS.map(m=>({m, ...(metricsFor(m,task)||{})})).filter(r=>r.score!=null)
+    .sort((a,b)=>b.score-a.score).map((r,i)=>({...r, rank:i+1}));
+}
+const fmt = n=>n.toLocaleString('en-US');
+const medal = r => r===1?'g':r===2?'s':r===3?'b':'';
+const famPill = f => `<span class="fam ${f}"><i></i>${FAM_LABEL[f]}</span>`;
+
+/* ===================== STATE ===================== */
+let task='overall', fam='all', q='', sortKey='score', sortDir=-1;
+const $ = s=>document.querySelector(s);
+
+/* ===================== TABS ===================== */
+const tabsEl=$('#tabs');
+tabsEl.innerHTML = TASKS.map(t=>`<button class="tab" data-t="${t.id}">${t.name}<small>${t.short}</small></button>`).join('');
+tabsEl.addEventListener('click',e=>{const b=e.target.closest('.tab');if(!b)return;task=b.dataset.t;if(history.replaceState)history.replaceState(null,'','#'+task);render()});
+
+/* ===================== TICKER ===================== */
+(function ticker(){
+  const items = METHODS.filter(m=>m.released>='2026-06').flatMap(m=>Object.keys(m.s).map(t=>{
+    const r = rows(t).find(x=>x.m.name===m.name); return {m,t,rank:r.rank};
+  })).sort((a,b)=>a.rank-b.rank).slice(0,6);
+  $('#ticker').innerHTML = items.map(x=>`<div class="chip-card"><span class="rk">#${x.rank}</span><div class="t"><b>${x.m.name}</b><span>${famPill(x.m.fam)} in ${TASK_BY_ID[x.t].name}</span></div></div>`).join('');
+})();
+
+/* ===================== CARDS ===================== */
+function renderTop10(){
+  const rs = rows(task).slice(0,10), max=rs[0].score, min=rs[rs.length-1].score-40;
+  $('#top-sub').textContent = task==='overall'?'Overall':TASK_BY_ID[task].name;
+  $('#top10').innerHTML = rs.map(r=>`<div class="top-row">
+    <span class="r ${medal(r.rank)}">${r.rank}</span>
+    <span class="n">${famPill(r.m.fam)}<span>${r.m.name}</span></span>
+    <span class="sc">${r.score}</span>
+    <span class="bar"><i style="width:${((r.score-min)/(max-min)*100).toFixed(1)}%;background:var(--${r.m.fam})"></i></span>
+  </div>`).join('');
+}
+function renderH2H(){
+  const ts = TASKS.filter(t=>t.id!=='overall');
+  $('#h2h-list').innerHTML = ts.map(t=>{
+    const w = H2H[t.id];
+    return `<div class="h2h-row"><span class="lab">${t.name}</span><span class="track"><i style="width:${w}%"></i></span><span class="v">${w}%</span></div>`;
+  }).join('');
+}
+function renderPareto(){
+  const rs = rows(task);
+  const W=520,H=260,L=46,R=14,T=14,B=36;
+  const xs = rs.map(r=>Math.log10(r.m.cost)), ys=rs.map(r=>r.score);
+  const x0=Math.floor(Math.min(...xs)*2)/2-0.1, x1=Math.ceil(Math.max(...xs)*2)/2+0.1;
+  const y0=Math.floor((Math.min(...ys)-20)/50)*50, y1=Math.ceil((Math.max(...ys)+20)/50)*50;
+  const X=v=>L+(v-x0)/(x1-x0)*(W-L-R), Y=v=>T+(y1-v)/(y1-y0)*(H-T-B);
+  const sorted=[...rs].sort((a,b)=>a.m.cost-b.m.cost); let best=-Infinity; const front=[];
+  for(const r of sorted){ if(r.score>best){front.push(r);best=r.score} }
+  const ticksX=[]; for(let v=Math.ceil(x0);v<=x1;v++) ticksX.push(v);
+  const ticksY=[]; for(let v=y0;v<=y1;v+=50) ticksY.push(v);
+  let svg=`<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="Pareto frontier of score versus cost">`;
+  ticksY.forEach(v=>{svg+=`<line class="gridl" x1="${L}" x2="${W-R}" y1="${Y(v)}" y2="${Y(v)}"/><text class="mono" x="${L-6}" y="${Y(v)+4}" text-anchor="end">${v}</text>`});
+  ticksX.forEach(v=>{const lab = v<0 ? (10**v).toFixed(-v) : String(10**v); svg+=`<line class="gridl" x1="${X(v)}" x2="${X(v)}" y1="${T}" y2="${H-B}"/><text class="mono" x="${X(v)}" y="${H-B+16}" text-anchor="middle">$${lab}</text>`});
+  svg+=`<line class="axis" x1="${L}" x2="${W-R}" y1="${H-B}" y2="${H-B}"/><line class="axis" x1="${L}" x2="${L}" y1="${T}" y2="${H-B}"/>`;
+  svg+=`<text x="${(L+W-R)/2}" y="${H-4}" text-anchor="middle">illustrative cost / 1k estimates (log scale)</text>`;
+  svg+=`<path d="${front.map((r,i)=>(i?'L':'M')+X(Math.log10(r.m.cost)).toFixed(1)+' '+Y(r.score).toFixed(1)).join(' ')}" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-dasharray="4 3"/>`;
+  rs.forEach(r=>{const onF=front.includes(r);
+    svg+=`<circle cx="${X(Math.log10(r.m.cost)).toFixed(1)}" cy="${Y(r.score).toFixed(1)}" r="${onF?5:3.5}" fill="var(--${r.m.fam})" opacity="${onF?1:.45}"><title>${r.m.name} — ${r.score} · $${r.m.cost.toFixed(2)}</title></circle>`;
+    if(onF){ const tx=X(Math.log10(r.m.cost)); const anchor = tx>W-120?'end':'start'; const dx = anchor==='end'?-8:8;
+      svg+=`<text x="${(tx+dx).toFixed(1)}" y="${(Y(r.score)-7).toFixed(1)}" text-anchor="${anchor}" style="fill:var(--fg)">${r.m.name}</text>`; }
+  });
+  svg+='</svg>';
+  $('#pareto').innerHTML=svg;
+}
+function renderTrend(){
+  const rs=rows(task);
+  const pick=f=>rs.filter(r=>r.m.fam===f).slice(0,3);
+  const series=[...pick('pfn'),...pick('classical')];
+  const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct'];
+  const W=520,H=240,L=46,R=14,T=14,B=30;
+  const data=series.map(r=>{
+    const slope = r.m.fam==='pfn'? 7+hash(r.m.name)*8 : 0.4+hash(r.m.name)*1.2;
+    return months.map((_,i)=>{const back=months.length-1-i; const v=r.score-slope*back+(hash(r.m.name+i)-.5)*(r.m.fam==='pfn'?14:5); return Math.round(v)});
+  });
+  const all=data.flat(); const y0=Math.floor((Math.min(...all)-10)/50)*50, y1=Math.ceil((Math.max(...all)+10)/50)*50;
+  const X=i=>L+i/(months.length-1)*(W-L-R), Y=v=>T+(y1-v)/(y1-y0)*(H-T-B);
+  const shades={pfn:['var(--pfn)','color-mix(in srgb,var(--pfn) 65%,var(--fg))','color-mix(in srgb,var(--pfn) 50%,var(--bg))'],
+                classical:['var(--classical)','color-mix(in srgb,var(--classical) 65%,var(--fg))','color-mix(in srgb,var(--classical) 50%,var(--bg))']};
+  let svg=`<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="Score trend by month">`;
+  for(let v=y0;v<=y1;v+=50) svg+=`<line class="gridl" x1="${L}" x2="${W-R}" y1="${Y(v)}" y2="${Y(v)}"/><text class="mono" x="${L-6}" y="${Y(v)+4}" text-anchor="end">${v}</text>`;
+  months.forEach((m,i)=>{svg+=`<text x="${X(i)}" y="${H-B+16}" text-anchor="middle">${m}</text>`});
+  svg+=`<line class="axis" x1="${L}" x2="${W-R}" y1="${H-B}" y2="${H-B}"/>`;
+  const legend=[]; const counters={pfn:0,classical:0};
+  series.forEach((r,si)=>{const col=shades[r.m.fam][counters[r.m.fam]++];
+    svg+=`<path d="${data[si].map((v,i)=>(i?'L':'M')+X(i).toFixed(1)+' '+Y(v).toFixed(1)).join(' ')}" fill="none" stroke="${col}" stroke-width="2" stroke-linejoin="round"/>`;
+    const last=data[si][data[si].length-1];
+    svg+=`<circle cx="${X(months.length-1)}" cy="${Y(last)}" r="3.5" fill="${col}"/>`;
+    legend.push(`<span><i style="background:${col}"></i>${r.m.name}</span>`);
+  });
+  svg+='</svg>';
+  $('#trend').innerHTML=svg; $('#trend-legend').innerHTML=legend.join('');
+}
+
+/* ===================== TABLE ===================== */
+const COLS=[
+  {k:'rank',label:'Rank'},{k:'name',label:'Method'},{k:'fam',label:'Family'},
+  {k:'score',label:'Demo rating',r:1},{k:'ci',label:'Rating ±',r:1},{k:'delta',label:'Δ 30d',r:1},
+  {k:'cov',label:'Coverage',r:1},{k:'rmse',label:'Rel. RMSE',r:1},{k:'cost',label:'$ / 1k',r:1},{k:'tasks',label:'Tasks',r:1},
+];
+function val(r,k){ if(k==='name')return r.m.name; if(k==='fam')return r.m.fam; if(k==='cost')return r.m.cost; return r[k] }
+function renderTable(){
+  const t=TASK_BY_ID[task];
+  $('#tbl-title').textContent = task==='overall'?'All methods':t.name;
+  $('#thead').innerHTML = COLS.map(c=>`<th class="${c.r?'r':''} ${sortKey===c.k?'sorted':''}" data-k="${c.k}">${c.label}${sortKey===c.k?`<span class="arrow">${sortDir<0?'▼':'▲'}</span>`:''}</th>`).join('');
+  let rs=rows(task).filter(r=>fam==='all'||r.m.fam===fam);
+  if(q) rs=rs.filter(r=>(r.m.name+' '+r.m.org).toLowerCase().includes(q));
+  rs.sort((a,b)=>{const va=val(a,sortKey),vb=val(b,sortKey);return (typeof va==='string'?va.localeCompare(vb):va-vb)*sortDir});
+  if(!rs.length){$('#tbody').innerHTML=`<tr><td colspan="${COLS.length}" class="empty">No methods match. Clear the search or pick another family.</td></tr>`;return}
+  $('#tbody').innerHTML = rs.map(r=>{
+    const covCls = r.cov<93?'under':r.cov>97?'over':'ok';
+    const dCls = r.delta>1?'up':r.delta<-1?'down':'flat';
+    return `<tr>
+      <td><span class="rank ${medal(r.rank)}">${r.rank}</span></td>
+      <td><span class="mname">${r.m.name}</span><span class="org">${r.m.org}</span></td>
+      <td>${famPill(r.m.fam)}</td>
+      <td class="r num"><b>${r.score}</b></td>
+      <td class="r num ci">±${r.ci}</td>
+      <td class="r"><span class="delta ${dCls}">${r.delta>0?'+':''}${r.delta}</span></td>
+      <td class="r num"><span class="cov ${covCls}"><i></i>${r.cov.toFixed(1)}%</span></td>
+      <td class="r num">${r.rmse.toFixed(2)}×</td>
+      <td class="r num">$${r.m.cost.toFixed(2)}</td>
+      <td class="r num">${r.tasks}/${TASKS.length-1}</td>
+    </tr>`}).join('');
+}
+$('#thead').addEventListener('click',e=>{const th=e.target.closest('th');if(!th)return;const k=th.dataset.k;
+  if(sortKey===k)sortDir*=-1;else{sortKey=k;sortDir=(k==='rank'||k==='name'||k==='fam'||k==='rmse'||k==='cost')?1:-1}
+  renderTable()});
+$('#fam-chips').addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;fam=b.dataset.fam;
+  document.querySelectorAll('.chip').forEach(c=>c.classList.toggle('on',c===b));renderTable()});
+$('#q').addEventListener('input',e=>{q=e.target.value.trim().toLowerCase();renderTable()});
+
+/* ===================== RENDER ===================== */
+function render(){
+  document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('on',b.dataset.t===task));
+  const t=TASK_BY_ID[task];
+  $('#hero-title').textContent = task==='overall'?'Overall rankings — demo':t.name+' — demo';
+  $('#hero-sub').textContent = t.desc;
+  $('#st-methods').textContent = rows(task).length;
+  $('#st-dgps').textContent = fmt(task==='overall'?N_DGPS:Math.round(N_DGPS/7));
+  $('#st-pairs').textContent = fmt(task==='overall'?N_BATTLES:Math.round(N_BATTLES/7));
+  renderTop10(); renderH2H(); renderPareto(); renderTrend(); renderTable();
+  try{localStorage.setItem('sia-task',task)}catch(e){}
+}
+try{const saved=localStorage.getItem('sia-task'); if(saved&&TASK_BY_ID[saved]) task=saved}catch(e){}
+if(location.hash && TASK_BY_ID[location.hash.slice(1)]) task=location.hash.slice(1);
+render();
+const shareBtn=document.getElementById('share-btn');
+shareBtn.addEventListener('click',async()=>{
+  const status=document.getElementById('share-status');
+  if(location.protocol==='file:'){
+    status.textContent='For a public URL, publish index.html to GitHub Pages or another static host.';
+    return;
+  }
+  if(!/^https?:$/.test(location.protocol)){
+    status.textContent='A public web URL is needed before sharing.';
+    return;
+  }
+  try{
+    if(navigator.share){
+      await navigator.share({title:document.title,url:location.href});
+      status.textContent='Share dialog opened.';
+    }else if(navigator.clipboard&&window.isSecureContext){
+      await navigator.clipboard.writeText(location.href);
+      status.textContent='Public page URL copied.';
+    }else{
+      const temp=document.createElement('textarea');
+      temp.value=location.href;temp.style.position='fixed';temp.style.left='-9999px';
+      document.body.appendChild(temp);temp.select();
+      const ok=document.execCommand('copy');temp.remove();
+      status.textContent=ok?'Page URL copied.':'Copy the address from your browser to share.';
+    }
+  }catch(err){if(err.name!=='AbortError')status.textContent='Copy the URL from your browser to share.';}
+});
+</script>
+</body>
+</html>
