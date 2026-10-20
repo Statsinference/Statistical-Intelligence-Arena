@@ -222,7 +222,7 @@ Checkboxes reflect **repository artifacts in this snapshot**, not acceptance of 
 
 ## Academic collaboration and contributors
 
-This is a collaborative research effort involving researchers affiliated with **Boston University** and **Shanghai University of Finance and Economics**. The initial tasks are being developed by the internal research team and student contributors.
+This is a collaborative research effort involving researchers affiliated with **Shanghai University of Finance and Economics** and **Boston University**. The initial tasks are being developed by the internal research team and student contributors.
 
 Named project leadership, task authors, scientific reviewers and any confirmed industry sponsors/supporters will be listed here **after internal confirmation**. Affiliations describe the participants' research context and should not be read as an institutional endorsement.
 
