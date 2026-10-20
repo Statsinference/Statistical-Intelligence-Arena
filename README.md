@@ -1,16 +1,14 @@
-<h1 align="center">Statistical Inference Arena</h1>
+<h1 align="center"><img src="docs/assets/statsarena-logo.jpg" width="48" height="48" alt="StatsArena logo" /> Statistical Inference Arena</h1>
 
 <p align="center"><strong>Benchmarking reliable causal inference and uncertainty quantification for tabular foundation models.</strong></p>
 
 <p align="center">
-  <img src="docs/assets/statsarena-logo.jpg" width="355" alt="StatsArena — statistical distribution above an arena emblem" />
+  <a href="https://statsarena.github.io/" title="Open the interactive leaderboard demo website"><img src="docs/assets/badge-leaderboard.svg" alt="Leaderboard Demo — interactive website with simulated data" height="36" /></a>
+  <a href="#getting-started-for-students" title="Student onboarding steps"><img src="docs/assets/badge-start.svg" alt="Getting Started for Students" height="36" /></a>
+  <a href="CONTRIBUTING.md" title="Contribution requirements"><img src="docs/assets/badge-contribute.svg" alt="Contribute a Task" height="36" /></a>
 </p>
 
-<p align="center">
-  <a href="site/leaderboard-demo.html" title="Open the illustrative leaderboard HTML template"><img src="docs/assets/badge-leaderboard.svg" alt="Leaderboard Demo — illustrative HTML template" height="42" /></a>
-  <a href="#getting-started-for-students" title="Student onboarding steps"><img src="docs/assets/badge-start.svg" alt="Getting Started for Students" height="42" /></a>
-  <a href="CONTRIBUTING.md" title="Contribution requirements"><img src="docs/assets/badge-contribute.svg" alt="Contribute a Task" height="42" /></a>
-</p>
+<p align="center"><sub><strong>Leaderboard Demo:</strong> interactive mock-up with simulated data, not real evaluations. The button will open the website after <a href="docs/LEADERBOARD_DEMO.md">GitHub Pages publishing</a> is enabled.</sub></p>
 
 <p align="center"><strong>Internal research prototype</strong> · Protocol v0.3 (18 October 2026) · Output schema v0.2.0<br/>
 Initial scope: six causal inference task families · Student onboarding and task templates</p>
@@ -37,9 +35,9 @@ This repository is intended **first for collaborating students and researchers b
 
 ### Leaderboard interface preview
 
-The **[Leaderboard Demo](site/leaderboard-demo.html)** is a standalone, interactive HTML **interface template**, included for early discussion of the future results page. **Every rank, score, coverage number, cost and trend in the template is simulated; no benchmark model evaluations have been run.** Its example tabs (including general regression tasks) demonstrate possible UI features and **are not the authoritative six-family task taxonomy**; use [Task Coverage](#task-coverage) below for the initial benchmark scope.
+The **[Leaderboard Demo](https://statsarena.github.io/)** button above leads to a **real, interactive GitHub Pages website** once the team publishes the separate `StatsArena/statsarena.github.io` repository (see [short setup guide](docs/LEADERBOARD_DEMO.md)). The benchmark development repository can remain private. Clicking an `.html` file directly on GitHub would display source code rather than run the page.
 
-**How to view it during private development:** select `site/leaderboard-demo.html` in GitHub, download the raw HTML file, and open it in a browser. GitHub itself displays HTML source rather than executing the interactive dashboard. A one-click hosted demo can be linked here after the team provisions a protected preview deployment; it is **not live yet**.
+**Important:** Every rank, score, coverage number, cost and trend in the HTML template is **simulated**; no benchmark model evaluations have been run. The demo's example task tabs are for interface exploration, **not** the authoritative six-family taxonomy. Do not publish hidden evaluation configurations or unreviewed results. **Until Pages is enabled, the demo URL will not be live.**
 
 ## Getting started for students
 

@@ -1,12 +1,26 @@
-# Leaderboard demo — interface mockup only
+# Leaderboard Demo — real website via GitHub Pages
 
-The button on the root README opens [`site/leaderboard-demo.html`](../site/leaderboard-demo.html).
-This is the standalone HTML template provided by the project team. It has **no real results, external API, submission endpoint or recorded benchmark runs**. All displayed ranks, numerical metrics, historical trends, and model comparisons are illustrative. Its example task tabs differ from the repository's official six-family causal-inference plan, so do not treat the UI labels as a scientific contract.
+Our demo requires no Vercel or backend: it is a standalone HTML/CSS/JavaScript page.
 
-## View interactively
+**Actual website address (after publishing):** https://statsarena.github.io/
 
-GitHub renders `.html` files as source, not as interactive pages. Download `site/leaderboard-demo.html` as a raw file, then double-click the file to open it locally in Chrome/Safari/Firefox. It is self-contained and does not require a server.
+## Publish the demo
 
-If a one-click web demo is desired during private development, deploy it to a **password- or account-protected preview host** and update the README button link with the verified preview URL. Do not publish it openly while the team wants to keep the project private. The repository being private by itself does not protect an externally hosted website.
+1. From the `StatsArena` organization, create a **Public** repository named exactly **`statsarena.github.io`**. This is separate from the **Private** `statistical-inference-arena` benchmark repository.
+2. In the **public website repo only**, upload:
+   - `index.html` (the supplied leaderboard demo as a webpage)
+   - `statsarena-logo.jpg`
+   - `.nojekyll` (optional)
+   - `README.md` (website repository guidance)
+   Put them in the root of the website repo; do **not** upload the ZIP as a single file.
+3. In `StatsArena/statsarena.github.io`, go to **Settings → Pages → Build and deployment → Source: Deploy from a branch → Branch: main → /(root) → Save**.
+4. Wait for Pages to deploy and use **Visit site**. Verify that `https://statsarena.github.io/` shows the **rendered interactive page**, not GitHub source.
+5. The main benchmark README button is **already linked** to that public URL; it will start working without further README edits after publishing.
 
-For the official planned task taxonomy, see the root README's [Task coverage](../README.md#task-coverage).
+**Privacy:** Keep the primary Benchmark repo private. Only the illustrative standalone mock website is public. GitHub Pages makes the demo available to everyone without login. If private access to the *demo itself* is required instead, GitHub Pages on Free does not provide that and you need an authenticated preview host.
+
+**Important:** All leaderboard rankings, costs, coverage values, histories, methods support indications and DGP counts are **simulated demonstration data**, not actual benchmark measurements. The demo tabs are illustrative and do not replace the six official causal-inference categories.
+
+## Local preview
+
+Open `index.html` in a browser, or from the website files directory run `python3 -m http.server 8000` and open `http://127.0.0.1:8000/`. A local preview is not a public link.
