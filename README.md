@@ -1,23 +1,38 @@
-<h1 align="center"><img src="docs/assets/statsarena-logo.jpg" width="66" height="66" alt="StatsArena logo" /> Statistical Inference Arena</h1>
 
-<p align="center"><strong>Benchmarking reliable causal inference and uncertainty quantification for tabular foundation models.</strong></p>
+<h1 align="center">
+  <img src="docs/assets/statsarena-logo.jpg" width="66" height="66" alt="StatsArena logo" />
+  Statistical Inference Arena
+</h1>
 
 <p align="center">
-  <a href="https://statsarena.github.io/" title="Open the interactive leaderboard demo website"><img src="docs/assets/badge-leaderboard.svg" alt="Leaderboard Demo — interactive website with simulated data" height="36" /></a>
-  <a href="#getting-started-for-students" title="Student onboarding steps"><img src="docs/assets/badge-start.svg" alt="Getting Started for Students" height="36" /></a>
-  <a href="CONTRIBUTING.md" title="Contribution requirements"><img src="docs/assets/badge-contribute.svg" alt="Contribute a Task" height="36" /></a>
+  <strong>Benchmarking reliable causal inference and uncertainty quantification for tabular foundation models.</strong>
+</p>
+
+<p align="center">
+  <a href="./site/leaderboard-demo.html" title="View and download the interactive leaderboard demo">
+    <img src="docs/assets/badge-leaderboard.svg" alt="Leaderboard Demo" height="36" />
+  </a>
+  <a href="#getting-started-for-students" title="Student onboarding steps">
+    <img src="docs/assets/badge-start.svg" alt="Getting Started for Students" height="36" />
+  </a>
+  <a href="CONTRIBUTING.md" title="Contribution requirements">
+    <img src="docs/assets/badge-contribute.svg" alt="Contribute a Task" height="36" />
+  </a>
 </p>
 
 <p align="center">
   <sub>
     <strong>Leaderboard Demo:</strong>
     Interactive mock-up with simulated data, not real evaluations.
-    <a href="./site/index.html">Click here to view and download the HTML demo</a>.
+    Download the HTML file from GitHub and open it locally in your browser.
   </sub>
 </p>
 
-<p align="center"><strong>Internal research prototype</strong> · Protocol v0.3 (18 October 2026) · Output schema v0.2.0<br/>
-Initial scope: six causal inference task families · Student onboarding and task templates</p>
+<p align="center">
+  <strong>Internal research prototype</strong> · Protocol v0.3 (18 October 2026) · Output schema v0.2.0<br/>
+  Initial scope: six causal inference task families · Student onboarding and task templates
+</p>
+
 
 > **For student contributors:** Start with the [English walkthrough](docs/student_guide_en.md) or [中文贡献指南](docs/student_guide_zh.md), review the [reference-demo specification](starter/demo/README.md), then use the [task starter](starter/README.md). A fully runnable reference demo is **not yet included** in this snapshot.
 
