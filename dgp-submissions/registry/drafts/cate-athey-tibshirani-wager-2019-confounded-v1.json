@@ -1,0 +1,258 @@
+{
+  "schema_version": "0.1",
+  "record_id": "cate-athey-tibshirani-wager-2019-confounded-v1",
+  "kind": "synthetic_dgp",
+  "domain": "cate",
+  "english_display": {},
+  "paper": {
+    "citation": "Athey, S., Tibshirani, J. and Wager, S. (2019). Generalized Random Forests. The Annals of Statistics 47(2), 1148-1178. DOI: 10.1214/18-AOS1709.",
+    "title": null,
+    "doi": null,
+    "source_url": "https://arxiv.org/abs/1610.01271v4",
+    "source_file_evidence": [],
+    "venue": "The Annals of Statistics",
+    "year": 2019,
+    "source_version": "arXiv:1610.01271v4 (2018-04-05); PDF production footer 2018-04-06; publication metadata separately checked against the Stanford institutional record for the 2019 AoS issue",
+    "source_locator": "arXiv:1610.01271v4 PDF pp.22-23, Section 6.2, third simulation setting (both confounding and heterogeneity); p.23 Table 1, p=10, n=800."
+  },
+  "mechanism": {
+    "name": "固定查询点 CATE：混杂与 logistic 乘积异质效应并存",
+    "title_en": null,
+    "family_id": "athey-tibshirani-wager-2019-combined-confounding-heterogeneity",
+    "generation_equations": [
+      {
+        "label": "Covariates",
+        "expression": "X_j iid Uniform(0,1), j=1,...,10"
+      },
+      {
+        "label": "Treatment assignment",
+        "expression": "e(X)=[1+20*X3*(1-X3)^3]/4; A|X~Bernoulli(e(X))"
+      },
+      {
+        "label": "Centered baseline",
+        "expression": "m(X)=2*X3-1"
+      },
+      {
+        "label": "Conditional effect",
+        "expression": "tau(X)=s(X1)*s(X2), s(u)=1+1/[1+exp(-20*(u-1/3))]"
+      },
+      {
+        "label": "Outcome",
+        "expression": "Y=m(X)+(A-0.5)*tau(X)+epsilon; epsilon~Normal(0,1), independent of X and assignment uniforms"
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "X1",
+        "role": "pretreatment_effect_modifier",
+        "dtype": "float",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X2",
+        "role": "pretreatment_effect_modifier",
+        "dtype": "float",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X3",
+        "role": "pretreatment_confounder",
+        "dtype": "float",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X4",
+        "role": "pretreatment_inactive_covariate",
+        "dtype": "float",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X5",
+        "role": "pretreatment_inactive_covariate",
+        "dtype": "float",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X6",
+        "role": "pretreatment_inactive_covariate",
+        "dtype": "float",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X7",
+        "role": "pretreatment_inactive_covariate",
+        "dtype": "float",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X8",
+        "role": "pretreatment_inactive_covariate",
+        "dtype": "float",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X9",
+        "role": "pretreatment_inactive_covariate",
+        "dtype": "float",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X10",
+        "role": "pretreatment_inactive_covariate",
+        "dtype": "float",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "A",
+        "role": "binary_treatment",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "continuous_outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [],
+    "latent_variables_status": "not_explicitly_specified",
+    "sampling": {
+      "unit": "individual",
+      "dependence": "iid individuals with 10 mutually independent Uniform(0,1) baseline covariates"
+    },
+    "assumptions": [
+      "Consistency and well-defined binary interventions; no interference.",
+      "Independent identically distributed individuals.",
+      "Conditional exchangeability (Y(0),Y(1)) independent of A given X, implemented by independent assignment uniforms and noise.",
+      "Positivity: e=1/2 for randomized data; 1/4 <= e(X) <= 199/256 for the Beta-density assignment.",
+      "All confounders observed, finite moments, and the specified continuous regression functions identify the pointwise conditional target where applicable."
+    ],
+    "properties": {
+      "dimension": 10,
+      "effective_dimension": 3,
+      "observed_columns": 12,
+      "high_dimensional": false,
+      "interactions": true,
+      "nonlinear": true,
+      "notes": "Only X1,X2 modify treatment effect; X3 additionally confounds assignment/outcome. The logistic product is nonlinear and nonadditive, with treatment-covariate interactions. Remaining coordinates inactive. d=10, n=128 is not labeled high dimensional. This is the source paper's explicitly combined setting: the logistic product tau(x) from Wager-Athey (2018) plus X3-dependent e(x) and m(x). It shares tau with the randomized CATE contribution, but changes assignment and outcome confounding structure. Final mechanism-family deduplication is pending."
+    }
+  },
+  "estimand": {
+    "name": "tau(x_star)=E[Y(1)-Y(0)|X=x_star]",
+    "definition": "Scalar pointwise CATE at x_star=[0.3333333333333333, 0.3333333333333333, 0.25, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5]. Continuous source response functions specify the conditional version at this point. This is not a population ATE or the full CATE vector/function interface.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "source_d10_sigma1_fixed_query",
+      "parameters": {
+        "dimension": 10,
+        "noise_sd": 1.0,
+        "effect_scale": 1.0,
+        "query_point": [
+          0.3333333333333333,
+          0.3333333333333333,
+          0.25,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5
+        ]
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 2.25,
+        "expression": "Scalar pointwise CATE at x_star=[0.3333333333333333, 0.3333333333333333, 0.25, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5]. Continuous source response functions specify the conditional version at this point. This is not a population ATE or the full CATE vector/function interface.",
+        "derivation": "Analytic CATE at fixed query: s(1/3)=3/2, so tau(x_star)=9/4. Independent verification integrates arm means with Gauss-Hermite and solves the conditional covariance moment.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[source_d10_sigma1_fixed_query].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "Preserve the source mechanism with dimension=10, noise variance=1; rename source W as A.",
+    "The collection interface requires a scalar. Target tau(x_star) at the fixed query [0.3333333333333333, 0.3333333333333333, 0.25, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5]; retain the full source tau(x) in the generator. This query and its value 2.25 are defined here, not a scalar result reported by the paper.",
+    "Use Python/NumPy PCG64, row-major X, independent uniform-threshold assignment and normal noise; distributional reconstruction, not identical R random samples.",
+    "Use n=128, seed=1729 for a CPU interface check instead of the source estimator study (source n=800). No estimator is fitted.",
+    "effect_scale=1 is the source mechanism; 0 and -1 only serve internal verification controls, not additional contributions.",
+    "The source fixes marginal Gaussian potential-outcome laws but does not require a cross-world coupling. A single independent noise produces the observed law; a shared-error potential-outcome representation is only a mathematical completion, not an asserted original coupling."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "generator.py",
+    "truth_reference": "truth.py",
+    "source_archive": "cate-athey-tibshirani-wager-2019-confounded-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/cate-athey-tibshirani-wager-2019-confounded-v1.py",
+    "exported_generator_sha256": "bd4e94298674aa75771bc93715984ace74d249608d70619264bf826662724585"
+  },
+  "evidence": [
+    {
+      "file": "collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "524fb88e3d659567d535a30519602d103983b26112c14dc2219fbce2210ac090",
+    "collection_sha256": "ecb1bd9e6417bbfa460e83f9f0971240ae8e65ea94ab51ec8467fbc3edfc4276",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/cate-athey-tibshirani-wager-2019-confounded-v1.zip",
+    "submitted_zip_sha256": "524fb88e3d659567d535a30519602d103983b26112c14dc2219fbce2210ac090",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload",
+    "duplicate_submission_files": [
+      "incoming/contributions.zip"
+    ]
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "No explicit latent-variable metadata or reliably identifiable latent declarations; absence from this list does not prove that no latent variables exist."
+  ],
+  "source_suggested_domain": "cate",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

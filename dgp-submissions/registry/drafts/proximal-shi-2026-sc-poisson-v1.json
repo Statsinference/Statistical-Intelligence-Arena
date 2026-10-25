@@ -1,0 +1,188 @@
+{
+  "schema_version": "0.1",
+  "record_id": "proximal-shi-2026-sc-poisson-v1",
+  "kind": "synthetic_dgp",
+  "domain": "proximal",
+  "english_display": {},
+  "paper": {
+    "citation": "Shi, X., Li, K. Q., Yu, M., Miao, W., Kuchibhotla, A. K., Hu, M., & Tchetgen Tchetgen, E. (2026). Theory for Identification and Inference with Synthetic Controls: A Proximal Causal Inference Framework. Journal of the American Statistical Association, online publication, 4 June 2026. DOI: 10.1080/01621459.2026.2639734.",
+    "title": null,
+    "doi": "10.1080/01621459.2026.2639734",
+    "source_url": "https://doi.org/10.1080/01621459.2026.2639734",
+    "source_file_evidence": [
+      {
+        "file": "shi-jasa-2026.html",
+        "sha256": "350faf89d5cb697198f4c8c05097c9aca4b398b7d0f7e4ea689489213ef43c6f"
+      },
+      {
+        "file": "shi-jasa-2026-loadings.jpg",
+        "sha256": "7b9dc2995f08b2063ef89be06364816cf650c8783f831e997aa270a16f0ac74f"
+      },
+      {
+        "file": "shi-jasa-2026-supplement.pdf",
+        "sha256": "3939a6e92bd8964faea1a3466c4d1912b4f21226aef5e9d493d7b60d6fb3942f"
+      },
+      {
+        "file": "shi-final-code-simulation_run_sim_linear_est.R",
+        "sha256": "75de30bd170cdd81e860d50905b37d4fff53e9725b1177bfbd334d9cc5c04360"
+      }
+    ],
+    "venue": "JASA",
+    "year": 2026,
+    "source_version": "JASA 2026 正式版 §4；出版社 Supplement J.8, Eq(S.25), Figshare 31627658；作者代码 commit 64bf31accb7444b69d70034c2f7660b3fc9f96f8",
+    "source_locator": "JASA 2026 出版社补充材料 J.8，PDF 第49–51页，式(S.25)；r=1、N=2、无协变量。"
+  },
+  "mechanism": {
+    "name": "截断正态因子的 Poisson 合成控制",
+    "title_en": null,
+    "family_id": "proximal-shi-2026-sc-poisson",
+    "generation_equations": [
+      "λ_t 独立 ~ N(0.5,0.1²) 截断于(0,1)；A_t=1{t>T0}，T0=floor(T/2)。",
+      "Y_t|λ_t ~ Poisson(exp{λ_t+βA_t})；W_t,Z_t|λ_t 独立 ~ Poisson(λ_t/(e−1))；β=−2。",
+      "r=1时来源载荷均为1，h(W)=exp(W)，E[exp(W)|λ]=exp(λ)。"
+    ],
+    "observed_variables": [
+      {
+        "name": "time",
+        "role": "time_index",
+        "dtype": "integer",
+        "min": "1",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "A",
+        "role": "post_period_indicator",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "treated_unit_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "W",
+        "role": "donor_outcome_proxy",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Z",
+        "role": "other_control_proxy",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [
+      {
+        "name": "λ_t",
+        "role": "latent_candidate",
+        "evidence": {
+          "file": "collection.json",
+          "equation_index": 0,
+          "expression": "λ_t 独立 ~ N(0.5,0.1²) 截断于(0,1)"
+        },
+        "provenance": "inferred_from_stochastic_declaration"
+      }
+    ],
+    "latent_variables_status": "candidates_from_equations_need_review",
+    "sampling": {
+      "unit": "one panel experiment; a row is a time point",
+      "dependence": "conditionally independent counts across units given a shared factor; independent time innovations"
+    },
+    "assumptions": [
+      "无提前效应和对照干扰；处理前后保持相同因子法则及指数桥；各单位计数给定因子条件独立；代理有信息并满足来源的桥识别条件。"
+    ],
+    "properties": {
+      "dimension": 0,
+      "effective_dimension": 0,
+      "high_dimensional": false,
+      "interactions": false,
+      "nonlinear": true,
+      "notes": "单处理单位、一个donor W与一个额外代理Z；一行一个时间点。观察time,A,Y,W,Z，后三列为非负整数。 计数结局与非线性指数桥，不是Gaussian机制的参数场景。"
+    }
+  },
+  "estimand": {
+    "name": "theta",
+    "definition": "β = log{E[Y_t(1)]/E[Y_t(0)]} = −2；均值比为exp(−2)。",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "journal_r1_no_covariates",
+      "parameters": {
+        "factor_mean": 0.5,
+        "factor_sd": 0.1,
+        "log_ratio": -2.0
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": -2.0,
+        "expression": "β = log{E[Y_t(1)]/E[Y_t(0)]} = −2；均值比为exp(−2)。",
+        "derivation": "log(E[Y(1)]/E[Y(0)])=beta. The negative ratio in the source prose omits log; Eq S.25 gives a positive ratio exp(beta).",
+        "evidence": [
+          {
+            "file": "contributions_proximal/proximal-shi-2026-sc-poisson-v1/checks/report.json",
+            "location": "execution.scenario_results[journal_r1_no_covariates].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "采用正式补充材料的截断正态因子，替换旧版Uniform因子。原文将β写成负的均值比，按式(S.25)修正为对数均值比。选无协变量场景，避免来源ζ文字与方程未列协变量的不一致。T0原为100/150/200；接口检查用T=128。使用 NumPy Generator(PCG64) 重写抽样；不要求与作者软件逐随机数一致。保留来源方程与固定参数；n=128、seed=1729 仅作接口检查，不重跑论文的估计器比较。输出仅含观察列，真值、潜变量和桥函数值不作为数据列。"
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "contributions_proximal/proximal-shi-2026-sc-poisson-v1/generator.py",
+    "truth_reference": "contributions_proximal/proximal-shi-2026-sc-poisson-v1/truth.py",
+    "source_archive": "contributions_proximal.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/proximal-shi-2026-sc-poisson-v1.py",
+    "exported_generator_sha256": "5911b06d5e779ca65c8a85e387d913cf89c9fb2e70ca63270c7f3d01e63ccc45"
+  },
+  "evidence": [
+    {
+      "file": "contributions_proximal/proximal-shi-2026-sc-poisson-v1/collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "contributions_proximal/proximal-shi-2026-sc-poisson-v1/config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "contributions_proximal/proximal-shi-2026-sc-poisson-v1/source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "50ef88d66c8077faf109c4acd3b8f667a67da6675f835b0e7ffa8d37acbdd4a9",
+    "collection_sha256": "f9291fc073a985c449d3cd09f1bf7eb0eb1ddd927c735521709cf8e1f75d14c6",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "AI-source-audit; named human scientific review pending",
+    "submission_file": "incoming/contributions_proximal.zip",
+    "submitted_zip_sha256": "50ef88d66c8077faf109c4acd3b8f667a67da6675f835b0e7ffa8d37acbdd4a9",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "Latent-variable candidates inferred from source equations; confirm their roles and completeness against the original paper or generator."
+  ],
+  "source_suggested_domain": "proximal",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

@@ -1,0 +1,513 @@
+{
+  "schema_version": "0.1",
+  "record_id": "qr-athey-tibshirani-wager-2019-mean-v1",
+  "kind": "synthetic_dgp",
+  "domain": "unclassified",
+  "english_display": {},
+  "paper": {
+    "citation": "Athey, S., Tibshirani, J. and Wager, S. (2019). Generalized random forests. The Annals of Statistics 47(2), 1148-1178. DOI: 10.1214/18-AOS1709.",
+    "title": null,
+    "doi": null,
+    "source_url": "https://arxiv.org/abs/1610.01271v4",
+    "source_file_evidence": [],
+    "venue": "The Annals of Statistics",
+    "year": 2019,
+    "source_version": "arXiv:1610.01271v4, 2018-04-05; AoS issue metadata 2019 verified separately",
+    "source_locator": "arXiv v4 PDF p.19, Section 5, Figure 2 caption, left (mean shift) panel. Section 5 begins on p.18."
+  },
+  "mechanism": {
+    "name": "Conditional quantile under Athey-Tibshirani-Wager Figure 2 mean shift",
+    "title_en": null,
+    "family_id": "athey-tibshirani-wager-2019-quantile-mean-shift",
+    "generation_equations": [
+      {
+        "label": "Features",
+        "expression": "X_j iid Uniform(-1,1), j=1,...,40"
+      },
+      {
+        "label": "Noise",
+        "expression": "epsilon~Normal(0,1), independent of all X_j"
+      },
+      {
+        "label": "Observed response",
+        "expression": "Y=0.8*I(X1>0)+epsilon"
+      },
+      {
+        "label": "Conditional quantile",
+        "expression": "Q_q(Y|X=x)=0.8*I(x1>0)+Phi_inverse(q)"
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "X1",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-1",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X2",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-1",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X3",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-1",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X4",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-1",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X5",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-1",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X6",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-1",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X7",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-1",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X8",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-1",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X9",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-1",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X10",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-1",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X11",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-1",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X12",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-1",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X13",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-1",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X14",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-1",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X15",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-1",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X16",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-1",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X17",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-1",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X18",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-1",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X19",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-1",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X20",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-1",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X21",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-1",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X22",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-1",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X23",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-1",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X24",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-1",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X25",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-1",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X26",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-1",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X27",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-1",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X28",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-1",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X29",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-1",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X30",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-1",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X31",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-1",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X32",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-1",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X33",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-1",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X34",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-1",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X35",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-1",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X36",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-1",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X37",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-1",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X38",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-1",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X39",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-1",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X40",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-1",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [],
+    "latent_variables_status": "not_explicitly_specified",
+    "sampling": {
+      "unit": "individual response and covariate vector",
+      "dependence": "iid rows; independent covariates; independent Gaussian response noise"
+    },
+    "assumptions": [
+      "Independent identically distributed rows with 40 independent Uniform(-1,1) features.",
+      "Gaussian noise is independent of every covariate; conditional scale is strictly positive.",
+      "The stated regular conditional distribution defines the pointwise target, with a continuous positive outcome density there.",
+      "The query lies inside the covariate support and away from the x1=0 jump. No treatment identification or causal exchangeability assumption is invoked."
+    ],
+    "properties": {
+      "dimension": 40,
+      "effective_dimension": 1,
+      "observed_columns": 41,
+      "high_dimensional": false,
+      "interactions": false,
+      "nonlinear": true,
+      "notes": "Only X1 changes the conditional mean through a discontinuous indicator; X2-X40 are irrelevant. No interaction between distinct covariates. p=40<n=128 and only one active feature: no high-dimensional confounding claim. This mean-shift model is homoskedastic with conditional variance one. The source discontinuity does not automatically satisfy every smoothness assumption of GRF asymptotic theorems."
+    }
+  },
+  "estimand": {
+    "name": "theta = Q_0.9(Y | X=x_query)",
+    "definition": "Conditional 90th percentile of the observed response at x_query=(0.5,0,...,0) in the 40-dimensional covariate support; inf{y:P(Y<=y|X=x_query)>=0.9}. A conditional quantile regression target, not a quantile treatment effect, population marginal quantile or causal estimand.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "source_p40_q90_positive_query",
+      "parameters": {
+        "dimension": 40,
+        "mean_shift": 0.8,
+        "quantile": 0.9,
+        "x_query": [
+          0.5,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 2.0815515655446006,
+        "expression": "Conditional 90th percentile of the observed response at x_query=(0.5,0,...,0) in the 40-dimensional covariate support; inf{y:P(Y<=y|X=x_query)>=0.9}. A conditional quantile regression target, not a quantile treatment effect, population marginal quantile or causal estimand.",
+        "derivation": "Closed-form 0.8*I(x1>0)+Phi_inverse(q); numerical normal inverse CDF, independently checked by erfc CDF inversion and Gauss-Legendre density integration.",
+        "evidence": [
+          {
+            "file": "contributions/qr-athey-tibshirani-wager-2019-mean-v1/checks/report.json",
+            "location": "execution.scenario_results[source_p40_q90_positive_query].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "Retain the Figure 2 mean-shift conditional Gaussian law and p=40, including 39 irrelevant covariates.",
+    "Take q=0.9 from the paper quantiles {0.1,0.5,0.9}; choose x_query=(0.5,0,...,0) to expose a scalar conditional quantile through the student truth interface. This fixed point is an adapter choice, not a paper-reported scalar estimate.",
+    "Use NumPy PCG64 draws; distributional reconstruction, not the original R seed stream.",
+    "Use n=128 and seed=1729 for interface validation instead of n=2000 estimator experiments. No forest or other estimator is fitted.",
+    "Register quantile_regression through explicitly documented local family enum extension quantile-regression-family-v1. The unmodified official student package does not support this family; no causal-effect label is substituted.",
+    "Other quantiles, the zero-shift law and boundary points occur only in verification controls, not additional registered mechanisms."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "contributions/qr-athey-tibshirani-wager-2019-mean-v1/generator.py",
+    "truth_reference": "contributions/qr-athey-tibshirani-wager-2019-mean-v1/truth.py",
+    "source_archive": "contributions.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/qr-athey-tibshirani-wager-2019-mean-v1.py",
+    "exported_generator_sha256": "c629755b97aab54dfa30d84dca9970d9a845a60e91aadfccb0631d6839adc0ea"
+  },
+  "evidence": [
+    {
+      "file": "contributions/qr-athey-tibshirani-wager-2019-mean-v1/collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "contributions/qr-athey-tibshirani-wager-2019-mean-v1/config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "contributions/qr-athey-tibshirani-wager-2019-mean-v1/source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "b9defbcbdc8290f7cf489d5227113adc705be56fb7feb187cc3d99aea399f908",
+    "collection_sha256": "f3f208b383f8071127d3c039795f954d295f7d68300585ab97f515a4bc9600ec",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/contributions.zip",
+    "submitted_zip_sha256": "b9defbcbdc8290f7cf489d5227113adc705be56fb7feb187cc3d99aea399f908",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "No explicit latent-variable metadata or reliably identifiable latent declarations; absence from this list does not prove that no latent variables exist.",
+    "Unrecognized or missing family in collection.json: human classification required."
+  ],
+  "source_suggested_domain": "quantile_regression",
+  "classification_status": "needs_manual_classification",
+  "suggested_secondary_domains": []
+}

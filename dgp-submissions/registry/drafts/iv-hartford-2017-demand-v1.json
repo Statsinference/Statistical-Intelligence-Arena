@@ -1,0 +1,206 @@
+{
+  "schema_version": "0.1",
+  "record_id": "iv-hartford-2017-demand-v1",
+  "kind": "synthetic_dgp",
+  "domain": "iv",
+  "english_display": {},
+  "paper": {
+    "citation": "Hartford, J., Lewis, G., Leyton-Brown, K. and Taddy, M. (2017). Deep IV: A Flexible Approach for Counterfactual Prediction. ICML, PMLR 70:1414-1423.",
+    "title": null,
+    "doi": null,
+    "source_url": "https://proceedings.mlr.press/v70/hartford17a.html",
+    "source_file_evidence": [],
+    "venue": "ICML (PMLR)",
+    "year": 2017,
+    "source_version": "ICML 2017 published PMLR PDF; author code at commit 349cf027d821d92754ab35ad49320ecf6dfd1c55",
+    "source_locator": "Published PDF p. 6, Section 4.1, simulation equations; experiments/data_generator.py lines 80-140 for psi, uniform customer type, rho=0.8 and code normalization."
+  },
+  "mechanism": {
+    "name": "IV: DeepIV raw-unit demand with endogenous continuous price",
+    "title_en": null,
+    "family_id": "hartford-2017-demand-raw",
+    "generation_equations": [
+      {
+        "label": "1",
+        "expression": "T~Uniform(0,10); S~DiscreteUniform({1,...,7}); Z,V,W iid Normal(0,1), mutually independent"
+      },
+      {
+        "label": "2",
+        "expression": "psi(T)=2*((T-5)^4/600+exp(-4*(T-5)^2)+T/10-2)"
+      },
+      {
+        "label": "3",
+        "expression": "P=25+(Z+3)*psi(T)+V"
+      },
+      {
+        "label": "4",
+        "expression": "e=rho*V+sqrt(1-rho^2)*W; rho=0.8"
+      },
+      {
+        "label": "5",
+        "expression": "Y=100+(10+P)*S*psi(T)-2*P+e"
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "T",
+        "role": "baseline_time",
+        "dtype": "float",
+        "min": "0",
+        "max": "10",
+        "observed": "true"
+      },
+      {
+        "name": "S",
+        "role": "baseline_customer_category",
+        "dtype": "integer",
+        "min": "1",
+        "max": "7",
+        "observed": "true"
+      },
+      {
+        "name": "Z",
+        "role": "instrument",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "P",
+        "role": "endogenous_treatment",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [
+      {
+        "name": "V",
+        "role": "latent_candidate",
+        "evidence": {
+          "file": "collection.json",
+          "equation_index": 0,
+          "expression": "Z,V,W iid Normal(0,1), mutually independent"
+        },
+        "provenance": "inferred_from_stochastic_declaration"
+      },
+      {
+        "name": "W",
+        "role": "latent_candidate",
+        "evidence": {
+          "file": "collection.json",
+          "equation_index": 0,
+          "expression": "Z,V,W iid Normal(0,1), mutually independent"
+        },
+        "provenance": "inferred_from_stochastic_declaration"
+      }
+    ],
+    "latent_variables_status": "candidates_from_equations_need_review",
+    "sampling": {
+      "unit": "individual",
+      "dependence": "iid individuals; exogenous random draws mutually independent within individual except explicitly shared latent errors"
+    },
+    "assumptions": [
+      "Consistency and no interference; iid individuals.",
+      "Instrument Z is independent of T,S,V,W; exclusion: Z enters Y only through price P.",
+      "E[e|T,S,Z]=0 because e=rho*V+sqrt(1-rho^2)*W with independent centered normals.",
+      "Relevance holds for almost every T: d E[P|T,Z]/dZ=psi(T), whose zeros have probability zero under continuous T.",
+      "Identification uses the additive structural-error conditional-moment model, nonzero Gaussian location shifts almost everywhere, and an appropriate regularity/completeness class; arbitrary IV problems are not automatically identified."
+    ],
+    "properties": {
+      "dimension": 2,
+      "effective_dimension": 2,
+      "observed_columns": 5,
+      "high_dimensional": false,
+      "interactions": true,
+      "nonlinear": true,
+      "notes": "Baseline covariates T,S; S is a seven-level category. Price P is endogenous treatment and Z is instrument, neither counted as baseline dimension. S*psi(T)*P is an interaction; quartic and Gaussian bump make psi nonlinear. n=128,d=2 is not high-dimensional."
+    }
+  },
+  "estimand": {
+    "name": "theta_IV = E[Y(do(P=21))-Y(do(P=20))]",
+    "definition": "Population structural mean contrast of a one-unit price intervention, averaging independent T~Uniform(0,10) and S~DiscreteUniform(1,...,7); nuisance latent errors retain their marginal distribution.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "paper_raw_rho08",
+      "parameters": {
+        "rho": 0.8,
+        "price_low": 20.0,
+        "price_high": 21.0
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": -11.624351792971128,
+        "expression": "Population structural mean contrast of a one-unit price intervention, averaging independent T~Uniform(0,10) and S~DiscreteUniform(1,...,7); nuisance latent errors retain their marginal distribution.",
+        "derivation": "Closed-form integration over T and seven equally likely customer types; independent Gauss-Legendre integration of both intervention means at orders 64 and 128.",
+        "evidence": [
+          {
+            "file": "contributions/iv-hartford-2017-demand-v1/checks/report.json",
+            "location": "execution.scenario_results[paper_raw_rho08].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "Use the main-paper raw-unit equations including the +100 intercept; do not use author-code price/outcome normalization. Author code omits +100 and scales the structural mean before adding error, so this is not an exact code reproduction.",
+    "Use S uniform on {1,...,7}, independently of T, as specified in author code; store S as a numeric category instead of seven one-hot columns. rho=0.8 is the author-code default.",
+    "Collect a scalar population structural contrast E[Y(do(P=21))-Y(do(P=20))] instead of fitting the complete response surface. This is a continuous-treatment IV contrast, not a binary ATE or a regression conditional on observed P.",
+    "Use a local NumPy PCG64 stream and n=128, seed=1729 for interface checking; distributional reconstruction only, with no estimator fitting."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "contributions/iv-hartford-2017-demand-v1/generator.py",
+    "truth_reference": "contributions/iv-hartford-2017-demand-v1/truth.py",
+    "source_archive": "contributions.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/iv-hartford-2017-demand-v1.py",
+    "exported_generator_sha256": "b3fc09539c46d3ada85cbfa43988821ae3c2a5baa4beb35a344dc1f844fa097a"
+  },
+  "evidence": [
+    {
+      "file": "contributions/iv-hartford-2017-demand-v1/collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "contributions/iv-hartford-2017-demand-v1/config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "contributions/iv-hartford-2017-demand-v1/source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "b9defbcbdc8290f7cf489d5227113adc705be56fb7feb187cc3d99aea399f908",
+    "collection_sha256": "d741f5a892422a2493c21a53467c8239cbd3747301dc3bc869fd5c78655b2e9b",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/contributions.zip",
+    "submitted_zip_sha256": "b9defbcbdc8290f7cf489d5227113adc705be56fb7feb187cc3d99aea399f908",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "Latent-variable candidates inferred from source equations; confirm their roles and completeness against the original paper or generator."
+  ],
+  "source_suggested_domain": "iv",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

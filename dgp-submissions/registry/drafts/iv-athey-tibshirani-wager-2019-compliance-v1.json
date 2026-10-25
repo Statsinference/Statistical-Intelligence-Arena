@@ -1,0 +1,787 @@
+{
+  "schema_version": "0.1",
+  "record_id": "iv-athey-tibshirani-wager-2019-compliance-v1",
+  "kind": "synthetic_dgp",
+  "domain": "iv",
+  "english_display": {},
+  "paper": {
+    "citation": "Athey, S., Tibshirani, J. and Wager, S. (2019). Generalized random forests. The Annals of Statistics 47(2), 1148–1178. DOI: 10.1214/18-AOS1709.",
+    "title": null,
+    "doi": null,
+    "source_url": "https://arxiv.org/abs/1610.01271v4",
+    "source_file_evidence": [],
+    "venue": "The Annals of Statistics",
+    "year": 2019,
+    "source_version": null,
+    "source_locator": "arXiv v4 (2018-04-05), Appendix C.2, PDF pp.45–47, equation (49) and Table 2. Main paper §7 supplies local IV interpretation."
+  },
+  "mechanism": {
+    "name": "IV：内生不依从与局部处理效应",
+    "title_en": null,
+    "family_id": "athey-tibshirani-wager-2019-iv-compliance",
+    "generation_equations": [
+      "X ~ N(0,I₁₀); ε ~ N(0,1); Z ~ Bernoulli(1/3), mutually independent.",
+      "Q|ε ~ Bernoulli(expit(ωε)); A=ZQ; Y=μ(X)+(A−1/2)τ(X)+ε.",
+      "Additive: τ(x)=Σⱼ₌₁ᵏ max(0,xⱼ); μ(x)=c[max(0,x₅)+max(0,x₆)].",
+      "Nonadditive: τ(x)=max(0,Σⱼ₌₁ᵏ xⱼ); μ(x)=c max(0,x₅+x₆).",
+      "k ∈ {2,4}; ω ∈ {0,1}; c ∈ {0,3}; p=10."
+    ],
+    "observed_variables": [
+      {
+        "name": "X1",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X2",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X3",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X4",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X5",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X6",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X7",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X8",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X9",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X10",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Z",
+        "role": "instrument",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "A",
+        "role": "treatment",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [
+      {
+        "name": "Q",
+        "role": "latent_candidate",
+        "evidence": {
+          "file": "collection.json",
+          "equation_index": 1,
+          "expression": "Q|ε ~ Bernoulli(expit(ωε))"
+        },
+        "provenance": "inferred_from_stochastic_declaration"
+      }
+    ],
+    "latent_variables_status": "candidates_from_equations_need_review",
+    "sampling": {
+      "unit": "individual",
+      "dependence": "iid across individuals; within-unit dependencies explicitly specified by the structural equations"
+    },
+    "assumptions": [
+      "Consistency and well-defined treatment interventions.",
+      "Independent identically distributed units; no interference.",
+      "Z is randomized Bernoulli(1/3), independent of X, epsilon and compliance randomization.",
+      "Exclusion: Z affects Y only through A. A(z)=z*Q; monotonicity A(1)>=A(0).",
+      "Relevance: E[A|Z=1,X]-E[A|Z=0,X]=1/2.",
+      "Treatment effect tau(X) is independent of latent epsilon/Q conditional on X; hence conditional LATE equals CATE here, not in every IV model."
+    ],
+    "properties": {
+      "dimension": 10,
+      "effective_dimension": 6,
+      "high_dimensional": false,
+      "interactions": true,
+      "nonlinear": true,
+      "notes": "最多 X1–X4 定义 tau，X5/X6 定义 nuisance；X7–X10 不起作用。有效维数随场景为2/4/6，6为包内最大值。非加性正部函数、A×tau(X)、logistic compliance 体现交互/非线性；p=10不标高维。",
+      "observed_columns": 13
+    }
+  },
+  "estimand": {
+    "name": "tau_IV(x*)",
+    "definition": "Conditional Wald ratio at fixed x*: {E[Y|Z=1,x*]-E[Y|Z=0,x*]}/{E[A|Z=1,x*]-E[A|Z=0,x*]}.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "source_additive_k2_omega0_mu0",
+      "parameters": {
+        "dimension": 10,
+        "signal_dimension": 2,
+        "additive": true,
+        "omega": 0,
+        "nuisance_scale": 0,
+        "effect_scale": 1.0,
+        "query_point": [
+          1.0,
+          -0.5,
+          0.75,
+          -0.25,
+          0.4,
+          -0.6,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 1.0,
+        "expression": "Conditional Wald ratio at fixed x*: {E[Y|Z=1,x*]-E[Y|Z=0,x*]}/{E[A|Z=1,x*]-E[A|Z=0,x*]}.",
+        "derivation": "由正态对称性 E[expit(omega·ε)]=1/2。给定 x，Z 的结果均值差为 τ(x)/2，一阶段差为 1/2，Wald 比值为 τ(x)。效应不依赖 ε 或 Q，因此本模型的条件 LATE 等于 CATE。",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[source_additive_k2_omega0_mu0].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "source_additive_k2_omega0_mu3",
+      "parameters": {
+        "dimension": 10,
+        "signal_dimension": 2,
+        "additive": true,
+        "omega": 0,
+        "nuisance_scale": 3,
+        "effect_scale": 1.0,
+        "query_point": [
+          1.0,
+          -0.5,
+          0.75,
+          -0.25,
+          0.4,
+          -0.6,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 1.0,
+        "expression": "Conditional Wald ratio at fixed x*: {E[Y|Z=1,x*]-E[Y|Z=0,x*]}/{E[A|Z=1,x*]-E[A|Z=0,x*]}.",
+        "derivation": "由正态对称性 E[expit(omega·ε)]=1/2。给定 x，Z 的结果均值差为 τ(x)/2，一阶段差为 1/2，Wald 比值为 τ(x)。效应不依赖 ε 或 Q，因此本模型的条件 LATE 等于 CATE。",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[source_additive_k2_omega0_mu3].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "source_additive_k2_omega1_mu0",
+      "parameters": {
+        "dimension": 10,
+        "signal_dimension": 2,
+        "additive": true,
+        "omega": 1,
+        "nuisance_scale": 0,
+        "effect_scale": 1.0,
+        "query_point": [
+          1.0,
+          -0.5,
+          0.75,
+          -0.25,
+          0.4,
+          -0.6,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 1.0,
+        "expression": "Conditional Wald ratio at fixed x*: {E[Y|Z=1,x*]-E[Y|Z=0,x*]}/{E[A|Z=1,x*]-E[A|Z=0,x*]}.",
+        "derivation": "由正态对称性 E[expit(omega·ε)]=1/2。给定 x，Z 的结果均值差为 τ(x)/2，一阶段差为 1/2，Wald 比值为 τ(x)。效应不依赖 ε 或 Q，因此本模型的条件 LATE 等于 CATE。",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[source_additive_k2_omega1_mu0].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "source_additive_k2_omega1_mu3",
+      "parameters": {
+        "dimension": 10,
+        "signal_dimension": 2,
+        "additive": true,
+        "omega": 1,
+        "nuisance_scale": 3,
+        "effect_scale": 1.0,
+        "query_point": [
+          1.0,
+          -0.5,
+          0.75,
+          -0.25,
+          0.4,
+          -0.6,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 1.0,
+        "expression": "Conditional Wald ratio at fixed x*: {E[Y|Z=1,x*]-E[Y|Z=0,x*]}/{E[A|Z=1,x*]-E[A|Z=0,x*]}.",
+        "derivation": "由正态对称性 E[expit(omega·ε)]=1/2。给定 x，Z 的结果均值差为 τ(x)/2，一阶段差为 1/2，Wald 比值为 τ(x)。效应不依赖 ε 或 Q，因此本模型的条件 LATE 等于 CATE。",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[source_additive_k2_omega1_mu3].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "source_additive_k4_omega0_mu0",
+      "parameters": {
+        "dimension": 10,
+        "signal_dimension": 4,
+        "additive": true,
+        "omega": 0,
+        "nuisance_scale": 0,
+        "effect_scale": 1.0,
+        "query_point": [
+          1.0,
+          -0.5,
+          0.75,
+          -0.25,
+          0.4,
+          -0.6,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 1.75,
+        "expression": "Conditional Wald ratio at fixed x*: {E[Y|Z=1,x*]-E[Y|Z=0,x*]}/{E[A|Z=1,x*]-E[A|Z=0,x*]}.",
+        "derivation": "由正态对称性 E[expit(omega·ε)]=1/2。给定 x，Z 的结果均值差为 τ(x)/2，一阶段差为 1/2，Wald 比值为 τ(x)。效应不依赖 ε 或 Q，因此本模型的条件 LATE 等于 CATE。",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[source_additive_k4_omega0_mu0].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "source_additive_k4_omega0_mu3",
+      "parameters": {
+        "dimension": 10,
+        "signal_dimension": 4,
+        "additive": true,
+        "omega": 0,
+        "nuisance_scale": 3,
+        "effect_scale": 1.0,
+        "query_point": [
+          1.0,
+          -0.5,
+          0.75,
+          -0.25,
+          0.4,
+          -0.6,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 1.75,
+        "expression": "Conditional Wald ratio at fixed x*: {E[Y|Z=1,x*]-E[Y|Z=0,x*]}/{E[A|Z=1,x*]-E[A|Z=0,x*]}.",
+        "derivation": "由正态对称性 E[expit(omega·ε)]=1/2。给定 x，Z 的结果均值差为 τ(x)/2，一阶段差为 1/2，Wald 比值为 τ(x)。效应不依赖 ε 或 Q，因此本模型的条件 LATE 等于 CATE。",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[source_additive_k4_omega0_mu3].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "source_additive_k4_omega1_mu0",
+      "parameters": {
+        "dimension": 10,
+        "signal_dimension": 4,
+        "additive": true,
+        "omega": 1,
+        "nuisance_scale": 0,
+        "effect_scale": 1.0,
+        "query_point": [
+          1.0,
+          -0.5,
+          0.75,
+          -0.25,
+          0.4,
+          -0.6,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 1.75,
+        "expression": "Conditional Wald ratio at fixed x*: {E[Y|Z=1,x*]-E[Y|Z=0,x*]}/{E[A|Z=1,x*]-E[A|Z=0,x*]}.",
+        "derivation": "由正态对称性 E[expit(omega·ε)]=1/2。给定 x，Z 的结果均值差为 τ(x)/2，一阶段差为 1/2，Wald 比值为 τ(x)。效应不依赖 ε 或 Q，因此本模型的条件 LATE 等于 CATE。",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[source_additive_k4_omega1_mu0].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "source_additive_k4_omega1_mu3",
+      "parameters": {
+        "dimension": 10,
+        "signal_dimension": 4,
+        "additive": true,
+        "omega": 1,
+        "nuisance_scale": 3,
+        "effect_scale": 1.0,
+        "query_point": [
+          1.0,
+          -0.5,
+          0.75,
+          -0.25,
+          0.4,
+          -0.6,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 1.75,
+        "expression": "Conditional Wald ratio at fixed x*: {E[Y|Z=1,x*]-E[Y|Z=0,x*]}/{E[A|Z=1,x*]-E[A|Z=0,x*]}.",
+        "derivation": "由正态对称性 E[expit(omega·ε)]=1/2。给定 x，Z 的结果均值差为 τ(x)/2，一阶段差为 1/2，Wald 比值为 τ(x)。效应不依赖 ε 或 Q，因此本模型的条件 LATE 等于 CATE。",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[source_additive_k4_omega1_mu3].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "source_nonadditive_k2_omega0_mu0",
+      "parameters": {
+        "dimension": 10,
+        "signal_dimension": 2,
+        "additive": false,
+        "omega": 0,
+        "nuisance_scale": 0,
+        "effect_scale": 1.0,
+        "query_point": [
+          1.0,
+          -0.5,
+          0.75,
+          -0.25,
+          0.4,
+          -0.6,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.5,
+        "expression": "Conditional Wald ratio at fixed x*: {E[Y|Z=1,x*]-E[Y|Z=0,x*]}/{E[A|Z=1,x*]-E[A|Z=0,x*]}.",
+        "derivation": "由正态对称性 E[expit(omega·ε)]=1/2。给定 x，Z 的结果均值差为 τ(x)/2，一阶段差为 1/2，Wald 比值为 τ(x)。效应不依赖 ε 或 Q，因此本模型的条件 LATE 等于 CATE。",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[source_nonadditive_k2_omega0_mu0].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "source_nonadditive_k2_omega0_mu3",
+      "parameters": {
+        "dimension": 10,
+        "signal_dimension": 2,
+        "additive": false,
+        "omega": 0,
+        "nuisance_scale": 3,
+        "effect_scale": 1.0,
+        "query_point": [
+          1.0,
+          -0.5,
+          0.75,
+          -0.25,
+          0.4,
+          -0.6,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.5,
+        "expression": "Conditional Wald ratio at fixed x*: {E[Y|Z=1,x*]-E[Y|Z=0,x*]}/{E[A|Z=1,x*]-E[A|Z=0,x*]}.",
+        "derivation": "由正态对称性 E[expit(omega·ε)]=1/2。给定 x，Z 的结果均值差为 τ(x)/2，一阶段差为 1/2，Wald 比值为 τ(x)。效应不依赖 ε 或 Q，因此本模型的条件 LATE 等于 CATE。",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[source_nonadditive_k2_omega0_mu3].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "source_nonadditive_k2_omega1_mu0",
+      "parameters": {
+        "dimension": 10,
+        "signal_dimension": 2,
+        "additive": false,
+        "omega": 1,
+        "nuisance_scale": 0,
+        "effect_scale": 1.0,
+        "query_point": [
+          1.0,
+          -0.5,
+          0.75,
+          -0.25,
+          0.4,
+          -0.6,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.5,
+        "expression": "Conditional Wald ratio at fixed x*: {E[Y|Z=1,x*]-E[Y|Z=0,x*]}/{E[A|Z=1,x*]-E[A|Z=0,x*]}.",
+        "derivation": "由正态对称性 E[expit(omega·ε)]=1/2。给定 x，Z 的结果均值差为 τ(x)/2，一阶段差为 1/2，Wald 比值为 τ(x)。效应不依赖 ε 或 Q，因此本模型的条件 LATE 等于 CATE。",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[source_nonadditive_k2_omega1_mu0].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "source_nonadditive_k2_omega1_mu3",
+      "parameters": {
+        "dimension": 10,
+        "signal_dimension": 2,
+        "additive": false,
+        "omega": 1,
+        "nuisance_scale": 3,
+        "effect_scale": 1.0,
+        "query_point": [
+          1.0,
+          -0.5,
+          0.75,
+          -0.25,
+          0.4,
+          -0.6,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.5,
+        "expression": "Conditional Wald ratio at fixed x*: {E[Y|Z=1,x*]-E[Y|Z=0,x*]}/{E[A|Z=1,x*]-E[A|Z=0,x*]}.",
+        "derivation": "由正态对称性 E[expit(omega·ε)]=1/2。给定 x，Z 的结果均值差为 τ(x)/2，一阶段差为 1/2，Wald 比值为 τ(x)。效应不依赖 ε 或 Q，因此本模型的条件 LATE 等于 CATE。",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[source_nonadditive_k2_omega1_mu3].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "source_nonadditive_k4_omega0_mu0",
+      "parameters": {
+        "dimension": 10,
+        "signal_dimension": 4,
+        "additive": false,
+        "omega": 0,
+        "nuisance_scale": 0,
+        "effect_scale": 1.0,
+        "query_point": [
+          1.0,
+          -0.5,
+          0.75,
+          -0.25,
+          0.4,
+          -0.6,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 1.0,
+        "expression": "Conditional Wald ratio at fixed x*: {E[Y|Z=1,x*]-E[Y|Z=0,x*]}/{E[A|Z=1,x*]-E[A|Z=0,x*]}.",
+        "derivation": "由正态对称性 E[expit(omega·ε)]=1/2。给定 x，Z 的结果均值差为 τ(x)/2，一阶段差为 1/2，Wald 比值为 τ(x)。效应不依赖 ε 或 Q，因此本模型的条件 LATE 等于 CATE。",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[source_nonadditive_k4_omega0_mu0].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "source_nonadditive_k4_omega0_mu3",
+      "parameters": {
+        "dimension": 10,
+        "signal_dimension": 4,
+        "additive": false,
+        "omega": 0,
+        "nuisance_scale": 3,
+        "effect_scale": 1.0,
+        "query_point": [
+          1.0,
+          -0.5,
+          0.75,
+          -0.25,
+          0.4,
+          -0.6,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 1.0,
+        "expression": "Conditional Wald ratio at fixed x*: {E[Y|Z=1,x*]-E[Y|Z=0,x*]}/{E[A|Z=1,x*]-E[A|Z=0,x*]}.",
+        "derivation": "由正态对称性 E[expit(omega·ε)]=1/2。给定 x，Z 的结果均值差为 τ(x)/2，一阶段差为 1/2，Wald 比值为 τ(x)。效应不依赖 ε 或 Q，因此本模型的条件 LATE 等于 CATE。",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[source_nonadditive_k4_omega0_mu3].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "source_nonadditive_k4_omega1_mu0",
+      "parameters": {
+        "dimension": 10,
+        "signal_dimension": 4,
+        "additive": false,
+        "omega": 1,
+        "nuisance_scale": 0,
+        "effect_scale": 1.0,
+        "query_point": [
+          1.0,
+          -0.5,
+          0.75,
+          -0.25,
+          0.4,
+          -0.6,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 1.0,
+        "expression": "Conditional Wald ratio at fixed x*: {E[Y|Z=1,x*]-E[Y|Z=0,x*]}/{E[A|Z=1,x*]-E[A|Z=0,x*]}.",
+        "derivation": "由正态对称性 E[expit(omega·ε)]=1/2。给定 x，Z 的结果均值差为 τ(x)/2，一阶段差为 1/2，Wald 比值为 τ(x)。效应不依赖 ε 或 Q，因此本模型的条件 LATE 等于 CATE。",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[source_nonadditive_k4_omega1_mu0].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "source_nonadditive_k4_omega1_mu3",
+      "parameters": {
+        "dimension": 10,
+        "signal_dimension": 4,
+        "additive": false,
+        "omega": 1,
+        "nuisance_scale": 3,
+        "effect_scale": 1.0,
+        "query_point": [
+          1.0,
+          -0.5,
+          0.75,
+          -0.25,
+          0.4,
+          -0.6,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 1.0,
+        "expression": "Conditional Wald ratio at fixed x*: {E[Y|Z=1,x*]-E[Y|Z=0,x*]}/{E[A|Z=1,x*]-E[A|Z=0,x*]}.",
+        "derivation": "由正态对称性 E[expit(omega·ε)]=1/2。给定 x，Z 的结果均值差为 τ(x)/2，一阶段差为 1/2，Wald 比值为 τ(x)。效应不依赖 ε 或 Q，因此本模型的条件 LATE 等于 CATE。",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[source_nonadditive_k4_omega1_mu3].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "使用新写的 Python/NumPy PCG64 实现；保持所选场景的分布，不保证与 R 同种子逐行相同。",
+    "n=128、seed=1729 仅用于接口运行检查；不复跑论文估计器、不报告覆盖率。",
+    "固定原文 p=10，收集 k=2/4、omega=0/1、mu 系数=0/3、加性/非加性共16场景；不混用 C.3 的 mu 系数1。",
+    "原文 W 重命名 A。标量目标选固定 x* 的局部 Wald 效应；该特定模型下等于 conditional LATE 和 CATE。",
+    "同一不依从机制的函数形式和参数设置集中在一个 family；未按场景重复计数。"
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "generator.py",
+    "truth_reference": "truth.py",
+    "source_archive": "iv-athey-tibshirani-wager-2019-compliance-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/iv-athey-tibshirani-wager-2019-compliance-v1.py",
+    "exported_generator_sha256": "b0f35649ea8c08a0d88180b42c199bb1de6c53d231357032670faaa3e7bb4fc5"
+  },
+  "evidence": [
+    {
+      "file": "collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "128e2044124c1a391d6a6ed958b7eafde56ab3ecc849b4368c30c7d2c40e5f4e",
+    "collection_sha256": "fd59beb0465609e0a123016fafa1eed7ffe11eeb8ef119051c465b2ab1b51d2b",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/iv-athey-tibshirani-wager-2019-compliance-v1.zip",
+    "submitted_zip_sha256": "128e2044124c1a391d6a6ed958b7eafde56ab3ecc849b4368c30c7d2c40e5f4e",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "Latent-variable candidates inferred from source equations; confirm their roles and completeness against the original paper or generator."
+  ],
+  "source_suggested_domain": "iv",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

@@ -1,0 +1,237 @@
+{
+  "schema_version": "0.1",
+  "record_id": "proximal-cui-2024-linear-v1",
+  "kind": "synthetic_dgp",
+  "domain": "proximal",
+  "english_display": {},
+  "paper": {
+    "citation": "Cui, Y., Pu, H., Shi, X., Miao, W., & Tchetgen Tchetgen, E. (2024). Semiparametric Proximal Causal Inference. Journal of the American Statistical Association, 119(546), 1348–1359. DOI: 10.1080/01621459.2023.2191817.",
+    "title": null,
+    "doi": "10.1080/01621459.2023.2191817",
+    "source_url": "https://doi.org/10.1080/01621459.2023.2191817",
+    "source_file_evidence": [
+      {
+        "file": "cui2023.pdf",
+        "sha256": "c07f5d2b0ff2ca7c438ee4b0aa8a9031481bd0b1c2f67a574180aa5fb577a07a"
+      }
+    ],
+    "venue": "JASA",
+    "year": 2024,
+    "source_version": "arXiv:2011.08411v4, 2023-02-21",
+    "source_locator": "§5.1，arXiv v4 PDF 第21–22页；桥函数式(13)–(14)；Appendix H。"
+  },
+  "mechanism": {
+    "name": "线性桥与恒定 ATE",
+    "title_en": null,
+    "family_id": "proximal-cui-2024-linear",
+    "generation_equations": [
+      "X1,X2 独立 ~ N(0.25, 0.25²)；p(X)=[1+exp{0.125(X1+X2)}]⁻¹；A|X ~ Bernoulli(p)。",
+      "(Z,W,U)|A,X ~ N3(m,Σ)；m=(0.25+0.25A+0.25s, 0.25+0.125A+0.25s, 0.25+0.25A+0.25s)，s=X1+X2。",
+      "Σ=[[1,0.25,0.5],[0.25,1,0.5],[0.5,0.5,1]]；mW(U,X)=0.125+0.125s+0.5U。",
+      "Y=2+2A+0.25s+4mW+2(W−mW)+ε，ε~N(0,0.25²)。",
+      "h(W,A,X)=2+2A+4W+0.25s。"
+    ],
+    "observed_variables": [
+      {
+        "name": "X1",
+        "role": "baseline_covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X2",
+        "role": "baseline_covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "A",
+        "role": "treatment",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Z",
+        "role": "treatment_proxy",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "W",
+        "role": "outcome_proxy",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [
+      {
+        "name": "U",
+        "role": "latent_candidate",
+        "evidence": {
+          "file": "collection.json",
+          "equation_index": 1,
+          "expression": "(Z,W,U)|A,X ~ N3(m,Σ)"
+        },
+        "provenance": "inferred_from_stochastic_declaration"
+      }
+    ],
+    "latent_variables_status": "candidates_from_equations_need_review",
+    "sampling": {
+      "unit": "individual",
+      "dependence": "iid individuals; all variables within an individual are jointly generated"
+    },
+    "assumptions": [
+      "一致性、无个体间干扰、给定 (U,X) 的潜在结局可交换性与处理支持；Z 对 Y 的排除条件、W 对 (A,Z) 的条件独立性；相关性/完备性与桥函数存在。抽样顺序 A→(Z,W,U) 是联合分布分解，不代表 A 因果影响基线 U 或 W。"
+    ],
+    "properties": {
+      "dimension": 2,
+      "effective_dimension": 2,
+      "high_dimensional": false,
+      "interactions": false,
+      "nonlinear": true,
+      "notes": "两维有效基线 X，另有 Z/W 两个代理。处理倾向为 logistic；结局均值线性，无处理交互；U 不导出。 恒定处理效应的线性结果桥；估计器错设场景不另计DGP。"
+    }
+  },
+  "estimand": {
+    "name": "ATE",
+    "definition": "ATE = E[Y(1)−Y(0)] = 2。",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "original",
+      "parameters": {
+        "x_mean": 0.25,
+        "x_sd": 0.25,
+        "propensity_coef": [
+          0.125,
+          0.125
+        ],
+        "cov_zwu": [
+          [
+            1,
+            0.25,
+            0.5
+          ],
+          [
+            0.25,
+            1,
+            0.5
+          ],
+          [
+            0.5,
+            0.5,
+            1
+          ]
+        ],
+        "mean_zwu": [
+          0.25,
+          0.25,
+          0.25
+        ],
+        "a_shift": [
+          0.25,
+          0.125,
+          0.25
+        ],
+        "x_coef": [
+          0.25,
+          0.25
+        ],
+        "form": "linear",
+        "intercept": 2.0,
+        "main_x": [
+          0.25,
+          0.25
+        ],
+        "w_coef": 4.0,
+        "omega": 2.0,
+        "effect_intercept": 2.0,
+        "effect_x": [
+          0.0,
+          0.0
+        ],
+        "effect_w": 0.0,
+        "effect_scale": 1.0,
+        "noise": "normal",
+        "noise_scale": 0.25
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 2.0,
+        "expression": "ATE = E[Y(1)−Y(0)] = 2。",
+        "derivation": "E[h(W,1,X)-h(W,0,X)] under the natural joint (W,X), not W conditional on assigned A. Quadrature difference is a convergence diagnostic.",
+        "evidence": [
+          {
+            "file": "contributions_proximal/proximal-cui-2024-linear-v1/checks/report.json",
+            "location": "execution.scenario_results[original].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "使用 NumPy Generator(PCG64) 重写抽样；不要求与作者软件逐随机数一致。保留来源方程与固定参数；n=128、seed=1729 仅作接口检查，不重跑论文的估计器比较。输出仅含观察列，真值、潜变量和桥函数值不作为数据列。"
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "contributions_proximal/proximal-cui-2024-linear-v1/generator.py",
+    "truth_reference": "contributions_proximal/proximal-cui-2024-linear-v1/truth.py",
+    "source_archive": "contributions_proximal.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/proximal-cui-2024-linear-v1.py",
+    "exported_generator_sha256": "5cbb44269d835bf15a655c10440d4cf3e9f8b86949f91ee35a77e640186436c1"
+  },
+  "evidence": [
+    {
+      "file": "contributions_proximal/proximal-cui-2024-linear-v1/collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "contributions_proximal/proximal-cui-2024-linear-v1/config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "contributions_proximal/proximal-cui-2024-linear-v1/source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "50ef88d66c8077faf109c4acd3b8f667a67da6675f835b0e7ffa8d37acbdd4a9",
+    "collection_sha256": "e39d0f06289db3e3eae6290dbd0c5509642fcbfbbb98b5a20a93f77e5e17fa1e",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "AI-source-audit; named human scientific review pending",
+    "submission_file": "incoming/contributions_proximal.zip",
+    "submitted_zip_sha256": "50ef88d66c8077faf109c4acd3b8f667a67da6675f835b0e7ffa8d37acbdd4a9",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "Latent-variable candidates inferred from source equations; confirm their roles and completeness against the original paper or generator."
+  ],
+  "source_suggested_domain": "proximal",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

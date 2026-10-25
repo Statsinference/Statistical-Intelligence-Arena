@@ -1,0 +1,249 @@
+{
+  "schema_version": "0.1",
+  "record_id": "did-santanna-zhao-2020-panel-dgp1-v1",
+  "kind": "synthetic_dgp",
+  "domain": "did_sc",
+  "english_display": {},
+  "paper": {
+    "citation": "Sant'Anna, P. H. C. and Zhao, J. (2020). Doubly robust difference-in-differences estimators. Journal of Econometrics 219(1), 101–122. DOI: 10.1016/j.jeconom.2020.06.003.",
+    "title": null,
+    "doi": null,
+    "source_url": "https://psantanna.com/files/SantAnna_Zhao_DRDID.pdf",
+    "source_file_evidence": [],
+    "venue": "Journal of Econometrics",
+    "year": 2020,
+    "source_version": "Author-hosted manuscript dated May 5, 2020; 35 pages; retrieved 2026-10-23",
+    "source_locator": "PDF page 20, Section 4.1, definitions of f_reg/f_ps/Z and DGP1, following paragraph for noise, observed panel, and ATT=0; page 19 for original n=1000."
+  },
+  "mechanism": {
+    "name": "Sant'Anna--Zhao DGP1: two-period panel with covariate-specific trends",
+    "title_en": null,
+    "family_id": "santanna-zhao-2020-panel-dgp1",
+    "generation_equations": [
+      {
+        "label": "Raw covariates",
+        "expression": "X ~ N(0,I4); Z_j=(Ztilde_j-E[Ztilde_j])/sd(Ztilde_j)"
+      },
+      {
+        "label": "Transformations",
+        "expression": "Ztilde=(exp(X1/2),10+X2/(1+exp(X1)),(0.6+X1*X3/25)^3,(20+X2+X4)^2)"
+      },
+      {
+        "label": "Prognosis",
+        "expression": "f(Z)=210+27.4*Z1+13.7*(Z2+Z3+Z4)"
+      },
+      {
+        "label": "Group assignment",
+        "expression": "g(Z)=0.75*(-Z1+0.5*Z2-0.25*Z3-0.1*Z4); D=1{U<=sigmoid(g(Z))}; U~U(0,1)"
+      },
+      {
+        "label": "Latent fixed effect",
+        "expression": "v=D*f(Z)+eta; eta~N(0,1)"
+      },
+      {
+        "label": "Panel outcomes",
+        "expression": "Y_pre=f(Z)+v+epsilon0; Y_1(d)=2*f(Z)+v+epsilon1(d); Y_post=Y_1(D)"
+      },
+      {
+        "label": "Innovations",
+        "expression": "eta,epsilon0,epsilon1(0),epsilon1(1) are independent N(0,1), independent of X,U"
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "Z1",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Z2",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Z3",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Z4",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "D",
+        "role": "treatment_group",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre",
+        "role": "baseline_outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [
+      {
+        "name": "X",
+        "role": "latent_candidate",
+        "evidence": {
+          "file": "collection.json",
+          "equation_index": 0,
+          "expression": "X ~ N(0,I4)"
+        },
+        "provenance": "inferred_from_stochastic_declaration"
+      },
+      {
+        "name": "U",
+        "role": "latent_candidate",
+        "evidence": {
+          "file": "collection.json",
+          "equation_index": 3,
+          "expression": "U~U(0,1)"
+        },
+        "provenance": "inferred_from_stochastic_declaration"
+      },
+      {
+        "name": "eta",
+        "role": "latent_candidate",
+        "evidence": {
+          "file": "collection.json",
+          "equation_index": 4,
+          "expression": "eta~N(0,1)"
+        },
+        "provenance": "inferred_from_stochastic_declaration"
+      },
+      {
+        "name": "v",
+        "role": "latent_candidate",
+        "evidence": {
+          "file": "collection.json",
+          "equation_index": 4,
+          "expression": "v=D*f(Z)+eta"
+        },
+        "provenance": "inferred_from_explicit_latent_label"
+      }
+    ],
+    "latent_variables_status": "candidates_from_equations_need_review",
+    "sampling": {
+      "unit": "individual with a two-period panel stored in one wide row",
+      "dependence": "iid between individuals; baseline and post-period outcomes within an individual share latent v and covariates"
+    },
+    "assumptions": [
+      "Consistency and no interference across independent panel individuals.",
+      "No anticipation: baseline observed outcome is Y_0(0).",
+      "Conditional parallel trends given observed Z: E[Y_1(0)-Y_0(0)|D,Z]=f_reg(Z) for either group.",
+      "Pointwise overlap for finite Z through logistic assignment. No uniform bound away from zero or one is asserted on unbounded support.",
+      "Independent normal innovations conditional on Z,D; latent time-invariant v is shared across both periods and counterfactual post-period states."
+    ],
+    "properties": {
+      "dimension": 4,
+      "effective_dimension": 4,
+      "high_dimensional": false,
+      "interactions": true,
+      "nonlinear": true,
+      "notes": "Four observed baseline Z variables enter both prognosis and propensity. Transformations of raw normal X include exp, ratio, cubic product and squared sum; logistic treatment is nonlinear. Shared v creates within-unit dependence. This is not high-dimensional confounding."
+    }
+  },
+  "estimand": {
+    "name": "ATT = E[Y_1(1)-Y_1(0) | D=1]",
+    "definition": "Population ATT for the treated group at post-period 1. The realized group D and latent v are held fixed across treatment counterfactuals. Original value is zero; this is not the observed post-period group contrast or a sample-average effect.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "original_panel_dgp1",
+      "parameters": {
+        "dimension": 4,
+        "att_shift": 0.0
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.0,
+        "expression": "Population ATT for the treated group at post-period 1. The realized group D and latent v are held fixed across treatment counterfactuals. Original value is zero; this is not the observed post-period group contrast or a sample-average effect.",
+        "derivation": "Analytic cancellation of shared 2*f_reg(Z)+v in post-period potential outcomes; independent centered errors yield ATT=0. Numerical potential-mean and parallel-trend checks in verify.py.",
+        "evidence": [
+          {
+            "file": "contributions/did-santanna-zhao-2020-panel-dgp1-v1/checks/report.json",
+            "location": "execution.scenario_results[original_panel_dgp1].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "Retain the original DGP1 distribution and population ATT=0. Only DGP1 is registered; the paper also presents DGP2-DGP4.",
+    "Use Python/NumPy PCG64 instead of attempting identical draws from original estimator experiments; n=128 is an interface smoke check, not the original n=1000 experiment.",
+    "Represent each iid individual as one wide row (Z1-Z4,D,Y_pre,Y_post), preserving shared latent v across periods; raw X and potential outcomes are not released.",
+    "Compute source population normalization using analytic moments for Ztilde1,3,4 and a 120-node Gauss-Hermite constant for Var(Ztilde2). Do not standardize using the realized sample.",
+    "Expose att_shift=0 for the original scenario; nonzero shifts are verification controls only, not paper scenarios or extra families."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "contributions/did-santanna-zhao-2020-panel-dgp1-v1/generator.py",
+    "truth_reference": "contributions/did-santanna-zhao-2020-panel-dgp1-v1/truth.py",
+    "source_archive": "contributions.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/did-santanna-zhao-2020-panel-dgp1-v1.py",
+    "exported_generator_sha256": "a7aecd1ee3b296cb74c95c3216a9bc14ec41966eec99f9b91756fbdad653000e"
+  },
+  "evidence": [
+    {
+      "file": "contributions/did-santanna-zhao-2020-panel-dgp1-v1/collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "contributions/did-santanna-zhao-2020-panel-dgp1-v1/config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "contributions/did-santanna-zhao-2020-panel-dgp1-v1/source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "b9defbcbdc8290f7cf489d5227113adc705be56fb7feb187cc3d99aea399f908",
+    "collection_sha256": "9e54ba02268f27c3e4a54ff6a366d9d1cd8cfb61850ed29d3ae3912555d120cf",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/contributions.zip",
+    "submitted_zip_sha256": "b9defbcbdc8290f7cf489d5227113adc705be56fb7feb187cc3d99aea399f908",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "Latent-variable candidates inferred from source equations; confirm their roles and completeness against the original paper or generator."
+  ],
+  "source_suggested_domain": "did_sc",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

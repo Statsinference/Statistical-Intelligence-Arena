@@ -1,0 +1,214 @@
+{
+  "schema_version": "0.1",
+  "record_id": "ate-nie-wager-2021-a-v1",
+  "kind": "synthetic_dgp",
+  "domain": "ate",
+  "english_display": {},
+  "paper": {
+    "citation": "Nie, X. and Wager, S. (2021). Quasi-oracle estimation of heterogeneous treatment effects. Biometrika 108(2), 299-319. DOI: 10.1093/biomet/asaa076.",
+    "title": null,
+    "doi": null,
+    "source_url": "https://arxiv.org/abs/1712.04912v4",
+    "source_file_evidence": [],
+    "venue": "Biometrika",
+    "year": 2021,
+    "source_version": "arXiv:1712.04912v4, 2020-08-06; publication metadata verified separately against Biometrika (2021 issue)",
+    "source_locator": "arXiv v4 PDF pp. 15-16, Section 6.1, unnumbered common generation equations and Setup A; p. 18 Figure 3 caption for d=6 and sigma=1. Author repository experiments_for_paper/run_simu.R lines 25-32, 75-77 and start.sh lines 3-6 at commit 6806396960e672214e2ef36e16c76bbb58ef9114"
+  },
+  "mechanism": {
+    "name": "ATE under Nie--Wager Setup A: nonlinear confounding and heterogeneous effects",
+    "title_en": null,
+    "family_id": "nie-wager-2021-setup-a",
+    "generation_equations": [
+      {
+        "label": "Covariates",
+        "expression": "X_j iid Uniform(0,1), j=1,...,6"
+      },
+      {
+        "label": "Baseline",
+        "expression": "b(X)=sin(pi*X1*X2)+2*(X3-0.5)^2+X4+0.5*X5"
+      },
+      {
+        "label": "Treatment",
+        "expression": "e(X)=max(0.1,min(sin(pi*X1*X2),0.9)); A|X~Bernoulli(e(X))"
+      },
+      {
+        "label": "Conditional effect",
+        "expression": "tau(X)=(X1+X2)/2"
+      },
+      {
+        "label": "Outcome",
+        "expression": "Y=b(X)+(A-0.5)*tau(X)+epsilon; epsilon~Normal(0,1), independent of X and treatment randomization"
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "X1",
+        "role": "pretreatment_confounder_effect_modifier",
+        "dtype": "float",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X2",
+        "role": "pretreatment_confounder_effect_modifier",
+        "dtype": "float",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X3",
+        "role": "pretreatment_prognostic_covariate",
+        "dtype": "float",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X4",
+        "role": "pretreatment_prognostic_covariate",
+        "dtype": "float",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X5",
+        "role": "pretreatment_prognostic_covariate",
+        "dtype": "float",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X6",
+        "role": "pretreatment_inactive_covariate",
+        "dtype": "float",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "A",
+        "role": "binary_treatment",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "continuous_outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [],
+    "latent_variables_status": "not_explicitly_specified",
+    "sampling": {
+      "unit": "individual",
+      "dependence": "iid across individuals; six independent Uniform(0,1) covariates within each individual"
+    },
+    "assumptions": [
+      "Consistency Y=Y(A) and well-defined binary treatment interventions.",
+      "Independent identically distributed individuals; no interference.",
+      "Conditional exchangeability (Y(0),Y(1)) independent of A given X; independent assignment uniforms and outcome noise implement it.",
+      "Positivity 0.1 <= P(A=1|X) <= 0.9 on the registered support.",
+      "All required pretreatment confounders X1,X2 are observed; complete data and finite first moments."
+    ],
+    "properties": {
+      "dimension": 6,
+      "effective_dimension": 5,
+      "observed_columns": 8,
+      "high_dimensional": false,
+      "interactions": true,
+      "nonlinear": true,
+      "notes": "X1,X2 affect propensity and treatment effect; X1-X5 affect baseline; X6 is inactive. sin(pi*X1*X2) is a nonlinear interaction; 2*(X3-0.5)^2 is nonlinear; A*(X1+X2)/2 produces treatment-covariate interactions. d=6,n=128 is not called high-dimensional confounding."
+    }
+  },
+  "estimand": {
+    "name": "theta_ATE = E[Y(1)-Y(0)]",
+    "definition": "Superpopulation average effect of A=1 versus A=0, under X~Uniform([0,1]^6). Not the realized-sample average effect, ATT, CATE output, or unadjusted observed group difference.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "original_d6_sigma1",
+      "parameters": {
+        "dimension": 6,
+        "noise_sd": 1.0,
+        "propensity_trim": 0.1,
+        "effect_scale": 1.0
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.5,
+        "expression": "Superpopulation average effect of A=1 versus A=0, under X~Uniform([0,1]^6). Not the realized-sample average effect, ATT, CATE output, or unadjusted observed group difference.",
+        "derivation": "Analytic expectation E[(X1+X2)/2]=1/2; independently integrate separately implemented potential-outcome means with tensor Gauss-Legendre orders 3 and 5 in six dimensions.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[original_d6_sigma1].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "Retain Setup A equations and the d=6, sigma=1 parameter cell; rename source treatment W as A.",
+    "Collect the scalar population ATE E[Y(1)-Y(0)] instead of the source CATE function. The value 0.5 is derived here, not presented as a paper-reported ATE estimate.",
+    "Use Python/NumPy PCG64 and row-major X draws with independent uniform-threshold Bernoulli assignment; distributional reconstruction, not identical R random draws.",
+    "Use n=128, seed=1729 for a CPU interface check instead of the source estimator experiments. No estimator is fitted.",
+    "effect_scale=1 preserves the original treatment effect; zero and reversed values appear only in verification controls, not as additional registered families or scenarios."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "generator.py",
+    "truth_reference": "truth.py",
+    "source_archive": "ate-nie-wager-2021-a-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/ate-nie-wager-2021-a-v1.py",
+    "exported_generator_sha256": "53d8d2fa230d8e8e7dfcf2a25287e55cd7bc208b1121c5673fbfb8219fbefc2f"
+  },
+  "evidence": [
+    {
+      "file": "collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "e3c104eeb2f569579d7faa4eae93889566a3b69099f808ba95a55b8d2848d662",
+    "collection_sha256": "95e8181ec42c1dc0df31ea07aa5a22aeeb6ac1d1dfc4d9e6638d5015a504a9b3",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/ate-nie-wager-2021-a-v1.zip",
+    "submitted_zip_sha256": "e3c104eeb2f569579d7faa4eae93889566a3b69099f808ba95a55b8d2848d662",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload",
+    "duplicate_submission_files": [
+      "incoming/contributions.zip"
+    ]
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "No explicit latent-variable metadata or reliably identifiable latent declarations; absence from this list does not prove that no latent variables exist."
+  ],
+  "source_suggested_domain": "ate",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

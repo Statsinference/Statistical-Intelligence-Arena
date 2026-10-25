@@ -1,0 +1,568 @@
+{
+  "schema_version": "0.1",
+  "record_id": "proximal-imbens-2025-longterm-v1",
+  "kind": "synthetic_dgp",
+  "domain": "proximal",
+  "english_display": {},
+  "paper": {
+    "citation": "Imbens, G., Kallus, N., Mao, X., & Wang, Y. (2025). Long-term causal inference under persistent confounding via data combination. Journal of the Royal Statistical Society Series B: Statistical Methodology, 87(2), 362–388. DOI: 10.1093/jrsssb/qkae095.",
+    "title": null,
+    "doi": "10.1093/jrsssb/qkae095",
+    "source_url": "https://doi.org/10.1093/jrsssb/qkae095",
+    "source_file_evidence": [
+      {
+        "file": "imbens2025.pdf",
+        "sha256": "da44c23730066cdee6ad36fd26e50a64c036e4577a46c741151c4c1fe9763160"
+      },
+      {
+        "file": "imbens-code-minimax_data.R",
+        "sha256": "718adcb7f4f1bdc562b477270e74da5f93f77c1d258b243b12dafabbd0045edd"
+      }
+    ],
+    "venue": "JRSS-B",
+    "year": 2025,
+    "source_version": "JRSS-B 正式版 §7.2；已接受作者稿 arXiv:2202.07234v5（2024-08-31）第23页；作者仓库 commit 20d046e9b959679c1ac65f25f5733119d460b44c，采用正文数值并记录代码差异",
+    "source_locator": "JRSS-B 正式版 §7.2，Table 2；作者稿 PDF 第23页；Example 2、Appendix B.2；作者 minimax/data.R 用于检查维度与运算顺序。"
+  },
+  "mechanism": {
+    "name": "序贯代理与长期效应数据融合",
+    "title_en": null,
+    "family_id": "proximal-imbens-2025-longterm",
+    "generation_equations": [
+      "两组独立样本：G=1为观察组，G=0为实验组。X̃,U 独立 ~ N5(0,0.5I)。",
+      "P(A=1|X̃,U,G=1)=[1+exp(κxᵀX̃+κuᵀU)]⁻¹；实验组处理概率为1/2。",
+      "S̃1=τ1A+β1X̃+γ1U+ε1；S̃2=τ2A+α2S̃1+β2X̃+γ2U+ε2。",
+      "S̃3=τ3A+α3S̃2+β3X̃+γ3U+ε3；Y=τyA+αyᵀS̃3+βyᵀX̃+γyᵀU+εy。",
+      "S̃1,S̃3为5维，S̃2,Y为标量；各误差分量独立 ~ N(0,0.5)。X,S1,S2,S3逐项变换为g(v)=sign(v)|v|²。",
+      "系数先取Uniform(0,1)方向，再将向量及列范数归一至0.5；冻结设计seed=20261023的一个实现，完整数值见config.json；τ2=τy=0.5。"
+    ],
+    "observed_variables": [
+      {
+        "name": "X1",
+        "role": "baseline_covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X2",
+        "role": "baseline_covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X3",
+        "role": "baseline_covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X4",
+        "role": "baseline_covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X5",
+        "role": "baseline_covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "S1_1",
+        "role": "early_short_term_proxy",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "S1_2",
+        "role": "early_short_term_proxy",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "S1_3",
+        "role": "early_short_term_proxy",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "S1_4",
+        "role": "early_short_term_proxy",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "S1_5",
+        "role": "early_short_term_proxy",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "S2",
+        "role": "intermediate_short_term_outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "S3_1",
+        "role": "late_short_term_proxy",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "S3_2",
+        "role": "late_short_term_proxy",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "S3_3",
+        "role": "late_short_term_proxy",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "S3_4",
+        "role": "late_short_term_proxy",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "S3_5",
+        "role": "late_short_term_proxy",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "G",
+        "role": "observational_sample_indicator",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "A",
+        "role": "treatment",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "GY",
+        "role": "observed_long_term_outcome_product",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [
+      {
+        "name": "X̃",
+        "role": "latent_candidate",
+        "evidence": {
+          "file": "collection.json",
+          "equation_index": 0,
+          "expression": "X̃,U 独立 ~ N5(0,0.5I)"
+        },
+        "provenance": "inferred_from_stochastic_declaration"
+      },
+      {
+        "name": "U",
+        "role": "latent_candidate",
+        "evidence": {
+          "file": "collection.json",
+          "equation_index": 0,
+          "expression": "X̃,U 独立 ~ N5(0,0.5I)"
+        },
+        "provenance": "inferred_from_stochastic_declaration"
+      },
+      {
+        "name": "S̃1",
+        "role": "unobserved_intermediate_candidate",
+        "evidence": {
+          "file": "collection.json",
+          "equation_index": 2,
+          "expression": "S̃1=τ1A+β1X̃+γ1U+ε1"
+        },
+        "provenance": "inferred_from_structural_assignment"
+      },
+      {
+        "name": "S̃2",
+        "role": "unobserved_intermediate_candidate",
+        "evidence": {
+          "file": "collection.json",
+          "equation_index": 2,
+          "expression": "S̃2=τ2A+α2S̃1+β2X̃+γ2U+ε2"
+        },
+        "provenance": "inferred_from_structural_assignment"
+      },
+      {
+        "name": "S̃3",
+        "role": "unobserved_intermediate_candidate",
+        "evidence": {
+          "file": "collection.json",
+          "equation_index": 3,
+          "expression": "S̃3=τ3A+α3S̃2+β3X̃+γ3U+ε3"
+        },
+        "provenance": "inferred_from_structural_assignment"
+      }
+    ],
+    "latent_variables_status": "candidates_from_equations_need_review",
+    "sampling": {
+      "unit": "independent individuals from two samples",
+      "dependence": "independent rows conditional on fixed source membership; sequential dependence within each row"
+    },
+    "assumptions": [
+      "一致性、无干扰，实验组随机处理；两组共享潜在结构和基线分布；给定U及中间短期结局的序贯代理条件；代理载荷满秩、桥存在及支持条件。这里的代理允许受处理影响，属于来源明确发展的proximal扩展。"
+    ],
+    "properties": {
+      "dimension": 5,
+      "effective_dimension": 5,
+      "high_dimensional": false,
+      "interactions": false,
+      "nonlinear": true,
+      "notes": "五维有效X和三组短期结局；两组按约1:1固定样本量抽样。观察X1–X5,S1_1–S1_5,S2,S3_1–S3_5,G,A,GY；实验组Y不可见，以GY=0及G标识。 三组处理后代理、实验组缺长期Y、观察组受持久潜在混杂的数据融合结构。"
+    }
+  },
+  "estimand": {
+    "name": "theta",
+    "definition": "τ = E[Y(1)−Y(0)|G=0]，给定登记的固定系数。",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "paper_q2_p5_fixed_design",
+      "parameters": {
+        "p": 5,
+        "latent_dim": 5,
+        "power": 2.0,
+        "baseline_variance": 0.5,
+        "noise_variance": 0.5,
+        "effect_scale": 1.0,
+        "design_seed": 20261023,
+        "coefficients": {
+          "kappa_x": [
+            0.10293310421191341,
+            0.19469450617267828,
+            0.31007286220688596,
+            0.10325500045307012,
+            0.30772073431561664
+          ],
+          "kappa_u": [
+            0.09919714487276697,
+            0.06453700649757634,
+            0.32334920616951696,
+            0.35601879340793857,
+            0.06848949445952891
+          ],
+          "tau1": [
+            0.23049302220376702,
+            0.08006294692308698,
+            0.28360956134573545,
+            0.29003988827486016,
+            0.160951455936723
+          ],
+          "beta1": [
+            [
+              0.2565759068242021,
+              0.32165460441311067,
+              0.12984896790106742,
+              0.18006814123355258,
+              0.3089354129553848
+            ],
+            [
+              0.0659992023465683,
+              0.2791981726875588,
+              0.32577396970894984,
+              0.3976105447498496,
+              0.37468868104389813
+            ],
+            [
+              0.2672029816325738,
+              0.16048056602360725,
+              0.34965720463434685,
+              0.03838879452702383,
+              0.06263978591428829
+            ],
+            [
+              0.21362134940072688,
+              0.12771643261969867,
+              0.012954882491292397,
+              0.20631719444505173,
+              0.08795253164827112
+            ],
+            [
+              0.2505621579844613,
+              0.16285329777260893,
+              0.06769472994281855,
+              0.1242611562295553,
+              0.05007906066353274
+            ]
+          ],
+          "gamma1": [
+            [
+              0.09994601161820321,
+              0.07947675129422592,
+              0.04942319332061586,
+              0.26341910649327194,
+              0.20038335516962263
+            ],
+            [
+              0.09631758132276609,
+              0.24224955482993152,
+              0.2829162156152717,
+              0.2450184589428931,
+              0.3842360257106106
+            ],
+            [
+              0.294765480134071,
+              0.06962529808063762,
+              0.18182876584799906,
+              0.2148426610635728,
+              0.04421936087467044
+            ],
+            [
+              0.15587130251138728,
+              0.14607756698841062,
+              0.13670362105561074,
+              0.014309188943355738,
+              0.19301870845747926
+            ],
+            [
+              0.34576172006814243,
+              0.39851256125540696,
+              0.34024429870962375,
+              0.27242284634450575,
+              0.1516496416953306
+            ]
+          ],
+          "tau2": 0.5,
+          "alpha2": [
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "beta2": [
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "gamma2": [
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "tau3": [
+            0.1904829053389909,
+            0.16090524567946038,
+            0.16783075403336312,
+            0.35721025566886355,
+            0.1790514896113054
+          ],
+          "alpha3": [
+            0.17899040120753815,
+            0.2791181484697104,
+            0.35143721563135416,
+            0.11955616409877892,
+            0.047473177328594754
+          ],
+          "beta3": [
+            [
+              0.27125042777007435,
+              0.2584249430670121,
+              0.16332833425797064,
+              0.12193223870264232,
+              0.3643445964718717
+            ],
+            [
+              0.04389055378286149,
+              0.13118978649890242,
+              0.09993937044891249,
+              0.33148506716916726,
+              0.3138050756089748
+            ],
+            [
+              0.23277348268515433,
+              0.3287457579985182,
+              0.1918212567766318,
+              0.04263676364058202,
+              0.009248250051630439
+            ],
+            [
+              0.32776470762497406,
+              0.19445179291523854,
+              0.34385576591817596,
+              0.32480033314039547,
+              0.1044940226701467
+            ],
+            [
+              0.11350606555301286,
+              0.14184680309831751,
+              0.24146178819069852,
+              0.1339291954241485,
+              0.0881751588656805
+            ]
+          ],
+          "gamma3": [
+            [
+              0.287425774757792,
+              0.07907036944268181,
+              0.08098320656944324,
+              0.3277523642036832,
+              0.26544516959188513
+            ],
+            [
+              0.20540381268654415,
+              0.30597004037421666,
+              0.32860025584464764,
+              0.1721068834078018,
+              0.23877663383697462
+            ],
+            [
+              0.19658361747437178,
+              0.004894035058239602,
+              0.35470095153691483,
+              0.22877272065988746,
+              0.23814916354250767
+            ],
+            [
+              0.21724858820047696,
+              0.33590424274381325,
+              0.09758573219512541,
+              0.23683424044924098,
+              0.2099581165560225
+            ],
+            [
+              0.19837749369397623,
+              0.19306630777313835,
+              0.011307164247124572,
+              0.06730671047714172,
+              0.14740131027256934
+            ]
+          ],
+          "tau_y": 0.5,
+          "alpha_y": [
+            0.14226292126486106,
+            0.42568130713269664,
+            0.047590936626025114,
+            0.20959831820436828,
+            0.04858326613088896
+          ],
+          "beta_y": [
+            0.23612518005490915,
+            0.059736190680819284,
+            0.3327835628764011,
+            0.043373291891701624,
+            0.2793749178017726
+          ],
+          "gamma_y": [
+            0.1827424015391337,
+            0.25401964982289466,
+            0.26828372184044447,
+            0.18083596144526698,
+            0.21771869884593953
+          ]
+        }
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.8797723708687131,
+        "expression": "τ = E[Y(1)−Y(0)|G=0]，给定登记的固定系数。",
+        "derivation": "Fixed-scenario E[Y(1)-Y(0)] in the experimental population. Invertible transformations apply only to X and short-term outcomes, not to Y. Treatment coefficients stay fixed across sampling seeds.",
+        "evidence": [
+          {
+            "file": "contributions_proximal/proximal-imbens-2025-longterm-v1/checks/report.json",
+            "location": "execution.scenario_results[paper_q2_p5_fixed_design].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "选择正文p=5,q=2，固定一次系数抽取以供truth(config)定义稳定真值；不声称复现原文每轮重抽参数的200次实验。正文协变量方差与系数范数均为0.5；作者代码分别用1和√0.5，本包按正文，并按列向量方程归一矩阵列。τy标量固定0.5。保留来源实验组Y缺失结构。使用 NumPy Generator(PCG64) 重写抽样；不要求与作者软件逐随机数一致。n=128、seed=1729 仅作接口检查，不重跑论文的估计器比较。输出仅含观察列，真值、潜变量和桥函数值不作为数据列。"
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "contributions_proximal/proximal-imbens-2025-longterm-v1/generator.py",
+    "truth_reference": "contributions_proximal/proximal-imbens-2025-longterm-v1/truth.py",
+    "source_archive": "contributions_proximal.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/proximal-imbens-2025-longterm-v1.py",
+    "exported_generator_sha256": "e33b08b2cc655339de1b943e936035a1ed82705260635f5f49dc1ce88cb7dbf4"
+  },
+  "evidence": [
+    {
+      "file": "contributions_proximal/proximal-imbens-2025-longterm-v1/collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "contributions_proximal/proximal-imbens-2025-longterm-v1/config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "contributions_proximal/proximal-imbens-2025-longterm-v1/source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "50ef88d66c8077faf109c4acd3b8f667a67da6675f835b0e7ffa8d37acbdd4a9",
+    "collection_sha256": "deaba4ac393d82c32825046db31cd4b3cde04d00b6f59ffc5c7aa44d9ed355ea",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "AI-source-audit; named human scientific review pending",
+    "submission_file": "incoming/contributions_proximal.zip",
+    "submitted_zip_sha256": "50ef88d66c8077faf109c4acd3b8f667a67da6675f835b0e7ffa8d37acbdd4a9",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "Latent-variable candidates inferred from source equations; confirm their roles and completeness against the original paper or generator."
+  ],
+  "source_suggested_domain": "proximal",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

@@ -1,0 +1,213 @@
+{
+  "schema_version": "0.1",
+  "record_id": "proximal-dukes-2023-mediation-v1",
+  "kind": "synthetic_dgp",
+  "domain": "proximal",
+  "english_display": {},
+  "paper": {
+    "citation": "Dukes, O., Shpitser, I., & Tchetgen Tchetgen, E. J. (2023). Proximal mediation analysis. Biometrika, 110(4), 973–987. DOI: 10.1093/biomet/asad015.",
+    "title": null,
+    "doi": "10.1093/biomet/asad015",
+    "source_url": "https://doi.org/10.1093/biomet/asad015",
+    "source_file_evidence": [
+      {
+        "file": "dukes2023.pdf",
+        "sha256": "6e5f76b4df9236fa01ae0a4699d3522871048ec72b92ab5272eeacafb39fbe9e"
+      }
+    ],
+    "venue": "Biometrika",
+    "year": 2023,
+    "source_version": "2023 advance-access PDF, NSF PAR 10428415",
+    "source_locator": "§4 Simulation studies，advance-access PDF 第10–11页；原文实验1的生成模型。"
+  },
+  "mechanism": {
+    "name": "潜在混杂下的自然直接效应",
+    "title_en": null,
+    "family_id": "proximal-dukes-2023-mediation",
+    "generation_equations": [
+      "(X1,X2,U)~N3((0.25,0.25,0),Σ)，Σ=[[0.25,0,0.05],[0,0.25,0.05],[0.05,0.05,1]]。",
+      "A|X,U~Bernoulli(expit{−0.5(X1+X2)−0.4U})。",
+      "Z=0.2−0.52A+0.2(X1+X2)−U+εz；W=0.3+0.2(X1+X2)−0.6U+εw。",
+      "M=−0.3A−0.5(X1+X2)+0.4U+εm；Y=2+2A+M+2W−X1−X2−U+2εy。",
+      "εz,εw,εm,εy 独立 ~ N(0,1)，并与基线及处理随机数独立。"
+    ],
+    "observed_variables": [
+      {
+        "name": "X1",
+        "role": "baseline_covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X2",
+        "role": "baseline_covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "A",
+        "role": "treatment",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Z",
+        "role": "treatment_proxy",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "W",
+        "role": "outcome_proxy",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "M",
+        "role": "mediator",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [
+      {
+        "name": "U",
+        "role": "latent_candidate",
+        "evidence": {
+          "file": "collection.json",
+          "equation_index": 0,
+          "expression": "(X1,X2,U)~N3((0.25,0.25,0),Σ)，Σ=[[0.25,0,0.05],[0,0.25,0.05],[0.05,0.05,1]]"
+        },
+        "provenance": "inferred_from_stochastic_declaration"
+      }
+    ],
+    "latent_variables_status": "candidates_from_equations_need_review",
+    "sampling": {
+      "unit": "individual",
+      "dependence": "iid individuals; all variables within an individual are jointly generated"
+    },
+    "assumptions": [
+      "一致性、无干扰、处理/中介支持；给定 (U,X) 的处理与中介可交换性及跨世界条件；Z/W 满足来源的proximal中介排除条件、桥函数存在与相关性。独立外生误差提供所用结构模型解释。"
+    ],
+    "properties": {
+      "dimension": 2,
+      "effective_dimension": 2,
+      "high_dimensional": false,
+      "interactions": false,
+      "nonlinear": true,
+      "notes": "两维相关于 U 的基线 X；一个中介 M、两个代理 Z/W。连续正态中介与结局，无交互。 含中介且目标为嵌套潜在结局的自然直接效应。"
+    }
+  },
+  "estimand": {
+    "name": "NDE",
+    "definition": "NDE = E[Y(1,M(0))−Y(0,M(0))] = 2。",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "original",
+      "parameters": {
+        "cov_xu": [
+          [
+            0.25,
+            0,
+            0.05
+          ],
+          [
+            0,
+            0.25,
+            0.05
+          ],
+          [
+            0.05,
+            0.05,
+            1
+          ]
+        ],
+        "a_to_m": -0.3,
+        "m_to_y": 1.0,
+        "direct_effect": 2.0
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 2.0,
+        "expression": "NDE = E[Y(1,M(0))−Y(0,M(0))] = 2。",
+        "derivation": "E[Y(1,M(0))-Y(0,M(0))]; the shared M(0), X, U, W and centered outcome errors cancel. This is NDE, not total effect or NIE.",
+        "evidence": [
+          {
+            "file": "contributions_proximal/proximal-dukes-2023-mediation-v1/checks/report.json",
+            "location": "execution.scenario_results[original].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "保持原文自然直接效应目标。实验2–4改变估计桥函数，不拆成新DGP；不采用原文假设违背实验。使用 NumPy Generator(PCG64) 重写抽样；不要求与作者软件逐随机数一致。保留来源方程与固定参数；n=128、seed=1729 仅作接口检查，不重跑论文的估计器比较。输出仅含观察列，真值、潜变量和桥函数值不作为数据列。"
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "contributions_proximal/proximal-dukes-2023-mediation-v1/generator.py",
+    "truth_reference": "contributions_proximal/proximal-dukes-2023-mediation-v1/truth.py",
+    "source_archive": "contributions_proximal.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/proximal-dukes-2023-mediation-v1.py",
+    "exported_generator_sha256": "884eac36939db842eec2bb73f05e89630f9e460802a5f650422f247d0e9aef99"
+  },
+  "evidence": [
+    {
+      "file": "contributions_proximal/proximal-dukes-2023-mediation-v1/collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "contributions_proximal/proximal-dukes-2023-mediation-v1/config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "contributions_proximal/proximal-dukes-2023-mediation-v1/source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "50ef88d66c8077faf109c4acd3b8f667a67da6675f835b0e7ffa8d37acbdd4a9",
+    "collection_sha256": "80c1a3be76537fc1415d8ee8810d17e7b7acaaad2d52f4cde581d0d6236c8409",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "AI-source-audit; named human scientific review pending",
+    "submission_file": "incoming/contributions_proximal.zip",
+    "submitted_zip_sha256": "50ef88d66c8077faf109c4acd3b8f667a67da6675f835b0e7ffa8d37acbdd4a9",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "Latent-variable candidates inferred from source equations; confirm their roles and completeness against the original paper or generator."
+  ],
+  "source_suggested_domain": "proximal",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": [
+    "mediation"
+  ]
+}

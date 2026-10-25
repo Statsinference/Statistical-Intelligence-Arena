@@ -1,0 +1,317 @@
+{
+  "status": "draft_needs_review",
+  "paper_count": 18,
+  "mechanism_count": 23,
+  "scenario_count": 41,
+  "domains": {
+    "ate": 2,
+    "cate": 2,
+    "mediation": 1,
+    "iv": 5,
+    "proximal": 10,
+    "did_sc": 1
+  },
+  "records": [
+    {
+      "record_id": "ate-nie-wager-2021-a-v1",
+      "domain": "ate",
+      "paper": "Nie, X. and Wager, S. (2021). Quasi-oracle estimation of heterogeneous treatment effects. Biometrika 108(2), 299-319. DOI: 10.1093/biomet/asaa076.",
+      "mechanism": "ATE under Nie--Wager Setup A: nonlinear confounding and heterogeneous effects",
+      "paper_title": "Quasi-oracle estimation of heterogeneous treatment effects",
+      "generator_file": "generators/ate-nie-wager-2021-a-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "original_d6_sigma1: theta_ATE = E[Y(1)-Y(0)] = 0.5",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "cate-athey-tibshirani-wager-2019-confounded-v1",
+      "domain": "cate",
+      "paper": "Athey, S., Tibshirani, J. and Wager, S. (2019). Generalized Random Forests. The Annals of Statistics 47(2), 1148-1178. DOI: 10.1214/18-AOS1709.",
+      "mechanism": "Pointwise CATE with Confounding and Logistic Interaction Effects",
+      "paper_title": "Generalized Random Forests",
+      "generator_file": "generators/cate-athey-tibshirani-wager-2019-confounded-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "source_d10_sigma1_fixed_query: tau(x_star)=E[Y(1)-Y(0)\\|X=x_star] = 2.25",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "ate-wager-athey-2018-confounded-null-v1",
+      "domain": "ate",
+      "paper": "Wager, S. and Athey, S. (2018). Estimation and Inference of Heterogeneous Treatment Effects using Random Forests. Journal of the American Statistical Association 113(523), 1228-1242. DOI: 10.1080/01621459.2017.1319839.",
+      "mechanism": "Null Treatment Effect with Nonlinear Propensity Scores and Observed Confounding",
+      "paper_title": "Estimation and Inference of Heterogeneous Treatment Effects using Random Forests",
+      "generator_file": "generators/ate-wager-athey-2018-confounded-null-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "source_d5_sigma1: theta_ATE=E[Y(1)-Y(0)] = 0.0",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "cate-wager-athey-2018-logistic-v1",
+      "domain": "cate",
+      "paper": "Wager, S. and Athey, S. (2018). Estimation and Inference of Heterogeneous Treatment Effects using Random Forests. Journal of the American Statistical Association 113(523), 1228-1242. DOI: 10.1080/01621459.2017.1319839.",
+      "mechanism": "Pointwise CATE under Randomized Treatment with Logistic Interaction Effects",
+      "paper_title": "Estimation and Inference of Heterogeneous Treatment Effects using Random Forests",
+      "generator_file": "generators/cate-wager-athey-2018-logistic-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "source_d6_sigma1_fixed_query: tau(x_star)=E[Y(1)-Y(0)\\|X=x_star] = 2.25",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "did-santanna-zhao-2020-panel-dgp1-v1",
+      "domain": "did_sc",
+      "paper": "Sant'Anna, P. H. C. and Zhao, J. (2020). Doubly robust difference-in-differences estimators. Journal of Econometrics 219(1), 101–122. DOI: 10.1016/j.jeconom.2020.06.003.",
+      "mechanism": "Sant'Anna--Zhao DGP1: two-period panel with covariate-specific trends",
+      "paper_title": "Doubly robust difference-in-differences estimators",
+      "generator_file": "generators/did-santanna-zhao-2020-panel-dgp1-v1.py",
+      "latent_variables": [
+        "X",
+        "U",
+        "eta",
+        "v"
+      ],
+      "truth_by_scenario": "original_panel_dgp1: ATT = E[Y_1(1)-Y_1(0) \\| D=1] = 0.0",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "iv-dikkala-2020-sine-v1",
+      "domain": "iv",
+      "paper": "Dikkala, N., Lewis, G., Mackey, L. and Syrgkanis, V. (2020). Minimax Estimation of Conditional Moment Models. NeurIPS 33:12248-12262.",
+      "mechanism": "IV: sine structural response with Gaussian confounding",
+      "paper_title": "Minimax Estimation of Conditional Moment Models",
+      "generator_file": "generators/iv-dikkala-2020-sine-v1.py",
+      "latent_variables": [
+        "U",
+        "delta",
+        "zeta"
+      ],
+      "truth_by_scenario": "code_scale_alpha06_raw: theta_IV = h0(0.5)-h0(0) = 0.479425538604203",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "iv-hartford-2017-demand-v1",
+      "domain": "iv",
+      "paper": "Hartford, J., Lewis, G., Leyton-Brown, K. and Taddy, M. (2017). Deep IV: A Flexible Approach for Counterfactual Prediction. ICML, PMLR 70:1414-1423.",
+      "mechanism": "IV: DeepIV raw-unit demand with endogenous continuous price",
+      "paper_title": "Deep IV: A Flexible Approach for Counterfactual Prediction",
+      "generator_file": "generators/iv-hartford-2017-demand-v1.py",
+      "latent_variables": [
+        "V",
+        "W"
+      ],
+      "truth_by_scenario": "paper_raw_rho08: theta_IV = E[Y(do(P=21))-Y(do(P=20))] = -11.624351792971128",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "nie-eric-original-v1",
+      "domain": "mediation",
+      "paper": "Tchetgen Tchetgen, E. J. and Shpitser, I. (2012). Semiparametric theory for causal mediation analysis: efficiency bounds, multiple robustness and sensitivity analysis. The Annals of Statistics 40(3), 1816–1845. DOI: 10.1214/12-AOS990.",
+      "mechanism": "Natural indirect effect in the Tchetgen Tchetgen–Shpitser mediation design",
+      "paper_title": "Semiparametric theory for causal mediation analysis: efficiency bounds, multiple robustness and sensitivity analysis",
+      "generator_file": "generators/nie-eric-original-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "original: theta_NIE = theta_11 - theta_10 = 0.2366199012683949",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "qr-athey-tibshirani-wager-2019-mean-v1",
+      "domain": "unclassified",
+      "paper": "Athey, S., Tibshirani, J. and Wager, S. (2019). Generalized random forests. The Annals of Statistics 47(2), 1148-1178. DOI: 10.1214/18-AOS1709.",
+      "mechanism": "Conditional quantile under Athey-Tibshirani-Wager Figure 2 mean shift",
+      "paper_title": "Generalized random forests",
+      "generator_file": "generators/qr-athey-tibshirani-wager-2019-mean-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "source_p40_q90_positive_query: theta = Q_0.9(Y \\| X=x_query) = 2.0815515655446006",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "qr-athey-tibshirani-wager-2019-scale-v1",
+      "domain": "unclassified",
+      "paper": "Athey, S., Tibshirani, J. and Wager, S. (2019). Generalized random forests. The Annals of Statistics 47(2), 1148-1178. DOI: 10.1214/18-AOS1709.",
+      "mechanism": "Conditional quantile under Athey-Tibshirani-Wager Figure 2 scale shift",
+      "paper_title": "Generalized random forests",
+      "generator_file": "generators/qr-athey-tibshirani-wager-2019-scale-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "source_p40_q90_positive_query: theta = Q_0.9(Y \\| X=x_query) = 2.5631031310892016",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "proximal-cui-2024-linear-v1",
+      "domain": "proximal",
+      "paper": "Cui, Y., Pu, H., Shi, X., Miao, W., & Tchetgen Tchetgen, E. (2024). Semiparametric Proximal Causal Inference. Journal of the American Statistical Association, 119(546), 1348–1359. DOI: 10.1080/01621459.2023.2191817.",
+      "mechanism": "Linear Bridge Model with Constant ATE",
+      "paper_title": "Semiparametric Proximal Causal Inference",
+      "generator_file": "generators/proximal-cui-2024-linear-v1.py",
+      "latent_variables": [
+        "U"
+      ],
+      "truth_by_scenario": "original: ATE = 2.0",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "proximal-dukes-2023-mediation-v1",
+      "domain": "proximal",
+      "paper": "Dukes, O., Shpitser, I., & Tchetgen Tchetgen, E. J. (2023). Proximal mediation analysis. Biometrika, 110(4), 973–987. DOI: 10.1093/biomet/asad015.",
+      "mechanism": "Natural Direct Effect under Unmeasured Confounding",
+      "paper_title": "Proximal mediation analysis",
+      "generator_file": "generators/proximal-dukes-2023-mediation-v1.py",
+      "latent_variables": [
+        "U"
+      ],
+      "truth_by_scenario": "original: NDE = 2.0",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "proximal-imbens-2025-longterm-v1",
+      "domain": "proximal",
+      "paper": "Imbens, G., Kallus, N., Mao, X., & Wang, Y. (2025). Long-term causal inference under persistent confounding via data combination. Journal of the Royal Statistical Society Series B: Statistical Methodology, 87(2), 362–388. DOI: 10.1093/jrsssb/qkae095.",
+      "mechanism": "Sequential Proxies and Long-Term Causal Effects from Combined Data",
+      "paper_title": "Long-term causal inference under persistent confounding via data combination",
+      "generator_file": "generators/proximal-imbens-2025-longterm-v1.py",
+      "latent_variables": [
+        "X̃",
+        "U",
+        "S̃1",
+        "S̃2",
+        "S̃3"
+      ],
+      "truth_by_scenario": "paper_q2_p5_fixed_design: theta = 0.8797723708687131",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "proximal-qi-2024-linear-itr-v1",
+      "domain": "proximal",
+      "paper": "Qi, Z., Miao, R., & Zhang, X. (2024). Proximal Learning for Individualized Treatment Regimes Under Unmeasured Confounding. Journal of the American Statistical Association, 119(546), 915–928. DOI: 10.1080/01621459.2022.2147841.",
+      "mechanism": "Linear Heterogeneous Treatment Effect Bridge (L1/L2)",
+      "paper_title": "Proximal Learning for Individualized Treatment Regimes Under Unmeasured Confounding",
+      "generator_file": "generators/proximal-qi-2024-linear-itr-v1.py",
+      "latent_variables": [
+        "U"
+      ],
+      "truth_by_scenario": "L1: ATE = 0.10888711551018415; L2: ATE = 0.0",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "proximal-qi-2024-quadratic-v1",
+      "domain": "proximal",
+      "paper": "Qi, Z., Miao, R., & Zhang, X. (2024). Proximal Learning for Individualized Treatment Regimes Under Unmeasured Confounding. Journal of the American Statistical Association, 119(546), 915–928. DOI: 10.1080/01621459.2022.2147841.",
+      "mechanism": "Quadratic Baseline Effects and Product Treatment Effect (N2)",
+      "paper_title": "Proximal Learning for Individualized Treatment Regimes Under Unmeasured Confounding",
+      "generator_file": "generators/proximal-qi-2024-quadratic-v1.py",
+      "latent_variables": [
+        "U"
+      ],
+      "truth_by_scenario": "N2: ATE = -0.125",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "proximal-qi-2024-trigonometric-v1",
+      "domain": "proximal",
+      "paper": "Qi, Z., Miao, R., & Zhang, X. (2024). Proximal Learning for Individualized Treatment Regimes Under Unmeasured Confounding. Journal of the American Statistical Association, 119(546), 915–928. DOI: 10.1080/01621459.2022.2147841.",
+      "mechanism": "Absolute-Value and Trigonometric Proxy Interactions (N1)",
+      "paper_title": "Proximal Learning for Individualized Treatment Regimes Under Unmeasured Confounding",
+      "generator_file": "generators/proximal-qi-2024-trigonometric-v1.py",
+      "latent_variables": [
+        "U"
+      ],
+      "truth_by_scenario": "N1: ATE = 0.019533193713670016",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "proximal-shi-2026-sc-gaussian-v1",
+      "domain": "proximal",
+      "paper": "Shi, X., Li, K. Q., Yu, M., Miao, W., Kuchibhotla, A. K., Hu, M., & Tchetgen Tchetgen, E. (2026). Theory for Identification and Inference with Synthetic Controls: A Proximal Causal Inference Framework. Journal of the American Statistical Association, online publication, 4 June 2026. DOI: 10.1080/01621459.2026.2639734.",
+      "mechanism": "Stationary Multifactor Gaussian Synthetic Control",
+      "paper_title": "Theory for Identification and Inference with Synthetic Controls: A Proximal Causal Inference Framework",
+      "generator_file": "generators/proximal-shi-2026-sc-gaussian-v1.py",
+      "latent_variables": [
+        "λ_tk"
+      ],
+      "truth_by_scenario": "journal_r5_stationary: ETT = 2.0",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "proximal-shi-2026-sc-poisson-v1",
+      "domain": "proximal",
+      "paper": "Shi, X., Li, K. Q., Yu, M., Miao, W., Kuchibhotla, A. K., Hu, M., & Tchetgen Tchetgen, E. (2026). Theory for Identification and Inference with Synthetic Controls: A Proximal Causal Inference Framework. Journal of the American Statistical Association, online publication, 4 June 2026. DOI: 10.1080/01621459.2026.2639734.",
+      "mechanism": "Poisson Synthetic Control with Truncated Normal Factors",
+      "paper_title": "Theory for Identification and Inference with Synthetic Controls: A Proximal Causal Inference Framework",
+      "generator_file": "generators/proximal-shi-2026-sc-poisson-v1.py",
+      "latent_variables": [
+        "λ_t"
+      ],
+      "truth_by_scenario": "journal_r1_no_covariates: theta = -2.0",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "proximal-su-2026-transport-v1",
+      "domain": "proximal",
+      "paper": "Su, Z., Rytgaard, H. C., Ravn, H., & Eriksson, F. (2026). Proximal indirect comparison. Biometrika, 113(1), asaf044. DOI: 10.1093/biomet/asaf044.",
+      "mechanism": "Cross-Trial Transportability with Unmeasured Effect Modification",
+      "paper_title": "Proximal indirect comparison",
+      "generator_file": "generators/proximal-su-2026-transport-v1.py",
+      "latent_variables": [
+        "V",
+        "Uj"
+      ],
+      "truth_by_scenario": "original: theta = -2.6489954259019695",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "proximal-ying-2023-longitudinal-v1",
+      "domain": "proximal",
+      "paper": "Ying, A., Miao, W., Shi, X., & Tchetgen Tchetgen, E. J. (2023). Proximal causal inference for complex longitudinal studies. Journal of the Royal Statistical Society Series B, 85(3), 684–704. DOI: 10.1093/jrsssb/qkad020.",
+      "mechanism": "Two-Period Treatment with Time-Varying Confounding and Feedback",
+      "paper_title": "Proximal causal inference for complex longitudinal studies",
+      "generator_file": "generators/proximal-ying-2023-longitudinal-v1.py",
+      "latent_variables": [
+        "U0",
+        "U1"
+      ],
+      "truth_by_scenario": "original: theta = 1.9999999999999998",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "iv-athey-tibshirani-wager-2019-compliance-v1",
+      "domain": "iv",
+      "paper": "Athey, S., Tibshirani, J. and Wager, S. (2019). Generalized random forests. The Annals of Statistics 47(2), 1148–1178. DOI: 10.1214/18-AOS1709.",
+      "mechanism": "Endogenous Noncompliance and Local Treatment Effects",
+      "paper_title": "Generalized random forests",
+      "generator_file": "generators/iv-athey-tibshirani-wager-2019-compliance-v1.py",
+      "latent_variables": [
+        "Q"
+      ],
+      "truth_by_scenario": "source_additive_k2_omega0_mu0: tau_IV(x*) = 1.0; source_additive_k2_omega0_mu3: tau_IV(x*) = 1.0; source_additive_k2_omega1_mu0: tau_IV(x*) = 1.0; source_additive_k2_omega1_mu3: tau_IV(x*) = 1.0; source_additive_k4_omega0_mu0: tau_IV(x*) = 1.75; source_additive_k4_omega0_mu3: tau_IV(x*) = 1.75; source_additive_k4_omega1_mu0: tau_IV(x*) = 1.75; source_additive_k4_omega1_mu3: tau_IV(x*) = 1.75; source_nonadditive_k2_omega0_mu0: tau_IV(x*) = 0.5; source_nonadditive_k2_omega0_mu3: tau_IV(x*) = 0.5; source_nonadditive_k2_omega1_mu0: tau_IV(x*) = 0.5; source_nonadditive_k2_omega1_mu3: tau_IV(x*) = 0.5; source_nonadditive_k4_omega0_mu0: tau_IV(x*) = 1.0; source_nonadditive_k4_omega0_mu3: tau_IV(x*) = 1.0; source_nonadditive_k4_omega1_mu0: tau_IV(x*) = 1.0; source_nonadditive_k4_omega1_mu3: tau_IV(x*) = 1.0",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "iv-ding-2017-binary-bias-v1",
+      "domain": "iv",
+      "paper": "Ding, P., VanderWeele, T. J. and Robins, J. M. (2017). Instrumental variables as bias amplifiers with general outcome and confounding. Biometrika 104(2), 291–302. DOI: 10.1093/biomet/asx009.",
+      "mechanism": "DGP iv-ding-2017-binary-bias-v1 (English title required)",
+      "paper_title": "Instrumental variables as bias amplifiers with general outcome and confounding",
+      "generator_file": "generators/iv-ding-2017-binary-bias-v1.py",
+      "latent_variables": [
+        "U"
+      ],
+      "truth_by_scenario": "source_table1_case1: LATE = 0.05545454545454545; source_table1_case2: LATE = 0.01; source_table1_case3: LATE = 0.022500000000000003",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "iv-kang-2016-invalid-linear-v1",
+      "domain": "iv",
+      "paper": "Kang, H., Zhang, A., Cai, T. T. and Small, D. S. (2016). Instrumental Variables Estimation With Some Invalid Instruments and its Application to Mendelian Randomization. JASA 111(513), 132–144. DOI: 10.1080/01621459.2014.994705.",
+      "mechanism": "Partially Invalid Instruments with Linear Endogenous Treatment",
+      "paper_title": "Instrumental Variables Estimation With Some Invalid Instruments and its Application to Mendelian Randomization",
+      "generator_file": "generators/iv-kang-2016-invalid-linear-v1.py",
+      "latent_variables": [
+        "ξ"
+      ],
+      "truth_by_scenario": "author_readme_fixed: beta = 1.0",
+      "status": "needs_scientific_review"
+    }
+  ],
+  "notes": [
+    "Equivalent DGP ate-nie-wager-2021-a-v1 in incoming/contributions.zip is already registered from incoming/ate-nie-wager-2021-a-v1.zip; merged duplicate source reference.",
+    "Equivalent DGP cate-athey-tibshirani-wager-2019-confounded-v1 in incoming/contributions.zip is already registered from incoming/cate-athey-tibshirani-wager-2019-confounded-v1.zip; merged duplicate source reference."
+  ]
+}

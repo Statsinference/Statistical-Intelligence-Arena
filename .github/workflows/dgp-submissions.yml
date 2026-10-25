@@ -1,0 +1,107 @@
+name: DGP submissions
+on:
+  pull_request:
+    paths:
+      - 'dgp-submissions/**'
+      - 'CONTRIBUTING.md'
+      - '.github/workflows/dgp-submissions.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'dgp-submissions/**'
+      - 'CONTRIBUTING.md'
+      - '.github/workflows/dgp-submissions.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: statsarena-dgp-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  validate-pr:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: dgp-submissions
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install test dependency
+        run: python -m pip install pytest==8.4.2
+      - name: Protect the surrounding benchmark repository
+        run: python integration/verify_isolation.py capture
+      - name: Test original DGP parser and rendering
+        run: python -m pytest tests --ignore=tests/test_integration.py -q
+      - name: Generate an isolated review preview
+        run: |
+          python -m tools.dgp_registry.github_intake --incoming incoming --output registry
+          python -m tools.dgp_registry.paper_list --catalog registry/catalog.json --readme README.md
+          python integration/sync_contributing.py
+          python -m pytest tests/test_integration.py -q
+          python integration/verify_isolation.py verify
+          cat registry/PR_SUMMARY.md >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dgp-review-preview
+          path: |
+            CONTRIBUTING.md
+            dgp-submissions/registry/
+          retention-days: 14
+  publish:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: dgp-submissions
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install test dependency
+        run: python -m pip install pytest==8.4.2
+      - name: Capture protected benchmark files
+        run: python integration/verify_isolation.py capture
+      - name: Test original DGP parser and rendering
+        run: python -m pytest tests --ignore=tests/test_integration.py -q
+      - name: Index submitted ZIPs without executing their code
+        run: |
+          python -m tools.dgp_registry.github_intake --incoming incoming --output registry
+          cat registry/PR_SUMMARY.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Refresh Contributing without changing the project README
+        run: |
+          python -m tools.dgp_registry.paper_list --catalog registry/catalog.json --readme README.md
+          python integration/sync_contributing.py
+          python -m pytest tests/test_integration.py -q
+          python integration/verify_isolation.py verify
+      - name: Commit only the Contributing landing page and DGP catalog
+        working-directory: .
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- CONTRIBUTING.md dgp-submissions/README.md dgp-submissions/registry
+          if git diff --cached --quiet; then
+            echo 'The DGP catalog and Contributing page are current.'
+          else
+            python - <<'PY'
+          import subprocess
+          changed=subprocess.check_output(['git','diff','--cached','--name-only','-z']).decode().split('\0')
+          allowed=lambda p: p=='CONTRIBUTING.md' or p=='dgp-submissions/README.md' or p.startswith('dgp-submissions/registry/')
+          invalid=[p for p in changed if p and not allowed(p)]
+          if invalid: raise SystemExit('Refusing changes outside DGP output: '+repr(invalid))
+          PY
+            git commit -m 'chore: refresh DGP Contributing catalog'
+            git push origin HEAD:main
+          fi

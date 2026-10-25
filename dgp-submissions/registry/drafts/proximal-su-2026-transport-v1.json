@@ -1,0 +1,260 @@
+{
+  "schema_version": "0.1",
+  "record_id": "proximal-su-2026-transport-v1",
+  "kind": "synthetic_dgp",
+  "domain": "proximal",
+  "english_display": {},
+  "paper": {
+    "citation": "Su, Z., Rytgaard, H. C., Ravn, H., & Eriksson, F. (2026). Proximal indirect comparison. Biometrika, 113(1), asaf044. DOI: 10.1093/biomet/asaf044.",
+    "title": null,
+    "doi": "10.1093/biomet/asaf044",
+    "source_url": "https://doi.org/10.1093/biomet/asaf044",
+    "source_file_evidence": [
+      {
+        "file": "su2026.pdf",
+        "sha256": "1f6557031bcb933ec4beceb2c17529f964239649f3d60489a8c755d42efe7414"
+      }
+    ],
+    "venue": "Biometrika",
+    "year": 2026,
+    "source_version": "arXiv:2405.10773v2, 2025-06-04",
+    "source_locator": "§5.1，arXiv v2 PDF 第10–11页；Supplement S4.1 第30–31页。"
+  },
+  "mechanism": {
+    "name": "跨试验迁移与未测效应修饰",
+    "title_en": null,
+    "family_id": "proximal-su-2026-transport",
+    "generation_equations": [
+      "V~N3(0,Σx)，Σx 的对角为1、非对角为0.25；Xj=Φ(Vj)。Uj 独立 ~ Uniform(−1,0)，U 与 X 独立。",
+      "S|X,U~Bernoulli(expit{−0.625+0.5ΣXj+0.5ΣUj})；S=1为来源试验，S=0为目标人群。",
+      "A|S=1~Bernoulli(0.5)；Z|X,U,S=1~N3(U+X,0.25I)；W|X,U~N3(U+X,0.25I)。",
+      "Y|S=1=0.5−A+ΣUj+AΣUj+ΣXj+ΣWj+AΣWj+ε；ε~N(0,0.5²)。",
+      "观察列为 X、W、S、SA、SZ、SY；S=0时SA/SZ/SY用0占位，由S显式区分未观察与数值0。"
+    ],
+    "observed_variables": [
+      {
+        "name": "X1",
+        "role": "baseline_covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X2",
+        "role": "baseline_covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X3",
+        "role": "baseline_covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "W1",
+        "role": "outcome_proxy",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "W2",
+        "role": "outcome_proxy",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "W3",
+        "role": "outcome_proxy",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "SZ1",
+        "role": "source_proxy_product",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "SZ2",
+        "role": "source_proxy_product",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "SZ3",
+        "role": "source_proxy_product",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "S",
+        "role": "source_membership",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "SA",
+        "role": "source_treatment_product",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "SY",
+        "role": "source_outcome_product",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [
+      {
+        "name": "V",
+        "role": "latent_candidate",
+        "evidence": {
+          "file": "collection.json",
+          "equation_index": 0,
+          "expression": "V~N3(0,Σx)，Σx 的对角为1、非对角为0.25"
+        },
+        "provenance": "inferred_from_stochastic_declaration"
+      },
+      {
+        "name": "Uj",
+        "role": "latent_candidate",
+        "evidence": {
+          "file": "collection.json",
+          "equation_index": 0,
+          "expression": "Uj 独立 ~ Uniform(−1,0)，U 与 X 独立"
+        },
+        "provenance": "inferred_from_stochastic_declaration"
+      }
+    ],
+    "latent_variables_status": "candidates_from_equations_need_review",
+    "sampling": {
+      "unit": "individual",
+      "dependence": "iid individuals; all variables within an individual are jointly generated"
+    },
+    "assumptions": [
+      "来源试验内随机处理；给定 (X,U) 的效应可迁移与选择重叠；W 在给定 (X,U) 后跨来源稳定，Z满足来源试验内代理排除条件；桥函数存在/完备性。目标总体为 S=0，不是混合总体。"
+    ],
+    "properties": {
+      "dimension": 3,
+      "effective_dimension": 3,
+      "high_dimensional": false,
+      "interactions": true,
+      "nonlinear": true,
+      "notes": "独立受试者来自混合来源。三维有效 X 与各三维 W/Z；S 是可见观察指示器，不输出目标人群未观察的处理/结局/来源代理。 两来源观察模式和对S=0目标人群的效果迁移。"
+    }
+  },
+  "estimand": {
+    "name": "theta",
+    "definition": "θ = E[E(Y|A=1,X,U,S=1)−E(Y|A=0,X,U,S=1) | S=0]。",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "original",
+      "parameters": {
+        "copula_cov": [
+          [
+            1,
+            0.25,
+            0.25
+          ],
+          [
+            0.25,
+            1,
+            0.25
+          ],
+          [
+            0.25,
+            0.25,
+            1
+          ]
+        ],
+        "selection_intercept": -0.625,
+        "effect_scale": 1.0
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": -2.6489954259019695,
+        "expression": "θ = E[E(Y|A=1,X,U,S=1)−E(Y|A=0,X,U,S=1) | S=0]。",
+        "derivation": "E[(1-pS)(-1+2 sum(U)+sum(X))]/E[1-pS], multiplied by effect_scale. Quadrature difference is a numerical convergence diagnostic, not a rigorous error bound.",
+        "evidence": [
+          {
+            "file": "contributions_proximal/proximal-su-2026-transport-v1/checks/report.json",
+            "location": "execution.scenario_results[original].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "沿用原文完整观测数据表达 (X,W,S,SA,SZ,SY)，用显式乘积列适配学生包的有限数值接口。目标人群不存在的观测用S掩码表达，不使用NaN。原文全体无选择人群的−2.5不是当前目标真值。使用 NumPy Generator(PCG64) 重写抽样；不要求与作者软件逐随机数一致。保留来源方程与固定参数；n=128、seed=1729 仅作接口检查，不重跑论文的估计器比较。输出仅含观察列，真值、潜变量和桥函数值不作为数据列。"
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "contributions_proximal/proximal-su-2026-transport-v1/generator.py",
+    "truth_reference": "contributions_proximal/proximal-su-2026-transport-v1/truth.py",
+    "source_archive": "contributions_proximal.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/proximal-su-2026-transport-v1.py",
+    "exported_generator_sha256": "26728779dc19bfc9d2556ec9936fee6ab8108e59a703164370a2877a50c0ed2e"
+  },
+  "evidence": [
+    {
+      "file": "contributions_proximal/proximal-su-2026-transport-v1/collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "contributions_proximal/proximal-su-2026-transport-v1/config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "contributions_proximal/proximal-su-2026-transport-v1/source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "50ef88d66c8077faf109c4acd3b8f667a67da6675f835b0e7ffa8d37acbdd4a9",
+    "collection_sha256": "e1cae49ba66d229130284ee40882e82f0e4f8ab42b010f322672613ffae50e51",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "AI-source-audit; named human scientific review pending",
+    "submission_file": "incoming/contributions_proximal.zip",
+    "submitted_zip_sha256": "50ef88d66c8077faf109c4acd3b8f667a67da6675f835b0e7ffa8d37acbdd4a9",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "Latent-variable candidates inferred from source equations; confirm their roles and completeness against the original paper or generator."
+  ],
+  "source_suggested_domain": "proximal",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

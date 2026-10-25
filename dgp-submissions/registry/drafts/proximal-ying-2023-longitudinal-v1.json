@@ -1,0 +1,230 @@
+{
+  "schema_version": "0.1",
+  "record_id": "proximal-ying-2023-longitudinal-v1",
+  "kind": "synthetic_dgp",
+  "domain": "proximal",
+  "english_display": {},
+  "paper": {
+    "citation": "Ying, A., Miao, W., Shi, X., & Tchetgen Tchetgen, E. J. (2023). Proximal causal inference for complex longitudinal studies. Journal of the Royal Statistical Society Series B, 85(3), 684–704. DOI: 10.1093/jrsssb/qkad020.",
+    "title": null,
+    "doi": "10.1093/jrsssb/qkad020",
+    "source_url": "https://doi.org/10.1093/jrsssb/qkad020",
+    "source_file_evidence": [
+      {
+        "file": "ying2023.pdf",
+        "sha256": "2fd4dd5673c826fdac27905d1e8e7c85cf3a1ac1dcc22a77031b44967c625ca0"
+      }
+    ],
+    "venue": "JRSS-B",
+    "year": 2023,
+    "source_version": "arXiv:2109.07030v5, 2022-08-03",
+    "source_locator": "Supplement F.1，合并 PDF 第47–48页，式(F.1)–(F.3)；F.2 兼容性证明。"
+  },
+  "mechanism": {
+    "name": "两期处理与时变混杂反馈",
+    "title_en": null,
+    "family_id": "proximal-ying-2023-longitudinal",
+    "generation_equations": [
+      "X0~N(−0.35,0.5²)，U0~N(0.35,0.5²)，相互独立；p0=[1+exp(0.5−0.35X0+0.35U0)]⁻¹。",
+      "A0~Bernoulli(p0)；Z0=0.2+0.5A0+0.5X0+0.75U0+εz0；W0=0.2+0.5X0−0.95U0+εw0。",
+      "X1=0.2+0.7A0+0.7X0+εx1；U1=0.2+0.7A0+0.7U0+εu1。",
+      "p1=[1+exp{0.5−0.5A0−0.35(X0+X1)−0.35(U0+U1)}]⁻¹；A1~Bernoulli(p1)。",
+      "Z1=0.2+0.5(A0+A1)+0.5(X0+X1)−0.75(U0+U1)+εz1。",
+      "W1=0.35+0.45(X0+X1)−0.85(U0+U1)+εw1。",
+      "Y=−1.3+A1+1.14A0+0.5X1−0.7U1+0.2X0−0.7U0+εy；各新增 ε 独立 ~ N(0,0.5²)。"
+    ],
+    "observed_variables": [
+      {
+        "name": "X0",
+        "role": "baseline_covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "A0",
+        "role": "treatment",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Z0",
+        "role": "treatment_proxy",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "W0",
+        "role": "outcome_proxy",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X1",
+        "role": "time_varying_covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "A1",
+        "role": "treatment",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Z1",
+        "role": "treatment_proxy",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "W1",
+        "role": "outcome_proxy",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [
+      {
+        "name": "U0",
+        "role": "latent_candidate",
+        "evidence": {
+          "file": "collection.json",
+          "equation_index": 0,
+          "expression": "U0~N(0.35,0.5²)，相互独立"
+        },
+        "provenance": "inferred_from_stochastic_declaration"
+      },
+      {
+        "name": "U1",
+        "role": "latent_candidate",
+        "evidence": {
+          "file": "collection.json",
+          "equation_index": 2,
+          "expression": "U1=0.2+0.7A0+0.7U0+εu1"
+        },
+        "provenance": "inferred_from_structural_assignment"
+      }
+    ],
+    "latent_variables_status": "candidates_from_equations_need_review",
+    "sampling": {
+      "unit": "individual",
+      "dependence": "iid individuals; longitudinal dependence within each row"
+    },
+    "assumptions": [
+      "序贯一致性、无干扰、给定潜在历史的序贯可交换性和处理支持；每期代理的序贯排除/独立条件、相关性及序贯桥函数存在（来源 F.2）。"
+    ],
+    "properties": {
+      "dimension": 1,
+      "effective_dimension": 1,
+      "high_dimensional": false,
+      "interactions": false,
+      "nonlinear": true,
+      "notes": "一人一行，保留 X0,A0,Z0,W0,X1,A1,Z1,W1,Y；基线 X0 一维，X1 为治疗后时变协变量，不把两期当独立个体。 处理改变下一期混杂变量，采用序贯proximal识别。"
+    }
+  },
+  "estimand": {
+    "name": "theta",
+    "definition": "E[Y(1,1)−Y(0,0)] = 2。",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "original",
+      "parameters": {
+        "noise_sd": 0.5,
+        "direct_a0": 1.14,
+        "direct_a1": 1.0,
+        "regime_treated": [
+          1,
+          1
+        ],
+        "regime_control": [
+          0,
+          0
+        ]
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 1.9999999999999998,
+        "expression": "E[Y(1,1)−Y(0,0)] = 2。",
+        "derivation": "The A0 paths through X1 and U1 contribute +0.35 and -0.49. For source coefficients E[Y(1,1)-Y(0,0)]=2, twice the source MSMM slope beta1=1.",
+        "evidence": [
+          {
+            "file": "contributions_proximal/proximal-ying-2023-longitudinal-v1/checks/report.json",
+            "location": "execution.scenario_results[original].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "将原文向量参数 (β0,β1) 转成明确的静态方案对比 (1,1) 与 (0,0)。数据保持宽表，不扁平化重复测量。使用 NumPy Generator(PCG64) 重写抽样；不要求与作者软件逐随机数一致。保留来源方程与固定参数；n=128、seed=1729 仅作接口检查，不重跑论文的估计器比较。输出仅含观察列，真值、潜变量和桥函数值不作为数据列。"
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "contributions_proximal/proximal-ying-2023-longitudinal-v1/generator.py",
+    "truth_reference": "contributions_proximal/proximal-ying-2023-longitudinal-v1/truth.py",
+    "source_archive": "contributions_proximal.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/proximal-ying-2023-longitudinal-v1.py",
+    "exported_generator_sha256": "4df3c3a5be8cb81185f83bef13ac97f3822972e6e6ddc062930ad4e80de91452"
+  },
+  "evidence": [
+    {
+      "file": "contributions_proximal/proximal-ying-2023-longitudinal-v1/collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "contributions_proximal/proximal-ying-2023-longitudinal-v1/config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "contributions_proximal/proximal-ying-2023-longitudinal-v1/source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "50ef88d66c8077faf109c4acd3b8f667a67da6675f835b0e7ffa8d37acbdd4a9",
+    "collection_sha256": "4f77888c2e6d6c33ec6d3a09d83f356b7c34d2acf5445ddfdd99678d18ea46c9",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "AI-source-audit; named human scientific review pending",
+    "submission_file": "incoming/contributions_proximal.zip",
+    "submitted_zip_sha256": "50ef88d66c8077faf109c4acd3b8f667a67da6675f835b0e7ffa8d37acbdd4a9",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "Latent-variable candidates inferred from source equations; confirm their roles and completeness against the original paper or generator."
+  ],
+  "source_suggested_domain": "proximal",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

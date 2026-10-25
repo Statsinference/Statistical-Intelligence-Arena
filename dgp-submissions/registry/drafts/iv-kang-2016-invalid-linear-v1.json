@@ -1,0 +1,243 @@
+{
+  "schema_version": "0.1",
+  "record_id": "iv-kang-2016-invalid-linear-v1",
+  "kind": "synthetic_dgp",
+  "domain": "iv",
+  "english_display": {},
+  "paper": {
+    "citation": "Kang, H., Zhang, A., Cai, T. T. and Small, D. S. (2016). Instrumental Variables Estimation With Some Invalid Instruments and its Application to Mendelian Randomization. JASA 111(513), 132–144. DOI: 10.1080/01621459.2014.994705.",
+    "title": null,
+    "doi": null,
+    "source_url": "https://arxiv.org/abs/1401.5755v3",
+    "source_file_evidence": [],
+    "venue": "Journal of the American Statistical Association",
+    "year": 2016,
+    "source_version": null,
+    "source_locator": "arXiv v3 (2014-09-21), §4 PDF pp.22–23; fixed parameters from hyunseungkang/sisVIVE README.md Examples lines 24–38, commit 0ae8499f260f37edd68a057d1e2f0634b1b98b42."
+  },
+  "mechanism": {
+    "name": "IV：部分无效工具与线性内生处理",
+    "title_en": null,
+    "family_id": "kang-zhang-cai-small-2016-linear-invalid-iv",
+    "generation_equations": [
+      "Zⱼ iid N(0,1), j=1,…,10; Z independent of (ξ,ε).",
+      "(ξ,ε) joint normal: mean 0, variances 1, correlation ρ=0.8.",
+      "D=1+Σⱼ₌₁¹⁰ Zⱼ+ξ.",
+      "Y=1+Z₁+Z₂+Z₃+βD+ε; β=1."
+    ],
+    "observed_variables": [
+      {
+        "name": "Z1",
+        "role": "candidate_instrument",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Z2",
+        "role": "candidate_instrument",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Z3",
+        "role": "candidate_instrument",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Z4",
+        "role": "candidate_instrument",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Z5",
+        "role": "candidate_instrument",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Z6",
+        "role": "candidate_instrument",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Z7",
+        "role": "candidate_instrument",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Z8",
+        "role": "candidate_instrument",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Z9",
+        "role": "candidate_instrument",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Z10",
+        "role": "candidate_instrument",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "D",
+        "role": "treatment",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [
+      {
+        "name": "ξ",
+        "role": "latent_candidate",
+        "evidence": {
+          "file": "collection.json",
+          "equation_index": 1,
+          "expression": "(ξ,ε) joint normal: mean 0, variances 1, correlation ρ=0.8."
+        },
+        "provenance": "inferred_from_stochastic_declaration"
+      }
+    ],
+    "latent_variables_status": "candidates_from_equations_need_review",
+    "sampling": {
+      "unit": "individual",
+      "dependence": "iid across individuals; within-unit dependencies explicitly specified by the structural equations"
+    },
+    "assumptions": [
+      "Consistency and well-defined treatment interventions.",
+      "Independent identically distributed units; no interference.",
+      "Ten independent standard normal candidate instruments, independent of jointly Gaussian structural errors.",
+      "Structural equation Y=1+Z1+Z2+Z3+beta*D+epsilon has a constant causal slope.",
+      "Z4–Z10 are relevant and satisfy exclusion; Z1–Z3 violate exclusion. Do not apply all-IV validity.",
+      "More than half of candidate instruments are valid (7/10); the linear invalid-IV identification framework applies."
+    ],
+    "properties": {
+      "dimension": 0,
+      "effective_dimension": 0,
+      "high_dimensional": false,
+      "interactions": false,
+      "nonlinear": false,
+      "notes": "无额外基线 X；10列 Z 为候选工具，不计入 baseline dimension。工具数单列记录为10。线性、无交互；rho=0.8造成内生性，Z1–Z3直接作用于Y。",
+      "observed_columns": 12,
+      "instrument_count": 10
+    }
+  },
+  "estimand": {
+    "name": "beta",
+    "definition": "Constant structural slope beta = E[Y(do(D=d+1))-Y(do(D=d))], with natural Z and errors held under the same intervention law.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "author_readme_fixed",
+      "parameters": {
+        "instrument_count": 10,
+        "invalid_count": 3,
+        "rho": 0.8,
+        "beta": 1.0,
+        "first_stage": 1.0,
+        "treatment_intercept": 1.0,
+        "outcome_intercept": 1.0
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 1.0,
+        "expression": "Constant structural slope beta = E[Y(do(D=d+1))-Y(do(D=d))], with natural Z and errors held under the same intervention law.",
+        "derivation": "改变 D 一单位并保持 Z 和结构误差时，Y 增加 beta=1。对 Z4–Z10，Cov(Zj,Y)/Cov(Zj,D)=1；前3个工具的比值为2，不能把它们当有效工具。",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[author_readme_fixed].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "使用新写的 Python/NumPy PCG64 实现；保持所选场景的分布，不保证与 R 同种子逐行相同。",
+    "n=128、seed=1729 仅用于接口运行检查；不复跑论文估计器、不报告覆盖率。",
+    "机制来自论文 §4；参数完整固定为作者 README 示例：10个独立标准正态工具，前3个直接作用于Y，rho=0.8，各一阶段系数、两截距和 beta 均为1。",
+    "此为论文机制的作者示例参数化，不宣称复现论文 n=2000 的集中参数校准网格；作者 README 的原始样本量为1000。",
+    "不导出结构误差或逐列有效性 oracle 标签；哪些工具无效仅在机制说明/核验中记录。"
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "generator.py",
+    "truth_reference": "truth.py",
+    "source_archive": "iv-kang-2016-invalid-linear-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/iv-kang-2016-invalid-linear-v1.py",
+    "exported_generator_sha256": "1c2b118abe23745cea5817a79ad7fb83ba59b9f25123bde4d86aba56bd511f48"
+  },
+  "evidence": [
+    {
+      "file": "collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "67808f56e0ab14250c6e756a8041a7f7dd8021e6ca11549c92e702d83ad2eb91",
+    "collection_sha256": "52797dee2047e1b1d2bacb3fc14dd881d8eb5ae0faca4c13788edf9cdd557904",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/iv-kang-2016-invalid-linear-v1.zip",
+    "submitted_zip_sha256": "67808f56e0ab14250c6e756a8041a7f7dd8021e6ca11549c92e702d83ad2eb91",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "Latent-variable candidates inferred from source equations; confirm their roles and completeness against the original paper or generator."
+  ],
+  "source_suggested_domain": "iv",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

@@ -1,0 +1,255 @@
+{
+  "proximal-cui-2024-linear-v1": {
+    "locator": "Section 5.1, arXiv v4 PDF pp. 21–22; bridge equations (13)–(14); Appendix H.",
+    "assumptions": [
+      "Consistency, no interference, conditional exchangeability of potential outcomes given (U,X), and treatment positivity; exclusion of Z from the outcome, conditional independence of W from (A,Z) given the relevant latent state, and the source's proxy relevance, completeness, and bridge-existence conditions. The retrospective sampling factorization A → (Z,W,U) does not imply that A causally changes baseline U or W."
+    ],
+    "estimand": "ATE = E[Y(1) - Y(0)] = 2.",
+    "equations": [
+      {
+        "latex": "\\begin{aligned}\nX_1,X_2&\\overset{\\mathrm{iid}}{\\sim}\\mathcal{N}(0.25,0.25^2)\\\\\np(X)&=[1+\\exp\\{0.125(X_1+X_2)\\}]^{-1}\\\\\nA\\mid X&\\sim\\mathrm{Bernoulli}(p(X))\n\\end{aligned}"
+      },
+      {
+        "latex": "\\begin{aligned}\n(Z,W,U)\\mid A,X&\\sim\\mathcal{N}_{3}(m,\\Sigma)\\\\\nm&=(0.25+0.25A+0.25s,\\ 0.25+0.125A+0.25s,\\ 0.25+0.25A+0.25s)\\\\\ns&=X_1+X_2\n\\end{aligned}"
+      },
+      {
+        "latex": "\\begin{aligned}\n\\Sigma&=\\begin{bmatrix}\n1 & 0.25 & 0.5\\\\\n0.25 & 1 & 0.5\\\\\n0.5 & 0.5 & 1\n\\end{bmatrix}\\\\\nm_W(U,X)&=0.125+0.125s+0.5U\n\\end{aligned}",
+        "notes": "Covariance matrix: 3 rows and 3 columns."
+      },
+      {
+        "latex": "\\begin{aligned}\nY&=2+2A+0.25s+4m_W+2(W-m_W)+\\varepsilon\\\\\n\\varepsilon&\\sim\\mathcal{N}(0,0.25^2)\n\\end{aligned}"
+      },
+      {
+        "latex": "h(W,A,X)=2+2A+4W+0.25s"
+      }
+    ]
+  },
+  "proximal-dukes-2023-mediation-v1": {
+    "locator": "Section 4, Simulation Studies, advance-access PDF pp. 10–11; data-generating mechanism for Experiment 1.",
+    "assumptions": [
+      "Consistency, no interference, treatment/mediator support, treatment and mediator exchangeability conditional on (U,X), and the specified cross-world conditions. The treatment/outcome proxies Z and W obey the source's proximal-mediation exclusions; the required bridge exists and the proxies are relevant. Independent exogenous errors underlie the structural interpretation."
+    ],
+    "estimand": "NDE = E[Y(1,M(0)) - Y(0,M(0))] = 2.",
+    "equations": [
+      {
+        "latex": "\\begin{aligned}\n(X_1,X_2,U)&\\sim\\mathcal{N}_{3}((0.25,0.25,0),\\Sigma)\\\\\n\\Sigma&=\\begin{bmatrix}\n0.25 & 0 & 0.05\\\\\n0 & 0.25 & 0.05\\\\\n0.05 & 0.05 & 1\n\\end{bmatrix}\n\\end{aligned}",
+        "notes": "The covariance matrix is 3 × 3, with rows and columns displayed explicitly."
+      },
+      {
+        "latex": "A\\mid X,U\\sim\\mathrm{Bernoulli}(\\mathrm{expit}[-0.5(X_1+X_2)-0.4U])"
+      },
+      {
+        "latex": "\\begin{aligned}\nZ&=0.2-0.52A+0.2(X_1+X_2)-U+\\varepsilon_{z}\\\\\nW&=0.3+0.2(X_1+X_2)-0.6U+\\varepsilon_{w}\n\\end{aligned}"
+      },
+      {
+        "latex": "\\begin{aligned}\nM&=-0.3A-0.5(X_1+X_2)+0.4U+\\varepsilon_{m}\\\\\nY&=2+2A+M+2W-X_1-X_2-U+2\\varepsilon_{y}\n\\end{aligned}"
+      },
+      {
+        "latex": "\\varepsilon_{z},\\varepsilon_{w},\\varepsilon_{m},\\varepsilon_{y}\\overset{\\mathrm{ind}}{\\sim}\\mathcal{N}(0,1)",
+        "notes": "The errors are also independent of baseline variables and treatment randomization."
+      }
+    ]
+  },
+  "proximal-imbens-2025-longterm-v1": {
+    "locator": "JRSS-B final publication, Section 7.2 and Table 2; author manuscript PDF p. 23, Example 2, Appendix B.2; dimensions and operation order checked against the author's minimax/data.R.",
+    "assumptions": [
+      "Consistency and no interference; randomized treatment in the experimental sample; shared baseline and latent structures across the two samples; the specified sequential proxy conditions conditional on U and intermediate short-term outcomes; full-rank proxy loadings, bridge existence and support. The proxies may be affected by treatment in this source's proximal extension."
+    ],
+    "estimand": "Tau = E[Y(1)-Y(0) | G=0] under the registered fixed coefficient design.",
+    "equations": [
+      {
+        "latex": "\\begin{aligned}\nG=1&:\\ \\text{observational sample},\\qquad G=0:\\ \\text{experimental sample}\\\\\n\\widetilde X,U&\\overset{\\mathrm{ind}}{\\sim}\\mathcal{N}_{5}(0,0.5I)\n\\end{aligned}",
+        "notes": "The two samples consist of independent individuals."
+      },
+      {
+        "latex": "\\begin{aligned}\nP(A=1\\mid\\widetilde X,U,G=1)&=[1+\\exp(\\kappa_x^\\top\\widetilde X+\\kappa_u^\\top U)]^{-1}\\\\\nP(A=1\\mid G=0)&=\\tfrac12\n\\end{aligned}"
+      },
+      {
+        "latex": "\\begin{aligned}\n\\widetilde S_1&=\\tau_1A+\\beta_1\\widetilde X+\\gamma_1U+\\varepsilon_1\\\\\n\\widetilde S_2&=\\tau_2A+\\alpha_2\\widetilde S_1+\\beta_2\\widetilde X+\\gamma_2U+\\varepsilon_2\n\\end{aligned}"
+      },
+      {
+        "latex": "\\begin{aligned}\n\\widetilde S_3&=\\tau_3A+\\alpha_3\\widetilde S_2+\\beta_3\\widetilde X+\\gamma_3U+\\varepsilon_3\\\\\nY&=\\tau_yA+\\alpha_y^\\top\\widetilde S_3+\\beta_y^\\top\\widetilde X+\\gamma_y^\\top U+\\varepsilon_{y}\n\\end{aligned}"
+      },
+      {
+        "latex": "g(v)=\\mathrm{sign}(v)|v|^2",
+        "notes": "The first and third short-term outcome groups are five-dimensional; the second group and Y are scalar. Error components are independent with source distribution N(0,0.5). The nonlinear transformation is applied componentwise to X and the short-term outcomes."
+      },
+      {
+        "latex": "\\tau_2=\\tau_y=0.5",
+        "notes": "Coefficient directions are sampled from Uniform(0,1) and vector/column norms scaled to 0.5. The registered frozen design uses seed 20261023; all coefficient values are retained in config.json."
+      }
+    ]
+  },
+  "proximal-qi-2024-linear-itr-v1": {
+    "locator": "Section 6.1, Table 3, PDF pp. 23–25; Sections 12.1–12.2; L1/L2 branches of the author's data/simu_setting.py.",
+    "assumptions": [
+      "Consistency, no interference, conditional exchangeability of potential outcomes given (U,X), and treatment positivity; exclusion of Z from the outcome, conditional independence of W from (A,Z) given the relevant latent state, and the source's proxy relevance, completeness, and bridge-existence conditions. The retrospective sampling factorization A → (Z,W,U) does not imply that A causally changes baseline U or W."
+    ],
+    "estimand": "ATE = E[0.5 + 3X1 - 5X2 + c4 W].",
+    "equations": [
+      {
+        "latex": "\\begin{aligned}\nX_1,X_2&\\overset{\\mathrm{iid}}{\\sim}\\mathcal{N}(0.25,0.25^2)\\\\\np(X)&=[1+\\exp\\{0.125(X_1+X_2)\\}]^{-1}\\\\\nA\\mid X&\\sim\\mathrm{Bernoulli}(p(X))\n\\end{aligned}"
+      },
+      {
+        "latex": "\\begin{aligned}\n(Z,W,U)\\mid A,X&\\sim\\mathcal{N}_{3}(m,\\Sigma)\\\\\nm&=(0.25+0.25A+0.25s,\\ 0.25+0.125A+0.25s,\\ 0.25+0.25A+0.25s)\\\\\ns&=X_1+X_2\n\\end{aligned}"
+      },
+      {
+        "latex": "\\begin{aligned}\n\\Sigma&=\\begin{bmatrix}\n1 & 0.25 & 0.5\\\\\n0.25 & 1 & 0.5\\\\\n0.5 & 0.5 & 1\n\\end{bmatrix}\\\\\nm_W(U,X)&=0.125+0.125s+0.5U\n\\end{aligned}",
+        "notes": "Covariance matrix: 3 × 3."
+      },
+      {
+        "latex": "\\begin{aligned}\nY&=2+0.25s+8m_W+2(W-m_W)\\\\\n&\\quad+A(0.5+3X_1-5X_2+c_4m_W)+\\varepsilon\\\\\n\\varepsilon&\\sim\\mathrm{Uniform}(-1,1)\n\\end{aligned}"
+      },
+      {
+        "latex": "\\mathrm{L1}:\\ c_4=0.25,\\qquad\\mathrm{L2}:\\ c_4=0"
+      }
+    ]
+  },
+  "proximal-qi-2024-quadratic-v1": {
+    "locator": "Section 6.1, Table 4, model N2, PDF p. 25; nonlinear/X and h0_nonlinear_X_fun branches in the author's simu_setting.py.",
+    "assumptions": [
+      "Consistency, no interference, conditional exchangeability of potential outcomes given (U,X), and treatment positivity; exclusion of Z from the outcome, conditional independence of W from (A,Z) given the relevant latent state, and the source's proxy relevance, completeness, and bridge-existence conditions. The retrospective sampling factorization A → (Z,W,U) does not imply that A causally changes baseline U or W."
+    ],
+    "estimand": "ATE = E[0.25 - 6X1X2] = -0.125.",
+    "equations": [
+      {
+        "latex": "\\begin{aligned}\nX_1,X_2&\\overset{\\mathrm{iid}}{\\sim}\\mathcal{N}(0.25,0.25^2)\\\\\np(X)&=[1+\\exp\\{0.125(X_1+X_2)\\}]^{-1}\\\\\nA\\mid X&\\sim\\mathrm{Bernoulli}(p(X))\n\\end{aligned}"
+      },
+      {
+        "latex": "\\begin{aligned}\n(Z,W,U)\\mid A,X&\\sim\\mathcal{N}_{3}(m,\\Sigma)\\\\\nm&=(0.25+0.25A+0.25s,\\ 0.25+0.125A+0.25s,\\ 0.25+0.25A+0.25s)\\\\\ns&=X_1+X_2\n\\end{aligned}"
+      },
+      {
+        "latex": "\\begin{aligned}\n\\Sigma&=\\begin{bmatrix}\n1 & 0.25 & 0.5\\\\\n0.25 & 1 & 0.5\\\\\n0.5 & 0.5 & 1\n\\end{bmatrix}\\\\\nm_W(U,X)&=0.125+0.125s+0.5U\n\\end{aligned}",
+        "notes": "Covariance matrix: 3 × 3."
+      },
+      {
+        "latex": "\\begin{aligned}\nY&=2+X_1^2+X_2^2+5m_W+2(W-m_W)\\\\\n&\\quad +A(0.25-6X_1X_2)+\\varepsilon\\\\\n\\varepsilon&\\sim\\mathrm{Uniform}(-1,1)\n\\end{aligned}"
+      }
+    ]
+  },
+  "proximal-qi-2024-trigonometric-v1": {
+    "locator": "Section 6.1, Table 4, model N1, PDF p. 25; Section 12.2; nonlinear/XW branch in gen_Y from the author's data/simu_setting.py.",
+    "assumptions": [
+      "Consistency, no interference, conditional exchangeability of potential outcomes given (U,X), and treatment positivity; exclusion of Z from the outcome, conditional independence of W from (A,Z) given the relevant latent state, and the source's proxy relevance, completeness, and bridge-existence conditions. The retrospective sampling factorization A → (Z,W,U) does not imply that A causally changes baseline U or W."
+    ],
+    "estimand": "ATE = E[2.3 + |X1-1| - |X2+1| + g(X)W].",
+    "equations": [
+      {
+        "latex": "\\begin{aligned}\nX_1,X_2&\\overset{\\mathrm{iid}}{\\sim}\\mathcal{N}(0.25,0.25^2)\\\\\np(X)&=[1+\\exp\\{0.125(X_1+X_2)\\}]^{-1}\\\\\nA\\mid X&\\sim\\mathrm{Bernoulli}(p(X))\n\\end{aligned}"
+      },
+      {
+        "latex": "\\begin{aligned}\n(Z,W,U)\\mid A,X&\\sim\\mathcal{N}_{3}(m,\\Sigma)\\\\\nm&=(0.25+0.25A+0.25s,\\ 0.25+0.125A+0.25s,\\ 0.25+0.25A+0.25s)\\\\\ns&=X_1+X_2\n\\end{aligned}"
+      },
+      {
+        "latex": "\\begin{aligned}\n\\Sigma&=\\begin{bmatrix}\n1 & 0.25 & 0.5\\\\\n0.25 & 1 & 0.5\\\\\n0.5 & 0.5 & 1\n\\end{bmatrix}\\\\\nm_W(U,X)&=0.125+0.125s+0.5U\n\\end{aligned}",
+        "notes": "Covariance matrix: 3 × 3."
+      },
+      {
+        "latex": "\\begin{aligned}\ng(X)&=-2.5+\\sin(X_1)-2\\cos(X_2)\\\\\nd(U,X)&=2.3+|X_1-1|-|X_2+1|+g(X)m_W\n\\end{aligned}"
+      },
+      {
+        "latex": "\\begin{aligned}\nY&=2+X_1^2+X_2^2+4m_W+2(W-m_W)\\\\\n&\\quad+A\\,d(U,X)+\\varepsilon\\\\\n\\varepsilon&\\sim\\mathrm{Uniform}(-1,1)\n\\end{aligned}"
+      }
+    ]
+  },
+  "proximal-shi-2026-sc-gaussian-v1": {
+    "locator": "JASA 2026 final publication, Section 4 (linear factor model and loadings); fixed r=5 without covariates and with independent errors; stationary/constrained/addcov=FALSE configuration in the author's run_sim_linear_est.R.",
+    "assumptions": [
+      "No anticipation and no interference on control units. Shared factor loadings and bridge functions remain stable across periods. Errors are conditionally independent across units given the common factors; proxies are relevant to factors and the loading matrix has full rank."
+    ],
+    "estimand": "ETT = E[Y_t(1)-Y_t(0)] = 2, also when averaged over post-treatment periods.",
+    "equations": [
+      {
+        "latex": "\\begin{aligned}\nt&=1,\\ldots,T\\\\\nA_t&=\\mathbf1\\{t>T_0\\},\\quad T_0=\\lfloor T/2\\rfloor\\\\\n\\lambda_{tk}&\\overset{\\mathrm{ind}}{\\sim}\\mathcal{N}(0.5,0.5^2),\\quad k=1,\\ldots,5\n\\end{aligned}"
+      },
+      {
+        "latex": "\\begin{aligned}\n\\mu_0&=(1,1,1,1,1)\\\\\nD&=\\mathrm{diag}(3,6,6,6,6)\\\\\nY_t&=2A_t+\\sum_{k=1}^5\\lambda_{tk}+\\varepsilon_{0t}\n\\end{aligned}"
+      },
+      {
+        "latex": "\\begin{aligned}\nW_t&=D\\lambda_t+\\varepsilon_{Wt}\\\\\nZ_t&=D\\lambda_t+\\varepsilon_{Zt}\n\\end{aligned}",
+        "notes": "The errors for all 11 units are independently N(0,1.5²), also independent across time."
+      },
+      {
+        "latex": "\\begin{aligned}\nh(W)&=W_1/3+(W_2+W_3+W_4+W_5)/6\\\\\n\\alpha^\\top D&=\\mu_0^\\top,\\qquad\\sum_j\\alpha_j=1\n\\end{aligned}"
+      }
+    ]
+  },
+  "proximal-shi-2026-sc-poisson-v1": {
+    "locator": "JASA 2026 publisher supplement J.8, PDF pp. 49–51, equation (S.25); r=1, N=2, no covariates.",
+    "assumptions": [
+      "No anticipation or interference on controls. Factor distributions and the exponential bridge remain stable before and after treatment. Unit counts are conditionally independent given the factors; proxies are informative and satisfy the source's bridge-identification conditions."
+    ],
+    "estimand": "Beta = log(E[Y_t(1)] / E[Y_t(0)]) = -2; the mean ratio is exp(-2).",
+    "equations": [
+      {
+        "latex": "\\begin{aligned}\n\\lambda_t&\\overset{\\mathrm{ind}}{\\sim}\\mathcal{N}(0.5,0.1^2)\\ \\text{truncated to }(0,1)\\\\\nA_t&=\\mathbf1\\{t>T_0\\},\\quad T_0=\\lfloor T/2\\rfloor\n\\end{aligned}"
+      },
+      {
+        "latex": "\\begin{aligned}\nY_t\\mid\\lambda_t&\\sim\\mathrm{Poisson}(\\exp\\{\\lambda_t+\\beta A_t\\})\\\\\nW_t,Z_t\\mid\\lambda_t&\\overset{\\mathrm{cond.ind.}}{\\sim}\\mathrm{Poisson}(\\lambda_t/(e-1))\\\\\n\\beta&=-2\n\\end{aligned}"
+      },
+      {
+        "latex": "\\begin{aligned}\nr&=1\\\\\nh(W)&=\\exp(W),\\qquad E[\\exp(W)\\mid\\lambda]=\\exp(\\lambda)\n\\end{aligned}",
+        "notes": "All source loadings equal one in this configuration."
+      }
+    ]
+  },
+  "proximal-su-2026-transport-v1": {
+    "locator": "Section 5.1, arXiv v2 PDF pp. 10–11; Supplement Section S4.1, pp. 30–31.",
+    "assumptions": [
+      "Randomized treatment in the source trial; transportability of effects conditional on (X,U) and selection overlap. The distribution of W given (X,U) is stable across samples, Z satisfies the source-trial proxy exclusions, and the required bridge and completeness conditions hold. The target population is S=0, not the pooled population."
+    ],
+    "estimand": "Theta = E[E(Y | A=1,X,U,S=1) - E(Y | A=0,X,U,S=1) | S=0].",
+    "equations": [
+      {
+        "latex": "\\begin{aligned}\nV&\\sim\\mathcal{N}_{3}(0,\\Sigma_X)\\\\\n\\Sigma_X&=\\begin{bmatrix}\n1 & 0.25 & 0.25\\\\\n0.25 & 1 & 0.25\\\\\n0.25 & 0.25 & 1\n\\end{bmatrix}\\\\\nX_j&=\\Phi(V_j)\n\\\\\nU_j&\\overset{\\mathrm{iid}}{\\sim}\\mathrm{Uniform}(-1,0)\n\\end{aligned}",
+        "notes": "The covariance matrix is 3 × 3, with unit diagonal and off-diagonal 0.25. U is independent of X."
+      },
+      {
+        "latex": "S\\mid X,U\\sim\\mathrm{Bernoulli}(\\mathrm{expit}\\{-0.625+0.5\\sum_jX_j+0.5\\sum_jU_j\\})",
+        "notes": "S=1 denotes the source trial; S=0 denotes the target population."
+      },
+      {
+        "latex": "\\begin{aligned}\nA\\mid S=1&\\sim\\mathrm{Bernoulli}(0.5)\\\\\nZ\\mid X,U,S=1&\\sim\\mathcal{N}_{3}(U+X,0.25I)\\\\\nW\\mid X,U&\\sim\\mathcal{N}_{3}(U+X,0.25I)\n\\end{aligned}"
+      },
+      {
+        "latex": "\\begin{aligned}\nY\\mid S=1&=0.5-A+\\sum_j U_j+A\\sum_j U_j+\\sum_jX_j\\\\\n&\\quad+\\sum_jW_j+A\\sum_jW_j+\\varepsilon\\\\\n\\varepsilon&\\sim\\mathcal{N}(0,0.5^2)\n\\end{aligned}"
+      },
+      {
+        "latex": "\\mathrm{observed}\\{X,W,S,SA,SZ,SY\\}",
+        "notes": "When S=0, SA/SZ/SY are coded as zero placeholders; the observed S indicator distinguishes unmeasured entries from genuine zero values."
+      }
+    ]
+  },
+  "proximal-ying-2023-longitudinal-v1": {
+    "locator": "Supplement F.1, combined PDF pp. 47–48, equations (F.1)–(F.3); consistency proof in F.2.",
+    "assumptions": [
+      "Sequential consistency and no interference; sequential exchangeability and positivity conditional on the latent history; period-specific proxy exclusion and independence conditions, proxy relevance, and existence of sequential bridge functions as specified in Supplement F.2."
+    ],
+    "estimand": "E[Y(1,1)-Y(0,0)] = 2.",
+    "equations": [
+      {
+        "latex": "\\begin{aligned}\nX_0&\\sim\\mathcal{N}(-0.35,0.5^2)\\\\\nU_0&\\sim\\mathcal{N}(0.35,0.5^2)\\\\\np_0&=[1+\\exp(0.5-0.35X_0+0.35U_0)]^{-1}\n\\end{aligned}",
+        "notes": "X0 and U0 are independent."
+      },
+      {
+        "latex": "\\begin{aligned}\nA_0&\\sim\\mathrm{Bernoulli}(p_0)\\\\\nZ_0&=0.2+0.5A_0+0.5X_0+0.75U_0+\\varepsilon_{z0}\\\\\nW_0&=0.2+0.5X_0-0.95U_0+\\varepsilon_{w0}\n\\end{aligned}"
+      },
+      {
+        "latex": "\\begin{aligned}\nX_1&=0.2+0.7A_0+0.7X_0+\\varepsilon_{x1}\\\\\nU_1&=0.2+0.7A_0+0.7U_0+\\varepsilon_{u1}\n\\end{aligned}"
+      },
+      {
+        "latex": "\\begin{aligned}\np_1&=[1+\\exp\\{0.5-0.5A_0-0.35(X_0+X_1)-0.35(U_0+U_1)\\}]^{-1}\\\\\nA_1&\\sim\\mathrm{Bernoulli}(p_1)\n\\end{aligned}"
+      },
+      {
+        "latex": "Z_1=0.2+0.5(A_0+A_1)+0.5(X_0+X_1)-0.75(U_0+U_1)+\\varepsilon_{z1}"
+      },
+      {
+        "latex": "W_1=0.35+0.45(X_0+X_1)-0.85(U_0+U_1)+\\varepsilon_{w1}"
+      },
+      {
+        "latex": "Y=-1.3+A_1+1.14A_0+0.5X_1-0.7U_1+0.2X_0-0.7U_0+\\varepsilon_{y}",
+        "notes": "The newly introduced error terms are mutually independent N(0,0.5²)."
+      }
+    ]
+  }
+}

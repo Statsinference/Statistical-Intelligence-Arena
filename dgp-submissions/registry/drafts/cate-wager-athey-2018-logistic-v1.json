@@ -1,0 +1,219 @@
+{
+  "schema_version": "0.1",
+  "record_id": "cate-wager-athey-2018-logistic-v1",
+  "kind": "synthetic_dgp",
+  "domain": "cate",
+  "english_display": {},
+  "paper": {
+    "citation": "Wager, S. and Athey, S. (2018). Estimation and Inference of Heterogeneous Treatment Effects using Random Forests. Journal of the American Statistical Association 113(523), 1228-1242. DOI: 10.1080/01621459.2017.1319839.",
+    "title": null,
+    "doi": null,
+    "source_url": "https://arxiv.org/abs/1510.04342v4",
+    "source_file_evidence": [],
+    "venue": "Journal of the American Statistical Association",
+    "year": 2018,
+    "source_version": "arXiv:1510.04342v4 (2017-07-10); publication metadata separately checked against the Stanford author-affiliation record for the 2018 JASA issue",
+    "source_locator": "arXiv:1510.04342v4 PDF p.20, Section 5.1, common model and equation (28); p.22 Table 2 for d=6."
+  },
+  "mechanism": {
+    "name": "固定查询点 CATE：随机处理下的平滑 logistic 乘积异质效应",
+    "title_en": null,
+    "family_id": "wager-athey-2018-eq28-randomized-logistic-product",
+    "generation_equations": [
+      {
+        "label": "Covariates",
+        "expression": "X_j iid Uniform(0,1), j=1,...,6"
+      },
+      {
+        "label": "Treatment assignment",
+        "expression": "e(X)=0.5; A|X~Bernoulli(e(X))"
+      },
+      {
+        "label": "Centered baseline",
+        "expression": "m(X)=0"
+      },
+      {
+        "label": "Conditional effect",
+        "expression": "tau(X)=s(X1)*s(X2), s(u)=1+1/[1+exp(-20*(u-1/3))]"
+      },
+      {
+        "label": "Outcome",
+        "expression": "Y=m(X)+(A-0.5)*tau(X)+epsilon; epsilon~Normal(0,1), independent of X and assignment uniforms"
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "X1",
+        "role": "pretreatment_effect_modifier",
+        "dtype": "float",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X2",
+        "role": "pretreatment_effect_modifier",
+        "dtype": "float",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X3",
+        "role": "pretreatment_inactive_covariate",
+        "dtype": "float",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X4",
+        "role": "pretreatment_inactive_covariate",
+        "dtype": "float",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X5",
+        "role": "pretreatment_inactive_covariate",
+        "dtype": "float",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X6",
+        "role": "pretreatment_inactive_covariate",
+        "dtype": "float",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "A",
+        "role": "binary_treatment",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "continuous_outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [],
+    "latent_variables_status": "not_explicitly_specified",
+    "sampling": {
+      "unit": "individual",
+      "dependence": "iid individuals with 6 mutually independent Uniform(0,1) baseline covariates"
+    },
+    "assumptions": [
+      "Consistency and well-defined binary interventions; no interference.",
+      "Independent identically distributed individuals.",
+      "Conditional exchangeability (Y(0),Y(1)) independent of A given X, implemented by independent assignment uniforms and noise.",
+      "Positivity: e=1/2 for randomized data; 1/4 <= e(X) <= 199/256 for the Beta-density assignment.",
+      "All confounders observed, finite moments, and the specified continuous regression functions identify the pointwise conditional target where applicable."
+    ],
+    "properties": {
+      "dimension": 6,
+      "effective_dimension": 2,
+      "observed_columns": 8,
+      "high_dimensional": false,
+      "interactions": true,
+      "nonlinear": true,
+      "notes": "Only X1,X2 modify treatment effect; all assignment is randomized and m=0. The logistic product is nonlinear and nonadditive, with treatment-covariate interactions. Remaining coordinates inactive. d=6, n=128 is not labeled high dimensional. The two CATE contributions share the same tau(x). This mechanism has random assignment and m=0; the AoS combined mechanism instead has X3-dependent e(x) and m(x). They are distinct observed-data mechanisms with a shared signal lineage, not two independent treatment-effect functions. Final mechanism-family deduplication is pending."
+    }
+  },
+  "estimand": {
+    "name": "tau(x_star)=E[Y(1)-Y(0)|X=x_star]",
+    "definition": "Scalar pointwise CATE at x_star=[0.3333333333333333, 0.3333333333333333, 0.5, 0.5, 0.5, 0.5]. Continuous source response functions specify the conditional version at this point. This is not a population ATE or the full CATE vector/function interface.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "source_d6_sigma1_fixed_query",
+      "parameters": {
+        "dimension": 6,
+        "noise_sd": 1.0,
+        "effect_scale": 1.0,
+        "query_point": [
+          0.3333333333333333,
+          0.3333333333333333,
+          0.5,
+          0.5,
+          0.5,
+          0.5
+        ]
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 2.25,
+        "expression": "Scalar pointwise CATE at x_star=[0.3333333333333333, 0.3333333333333333, 0.5, 0.5, 0.5, 0.5]. Continuous source response functions specify the conditional version at this point. This is not a population ATE or the full CATE vector/function interface.",
+        "derivation": "Analytic CATE at fixed query: s(1/3)=3/2, so tau(x_star)=9/4. Independent verification integrates arm means with Gauss-Hermite and solves the conditional covariance moment.",
+        "evidence": [
+          {
+            "file": "contributions/cate-wager-athey-2018-logistic-v1/checks/report.json",
+            "location": "execution.scenario_results[source_d6_sigma1_fixed_query].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "Preserve the source mechanism with dimension=6, noise variance=1; rename source W as A.",
+    "The collection interface requires a scalar. Target tau(x_star) at the fixed query [0.3333333333333333, 0.3333333333333333, 0.5, 0.5, 0.5, 0.5]; retain the full source tau(x) in the generator. This query and its value 2.25 are defined here, not a scalar result reported by the paper.",
+    "Use Python/NumPy PCG64, row-major X, independent uniform-threshold assignment and normal noise; distributional reconstruction, not identical R random samples.",
+    "Use n=128, seed=1729 for a CPU interface check instead of the source estimator study (source n=5000). No estimator is fitted.",
+    "effect_scale=1 is the source mechanism; 0 and -1 only serve internal verification controls, not additional contributions.",
+    "The source fixes marginal Gaussian potential-outcome laws but does not require a cross-world coupling. A single independent noise produces the observed law; a shared-error potential-outcome representation is only a mathematical completion, not an asserted original coupling."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "contributions/cate-wager-athey-2018-logistic-v1/generator.py",
+    "truth_reference": "contributions/cate-wager-athey-2018-logistic-v1/truth.py",
+    "source_archive": "contributions.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/cate-wager-athey-2018-logistic-v1.py",
+    "exported_generator_sha256": "316a9080459ed2e8992e1e0b69674c19c4dce786f427cd99d08493db481c5ab9"
+  },
+  "evidence": [
+    {
+      "file": "contributions/cate-wager-athey-2018-logistic-v1/collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "contributions/cate-wager-athey-2018-logistic-v1/config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "contributions/cate-wager-athey-2018-logistic-v1/source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "b9defbcbdc8290f7cf489d5227113adc705be56fb7feb187cc3d99aea399f908",
+    "collection_sha256": "7b210b54b437bedb4748d0d6cc9075f3c30939ec89b6eaadf049328e32338fea",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/contributions.zip",
+    "submitted_zip_sha256": "b9defbcbdc8290f7cf489d5227113adc705be56fb7feb187cc3d99aea399f908",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "No explicit latent-variable metadata or reliably identifiable latent declarations; absence from this list does not prove that no latent variables exist."
+  ],
+  "source_suggested_domain": "cate",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

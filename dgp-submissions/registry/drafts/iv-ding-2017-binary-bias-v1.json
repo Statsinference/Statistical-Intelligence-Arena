@@ -1,0 +1,269 @@
+{
+  "schema_version": "0.1",
+  "record_id": "iv-ding-2017-binary-bias-v1",
+  "kind": "synthetic_dgp",
+  "domain": "iv",
+  "english_display": {},
+  "paper": {
+    "citation": "Ding, P., VanderWeele, T. J. and Robins, J. M. (2017). Instrumental variables as bias amplifiers with general outcome and confounding. Biometrika 104(2), 291–302. DOI: 10.1093/biomet/asx009.",
+    "title": null,
+    "doi": null,
+    "source_url": "https://arxiv.org/abs/1701.04177v1",
+    "source_file_evidence": [],
+    "venue": "Biometrika",
+    "year": 2017,
+    "source_version": null,
+    "source_locator": "arXiv:1701.04177v1 (2017-01-16), §5.1 PDF p.8 and Table 1 p.9, Cases 1–3; causal graph Fig.1(b) p.2 and causal framework §2 pp.3–4. PDF page numbers refer to this fixed preprint, not journal pagination."
+  },
+  "mechanism": {
+    "name": "IV：二元混杂、偏差放大与局部平均处理效应",
+    "title_en": null,
+    "family_id": "ding-vanderweele-robins-2017-binary-iv",
+    "generation_equations": [
+      "Z ~ Bernoulli(0.5), U ~ Bernoulli(0.5), V_A,V_Y iid Uniform(0,1); all four independent.",
+      "p[z,u]=P(A=1|Z=z,U=u), r[a,u]=P(Y=1|A=a,U=u); fixed values from source Table 1.",
+      "A(z)=1{V_A<p[z,U]}, A=A(Z); Y(a)=1{V_Y<r[a,U]}, Y=Y(A).",
+      "q=(0.5,0.5), delta[u]=p[1,u]-p[0,u], tau[u]=r[1,u]-r[0,u].",
+      "LATE=sum_u q[u]*delta[u]*tau[u] / sum_u q[u]*delta[u].",
+      "Source population ATE=sum_u q[u]*tau[u]; it is an audit quantity, not the registered IV target."
+    ],
+    "observed_variables": [
+      {
+        "name": "Z",
+        "role": "instrument",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "A",
+        "role": "treatment",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [
+      {
+        "name": "U",
+        "role": "latent_candidate",
+        "evidence": {
+          "file": "collection.json",
+          "equation_index": 0,
+          "expression": "U ~ Bernoulli(0.5), V_A,V_Y iid Uniform(0,1)"
+        },
+        "provenance": "inferred_from_stochastic_declaration"
+      }
+    ],
+    "latent_variables_status": "candidates_from_equations_need_review",
+    "sampling": {
+      "unit": "individual",
+      "dependence": "iid across individuals; within-unit dependence through latent U and the declared SCM"
+    },
+    "assumptions": [
+      "Consistency and no interference; iid individuals.",
+      "Randomized binary Z independent of U and all exogenous thresholds; 0<P(Z=1)<1.",
+      "Exclusion: Y(a,z)=Y(a), so Z affects Y only through A.",
+      "Treatment monotonicity A(1)>=A(0) under the declared shared-threshold coupling.",
+      "Nonzero first stage P(A(1)>A(0))>0 in each source scenario.",
+      "The chosen SCM has independent treatment/outcome thresholds given U; U is unobserved.",
+      "These IV conditions identify LATE, not the overall ATE without further restrictions."
+    ],
+    "properties": {
+      "dimension": 0,
+      "effective_dimension": 0,
+      "high_dimensional": false,
+      "interactions": true,
+      "nonlinear": true,
+      "notes": "无观察基线协变量，dimension=effective_dimension=0；1个工具 Z、1个隐藏混杂 U。三场景分别含 Z*U 概率交互系数 0.1,-0.1,-0.2，以及 A*U 系数 0.01,-0.01,-0.03。nonlinear=true 指双线性交互与二元阈值函数；不是 logistic 模型，也不声称高维。",
+      "observed_columns": 3,
+      "instrument_count": 1,
+      "latent_confounder_dimension": 1
+    }
+  },
+  "estimand": {
+    "name": "LATE",
+    "definition": "E[Y(1)-Y(0) | A(1)>A(0)], treatment intervention 0 to 1 among instrument compliers.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "source_table1_case1",
+      "parameters": {
+        "z_probability": 0.5,
+        "u_probability": 0.5,
+        "treatment_probabilities": [
+          [
+            0.1,
+            0.2
+          ],
+          [
+            0.6,
+            0.8
+          ]
+        ],
+        "outcome_probabilities": [
+          [
+            0.01,
+            0.02
+          ],
+          [
+            0.06,
+            0.08
+          ]
+        ]
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.05545454545454545,
+        "expression": "E[Y(1)-Y(0) | A(1)>A(0)], treatment intervention 0 to 1 among instrument compliers.",
+        "derivation": "独立 Z 与排除限制使 ΔY=Σq_u(p_1u−p_0u)(r_1u−r_0u)，ΔA=Σq_u(p_1u−p_0u)。共享处理阈值给出无 defier，故 ΔA 为 complier 比例，Wald 比值 ΔY/ΔA 等于 LATE。Case 1/2/3 的精确分数分别为 61/1100、1/100、9/400。",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[source_table1_case1].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "source_table1_case2",
+      "parameters": {
+        "z_probability": 0.5,
+        "u_probability": 0.5,
+        "treatment_probabilities": [
+          [
+            0.1,
+            0.3
+          ],
+          [
+            0.2,
+            0.3
+          ]
+        ],
+        "outcome_probabilities": [
+          [
+            0.01,
+            0.03
+          ],
+          [
+            0.02,
+            0.03
+          ]
+        ]
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.01,
+        "expression": "E[Y(1)-Y(0) | A(1)>A(0)], treatment intervention 0 to 1 among instrument compliers.",
+        "derivation": "独立 Z 与排除限制使 ΔY=Σq_u(p_1u−p_0u)(r_1u−r_0u)，ΔA=Σq_u(p_1u−p_0u)。共享处理阈值给出无 defier，故 ΔA 为 complier 比例，Wald 比值 ΔY/ΔA 等于 LATE。Case 1/2/3 的精确分数分别为 61/1100、1/100、9/400。",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[source_table1_case2].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "source_table1_case3",
+      "parameters": {
+        "z_probability": 0.5,
+        "u_probability": 0.5,
+        "treatment_probabilities": [
+          [
+            0.1,
+            0.4
+          ],
+          [
+            0.4,
+            0.5
+          ]
+        ],
+        "outcome_probabilities": [
+          [
+            0.01,
+            0.04
+          ],
+          [
+            0.04,
+            0.04
+          ]
+        ]
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.022500000000000003,
+        "expression": "E[Y(1)-Y(0) | A(1)>A(0)], treatment intervention 0 to 1 among instrument compliers.",
+        "derivation": "独立 Z 与排除限制使 ΔY=Σq_u(p_1u−p_0u)(r_1u−r_0u)，ΔA=Σq_u(p_1u−p_0u)。共享处理阈值给出无 defier，故 ΔA 为 complier 比例，Wald 比值 ΔY/ΔA 等于 LATE。Case 1/2/3 的精确分数分别为 61/1100、1/100、9/400。",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[source_table1_case3].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "原文 Table 1 是偏差放大问题的总体数值例子；本包保留其三组观察分布参数，但将登记目标由原文 ATE 改为 LATE。",
+    "补充独立阈值 SCM：Z、U、V_A、V_Y 相互独立；同一 V_A 用于 A(0),A(1)，同一 V_Y 用于 Y(0),Y(1)。原文未指定这种跨干预耦合。",
+    "p[1,u]>=p[0,u] 与共享 V_A 保证个体单调性；仅有源概率的均值单调性本身不足以推出个体单调性。",
+    "该 SCM 精确匹配所选条件概率；共享结果阈值是兼容实现的选择，并非声称恢复作者未指定的完整潜在结果联合分布。",
+    "独立编写 Python/NumPy PCG64 生成器；n=128、seed=1729 是学生包检查设置，不是论文报告的实验设置或精度保证。",
+    "仅导出 Z,A,Y；U、阈值噪声、潜在结果和个体效应留在机制定义中，不作为估计器特征。"
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "generator.py",
+    "truth_reference": "truth.py",
+    "source_archive": "iv-ding-2017-binary-bias-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/iv-ding-2017-binary-bias-v1.py",
+    "exported_generator_sha256": "e2a5d5eb7f2dfabe20120a51b0b7df3d67d0785cc3cb18d8e1df67557a64003e"
+  },
+  "evidence": [
+    {
+      "file": "collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "bb10aa8a1f9df344731e01bce1cbe3a059ea30170bb188fc52c5a074a71e8e71",
+    "collection_sha256": "f3b99db718111555ca6cd618bbf740baa5895628e38390db790b0ad7bfade9ba",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/iv-ding-2017-binary-bias-v1.zip",
+    "submitted_zip_sha256": "bb10aa8a1f9df344731e01bce1cbe3a059ea30170bb188fc52c5a074a71e8e71",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "Latent-variable candidates inferred from source equations; confirm their roles and completeness against the original paper or generator."
+  ],
+  "source_suggested_domain": "iv",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

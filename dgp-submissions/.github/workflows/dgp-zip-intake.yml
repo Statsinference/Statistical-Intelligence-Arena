@@ -1,0 +1,108 @@
+name: Index submitted DGP ZIPs
+
+on:
+  pull_request:
+    paths:
+      - 'incoming/*.zip'
+      - 'incoming/**/*.zip'
+      - '.github/workflows/dgp-zip-intake.yml'
+      - 'tools/dgp_registry/**'
+  push:
+    branches: [main]
+    paths:
+      - 'incoming/*.zip'
+      - 'incoming/**/*.zip'
+      - 'tools/dgp_registry/**'
+      - '.github/workflows/dgp-zip-intake.yml'
+      - 'tests/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: statsarena-dgp-index-generic
+  cancel-in-progress: false
+
+jobs:
+  validate-pr:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check known Proximal example
+        run: |
+          python -m tools.dgp_registry.github_intake --incoming examples --output example_review
+          python - <<'PY'
+          import json
+          with open('example_review/catalog.json', encoding='utf-8') as f:
+              result = json.load(f)
+          assert result['paper_count'] == 7, result
+          assert result['mechanism_count'] == 10, result
+          assert result['scenario_count'] == 11, result
+          print('Known Proximal example: 7 papers, 10 DGPs, 11 scenarios')
+          PY
+      - name: Test general LaTeX rendering
+        run: |
+          python -m unittest discover -s tests -p 'test_math_format.py' -v
+          python -m unittest discover -s tests -p 'test_english_titles.py' -v
+          python -m unittest discover -s tests -p 'test_latent_variables.py' -v
+          python -m unittest discover -s tests -p 'test_paper_list.py' -v
+          python -m unittest discover -s tests -p 'test_generator_paper_list.py' -v
+          python -m unittest discover -s tests -p 'test_english_details.py' -v
+      - name: Validate uploaded submissions without publishing
+        run: |
+          python -m tools.dgp_registry.github_intake --incoming incoming --output review_output
+          cat review_output/PR_SUMMARY.md >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dgp-review-preview
+          path: review_output/
+          retention-days: 30
+
+  update-registry:
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test general parsing, duplicate intake and LaTeX
+        run: |
+          python -m unittest discover -s tests -p 'test_duplicate_ingest.py' -v
+          python -m unittest discover -s tests -p 'test_math_format.py' -v
+          python -m unittest discover -s tests -p 'test_english_titles.py' -v
+          python -m unittest discover -s tests -p 'test_latent_variables.py' -v
+      - name: Check generator exports and paper-title tables
+        run: |
+          python -m unittest discover -s tests -p 'test_paper_list.py' -v
+          python -m unittest discover -s tests -p 'test_generator_paper_list.py' -v
+          python -m unittest discover -s tests -p 'test_english_details.py' -v
+      - name: Index uploaded ZIPs
+        run: |
+          python -m tools.dgp_registry.github_intake --incoming incoming --output registry
+          cat registry/PR_SUMMARY.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Refresh README paper lists from the Registry
+        run: python -m tools.dgp_registry.paper_list --catalog registry/catalog.json --readme README.md
+      - name: Commit draft registry (never approve scientific claims)
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add README.md registry/INDEX.md registry/by-domain registry/drafts registry/generators registry/catalog.json registry/PR_SUMMARY.md
+          if git diff --cached --quiet; then
+            echo 'No changes to commit.'
+          else
+            git commit -m 'chore: index submitted DGP ZIPs as unverified drafts'
+            git push origin HEAD:main
+          fi

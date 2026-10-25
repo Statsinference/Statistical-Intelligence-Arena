@@ -1,0 +1,17 @@
+{
+  "ate-wager-athey-2018-confounded-null-v1": "Null Treatment Effect with Nonlinear Propensity Scores and Observed Confounding",
+  "cate-athey-tibshirani-wager-2019-confounded-v1": "Pointwise CATE with Confounding and Logistic Interaction Effects",
+  "cate-wager-athey-2018-logistic-v1": "Pointwise CATE under Randomized Treatment with Logistic Interaction Effects",
+  "proximal-cui-2024-linear-v1": "Linear Bridge Model with Constant ATE",
+  "proximal-dukes-2023-mediation-v1": "Natural Direct Effect under Unmeasured Confounding",
+  "proximal-imbens-2025-longterm-v1": "Sequential Proxies and Long-Term Causal Effects from Combined Data",
+  "proximal-qi-2024-linear-itr-v1": "Linear Heterogeneous Treatment Effect Bridge (L1/L2)",
+  "proximal-qi-2024-quadratic-v1": "Quadratic Baseline Effects and Product Treatment Effect (N2)",
+  "proximal-qi-2024-trigonometric-v1": "Absolute-Value and Trigonometric Proxy Interactions (N1)",
+  "proximal-shi-2026-sc-gaussian-v1": "Stationary Multifactor Gaussian Synthetic Control",
+  "proximal-shi-2026-sc-poisson-v1": "Poisson Synthetic Control with Truncated Normal Factors",
+  "proximal-su-2026-transport-v1": "Cross-Trial Transportability with Unmeasured Effect Modification",
+  "proximal-ying-2023-longitudinal-v1": "Two-Period Treatment with Time-Varying Confounding and Feedback",
+  "iv-athey-tibshirani-wager-2019-compliance-v1": "Endogenous Noncompliance and Local Treatment Effects",
+  "iv-kang-2016-invalid-linear-v1": "Partially Invalid Instruments with Linear Endogenous Treatment"
+}
