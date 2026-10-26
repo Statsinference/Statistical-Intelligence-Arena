@@ -18,6 +18,8 @@
 
 **Generator source:** [generator.py](../generators/proximal-cui-2024-linear-v1.py)
 
+**Keywords (source-described):** Nonlinearity
+
 **Observed variables**
 
 X1, X2, A, Z, W, Y

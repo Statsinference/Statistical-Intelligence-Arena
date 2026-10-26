@@ -18,6 +18,8 @@
 
 **Generator source:** [generator.py](../generators/cate-athey-tibshirani-wager-2019-confounded-v1.py)
 
+**Keywords (source-described):** Interactions · Nonlinearity · Effect heterogeneity
+
 **Observed variables**
 
 X1, X2, X3, X4, X5, X6, X7, X8, X9, X10, A, Y

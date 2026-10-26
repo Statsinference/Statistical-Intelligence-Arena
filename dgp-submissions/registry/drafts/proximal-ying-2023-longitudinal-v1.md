@@ -18,6 +18,8 @@
 
 **Generator source:** [generator.py](../generators/proximal-ying-2023-longitudinal-v1.py)
 
+**Keywords (source-described):** Nonlinearity
+
 **Observed variables**
 
 X0, A0, Z0, W0, X1, A1, Z1, W1, Y

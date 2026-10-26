@@ -18,6 +18,8 @@
 
 **Generator source:** [generator.py](../generators/iv-dikkala-2020-sine-v1.py)
 
+**Keywords (source-described):** Nonlinearity
+
 **Observed variables**
 
 Z1, P, Y

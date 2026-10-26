@@ -18,6 +18,8 @@
 
 **Generator source:** [generator.py](../generators/iv-athey-tibshirani-wager-2019-compliance-v1.py)
 
+**Keywords (source-described):** Interactions · Nonlinearity
+
 **Observed variables**
 
 X1, X2, X3, X4, X5, X6, X7, X8, X9, X10, Z, A, Y

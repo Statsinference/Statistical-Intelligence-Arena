@@ -18,6 +18,8 @@
 
 **Generator source:** [generator.py](../generators/proximal-shi-2026-sc-poisson-v1.py)
 
+**Keywords (source-described):** Nonlinearity · Panel data
+
 **Observed variables**
 
 time, A, Y, W, Z

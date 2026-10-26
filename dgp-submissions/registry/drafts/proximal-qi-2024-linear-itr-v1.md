@@ -18,6 +18,8 @@
 
 **Generator source:** [generator.py](../generators/proximal-qi-2024-linear-itr-v1.py)
 
+**Keywords (source-described):** Interactions · Nonlinearity · Effect heterogeneity
+
 **Observed variables**
 
 X1, X2, A, Z, W, Y

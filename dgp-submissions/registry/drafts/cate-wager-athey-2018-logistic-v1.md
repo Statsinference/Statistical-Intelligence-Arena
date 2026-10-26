@@ -18,6 +18,8 @@
 
 **Generator source:** [generator.py](../generators/cate-wager-athey-2018-logistic-v1.py)
 
+**Keywords (source-described):** Interactions · Nonlinearity · Effect heterogeneity
+
 **Observed variables**
 
 X1, X2, X3, X4, X5, X6, A, Y

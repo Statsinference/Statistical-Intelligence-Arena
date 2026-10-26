@@ -18,6 +18,8 @@
 
 **Generator source:** [generator.py](../generators/iv-kang-2016-invalid-linear-v1.py)
 
+**Keywords (source-described):** Linearity
+
 **Observed variables**
 
 Z1, Z2, Z3, Z4, Z5, Z6, Z7, Z8, Z9, Z10, D, Y

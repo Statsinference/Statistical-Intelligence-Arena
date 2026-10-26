@@ -18,6 +18,8 @@
 
 **Generator source:** [generator.py](../generators/iv-hartford-2017-demand-v1.py)
 
+**Keywords (source-described):** Interactions · Nonlinearity
+
 **Observed variables**
 
 T, S, Z, P, Y

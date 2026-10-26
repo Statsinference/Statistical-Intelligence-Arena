@@ -18,6 +18,8 @@
 
 **Generator source:** [generator.py](../generators/nie-eric-original-v1.py)
 
+**Keywords (source-described):** Interactions · Nonlinearity
+
 **Observed variables**
 
 X1, X2, X3, A, M, Y

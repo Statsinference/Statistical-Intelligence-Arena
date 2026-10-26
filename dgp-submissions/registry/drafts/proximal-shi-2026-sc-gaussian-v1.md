@@ -18,6 +18,8 @@
 
 **Generator source:** [generator.py](../generators/proximal-shi-2026-sc-gaussian-v1.py)
 
+**Keywords (source-described):** Linearity · Panel data
+
 **Observed variables**
 
 time, A, Y, W1, W2, W3, W4, W5, Z1, Z2, Z3, Z4, Z5

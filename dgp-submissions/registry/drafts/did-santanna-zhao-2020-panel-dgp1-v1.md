@@ -18,6 +18,8 @@
 
 **Generator source:** [generator.py](../generators/did-santanna-zhao-2020-panel-dgp1-v1.py)
 
+**Keywords (source-described):** Interactions · Nonlinearity · Panel data
+
 **Observed variables**
 
 Z1, Z2, Z3, Z4, D, Y_pre, Y_post

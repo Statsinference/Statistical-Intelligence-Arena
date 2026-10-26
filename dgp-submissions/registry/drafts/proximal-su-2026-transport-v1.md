@@ -18,6 +18,8 @@
 
 **Generator source:** [generator.py](../generators/proximal-su-2026-transport-v1.py)
 
+**Keywords (source-described):** Interactions · Nonlinearity · Effect heterogeneity
+
 **Observed variables**
 
 X1, X2, X3, W1, W2, W3, SZ1, SZ2, SZ3, S, SA, SY

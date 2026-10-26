@@ -18,6 +18,8 @@
 
 **Generator source:** [generator.py](../generators/iv-ding-2017-binary-bias-v1.py)
 
+**Keywords (source-described):** Interactions · Nonlinearity
+
 **Observed variables**
 
 Z, A, Y

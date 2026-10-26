@@ -18,6 +18,8 @@
 
 **Generator source:** [generator.py](../generators/ate-wager-athey-2018-confounded-null-v1.py)
 
+**Keywords (source-described):** Nonlinearity
+
 **Observed variables**
 
 X1, X2, X3, X4, X5, A, Y

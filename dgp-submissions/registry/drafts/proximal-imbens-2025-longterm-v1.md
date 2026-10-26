@@ -18,6 +18,8 @@
 
 **Generator source:** [generator.py](../generators/proximal-imbens-2025-longterm-v1.py)
 
+**Keywords (source-described):** Nonlinearity
+
 **Observed variables**
 
 X1, X2, X3, X4, X5, S1_1, S1_2, S1_3, S1_4, S1_5, S2, S3_1, S3_2, S3_3, S3_4, S3_5, G, A, GY

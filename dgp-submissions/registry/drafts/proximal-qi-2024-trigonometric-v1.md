@@ -18,6 +18,8 @@
 
 **Generator source:** [generator.py](../generators/proximal-qi-2024-trigonometric-v1.py)
 
+**Keywords (source-described):** Interactions · Nonlinearity
+
 **Observed variables**
 
 X1, X2, A, Z, W, Y
