@@ -7,7 +7,8 @@ from .domains import DOMAINS, to_domain
 from .math_format import equation_markdown
 from .title_display import display_title
 from .presentation_en import english_display, sampling_display
-from .paper_list import paper_list_tables, _domain_papers, paper_title, generator_link, generator_file
+from .paper_list import paper_list_tables, _domain_papers, paper_title, paper_title_with_venue, generator_link, generator_file
+from .listing_metadata import venue_abbreviation, keyword_entries, keywords, keywords_text
 
 
 def cell(v):
@@ -41,6 +42,7 @@ def detail(rec):
         '## DGP / generation mechanism','',
         f"**Sampling design:** {cell(sampling_display(mech.get('sampling')))}",'',
         '**Generator source:** ' + generator_link(rec, '../generators/'), '',
+        '**Keywords (source-described):** ' + cell(keywords_text(source_rec)), '',
         '**Observed variables**', '',
         cell(', '.join(str((v or {}).get('name','')) for v in mech.get('observed_variables', []) if isinstance(v,dict))) or '—',
         '', '**Latent variables**', '',
@@ -103,16 +105,16 @@ def build(records, output_root: Path, notes=()):
         title.append(f'| {cell(label)} | {len(_domain_papers(group))} | {len(group)} | [Browse](by-domain/{key}.md) |')
         page=[f'# {label}', '',
               f'**{len(group)} submitted DGP mechanism(s) · draft / unverified.**','',
-              '| Paper Title | DGP mechanism | Estimand & truth (per scenario) | Review status | Generator.py |',
-              '|---|---|---|---|---|']
+              '| Paper Title | DGP mechanism | Keywords | Estimand & truth (per scenario) | Review status | Generator.py |',
+              '|---|---|---|---|---|---|']
         summary.extend([f'## {label}', ''])
         if not group:
-            page.append('| — | No DGPs submitted yet | — | — |')
+            page.append('| — | No DGPs submitted yet | — | — | — | — |')
             summary.append('No submissions in this area yet.\n')
         for rec in sorted(group,key=lambda r:(str((r.get('paper') or {}).get('citation','')),r['record_id'])):
             mech=rec.get('mechanism') or {};paper=rec.get('paper') or {}
             citation=paper.get('citation') or paper.get('doi') or 'Reference pending'
-            one=f"| {cell(paper_title(rec))} | [{cell(display_title(rec))}](../drafts/{rec['record_id']}.md) | {truth_pairs(rec)} | Needs review | {generator_link(rec, '../generators/')} |"
+            one=f"| {cell(paper_title_with_venue(rec))} | [{cell(display_title(rec))}](../drafts/{rec['record_id']}.md) | {cell(keywords_text(rec))} | {truth_pairs(rec)} | Needs review | {generator_link(rec, '../generators/')} |"
             page.append(one)
             summary.append(one)
         summary.append('')
@@ -122,10 +124,10 @@ def build(records, output_root: Path, notes=()):
         title.extend(['', '## Needs classification', '',
                       f"[{len(buckets['unclassified'])} unclassified DGP(s)](by-domain/unclassified.md) require a reviewer."])
         page=['# Needs classification','', '> **Unverified — reviewer must assign a research area.**', '',
-              '| Paper Title | DGP | Estimand and truth | Status | Generator.py |','|---|---|---|---|---|']
+              '| Paper Title | DGP | Keywords | Estimand and truth | Status | Generator.py |','|---|---|---|---|---|---|']
         for rec in buckets['unclassified']:
             p=rec.get('paper') or {}; m=rec.get('mechanism') or {}
-            page.append(f"| {cell(paper_title(rec))} | [{cell(display_title(rec))}](../drafts/{rec['record_id']}.md) | {truth_pairs(rec)} | Needs classification | {generator_link(rec, '../generators/')} |")
+            page.append(f"| {cell(paper_title_with_venue(rec))} | [{cell(display_title(rec))}](../drafts/{rec['record_id']}.md) | {cell(keywords_text(rec))} | {truth_pairs(rec)} | Needs classification | {generator_link(rec, '../generators/')} |")
         (by/'unclassified.md').write_text('\n'.join(page)+'\n',encoding='utf-8')
     if notes:
         title+=['','## Extraction notes','']+['- '+cell(n) for n in notes]
@@ -140,6 +142,9 @@ def build(records, output_root: Path, notes=()):
         'records':[{'record_id':r['record_id'],'domain':r.get('domain'),'paper':(r.get('paper') or {}).get('citation'),
                     'mechanism':display_title(r),
                     'paper_title':paper_title(r),
+                    'venue_abbreviation':venue_abbreviation(r),
+                    'keywords':keywords(r),
+                    'keyword_evidence':keyword_entries(r),
                     'generator_file':generator_file(r),
                     'latent_variables':[(v or {}).get('name') for v in (r.get('mechanism') or {}).get('latent_variables',[]) if isinstance(v,dict)],
                     'truth_by_scenario':truth_pairs(r),

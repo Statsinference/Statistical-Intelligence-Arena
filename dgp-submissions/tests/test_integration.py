@@ -12,7 +12,7 @@ def test_contributing_uses_current_destination_upload():
     text=(ROOT/"CONTRIBUTING.md").read_text(encoding="utf-8")
     assert "https://github.com/Statsinference/stats-inference-arena/upload/main/dgp-submissions/incoming" in text
     assert "Statsinference/submission_test/upload" not in text
-    assert "| Paper Title | DGPs | DGP Mechanisms | Generator.py |" in text
+    assert "| Paper Title | DGPs | DGP Mechanisms | Keywords | Generator.py |" in text
 
 def test_every_root_contributing_link_resolves():
     text=(ROOT/"CONTRIBUTING.md").read_text(encoding="utf-8")

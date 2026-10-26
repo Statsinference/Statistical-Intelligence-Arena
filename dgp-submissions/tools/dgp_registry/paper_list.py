@@ -13,6 +13,7 @@ from pathlib import Path
 
 from .domains import DOMAINS
 from .title_display import display_title
+from .listing_metadata import venue_abbreviation, keywords_text
 
 BEGIN = "<!-- STATSARENA_PAPER_LIST_BEGIN -->"
 END = "<!-- STATSARENA_PAPER_LIST_END -->"
@@ -67,6 +68,12 @@ def paper_title(rec):
     return "Title not supplied (review needed)"
 
 
+def paper_title_with_venue(rec):
+    title = paper_title(rec)
+    venue = venue_abbreviation(rec)
+    return title + (" (" + venue + ")" if venue else "")
+
+
 def _title(rec):
     mechanism = rec.get("mechanism")
     if isinstance(mechanism, dict):
@@ -95,12 +102,15 @@ def _domain_papers(records):
     for rec in records:
         key, citation, doi = _paper(rec)
         group = result.setdefault(
-            key, {"citation": citation, "doi": doi, "title": paper_title(rec), "mechanisms": []}
+            key, {"citation": citation, "doi": doi, "title": paper_title(rec),
+                  "venue": venue_abbreviation(rec), "mechanisms": []}
         )
         # Explicit titles take precedence over fallback placeholder.
         title = paper_title(rec)
         if group["title"].startswith("Title not supplied") and not title.startswith("Title not supplied"):
             group["title"] = title
+        if not group["venue"]:
+            group["venue"] = venue_abbreviation(rec)
         group["mechanisms"].append(rec)
     return [result[key] for key in sorted(result, key=lambda x: result[x]["title"].casefold())]
 
@@ -112,6 +122,9 @@ def paper_list_tables(records, *, draft_prefix="drafts/", domain_prefix="by-doma
         "## Paper list by research area", "",
         "Each paper is listed **once per area**. Generators are source files from the"
         " submitted ZIP, not executed or automatically validated.", "",
+        "**Keywords** describe each submitted DGP, not the whole paper. Missing tags do not "
+        "prove absence; nonlinearity may occur in any part of the mechanism. Numbered entries "
+        "match the DGP mechanisms and generators in the same row.", "",
     ]
     for domain, label in list(DOMAINS.items()) + [("unclassified", "Needs classification")]:
         group = [rec for rec in records if rec.get("domain") == domain]
@@ -121,24 +134,31 @@ def paper_list_tables(records, *, draft_prefix="drafts/", domain_prefix="by-doma
         lines.extend([
             "### [" + _escape(label) + "](" + domain_prefix + domain + ".md)", "",
             str(len(papers)) + " paper(s) · " + str(len(group)) + " DGP mechanism(s)", "",
-            "| Paper Title | DGPs | DGP Mechanisms | Generator.py |",
-            "|---|---:|---|---|",
+            "| Paper Title | DGPs | DGP Mechanisms | Keywords | Generator.py |",
+            "|---|---:|---|---|---|",
         ])
         if not papers:
-            lines.append("| — | 0 | No submissions yet | — |")
+            lines.append("| — | 0 | No submissions yet | — | — |")
         for paper in papers:
             title = _escape(paper["title"])
             if paper["doi"]:
                 title = "[" + title + "](https://doi.org/" + paper["doi"] + ")"
+            if paper["venue"]:
+                title += " (" + _escape(paper["venue"]) + ")"
             mechanisms = sorted(
                 paper["mechanisms"], key=lambda r: (_title(r).casefold(), r["record_id"])
             )
-            links = ", ".join(
-                "[" + _escape(_title(rec)) + "](" + draft_prefix +
-                rec["record_id"] + ".md)" for rec in mechanisms
-            )
             n = len(mechanisms)
-            generators = ", ".join(
+            links = "<br/>".join(
+                (str(i + 1) + ": " if n > 1 else "") +
+                "[" + _escape(_title(rec)) + "](" + draft_prefix +
+                rec["record_id"] + ".md)" for i, rec in enumerate(mechanisms)
+            )
+            keyword_cells = "<br/>".join(
+                (str(i + 1) + ": " if n > 1 else "") + _escape(keywords_text(rec))
+                for i, rec in enumerate(mechanisms)
+            )
+            generators = "<br/>".join(
                 generator_link(
                     rec, generator_prefix,
                     ("generator.py" if n == 1 else str(i + 1) + ": generator.py")
@@ -146,7 +166,7 @@ def paper_list_tables(records, *, draft_prefix="drafts/", domain_prefix="by-doma
                 for i, rec in enumerate(mechanisms)
             )
             lines.append(
-                "| " + title + " | " + str(n) + " | " + links + " | " + generators + " |"
+                "| " + title + " | " + str(n) + " | " + links + " | " + keyword_cells + " | " + generators + " |"
             )
         lines.append("")
     return lines
