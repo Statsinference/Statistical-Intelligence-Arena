@@ -1,0 +1,227 @@
+{
+  "schema_version": "0.1",
+  "record_id": "nri-calonico-2018-asymmetric-sine-v1",
+  "kind": "synthetic_dgp",
+  "domain": "unclassified",
+  "english_display": {},
+  "paper": {
+    "citation": "Calonico, S., Cattaneo, M. D., and Farrell, M. H. (2018). On the Effect of Bias Estimation on Coverage Accuracy in Nonparametric Inference. Journal of the American Statistical Association, 113(522), 767–779. DOI: 10.1080/01621459.2017.1285776.",
+    "title": null,
+    "doi": null,
+    "source_url": "https://rdpackages.github.io/references/Calonico-Cattaneo-Farrell_2018_JASA.pdf",
+    "source_file_evidence": [],
+    "venue": "Journal of the American Statistical Association",
+    "year": 2018,
+    "source_version": null,
+    "source_locator": "Final journal typeset PDF, Section 4 Simulation Results and Figure 1, printed p.776 (PDF p.10); Table 1, printed p.777 (PDF p.11); conditional mean definition in Section 3.1. Version cross-check: arXiv:1508.02973v6 (2018-03-07)."
+  },
+  "mechanism": {
+    "name": "NRI：非对称正弦回归函数的逐点条件均值推断",
+    "title_en": null,
+    "family_id": "calonico-cattaneo-farrell-2018-main-asymmetric-sine",
+    "generation_equations": [
+      "X ~ Uniform[-1,1], epsilon ~ N(0,1), X independent of epsilon in the declared implementation.",
+      "Y=m(X)+epsilon; m(x)=sin(3*pi*x/2)/(1+18*x^2*(sgn(x)+1)); sgn(0)=0.",
+      "Equivalently, m(x)=sin(3*pi*x/2) for x<=0; m(x)=sin(3*pi*x/2)/(1+36*x^2) for x>0.",
+      "theta(x0)=E[Y|X=x0]=m(x0); x0 in {-2/3,-1/3,0,1/3,2/3}.",
+      "Ordered exact source-query truths: 0,-1,0,1/5,0. These are analytically derived here, not reported estimator results."
+    ],
+    "observed_variables": [
+      {
+        "name": "X",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-1",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [],
+    "latent_variables_status": "not_explicitly_specified",
+    "sampling": {
+      "unit": "individual",
+      "dependence": "IID rows; X and epsilon independent within a row, Y=m(X)+epsilon. Reusing seed across query scenarios intentionally produces the same sample."
+    },
+    "assumptions": [
+      "IID individuals (X_i,Y_i) with random design X_i uniform on [-1,1].",
+      "Declared implementation uses epsilon_i independent of X_i and iid N(0,1); hence E[epsilon_i|X_i]=0.",
+      "Finite conditional moments and positive design density in neighborhoods of the five interior queries.",
+      "The continuous conditional-mean version m(x) defines the point target; the query is prespecified, not selected from outcomes.",
+      "This is a descriptive conditional mean, with no treatment, intervention, ignorability or IV assumptions.",
+      "No claim that every CI method or high-order smoothness theorem applies at every point; m is C2 but not C3 at x=0."
+    ],
+    "properties": {
+      "dimension": 1,
+      "effective_dimension": 1,
+      "high_dimensional": false,
+      "interactions": false,
+      "nonlinear": true,
+      "notes": "仅一个观察预测变量 X，无跨变量交互。非线性由 sin(3*pi*x/2) 及 x>0 时的 1/(1+36*x^2) 衰减产生；独立标准正态误差给出同方差 Var(Y|X)=1。原文五个查询点均为内部点，未添加无关列、异方差或边界场景。",
+      "heteroskedastic": false,
+      "observed_columns": 2,
+      "registered_boundary_queries": false
+    }
+  },
+  "estimand": {
+    "name": "m(x0)",
+    "definition": "E[Y | X=x0], the continuous conditional regression mean at the fixed config.query_x; not a prediction quantile, population average, causal contrast or simultaneous band.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "source_x_neg_two_thirds",
+      "parameters": {
+        "query_x": -0.6666666666666666,
+        "noise_sd": 1.0
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": -1.2246467991473532e-16,
+        "expression": "E[Y | X=x0], the continuous conditional regression mean at the fixed config.query_x; not a prediction quantile, population average, causal contrast or simultaneous band.",
+        "derivation": "E[epsilon|X]=0 implies E[Y|X=x0]=m(x0). Direct analytic evaluation; independently checked by exact special values, triple-angle identity and Gaussian quadrature.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[source_x_neg_two_thirds].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "source_x_neg_one_third",
+      "parameters": {
+        "query_x": -0.3333333333333333,
+        "noise_sd": 1.0
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": -1.0,
+        "expression": "E[Y | X=x0], the continuous conditional regression mean at the fixed config.query_x; not a prediction quantile, population average, causal contrast or simultaneous band.",
+        "derivation": "E[epsilon|X]=0 implies E[Y|X=x0]=m(x0). Direct analytic evaluation; independently checked by exact special values, triple-angle identity and Gaussian quadrature.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[source_x_neg_one_third].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "source_x_zero",
+      "parameters": {
+        "query_x": 0,
+        "noise_sd": 1.0
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.0,
+        "expression": "E[Y | X=x0], the continuous conditional regression mean at the fixed config.query_x; not a prediction quantile, population average, causal contrast or simultaneous band.",
+        "derivation": "E[epsilon|X]=0 implies E[Y|X=x0]=m(x0). Direct analytic evaluation; independently checked by exact special values, triple-angle identity and Gaussian quadrature.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[source_x_zero].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "source_x_pos_one_third",
+      "parameters": {
+        "query_x": 0.3333333333333333,
+        "noise_sd": 1.0
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.2,
+        "expression": "E[Y | X=x0], the continuous conditional regression mean at the fixed config.query_x; not a prediction quantile, population average, causal contrast or simultaneous band.",
+        "derivation": "E[epsilon|X]=0 implies E[Y|X=x0]=m(x0). Direct analytic evaluation; independently checked by exact special values, triple-angle identity and Gaussian quadrature.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[source_x_pos_one_third].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "source_x_pos_two_thirds",
+      "parameters": {
+        "query_x": 0.6666666666666666,
+        "noise_sd": 1.0
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 7.203804700866784e-18,
+        "expression": "E[Y | X=x0], the continuous conditional regression mean at the fixed config.query_x; not a prediction quantile, population average, causal contrast or simultaneous band.",
+        "derivation": "E[epsilon|X]=0 implies E[Y|X=x0]=m(x0). Direct analytic evaluation; independently checked by exact special values, triple-angle identity and Gaussian quadrature.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[source_x_pos_two_thirds].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "原文 §4 的均值函数、Uniform[-1,1] 设计、N(0,1) 误差及五个查询点保持不变；独立编写 Python/NumPy PCG64 实现，不声称与原作者随机数逐行相同。",
+    "实现明确采用 X 与 epsilon 独立的加性正态噪声构造。§4 列出二者分布而未单列独立性等式；本包将这一实现约定显式登记，得到 E[epsilon|X]=0 与 Var(Y|X)=1。",
+    "为适配学生包标量 truth 接口，将原文五个查询点登记为同一 DGP 下的五个 query scenarios；不是五个机制家族。",
+    "原文 n=500、重复5000次；本轮 n=128、seed=1729 用于接口核验，不声称复跑论文的 CI 覆盖率。",
+    "默认查询点选为原文的 x=1/3；noise_sd=1 保留源设置，sd=2 仅用于内部核验控制，未登记为额外源场景。",
+    "非因果 NRI 使用显式 nonparametric-regression-family-v1 本地类别扩展；未扩展原版会拒绝 family，未放宽其他检查。"
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "generator.py",
+    "truth_reference": "truth.py",
+    "source_archive": "nri-calonico-2018-asymmetric-sine-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/nri-calonico-2018-asymmetric-sine-v1.py",
+    "exported_generator_sha256": "78026f52825205895bf2d3e50bd80ad168e9ac0da503e7a33553deb84e977756"
+  },
+  "evidence": [
+    {
+      "file": "collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "086b703afbc1c429f31538883c93484ab9d149a1bec4f626d51c0b7164b63138",
+    "collection_sha256": "e98cc434f3f10852ad7a9f8bdfd465a8e80e653046974c5381601a89130366f8",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/nri-calonico-2018-asymmetric-sine-v1.zip",
+    "submitted_zip_sha256": "086b703afbc1c429f31538883c93484ab9d149a1bec4f626d51c0b7164b63138",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "No explicit latent-variable metadata or reliably identifiable latent declarations; absence from this list does not prove that no latent variables exist.",
+    "Unrecognized or missing family in collection.json: human classification required."
+  ],
+  "source_suggested_domain": "nonparametric_regression",
+  "classification_status": "needs_manual_classification",
+  "suggested_secondary_domains": []
+}

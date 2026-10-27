@@ -98,19 +98,22 @@ Each paper is listed **once per area**. Generators are source files from the sub
 
 ### [DiD / Synthetic Control](dgp-submissions/registry/by-domain/did_sc.md)
 
-1 paper(s) · 1 DGP mechanism(s)
+3 paper(s) · 3 DGP mechanism(s)
 
 | Paper Title | DGPs | DGP Mechanisms | Keywords | Generator.py |
 |---|---:|---|---|---|
+| A Negative Correlation Strategy for Bracketing in Difference-in-Differences (JASA) | 1 | [DGP did-ye-2024-bracketing-v1 (English title required)](dgp-submissions/registry/drafts/did-ye-2024-bracketing-v1.md) | Linearity · Panel data | [generator.py](dgp-submissions/registry/generators/did-ye-2024-bracketing-v1.py) |
+| A semiparametric instrumented difference-in-differences approach to policy learning (Biometrika) | 1 | [DGP did-zhao-cui-2025-instrumented-v1 (English title required)](dgp-submissions/registry/drafts/did-zhao-cui-2025-instrumented-v1.md) | Interactions · Nonlinearity · Effect heterogeneity | [generator.py](dgp-submissions/registry/generators/did-zhao-cui-2025-instrumented-v1.py) |
 | [Doubly robust difference-in-differences estimators](https://doi.org/10.1016/j.jeconom.2020.06.003) (JoE) | 1 | [Sant'Anna--Zhao DGP1: two-period panel with covariate-specific trends](dgp-submissions/registry/drafts/did-santanna-zhao-2020-panel-dgp1-v1.md) | Interactions · Nonlinearity · Panel data | [generator.py](dgp-submissions/registry/generators/did-santanna-zhao-2020-panel-dgp1-v1.py) |
 
 ### [Needs classification](dgp-submissions/registry/by-domain/unclassified.md)
 
-1 paper(s) · 2 DGP mechanism(s)
+2 paper(s) · 3 DGP mechanism(s)
 
 | Paper Title | DGPs | DGP Mechanisms | Keywords | Generator.py |
 |---|---:|---|---|---|
 | [Generalized random forests](https://doi.org/10.1214/18-aos1709) (AoS) | 2 | 1: [Conditional quantile under Athey-Tibshirani-Wager Figure 2 mean shift](dgp-submissions/registry/drafts/qr-athey-tibshirani-wager-2019-mean-v1.md)<br/>2: [Conditional quantile under Athey-Tibshirani-Wager Figure 2 scale shift](dgp-submissions/registry/drafts/qr-athey-tibshirani-wager-2019-scale-v1.md) | 1: Nonlinearity<br/>2: Nonlinearity · Heteroskedasticity | [1: generator.py](dgp-submissions/registry/generators/qr-athey-tibshirani-wager-2019-mean-v1.py)<br/>[2: generator.py](dgp-submissions/registry/generators/qr-athey-tibshirani-wager-2019-scale-v1.py) |
+| [On the Effect of Bias Estimation on Coverage Accuracy in Nonparametric Inference](https://doi.org/10.1080/01621459.2017.1285776) (JASA) | 1 | [DGP nri-calonico-2018-asymmetric-sine-v1 (English title required)](dgp-submissions/registry/drafts/nri-calonico-2018-asymmetric-sine-v1.md) | Nonlinearity | [generator.py](dgp-submissions/registry/generators/nri-calonico-2018-asymmetric-sine-v1.py) |
 
 <!-- STATSARENA_PAPER_LIST_END -->
 

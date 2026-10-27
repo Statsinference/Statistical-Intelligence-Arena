@@ -2,7 +2,7 @@
 
 > **Draft view:** all automatically extracted records still need human scientific review.
 
-**23 DGP mechanisms**, **41 parameter scenarios**, **18 reference papers**
+**26 DGP mechanisms**, **49 parameter scenarios**, **21 reference papers**
 
 ## Six research areas
 
@@ -13,7 +13,7 @@
 | Mediation — Direct and Indirect Effects | 1 | 1 | [Browse](by-domain/mediation.md) |
 | IV — Instrumental Variables | 5 | 5 | [Browse](by-domain/iv.md) |
 | Proximal Causal Inference | 7 | 10 | [Browse](by-domain/proximal.md) |
-| DiD / Synthetic Control | 1 | 1 | [Browse](by-domain/did_sc.md) |
+| DiD / Synthetic Control | 3 | 3 | [Browse](by-domain/did_sc.md) |
 
 ## Paper list by research area
 
@@ -75,24 +75,27 @@ Each paper is listed **once per area**. Generators are source files from the sub
 
 ### [DiD / Synthetic Control](by-domain/did_sc.md)
 
-1 paper(s) · 1 DGP mechanism(s)
+3 paper(s) · 3 DGP mechanism(s)
 
 | Paper Title | DGPs | DGP Mechanisms | Keywords | Generator.py |
 |---|---:|---|---|---|
+| [A Negative Correlation Strategy for Bracketing in Difference-in-Differences](https://doi.org/10.1080/01621459.2023.2252576) (JASA) | 1 | [DGP did-ye-2024-bracketing-v1 (English title required)](drafts/did-ye-2024-bracketing-v1.md) | Linearity · Panel data | [generator.py](generators/did-ye-2024-bracketing-v1.py) |
+| [A semiparametric instrumented difference-in-differences approach to policy learning](https://doi.org/10.1093/biomet/asaf043) (Biometrika) | 1 | [DGP did-zhao-cui-2025-instrumented-v1 (English title required)](drafts/did-zhao-cui-2025-instrumented-v1.md) | Interactions · Nonlinearity · Effect heterogeneity | [generator.py](generators/did-zhao-cui-2025-instrumented-v1.py) |
 | [Doubly robust difference-in-differences estimators](https://doi.org/10.1016/j.jeconom.2020.06.003) (JoE) | 1 | [Sant'Anna--Zhao DGP1: two-period panel with covariate-specific trends](drafts/did-santanna-zhao-2020-panel-dgp1-v1.md) | Interactions · Nonlinearity · Panel data | [generator.py](generators/did-santanna-zhao-2020-panel-dgp1-v1.py) |
 
 ### [Needs classification](by-domain/unclassified.md)
 
-1 paper(s) · 2 DGP mechanism(s)
+2 paper(s) · 3 DGP mechanism(s)
 
 | Paper Title | DGPs | DGP Mechanisms | Keywords | Generator.py |
 |---|---:|---|---|---|
 | [Generalized random forests](https://doi.org/10.1214/18-aos1709) (AoS) | 2 | 1: [Conditional quantile under Athey-Tibshirani-Wager Figure 2 mean shift](drafts/qr-athey-tibshirani-wager-2019-mean-v1.md)<br/>2: [Conditional quantile under Athey-Tibshirani-Wager Figure 2 scale shift](drafts/qr-athey-tibshirani-wager-2019-scale-v1.md) | 1: Nonlinearity<br/>2: Nonlinearity · Heteroskedasticity | [1: generator.py](generators/qr-athey-tibshirani-wager-2019-mean-v1.py)<br/>[2: generator.py](generators/qr-athey-tibshirani-wager-2019-scale-v1.py) |
+| [On the Effect of Bias Estimation on Coverage Accuracy in Nonparametric Inference](https://doi.org/10.1080/01621459.2017.1285776) (JASA) | 1 | [DGP nri-calonico-2018-asymmetric-sine-v1 (English title required)](drafts/nri-calonico-2018-asymmetric-sine-v1.md) | Nonlinearity | [generator.py](generators/nri-calonico-2018-asymmetric-sine-v1.py) |
 
 
 ## Needs classification
 
-[2 unclassified DGP(s)](by-domain/unclassified.md) require a reviewer.
+[3 unclassified DGP(s)](by-domain/unclassified.md) require a reviewer.
 
 ## Extraction notes
 

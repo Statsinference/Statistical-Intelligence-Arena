@@ -1,0 +1,257 @@
+{
+  "schema_version": "0.1",
+  "record_id": "did-zhao-cui-2025-instrumented-v1",
+  "kind": "synthetic_dgp",
+  "domain": "did_sc",
+  "english_display": {},
+  "paper": {
+    "citation": "Zhao, P., & Cui, Y. (2025). A semiparametric instrumented difference-in-differences approach to policy learning. Biometrika, 112(4), asaf043.",
+    "title": null,
+    "doi": "10.1093/biomet/asaf043",
+    "source_url": "https://doi.org/10.1093/biomet/asaf043",
+    "source_file_evidence": [],
+    "venue": "Biometrika",
+    "year": 2025,
+    "source_version": null,
+    "source_locator": "正式排版文献 PDF p.11，§6 全部未编号 DGP 公式；§3 pp.5–7，Assumptions 1–7。main.R lines 6–29, simData；commit 11f92f2c29316810531935985a981b567b8abab5。"
+  },
+  "mechanism": {
+    "name": "重复横截面工具变量 DiD：bridge 潜在混杂与异质效应",
+    "title_en": null,
+    "family_id": "zhao-cui-bridge-instrumented-did",
+    "generation_equations": [
+      {
+        "label": "Independent baseline covariates",
+        "expression": "$X_{1i}\\sim N(0,1),\\quad X_{2i}\\sim N(0,1)$"
+      },
+      {
+        "label": "Independent instrument and sampled period",
+        "expression": "$Z_i\\sim \\mathrm{Bernoulli}(0.5),\\quad T_i\\sim \\mathrm{Bernoulli}(0.5)$"
+      },
+      {
+        "label": "Independent U0 and U1, also independent of X,Z,T; bridge phi=0.5",
+        "expression": "$f_U(u)=\\frac{1}{2\\pi\\cosh(u/2)},\\quad E[U_{ti}]=0,\\quad \\mathrm{Var}(U_{ti})=\\pi^2$"
+      },
+      {
+        "label": "Bridge inverse-CDF sampler; t=0,1",
+        "expression": "$V_{ti}\\sim\\mathrm{Uniform}(0,1),\\quad U_{ti}=2\\log\\tan(\\pi V_{ti}/2)$"
+      },
+      {
+        "label": "Treatment in period 0, with independent Bernoulli randomization",
+        "expression": "$A_{0i}\\mid X_i,Z_i,U_{0i}\\sim\\mathrm{Bernoulli}\\left(\\frac{1}{1+\\exp[-(2-7Z_i+0.2U_{0i}+2X_{1i})]}\\right)$"
+      },
+      {
+        "label": "Treatment in period 1, with independent Bernoulli randomization",
+        "expression": "$A_{1i}\\mid X_i,Z_i,U_{1i}\\sim\\mathrm{Bernoulli}\\left(\\frac{1}{1+\\exp[-(-1.5+5Z_i-0.15U_{1i}+1.5X_{2i})]}\\right)$"
+      },
+      {
+        "label": "Treatment-effect modifier",
+        "expression": "$h(X_i)=1.5X_{1i}+2X_{2i}-0.5$"
+      },
+      {
+        "label": "Independent outcome errors, independent of all other random draws",
+        "expression": "$\\epsilon_{0i}\\sim N(0,1),\\quad\\epsilon_{1i}\\sim N(0,1)$"
+      },
+      {
+        "label": "Period-0 outcome",
+        "expression": "$Y_{0i}=200+10[A_{0i}h(X_i)+0.5U_{0i}+2Z_i+1.5X_{1i}+2X_{2i}]+\\epsilon_{0i}$"
+      },
+      {
+        "label": "Period-1 outcome",
+        "expression": "$Y_{1i}=240+10[A_{1i}h(X_i)+0.5U_{1i}+2Z_i+2X_{1i}+1.5X_{2i}]+\\epsilon_{1i}$"
+      },
+      {
+        "label": "Observed repeated-cross-section treatment and outcome",
+        "expression": "$A_i=(1-T_i)A_{0i}+T_iA_{1i},\\quad Y_i=(1-T_i)Y_{0i}+T_iY_{1i}$"
+      },
+      {
+        "label": "Adapted scalar estimand: population ATE, not ATT or policy value",
+        "expression": "$ATE=E[10h(X_i)]=-5$"
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "X1",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X2",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Z",
+        "role": "instrument",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "T",
+        "role": "time",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "A",
+        "role": "treatment",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [],
+    "latent_variables_status": "not_explicitly_specified",
+    "sampling": {
+      "unit": "independent individual from one of two repeated cross-sections",
+      "dependence": "行独立；X1,X2,Z,T,U0,U1 和两期生成用基础随机数相互独立；同一时期 A,Y 因 U 与 X 相关。两期个体不配对。"
+    },
+    "assumptions": [
+      "一致性；独立重复横截面抽样；T,Z 条件联合概率为1/4。",
+      "处理效应随时间稳定；Z影响处理趋势，且不直接影响未处理结局趋势。",
+      "Z 与潜在处理、处理效应及未处理结局趋势在给定 X 后独立。",
+      "无未测共同效应修饰因子：给定 X 时处理效应为确定值。",
+      "趋势相关性对每个有限 X 严格为正，但正态尾部可能弱识别，未声称统一强工具。"
+    ],
+    "properties": {
+      "dimension": 2,
+      "effective_dimension": 2,
+      "high_dimensional": false,
+      "interactions": true,
+      "nonlinear": true,
+      "notes": "A*X1 与 A*X2 是结局效应异质性交互；处理分配为 logistic；bridge 潜变量不计入观测维数。"
+    }
+  },
+  "estimand": {
+    "name": "ATE",
+    "definition": "E[Y_t(1)-Y_t(0)]，总体 X1,X2 独立标准正态，t=0或1；值为-5。并非 ATT，也非 d_opt 的政策价值。",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "source_section6_ate_target",
+      "parameters": {
+        "source_n": 1000,
+        "bridge_phi": 0.5,
+        "z_probability": 0.5,
+        "time_probability": 0.5,
+        "a0_coefficients": [
+          2,
+          -7,
+          0.2,
+          2,
+          0
+        ],
+        "a1_coefficients": [
+          -1.5,
+          5,
+          -0.15,
+          0,
+          1.5
+        ],
+        "outcome_intercepts": [
+          200,
+          240
+        ],
+        "outcome_scale": 10,
+        "effect_coefficients": [
+          -0.5,
+          1.5,
+          2
+        ],
+        "u_coefficient": 0.5,
+        "z_coefficient": 2,
+        "x_outcome_coefficients": [
+          [
+            1.5,
+            2
+          ],
+          [
+            2,
+            1.5
+          ]
+        ],
+        "noise_sd": 1
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": -5.0,
+        "expression": "E[Y_t(1)-Y_t(0)]，总体 X1,X2 独立标准正态，t=0或1；值为-5。并非 ATT，也非 d_opt 的政策价值。",
+        "derivation": "E[10(1.5X1+2X2-0.5)]=-5；verify 另从观测均值的双重差分 Wald 比率积分核验。",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[source_section6_ate_target].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "原文数据分布保留；将政策学习目标改为两个时点相同的总体 ATE=-5，不能称为原文报告的 ATT 或政策价值。",
+    "用 bridge 分布的解析逆CDF独立实现采样，不依赖 R bridgedist。",
+    "使用 NumPy PCG64；不输出 U0/U1、另一期结局、真值 CATE 或倾向概率。"
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "generator.py",
+    "truth_reference": "truth.py",
+    "source_archive": "did-zhao-cui-2025-instrumented-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/did-zhao-cui-2025-instrumented-v1.py",
+    "exported_generator_sha256": "0a24aedb0adfd68d8a2262e1fb882f8c6f22405376b0371ae92a2b1d09d30a11"
+  },
+  "evidence": [
+    {
+      "file": "collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "65686f84277b4595b16f5dcbb7dce5b03e6d8798e084e88a524ed7073770b953",
+    "collection_sha256": "33bf000bfe30e2ddcbe0133febff49a9981101d64cc989719b950c538ae7276b",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/did-zhao-cui-2025-instrumented-v1.zip",
+    "submitted_zip_sha256": "65686f84277b4595b16f5dcbb7dce5b03e6d8798e084e88a524ed7073770b953",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "No explicit latent-variable metadata or reliably identifiable latent declarations; absence from this list does not prove that no latent variables exist."
+  ],
+  "source_suggested_domain": "did_sc",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

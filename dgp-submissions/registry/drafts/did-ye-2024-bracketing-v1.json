@@ -1,0 +1,293 @@
+{
+  "schema_version": "0.1",
+  "record_id": "did-ye-2024-bracketing-v1",
+  "kind": "synthetic_dgp",
+  "domain": "did_sc",
+  "english_display": {},
+  "paper": {
+    "citation": "Ye, T., Keele, L., Hasegawa, R. B., & Small, D. S. (2024). A Negative Correlation Strategy for Bracketing in Difference-in-Differences. JASA, 119(547), 2256–2268.",
+    "title": null,
+    "doi": "10.1080/01621459.2023.2252576",
+    "source_url": "https://doi.org/10.1080/01621459.2023.2252576",
+    "source_file_evidence": [],
+    "venue": "Journal of the American Statistical Association",
+    "year": 2024,
+    "source_version": null,
+    "source_locator": "实际阅读 arXiv:2006.02423v3，PDF pp.22–24，§4 未编号模拟公式；Table 1 p.37。作者 DIDBracket.R lines 113–135, data_gen；commit b82f4ae3f40c89b7a0a1aa49591fa223718d1e71。期刊 DOI 用于确认发表，未宣称逐字核对付费最终全文。"
+  },
+  "mechanism": {
+    "name": "三组四期 DiD：平行趋势与部分平行趋势",
+    "title_en": null,
+    "family_id": "ye-keele-hasegawa-small-three-group-bracketing",
+    "generation_equations": [
+      {
+        "label": "Fixed group design: a=0, b=1, trt=2; n=1000 in source",
+        "expression": "$(p_a,p_b,p_{trt})=(0.2,0.5,0.3),\\quad \\sum_g n_g=n$"
+      },
+      {
+        "label": "Group allocation; largest fractional remainders receive the remaining units",
+        "expression": "$n_g=\\lfloor np_g\\rfloor+r_g,\\quad r_g\\in\\{0,1\\},\\quad \\sum_g r_g=n-\\sum_g\\lfloor np_g\\rfloor$"
+      },
+      {
+        "label": "Case I untreated means in group a",
+        "expression": "$\\mu_a^{I}=(10,11,9,8)$"
+      },
+      {
+        "label": "Case I untreated means in group b",
+        "expression": "$\\mu_b^{I}=(4,5,3,2)$"
+      },
+      {
+        "label": "Case I untreated means in treated group",
+        "expression": "$\\mu_{trt}^{I}=(3,4,2,1)$"
+      },
+      {
+        "label": "Case II untreated means in group a",
+        "expression": "$\\mu_a^{II}=(10,11,10,11)$"
+      },
+      {
+        "label": "Case II untreated means in group b",
+        "expression": "$\\mu_b^{II}=(4,6,2,3)$"
+      },
+      {
+        "label": "Case II untreated means in treated group",
+        "expression": "$\\mu_{trt}^{II}=(3,4,0,1)$"
+      },
+      {
+        "label": "Additive effects; no anticipation in period 1",
+        "expression": "$(\\theta_1,\\theta_2,\\theta_3,\\theta_4)=(0,2,3,1)$"
+      },
+      {
+        "label": "Independent errors across all individuals and periods",
+        "expression": "$\\epsilon_{it}\\sim N(0,1),\\quad i=1,\\ldots,n,\\quad t=1,2,3,4$"
+      },
+      {
+        "label": "Observed outcome; effect added to treated group only",
+        "expression": "$Y_{it}=\\mu_{G_i,t}+\\mathbf{1}\\{G_i=trt\\}\\theta_t+\\epsilon_{it}$"
+      },
+      {
+        "label": "Fixed estimand",
+        "expression": "$ATT_4=E[Y_{i4}(1)-Y_{i4}(0)\\mid G_i=trt]=\\theta_4=1$"
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "G",
+        "role": "group",
+        "dtype": "integer",
+        "min": "0",
+        "max": "2",
+        "observed": "true"
+      },
+      {
+        "name": "Y1",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y2",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y3",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y4",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [],
+    "latent_variables_status": "not_explicitly_specified",
+    "sampling": {
+      "unit": "individual panel, n individuals, 4 outcomes per row",
+      "dependence": "固定分层分组设计；条件于 G 的各 i,t 正态误差独立，同一行共享 G。n 不是4n条独立记录。"
+    },
+    "assumptions": [
+      "一致性、无跨个体干扰、处理前无效应。",
+      "Case I 满足三组平行趋势，ATT 点识别。",
+      "Case II 仅满足处理组未处理趋势被两对照组趋势逐期夹住；ATT 一般只部分识别，结构真值已知不等于数据点识别。"
+    ],
+    "properties": {
+      "dimension": 0,
+      "effective_dimension": 0,
+      "high_dimensional": false,
+      "interactions": false,
+      "nonlinear": false,
+      "notes": "无基线协变量；G 是设计组别不算 X。组别×时间的均值表是设计，不添加虚假高维标签。"
+    }
+  },
+  "estimand": {
+    "name": "ATT_4",
+    "definition": "E[Y_4(1)-Y_4(0) | G=trt]；处理组自第2期接受处理，第1期无预期效应。两个场景真值均为1。",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "case1_parallel",
+      "parameters": {
+        "source_n": 1000,
+        "group_proportions": [
+          0.2,
+          0.5,
+          0.3
+        ],
+        "untreated_means": [
+          [
+            10,
+            11,
+            9,
+            8
+          ],
+          [
+            4,
+            5,
+            3,
+            2
+          ],
+          [
+            3,
+            4,
+            2,
+            1
+          ]
+        ],
+        "effects": [
+          0,
+          2,
+          3,
+          1
+        ],
+        "noise_sd": 1.0,
+        "target_time": 4
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 1.0,
+        "expression": "E[Y_4(1)-Y_4(0) | G=trt]；处理组自第2期接受处理，第1期无预期效应。两个场景真值均为1。",
+        "derivation": "同一处理个体同一时点两潜在结局作差，误差与未处理均值消去，得到 effects[3]。",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[case1_parallel].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "case2_partial",
+      "parameters": {
+        "source_n": 1000,
+        "group_proportions": [
+          0.2,
+          0.5,
+          0.3
+        ],
+        "untreated_means": [
+          [
+            10,
+            11,
+            10,
+            11
+          ],
+          [
+            4,
+            6,
+            2,
+            3
+          ],
+          [
+            3,
+            4,
+            0,
+            1
+          ]
+        ],
+        "effects": [
+          0,
+          2,
+          3,
+          1
+        ],
+        "noise_sd": 1.0,
+        "target_time": 4
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 1.0,
+        "expression": "E[Y_4(1)-Y_4(0) | G=trt]；处理组自第2期接受处理，第1期无预期效应。两个场景真值均为1。",
+        "derivation": "同一处理个体同一时点两潜在结局作差，误差与未处理均值消去，得到 effects[3]。",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[case2_partial].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "按作者代码将效应仅加给处理组，消除预印本该处省略组指示符造成的歧义。",
+    "原文 Case I/II 分别保留，同属一个 family；当前标量目标固定为 ATT_4。",
+    "将四期记录无损展宽为每人一行；用数值 G=0,1,2 编码 a,b,trt。",
+    "原样保留固定分组比例；n 非10倍数时采用最大余数法，余数相同按 a,b,trt 顺序分配。",
+    "使用 NumPy PCG64，保证本实现 seed 重现，不声称与作者 R 随机序列逐值一致。"
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "generator.py",
+    "truth_reference": "truth.py",
+    "source_archive": "did-ye-2024-bracketing-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/did-ye-2024-bracketing-v1.py",
+    "exported_generator_sha256": "4adebcf9afb7fe54cf8a2bc2d007a411e2b4d0efa91c2876ebbf3612bef9e916"
+  },
+  "evidence": [
+    {
+      "file": "collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "9fde097a2af389c55cd7feb78f53b5039142a6290d8c0d3fbed1ab2b7acbb410",
+    "collection_sha256": "74268a8431477755db771079d45fbfd83b7814b6f6caf5c61d94eaa3f4419c48",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/did-ye-2024-bracketing-v1.zip",
+    "submitted_zip_sha256": "9fde097a2af389c55cd7feb78f53b5039142a6290d8c0d3fbed1ab2b7acbb410",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "No explicit latent-variable metadata or reliably identifiable latent declarations; absence from this list does not prove that no latent variables exist."
+  ],
+  "source_suggested_domain": "did_sc",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

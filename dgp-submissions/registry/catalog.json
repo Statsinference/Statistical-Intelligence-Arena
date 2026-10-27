@@ -1,15 +1,15 @@
 {
   "status": "draft_needs_review",
-  "paper_count": 18,
-  "mechanism_count": 23,
-  "scenario_count": 41,
+  "paper_count": 21,
+  "mechanism_count": 26,
+  "scenario_count": 49,
   "domains": {
     "ate": 2,
     "cate": 2,
     "mediation": 1,
     "iv": 5,
     "proximal": 10,
-    "did_sc": 1
+    "did_sc": 3
   },
   "records": [
     {
@@ -644,6 +644,73 @@
       "status": "needs_scientific_review"
     },
     {
+      "record_id": "did-ye-2024-bracketing-v1",
+      "domain": "did_sc",
+      "paper": "Ye, T., Keele, L., Hasegawa, R. B., & Small, D. S. (2024). A Negative Correlation Strategy for Bracketing in Difference-in-Differences. JASA, 119(547), 2256–2268.",
+      "mechanism": "DGP did-ye-2024-bracketing-v1 (English title required)",
+      "paper_title": "A Negative Correlation Strategy for Bracketing in Difference-in-Differences",
+      "venue_abbreviation": "JASA",
+      "keywords": [
+        "Linearity",
+        "Panel data"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Linearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": false,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "Panel data",
+          "source": "mechanism.sampling.unit",
+          "value": "individual panel, n individuals, 4 outcomes per row",
+          "method": "explicit_source_description"
+        }
+      ],
+      "generator_file": "generators/did-ye-2024-bracketing-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "case1_parallel: ATT_4 = 1.0; case2_partial: ATT_4 = 1.0",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "did-zhao-cui-2025-instrumented-v1",
+      "domain": "did_sc",
+      "paper": "Zhao, P., & Cui, Y. (2025). A semiparametric instrumented difference-in-differences approach to policy learning. Biometrika, 112(4), asaf043.",
+      "mechanism": "DGP did-zhao-cui-2025-instrumented-v1 (English title required)",
+      "paper_title": "A semiparametric instrumented difference-in-differences approach to policy learning",
+      "venue_abbreviation": "Biometrika",
+      "keywords": [
+        "Interactions",
+        "Nonlinearity",
+        "Effect heterogeneity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Interactions",
+          "source": "mechanism.properties.interactions",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "Effect heterogeneity",
+          "source": "mechanism.name",
+          "value": "重复横截面工具变量 DiD：bridge 潜在混杂与异质效应",
+          "method": "explicit_source_description"
+        }
+      ],
+      "generator_file": "generators/did-zhao-cui-2025-instrumented-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "source_section6_ate_target: ATE = -5.0",
+      "status": "needs_scientific_review"
+    },
+    {
       "record_id": "iv-athey-tibshirani-wager-2019-compliance-v1",
       "domain": "iv",
       "paper": "Athey, S., Tibshirani, J. and Wager, S. (2019). Generalized random forests. The Annals of Statistics 47(2), 1148–1178. DOI: 10.1214/18-AOS1709.",
@@ -730,6 +797,29 @@
         "ξ"
       ],
       "truth_by_scenario": "author_readme_fixed: beta = 1.0",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "nri-calonico-2018-asymmetric-sine-v1",
+      "domain": "unclassified",
+      "paper": "Calonico, S., Cattaneo, M. D., and Farrell, M. H. (2018). On the Effect of Bias Estimation on Coverage Accuracy in Nonparametric Inference. Journal of the American Statistical Association, 113(522), 767–779. DOI: 10.1080/01621459.2017.1285776.",
+      "mechanism": "DGP nri-calonico-2018-asymmetric-sine-v1 (English title required)",
+      "paper_title": "On the Effect of Bias Estimation on Coverage Accuracy in Nonparametric Inference",
+      "venue_abbreviation": "JASA",
+      "keywords": [
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/nri-calonico-2018-asymmetric-sine-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "source_x_neg_two_thirds: m(x0) = -1.2246467991473532e-16; source_x_neg_one_third: m(x0) = -1.0; source_x_zero: m(x0) = 0.0; source_x_pos_one_third: m(x0) = 0.2; source_x_pos_two_thirds: m(x0) = 7.203804700866784e-18",
       "status": "needs_scientific_review"
     }
   ],
