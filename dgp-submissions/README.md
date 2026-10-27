@@ -108,11 +108,12 @@ Each paper is listed **once per area**. Generators are source files from the sub
 
 ### [Needs classification](registry/by-domain/unclassified.md)
 
-2 paper(s) · 3 DGP mechanism(s)
+3 paper(s) · 4 DGP mechanism(s)
 
 | Paper Title | DGPs | DGP Mechanisms | Keywords | Generator.py |
 |---|---:|---|---|---|
 | [Generalized random forests](https://doi.org/10.1214/18-aos1709) (AoS) | 2 | 1: [Conditional quantile under Athey-Tibshirani-Wager Figure 2 mean shift](registry/drafts/qr-athey-tibshirani-wager-2019-mean-v1.md)<br/>2: [Conditional quantile under Athey-Tibshirani-Wager Figure 2 scale shift](registry/drafts/qr-athey-tibshirani-wager-2019-scale-v1.md) | 1: Nonlinearity<br/>2: Nonlinearity · Heteroskedasticity | [1: generator.py](registry/generators/qr-athey-tibshirani-wager-2019-mean-v1.py)<br/>[2: generator.py](registry/generators/qr-athey-tibshirani-wager-2019-scale-v1.py) |
+| [High-Dimensional Quantile Regression: Convolution Smoothing and Concave Regularization](https://doi.org/10.1111/rssb.12485) (JRSSB) | 1 | [QDI: active-coordinate Gaussian-mixture marginal of the Tan-Wang-Zhou design (10-dimensional adaptation)](registry/drafts/qdi-tan-wang-zhou-20220201-active10-mixture-v2.md) | Linearity | [generator.py](registry/generators/qdi-tan-wang-zhou-20220201-active10-mixture-v2.py) |
 | [On the Effect of Bias Estimation on Coverage Accuracy in Nonparametric Inference](https://doi.org/10.1080/01621459.2017.1285776) (JASA) | 1 | [DGP nri-calonico-2018-asymmetric-sine-v1 (English title required)](registry/drafts/nri-calonico-2018-asymmetric-sine-v1.md) | Nonlinearity | [generator.py](registry/generators/nri-calonico-2018-asymmetric-sine-v1.py) |
 
 <!-- STATSARENA_PAPER_LIST_END -->
