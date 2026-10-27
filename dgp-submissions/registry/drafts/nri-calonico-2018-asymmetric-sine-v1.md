@@ -2,7 +2,7 @@
 
 > **Unverified extraction — scientific review required.**
 
-**Primary area:** unclassified
+**Primary area:** Nonparametric Regression
 
 **Suggested cross-tags (unverified):** none
 
@@ -118,4 +118,3 @@ Ordered exact source-query truths: 0,-1,0,1/5,0. These are analytically derived 
 **Warnings:**
 
 - No explicit latent-variable metadata or reliably identifiable latent declarations; absence from this list does not prove that no latent variables exist.
-- Unrecognized or missing family in collection.json: human classification required.

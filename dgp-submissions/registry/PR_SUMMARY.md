@@ -1,5 +1,7 @@
 # StatsArena — submission extraction (needs review)
 
+**Input processing:** 0 failure(s), 0 last-valid record(s) retained. [Submission report](INTAKE_REPORT.md).
+
 > Domain is provisionally inferred from the ZIP family field, not scientifically verified. Reviewers may correct classification.
 
 ## ATE — Average Treatment Effect
@@ -42,6 +44,26 @@
 | Doubly robust difference-in-differences estimators (JoE) | [Sant'Anna--Zhao DGP1: two-period panel with covariate-specific trends](../drafts/did-santanna-zhao-2020-panel-dgp1-v1.md) | Interactions · Nonlinearity · Panel data | original_panel_dgp1: ATT = E[Y_1(1)-Y_1(0) \| D=1] = 0.0 | Needs review | [generator.py](../generators/did-santanna-zhao-2020-panel-dgp1-v1.py) |
 | A Negative Correlation Strategy for Bracketing in Difference-in-Differences (JASA) | [DGP did-ye-2024-bracketing-v1 (English title required)](../drafts/did-ye-2024-bracketing-v1.md) | Linearity · Panel data | case1_parallel: ATT_4 = 1.0; case2_partial: ATT_4 = 1.0 | Needs review | [generator.py](../generators/did-ye-2024-bracketing-v1.py) |
 | A semiparametric instrumented difference-in-differences approach to policy learning (Biometrika) | [DGP did-zhao-cui-2025-instrumented-v1 (English title required)](../drafts/did-zhao-cui-2025-instrumented-v1.md) | Interactions · Nonlinearity · Effect heterogeneity | source_section6_ate_target: ATE = -5.0 | Needs review | [generator.py](../generators/did-zhao-cui-2025-instrumented-v1.py) |
+
+## Nonparametric Regression
+
+| On the Effect of Bias Estimation on Coverage Accuracy in Nonparametric Inference (JASA) | [DGP nri-calonico-2018-asymmetric-sine-v1 (English title required)](../drafts/nri-calonico-2018-asymmetric-sine-v1.md) | Nonlinearity | source_x_neg_two_thirds: m(x0) = -1.2246467991473532e-16; source_x_neg_one_third: m(x0) = -1.0; source_x_zero: m(x0) = 0.0; source_x_pos_one_third: m(x0) = 0.2; source_x_pos_two_thirds: m(x0) = 7.203804700866784e-18 | Needs review | [generator.py](../generators/nri-calonico-2018-asymmetric-sine-v1.py) |
+
+## Quantile Inference
+
+| Generalized random forests (AoS) | [Conditional quantile under Athey-Tibshirani-Wager Figure 2 mean shift](../drafts/qr-athey-tibshirani-wager-2019-mean-v1.md) | Nonlinearity | source_p40_q90_positive_query: theta = Q_0.9(Y \| X=x_query) = 2.0815515655446006 | Needs review | [generator.py](../generators/qr-athey-tibshirani-wager-2019-mean-v1.py) |
+| Generalized random forests (AoS) | [Conditional quantile under Athey-Tibshirani-Wager Figure 2 scale shift](../drafts/qr-athey-tibshirani-wager-2019-scale-v1.md) | Nonlinearity · Heteroskedasticity | source_p40_q90_positive_query: theta = Q_0.9(Y \| X=x_query) = 2.5631031310892016 | Needs review | [generator.py](../generators/qr-athey-tibshirani-wager-2019-scale-v1.py) |
+| High-Dimensional Quantile Regression: Convolution Smoothing and Concave Regularization (JRSSB) | [QDI: active-coordinate Gaussian-mixture marginal of the Tan-Wang-Zhou design (10-dimensional adaptation)](../drafts/qdi-tan-wang-zhou-20220201-active10-mixture-v2.md) | Linearity | q50-active10-mixture: theta_tau = Q_tau(Y \| W = e1) = 1.7999999999997158; q90-active10-mixture: theta_tau = Q_tau(Y \| W = e1) = 4.2114834571051345 | Needs review | [generator.py](../generators/qdi-tan-wang-zhou-20220201-active10-mixture-v2.py) |
+
+## Semi-Supervised Inference
+
+No submissions in this area yet.
+
+
+## Missing Data
+
+No submissions in this area yet.
+
 
 
 ## Extraction notes

@@ -2,7 +2,7 @@
   "schema_version": "0.1",
   "record_id": "qr-athey-tibshirani-wager-2019-scale-v1",
   "kind": "synthetic_dgp",
-  "domain": "unclassified",
+  "domain": "quantile",
   "english_display": {},
   "paper": {
     "citation": "Athey, S., Tibshirani, J. and Wager, S. (2019). Generalized random forests. The Annals of Statistics 47(2), 1148-1178. DOI: 10.1214/18-AOS1709.",
@@ -504,10 +504,9 @@
   },
   "review_status": "needs_scientific_review",
   "warnings": [
-    "No explicit latent-variable metadata or reliably identifiable latent declarations; absence from this list does not prove that no latent variables exist.",
-    "Unrecognized or missing family in collection.json: human classification required."
+    "No explicit latent-variable metadata or reliably identifiable latent declarations; absence from this list does not prove that no latent variables exist."
   ],
   "source_suggested_domain": "quantile_regression",
-  "classification_status": "needs_manual_classification",
+  "classification_status": "zip_metadata_unverified",
   "suggested_secondary_domains": []
 }

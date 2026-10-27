@@ -2,7 +2,7 @@
 
 > **Unverified extraction — scientific review required.**
 
-**Primary area:** unclassified
+**Primary area:** Quantile Inference
 
 **Suggested cross-tags (unverified):** none
 
@@ -146,4 +146,3 @@ w0=e1 in R^10; theta_tau=1.8+q_tau; 0.7*Phi(q_tau)+0.3*Phi(q_tau/5)=tau, tau in 
 **Warnings:**
 
 - Latent-variable candidates inferred from source equations; confirm their roles and completeness against the original paper or generator.
-- Unrecognized or missing family in collection.json: human classification required.

@@ -2,7 +2,7 @@
   "schema_version": "0.1",
   "record_id": "qdi-tan-wang-zhou-20220201-active10-mixture-v2",
   "kind": "synthetic_dgp",
-  "domain": "unclassified",
+  "domain": "quantile",
   "english_display": {},
   "paper": {
     "citation": "Tan, K. M., Wang, L., and Zhou, W.-X. (2022). High-Dimensional Quantile Regression: Convolution Smoothing and Concave Regularization. Journal of the Royal Statistical Society Series B: Statistical Methodology 84(1), 205-233. DOI: 10.1111/rssb.12485.",
@@ -376,10 +376,9 @@
   },
   "review_status": "needs_scientific_review",
   "warnings": [
-    "Latent-variable candidates inferred from source equations; confirm their roles and completeness against the original paper or generator.",
-    "Unrecognized or missing family in collection.json: human classification required."
+    "Latent-variable candidates inferred from source equations; confirm their roles and completeness against the original paper or generator."
   ],
   "source_suggested_domain": "quantile_distribution",
-  "classification_status": "needs_manual_classification",
+  "classification_status": "zip_metadata_unverified",
   "suggested_secondary_domains": []
 }

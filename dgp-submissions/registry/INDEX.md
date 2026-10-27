@@ -1,10 +1,12 @@
 # StatsArena — DGP Registry
 
+**Input processing:** 0 failure(s), 0 last-valid record(s) retained. [Submission report](INTAKE_REPORT.md).
+
 > **Draft view:** all automatically extracted records still need human scientific review.
 
 **27 DGP mechanisms**, **51 parameter scenarios**, **22 reference papers**
 
-## Six research areas
+## Research areas
 
 | Research area | Papers | DGP mechanisms | Open catalog |
 |---|---:|---:|---|
@@ -14,6 +16,10 @@
 | IV — Instrumental Variables | 5 | 5 | [Browse](by-domain/iv.md) |
 | Proximal Causal Inference | 7 | 10 | [Browse](by-domain/proximal.md) |
 | DiD / Synthetic Control | 3 | 3 | [Browse](by-domain/did_sc.md) |
+| Nonparametric Regression | 1 | 1 | [Browse](by-domain/nonparametric_regression.md) |
+| Quantile Inference | 2 | 3 | [Browse](by-domain/quantile.md) |
+| Semi-Supervised Inference | 0 | 0 | [Browse](by-domain/semi_supervised.md) |
+| Missing Data | 0 | 0 | [Browse](by-domain/missing_data.md) |
 
 ## Paper list by research area
 
@@ -83,20 +89,39 @@ Each paper is listed **once per area**. Generators are source files from the sub
 | [A semiparametric instrumented difference-in-differences approach to policy learning](https://doi.org/10.1093/biomet/asaf043) (Biometrika) | 1 | [DGP did-zhao-cui-2025-instrumented-v1 (English title required)](drafts/did-zhao-cui-2025-instrumented-v1.md) | Interactions · Nonlinearity · Effect heterogeneity | [generator.py](generators/did-zhao-cui-2025-instrumented-v1.py) |
 | [Doubly robust difference-in-differences estimators](https://doi.org/10.1016/j.jeconom.2020.06.003) (JoE) | 1 | [Sant'Anna--Zhao DGP1: two-period panel with covariate-specific trends](drafts/did-santanna-zhao-2020-panel-dgp1-v1.md) | Interactions · Nonlinearity · Panel data | [generator.py](generators/did-santanna-zhao-2020-panel-dgp1-v1.py) |
 
-### [Needs classification](by-domain/unclassified.md)
+### [Nonparametric Regression](by-domain/nonparametric_regression.md)
 
-3 paper(s) · 4 DGP mechanism(s)
+1 paper(s) · 1 DGP mechanism(s)
+
+| Paper Title | DGPs | DGP Mechanisms | Keywords | Generator.py |
+|---|---:|---|---|---|
+| [On the Effect of Bias Estimation on Coverage Accuracy in Nonparametric Inference](https://doi.org/10.1080/01621459.2017.1285776) (JASA) | 1 | [DGP nri-calonico-2018-asymmetric-sine-v1 (English title required)](drafts/nri-calonico-2018-asymmetric-sine-v1.md) | Nonlinearity | [generator.py](generators/nri-calonico-2018-asymmetric-sine-v1.py) |
+
+### [Quantile Inference](by-domain/quantile.md)
+
+2 paper(s) · 3 DGP mechanism(s)
 
 | Paper Title | DGPs | DGP Mechanisms | Keywords | Generator.py |
 |---|---:|---|---|---|
 | [Generalized random forests](https://doi.org/10.1214/18-aos1709) (AoS) | 2 | 1: [Conditional quantile under Athey-Tibshirani-Wager Figure 2 mean shift](drafts/qr-athey-tibshirani-wager-2019-mean-v1.md)<br/>2: [Conditional quantile under Athey-Tibshirani-Wager Figure 2 scale shift](drafts/qr-athey-tibshirani-wager-2019-scale-v1.md) | 1: Nonlinearity<br/>2: Nonlinearity · Heteroskedasticity | [1: generator.py](generators/qr-athey-tibshirani-wager-2019-mean-v1.py)<br/>[2: generator.py](generators/qr-athey-tibshirani-wager-2019-scale-v1.py) |
 | [High-Dimensional Quantile Regression: Convolution Smoothing and Concave Regularization](https://doi.org/10.1111/rssb.12485) (JRSSB) | 1 | [QDI: active-coordinate Gaussian-mixture marginal of the Tan-Wang-Zhou design (10-dimensional adaptation)](drafts/qdi-tan-wang-zhou-20220201-active10-mixture-v2.md) | Linearity | [generator.py](generators/qdi-tan-wang-zhou-20220201-active10-mixture-v2.py) |
-| [On the Effect of Bias Estimation on Coverage Accuracy in Nonparametric Inference](https://doi.org/10.1080/01621459.2017.1285776) (JASA) | 1 | [DGP nri-calonico-2018-asymmetric-sine-v1 (English title required)](drafts/nri-calonico-2018-asymmetric-sine-v1.md) | Nonlinearity | [generator.py](generators/nri-calonico-2018-asymmetric-sine-v1.py) |
 
+### [Semi-Supervised Inference](by-domain/semi_supervised.md)
 
-## Needs classification
+0 paper(s) · 0 DGP mechanism(s)
 
-[4 unclassified DGP(s)](by-domain/unclassified.md) require a reviewer.
+| Paper Title | DGPs | DGP Mechanisms | Keywords | Generator.py |
+|---|---:|---|---|---|
+| — | 0 | No submissions yet | — | — |
+
+### [Missing Data](by-domain/missing_data.md)
+
+0 paper(s) · 0 DGP mechanism(s)
+
+| Paper Title | DGPs | DGP Mechanisms | Keywords | Generator.py |
+|---|---:|---|---|---|
+| — | 0 | No submissions yet | — | — |
+
 
 ## Extraction notes
 

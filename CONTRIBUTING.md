@@ -4,7 +4,7 @@
 
 <p align="center">
   <a href="https://github.com/Statsinference/stats-inference-arena/upload/main/dgp-submissions/incoming"><img alt="Submit DGP ZIP" src="https://img.shields.io/badge/Submit_DGP-Upload_ZIP_on_GitHub-1677C8?style=for-the-badge" /></a>
-  <a href="dgp-submissions/registry/INDEX.md"><img alt="Browse six areas" src="https://img.shields.io/badge/Browse-Six_DGP_Areas-444444?style=for-the-badge" /></a>
+  <a href="dgp-submissions/registry/INDEX.md"><img alt="Browse research areas" src="https://img.shields.io/badge/Browse-DGP_Research_Areas-444444?style=for-the-badge" /></a>
   <a href="dgp-submissions/CONTRIBUTING.md"><img alt="Contribution instructions" src="https://img.shields.io/badge/How_to_Contribute-Read_Guide-007F73?style=for-the-badge" /></a>
 </p>
 
@@ -32,9 +32,11 @@ The ZIP's `collection.json` already identifies its research family, so **student
 
 **Hierarchy:** Area → Paper → DGP → Scenario → Estimand & Truth. One paper may contribute multiple DGPs, and one DGP may contain multiple scenarios.
 
-## Browse the six research areas
+[Submission processing report](dgp-submissions/registry/INTAKE_REPORT.md)
 
-[ATE](dgp-submissions/registry/by-domain/ate.md) · [CATE](dgp-submissions/registry/by-domain/cate.md) · [Mediation](dgp-submissions/registry/by-domain/mediation.md) · [IV](dgp-submissions/registry/by-domain/iv.md) · [Proximal](dgp-submissions/registry/by-domain/proximal.md) · [DiD / Synthetic Control](dgp-submissions/registry/by-domain/did_sc.md)
+## Browse research areas
+
+[ATE](dgp-submissions/registry/by-domain/ate.md) · [CATE](dgp-submissions/registry/by-domain/cate.md) · [Mediation](dgp-submissions/registry/by-domain/mediation.md) · [IV](dgp-submissions/registry/by-domain/iv.md) · [Proximal Causal Inference](dgp-submissions/registry/by-domain/proximal.md) · [DiD / Synthetic Control](dgp-submissions/registry/by-domain/did_sc.md) · [Nonparametric Regression](dgp-submissions/registry/by-domain/nonparametric_regression.md) · [Quantile Inference](dgp-submissions/registry/by-domain/quantile.md) · [Semi-Supervised Inference](dgp-submissions/registry/by-domain/semi_supervised.md) · [Missing Data](dgp-submissions/registry/by-domain/missing_data.md)
 
 <!-- STATSARENA_PAPER_LIST_BEGIN -->
 
@@ -106,15 +108,38 @@ Each paper is listed **once per area**. Generators are source files from the sub
 | A semiparametric instrumented difference-in-differences approach to policy learning (Biometrika) | 1 | [DGP did-zhao-cui-2025-instrumented-v1 (English title required)](dgp-submissions/registry/drafts/did-zhao-cui-2025-instrumented-v1.md) | Interactions · Nonlinearity · Effect heterogeneity | [generator.py](dgp-submissions/registry/generators/did-zhao-cui-2025-instrumented-v1.py) |
 | [Doubly robust difference-in-differences estimators](https://doi.org/10.1016/j.jeconom.2020.06.003) (JoE) | 1 | [Sant'Anna--Zhao DGP1: two-period panel with covariate-specific trends](dgp-submissions/registry/drafts/did-santanna-zhao-2020-panel-dgp1-v1.md) | Interactions · Nonlinearity · Panel data | [generator.py](dgp-submissions/registry/generators/did-santanna-zhao-2020-panel-dgp1-v1.py) |
 
-### [Needs classification](dgp-submissions/registry/by-domain/unclassified.md)
+### [Nonparametric Regression](dgp-submissions/registry/by-domain/nonparametric_regression.md)
 
-3 paper(s) · 4 DGP mechanism(s)
+1 paper(s) · 1 DGP mechanism(s)
+
+| Paper Title | DGPs | DGP Mechanisms | Keywords | Generator.py |
+|---|---:|---|---|---|
+| [On the Effect of Bias Estimation on Coverage Accuracy in Nonparametric Inference](https://doi.org/10.1080/01621459.2017.1285776) (JASA) | 1 | [DGP nri-calonico-2018-asymmetric-sine-v1 (English title required)](dgp-submissions/registry/drafts/nri-calonico-2018-asymmetric-sine-v1.md) | Nonlinearity | [generator.py](dgp-submissions/registry/generators/nri-calonico-2018-asymmetric-sine-v1.py) |
+
+### [Quantile Inference](dgp-submissions/registry/by-domain/quantile.md)
+
+2 paper(s) · 3 DGP mechanism(s)
 
 | Paper Title | DGPs | DGP Mechanisms | Keywords | Generator.py |
 |---|---:|---|---|---|
 | [Generalized random forests](https://doi.org/10.1214/18-aos1709) (AoS) | 2 | 1: [Conditional quantile under Athey-Tibshirani-Wager Figure 2 mean shift](dgp-submissions/registry/drafts/qr-athey-tibshirani-wager-2019-mean-v1.md)<br/>2: [Conditional quantile under Athey-Tibshirani-Wager Figure 2 scale shift](dgp-submissions/registry/drafts/qr-athey-tibshirani-wager-2019-scale-v1.md) | 1: Nonlinearity<br/>2: Nonlinearity · Heteroskedasticity | [1: generator.py](dgp-submissions/registry/generators/qr-athey-tibshirani-wager-2019-mean-v1.py)<br/>[2: generator.py](dgp-submissions/registry/generators/qr-athey-tibshirani-wager-2019-scale-v1.py) |
 | [High-Dimensional Quantile Regression: Convolution Smoothing and Concave Regularization](https://doi.org/10.1111/rssb.12485) (JRSSB) | 1 | [QDI: active-coordinate Gaussian-mixture marginal of the Tan-Wang-Zhou design (10-dimensional adaptation)](dgp-submissions/registry/drafts/qdi-tan-wang-zhou-20220201-active10-mixture-v2.md) | Linearity | [generator.py](dgp-submissions/registry/generators/qdi-tan-wang-zhou-20220201-active10-mixture-v2.py) |
-| [On the Effect of Bias Estimation on Coverage Accuracy in Nonparametric Inference](https://doi.org/10.1080/01621459.2017.1285776) (JASA) | 1 | [DGP nri-calonico-2018-asymmetric-sine-v1 (English title required)](dgp-submissions/registry/drafts/nri-calonico-2018-asymmetric-sine-v1.md) | Nonlinearity | [generator.py](dgp-submissions/registry/generators/nri-calonico-2018-asymmetric-sine-v1.py) |
+
+### [Semi-Supervised Inference](dgp-submissions/registry/by-domain/semi_supervised.md)
+
+0 paper(s) · 0 DGP mechanism(s)
+
+| Paper Title | DGPs | DGP Mechanisms | Keywords | Generator.py |
+|---|---:|---|---|---|
+| — | 0 | No submissions yet | — | — |
+
+### [Missing Data](dgp-submissions/registry/by-domain/missing_data.md)
+
+0 paper(s) · 0 DGP mechanism(s)
+
+| Paper Title | DGPs | DGP Mechanisms | Keywords | Generator.py |
+|---|---:|---|---|---|
+| — | 0 | No submissions yet | — | — |
 
 <!-- STATSARENA_PAPER_LIST_END -->
 

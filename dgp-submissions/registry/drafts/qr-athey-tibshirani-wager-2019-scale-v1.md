@@ -2,7 +2,7 @@
 
 > **Unverified extraction — scientific review required.**
 
-**Primary area:** unclassified
+**Primary area:** Quantile Inference
 
 **Suggested cross-tags (unverified):** none
 
@@ -91,4 +91,3 @@ Q_q(Y|X=x)=(1+I(x1&gt;0))*Phi_inverse(q)
 **Warnings:**
 
 - No explicit latent-variable metadata or reliably identifiable latent declarations; absence from this list does not prove that no latent variables exist.
-- Unrecognized or missing family in collection.json: human classification required.

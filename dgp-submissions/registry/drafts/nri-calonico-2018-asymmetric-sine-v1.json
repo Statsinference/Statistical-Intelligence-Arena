@@ -2,7 +2,7 @@
   "schema_version": "0.1",
   "record_id": "nri-calonico-2018-asymmetric-sine-v1",
   "kind": "synthetic_dgp",
-  "domain": "unclassified",
+  "domain": "nonparametric_regression",
   "english_display": {},
   "paper": {
     "citation": "Calonico, S., Cattaneo, M. D., and Farrell, M. H. (2018). On the Effect of Bias Estimation on Coverage Accuracy in Nonparametric Inference. Journal of the American Statistical Association, 113(522), 767–779. DOI: 10.1080/01621459.2017.1285776.",
@@ -218,10 +218,9 @@
   },
   "review_status": "needs_scientific_review",
   "warnings": [
-    "No explicit latent-variable metadata or reliably identifiable latent declarations; absence from this list does not prove that no latent variables exist.",
-    "Unrecognized or missing family in collection.json: human classification required."
+    "No explicit latent-variable metadata or reliably identifiable latent declarations; absence from this list does not prove that no latent variables exist."
   ],
   "source_suggested_domain": "nonparametric_regression",
-  "classification_status": "needs_manual_classification",
+  "classification_status": "zip_metadata_unverified",
   "suggested_secondary_domains": []
 }

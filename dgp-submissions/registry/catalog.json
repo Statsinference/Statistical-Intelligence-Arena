@@ -9,7 +9,11 @@
     "mediation": 1,
     "iv": 5,
     "proximal": 10,
-    "did_sc": 3
+    "did_sc": 3,
+    "nonparametric_regression": 1,
+    "quantile": 3,
+    "semi_supervised": 0,
+    "missing_data": 0
   },
   "records": [
     {
@@ -280,7 +284,7 @@
     },
     {
       "record_id": "qr-athey-tibshirani-wager-2019-mean-v1",
-      "domain": "unclassified",
+      "domain": "quantile",
       "paper": "Athey, S., Tibshirani, J. and Wager, S. (2019). Generalized random forests. The Annals of Statistics 47(2), 1148-1178. DOI: 10.1214/18-AOS1709.",
       "mechanism": "Conditional quantile under Athey-Tibshirani-Wager Figure 2 mean shift",
       "paper_title": "Generalized random forests",
@@ -303,7 +307,7 @@
     },
     {
       "record_id": "qr-athey-tibshirani-wager-2019-scale-v1",
-      "domain": "unclassified",
+      "domain": "quantile",
       "paper": "Athey, S., Tibshirani, J. and Wager, S. (2019). Generalized random forests. The Annals of Statistics 47(2), 1148-1178. DOI: 10.1214/18-AOS1709.",
       "mechanism": "Conditional quantile under Athey-Tibshirani-Wager Figure 2 scale shift",
       "paper_title": "Generalized random forests",
@@ -801,7 +805,7 @@
     },
     {
       "record_id": "nri-calonico-2018-asymmetric-sine-v1",
-      "domain": "unclassified",
+      "domain": "nonparametric_regression",
       "paper": "Calonico, S., Cattaneo, M. D., and Farrell, M. H. (2018). On the Effect of Bias Estimation on Coverage Accuracy in Nonparametric Inference. Journal of the American Statistical Association, 113(522), 767–779. DOI: 10.1080/01621459.2017.1285776.",
       "mechanism": "DGP nri-calonico-2018-asymmetric-sine-v1 (English title required)",
       "paper_title": "On the Effect of Bias Estimation on Coverage Accuracy in Nonparametric Inference",
@@ -824,7 +828,7 @@
     },
     {
       "record_id": "qdi-tan-wang-zhou-20220201-active10-mixture-v2",
-      "domain": "unclassified",
+      "domain": "quantile",
       "paper": "Tan, K. M., Wang, L., and Zhou, W.-X. (2022). High-Dimensional Quantile Regression: Convolution Smoothing and Concave Regularization. Journal of the Royal Statistical Society Series B: Statistical Methodology 84(1), 205-233. DOI: 10.1111/rssb.12485.",
       "mechanism": "QDI: active-coordinate Gaussian-mixture marginal of the Tan-Wang-Zhou design (10-dimensional adaptation)",
       "paper_title": "High-Dimensional Quantile Regression: Convolution Smoothing and Concave Regularization",
@@ -853,5 +857,13 @@
   "notes": [
     "Equivalent DGP ate-nie-wager-2021-a-v1 in incoming/contributions.zip is already registered from incoming/ate-nie-wager-2021-a-v1.zip; merged duplicate source reference.",
     "Equivalent DGP cate-athey-tibshirani-wager-2019-confounded-v1 in incoming/contributions.zip is already registered from incoming/cate-athey-tibshirani-wager-2019-confounded-v1.zip; merged duplicate source reference."
-  ]
+  ],
+  "intake": {
+    "status": "success",
+    "zip_count": 11,
+    "indexed_dgp_count": 27,
+    "failure_count": 0,
+    "stale_record_ids": [],
+    "scientific_validation": "not_performed"
+  }
 }
