@@ -4,6 +4,7 @@ import zipfile
 from pathlib import Path
 import pytest
 from tools.dgp_registry.github_intake import ingest
+from tools.dgp_registry.domains import DOMAINS
 
 def make_zip(p: Path, *, family='ate', rid='example-ate-1'):
     with zipfile.ZipFile(p,'w') as z:
@@ -17,7 +18,7 @@ def make_zip(p: Path, *, family='ate', rid='example-ate-1'):
         }))
         z.writestr('case/config.json',json.dumps({'scenarios':{'original':{'n':500}}}))
 
-def test_six_area_catalog_from_one_zip(tmp_path):
+def test_research_area_catalog_from_one_zip(tmp_path):
     d=tmp_path/'incoming';d.mkdir();make_zip(d/'submission.zip')
     result=ingest(d,tmp_path/'registry')
     assert result['mechanisms']==1 and result['scenarios']==1 and result['papers']==1
@@ -25,7 +26,7 @@ def test_six_area_catalog_from_one_zip(tmp_path):
     assert 'Minimal ATE' in text and 'original: ATE = 2.0' in text
     assert (tmp_path/'registry/drafts/example-ate-1.json').exists()
     assert 'Unverified' in (tmp_path/'registry/drafts/example-ate-1.md').read_text()
-    assert len(list((tmp_path/'registry/by-domain').glob('*.md'))) == 6
+    assert len(list((tmp_path/'registry/by-domain').glob('*.md'))) == len(DOMAINS)
 
 def test_unknown_family_is_not_guessed(tmp_path):
     d=tmp_path/'incoming';d.mkdir();make_zip(d/'submission.zip',family='strange')
@@ -46,8 +47,9 @@ def test_identical_zip_skipped(tmp_path):
     result=ingest(d,tmp_path/'registry')
     assert result['mechanisms']==1
 
-def test_reject_unstructured_zip(tmp_path):
+def test_unstructured_zip_is_reported_without_global_failure(tmp_path):
     d=tmp_path/'incoming';d.mkdir()
     with zipfile.ZipFile(d/'raw.zip','w') as z:z.writestr('random.txt','hi')
-    with pytest.raises(ValueError,match='no structured collection.json'):
-        ingest(d,tmp_path/'registry')
+    result=ingest(d,tmp_path/'registry')
+    assert result['mechanisms']==0 and result['failure_count']==1
+    assert 'no structured collection.json' in (tmp_path/'registry/INTAKE_REPORT.md').read_text()

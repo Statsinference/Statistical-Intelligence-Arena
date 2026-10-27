@@ -8,10 +8,15 @@ import argparse
 import hashlib
 import json
 import re
+import copy
+import shutil
+import tempfile
 from pathlib import Path
-from .catalog import build
+from .catalog import build, detail
 from .domains import DOMAINS, to_domain
-from .zip_reader import read_archive
+from .intake_safety import (INPUT_ERRORS, failure, read_zip_report,
+                            write_intake_report, refresh_navigation)
+from .paper_list import paper_list_tables
 from .generator_export import export_generators
 
 
@@ -48,21 +53,52 @@ def scientific_signature(record):
 
 def ingest(incoming: Path, output: Path):
     files=sorted(p for p in incoming.rglob('*') if p.is_file() and p.suffix.lower()=='.zip')
+    incoming, output = Path(incoming), Path(output)
+    output.parent.mkdir(parents=True, exist_ok=True)
+    previous = []
+    previous_generators = {}
+    for path in (output/'drafts').glob('*.json'):
+        try:
+            rec = json.loads(path.read_text(encoding='utf-8'))
+            previous.append(rec)
+            rid = rec.get('record_id', '')
+            if re.fullmatch(r'[a-z0-9][a-z0-9-]{1,127}', rid):
+                gen = output/'generators'/(rid+'.py')
+                if gen.is_file():
+                    previous_generators[rid] = gen.read_bytes()
+        except (OSError, ValueError):
+            pass
     records=[]
     notes=[]
+    failures=[]
+    failed_sources=set()
+    stale_ids=set()
     seen_ids={}
     seen_hashes={}
     for source in files:
-        digest=hashlib.sha256(source.read_bytes()).hexdigest()
-        if digest in seen_hashes:
+        parsed, warnings, errors, digest = read_zip_report(source)
+        failures.extend(errors)
+        if errors:
+            failed_sources.add(source.as_posix())
+        if digest is not None and digest in seen_hashes:
             notes.append(f'Duplicate identical ZIP skipped: {source.as_posix()} (same as {seen_hashes[digest]})')
             continue
-        seen_hashes[digest]=source.as_posix()
-        parsed, warnings=read_archive(source)
-        if not parsed:
-            raise ValueError(f'{source}: no structured collection.json found; cannot infer DGPs without LLM')
+        if digest is not None:
+            seen_hashes[digest]=source.as_posix()
         notes.extend(f'{source.as_posix()}: {message}' for message in warnings)
         for record in parsed:
+            # Catch data-dependent formatting failures before they reach the shared catalog.
+            try:
+                preview = copy.deepcopy(record)
+                preview['domain'] = to_domain(preview.get('domain')) or 'unclassified'
+                detail(preview)
+                paper_list_tables([preview])
+                scientific_signature(preview)
+            except INPUT_ERRORS as error:
+                failed_sources.add(source.as_posix())
+                failures.append(failure(source.as_posix(), error,
+                                        (record.get('record_id') or '')+' (rendering)'))
+                continue
             id_=record['record_id']
             if id_ in seen_ids:
                 existing = seen_ids[id_]
@@ -73,8 +109,6 @@ def ingest(incoming: Path, output: Path):
                         f'{existing["provenance"]["submission_file"]}; merged duplicate source reference.'
                     )
                     continue
-                # Different scientific information with the same ID is preserved for
-                # reviewer adjudication rather than overwriting or failing every record.
                 existing['warnings'].append(
                     f'Conflicting submission with the same DGP ID in {source.as_posix()}; '
                     'review and reconcile before approval.'
@@ -117,12 +151,62 @@ def ingest(incoming: Path, output: Path):
             else:
                 record['suggested_secondary_domains']=[]
             records.append(record)
-    exported=export_generators(records,output,notes)
-    result=build(records,output,notes)
+    # Retain last-valid records for broken replacements, clearly marked as stale.
+    active_ids={r['record_id'] for r in records}
+    for old in previous:
+        rid=old.get('record_id')
+        source=(old.get('provenance') or {}).get('submission_file')
+        if source in failed_sources and rid not in active_ids:
+            retained=copy.deepcopy(old)
+            retained['ingestion_status']='stale_last_valid'
+            retained['review_status']='stale_last_valid_needs_review'
+            warning='Latest source failed processing; this is the last valid record, not a validation of the latest ZIP.'
+            if warning not in retained.setdefault('warnings',[]):
+                retained['warnings'].append(warning)
+            records.append(retained)
+            active_ids.add(rid)
+            stale_ids.add(rid)
+    notes.extend('INPUT REJECTED: '+e['source']+': '+e['message'] for e in failures)
+    # Stage all outputs before publishing. Internal failures do not erase the catalog.
+    with tempfile.TemporaryDirectory(prefix='.dgp-intake-', dir=output.parent) as work:
+        stage=Path(work)/'registry'
+        if output.is_dir():
+            shutil.copytree(output,stage)
+        else:
+            stage.mkdir()
+        fresh=[r for r in records if r['record_id'] not in stale_ids]
+        exported=export_generators(fresh,stage,notes)
+        for record in records:
+            rid=record['record_id']
+            if rid not in stale_ids:
+                continue
+            raw=previous_generators.get(rid)
+            impl=record.setdefault('implementation',{})
+            if raw is not None:
+                (stage/'generators'/(rid+'.py')).write_bytes(raw)
+                impl['exported_generator_path']='generators/'+rid+'.py'
+                impl['exported_generator_sha256']=hashlib.sha256(raw).hexdigest()
+            else:
+                impl.pop('exported_generator_path',None)
+        result=build(records,stage,notes)
+        report=write_intake_report(stage,failures,source_count=len(files),
+                                   records=records,stale_ids=stale_ids)
+        backup=Path(work)/'previous'
+        if output.exists():
+            output.rename(backup)
+        try:
+            stage.rename(output)
+        except OSError:
+            if backup.exists():
+                backup.rename(output)
+            raise
     print(f'StatsArena: exported {exported} generator.py source file(s) without execution.')
     paper_count=len({(r.get('paper') or {}).get('doi') or (r.get('paper') or {}).get('citation') or r['record_id'] for r in records})
     print(f'StatsArena: {len(files)} ZIP file(s), {paper_count} paper(s), {result["mechanisms"]} DGP(s), {result["scenarios"]} scenario(s). All remain NEEDS REVIEW.')
-    return {'zip_count':len(files),'papers':paper_count, **result}
+    if failures:
+        print(f'INPUT WARNING: {len(failures)} rejected input(s); see registry/INTAKE_REPORT.md. Other valid submissions were indexed.')
+    return {'zip_count':len(files),'papers':paper_count,
+            'failure_count':len(failures),'stale_count':len(stale_ids), **result}
 
 def main():
     parser=argparse.ArgumentParser()
@@ -132,6 +216,8 @@ def main():
     if not args.incoming.is_dir():
         parser.error(f'Incoming directory not found: {args.incoming}')
     ingest(args.incoming,args.output)
+    if args.incoming.resolve() == Path('incoming').resolve() and args.output.resolve() == Path('registry').resolve():
+        refresh_navigation(Path('README.md'))
 
 if __name__=='__main__':
     main()
