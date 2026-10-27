@@ -136,10 +136,15 @@ def test_full_collection_keywords_and_flat_summary_agree(tmp_path):
         assert summary['venue_abbreviation']==venue_abbreviation(r)==venue_abbreviation(summary)
         for entry in summary['keyword_evidence']:
             assert entry['source'].startswith('mechanism.')
-        # The currently collected ZIPs explicitly say high_dimensional=false;
-        # no interference flag is supplied. Tags must not reverse those facts.
-        assert 'High-dimensionality' not in keywords(r)
-        assert 'Interference' not in keywords(r)
+        # New submissions can legitimately declare either property. Check
+        # explicit booleans without treating a missing declaration as false.
+        props=r['mechanism'].get('properties', {})
+        for flag, label in (('high_dimensional', 'High-dimensionality'),
+                            ('interference', 'Interference')):
+            if props.get(flag) is True:
+                assert label in keywords(r)
+            elif props.get(flag) is False:
+                assert label not in keywords(r)
         if r['record_id'] in original:
             for field in ('paper','mechanism','scenarios','estimand'):
                 assert r[field]==original[r['record_id']][field]
