@@ -1,10 +1,9 @@
 name: DGP submissions
 on:
-  pull_request:
-    paths:
-      - 'dgp-submissions/**'
-      - 'CONTRIBUTING.md'
-      - '.github/workflows/dgp-submissions.yml'
+  # Trusted base workflow; no path filter: code-only PRs must also be rejected.
+  pull_request_target:
+    branches: [main]
+    types: [opened, synchronize, reopened, ready_for_review, edited]
   push:
     branches: [main]
     paths:
@@ -15,24 +14,36 @@ on:
 permissions:
   contents: read
 concurrency:
-  group: statsarena-dgp-${{ github.ref }}
+  group: statsarena-dgp-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: false
 jobs:
   validate-pr:
-    if: github.event_name == 'pull_request'
+    name: ZIP-only submission review
+    if: github.event_name == 'pull_request_target'
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    permissions:
+      contents: read
+      pull-requests: read
+      statuses: write
     defaults:
       run:
         working-directory: dgp-submissions
     steps:
       - uses: actions/checkout@v4
         with:
+          # Never checkout the contributor head/merge tree, including same-repo PRs.
+          repository: ${{ github.repository }}
+          ref: ${{ github.event.pull_request.base.sha }}
           persist-credentials: false
           fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: ZIP-only static diff check (trusted base code)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python integration/zip_only_gate.py check
       - name: Install test dependency
         run: python -m pip install pytest==8.4.2
       - name: Protect the surrounding benchmark repository
@@ -42,6 +53,7 @@ jobs:
       - name: Generate an isolated review preview
         run: |
           python -m tools.dgp_registry.github_intake --incoming incoming --output registry
+          python integration/zip_only_gate.py verify-report
           python -m tools.dgp_registry.paper_list --catalog registry/catalog.json --readme README.md
           python integration/sync_contributing.py
           python -m pytest tests/test_integration.py -q
@@ -55,8 +67,14 @@ jobs:
             CONTRIBUTING.md
             dgp-submissions/registry/
           retention-days: 14
+      - name: Attach verdict to the exact reviewed PR commit
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          JOB_STATUS: ${{ job.status }}
+        run: python integration/zip_only_gate.py finish
   publish:
-    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     permissions:
       contents: write
