@@ -1,0 +1,182 @@
+{
+  "schema_version": "0.1",
+  "record_id": "sspi-ahmed-2025-cauchy-tail-quantile-v1",
+  "kind": "synthetic_dgp",
+  "domain": "semi_supervised",
+  "english_display": {},
+  "paper": {
+    "citation": "Ahmed, H., Einmahl, J. H. J. and Zhou, C. (2025). Extreme Value Statistics in Semi-Supervised Models. JASA 120(549), 291–304.",
+    "title": "Extreme Value Statistics in Semi-Supervised Models",
+    "doi": "10.1080/01621459.2024.2333582",
+    "source_url": "https://doi.org/10.1080/01621459.2024.2333582",
+    "source_file_evidence": [],
+    "venue": "Journal of the American Statistical Association",
+    "year": 2025,
+    "source_version": "Published publisher HTML; online 15 May 2024, journal issue 2025. PDF download returned HTTP 403; governing equation was read in full-text HTML.",
+    "source_locator": "Section 2.1 defines independent samples; Section 4, first-quadrant bivariate Cauchy construction and equation (16); extreme-quantile paragraph preceding Table 3 (s=0,n=500,m=1000,p=0.002)."
+  },
+  "mechanism": {
+    "name": "Extreme quantile with a tail-dependent Cauchy auxiliary variable",
+    "title_en": null,
+    "family_id": "sspi-ahmed-2025-cauchy-tail-quantile",
+    "generation_equations": [
+      "(V,U) has the bivariate standard Cauchy law restricted to V>0,U>0, with scale matrix I_2 (source s=0).",
+      "Equivalent independent-normal construction: G0,G1,G2 iid N(0,1), V=abs(G1)/abs(G0), U=abs(G2)/abs(G0).",
+      "F_0(v)=2*atan(v)/pi for v>=0. Outcome Y=-log(1-F_0(V)); observed covariate X1=U. Source gamma=0 in equation (16).",
+      "Two independent samples from the same population: source_n_labeled rows with observed Y and source_n_unlabeled rows with observed X only. R=1 in the first labeled block; Y_obs=Y there. R=0 in the remaining block; Y_obs=0 is a placeholder."
+    ],
+    "observed_variables": [
+      {
+        "name": "X1",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "R",
+        "role": "label_indicator",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Y_obs",
+        "role": "masked_outcome",
+        "dtype": "float",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [
+      {
+        "name": "G1",
+        "role": "latent_candidate",
+        "evidence": {
+          "file": "collection.json",
+          "equation_index": 1,
+          "expression": "Equivalent independent-normal construction: G0,G1,G2 iid N(0,1), V=abs(G1)/abs(G0), U=abs(G2)/abs(G0)."
+        },
+        "provenance": "inferred_from_stochastic_declaration"
+      },
+      {
+        "name": "G2",
+        "role": "latent_candidate",
+        "evidence": {
+          "file": "collection.json",
+          "equation_index": 1,
+          "expression": "Equivalent independent-normal construction: G0,G1,G2 iid N(0,1), V=abs(G1)/abs(G0), U=abs(G2)/abs(G0)."
+        },
+        "provenance": "inferred_from_stochastic_declaration"
+      }
+    ],
+    "latent_variables_status": "candidates_from_equations_need_review",
+    "sampling": {
+      "unit": "An independently sampled individual",
+      "dependence": "Independent rows, with within-row dependence specified by the equations.",
+      "n_semantics": "Total rows. L=max(1,min(n-1,(n*source_n_labeled+(source_n_labeled+source_n_unlabeled)//2)//(source_n_labeled+source_n_unlabeled))).",
+      "predictor_provenance": "The generator exposes covariates as auxiliary information; fitted predictions are supplied by subsequent statistical methods using permitted labeled data and their documented training or cross-fitting splits. This contribution supplies the sampling law and observed data; later methods specify training and validation partitions. Prediction columns are absent."
+    },
+    "assumptions": [
+      "Independent sampling units; labeled and unlabeled samples are independent draws from the same joint/marginal population.",
+      "Label availability is fixed by sampling design independently of generated values, corresponding to MCAR sampling.",
+      "The stated distributions, independence conditions and selected population functional define the target. Its numerical verification applies to the declared scenario."
+    ],
+    "properties": {
+      "dimension": 1,
+      "effective_dimension": 1,
+      "high_dimensional": false,
+      "nonlinear": true,
+      "interactions": false,
+      "heteroskedastic": null,
+      "notes": "One auxiliary covariate with infinite first moment; Y has an exponential marginal. Dependence persists even with source s=0. The target density equals 0.002 at the queried quantile. effective_dimension counts inputs that determine the conditional response law, including an observed surrogate or the sole tail-dependent auxiliary variable; correlated extra coordinates may carry additional information. high_dimensional compares total dimension with source labeled sample size. Interactions marks a nonadditive response/probability map."
+    }
+  },
+  "estimand": {
+    "name": "Q_Y(0.998)",
+    "definition": "Marginal quantile inf{y:Pr(Y<=y)>=0.998} in the common population; tail probability is fixed at 0.002.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "original",
+      "parameters": {
+        "observation_rule": "two_independent_samples",
+        "placeholder": 0.0,
+        "mechanism": "tail",
+        "dimension": 1,
+        "source_n_labeled": 500,
+        "source_n_unlabeled": 1000,
+        "cauchy_scale_offdiagonal": 0.0,
+        "gamma": 0.0,
+        "tail_probability": 0.002
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 6.214608098422191,
+        "expression": "Marginal quantile inf{y:Pr(Y<=y)>=0.998} in the common population; tail probability is fixed at 0.002.",
+        "derivation": "The probability integral transform gives Y~Exponential(rate=1). Thus Q_Y(0.998)=-log(0.002). Dependence with X1 is retained by the common denominator.",
+        "evidence": [
+          {
+            "file": "sspi-ahmed-2025-cauchy-tail-quantile-v1/checks/report.json",
+            "location": "execution.scenario_results[original].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "Select s=0,gamma=0,n=500,m=1000 and p=1/500 from the source quantile setting.",
+    "Rename source target X as Y and source auxiliary Y as X1 to match the collection schema.",
+    "Use the equivalent absolute-normal construction for the s=0 first-quadrant law and evaluate the survival probability with atan2 for tail stability.",
+    "Represent independent labeled/unlabeled samples in a single table: all X columns, label indicator R and Y_obs. A zero on an R=0 row is a finite placeholder.",
+    "The generate argument n counts total rows. Source total yields exact source allocation; other n use nearest-integer ratio allocation with both groups nonempty.",
+    "Use local PCG64 random streams, with independent covariate and response-noise streams. Each row remains an independent population draw."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "sspi-ahmed-2025-cauchy-tail-quantile-v1/generator.py",
+    "truth_reference": "sspi-ahmed-2025-cauchy-tail-quantile-v1/truth.py",
+    "source_archive": "sspi-mark8924-20261027-eight-mechanisms-v4.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/sspi-ahmed-2025-cauchy-tail-quantile-v1.py",
+    "exported_generator_sha256": "401d2da48e0d91bd57e0d64bb5af7a06dd11d52636be66213d2990150494b40d"
+  },
+  "evidence": [
+    {
+      "file": "sspi-ahmed-2025-cauchy-tail-quantile-v1/collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "sspi-ahmed-2025-cauchy-tail-quantile-v1/config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "sspi-ahmed-2025-cauchy-tail-quantile-v1/source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "ad0458aaf32df21ab158707ffdc0063d292d02e2613c3230c1e635b9535868e7",
+    "collection_sha256": "1b04138b185be3d4b5f010d90725e7fb6603c0cf54bf164604b84f96af680090",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "contributor_computational_review",
+    "submission_file": "incoming/sspi-mark8924-20261027-eight-mechanisms-v4.zip",
+    "submitted_zip_sha256": "ad0458aaf32df21ab158707ffdc0063d292d02e2613c3230c1e635b9535868e7",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "Latent-variable candidates inferred from source equations; confirm their roles and completeness against the original paper or generator."
+  ],
+  "source_suggested_domain": "semi_supervised",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

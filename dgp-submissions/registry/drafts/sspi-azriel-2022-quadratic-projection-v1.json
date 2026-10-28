@@ -1,0 +1,159 @@
+{
+  "schema_version": "0.1",
+  "record_id": "sspi-azriel-2022-quadratic-projection-v1",
+  "kind": "synthetic_dgp",
+  "domain": "semi_supervised",
+  "english_display": {},
+  "paper": {
+    "citation": "Azriel, D., Brown, L. D., Sklar, M., Berk, R., Buja, A. and Zhao, L. (2022). Semi-Supervised Linear Regression. JASA 117(540), 2238–2251.",
+    "title": "Semi-Supervised Linear Regression",
+    "doi": "10.1080/01621459.2021.1915320",
+    "source_url": "https://doi.org/10.1080/01621459.2021.1915320",
+    "source_file_evidence": [],
+    "venue": "Journal of the American Statistical Association",
+    "year": 2022,
+    "source_version": "arXiv:1612.02391v4, 13 April 2021; version linked by the first author under the published JASA article",
+    "source_locator": "Section 5.1, equation (27), PDF p. 18; Figure 1, PDF p. 19 (alpha=1/2, beta=1, n=100, m=2n); Section 1.1 and Section 2 define sampling and projection."
+  },
+  "mechanism": {
+    "name": "Best linear slope under a quadratic Gaussian response",
+    "title_en": null,
+    "family_id": "sspi-azriel-2022-quadratic-projection",
+    "generation_equations": [
+      "X~N(0,1) and epsilon~N(0,1) independently.",
+      "Y=0.5*X^2+X+epsilon.",
+      "Two independent samples from the same population: source_n_labeled rows with observed Y and source_n_unlabeled rows with observed X only. R=1 in the first labeled block; Y_obs=Y there. R=0 in the remaining block; Y_obs=0 is a placeholder."
+    ],
+    "observed_variables": [
+      {
+        "name": "X1",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "R",
+        "role": "label_indicator",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Y_obs",
+        "role": "masked_outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [],
+    "latent_variables_status": "not_explicitly_specified",
+    "sampling": {
+      "unit": "An independently sampled individual",
+      "dependence": "Independent rows, with within-row dependence specified by the equations.",
+      "n_semantics": "Total rows. L=max(1,min(n-1,(n*source_n_labeled+(source_n_labeled+source_n_unlabeled)//2)//(source_n_labeled+source_n_unlabeled))).",
+      "predictor_provenance": "The generator exposes covariates as auxiliary information; fitted predictions are supplied by subsequent statistical methods using permitted labeled data and their documented training or cross-fitting splits. This contribution supplies the sampling law and observed data; later methods specify training and validation partitions. Prediction columns are absent."
+    },
+    "assumptions": [
+      "Independent sampling units; labeled and unlabeled samples are independent draws from the same joint/marginal population.",
+      "Label availability is fixed by sampling design independently of generated values, corresponding to MCAR sampling.",
+      "The stated distributions, independence conditions and selected population functional define the target. Its numerical verification applies to the declared scenario."
+    ],
+    "properties": {
+      "dimension": 1,
+      "effective_dimension": 1,
+      "high_dimensional": false,
+      "nonlinear": true,
+      "interactions": false,
+      "heteroskedastic": false,
+      "notes": "One active covariate; a quadratic conditional mean with a linear-projection target. effective_dimension counts inputs that determine the conditional response law, including an observed surrogate or the sole tail-dependent auxiliary variable; correlated extra coordinates may carry additional information. high_dimensional compares total dimension with source labeled sample size. Interactions marks a nonadditive response/probability map."
+    }
+  },
+  "estimand": {
+    "name": "beta_L2",
+    "definition": "Slope in the population least-squares projection of Y on (1,X).",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "original",
+      "parameters": {
+        "observation_rule": "two_independent_samples",
+        "placeholder": 0.0,
+        "mechanism": "quadratic",
+        "dimension": 1,
+        "source_n_labeled": 100,
+        "source_n_unlabeled": 200,
+        "alpha": 0.5,
+        "beta": 1.0,
+        "noise_sd": 1.0
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 1.0,
+        "expression": "Slope in the population least-squares projection of Y on (1,X).",
+        "derivation": "Cov(X,Y)/Var(X)=[0.5 E(X^3)+E(X^2)]/1=1; the projection intercept is 0.5.",
+        "evidence": [
+          {
+            "file": "sspi-azriel-2022-quadratic-projection-v1/checks/report.json",
+            "location": "execution.scenario_results[original].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "Select alpha=1/2 and n=100 from the source Figure 1 grid, beta=1 and m=2n.",
+    "Return the slope component of the population linear projection through the scalar truth interface.",
+    "Represent independent labeled/unlabeled samples in a single table: all X columns, label indicator R and Y_obs. A zero on an R=0 row is a finite placeholder.",
+    "The generate argument n counts total rows. Source total yields exact source allocation; other n use nearest-integer ratio allocation with both groups nonempty.",
+    "Use local PCG64 random streams, with independent covariate and response-noise streams. Each row remains an independent population draw."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "sspi-azriel-2022-quadratic-projection-v1/generator.py",
+    "truth_reference": "sspi-azriel-2022-quadratic-projection-v1/truth.py",
+    "source_archive": "sspi-mark8924-20261027-eight-mechanisms-v4.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/sspi-azriel-2022-quadratic-projection-v1.py",
+    "exported_generator_sha256": "98411501ba562a47cf5c16ecfb28ec0b8e29bb325b6e01dd818cfe0946d84ade"
+  },
+  "evidence": [
+    {
+      "file": "sspi-azriel-2022-quadratic-projection-v1/collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "sspi-azriel-2022-quadratic-projection-v1/config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "sspi-azriel-2022-quadratic-projection-v1/source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "ad0458aaf32df21ab158707ffdc0063d292d02e2613c3230c1e635b9535868e7",
+    "collection_sha256": "682062e9768afab9bfa9b0e642c2ecb9614255deaa1576f5c0fb5a3bdf8a19bc",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "contributor_computational_review",
+    "submission_file": "incoming/sspi-mark8924-20261027-eight-mechanisms-v4.zip",
+    "submitted_zip_sha256": "ad0458aaf32df21ab158707ffdc0063d292d02e2613c3230c1e635b9535868e7",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "No explicit latent-variable metadata or reliably identifiable latent declarations; absence from this list does not prove that no latent variables exist."
+  ],
+  "source_suggested_domain": "semi_supervised",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

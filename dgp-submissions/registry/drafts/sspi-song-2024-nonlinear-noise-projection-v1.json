@@ -1,0 +1,194 @@
+{
+  "schema_version": "0.1",
+  "record_id": "sspi-song-2024-nonlinear-noise-projection-v1",
+  "kind": "synthetic_dgp",
+  "domain": "semi_supervised",
+  "english_display": {},
+  "paper": {
+    "citation": "Song, S., Lin, Y. and Zhou, Y. (2024). A General M-estimation Theory in Semi-Supervised Framework. JASA 119(546), 1065–1075.",
+    "title": "A General M-estimation Theory in Semi-Supervised Framework",
+    "doi": "10.1080/01621459.2023.2169699",
+    "source_url": "https://doi.org/10.1080/01621459.2023.2169699",
+    "source_file_evidence": [],
+    "venue": "Journal of the American Statistical Association",
+    "year": 2024,
+    "source_version": "Official published supplementary material, Figshare article 22191384 version 1, released 28 February 2023; file 39438924 contains the supplement and reproducibility R code.",
+    "source_locator": "Official supplement Section 3.2, Setting S1, PDF p. 43; sample grid p. 44; Figure 11(b), p. 50. Released dataGeneration.R: GenerateData option S1 and g_S1."
+  },
+  "mechanism": {
+    "name": "Linear projection under correlated nonlinear regression with shared noise",
+    "title_en": null,
+    "family_id": "sspi-song-2024-nonlinear-noise-projection",
+    "generation_equations": [
+      "X~N_4(0,Sigma), Sigma_jk=0.5^abs(j-k); eta~N(0,1) independently.",
+      "Y=(1/4)*sum_{j=1}^4 [exp(X_j+2*cos(X_j)-0.3*eta)+0.1*exp(X_j+sin(X_j))+2.5*X_j^3]+eta. The same eta appears in every term within a row.",
+      "Two independent samples from the same population: source_n_labeled rows with observed Y and source_n_unlabeled rows with observed X only. R=1 in the first labeled block; Y_obs=Y there. R=0 in the remaining block; Y_obs=0 is a placeholder."
+    ],
+    "observed_variables": [
+      {
+        "name": "X1",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X2",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X3",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X4",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "R",
+        "role": "label_indicator",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Y_obs",
+        "role": "masked_outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [
+      {
+        "name": "eta",
+        "role": "latent_candidate",
+        "evidence": {
+          "file": "collection.json",
+          "equation_index": 0,
+          "expression": "eta~N(0,1) independently."
+        },
+        "provenance": "inferred_from_stochastic_declaration"
+      }
+    ],
+    "latent_variables_status": "candidates_from_equations_need_review",
+    "sampling": {
+      "unit": "An independently sampled individual",
+      "dependence": "Independent rows, with within-row dependence specified by the equations.",
+      "n_semantics": "Total rows. L=max(1,min(n-1,(n*source_n_labeled+(source_n_labeled+source_n_unlabeled)//2)//(source_n_labeled+source_n_unlabeled))).",
+      "predictor_provenance": "The generator exposes covariates as auxiliary information; fitted predictions are supplied by subsequent statistical methods using permitted labeled data and their documented training or cross-fitting splits. This contribution supplies the sampling law and observed data; later methods specify training and validation partitions. Prediction columns are absent."
+    },
+    "assumptions": [
+      "Independent sampling units; labeled and unlabeled samples are independent draws from the same joint/marginal population.",
+      "Label availability is fixed by sampling design independently of generated values, corresponding to MCAR sampling.",
+      "The stated distributions, independence conditions and selected population functional define the target. Its numerical verification applies to the declared scenario."
+    ],
+    "properties": {
+      "dimension": 4,
+      "effective_dimension": 4,
+      "high_dimensional": false,
+      "nonlinear": true,
+      "interactions": false,
+      "heteroskedastic": true,
+      "notes": "Four direct response coordinates; nonlinear additive conditional mean. Conditional noise variance depends on X through the shared exponential-noise multiplier. The same row-level eta is used in the exponential and additive noise terms. effective_dimension counts inputs that determine the conditional response law, including an observed surrogate or the sole tail-dependent auxiliary variable; correlated extra coordinates may carry additional information. high_dimensional compares total dimension with source labeled sample size. Interactions marks a nonadditive response/probability map."
+    }
+  },
+  "estimand": {
+    "name": "theta_L2[1]",
+    "definition": "First slope in the population least-squares projection of Y on (1,X1,...,X4).",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "original",
+      "parameters": {
+        "observation_rule": "two_independent_samples",
+        "placeholder": 0.0,
+        "mechanism": "songlinear",
+        "dimension": 4,
+        "source_n_labeled": 250,
+        "source_n_unlabeled": 1000,
+        "rho": 0.5,
+        "noise_sd": 1.0,
+        "query_coordinate": 1
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 2.5194516102296536,
+        "expression": "First slope in the population least-squares projection of Y on (1,X1,...,X4).",
+        "derivation": "Let h(z)=exp(0.045)*exp(z+2*cos(z))+0.1*exp(z+sin(z))+2.5*z^3. Gaussian conditional moments give E[X_j*h(X_k)]=Sigma_jk*E[Z*h(Z)] for Z~N(0,1). Thus every projection slope equals E[Z*h(Z)]/4. Independently, Stein identity gives E[hprime(Z)]/4.",
+        "evidence": [
+          {
+            "file": "sspi-song-2024-nonlinear-noise-projection-v1/checks/report.json",
+            "location": "execution.scenario_results[original].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "Select S1 with p=4,n=250,N=1000 from Figure 11(b).",
+    "Return the first slope component through the scalar truth interface; retain the source intercept in the projection definition.",
+    "Represent independent labeled/unlabeled samples in a single table: all X columns, label indicator R and Y_obs. A zero on an R=0 row is a finite placeholder.",
+    "The generate argument n counts total rows. Source total yields exact source allocation; other n use nearest-integer ratio allocation with both groups nonempty.",
+    "Use local PCG64 random streams, with independent covariate and response-noise streams. Each row remains an independent population draw."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "sspi-song-2024-nonlinear-noise-projection-v1/generator.py",
+    "truth_reference": "sspi-song-2024-nonlinear-noise-projection-v1/truth.py",
+    "source_archive": "sspi-mark8924-20261027-eight-mechanisms-v4.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/sspi-song-2024-nonlinear-noise-projection-v1.py",
+    "exported_generator_sha256": "bdeb005b64a777365b81ef1f03533f93940a83229e948672268fdededb682513"
+  },
+  "evidence": [
+    {
+      "file": "sspi-song-2024-nonlinear-noise-projection-v1/collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "sspi-song-2024-nonlinear-noise-projection-v1/config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "sspi-song-2024-nonlinear-noise-projection-v1/source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "ad0458aaf32df21ab158707ffdc0063d292d02e2613c3230c1e635b9535868e7",
+    "collection_sha256": "5a1c6588775656e6af2dc4d2cb026aef1f18f7bb2abe9a8e8991d36e3990b975",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "contributor_computational_review",
+    "submission_file": "incoming/sspi-mark8924-20261027-eight-mechanisms-v4.zip",
+    "submitted_zip_sha256": "ad0458aaf32df21ab158707ffdc0063d292d02e2613c3230c1e635b9535868e7",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "Latent-variable candidates inferred from source equations; confirm their roles and completeness against the original paper or generator."
+  ],
+  "source_suggested_domain": "semi_supervised",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

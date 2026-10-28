@@ -1,8 +1,8 @@
 {
   "status": "draft_needs_review",
-  "paper_count": 22,
-  "mechanism_count": 27,
-  "scenario_count": 51,
+  "paper_count": 29,
+  "mechanism_count": 35,
+  "scenario_count": 59,
   "domains": {
     "ate": 2,
     "cate": 2,
@@ -12,7 +12,7 @@
     "did_sc": 3,
     "nonparametric_regression": 1,
     "quantile": 3,
-    "semi_supervised": 0,
+    "semi_supervised": 8,
     "missing_data": 0
   },
   "records": [
@@ -852,6 +852,234 @@
       ],
       "truth_by_scenario": "q50-active10-mixture: theta_tau = Q_tau(Y \\| W = e1) = 1.7999999999997158; q90-active10-mixture: theta_tau = Q_tau(Y \\| W = e1) = 4.2114834571051345",
       "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "sspi-ahmed-2025-cauchy-tail-quantile-v1",
+      "domain": "semi_supervised",
+      "paper": "Ahmed, H., Einmahl, J. H. J. and Zhou, C. (2025). Extreme Value Statistics in Semi-Supervised Models. JASA 120(549), 291–304.",
+      "mechanism": "Extreme quantile with a tail-dependent Cauchy auxiliary variable",
+      "paper_title": "Extreme Value Statistics in Semi-Supervised Models",
+      "venue_abbreviation": "JASA",
+      "keywords": [
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/sspi-ahmed-2025-cauchy-tail-quantile-v1.py",
+      "latent_variables": [
+        "G1",
+        "G2"
+      ],
+      "truth_by_scenario": "original: Q_Y(0.998) = 6.214608098422191",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "sspi-azriel-2022-quadratic-projection-v1",
+      "domain": "semi_supervised",
+      "paper": "Azriel, D., Brown, L. D., Sklar, M., Berk, R., Buja, A. and Zhao, L. (2022). Semi-Supervised Linear Regression. JASA 117(540), 2238–2251.",
+      "mechanism": "Best linear slope under a quadratic Gaussian response",
+      "paper_title": "Semi-Supervised Linear Regression",
+      "venue_abbreviation": "JASA",
+      "keywords": [
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/sspi-azriel-2022-quadratic-projection-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "original: beta_L2 = 1.0",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "sspi-cai-guo-2020-dense-explained-variance-v1",
+      "domain": "semi_supervised",
+      "paper": "Cai, T. T. and Guo, Z. (2020). Semisupervised inference for explained variance in high dimensional linear regression and its applications. JRSS-B 82(2), 391–419.",
+      "mechanism": "Explained variance for dense decaying regression with AR covariance",
+      "paper_title": "Semisupervised inference for explained variance in high dimensional linear regression and its applications",
+      "venue_abbreviation": "JRSSB",
+      "keywords": [
+        "Linearity",
+        "High-dimensionality"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Linearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": false,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "High-dimensionality",
+          "source": "mechanism.properties.high_dimensional",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/sspi-cai-guo-2020-dense-explained-variance-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "original: beta^T Sigma beta = 9.333333333333336",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "sspi-ji-2026-discrete-surrogate-mean-v1",
+      "domain": "semi_supervised",
+      "paper": "Ji, W., Lei, L. and Zrnic, T. (2026). Predictions as Surrogates: Revisiting Surrogate Outcomes in the Age of AI. Biometrika, asag053, advance online accepted manuscript, published 10 September 2026.",
+      "mechanism": "Population mean with a miscalibrated three-level surrogate",
+      "paper_title": "Predictions as Surrogates: Revisiting Surrogate Outcomes in the Age of AI",
+      "venue_abbreviation": "Biometrika",
+      "keywords": [
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/sspi-ji-2026-discrete-surrogate-mean-v1.py",
+      "latent_variables": [
+        "Z"
+      ],
+      "truth_by_scenario": "original: E[Y] = 0.6666666666666666",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "sspi-song-2024-even-mixture-logistic-projection-v1",
+      "domain": "semi_supervised",
+      "paper": "Song, S., Lin, Y. and Zhou, Y. (2024). A General M-estimation Theory in Semi-Supervised Framework. JASA 119(546), 1065–1075.",
+      "mechanism": "Logistic projection under an even nonlinear Gaussian-mixture response",
+      "paper_title": "A General M-estimation Theory in Semi-Supervised Framework",
+      "venue_abbreviation": "JASA",
+      "keywords": [
+        "Interactions",
+        "Nonlinearity",
+        "Heteroskedasticity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Interactions",
+          "source": "mechanism.properties.interactions",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "Heteroskedasticity",
+          "source": "mechanism.properties.heteroskedastic",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/sspi-song-2024-even-mixture-logistic-projection-v1.py",
+      "latent_variables": [
+        "G"
+      ],
+      "truth_by_scenario": "original: theta_logistic[1] = 0.0",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "sspi-song-2024-nonlinear-noise-projection-v1",
+      "domain": "semi_supervised",
+      "paper": "Song, S., Lin, Y. and Zhou, Y. (2024). A General M-estimation Theory in Semi-Supervised Framework. JASA 119(546), 1065–1075.",
+      "mechanism": "Linear projection under correlated nonlinear regression with shared noise",
+      "paper_title": "A General M-estimation Theory in Semi-Supervised Framework",
+      "venue_abbreviation": "JASA",
+      "keywords": [
+        "Nonlinearity",
+        "Heteroskedasticity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "Heteroskedasticity",
+          "source": "mechanism.properties.heteroskedastic",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/sspi-song-2024-nonlinear-noise-projection-v1.py",
+      "latent_variables": [
+        "eta"
+      ],
+      "truth_by_scenario": "original: theta_L2[1] = 2.5194516102296536",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "sspi-wen-2025-gaussian-cdf-v1",
+      "domain": "semi_supervised",
+      "paper": "Wen, M., Jia, Y., Ren, H., Wang, Z. and Zou, C. (2025). Semi-supervised distribution learning. Biometrika 112(1), asae056.",
+      "mechanism": "Marginal distribution inference with sparse Gaussian linear signal",
+      "paper_title": "Semi-supervised distribution learning",
+      "venue_abbreviation": "Biometrika",
+      "keywords": [
+        "Linearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Linearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": false,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/sspi-wen-2025-gaussian-cdf-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "original: F_Y(1) = 0.8144533152386513",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "sspi-zhang-bradic-2022-cosine-index-v1",
+      "domain": "semi_supervised",
+      "paper": "Zhang, Y. and Bradic, J. (2022). High-dimensional semi-supervised learning: in search of optimal inference of the mean. Biometrika 109(2), 387–403.",
+      "mechanism": "Cosine single-index mean with Gaussian covariates",
+      "paper_title": "High-dimensional semi-supervised learning: in search of optimal inference of the mean",
+      "venue_abbreviation": "Biometrika",
+      "keywords": [
+        "Interactions",
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Interactions",
+          "source": "mechanism.properties.interactions",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/sspi-zhang-bradic-2022-cosine-index-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "original: E[Y] = 0.6693904804452895",
+      "status": "needs_scientific_review"
     }
   ],
   "notes": [
@@ -860,8 +1088,8 @@
   ],
   "intake": {
     "status": "success",
-    "zip_count": 11,
-    "indexed_dgp_count": 27,
+    "zip_count": 12,
+    "indexed_dgp_count": 35,
     "failure_count": 0,
     "stale_record_ids": [],
     "scientific_validation": "not_performed"

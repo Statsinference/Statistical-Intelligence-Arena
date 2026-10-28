@@ -1,0 +1,549 @@
+{
+  "schema_version": "0.1",
+  "record_id": "sspi-zhang-bradic-2022-cosine-index-v1",
+  "kind": "synthetic_dgp",
+  "domain": "semi_supervised",
+  "english_display": {},
+  "paper": {
+    "citation": "Zhang, Y. and Bradic, J. (2022). High-dimensional semi-supervised learning: in search of optimal inference of the mean. Biometrika 109(2), 387–403.",
+    "title": "High-dimensional semi-supervised learning: in search of optimal inference of the mean",
+    "doi": "10.1093/biomet/asab042",
+    "source_url": "https://doi.org/10.1093/biomet/asab042",
+    "source_file_evidence": [],
+    "venue": "Biometrika",
+    "year": 2022,
+    "source_version": "Final journal PDF, author/public-access copy",
+    "source_locator": "Section 5.1, Model 2, PDF p. 11 / journal p. 397; Model 1 defines Gaussian noise; Figure 2 supplies n and m/n. Section 1 defines the two samples."
+  },
+  "mechanism": {
+    "name": "Cosine single-index mean with Gaussian covariates",
+    "title_en": null,
+    "family_id": "sspi-zhang-bradic-2022-cosine-index",
+    "generation_equations": [
+      "X_j iid N(0,1), j=1,...,50; epsilon~N(0,0.25), independent of X.",
+      "Y=3*cos(X_1+X_2+X_3)+epsilon. Source p=51 includes an intercept.",
+      "Two independent samples from the same population: source_n_labeled rows with observed Y and source_n_unlabeled rows with observed X only. R=1 in the first labeled block; Y_obs=Y there. R=0 in the remaining block; Y_obs=0 is a placeholder."
+    ],
+    "observed_variables": [
+      {
+        "name": "X1",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X2",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X3",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X4",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X5",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X6",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X7",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X8",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X9",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X10",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X11",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X12",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X13",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X14",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X15",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X16",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X17",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X18",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X19",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X20",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X21",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X22",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X23",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X24",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X25",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X26",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X27",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X28",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X29",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X30",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X31",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X32",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X33",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X34",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X35",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X36",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X37",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X38",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X39",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X40",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X41",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X42",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X43",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X44",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X45",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X46",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X47",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X48",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X49",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X50",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "R",
+        "role": "label_indicator",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Y_obs",
+        "role": "masked_outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [],
+    "latent_variables_status": "not_explicitly_specified",
+    "sampling": {
+      "unit": "An independently sampled individual",
+      "dependence": "Independent rows, with within-row dependence specified by the equations.",
+      "n_semantics": "Total rows. L=max(1,min(n-1,(n*source_n_labeled+(source_n_labeled+source_n_unlabeled)//2)//(source_n_labeled+source_n_unlabeled))).",
+      "predictor_provenance": "The generator exposes covariates as auxiliary information; fitted predictions are supplied by subsequent statistical methods using permitted labeled data and their documented training or cross-fitting splits. This contribution supplies the sampling law and observed data; later methods specify training and validation partitions. Prediction columns are absent."
+    },
+    "assumptions": [
+      "Independent sampling units; labeled and unlabeled samples are independent draws from the same joint/marginal population.",
+      "Label availability is fixed by sampling design independently of generated values, corresponding to MCAR sampling.",
+      "The stated distributions, independence conditions and selected population functional define the target. Its numerical verification applies to the declared scenario."
+    ],
+    "properties": {
+      "dimension": 50,
+      "effective_dimension": 3,
+      "high_dimensional": false,
+      "nonlinear": true,
+      "interactions": true,
+      "heteroskedastic": false,
+      "notes": "Three direct response coordinates among 50; the cosine of their sum is nonlinear and nonadditive. Dimension 50 is below source labeled n=100. effective_dimension counts inputs that determine the conditional response law, including an observed surrogate or the sole tail-dependent auxiliary variable; correlated extra coordinates may carry additional information. high_dimensional compares total dimension with source labeled sample size. Interactions marks a nonadditive response/probability map."
+    }
+  },
+  "estimand": {
+    "name": "E[Y]",
+    "definition": "Population mean of Y in the common labeled/unlabeled population.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "original",
+      "parameters": {
+        "observation_rule": "two_independent_samples",
+        "placeholder": 0.0,
+        "mechanism": "cosine",
+        "dimension": 50,
+        "source_n_labeled": 100,
+        "source_n_unlabeled": 1000,
+        "amplitude": 3.0,
+        "noise_sd": 0.5
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.6693904804452895,
+        "expression": "Population mean of Y in the common labeled/unlabeled population.",
+        "derivation": "S=X1+X2+X3~N(0,3); E[Y]=3*exp(-3/2).",
+        "evidence": [
+          {
+            "file": "sspi-zhang-bradic-2022-cosine-index-v1/checks/report.json",
+            "location": "execution.scenario_results[original].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "Select the source n=100, m=1000 setting; map source p=51 to 50 observed covariates.",
+    "Represent independent labeled/unlabeled samples in a single table: all X columns, label indicator R and Y_obs. A zero on an R=0 row is a finite placeholder.",
+    "The generate argument n counts total rows. Source total yields exact source allocation; other n use nearest-integer ratio allocation with both groups nonempty.",
+    "Use local PCG64 random streams, with independent covariate and response-noise streams. Each row remains an independent population draw."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "sspi-zhang-bradic-2022-cosine-index-v1/generator.py",
+    "truth_reference": "sspi-zhang-bradic-2022-cosine-index-v1/truth.py",
+    "source_archive": "sspi-mark8924-20261027-eight-mechanisms-v4.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/sspi-zhang-bradic-2022-cosine-index-v1.py",
+    "exported_generator_sha256": "080898bba7657909dd7752c5576d6247de5183ceab587a2fc8a9a18e38634e9f"
+  },
+  "evidence": [
+    {
+      "file": "sspi-zhang-bradic-2022-cosine-index-v1/collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "sspi-zhang-bradic-2022-cosine-index-v1/config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "sspi-zhang-bradic-2022-cosine-index-v1/source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "ad0458aaf32df21ab158707ffdc0063d292d02e2613c3230c1e635b9535868e7",
+    "collection_sha256": "456a81d042ffebcd17852a914e5a5d801b6ce13c07dba8b88503b8112c34e93f",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "contributor_computational_review",
+    "submission_file": "incoming/sspi-mark8924-20261027-eight-mechanisms-v4.zip",
+    "submitted_zip_sha256": "ad0458aaf32df21ab158707ffdc0063d292d02e2613c3230c1e635b9535868e7",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "No explicit latent-variable metadata or reliably identifiable latent declarations; absence from this list does not prove that no latent variables exist."
+  ],
+  "source_suggested_domain": "semi_supervised",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

@@ -57,8 +57,14 @@
 
 ## Semi-Supervised Inference
 
-No submissions in this area yet.
-
+| Extreme Value Statistics in Semi-Supervised Models (JASA) | [Extreme quantile with a tail-dependent Cauchy auxiliary variable](../drafts/sspi-ahmed-2025-cauchy-tail-quantile-v1.md) | Nonlinearity | original: Q_Y(0.998) = 6.214608098422191 | Needs review | [generator.py](../generators/sspi-ahmed-2025-cauchy-tail-quantile-v1.py) |
+| Semi-Supervised Linear Regression (JASA) | [Best linear slope under a quadratic Gaussian response](../drafts/sspi-azriel-2022-quadratic-projection-v1.md) | Nonlinearity | original: beta_L2 = 1.0 | Needs review | [generator.py](../generators/sspi-azriel-2022-quadratic-projection-v1.py) |
+| Semisupervised inference for explained variance in high dimensional linear regression and its applications (JRSSB) | [Explained variance for dense decaying regression with AR covariance](../drafts/sspi-cai-guo-2020-dense-explained-variance-v1.md) | Linearity · High-dimensionality | original: beta^T Sigma beta = 9.333333333333336 | Needs review | [generator.py](../generators/sspi-cai-guo-2020-dense-explained-variance-v1.py) |
+| Predictions as Surrogates: Revisiting Surrogate Outcomes in the Age of AI (Biometrika) | [Population mean with a miscalibrated three-level surrogate](../drafts/sspi-ji-2026-discrete-surrogate-mean-v1.md) | Nonlinearity | original: E[Y] = 0.6666666666666666 | Needs review | [generator.py](../generators/sspi-ji-2026-discrete-surrogate-mean-v1.py) |
+| A General M-estimation Theory in Semi-Supervised Framework (JASA) | [Logistic projection under an even nonlinear Gaussian-mixture response](../drafts/sspi-song-2024-even-mixture-logistic-projection-v1.md) | Interactions · Nonlinearity · Heteroskedasticity | original: theta_logistic[1] = 0.0 | Needs review | [generator.py](../generators/sspi-song-2024-even-mixture-logistic-projection-v1.py) |
+| A General M-estimation Theory in Semi-Supervised Framework (JASA) | [Linear projection under correlated nonlinear regression with shared noise](../drafts/sspi-song-2024-nonlinear-noise-projection-v1.md) | Nonlinearity · Heteroskedasticity | original: theta_L2[1] = 2.5194516102296536 | Needs review | [generator.py](../generators/sspi-song-2024-nonlinear-noise-projection-v1.py) |
+| Semi-supervised distribution learning (Biometrika) | [Marginal distribution inference with sparse Gaussian linear signal](../drafts/sspi-wen-2025-gaussian-cdf-v1.md) | Linearity | original: F_Y(1) = 0.8144533152386513 | Needs review | [generator.py](../generators/sspi-wen-2025-gaussian-cdf-v1.py) |
+| High-dimensional semi-supervised learning: in search of optimal inference of the mean (Biometrika) | [Cosine single-index mean with Gaussian covariates](../drafts/sspi-zhang-bradic-2022-cosine-index-v1.md) | Interactions · Nonlinearity | original: E[Y] = 0.6693904804452895 | Needs review | [generator.py](../generators/sspi-zhang-bradic-2022-cosine-index-v1.py) |
 
 ## Missing Data
 

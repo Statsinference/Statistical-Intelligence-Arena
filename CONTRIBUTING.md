@@ -127,11 +127,17 @@ Each paper is listed **once per area**. Generators are source files from the sub
 
 ### [Semi-Supervised Inference](dgp-submissions/registry/by-domain/semi_supervised.md)
 
-0 paper(s) · 0 DGP mechanism(s)
+7 paper(s) · 8 DGP mechanism(s)
 
 | Paper Title | DGPs | DGP Mechanisms | Keywords | Generator.py |
 |---|---:|---|---|---|
-| — | 0 | No submissions yet | — | — |
+| A General M-estimation Theory in Semi-Supervised Framework (JASA) | 2 | 1: [Linear projection under correlated nonlinear regression with shared noise](dgp-submissions/registry/drafts/sspi-song-2024-nonlinear-noise-projection-v1.md)<br/>2: [Logistic projection under an even nonlinear Gaussian-mixture response](dgp-submissions/registry/drafts/sspi-song-2024-even-mixture-logistic-projection-v1.md) | 1: Nonlinearity · Heteroskedasticity<br/>2: Interactions · Nonlinearity · Heteroskedasticity | [1: generator.py](dgp-submissions/registry/generators/sspi-song-2024-nonlinear-noise-projection-v1.py)<br/>[2: generator.py](dgp-submissions/registry/generators/sspi-song-2024-even-mixture-logistic-projection-v1.py) |
+| Extreme Value Statistics in Semi-Supervised Models (JASA) | 1 | [Extreme quantile with a tail-dependent Cauchy auxiliary variable](dgp-submissions/registry/drafts/sspi-ahmed-2025-cauchy-tail-quantile-v1.md) | Nonlinearity | [generator.py](dgp-submissions/registry/generators/sspi-ahmed-2025-cauchy-tail-quantile-v1.py) |
+| High-dimensional semi-supervised learning: in search of optimal inference of the mean (Biometrika) | 1 | [Cosine single-index mean with Gaussian covariates](dgp-submissions/registry/drafts/sspi-zhang-bradic-2022-cosine-index-v1.md) | Interactions · Nonlinearity | [generator.py](dgp-submissions/registry/generators/sspi-zhang-bradic-2022-cosine-index-v1.py) |
+| Predictions as Surrogates: Revisiting Surrogate Outcomes in the Age of AI (Biometrika) | 1 | [Population mean with a miscalibrated three-level surrogate](dgp-submissions/registry/drafts/sspi-ji-2026-discrete-surrogate-mean-v1.md) | Nonlinearity | [generator.py](dgp-submissions/registry/generators/sspi-ji-2026-discrete-surrogate-mean-v1.py) |
+| Semi-supervised distribution learning (Biometrika) | 1 | [Marginal distribution inference with sparse Gaussian linear signal](dgp-submissions/registry/drafts/sspi-wen-2025-gaussian-cdf-v1.md) | Linearity | [generator.py](dgp-submissions/registry/generators/sspi-wen-2025-gaussian-cdf-v1.py) |
+| Semi-Supervised Linear Regression (JASA) | 1 | [Best linear slope under a quadratic Gaussian response](dgp-submissions/registry/drafts/sspi-azriel-2022-quadratic-projection-v1.md) | Nonlinearity | [generator.py](dgp-submissions/registry/generators/sspi-azriel-2022-quadratic-projection-v1.py) |
+| Semisupervised inference for explained variance in high dimensional linear regression and its applications (JRSSB) | 1 | [Explained variance for dense decaying regression with AR covariance](dgp-submissions/registry/drafts/sspi-cai-guo-2020-dense-explained-variance-v1.md) | Linearity · High-dimensionality | [generator.py](dgp-submissions/registry/generators/sspi-cai-guo-2020-dense-explained-variance-v1.py) |
 
 ### [Missing Data](dgp-submissions/registry/by-domain/missing_data.md)
 

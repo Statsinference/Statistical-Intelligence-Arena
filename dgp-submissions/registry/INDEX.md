@@ -4,7 +4,7 @@
 
 > **Draft view:** all automatically extracted records still need human scientific review.
 
-**27 DGP mechanisms**, **51 parameter scenarios**, **22 reference papers**
+**35 DGP mechanisms**, **59 parameter scenarios**, **29 reference papers**
 
 ## Research areas
 
@@ -18,7 +18,7 @@
 | DiD / Synthetic Control | 3 | 3 | [Browse](by-domain/did_sc.md) |
 | Nonparametric Regression | 1 | 1 | [Browse](by-domain/nonparametric_regression.md) |
 | Quantile Inference | 2 | 3 | [Browse](by-domain/quantile.md) |
-| Semi-Supervised Inference | 0 | 0 | [Browse](by-domain/semi_supervised.md) |
+| Semi-Supervised Inference | 7 | 8 | [Browse](by-domain/semi_supervised.md) |
 | Missing Data | 0 | 0 | [Browse](by-domain/missing_data.md) |
 
 ## Paper list by research area
@@ -108,11 +108,17 @@ Each paper is listed **once per area**. Generators are source files from the sub
 
 ### [Semi-Supervised Inference](by-domain/semi_supervised.md)
 
-0 paper(s) · 0 DGP mechanism(s)
+7 paper(s) · 8 DGP mechanism(s)
 
 | Paper Title | DGPs | DGP Mechanisms | Keywords | Generator.py |
 |---|---:|---|---|---|
-| — | 0 | No submissions yet | — | — |
+| [A General M-estimation Theory in Semi-Supervised Framework](https://doi.org/10.1080/01621459.2023.2169699) (JASA) | 2 | 1: [Linear projection under correlated nonlinear regression with shared noise](drafts/sspi-song-2024-nonlinear-noise-projection-v1.md)<br/>2: [Logistic projection under an even nonlinear Gaussian-mixture response](drafts/sspi-song-2024-even-mixture-logistic-projection-v1.md) | 1: Nonlinearity · Heteroskedasticity<br/>2: Interactions · Nonlinearity · Heteroskedasticity | [1: generator.py](generators/sspi-song-2024-nonlinear-noise-projection-v1.py)<br/>[2: generator.py](generators/sspi-song-2024-even-mixture-logistic-projection-v1.py) |
+| [Extreme Value Statistics in Semi-Supervised Models](https://doi.org/10.1080/01621459.2024.2333582) (JASA) | 1 | [Extreme quantile with a tail-dependent Cauchy auxiliary variable](drafts/sspi-ahmed-2025-cauchy-tail-quantile-v1.md) | Nonlinearity | [generator.py](generators/sspi-ahmed-2025-cauchy-tail-quantile-v1.py) |
+| [High-dimensional semi-supervised learning: in search of optimal inference of the mean](https://doi.org/10.1093/biomet/asab042) (Biometrika) | 1 | [Cosine single-index mean with Gaussian covariates](drafts/sspi-zhang-bradic-2022-cosine-index-v1.md) | Interactions · Nonlinearity | [generator.py](generators/sspi-zhang-bradic-2022-cosine-index-v1.py) |
+| [Predictions as Surrogates: Revisiting Surrogate Outcomes in the Age of AI](https://doi.org/10.1093/biomet/asag053) (Biometrika) | 1 | [Population mean with a miscalibrated three-level surrogate](drafts/sspi-ji-2026-discrete-surrogate-mean-v1.md) | Nonlinearity | [generator.py](generators/sspi-ji-2026-discrete-surrogate-mean-v1.py) |
+| [Semi-supervised distribution learning](https://doi.org/10.1093/biomet/asae056) (Biometrika) | 1 | [Marginal distribution inference with sparse Gaussian linear signal](drafts/sspi-wen-2025-gaussian-cdf-v1.md) | Linearity | [generator.py](generators/sspi-wen-2025-gaussian-cdf-v1.py) |
+| [Semi-Supervised Linear Regression](https://doi.org/10.1080/01621459.2021.1915320) (JASA) | 1 | [Best linear slope under a quadratic Gaussian response](drafts/sspi-azriel-2022-quadratic-projection-v1.md) | Nonlinearity | [generator.py](generators/sspi-azriel-2022-quadratic-projection-v1.py) |
+| [Semisupervised inference for explained variance in high dimensional linear regression and its applications](https://doi.org/10.1111/rssb.12357) (JRSSB) | 1 | [Explained variance for dense decaying regression with AR covariance](drafts/sspi-cai-guo-2020-dense-explained-variance-v1.md) | Linearity · High-dimensionality | [generator.py](generators/sspi-cai-guo-2020-dense-explained-variance-v1.py) |
 
 ### [Missing Data](by-domain/missing_data.md)
 
