@@ -1,16 +1,16 @@
 # Contributing a literature DGP
 
-<p align="center"><a href="incoming/"><img src="https://img.shields.io/badge/Upload_ZIP-Open_this_repo_folder-1677C8?style=for-the-badge" alt="Submit one ZIP" /></a></p>
+<p align="center"><a href="/../../upload/main/dgp-submissions/incoming/"><img src="https://img.shields.io/badge/Upload_ZIP-Choose_or_drop_files-1677C8?style=for-the-badge" alt="Upload a ZIP directly to this repository" /></a></p>
 
 **No Issues. No API Key. No local server. Everything happens in this private GitHub repository.**
 
 ## Student instructions
 
-1. **Outside collaborators:** fork the private upstream repository into **your personal GitHub account**, then open your fork (URL must begin with your username, not `Statsinference`).
-2. Click **Upload ZIP** above to open the `incoming/` **folder in the repository you are viewing**. Click **Add file → Upload files**, choose your `.zip`, and commit to your own fork's branch.
+1. **Outside collaborators:** fork the private upstream repository into **your personal GitHub account**, then open your fork (URL must begin with your username, not `Statsinference`). For an existing fork, use **Sync fork → Update branch** to obtain the updated upload button.
+2. Click **Upload ZIP** above to open GitHub's **file-upload page directly**, targeting `dgp-submissions/incoming/` on `main` **in the repository you are viewing**. **Drag and drop your `.zip`, or click “choose your files”**, then **Commit changes** to your fork. Your fork's `main` is not the upstream repository's `main`.
 3. In your fork, click **Contribute → Open pull request** targeting `Statsinference/stats-inference-arena:main`. The **DGP ZIP-only** check must pass before a maintainer merges. Contributors with direct upstream Write access can instead upload to upstream.
 
-**Do not extract the ZIP before uploading it.** One ZIP may contain multiple mechanisms and scenarios.
+The button stays in the repository you are viewing; it does not automatically find your fork from the upstream page. Check the repository owner before uploading. **Do not extract the ZIP before uploading it.** One ZIP may contain multiple mechanisms and scenarios.
 
 ## Research area (ten choices)
 

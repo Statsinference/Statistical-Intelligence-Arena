@@ -3,16 +3,18 @@
 **100% GitHub-native · Structured ZIP → automatic DGP catalog · No Issue · No LLM API · No other website**
 
 <p align="center">
-  <a href="incoming/"><img alt="Open the DGP ZIP folder in this repository" src="https://img.shields.io/badge/Submit_DGP-Open_ZIP_folder-1677C8?style=for-the-badge" /></a>
+  <a href="/../../upload/main/dgp-submissions/incoming/"><img alt="Upload a DGP ZIP directly to this repository" src="https://img.shields.io/badge/Submit_DGP-Upload_ZIP-1677C8?style=for-the-badge" /></a>
   <a href="registry/INDEX.md"><img alt="Browse research areas" src="https://img.shields.io/badge/Browse-DGP_Research_Areas-444444?style=for-the-badge" /></a>
   <a href="CONTRIBUTING.md"><img alt="Contribution instructions" src="https://img.shields.io/badge/How_to_Contribute-Read_Guide-007F73?style=for-the-badge" /></a>
 </p>
 
 ## For students — 3 steps, all on GitHub
 
-1. **Outside collaborators (Read):** first fork the private repository into your own GitHub account. Open **your fork**, then click **Submit DGP**. The link opens the `incoming/` folder **in the repository you are viewing**, so check that the repository owner in the URL is your username, not `Statsinference`.
-2. Inside `incoming/`, click **Add file → Upload files** and upload your structured `.zip` file. Click **Commit changes** to your fork's branch.
+1. **Outside collaborators (Read):** first fork the private repository into your own GitHub account. Open **your fork**, then click **Submit DGP**. The button opens GitHub's **file-upload page directly**, targeting `incoming/` on the `main` branch **of the repository you are viewing**. Check that the repository owner in the URL is your username, not `Statsinference`.
+2. **Drag and drop your structured `.zip`, or click “choose your files”.** Click **Commit changes** to save it to your fork. Your fork's `main` is separate from the upstream repository's `main`; uploading here does not submit or merge anything upstream.
 3. In your fork, choose **Contribute → Open pull request** and target `Statsinference/stats-inference-arena:main`. The **DGP ZIP-only** check runs before a maintainer reviews and merges; the catalog updates only after merging.
+
+**Already have a fork?** Use **Sync fork → Update branch** to obtain this updated upload button, then reopen this page in your fork. The button follows the repository you are viewing; it does not automatically find your fork when clicked on the upstream page.
 
 Maintainers with upstream Write permission may commit ZIPs directly to the upstream repository instead. **Outside collaborators do not need upstream Write permission.** Do not use an upstream upload URL from inside your fork.
 
