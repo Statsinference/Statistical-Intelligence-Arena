@@ -1,6 +1,6 @@
 # Contributing a literature DGP
 
-<p align="center"><a href="/../../upload/main/dgp-submissions/incoming/"><img src="https://img.shields.io/badge/Upload_ZIP-Choose_or_drop_files-1677C8?style=for-the-badge" alt="Upload a ZIP directly to this repository" /></a></p>
+<p align="center"><a href="/../../upload/main/dgp-submissions/incoming"><img src="https://img.shields.io/badge/Upload_ZIP-Choose_or_drop_files-1677C8?style=for-the-badge" alt="Upload a ZIP directly to this repository" /></a></p>
 
 **No Issues. No API Key. No local server. Everything happens in this private GitHub repository.**
 

@@ -15,7 +15,7 @@ sync=importlib.util.module_from_spec(spec);spec.loader.exec_module(sync)
 # content root (/OWNER/REPO/blob/REF/), not at github.com/. Two parent components
 # leave blob/REF, so the owner and repository are retained, including in forks.
 # This is a GitHub UI action URL, not a file path in the checked-out repository.
-UPLOAD_LINK = "/../../upload/main/dgp-submissions/incoming/"
+UPLOAD_LINK = "/../../upload/main/dgp-submissions/incoming"
 
 
 def test_contributing_uses_current_destination_upload():
@@ -82,7 +82,7 @@ def test_upload_url_resolution_preserves_repository(repository, view_ref):
     """Model GitHub's documented repository-root link resolution, not login/UI."""
     content_root=f"https://github.com/{repository}/blob/{view_ref}/"
     actual=urljoin(content_root,UPLOAD_LINK.lstrip("/"))
-    assert actual == f"https://github.com/{repository}/upload/main/dgp-submissions/incoming/"
+    assert actual == f"https://github.com/{repository}/upload/main/dgp-submissions/incoming"
     assert "/blob/" not in actual
 
 
