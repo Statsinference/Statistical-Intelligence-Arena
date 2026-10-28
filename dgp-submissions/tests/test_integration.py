@@ -10,7 +10,8 @@ sync=importlib.util.module_from_spec(spec);spec.loader.exec_module(sync)
 
 def test_contributing_uses_current_destination_upload():
     text=(ROOT/"CONTRIBUTING.md").read_text(encoding="utf-8")
-    assert "https://github.com/Statsinference/stats-inference-arena/upload/main/dgp-submissions/incoming" in text
+    assert 'href="dgp-submissions/incoming/"' in text
+    assert "Statsinference/stats-inference-arena/upload/main" not in text
     assert "Statsinference/submission_test/upload" not in text
     assert "| Paper Title | DGPs | DGP Mechanisms | Keywords | Generator.py |" in text
 
@@ -37,3 +38,15 @@ def test_generated_catalog_links_are_within_isolated_service():
     for record in data["records"]:
         assert (HOME/"registry/drafts"/(record["record_id"]+".md")).is_file()
         if record.get("generator_file"):assert (HOME/"registry"/record["generator_file"]).is_file()
+
+
+def test_fork_safe_submission_links():
+    """The same Markdown must work in a personal fork, without upstream write access."""
+    main=(HOME/"README.md").read_text(encoding="utf-8")
+    guide=(HOME/"CONTRIBUTING.md").read_text(encoding="utf-8")
+    for source in (main,guide):
+        assert 'href="incoming/"' in source
+        assert "Statsinference/stats-inference-arena/upload/main" not in source
+    rendered=sync.render(main)
+    assert 'href="dgp-submissions/incoming/"' in rendered
+    assert "Statsinference/stats-inference-arena/upload/main" not in rendered

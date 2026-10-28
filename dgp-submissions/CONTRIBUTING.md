@@ -1,14 +1,14 @@
 # Contributing a literature DGP
 
-<p align="center"><a href="https://github.com/Statsinference/stats-inference-arena/upload/main/dgp-submissions/incoming"><img src="https://img.shields.io/badge/Upload_one_structured_ZIP-Open_GitHub_Upload-1677C8?style=for-the-badge" alt="Submit one ZIP" /></a></p>
+<p align="center"><a href="incoming/"><img src="https://img.shields.io/badge/Upload_ZIP-Open_this_repo_folder-1677C8?style=for-the-badge" alt="Submit one ZIP" /></a></p>
 
 **No Issues. No API Key. No local server. Everything happens in this private GitHub repository.**
 
 ## Student instructions
 
-1. Click **Upload one structured ZIP** above to open GitHub's file uploader in `incoming/`.
-2. Choose or drag in your `.zip`.
-3. Commit to `main` if you have permission. If branch protection requires a PR, choose a new branch and open the PR.
+1. **Outside collaborators:** fork the private upstream repository into **your personal GitHub account**, then open your fork (URL must begin with your username, not `Statsinference`).
+2. Click **Upload ZIP** above to open the `incoming/` **folder in the repository you are viewing**. Click **Add file → Upload files**, choose your `.zip`, and commit to your own fork's branch.
+3. In your fork, click **Contribute → Open pull request** targeting `Statsinference/stats-inference-arena:main`. The **DGP ZIP-only** check must pass before a maintainer merges. Contributors with direct upstream Write access can instead upload to upstream.
 
 **Do not extract the ZIP before uploading it.** One ZIP may contain multiple mechanisms and scenarios.
 

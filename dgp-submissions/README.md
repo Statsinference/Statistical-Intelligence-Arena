@@ -3,16 +3,18 @@
 **100% GitHub-native · Structured ZIP → automatic DGP catalog · No Issue · No LLM API · No other website**
 
 <p align="center">
-  <a href="https://github.com/Statsinference/stats-inference-arena/upload/main/dgp-submissions/incoming"><img alt="Submit DGP ZIP" src="https://img.shields.io/badge/Submit_DGP-Upload_ZIP_on_GitHub-1677C8?style=for-the-badge" /></a>
+  <a href="incoming/"><img alt="Open the DGP ZIP folder in this repository" src="https://img.shields.io/badge/Submit_DGP-Open_ZIP_folder-1677C8?style=for-the-badge" /></a>
   <a href="registry/INDEX.md"><img alt="Browse research areas" src="https://img.shields.io/badge/Browse-DGP_Research_Areas-444444?style=for-the-badge" /></a>
   <a href="CONTRIBUTING.md"><img alt="Contribution instructions" src="https://img.shields.io/badge/How_to_Contribute-Read_Guide-007F73?style=for-the-badge" /></a>
 </p>
 
 ## For students — 3 steps, all on GitHub
 
-1. Click **Submit DGP** to open GitHub's file-upload screen for `incoming/` directly.
-2. Choose or drag in **one structured `.zip` file**.
-3. Click **Commit changes** (to `main` when authorized, otherwise to a new branch and submit a pull request). If GitHub requires a new branch, create a PR; the extraction preview runs on the PR, and the catalog updates after it is merged.
+1. **Outside collaborators (Read):** first fork the private repository into your own GitHub account. Open **your fork**, then click **Submit DGP**. The link opens the `incoming/` folder **in the repository you are viewing**, so check that the repository owner in the URL is your username, not `Statsinference`.
+2. Inside `incoming/`, click **Add file → Upload files** and upload your structured `.zip` file. Click **Commit changes** to your fork's branch.
+3. In your fork, choose **Contribute → Open pull request** and target `Statsinference/stats-inference-arena:main`. The **DGP ZIP-only** check runs before a maintainer reviews and merges; the catalog updates only after merging.
+
+Maintainers with upstream Write permission may commit ZIPs directly to the upstream repository instead. **Outside collaborators do not need upstream Write permission.** Do not use an upstream upload URL from inside your fork.
 
 The ZIP's `collection.json` already identifies its research family, so **students do not need a separate dropdown**. A missing or unknown family is flagged for human classification, never guessed.
 
