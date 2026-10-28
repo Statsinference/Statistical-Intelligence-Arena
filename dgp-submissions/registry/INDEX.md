@@ -4,7 +4,7 @@
 
 > **Draft view:** all automatically extracted records still need human scientific review.
 
-**35 DGP mechanisms**, **59 parameter scenarios**, **29 reference papers**
+**36 DGP mechanisms**, **74 parameter scenarios**, **30 reference papers**
 
 ## Research areas
 
@@ -16,7 +16,7 @@
 | IV — Instrumental Variables | 5 | 5 | [Browse](by-domain/iv.md) |
 | Proximal Causal Inference | 7 | 10 | [Browse](by-domain/proximal.md) |
 | DiD / Synthetic Control | 3 | 3 | [Browse](by-domain/did_sc.md) |
-| Nonparametric Regression | 1 | 1 | [Browse](by-domain/nonparametric_regression.md) |
+| Nonparametric Regression | 2 | 2 | [Browse](by-domain/nonparametric_regression.md) |
 | Quantile Inference | 2 | 3 | [Browse](by-domain/quantile.md) |
 | Semi-Supervised Inference | 7 | 8 | [Browse](by-domain/semi_supervised.md) |
 | Missing Data | 0 | 0 | [Browse](by-domain/missing_data.md) |
@@ -91,10 +91,11 @@ Each paper is listed **once per area**. Generators are source files from the sub
 
 ### [Nonparametric Regression](by-domain/nonparametric_regression.md)
 
-1 paper(s) · 1 DGP mechanism(s)
+2 paper(s) · 2 DGP mechanism(s)
 
 | Paper Title | DGPs | DGP Mechanisms | Keywords | Generator.py |
 |---|---:|---|---|---|
+| [A simple bootstrap method for constructing nonparametric confidence bands for functions](https://doi.org/10.1214/13-aos1137) (AoS) | 1 | [Hall--Horowitz Gaussian bump on a linear trend: pointwise regression-mean inference](drafts/nri-hall-horowitz-2013-gaussian-bump-v1.md) | Nonlinearity | [generator.py](generators/nri-hall-horowitz-2013-gaussian-bump-v1.py) |
 | [On the Effect of Bias Estimation on Coverage Accuracy in Nonparametric Inference](https://doi.org/10.1080/01621459.2017.1285776) (JASA) | 1 | [DGP nri-calonico-2018-asymmetric-sine-v1 (English title required)](drafts/nri-calonico-2018-asymmetric-sine-v1.md) | Nonlinearity | [generator.py](generators/nri-calonico-2018-asymmetric-sine-v1.py) |
 
 ### [Quantile Inference](by-domain/quantile.md)

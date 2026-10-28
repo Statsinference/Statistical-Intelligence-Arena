@@ -1,0 +1,429 @@
+{
+  "schema_version": "0.1",
+  "record_id": "nri-hall-horowitz-2013-gaussian-bump-v1",
+  "kind": "synthetic_dgp",
+  "domain": "nonparametric_regression",
+  "english_display": {},
+  "paper": {
+    "citation": "Hall, P. and Horowitz, J. (2013). A simple bootstrap method for constructing nonparametric confidence bands for functions. The Annals of Statistics, 41(4), 1892-1921. DOI: 10.1214/13-AOS1137.",
+    "title": null,
+    "doi": "10.1214/13-aos1137",
+    "source_url": "https://doi.org/10.1214/13-AOS1137",
+    "source_file_evidence": [],
+    "venue": "The Annals of Statistics",
+    "year": 2013,
+    "source_version": "IMS electronic reprint arXiv:1309.4864v1 (2013-09-19)",
+    "source_locator": "arXiv:1309.4864v1, IMS electronic reprint (2013-09-19): section 2.1 equation (2.1), PDF p4; section 3.1 g1 and design/noise settings, PDF p13; section 3.2 Tables 1-3, PDF pp16-17, and discussion of x=0,+/-0.15,+/-0.3, PDF p21. Page numbers refer to this reprint, not original journal pagination."
+  },
+  "mechanism": {
+    "name": "Hall--Horowitz Gaussian bump on a linear trend: pointwise regression-mean inference",
+    "title_en": null,
+    "family_id": "hall-horowitz-2013-gaussian-bump",
+    "generation_equations": [
+      {
+        "label": "Design",
+        "expression": "X_i iid Uniform[-1,1]."
+      },
+      {
+        "label": "Errors",
+        "expression": "epsilon_i iid Normal(0,sigma^2), sigma in {1,0.5,0.2}; independent of X_i in the implementation."
+      },
+      {
+        "label": "Source g1",
+        "expression": "g1(x)=x+5*phi(10*x)=x+5/sqrt(2*pi)*exp(-50*x^2). phi is the standard normal density, without an extra factor 10."
+      },
+      {
+        "label": "Response",
+        "expression": "Y_i=g1(X_i)+epsilon_i."
+      },
+      {
+        "label": "Target",
+        "expression": "theta(x0)=E[Y|X=x0]=g1(x0); x0 in {-0.3,-0.15,0,0.15,0.3}."
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "X",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-1",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [],
+    "latent_variables_status": "not_explicitly_specified",
+    "sampling": {
+      "unit": "one observation pair (X,Y)",
+      "dependence": "IID rows; independent X and epsilon within each row in the implementation. Fixed seed across query scenarios intentionally reuses the same sample."
+    },
+    "assumptions": [
+      "IID observation pairs (X,Y); fully observed covariate and outcome.",
+      "Declared product design: X uniform on [-1,1] independent of centered Gaussian epsilon; E[epsilon|X]=0 and Var(epsilon|X)=sigma^2.",
+      "Use the continuous conditional-mean version to define a value at a point under a continuous design. X has density 1/2 on its support.",
+      "The five registered query points lie in the interior and within the source evaluation region [-0.9,0.9].",
+      "No causal exchangeability assumptions are needed. The smooth regression function does not by itself establish CI validity for an arbitrary estimator."
+    ],
+    "properties": {
+      "dimension": 1,
+      "effective_dimension": 1,
+      "observed_columns": 2,
+      "high_dimensional": false,
+      "interactions": false,
+      "nonlinear": true,
+      "heteroskedastic": false,
+      "registered_boundary_queries": false,
+      "notes": "Only X enters the mean. Nonlinearity comes from 5*phi(10X)=5/sqrt(2*pi)*exp(-50X^2), a smooth narrow bump on a linear trend. No multivariable interactions or irrelevant covariates. Var(Y|X)=sigma^2 is constant; three noise scales are scenarios, not distinct mechanisms. p=1 is low dimensional for the source n=100,200,400."
+    }
+  },
+  "estimand": {
+    "name": "theta(x0)=g1(x0)",
+    "definition": "Continuous conditional-mean version E[Y|X=x0]=x0+5*phi(10*x0) for a fixed query x0. Default x0=0; this is not a marginal mean or a future-response prediction target.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "source_sd100_query_neg030",
+      "parameters": {
+        "query_x": -0.3,
+        "noise_sd": 1.0
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": -0.27784075794030993,
+        "expression": "Continuous conditional-mean version E[Y|X=x0]=x0+5*phi(10*x0) for a fixed query x0. Default x0=0; this is not a marginal mean or a future-response prediction target.",
+        "derivation": "Analytic conditional mean; checked by Gaussian Fourier inversion with composite Simpson integration and exact symmetry/peak identities.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[source_sd100_query_neg030].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "source_sd100_query_neg015",
+      "parameters": {
+        "query_x": -0.15,
+        "noise_sd": 1.0
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.49758797832945867,
+        "expression": "Continuous conditional-mean version E[Y|X=x0]=x0+5*phi(10*x0) for a fixed query x0. Default x0=0; this is not a marginal mean or a future-response prediction target.",
+        "derivation": "Analytic conditional mean; checked by Gaussian Fourier inversion with composite Simpson integration and exact symmetry/peak identities.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[source_sd100_query_neg015].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "source_sd100_query_zero",
+      "parameters": {
+        "query_x": 0.0,
+        "noise_sd": 1.0
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 1.9947114020071635,
+        "expression": "Continuous conditional-mean version E[Y|X=x0]=x0+5*phi(10*x0) for a fixed query x0. Default x0=0; this is not a marginal mean or a future-response prediction target.",
+        "derivation": "Analytic conditional mean; checked by Gaussian Fourier inversion with composite Simpson integration and exact symmetry/peak identities.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[source_sd100_query_zero].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "source_sd100_query_pos015",
+      "parameters": {
+        "query_x": 0.15,
+        "noise_sd": 1.0
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.7975879783294587,
+        "expression": "Continuous conditional-mean version E[Y|X=x0]=x0+5*phi(10*x0) for a fixed query x0. Default x0=0; this is not a marginal mean or a future-response prediction target.",
+        "derivation": "Analytic conditional mean; checked by Gaussian Fourier inversion with composite Simpson integration and exact symmetry/peak identities.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[source_sd100_query_pos015].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "source_sd100_query_pos030",
+      "parameters": {
+        "query_x": 0.3,
+        "noise_sd": 1.0
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.32215924205969004,
+        "expression": "Continuous conditional-mean version E[Y|X=x0]=x0+5*phi(10*x0) for a fixed query x0. Default x0=0; this is not a marginal mean or a future-response prediction target.",
+        "derivation": "Analytic conditional mean; checked by Gaussian Fourier inversion with composite Simpson integration and exact symmetry/peak identities.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[source_sd100_query_pos030].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "source_sd050_query_neg030",
+      "parameters": {
+        "query_x": -0.3,
+        "noise_sd": 0.5
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": -0.27784075794030993,
+        "expression": "Continuous conditional-mean version E[Y|X=x0]=x0+5*phi(10*x0) for a fixed query x0. Default x0=0; this is not a marginal mean or a future-response prediction target.",
+        "derivation": "Analytic conditional mean; checked by Gaussian Fourier inversion with composite Simpson integration and exact symmetry/peak identities.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[source_sd050_query_neg030].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "source_sd050_query_neg015",
+      "parameters": {
+        "query_x": -0.15,
+        "noise_sd": 0.5
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.49758797832945867,
+        "expression": "Continuous conditional-mean version E[Y|X=x0]=x0+5*phi(10*x0) for a fixed query x0. Default x0=0; this is not a marginal mean or a future-response prediction target.",
+        "derivation": "Analytic conditional mean; checked by Gaussian Fourier inversion with composite Simpson integration and exact symmetry/peak identities.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[source_sd050_query_neg015].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "source_sd050_query_zero",
+      "parameters": {
+        "query_x": 0.0,
+        "noise_sd": 0.5
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 1.9947114020071635,
+        "expression": "Continuous conditional-mean version E[Y|X=x0]=x0+5*phi(10*x0) for a fixed query x0. Default x0=0; this is not a marginal mean or a future-response prediction target.",
+        "derivation": "Analytic conditional mean; checked by Gaussian Fourier inversion with composite Simpson integration and exact symmetry/peak identities.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[source_sd050_query_zero].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "source_sd050_query_pos015",
+      "parameters": {
+        "query_x": 0.15,
+        "noise_sd": 0.5
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.7975879783294587,
+        "expression": "Continuous conditional-mean version E[Y|X=x0]=x0+5*phi(10*x0) for a fixed query x0. Default x0=0; this is not a marginal mean or a future-response prediction target.",
+        "derivation": "Analytic conditional mean; checked by Gaussian Fourier inversion with composite Simpson integration and exact symmetry/peak identities.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[source_sd050_query_pos015].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "source_sd050_query_pos030",
+      "parameters": {
+        "query_x": 0.3,
+        "noise_sd": 0.5
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.32215924205969004,
+        "expression": "Continuous conditional-mean version E[Y|X=x0]=x0+5*phi(10*x0) for a fixed query x0. Default x0=0; this is not a marginal mean or a future-response prediction target.",
+        "derivation": "Analytic conditional mean; checked by Gaussian Fourier inversion with composite Simpson integration and exact symmetry/peak identities.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[source_sd050_query_pos030].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "source_sd020_query_neg030",
+      "parameters": {
+        "query_x": -0.3,
+        "noise_sd": 0.2
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": -0.27784075794030993,
+        "expression": "Continuous conditional-mean version E[Y|X=x0]=x0+5*phi(10*x0) for a fixed query x0. Default x0=0; this is not a marginal mean or a future-response prediction target.",
+        "derivation": "Analytic conditional mean; checked by Gaussian Fourier inversion with composite Simpson integration and exact symmetry/peak identities.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[source_sd020_query_neg030].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "source_sd020_query_neg015",
+      "parameters": {
+        "query_x": -0.15,
+        "noise_sd": 0.2
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.49758797832945867,
+        "expression": "Continuous conditional-mean version E[Y|X=x0]=x0+5*phi(10*x0) for a fixed query x0. Default x0=0; this is not a marginal mean or a future-response prediction target.",
+        "derivation": "Analytic conditional mean; checked by Gaussian Fourier inversion with composite Simpson integration and exact symmetry/peak identities.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[source_sd020_query_neg015].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "source_sd020_query_zero",
+      "parameters": {
+        "query_x": 0.0,
+        "noise_sd": 0.2
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 1.9947114020071635,
+        "expression": "Continuous conditional-mean version E[Y|X=x0]=x0+5*phi(10*x0) for a fixed query x0. Default x0=0; this is not a marginal mean or a future-response prediction target.",
+        "derivation": "Analytic conditional mean; checked by Gaussian Fourier inversion with composite Simpson integration and exact symmetry/peak identities.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[source_sd020_query_zero].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "source_sd020_query_pos015",
+      "parameters": {
+        "query_x": 0.15,
+        "noise_sd": 0.2
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.7975879783294587,
+        "expression": "Continuous conditional-mean version E[Y|X=x0]=x0+5*phi(10*x0) for a fixed query x0. Default x0=0; this is not a marginal mean or a future-response prediction target.",
+        "derivation": "Analytic conditional mean; checked by Gaussian Fourier inversion with composite Simpson integration and exact symmetry/peak identities.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[source_sd020_query_pos015].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "source_sd020_query_pos030",
+      "parameters": {
+        "query_x": 0.3,
+        "noise_sd": 0.2
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.32215924205969004,
+        "expression": "Continuous conditional-mean version E[Y|X=x0]=x0+5*phi(10*x0) for a fixed query x0. Default x0=0; this is not a marginal mean or a future-response prediction target.",
+        "derivation": "Analytic conditional mean; checked by Gaussian Fourier inversion with composite Simpson integration and exact symmetry/peak identities.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[source_sd020_query_pos030].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "Preserve the section 3.1 g1 equation, Uniform[-1,1] design and all three source error standard deviations; implement independent X and epsilon and IID pairs explicitly, consistent with the source model. The paragraph does not state the joint X-epsilon law separately.",
+    "Represent the source pointwise regression-function target by five scalar queries x=-0.3,-0.15,0,0.15,0.3. These locations are discussed in section 3.2 (electronic reprint p21); this finite query set is a contribution-level selection, not a claimed reconstruction of the full plotting grid.",
+    "Use Python random.Random (MT19937) with n uniform draws followed by n Gaussian draws. The original RNG, seed and exact draw order are not supplied in the inspected text; source simulation bitstreams are not reproduced.",
+    "Use n=128, seed=1729 for the guide check. Keep source n=100,200,400 and 1000 replications in metadata; do not reproduce the original estimator/coverage simulations.",
+    "Collect g1 as one mechanism. Do not repackage g2, already represented by nri-calonico-2018-asymmetric-sine-v1. Record g3 as the source-described truncation/rescaling of g2 and leave that related design uncollected in this one-new-mechanism contribution."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "generator.py",
+    "truth_reference": "truth.py",
+    "source_archive": "nri-hall-horowitz-2013-gaussian-bump-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/nri-hall-horowitz-2013-gaussian-bump-v1.py",
+    "exported_generator_sha256": "66c7bf7cbd12297648aa655864c62cf8ecadda85b7199fcce55b066847e00f69"
+  },
+  "evidence": [
+    {
+      "file": "collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "23d0fe08b2f2059cef92a16a2851d7ed61b75b7c746a356519eb9747f498442f",
+    "collection_sha256": "138791205c941745a089257ed22147db2a7060db59216889650c3196850fce39",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/nri-hall-horowitz-2013-gaussian-bump-v1.zip",
+    "submitted_zip_sha256": "23d0fe08b2f2059cef92a16a2851d7ed61b75b7c746a356519eb9747f498442f",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "No explicit latent-variable metadata or reliably identifiable latent declarations; absence from this list does not prove that no latent variables exist."
+  ],
+  "source_suggested_domain": "nonparametric_regression",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

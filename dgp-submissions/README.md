@@ -114,10 +114,11 @@ Each paper is listed **once per area**. Generators are source files from the sub
 
 ### [Nonparametric Regression](registry/by-domain/nonparametric_regression.md)
 
-1 paper(s) · 1 DGP mechanism(s)
+2 paper(s) · 2 DGP mechanism(s)
 
 | Paper Title | DGPs | DGP Mechanisms | Keywords | Generator.py |
 |---|---:|---|---|---|
+| [A simple bootstrap method for constructing nonparametric confidence bands for functions](https://doi.org/10.1214/13-aos1137) (AoS) | 1 | [Hall--Horowitz Gaussian bump on a linear trend: pointwise regression-mean inference](registry/drafts/nri-hall-horowitz-2013-gaussian-bump-v1.md) | Nonlinearity | [generator.py](registry/generators/nri-hall-horowitz-2013-gaussian-bump-v1.py) |
 | [On the Effect of Bias Estimation on Coverage Accuracy in Nonparametric Inference](https://doi.org/10.1080/01621459.2017.1285776) (JASA) | 1 | [DGP nri-calonico-2018-asymmetric-sine-v1 (English title required)](registry/drafts/nri-calonico-2018-asymmetric-sine-v1.md) | Nonlinearity | [generator.py](registry/generators/nri-calonico-2018-asymmetric-sine-v1.py) |
 
 ### [Quantile Inference](registry/by-domain/quantile.md)

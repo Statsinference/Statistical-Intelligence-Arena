@@ -1,8 +1,8 @@
 {
   "status": "draft_needs_review",
-  "paper_count": 29,
-  "mechanism_count": 35,
-  "scenario_count": 59,
+  "paper_count": 30,
+  "mechanism_count": 36,
+  "scenario_count": 74,
   "domains": {
     "ate": 2,
     "cate": 2,
@@ -10,7 +10,7 @@
     "iv": 5,
     "proximal": 10,
     "did_sc": 3,
-    "nonparametric_regression": 1,
+    "nonparametric_regression": 2,
     "quantile": 3,
     "semi_supervised": 8,
     "missing_data": 0
@@ -827,6 +827,29 @@
       "status": "needs_scientific_review"
     },
     {
+      "record_id": "nri-hall-horowitz-2013-gaussian-bump-v1",
+      "domain": "nonparametric_regression",
+      "paper": "Hall, P. and Horowitz, J. (2013). A simple bootstrap method for constructing nonparametric confidence bands for functions. The Annals of Statistics, 41(4), 1892-1921. DOI: 10.1214/13-AOS1137.",
+      "mechanism": "Hall--Horowitz Gaussian bump on a linear trend: pointwise regression-mean inference",
+      "paper_title": "A simple bootstrap method for constructing nonparametric confidence bands for functions",
+      "venue_abbreviation": "AoS",
+      "keywords": [
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/nri-hall-horowitz-2013-gaussian-bump-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "source_sd100_query_neg030: theta(x0)=g1(x0) = -0.27784075794030993; source_sd100_query_neg015: theta(x0)=g1(x0) = 0.49758797832945867; source_sd100_query_zero: theta(x0)=g1(x0) = 1.9947114020071635; source_sd100_query_pos015: theta(x0)=g1(x0) = 0.7975879783294587; source_sd100_query_pos030: theta(x0)=g1(x0) = 0.32215924205969004; source_sd050_query_neg030: theta(x0)=g1(x0) = -0.27784075794030993; source_sd050_query_neg015: theta(x0)=g1(x0) = 0.49758797832945867; source_sd050_query_zero: theta(x0)=g1(x0) = 1.9947114020071635; source_sd050_query_pos015: theta(x0)=g1(x0) = 0.7975879783294587; source_sd050_query_pos030: theta(x0)=g1(x0) = 0.32215924205969004; source_sd020_query_neg030: theta(x0)=g1(x0) = -0.27784075794030993; source_sd020_query_neg015: theta(x0)=g1(x0) = 0.49758797832945867; source_sd020_query_zero: theta(x0)=g1(x0) = 1.9947114020071635; source_sd020_query_pos015: theta(x0)=g1(x0) = 0.7975879783294587; source_sd020_query_pos030: theta(x0)=g1(x0) = 0.32215924205969004",
+      "status": "needs_scientific_review"
+    },
+    {
       "record_id": "qdi-tan-wang-zhou-20220201-active10-mixture-v2",
       "domain": "quantile",
       "paper": "Tan, K. M., Wang, L., and Zhou, W.-X. (2022). High-Dimensional Quantile Regression: Convolution Smoothing and Concave Regularization. Journal of the Royal Statistical Society Series B: Statistical Methodology 84(1), 205-233. DOI: 10.1111/rssb.12485.",
@@ -1088,8 +1111,8 @@
   ],
   "intake": {
     "status": "success",
-    "zip_count": 12,
-    "indexed_dgp_count": 35,
+    "zip_count": 13,
+    "indexed_dgp_count": 36,
     "failure_count": 0,
     "stale_record_ids": [],
     "scientific_validation": "not_performed"
