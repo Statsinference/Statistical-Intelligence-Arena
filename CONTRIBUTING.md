@@ -3,7 +3,7 @@
 **100% GitHub-native · Structured ZIP → automatic DGP catalog · No Issue · No LLM API · No other website**
 
 <p align="center">
-  <a href="/../../upload/main/dgp-submissions/incoming/"><img alt="Upload a DGP ZIP directly to this repository" src="https://img.shields.io/badge/Submit_DGP-Upload_ZIP-1677C8?style=for-the-badge" /></a>
+  <a href="/../../upload/main/dgp-submissions/incoming"><img alt="Upload a DGP ZIP directly to this repository" src="https://img.shields.io/badge/Submit_DGP-Upload_ZIP-1677C8?style=for-the-badge" /></a>
   <a href="dgp-submissions/registry/INDEX.md"><img alt="Browse research areas" src="https://img.shields.io/badge/Browse-DGP_Research_Areas-444444?style=for-the-badge" /></a>
   <a href="dgp-submissions/CONTRIBUTING.md"><img alt="Contribution instructions" src="https://img.shields.io/badge/How_to_Contribute-Read_Guide-007F73?style=for-the-badge" /></a>
 </p>
