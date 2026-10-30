@@ -1,0 +1,260 @@
+{
+  "schema_version": "0.1",
+  "record_id": "ate-huang-chan-2017-05-19-setting-2-v1",
+  "kind": "synthetic_dgp",
+  "domain": "ate",
+  "english_display": {},
+  "paper": {
+    "citation": "Ming-Yueh Huang and Kwun Chuen Gary Chan (2017). Joint sufficient dimension reduction and estimation of conditional and average treatment effects. Biometrika, 104(3):583–596. DOI 10.1093/biomet/asx028",
+    "title": "Joint sufficient dimension reduction and estimation of conditional and average treatment effects",
+    "doi": "10.1093/biomet/asx028",
+    "source_url": "https://doi.org/10.1093/biomet/asx028",
+    "source_file_evidence": [],
+    "venue": "Biometrika",
+    "year": 2017,
+    "source_version": "Published typeset article plus author supplementary material asx028_supp.pdf from Europe PMC deposit PMC5793490",
+    "source_locator": "Supplement asx028_supp.pdf Section 3.1, PDF/printed p.4, unnumbered Setting 1 and Setting 2 paragraphs; Section 3.4 PDF/printed p.6 for both reported ATEs = 1; main article Section 2.1 PDF p.3 / journal p.585 for estimand and assumptions; collected second setting"
+  },
+  "mechanism": {
+    "name": "变换观测特征与潜在正态线性结果",
+    "title_en": "Transformed Gaussian covariates and latent-linear outcomes",
+    "family_id": "huang_transformed",
+    "generation_equations": [
+      "Z1,...,Z10 iid N(0,1).",
+      "X1=exp(Z1/2); X2=Z2/(1+exp(Z1)); X3=(Z1*Z3/25+3/5)**3; X4,...,X10=Z4,...,Z10.",
+      "p(X)=expit(X1-X2+X3); A|X~Bernoulli(p).",
+      "Y(1)=1+Z1+epsilon1; Y(0)=Z2+epsilon0; epsilon0,epsilon1 as defined in the same paragraph, N(0,1/10) independently; Y=A*Y(1)+(1-A)*Y(0)."
+    ],
+    "observed_variables": [
+      {
+        "name": "X1",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X2",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X3",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X4",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X5",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X6",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X7",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X8",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X9",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X10",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "A",
+        "role": "treatment",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Z1",
+        "role": "latent",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "false"
+      },
+      {
+        "name": "Z2",
+        "role": "latent",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "false"
+      },
+      {
+        "name": "Z3",
+        "role": "latent",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "false"
+      }
+    ],
+    "latent_variables": [
+      {
+        "name": "Z1,...,Z10",
+        "role": "internal pre-transformation Gaussian coordinates",
+        "distribution": "independent N(0,1)",
+        "observed": false,
+        "identification_note": "Z1=2log(X1), Z2=X2*(1+X1**2); both outcome-active latent coordinates are recoverable. No additional unobserved confounder.",
+        "provenance": "collection.json explicit latent_variables"
+      }
+    ],
+    "latent_variables_status": "explicit_structured_metadata",
+    "sampling": {
+      "unit": "independent individual",
+      "dependence": "Three observed covariates affect assignment/outcomes. Do not add +10 to X2 and do not square X4: those are different Kang–Schafer variants, not this source. Internal Z1–Z3 are not learner inputs. Noise definition is inherited from the immediately preceding sentence; this explicit scope interpretation is flagged for human review. Independent treatment/noise random draws conditional on covariates; no clusters or panel structure."
+    },
+    "assumptions": [
+      "Consistency and no interference across independent individuals.",
+      "Conditional exchangeability given observed baseline X under the declared synthetic assignment.",
+      "Pointwise positivity; no uniform overlap bound claimed for unbounded Gaussian logistic settings."
+    ],
+    "properties": {
+      "dimension": 10,
+      "effective_dimension": 3,
+      "high_dimensional": false,
+      "interactions": true,
+      "nonlinear": true,
+      "notes": "Three observed covariates affect assignment/outcomes. Do not add +10 to X2 and do not square X4: those are different Kang–Schafer variants, not this source. Internal Z1–Z3 are not learner inputs. Noise definition is inherited from the immediately preceding sentence; this explicit scope interpretation is flagged for human review."
+    }
+  },
+  "estimand": {
+    "name": "ATE",
+    "definition": "E[Y(1)-Y(0)] in the full declared covariate population; treatment 1 versus 0; population, not sample-conditional, target.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "original",
+      "parameters": {
+        "dimension": 10,
+        "noise_sd": 0.31622776601683794,
+        "propensity_coefficients": [
+          1.0,
+          -1.0,
+          1.0
+        ],
+        "intercept_treated": 1.0,
+        "intercept_control": 0.0,
+        "transform_divisor": 25.0,
+        "transform_offset": 0.6
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 1.0,
+        "expression": "E[Y(1)-Y(0)] in the full declared covariate population; treatment 1 versus 0; population, not sample-conditional, target.",
+        "derivation": "E[Z1]=E[Z2]=0, so ATE=1. Conditional means in observed coordinates are 1+2*log(X1) and X2*(1+X1**2). Thus mean exchangeability can be stated given observed X; latent generation does not imply hidden confounding here.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[original].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "Source treatment indicator is named A in the observed output; no scientific change.",
+    "Independently implemented Python/NumPy sampler; source estimator fitting and large simulation replications are outside this collection task.",
+    "Setting 2 epsilon definitions are read as inherited from Setting 1 in the same paragraph; this explicitly documented scope reading needs human confirmation."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "generator.py",
+    "truth_reference": "truth.py",
+    "source_archive": "ate-huang-chan-2017-05-19-setting-2-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/ate-huang-chan-2017-05-19-setting-2-v1.py",
+    "exported_generator_sha256": "39349153cd9a8107e20964211715aaf1f811f6a2768c8724a46ce653401567fb"
+  },
+  "evidence": [
+    {
+      "file": "collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "538901d123b9ee914960c59ec9c696b8935c45bbc75a13512509ce0de093e68b",
+    "collection_sha256": "c472aa55e19a1fc1e6a28b17c610e4ac314da5a5a5774a008110b04920726075",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "ai_source_audited_named_human_review_pending",
+    "submission_file": "incoming/ate-huang-chan-2017-05-19-setting-2-v1.zip",
+    "submitted_zip_sha256": "538901d123b9ee914960c59ec9c696b8935c45bbc75a13512509ce0de093e68b",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [],
+  "source_suggested_domain": "ate",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

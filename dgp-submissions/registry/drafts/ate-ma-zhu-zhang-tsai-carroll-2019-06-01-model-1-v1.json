@@ -1,0 +1,299 @@
+{
+  "schema_version": "0.1",
+  "record_id": "ate-ma-zhu-zhang-tsai-carroll-2019-06-01-model-1-v1",
+  "kind": "synthetic_dgp",
+  "domain": "ate",
+  "english_display": {},
+  "paper": {
+    "citation": "Shujie Ma, Liping Zhu, Zhiwei Zhang, Chih-Ling Tsai and Raymond J. Carroll (2019). A robust and efficient approach to causal inference based on sparse sufficient dimension reduction. The Annals of Statistics 47(3):1505–1535. DOI 10.1214/18-AOS1722",
+    "title": "A robust and efficient approach to causal inference based on sparse sufficient dimension reduction",
+    "doi": "10.1214/18-aos1722",
+    "source_url": "https://doi.org/10.1214/18-AOS1722",
+    "source_file_evidence": [],
+    "venue": "The Annals of Statistics",
+    "year": 2019,
+    "source_version": "Published typeset 31-page author-hosted copy, June 2019 issue; no day of publication invented in filename",
+    "source_locator": "Section 7.2, PDF p.14 / journal p.1518, unnumbered Models 1 and 2 and shared X/noise paragraph; Section 7.3 PDF p.17 / journal p.1521 confirms ATE=1; collected Model 1"
+  },
+  "mechanism": {
+    "name": "交互处理分配与平方项结果",
+    "title_en": "Interaction assignment and quadratic outcomes",
+    "family_id": "ma_quadratic",
+    "generation_equations": [
+      "X~N_20(0,Sigma), Sigma[j,k]=0.5**abs(j-k); independent individuals.",
+      "p(X)=expit((X1+X2)*(X3+1)/2); A|X~Bernoulli(p).",
+      "Y=A+X1**2+X2**2+epsilon; epsilon~N(0,1), independent across individuals and of X/assignment randomness."
+    ],
+    "observed_variables": [
+      {
+        "name": "X1",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X2",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X3",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X4",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X5",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X6",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X7",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X8",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X9",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X10",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X11",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X12",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X13",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X14",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X15",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X16",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X17",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X18",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X19",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X20",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "A",
+        "role": "treatment",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [],
+    "latent_variables_status": "explicit_structured_metadata",
+    "sampling": {
+      "unit": "independent individual",
+      "dependence": "Independent individuals; AR(1) Gaussian covariance within each individual. Outcome errors and treatment randomization use independent local draws."
+    },
+    "assumptions": [
+      "Consistency and no interference across independent individuals.",
+      "Treatment independent of outcome error conditional on observed X; source conditional exchangeability.",
+      "Positive probability for each treatment at every finite X; no trimming or new clipping."
+    ],
+    "properties": {
+      "dimension": 20,
+      "effective_dimension": 3,
+      "high_dimensional": false,
+      "interactions": true,
+      "nonlinear": true,
+      "notes": "Three directly active covariates. Products X1*X3 and X2*X3 occur in assignment; squared X1 and X2 occur in outcome. The submitted d=20 is below source n=1500; no high-dimensional claim is made. The noise variance is 1. Main-paper Model 1 is collected, not a parameter variant of Model 2."
+    }
+  },
+  "estimand": {
+    "name": "ATE",
+    "definition": "ATE = E[Y(1)-Y(0)] in the full original covariate population; binary treatment 1 versus 0.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "original",
+      "parameters": {
+        "dimension": 20,
+        "rho": 0.5,
+        "noise_sd": 1.0,
+        "treatment_effect": 1.0,
+        "propensity_scale": 0.5
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 1.0,
+        "expression": "ATE = E[Y(1)-Y(0)] in the full original covariate population; binary treatment 1 versus 0.",
+        "derivation": "The conditional arm contrast is exactly 1 for every covariate value; integrating over the full AR(1) Gaussian population leaves population ATE=1.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[original].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "Rename source treatment D or W to A; observed conditional law unchanged.",
+    "Independent Python/NumPy implementation; no source estimator fitting or reported performance tables are reproduced."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "generator.py",
+    "truth_reference": "truth.py",
+    "source_archive": "ate-ma-zhu-zhang-tsai-carroll-2019-06-01-model-1-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/ate-ma-zhu-zhang-tsai-carroll-2019-06-01-model-1-v1.py",
+    "exported_generator_sha256": "f7ddf7c5f78d54db2b7f26bb0c0048f1198bf03dfe2e4174acd109e8153270f6"
+  },
+  "evidence": [
+    {
+      "file": "collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "7087247d08623dae46d00540a979cda2a1dc73fbc4e9fb5535c2f961038ac778",
+    "collection_sha256": "db8a22aa885f2fd9930ac7924b898cbd5050647274754a1ab9c28e54cf2d46bc",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "ai_source_audited_named_human_review_pending",
+    "submission_file": "incoming/ate-ma-zhu-zhang-tsai-carroll-2019-06-01-model-1-v1.zip",
+    "submitted_zip_sha256": "7087247d08623dae46d00540a979cda2a1dc73fbc4e9fb5535c2f961038ac778",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [],
+  "source_suggested_domain": "ate",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

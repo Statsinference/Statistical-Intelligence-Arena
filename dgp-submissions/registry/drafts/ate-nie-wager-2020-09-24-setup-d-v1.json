@@ -1,0 +1,186 @@
+{
+  "schema_version": "0.1",
+  "record_id": "ate-nie-wager-2020-09-24-setup-d-v1",
+  "kind": "synthetic_dgp",
+  "domain": "ate",
+  "english_display": {},
+  "paper": {
+    "citation": "Xinkun Nie and Stefan Wager (2021). Quasi-oracle estimation of heterogeneous treatment effects. Biometrika, 108(2):299–319. DOI 10.1093/biomet/asaa076",
+    "title": "Quasi-oracle estimation of heterogeneous treatment effects",
+    "doi": "10.1093/biomet/asaa076",
+    "source_url": "https://doi.org/10.1093/biomet/asaa076",
+    "source_file_evidence": [],
+    "venue": "Biometrika",
+    "year": 2021,
+    "source_version": "Published typeset article deposited in NSF PAR, 21 PDF pages; issue year 2021; publisher first-online metadata 2020-09-24",
+    "source_locator": "Section 6.1, PDF p.15 / journal p.313, unnumbered shared sampling equations and Set-ups A–D; Section 6.2 / Figure 3, PDF p.16 / journal p.314 for dimension and noise settings; collected paragraph: Set-up D"
+  },
+  "mechanism": {
+    "name": "不相关的正部函数处理与对照响应",
+    "title_en": "Three-term assignment and unrelated positive-part outcomes",
+    "family_id": "nie_D",
+    "generation_equations": [
+      "X~N_d(0,I); coordinates independent.",
+      "p(X)=1/(1+exp(-X1)+exp(-X2)); A|X~Bernoulli(p).",
+      "u=max(X1+X2+X3,0); v=max(X4+X5,0); b=(u+v)/2; tau=u-v.",
+      "Y=b(X)+(A-0.5)*tau(X)+epsilon, epsilon~N(0,1); equivalently E[Y|X,A=1]=u and E[Y|X,A=0]=v."
+    ],
+    "observed_variables": [
+      {
+        "name": "X1",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X2",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X3",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X4",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X5",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X6",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "A",
+        "role": "treatment",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [],
+    "latent_variables_status": "explicit_structured_metadata",
+    "sampling": {
+      "unit": "independent individual",
+      "dependence": "Five active covariates; disjoint nonlinear conditional means and treatment interactions. The three-term propensity denominator is retained; it is not expit(X1+X2). No uniform overlap bound is claimed. Independent treatment/noise random draws conditional on covariates; no clusters or panel structure."
+    },
+    "assumptions": [
+      "Consistency and no interference across independent individuals.",
+      "Conditional exchangeability given observed baseline X under the declared synthetic assignment.",
+      "Pointwise positivity; no uniform overlap bound claimed for unbounded Gaussian logistic settings."
+    ],
+    "properties": {
+      "dimension": 6,
+      "effective_dimension": 5,
+      "high_dimensional": false,
+      "interactions": true,
+      "nonlinear": true,
+      "notes": "Five active covariates; disjoint nonlinear conditional means and treatment interactions. The three-term propensity denominator is retained; it is not expit(X1+X2). No uniform overlap bound is claimed."
+    }
+  },
+  "estimand": {
+    "name": "ATE",
+    "definition": "E[Y(1)-Y(0)] in the full declared covariate population; treatment 1 versus 0; population, not sample-conditional, target.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "original",
+      "parameters": {
+        "dimension": 6,
+        "noise_sd": 1.0
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.1267987153949146,
+        "expression": "E[Y(1)-Y(0)] in the full declared covariate population; treatment 1 versus 0; population, not sample-conditional, target.",
+        "derivation": "X1+X2+X3~N(0,3), X4+X5~N(0,2). For S~N(0,v), E[max(S,0)]=sqrt(v/(2*pi)). Thus ATE=(sqrt(3)-sqrt(2))/sqrt(2*pi).",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[original].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "Target explicitly changed from conditional effect tau(x) to population ATE E[tau(X)]; original data-generating law retained. No claim that the source reports this ATE numerical value.",
+    "Source treatment indicator is named A in the observed output; no scientific change.",
+    "Independently implemented Python/NumPy sampler; source estimator fitting and large simulation replications are outside this collection task."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "generator.py",
+    "truth_reference": "truth.py",
+    "source_archive": "ate-nie-wager-2020-09-24-setup-d-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/ate-nie-wager-2020-09-24-setup-d-v1.py",
+    "exported_generator_sha256": "9cf02d3ffa9526491ea3db050be15931e4ddfd4ea63a19e00c4aa3bae96941db"
+  },
+  "evidence": [
+    {
+      "file": "collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "76dfea03b011ddbed95257442560d3bd311f5070f3a7ca6fd32a5b357384cd81",
+    "collection_sha256": "d074d2036c77151e2438425231c2c5d182a125190a7a5fe1192e395c6f0a02b8",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "ai_source_audited_named_human_review_pending",
+    "submission_file": "incoming/ate-nie-wager-2020-09-24-setup-d-v1.zip",
+    "submitted_zip_sha256": "76dfea03b011ddbed95257442560d3bd311f5070f3a7ca6fd32a5b357384cd81",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [],
+  "source_suggested_domain": "ate",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}
