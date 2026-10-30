@@ -1,0 +1,174 @@
+{
+  "schema_version": "0.1",
+  "record_id": "ate-benkser-carone-vdl-gilbert-2017-dr-v1",
+  "kind": "synthetic_dgp",
+  "domain": "ate",
+  "english_display": {},
+  "paper": {
+    "citation": "Benkeser, D., Carone, M., van der Laan, M. J. and Gilbert, P. B. (2017). Doubly robust nonparametric inference on the average treatment effect. Biometrika 104(4), 863–880. DOI: 10.1093/biomet/asx053.",
+    "title": null,
+    "doi": "10.1093/biomet/asx053",
+    "source_url": "https://doi.org/10.1093/biomet/asx053",
+    "source_file_evidence": [],
+    "venue": "Biometrika",
+    "year": 2017,
+    "source_version": null,
+    "source_locator": "Section 5.1, 'Data-generating mechanism and crossvalidation set-up'; PMC full-text HTML lines 301–304; printed journal pages approximately 870–871. Equations are unnumbered in the prose. PDF page number not visually verified in this run. Exact expressions transcribed from PMC full-text text rendering."
+  },
+  "mechanism": {
+    "name": "Binary-outcome observational ATE design with nonlinear treatment and outcome regressions",
+    "title_en": null,
+    "family_id": "benkeser-carone-vdl-gilbert-2017-uniform-binary-interaction-ate",
+    "generation_equations": [
+      {
+        "label": "Baseline covariate W1",
+        "expression": "W1 ~ Uniform(-2, 2)"
+      },
+      {
+        "label": "Baseline covariate W2",
+        "expression": "W2 ~ Bernoulli(1/2), independent of W1"
+      },
+      {
+        "label": "Treatment assignment",
+        "expression": "A | W=(w1,w2) ~ Bernoulli(g0(w1,w2)); g0(w1,w2)=expit(-w1 + 2*w1*w2)"
+      },
+      {
+        "label": "Binary outcome",
+        "expression": "Y | A=a,W=w ~ Bernoulli(Qbar0(a,w)); Qbar0(a,w)=expit(0.2*a - w1 + 2*w1*w2)"
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "W1",
+        "role": "baseline_covariate",
+        "dtype": "float",
+        "min": "-2",
+        "max": "2",
+        "observed": "true"
+      },
+      {
+        "name": "W2",
+        "role": "baseline_covariate",
+        "dtype": "integer",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "A",
+        "role": "treatment",
+        "dtype": "integer",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "integer",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [],
+    "latent_variables_status": "not_explicitly_specified",
+    "sampling": {
+      "unit": "individual",
+      "dependence": "iid individuals; within individual, A depends on W and Y depends on (A,W); W1 and W2 are mutually independent as specified in Section 5.1."
+    },
+    "assumptions": [
+      "Consistency and well-defined binary treatment interventions.",
+      "Conditional exchangeability: (Y(0),Y(1)) independent of A given W.",
+      "Positivity: 0 < P(A=1|W=w) < 1 on the support of W; here the expit probability is strictly between zero and one for every finite w in the bounded support.",
+      "Independent sampling of individuals; no interference."
+    ],
+    "properties": {
+      "dimension": 2,
+      "effective_dimension": 2,
+      "high_dimensional": false,
+      "interactions": true,
+      "nonlinear": true,
+      "notes": "Two baseline covariates only, so not high-dimensional. The explicit interaction is W1*W2 in both logit treatment and logit outcome regressions. Nonlinearity is the expit/logistic link; outcome is binary."
+    }
+  },
+  "estimand": {
+    "name": "ATE = E[Y(1)-Y(0)]",
+    "definition": "Population risk difference under interventions setting A=1 versus A=0, averaged over the source covariate distribution W=(W1,W2).",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "section51_original",
+      "parameters": {
+        "w1_low": -2.0,
+        "w1_high": 2.0,
+        "w2_probability": 0.5,
+        "treatment_intercept": 0.0,
+        "treatment_w1": -1.0,
+        "treatment_w1w2": 2.0,
+        "outcome_intercept": 0.0,
+        "outcome_treatment": 0.2,
+        "outcome_w1": -1.0,
+        "outcome_w1w2": 2.0,
+        "description": "Section 5.1 source DGP; nuisance-estimation scenarios I/II/III change which nuisance estimator is consistent, not the underlying data-generating law."
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.03802642731065545,
+        "expression": "Population risk difference under interventions setting A=1 versus A=0, averaged over the source covariate distribution W=(W1,W2).",
+        "derivation": "Integrate Qbar(1,w)-Qbar(0,w) over W1~Uniform(-2,2) and W2~Bernoulli(1/2), using Gauss-Legendre quadrature; independently verify with composite Simpson integration.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[section51_original].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "exact_reproduction",
+  "adaptations": [],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "generator.py",
+    "truth_reference": "truth.py",
+    "source_archive": "ate-benkser-carone-vdl-gilbert-2017-dr-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/ate-benkser-carone-vdl-gilbert-2017-dr-v1.py",
+    "exported_generator_sha256": "39729d08f98646687454d5784105804875a9bd7d2a7f7095aac99b73d80b1b0f"
+  },
+  "evidence": [
+    {
+      "file": "collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "b27b01716aeaebe768914abd3b5ba7d3f9a5242fa43417ba567e9b952d00c550",
+    "collection_sha256": "9946cbe22139fad163cdf0fc0f5c13c0e2e3d578624ca1df9fa3ab65acedf614",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/ate-benkser-carone-vdl-gilbert-2017-dr-v1.zip",
+    "submitted_zip_sha256": "b27b01716aeaebe768914abd3b5ba7d3f9a5242fa43417ba567e9b952d00c550",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "No explicit latent-variable metadata or reliably identifiable latent declarations; absence from this list does not prove that no latent variables exist."
+  ],
+  "source_suggested_domain": "ate",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

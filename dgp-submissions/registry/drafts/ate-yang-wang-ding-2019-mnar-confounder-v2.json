@@ -1,0 +1,288 @@
+{
+  "schema_version": "0.1",
+  "record_id": "ate-yang-wang-ding-2019-mnar-confounder-v2",
+  "kind": "synthetic_dgp",
+  "domain": "ate",
+  "english_display": {},
+  "paper": {
+    "citation": "Yang, S., Wang, L. and Ding, P. (2019). Causal inference with confounders missing not at random. Biometrika, 106(4), 875-888.",
+    "title": null,
+    "doi": "10.1093/biomet/asz048",
+    "source_url": "https://doi.org/10.1093/biomet/asz048",
+    "source_file_evidence": [],
+    "venue": "Biometrika",
+    "year": 2019,
+    "source_version": null,
+    "source_locator": "Section 5.3, Multiple confounders subject to missingness, printed pp. 885-886; author PDF pp. 10-11 of 27 (viewer pages 11-12 if one-indexed); DGP equations are unnumbered prose. See also Section 2.1 Assumptions 1-2 and Section 2.3 Assumptions 6-7."
+  },
+  "mechanism": {
+    "name": "Multiple confounders subject to MNAR: Section 5.3 equation-based candidate",
+    "title_en": null,
+    "family_id": "yang-wang-ding-2019-multiple-mnar-confounders-ate",
+    "generation_equations": [
+      {
+        "label": "X1-X2",
+        "expression": "X1, X2 independently sampled Normal(mean=1, variance=1); independence is an explicit implementation adaptation because joint independence is not stated in Section 5.3."
+      },
+      {
+        "label": "X3-X4",
+        "expression": "Xj=(Bj-0.5)/0.5 where Bj independently follows Bernoulli(0.5), j=3,4; hence Xj is -1 or +1 with equal probability."
+      },
+      {
+        "label": "X5",
+        "expression": "X5=X1+X2+X3+X4+epsilon5; epsilon5~Normal(0,1), independently generated."
+      },
+      {
+        "label": "X6",
+        "expression": "X6|X5~Bernoulli(p6), logit(p6)=-X5."
+      },
+      {
+        "label": "Potential outcomes",
+        "expression": "Y(0)=(1,X^T) beta0+epsilon0; Y(1)=(1,X^T) beta1+epsilon1; beta0=(-1.5,1,-1,1,-1,1,1)^T; beta1=(0,-1,1,-1,1,-1,-1)^T; epsilon0,epsilon1~Normal(0,1)."
+      },
+      {
+        "label": "Treatment",
+        "expression": "A|X~Bernoulli(expit((1,X^T) alpha)); alpha=0.5*(2,1,1,1,1,-2,-2)^T."
+      },
+      {
+        "label": "Missing pattern",
+        "expression": "R=(R5,R6) in {(11),(10),(01),(00)}. Let q=(1,A,X^T) eta, eta=0.25*(-4,1,1,1,1,1,-1,-1)^T. Interpreting the printed RHS as direct probabilities: p11=1/(1+3 exp(q)); pkl=1/(exp(-q)+3) for kl=10,01,00. The source prints 'logit(p...)' before these right-hand sides; this interpretation is necessary for a multinomial probability vector and requires scientific confirmation."
+      },
+      {
+        "label": "Observed outcome",
+        "expression": "Y=A*Y(1)+(1-A)*Y(0)."
+      },
+      {
+        "label": "Equation-implied ATE",
+        "expression": "ATE=E[Y(1)-Y(0)]=1.5-2E[X1]+2E[X2]-2E[X3]+2E[X4]-2E[X5]-2E[X6] = -2.5-2E[X6] under the declared factorization; E[X6]≈0.2417754075740287, giving ATE≈-2.983550815148057, which conflicts with the paper's reported tau=-0.5."
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "X1",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X2",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X3",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-1",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X4",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-1",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X5",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X6",
+        "role": "covariate",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "A",
+        "role": "treatment",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "R5",
+        "role": "missingness_indicator",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "R6",
+        "role": "missingness_indicator",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [],
+    "latent_variables_status": "not_explicitly_specified",
+    "sampling": {
+      "unit": "individual",
+      "dependence": "Individuals are iid under the implementation. Within an individual, X5 is a sum of X1-X4 and epsilon5; X6 depends on X5; treatment depends on all six covariates; the missingness pattern depends on A and all six covariates. Potential outcomes share the same X vector, while only Y(A) is released as observed Y."
+    },
+    "assumptions": [
+      "Consistency: observed Y= A Y(1) + (1-A)Y(0).",
+      "The implementation draws potential-outcome errors independently of treatment conditional on X; this cross-independence is an implementation assumption because Section 5.3 only states the marginal error laws.",
+      "Outcome-independent missingness R independent of Y conditional on (A,X), satisfied by construction because the missing-pattern probabilities depend only on A and X.",
+      "Positivity with uniform lower and upper bounds is not established on the full unbounded covariate support under the printed logistic treatment model; this is a scientific limitation, not a machine-check result.",
+      "The source-reported tau=-0.5 conflicts with the coefficient equations under this declared implementation. The package's oracle is the equation-implied ATE for the runnable adapted mechanism and must not be mistaken for confirmation of the paper's reported value."
+    ],
+    "properties": {
+      "dimension": 6,
+      "effective_dimension": 6,
+      "high_dimensional": false,
+      "interactions": false,
+      "nonlinear": true,
+      "notes": "Six baseline covariates, with all six entering the treatment model or downstream covariate construction/outcome/missingness. Nonlinearity arises from logistic links for X6 and treatment, and the multinomial missingness probabilities. There are no explicit product interaction terms in the source equations. X5 and X6 may be missing; their observable numeric slots use sentinel 0.0 with R5/R6 masks. Uniform positivity/Assumption 7 over unbounded support is not guaranteed. The reported ATE mismatch and missing-pattern 'logit(p)' notation are unresolved source issues."
+    }
+  },
+  "estimand": {
+    "name": "ATE",
+    "definition": "Population E[Y(1)-Y(0)] for the intervention A=1 versus A=0, under the declared Section 5.3 equation-based mechanism and its explicitly stated factorization adaptations.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "section53_equation_based_candidate",
+      "parameters": {
+        "x1_mean": 1.0,
+        "x1_sd": 1.0,
+        "x2_mean": 1.0,
+        "x2_sd": 1.0,
+        "x3_bernoulli_probability": 0.5,
+        "x4_bernoulli_probability": 0.5,
+        "x5_noise_sd": 1.0,
+        "x6_logit_intercept": 0.0,
+        "x6_logit_x5": -1.0,
+        "beta0": [
+          -1.5,
+          1.0,
+          -1.0,
+          1.0,
+          -1.0,
+          1.0,
+          1.0
+        ],
+        "beta1": [
+          0.0,
+          -1.0,
+          1.0,
+          -1.0,
+          1.0,
+          -1.0,
+          -1.0
+        ],
+        "potential_outcome_noise_sd": 1.0,
+        "alpha": [
+          1.0,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          -1.0,
+          -1.0
+        ],
+        "eta": [
+          -1.0,
+          0.25,
+          0.25,
+          0.25,
+          0.25,
+          0.25,
+          -0.25,
+          -0.25
+        ],
+        "source_reported_ate": -0.5,
+        "factorization_adaptation": "independent X1/X2, X3/X4, eps5, potential-outcome errors, and treatment randomization conditional on X; pending source confirmation",
+        "missing_pattern_probability_interpretation": "right-hand sides in Section 5.3 are treated as p11 and pkl probabilities rather than logits because the direct values sum to one; pending source confirmation",
+        "source_equation_atte_consistency": "unresolved_conflict_recorded"
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": -2.9835508151480576,
+        "expression": "Population E[Y(1)-Y(0)] for the intervention A=1 versus A=0, under the declared Section 5.3 equation-based mechanism and its explicitly stated factorization adaptations.",
+        "derivation": "Analytic coefficient contrast plus Gauss-Hermite integration for E[X6], under the independent factorization explicitly declared in this adapted candidate. This is not the paper-reported tau; the discrepancy is documented.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[section53_equation_based_candidate].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "The paper's stated tau=-0.5 is inconsistent with the supplied beta vectors and covariate-generating equations under the explicit independent factorization used here. This implementation retains the printed equations and computes their implied ATE; it does not force the reported -0.5 value.",
+    "Section 5.3 displays the missing-pattern right-hand sides after 'logit(p_..)' although those four right-hand-side quantities sum to one only when interpreted as probabilities themselves, not logits. This runnable candidate uses them as direct multinomial probabilities; author/maintainer confirmation is required.",
+    "The prose gives marginal distributions for X1 and X2 and does not explicitly state all within-person cross-independences. For a runnable joint distribution, this implementation generates X1 and X2 independently; it also independently generates X3, X4, epsilon5 and potential-outcome errors. These factorization choices are adaptations pending confirmation.",
+    "Missing X5 and X6 values are represented in finite numeric output by sentinel 0.0 plus explicit R5/R6 observation indicators, because the collection runner validates finite numeric tables. The indicator distinguishes a masked value from a true zero; this is an interface adaptation, not imputation."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "generator.py",
+    "truth_reference": "truth.py",
+    "source_archive": "ate-yang-wang-ding-2019-mnar-confounder-v2.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/ate-yang-wang-ding-2019-mnar-confounder-v2.py",
+    "exported_generator_sha256": "e696cd7d5f454161863e239a31b236754fcd58b65daeb3de253d01fa099be447"
+  },
+  "evidence": [
+    {
+      "file": "collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "7a69b5b8ed14637fc2ab27232a57d06369d15b420bb234db7469cb55887fa940",
+    "collection_sha256": "f7a3ec30f45ce51d280be0f8f722268c413e9bcd02cd3a0aee29e9386b1a26a7",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/ate-yang-wang-ding-2019-mnar-confounder-v2.zip",
+    "submitted_zip_sha256": "7a69b5b8ed14637fc2ab27232a57d06369d15b420bb234db7469cb55887fa940",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "No explicit latent-variable metadata or reliably identifiable latent declarations; absence from this list does not prove that no latent variables exist."
+  ],
+  "source_suggested_domain": "ate",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

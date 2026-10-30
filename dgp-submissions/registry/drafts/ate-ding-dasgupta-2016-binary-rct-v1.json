@@ -1,0 +1,436 @@
+{
+  "schema_version": "0.1",
+  "record_id": "ate-ding-dasgupta-2016-binary-rct-v1",
+  "kind": "synthetic_dgp",
+  "domain": "ate",
+  "english_display": {},
+  "paper": {
+    "citation": "Ding, P. and Dasgupta, T. (2016). A Potential Tale of Two-by-Two Tables From Completely Randomized Experiments. Journal of the American Statistical Association, 111(513), 157–168. DOI: 10.1080/01621459.2014.995796.",
+    "title": null,
+    "doi": "10.1080/01621459.2014.995796",
+    "source_url": "https://doi.org/10.1080/01621459.2014.995796",
+    "source_file_evidence": [],
+    "venue": "Journal of the American Statistical Association",
+    "year": 2016,
+    "source_version": null,
+    "source_locator": "Read version: arXiv:1501.02389v1 (2015-01-10), 39-page PDF. Section 2.1–2.2, PDF pp. 4–5: finite-population ATE and complete randomization; Section 6, PDF pp. 18–19, Table 5: Cases 1–12 potential-outcome cell counts and simulation setup. ATE definition is an unnumbered displayed/inline expression in Section 2.1; Eq. (1) is a variance expression, not the ATE definition. Publisher final pagination is JASA 111(513), 157–168; publisher full text was inaccessible, so final-version PDF page/equation mapping is unverified. Appendix E Cases 13–19 not included."
+  },
+  "mechanism": {
+    "name": "Binary potential-outcome finite-population designs under complete randomization",
+    "title_en": null,
+    "family_id": "ding-dasgupta-2016-binary-potential-outcome-rct",
+    "generation_equations": [
+      {
+        "label": "Fixed finite-population potential-outcome cells",
+        "expression": "N11=#{i:Y_i(1)=1,Y_i(0)=1}; N10=#{i:Y_i(1)=1,Y_i(0)=0}; N01=#{i:Y_i(1)=0,Y_i(0)=1}; N00=#{i:Y_i(1)=0,Y_i(0)=0}; N=N11+N10+N01+N00=200."
+      },
+      {
+        "label": "Complete randomization (user-approved allocation adaptation)",
+        "expression": "N1=N0=100; P(A=a)=1/binom(N,N1) for every assignment vector a with sum_i a_i=N1."
+      },
+      {
+        "label": "Observed outcome",
+        "expression": "Y_i=A_i Y_i(1)+(1-A_i)Y_i(0). Only (A_i,Y_i) are returned."
+      },
+      {
+        "label": "Finite-population ATE",
+        "expression": "tau=N^{-1} sum_i[Y_i(1)-Y_i(0)]=(N10-N01)/N."
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "A",
+        "role": "treatment",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [],
+    "latent_variables_status": "not_explicitly_specified",
+    "sampling": {
+      "unit": "Individual experimental unit in a fixed finite population of N=200 units.",
+      "dependence": "Potential outcomes are fixed attributes of units, not iid generated errors. Under complete randomization, treatment indicators are dependent across units because the treated count is fixed (negative assignment dependence). No interference is assumed; outcomes have no cross-unit dependence beyond the shared randomization design. The implementation additionally samples n units without replacement before randomizing the sampled subset."
+    },
+    "assumptions": [
+      "Well-defined binary treatment and consistency: observed outcome equals the potential outcome under assigned treatment.",
+      "SUTVA/no interference: one unit’s potential outcomes do not depend on other units’ assignments.",
+      "Complete randomization: exactly N1 treated and N0 controls, with all allocations of that size equally likely.",
+      "The finite population and its potential outcomes are fixed; randomness is from treatment assignment (and, for this implementation interface only, the additional SRS sample stage).",
+      "No observational unconfoundedness assumption is needed for design-based identification under randomized assignment."
+    ],
+    "properties": {
+      "dimension": 0,
+      "effective_dimension": 0,
+      "high_dimensional": false,
+      "interactions": false,
+      "nonlinear": false,
+      "notes": "No baseline covariates or regression surface are part of the Table 5 design. Binary potential outcomes are summarized by the four joint cells (Y(1),Y(0))=(1,1),(1,0),(0,1),(0,0); the source scenarios vary their finite-population counts and association, not covariate dimension or nonlinear functional form."
+    }
+  },
+  "estimand": {
+    "name": "tau = N^{-1} sum_i [Y_i(1)-Y_i(0)] = (N10-N01)/N",
+    "definition": "Finite-population average treatment effect / causal risk difference for intervention A=1 versus A=0 over the N=200 experimental units. Y_i(1) and Y_i(0) are binary fixed potential outcomes; observed Y_i=A_i Y_i(1)+(1-A_i)Y_i(0).",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "case01_independent_null",
+      "parameters": {
+        "N": 200,
+        "N1": 100,
+        "N0": 100,
+        "N11": 50,
+        "N10": 50,
+        "N01": 50,
+        "N00": 50,
+        "sampling_adaptation": "Draw n units by simple random sampling without replacement from this fixed N=200 finite population, then assign exactly n/2 to treatment by complete randomization. This two-stage n-row smoke-sample interface is an implementation adaptation; the source simulation fixes a finite population and randomizes treatment."
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.0,
+        "expression": "Finite-population average treatment effect / causal risk difference for intervention A=1 versus A=0 over the N=200 experimental units. Y_i(1) and Y_i(0) are binary fixed potential outcomes; observed Y_i=A_i Y_i(1)+(1-A_i)Y_i(0).",
+        "derivation": "Exact finite-population arithmetic from the four potential-outcome cell counts: tau=(N10-N01)/N. No numerical integration or Monte Carlo is needed; estimated_error is exactly 0 in floating-point representation for these rational values.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[case01_independent_null].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "case02_independent_positive",
+      "parameters": {
+        "N": 200,
+        "N1": 100,
+        "N0": 100,
+        "N11": 30,
+        "N10": 70,
+        "N01": 30,
+        "N00": 70,
+        "sampling_adaptation": "Draw n units by simple random sampling without replacement from this fixed N=200 finite population, then assign exactly n/2 to treatment by complete randomization. This two-stage n-row smoke-sample interface is an implementation adaptation; the source simulation fixes a finite population and randomizes treatment."
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.2,
+        "expression": "Finite-population average treatment effect / causal risk difference for intervention A=1 versus A=0 over the N=200 experimental units. Y_i(1) and Y_i(0) are binary fixed potential outcomes; observed Y_i=A_i Y_i(1)+(1-A_i)Y_i(0).",
+        "derivation": "Exact finite-population arithmetic from the four potential-outcome cell counts: tau=(N10-N01)/N. No numerical integration or Monte Carlo is needed; estimated_error is exactly 0 in floating-point representation for these rational values.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[case02_independent_positive].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "case03_independent_positive",
+      "parameters": {
+        "N": 200,
+        "N1": 100,
+        "N0": 100,
+        "N11": 30,
+        "N10": 90,
+        "N01": 20,
+        "N00": 60,
+        "sampling_adaptation": "Draw n units by simple random sampling without replacement from this fixed N=200 finite population, then assign exactly n/2 to treatment by complete randomization. This two-stage n-row smoke-sample interface is an implementation adaptation; the source simulation fixes a finite population and randomizes treatment."
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.35,
+        "expression": "Finite-population average treatment effect / causal risk difference for intervention A=1 versus A=0 over the N=200 experimental units. Y_i(1) and Y_i(0) are binary fixed potential outcomes; observed Y_i=A_i Y_i(1)+(1-A_i)Y_i(0).",
+        "derivation": "Exact finite-population arithmetic from the four potential-outcome cell counts: tau=(N10-N01)/N. No numerical integration or Monte Carlo is needed; estimated_error is exactly 0 in floating-point representation for these rational values.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[case03_independent_positive].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "case04_independent_negative",
+      "parameters": {
+        "N": 200,
+        "N1": 100,
+        "N0": 100,
+        "N11": 80,
+        "N10": 20,
+        "N01": 80,
+        "N00": 20,
+        "sampling_adaptation": "Draw n units by simple random sampling without replacement from this fixed N=200 finite population, then assign exactly n/2 to treatment by complete randomization. This two-stage n-row smoke-sample interface is an implementation adaptation; the source simulation fixes a finite population and randomizes treatment."
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": -0.3,
+        "expression": "Finite-population average treatment effect / causal risk difference for intervention A=1 versus A=0 over the N=200 experimental units. Y_i(1) and Y_i(0) are binary fixed potential outcomes; observed Y_i=A_i Y_i(1)+(1-A_i)Y_i(0).",
+        "derivation": "Exact finite-population arithmetic from the four potential-outcome cell counts: tau=(N10-N01)/N. No numerical integration or Monte Carlo is needed; estimated_error is exactly 0 in floating-point representation for these rational values.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[case04_independent_negative].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "case05_independent_negative",
+      "parameters": {
+        "N": 200,
+        "N1": 100,
+        "N0": 100,
+        "N11": 60,
+        "N10": 20,
+        "N01": 90,
+        "N00": 30,
+        "sampling_adaptation": "Draw n units by simple random sampling without replacement from this fixed N=200 finite population, then assign exactly n/2 to treatment by complete randomization. This two-stage n-row smoke-sample interface is an implementation adaptation; the source simulation fixes a finite population and randomizes treatment."
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": -0.35,
+        "expression": "Finite-population average treatment effect / causal risk difference for intervention A=1 versus A=0 over the N=200 experimental units. Y_i(1) and Y_i(0) are binary fixed potential outcomes; observed Y_i=A_i Y_i(1)+(1-A_i)Y_i(0).",
+        "derivation": "Exact finite-population arithmetic from the four potential-outcome cell counts: tau=(N10-N01)/N. No numerical integration or Monte Carlo is needed; estimated_error is exactly 0 in floating-point representation for these rational values.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[case05_independent_negative].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "case06_positive_association_null",
+      "parameters": {
+        "N": 200,
+        "N1": 100,
+        "N0": 100,
+        "N11": 60,
+        "N10": 40,
+        "N01": 40,
+        "N00": 60,
+        "sampling_adaptation": "Draw n units by simple random sampling without replacement from this fixed N=200 finite population, then assign exactly n/2 to treatment by complete randomization. This two-stage n-row smoke-sample interface is an implementation adaptation; the source simulation fixes a finite population and randomizes treatment."
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.0,
+        "expression": "Finite-population average treatment effect / causal risk difference for intervention A=1 versus A=0 over the N=200 experimental units. Y_i(1) and Y_i(0) are binary fixed potential outcomes; observed Y_i=A_i Y_i(1)+(1-A_i)Y_i(0).",
+        "derivation": "Exact finite-population arithmetic from the four potential-outcome cell counts: tau=(N10-N01)/N. No numerical integration or Monte Carlo is needed; estimated_error is exactly 0 in floating-point representation for these rational values.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[case06_positive_association_null].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "case07_positive_association",
+      "parameters": {
+        "N": 200,
+        "N1": 100,
+        "N0": 100,
+        "N11": 50,
+        "N10": 50,
+        "N01": 30,
+        "N00": 70,
+        "sampling_adaptation": "Draw n units by simple random sampling without replacement from this fixed N=200 finite population, then assign exactly n/2 to treatment by complete randomization. This two-stage n-row smoke-sample interface is an implementation adaptation; the source simulation fixes a finite population and randomizes treatment."
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.1,
+        "expression": "Finite-population average treatment effect / causal risk difference for intervention A=1 versus A=0 over the N=200 experimental units. Y_i(1) and Y_i(0) are binary fixed potential outcomes; observed Y_i=A_i Y_i(1)+(1-A_i)Y_i(0).",
+        "derivation": "Exact finite-population arithmetic from the four potential-outcome cell counts: tau=(N10-N01)/N. No numerical integration or Monte Carlo is needed; estimated_error is exactly 0 in floating-point representation for these rational values.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[case07_positive_association].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "case08_positive_association",
+      "parameters": {
+        "N": 200,
+        "N1": 100,
+        "N0": 100,
+        "N11": 50,
+        "N10": 70,
+        "N01": 30,
+        "N00": 50,
+        "sampling_adaptation": "Draw n units by simple random sampling without replacement from this fixed N=200 finite population, then assign exactly n/2 to treatment by complete randomization. This two-stage n-row smoke-sample interface is an implementation adaptation; the source simulation fixes a finite population and randomizes treatment."
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.2,
+        "expression": "Finite-population average treatment effect / causal risk difference for intervention A=1 versus A=0 over the N=200 experimental units. Y_i(1) and Y_i(0) are binary fixed potential outcomes; observed Y_i=A_i Y_i(1)+(1-A_i)Y_i(0).",
+        "derivation": "Exact finite-population arithmetic from the four potential-outcome cell counts: tau=(N10-N01)/N. No numerical integration or Monte Carlo is needed; estimated_error is exactly 0 in floating-point representation for these rational values.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[case08_positive_association].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "case09_positive_association",
+      "parameters": {
+        "N": 200,
+        "N1": 100,
+        "N0": 100,
+        "N11": 40,
+        "N10": 110,
+        "N01": 10,
+        "N00": 40,
+        "sampling_adaptation": "Draw n units by simple random sampling without replacement from this fixed N=200 finite population, then assign exactly n/2 to treatment by complete randomization. This two-stage n-row smoke-sample interface is an implementation adaptation; the source simulation fixes a finite population and randomizes treatment."
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.5,
+        "expression": "Finite-population average treatment effect / causal risk difference for intervention A=1 versus A=0 over the N=200 experimental units. Y_i(1) and Y_i(0) are binary fixed potential outcomes; observed Y_i=A_i Y_i(1)+(1-A_i)Y_i(0).",
+        "derivation": "Exact finite-population arithmetic from the four potential-outcome cell counts: tau=(N10-N01)/N. No numerical integration or Monte Carlo is needed; estimated_error is exactly 0 in floating-point representation for these rational values.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[case09_positive_association].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "case10_positive_association_negative",
+      "parameters": {
+        "N": 200,
+        "N1": 100,
+        "N0": 100,
+        "N11": 70,
+        "N10": 30,
+        "N01": 50,
+        "N00": 50,
+        "sampling_adaptation": "Draw n units by simple random sampling without replacement from this fixed N=200 finite population, then assign exactly n/2 to treatment by complete randomization. This two-stage n-row smoke-sample interface is an implementation adaptation; the source simulation fixes a finite population and randomizes treatment."
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": -0.1,
+        "expression": "Finite-population average treatment effect / causal risk difference for intervention A=1 versus A=0 over the N=200 experimental units. Y_i(1) and Y_i(0) are binary fixed potential outcomes; observed Y_i=A_i Y_i(1)+(1-A_i)Y_i(0).",
+        "derivation": "Exact finite-population arithmetic from the four potential-outcome cell counts: tau=(N10-N01)/N. No numerical integration or Monte Carlo is needed; estimated_error is exactly 0 in floating-point representation for these rational values.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[case10_positive_association_negative].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "case11_positive_association_negative",
+      "parameters": {
+        "N": 200,
+        "N1": 100,
+        "N0": 100,
+        "N11": 50,
+        "N10": 30,
+        "N01": 70,
+        "N00": 50,
+        "sampling_adaptation": "Draw n units by simple random sampling without replacement from this fixed N=200 finite population, then assign exactly n/2 to treatment by complete randomization. This two-stage n-row smoke-sample interface is an implementation adaptation; the source simulation fixes a finite population and randomizes treatment."
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": -0.2,
+        "expression": "Finite-population average treatment effect / causal risk difference for intervention A=1 versus A=0 over the N=200 experimental units. Y_i(1) and Y_i(0) are binary fixed potential outcomes; observed Y_i=A_i Y_i(1)+(1-A_i)Y_i(0).",
+        "derivation": "Exact finite-population arithmetic from the four potential-outcome cell counts: tau=(N10-N01)/N. No numerical integration or Monte Carlo is needed; estimated_error is exactly 0 in floating-point representation for these rational values.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[case11_positive_association_negative].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "case12_positive_association_negative",
+      "parameters": {
+        "N": 200,
+        "N1": 100,
+        "N0": 100,
+        "N11": 30,
+        "N10": 10,
+        "N01": 110,
+        "N00": 50,
+        "sampling_adaptation": "Draw n units by simple random sampling without replacement from this fixed N=200 finite population, then assign exactly n/2 to treatment by complete randomization. This two-stage n-row smoke-sample interface is an implementation adaptation; the source simulation fixes a finite population and randomizes treatment."
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": -0.5,
+        "expression": "Finite-population average treatment effect / causal risk difference for intervention A=1 versus A=0 over the N=200 experimental units. Y_i(1) and Y_i(0) are binary fixed potential outcomes; observed Y_i=A_i Y_i(1)+(1-A_i)Y_i(0).",
+        "derivation": "Exact finite-population arithmetic from the four potential-outcome cell counts: tau=(N10-N01)/N. No numerical integration or Monte Carlo is needed; estimated_error is exactly 0 in floating-point representation for these rational values.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[case12_positive_association_negative].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "User-approved 1:1 allocation: set N1=N0=100 for each source Table 5 finite population of N=200; the inspected source text does not establish this allocation for Table 5, so it is an explicit user-requested assumption, not a source parameter.",
+    "For the required generate(config,n,seed) interface and n=128 smoke check, first draw n units by simple random sampling without replacement from the fixed N=200 potential-outcome schedule, then perform complete randomization assigning exactly floor(n/2) to treatment (n must be even). This two-stage sampled-subset interface is an implementation adaptation; the source mechanism is finite-population complete randomization.",
+    "Only the 12 main-text Table 5 scenarios are encoded. Supplementary Appendix E Cases 13–19 are not included. No original author code or commit was located.",
+    "Use small CPU reproducibility and algebraic checks; do not reproduce the paper’s 5000 randomization repetitions or its full estimator comparison."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "generator.py",
+    "truth_reference": "truth.py",
+    "source_archive": "ate-ding-dasgupta-2016-binary-rct-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/ate-ding-dasgupta-2016-binary-rct-v1.py",
+    "exported_generator_sha256": "bdbd97dd5d345c254f4a6688d062c707a2362fc637f2237a50b7ff0fd989cafd"
+  },
+  "evidence": [
+    {
+      "file": "collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "0d87c5859fc0a88485b186fba9197d271aefc06374b936e33479fb0099eb96b5",
+    "collection_sha256": "39b426b6ad8701f56a24a3e6b1b49befae7bea114e2667eea53267a9fdb459a4",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/ate-ding-dasgupta-2016-binary-rct-v1.zip",
+    "submitted_zip_sha256": "0d87c5859fc0a88485b186fba9197d271aefc06374b936e33479fb0099eb96b5",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "No explicit latent-variable metadata or reliably identifiable latent declarations; absence from this list does not prove that no latent variables exist."
+  ],
+  "source_suggested_domain": "ate",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

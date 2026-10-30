@@ -1,0 +1,225 @@
+{
+  "schema_version": "0.1",
+  "record_id": "ate-yang-wang-ding-2019-mnar-confounder-v1",
+  "kind": "synthetic_dgp",
+  "domain": "ate",
+  "english_display": {},
+  "paper": {
+    "citation": "Yang, S., Wang, L. and Ding, P. (2019). Causal inference with confounders missing not at random. Biometrika, 106(4), 875-888. DOI: 10.1093/biomet/asz048.",
+    "title": null,
+    "doi": "10.1093/biomet/asz048",
+    "source_url": "https://doi.org/10.1093/biomet/asz048",
+    "source_file_evidence": [],
+    "venue": "Biometrika",
+    "year": 2019,
+    "source_version": null,
+    "source_locator": "Section 5.2, One confounder subject to missingness; journal pages 884-885; electronic PDF reader pages 10-11 of 27. DGP equations are unnumbered prose. Section 2.1 defines ATE and Assumptions 1-2; Section 2.3 defines Assumption 6 (outcome-independent missingness). Supplementary material: 13-page PDF, S1 diagrams, S2 proofs, S3 estimator details, S4 Bayesian estimation; no additional parameter values for Section 5.2 were identified."
+  },
+  "mechanism": {
+    "name": "ATE with one confounder subject to nonrandom missingness",
+    "title_en": null,
+    "family_id": "yang-wang-ding-2019-one-mnar-confounder-ate",
+    "generation_equations": [
+      {
+        "label": "Baseline continuous confounder",
+        "expression": "X1 ~ Normal(mean=1, variance=1)"
+      },
+      {
+        "label": "Baseline binary confounder",
+        "expression": "X2 ~ Bernoulli(0.5)"
+      },
+      {
+        "label": "Potential outcome under control",
+        "expression": "Y(0) = 0.5 + 2*X1 + X2 + epsilon(0), epsilon(0) ~ Normal(0,1)"
+      },
+      {
+        "label": "Potential outcome under treatment",
+        "expression": "Y(1) = 3*X1 + 2*X2 + epsilon(1), epsilon(1) ~ Normal(0,1)"
+      },
+      {
+        "label": "Treatment assignment",
+        "expression": "A | X1,X2 ~ Bernoulli(pi); logit(pi) = 1.25 - 0.5*X1 - 0.5*X2"
+      },
+      {
+        "label": "Missingness indicator",
+        "expression": "R1 | X1,X2,A ~ Bernoulli(p); logit(p) = -2 + 2*X1 + A*(1.5 + X2); R1=1 means X1 observed"
+      },
+      {
+        "label": "Observed outcome",
+        "expression": "Y = A*Y(1) + (1-A)*Y(0)"
+      },
+      {
+        "label": "Target truth",
+        "expression": "ATE=E[Y(1)-Y(0)]=-0.5 + 1*E[X1] + 1*E[X2] = -0.5+1+0.5=1"
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "X1",
+        "role": "masked_confounded_covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X2",
+        "role": "baseline_covariate",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "A",
+        "role": "treatment",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "R1",
+        "role": "missingness_indicator",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [],
+    "latent_variables_status": "not_explicitly_specified",
+    "sampling": {
+      "unit": "Individual",
+      "dependence": "Independent and identically distributed full-data individuals. Within an individual, X1 and X2 affect treatment, potential outcomes and the missingness indicator. R1 is generated conditional on A and the complete X; observed X1 is masked according to R1. No interference or clustering."
+    },
+    "assumptions": [
+      "Consistency: observed outcome Y = A Y(1) + (1-A)Y(0).",
+      "Conditional exchangeability in the full data: {Y(0),Y(1)} independent of A conditional on X=(X1,X2), as Assumption 1 in Section 2.1 states; this follows from the declared simulator convention of independent potential-outcome errors conditional on X and the treatment law depending only on X.",
+      "Pointwise treatment positivity from the logistic assignment law. With the stated unbounded Gaussian support, a uniform bound c1 <= P(A=1|X) <= c2 as in Assumption 2 is not established and in fact cannot hold globally for this logistic form.",
+      "Outcome-independent missingness: R1 is independent of Y conditional on (A,X), consistent with Assumption 6. R1 may depend on the missing confounder X1 itself, so the missingness is not at random.",
+      "Full-data individuals are iid as described in Section 2.2. X1-X2 joint independence and cross-independence of potential-outcome errors are implementation conventions, not fully specified in the Section 5.2 paragraph, and require scientific confirmation.",
+      "Assumption 7 in Section 2.3 requires a uniform positive lower bound on the probability of complete observation. With unbounded X1 and the stated missingness logit, no such uniform lower bound is guaranteed. Assumption 8 (bounded completeness) also needs separate mathematical review. The known analytic oracle does not by itself establish identification assumptions for estimators."
+    ],
+    "properties": {
+      "dimension": 2,
+      "effective_dimension": 2,
+      "observed_columns": 5,
+      "high_dimensional": false,
+      "interactions": true,
+      "nonlinear": true,
+      "notes": "Only two baseline covariates, so not high-dimensional. The missingness logit has the explicit interaction A*(1.5+X2), which expands to 1.5*A + A*X2. Logistic links appear in treatment and missingness models. X1 is stored as 0.0 when R1=0 because the collection interface rejects non-finite numeric cells; use R1 to distinguish a missing X1 from an observed zero."
+    }
+  },
+  "estimand": {
+    "name": "ATE = E[Y(1)-Y(0)]",
+    "definition": "Population average effect of intervening to set treatment A from 0 (control) to 1 (active), averaged over the full pre-treatment covariate distribution before missingness: E[Y(1)-Y(0)].",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "paper_section_5_2",
+      "parameters": {
+        "source_section": "Section 5.2, One confounder subject to missingness",
+        "paper_reference_sample_sizes": [
+          400,
+          800,
+          1600
+        ],
+        "paper_monte_carlo_replicates": 2000,
+        "paper_mi_datasets": 100,
+        "paper_bootstrap_replicates": 500,
+        "x1_mean": 1.0,
+        "x1_variance": 1.0,
+        "x2_probability": 0.5,
+        "y0_intercept": 0.5,
+        "y0_x1": 2.0,
+        "y0_x2": 1.0,
+        "y1_intercept": 0.0,
+        "y1_x1": 3.0,
+        "y1_x2": 2.0,
+        "error_variance": 1.0,
+        "treatment_intercept": 1.25,
+        "treatment_x1": -0.5,
+        "treatment_x2": -0.5,
+        "missing_intercept": -2.0,
+        "missing_x1": 2.0,
+        "missing_a": 1.5,
+        "missing_a_x2": 1.0,
+        "paper_reported_response_rate_approx": 0.67,
+        "joint_law_convention": "Independent X1 and X2 for executable candidate; Section 5.2 gives marginals but no explicit joint-dependence statement. Pending confirmation.",
+        "potential_outcome_error_convention": "epsilon0 and epsilon1 drawn independently of each other and X; marginals are source-defined, cross-independence is an implementation convention pending confirmation.",
+        "positivity_review_note": "On unbounded Gaussian support, logistic treatment and missingness probabilities are pointwise in (0,1) but no uniform lower/upper bounds follow; formal Assumptions 2 and 7 need scientific review."
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 1.0,
+        "expression": "Population average effect of intervening to set treatment A from 0 (control) to 1 (active), averaged over the full pre-treatment covariate distribution before missingness: E[Y(1)-Y(0)].",
+        "derivation": "Analytic coefficient contrast. Y(1)-Y(0)=-0.5 + X1 + X2 + epsilon(1)-epsilon(0); using E[X1]=1, E[X2]=0.5 and zero-mean errors gives ATE=1. The numerical error is zero conditional on the stated error mean assumptions.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[paper_section_5_2].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "Section 5.2 specifies the marginal laws X1 ~ Normal(1,1) and X2 ~ Bernoulli(0.5), but does not explicitly state their joint dependence. For the executable candidate, X1 and X2 are generated independently; the paper's approximate 67% response-rate report is consistent with this convention but does not uniquely prove it. Maintainer/scientific confirmation is requested.",
+    "The paper specifies marginal laws epsilon(0) ~ Normal(0,1) and epsilon(1) ~ Normal(0,1), but Section 5.2 does not state all cross-independence relations. The executable implementation draws the errors independently of each other and X; this extra joint-law convention remains pending scientific confirmation.",
+    "The collection worker accepts only finite numeric observed columns. To preserve the missingness pattern without NaN/Inf output, the exported X1 column uses 0.0 as a sentinel when R1=0 and exports R1 explicitly; when R1=1, X1 retains its generated value. This is an interface encoding, not an imputation, and must be interpreted jointly with R1.",
+    "Use analytic ATE truth and CPU smoke checks instead of reproducing the paper's full 2,000-replicate simulation study, 100 imputed datasets, or 500-replicate bootstrap variance calculations."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "generator.py",
+    "truth_reference": "truth.py",
+    "source_archive": "ate-yang-wang-ding-2019-mnar-confounder-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/ate-yang-wang-ding-2019-mnar-confounder-v1.py",
+    "exported_generator_sha256": "a5028df1b008e80f9105a596d46a1ff20d79fb61c71ad5f10eee057dcd0d3bf4"
+  },
+  "evidence": [
+    {
+      "file": "collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "c6c8ebd9213eb64fd1771300b66b9e0060721380dc1b61e9ea8e26573ca4dee9",
+    "collection_sha256": "23c35f3c6a8da8810f162bd9b0b33348f3a32f4ea96770cf21c1defd0e30e6b5",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/ate-yang-wang-ding-2019-mnar-confounder-v1.zip",
+    "submitted_zip_sha256": "c6c8ebd9213eb64fd1771300b66b9e0060721380dc1b61e9ea8e26573ca4dee9",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "No explicit latent-variable metadata or reliably identifiable latent declarations; absence from this list does not prove that no latent variables exist."
+  ],
+  "source_suggested_domain": "ate",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}
