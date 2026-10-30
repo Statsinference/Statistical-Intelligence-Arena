@@ -1,0 +1,219 @@
+{
+  "schema_version": "0.1",
+  "record_id": "ate-nie-wager-2020-09-24-eq9-discontinuous-v1",
+  "kind": "synthetic_dgp",
+  "domain": "ate",
+  "english_display": {},
+  "paper": {
+    "citation": "Xinkun Nie and Stefan Wager (2021). Quasi-oracle estimation of heterogeneous treatment effects. Biometrika 108(2):299–319. DOI 10.1093/biomet/asaa076",
+    "title": "Quasi-oracle estimation of heterogeneous treatment effects",
+    "doi": "10.1093/biomet/asaa076",
+    "source_url": "https://doi.org/10.1093/biomet/asaa076",
+    "source_file_evidence": [],
+    "venue": "Biometrika",
+    "year": 2021,
+    "source_version": "Published typeset article deposited in NSF PAR, 21 PDF pages; issue year 2021; publisher first-online metadata 2020-09-24",
+    "source_locator": "Section 4.2, PDF p.9 / journal p.307, equation (9) and following discontinuous effect definition; Figure 2 PDF p.10 / journal p.308, sigma=1 noise setting"
+  },
+  "mechanism": {
+    "name": "随机处理与阈值跳跃异质效应",
+    "title_en": "Random assignment and discontinuous threshold effect",
+    "family_id": "nie_stacking_discontinuous",
+    "generation_equations": [
+      "X~N_10(0,I); independent coordinates and individuals.",
+      "A~Bernoulli(0.5), independent of X.",
+      "b(X)=3/(1+exp(X3-X2)); tau(X)=1{X1>0}/(1+exp(-X2)).",
+      "Y|X,A~N(b(X)+(A-0.5)*tau(X),sigma**2), sigma=1, selected from Figure 2 noise levels."
+    ],
+    "observed_variables": [
+      {
+        "name": "X1",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X2",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X3",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X4",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X5",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X6",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X7",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X8",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X9",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X10",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "A",
+        "role": "treatment",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [],
+    "latent_variables_status": "explicit_structured_metadata",
+    "sampling": {
+      "unit": "independent individual",
+      "dependence": "Independent individuals; Independent Gaussian coordinates within each individual. Outcome errors and treatment randomization use independent local draws."
+    },
+    "assumptions": [
+      "Consistency and no interference across independent individuals.",
+      "Treatment independent of outcome error conditional on observed X; source conditional exchangeability.",
+      "Positive probability for each treatment at every finite X; no trimming or new clipping."
+    ],
+    "properties": {
+      "dimension": 10,
+      "effective_dimension": 3,
+      "high_dimensional": false,
+      "interactions": true,
+      "nonlinear": true,
+      "notes": "Three active covariates. The threshold indicator creates a discontinuity at X1=0, multiplied by a second-covariate sigmoid; it cannot be obtained by merely changing a coefficient in the smooth equation (9) design. Baseline is smooth but effect is discontinuous."
+    }
+  },
+  "estimand": {
+    "name": "ATE",
+    "definition": "ATE = E[Y(1)-Y(0)] in the full original covariate population; binary treatment 1 versus 0.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "original",
+      "parameters": {
+        "dimension": 10,
+        "noise_sd": 1.0,
+        "treatment_probability": 0.5
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.25,
+        "expression": "ATE = E[Y(1)-Y(0)] in the full original covariate population; binary treatment 1 versus 0.",
+        "derivation": "Independence gives E[1{X1>0}*expit(X2)]=P(X1>0)*E[expit(X2)]=(1/2)*(1/2)=1/4. The strict >0 boundary is retained.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[original].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "Explicit target adaptation: integrate source conditional effect over the original covariate distribution to obtain population ATE; data-generating equations unchanged.",
+    "Rename source treatment D or W to A; observed conditional law unchanged.",
+    "Independent Python/NumPy implementation; no source estimator fitting or reported performance tables are reproduced."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "generator.py",
+    "truth_reference": "truth.py",
+    "source_archive": "ate-nie-wager-2020-09-24-eq9-discontinuous-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/ate-nie-wager-2020-09-24-eq9-discontinuous-v1.py",
+    "exported_generator_sha256": "04f37176445eb97b622b938f09ae1dbe9194072ef8a4aa6718c07b7729721127"
+  },
+  "evidence": [
+    {
+      "file": "collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "f9ad6ffa08814bd8fa4e295fc5d31f4f5d14b862497304155d085c196da51c88",
+    "collection_sha256": "c86b785e14a9f9d22b9c51fca5392b10eb07eb0d92ea4c37ffb832bca9f4aac2",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "ai_source_audited_named_human_review_pending",
+    "submission_file": "incoming/ate-nie-wager-2020-09-24-eq9-discontinuous-v1.zip",
+    "submitted_zip_sha256": "f9ad6ffa08814bd8fa4e295fc5d31f4f5d14b862497304155d085c196da51c88",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [],
+  "source_suggested_domain": "ate",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

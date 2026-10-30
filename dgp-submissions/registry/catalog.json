@@ -1,10 +1,10 @@
 {
   "status": "draft_needs_review",
-  "paper_count": 30,
-  "mechanism_count": 36,
-  "scenario_count": 74,
+  "paper_count": 35,
+  "mechanism_count": 46,
+  "scenario_count": 84,
   "domains": {
-    "ate": 2,
+    "ate": 12,
     "cate": 2,
     "mediation": 1,
     "iv": 5,
@@ -16,6 +16,255 @@
     "missing_data": 0
   },
   "records": [
+    {
+      "record_id": "ate-huang-chan-2017-05-19-setting-2-v1",
+      "domain": "ate",
+      "paper": "Ming-Yueh Huang and Kwun Chuen Gary Chan (2017). Joint sufficient dimension reduction and estimation of conditional and average treatment effects. Biometrika, 104(3):583–596. DOI 10.1093/biomet/asx028",
+      "mechanism": "Transformed Gaussian covariates and latent-linear outcomes",
+      "paper_title": "Joint sufficient dimension reduction and estimation of conditional and average treatment effects",
+      "venue_abbreviation": "Biometrika",
+      "keywords": [
+        "Interactions",
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Interactions",
+          "source": "mechanism.properties.interactions",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/ate-huang-chan-2017-05-19-setting-2-v1.py",
+      "latent_variables": [
+        "Z1,...,Z10"
+      ],
+      "truth_by_scenario": "original: ATE = 1.0",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "ate-ma-zhu-zhang-tsai-carroll-2019-06-01-model-1-v1",
+      "domain": "ate",
+      "paper": "Shujie Ma, Liping Zhu, Zhiwei Zhang, Chih-Ling Tsai and Raymond J. Carroll (2019). A robust and efficient approach to causal inference based on sparse sufficient dimension reduction. The Annals of Statistics 47(3):1505–1535. DOI 10.1214/18-AOS1722",
+      "mechanism": "Interaction assignment and quadratic outcomes",
+      "paper_title": "A robust and efficient approach to causal inference based on sparse sufficient dimension reduction",
+      "venue_abbreviation": "AoS",
+      "keywords": [
+        "Interactions",
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Interactions",
+          "source": "mechanism.properties.interactions",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/ate-ma-zhu-zhang-tsai-carroll-2019-06-01-model-1-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "original: ATE = 1.0",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "ate-ma-zhu-zhang-tsai-carroll-2019-06-01-model-2-v1",
+      "domain": "ate",
+      "paper": "Shujie Ma, Liping Zhu, Zhiwei Zhang, Chih-Ling Tsai and Raymond J. Carroll (2019). A robust and efficient approach to causal inference based on sparse sufficient dimension reduction. The Annals of Statistics 47(3):1505–1535. DOI 10.1214/18-AOS1722",
+      "mechanism": "Linear assignment and cross-product outcomes",
+      "paper_title": "A robust and efficient approach to causal inference based on sparse sufficient dimension reduction",
+      "venue_abbreviation": "AoS",
+      "keywords": [
+        "Interactions",
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Interactions",
+          "source": "mechanism.properties.interactions",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/ate-ma-zhu-zhang-tsai-carroll-2019-06-01-model-2-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "original: ATE = 1.0",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "ate-nie-wager-2020-09-24-eq9-discontinuous-v1",
+      "domain": "ate",
+      "paper": "Xinkun Nie and Stefan Wager (2021). Quasi-oracle estimation of heterogeneous treatment effects. Biometrika 108(2):299–319. DOI 10.1093/biomet/asaa076",
+      "mechanism": "Random assignment and discontinuous threshold effect",
+      "paper_title": "Quasi-oracle estimation of heterogeneous treatment effects",
+      "venue_abbreviation": "Biometrika",
+      "keywords": [
+        "Interactions",
+        "Nonlinearity",
+        "Effect heterogeneity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Interactions",
+          "source": "mechanism.properties.interactions",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "Effect heterogeneity",
+          "source": "mechanism.name",
+          "value": "随机处理与阈值跳跃异质效应",
+          "method": "explicit_source_description"
+        }
+      ],
+      "generator_file": "generators/ate-nie-wager-2020-09-24-eq9-discontinuous-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "original: ATE = 0.25",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "ate-nie-wager-2020-09-24-eq9-smooth-v1",
+      "domain": "ate",
+      "paper": "Xinkun Nie and Stefan Wager (2021). Quasi-oracle estimation of heterogeneous treatment effects. Biometrika 108(2):299–319. DOI 10.1093/biomet/asaa076",
+      "mechanism": "Random assignment and smooth sigmoid-difference effect",
+      "paper_title": "Quasi-oracle estimation of heterogeneous treatment effects",
+      "venue_abbreviation": "Biometrika",
+      "keywords": [
+        "Interactions",
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Interactions",
+          "source": "mechanism.properties.interactions",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/ate-nie-wager-2020-09-24-eq9-smooth-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "original: ATE = 0.5",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "ate-nie-wager-2020-09-24-setup-b-v1",
+      "domain": "ate",
+      "paper": "Xinkun Nie and Stefan Wager (2021). Quasi-oracle estimation of heterogeneous treatment effects. Biometrika, 108(2):299–319. DOI 10.1093/biomet/asaa076",
+      "mechanism": "Random assignment and softplus heterogeneous effects",
+      "paper_title": "Quasi-oracle estimation of heterogeneous treatment effects",
+      "venue_abbreviation": "Biometrika",
+      "keywords": [
+        "Interactions",
+        "Nonlinearity",
+        "Effect heterogeneity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Interactions",
+          "source": "mechanism.properties.interactions",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "Effect heterogeneity",
+          "source": "mechanism.name",
+          "value": "随机处理与 softplus 异质效应",
+          "method": "explicit_source_description"
+        }
+      ],
+      "generator_file": "generators/ate-nie-wager-2020-09-24-setup-b-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "original: ATE = 0.8060591833474399",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "ate-nie-wager-2020-09-24-setup-c-v1",
+      "domain": "ate",
+      "paper": "Xinkun Nie and Stefan Wager (2021). Quasi-oracle estimation of heterogeneous treatment effects. Biometrika, 108(2):299–319. DOI 10.1093/biomet/asaa076",
+      "mechanism": "Confounded constant effect with softplus baseline",
+      "paper_title": "Quasi-oracle estimation of heterogeneous treatment effects",
+      "venue_abbreviation": "Biometrika",
+      "keywords": [
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/ate-nie-wager-2020-09-24-setup-c-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "original: ATE = 1.0",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "ate-nie-wager-2020-09-24-setup-d-v1",
+      "domain": "ate",
+      "paper": "Xinkun Nie and Stefan Wager (2021). Quasi-oracle estimation of heterogeneous treatment effects. Biometrika, 108(2):299–319. DOI 10.1093/biomet/asaa076",
+      "mechanism": "Three-term assignment and unrelated positive-part outcomes",
+      "paper_title": "Quasi-oracle estimation of heterogeneous treatment effects",
+      "venue_abbreviation": "Biometrika",
+      "keywords": [
+        "Interactions",
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Interactions",
+          "source": "mechanism.properties.interactions",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/ate-nie-wager-2020-09-24-setup-d-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "original: ATE = 0.1267987153949146",
+      "status": "needs_scientific_review"
+    },
     {
       "record_id": "ate-nie-wager-2021-a-v1",
       "domain": "ate",
@@ -51,6 +300,68 @@
       "generator_file": "generators/ate-nie-wager-2021-a-v1.py",
       "latent_variables": [],
       "truth_by_scenario": "original_d6_sigma1: theta_ATE = E[Y(1)-Y(0)] = 0.5",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "ate-ning-peng-imai-2020-06-03-ar1-linear-v1",
+      "domain": "ate",
+      "paper": "Yang Ning, Sida Peng and Kosuke Imai (2020). Robust estimation of causal effects via a high-dimensional covariate balancing propensity score. Biometrika, 107(3):533–554. DOI 10.1093/biomet/asaa020",
+      "mechanism": "Correlated high-dimensional Gaussian linear outcomes",
+      "paper_title": "Robust estimation of causal effects via a high-dimensional covariate balancing propensity score",
+      "venue_abbreviation": "Biometrika",
+      "keywords": [
+        "Interactions",
+        "Nonlinearity",
+        "High-dimensionality"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Interactions",
+          "source": "mechanism.properties.interactions",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "High-dimensionality",
+          "source": "mechanism.properties.high_dimensional",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/ate-ning-peng-imai-2020-06-03-ar1-linear-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "original: ATE = 1.0",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "ate-wager-athey-2018-06-06-rare-response-v1",
+      "domain": "ate",
+      "paper": "Stefan Wager and Susan Athey (2018). Estimation and Inference of Heterogeneous Treatment Effects using Random Forests. Journal of the American Statistical Association, 113(523):1228–1242. DOI 10.1080/01621459.2017.1319839",
+      "mechanism": "Rare independent response mixture",
+      "paper_title": "Estimation and Inference of Heterogeneous Treatment Effects using Random Forests",
+      "venue_abbreviation": "JASA",
+      "keywords": [
+        "Linearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Linearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": false,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/ate-wager-athey-2018-06-06-rare-response-v1.py",
+      "latent_variables": [
+        "B"
+      ],
+      "truth_by_scenario": "original: ATE = 0.1",
       "status": "needs_scientific_review"
     },
     {
@@ -1111,8 +1422,8 @@
   ],
   "intake": {
     "status": "success",
-    "zip_count": 13,
-    "indexed_dgp_count": 36,
+    "zip_count": 23,
+    "indexed_dgp_count": 46,
     "failure_count": 0,
     "stale_record_ids": [],
     "scientific_validation": "not_performed"

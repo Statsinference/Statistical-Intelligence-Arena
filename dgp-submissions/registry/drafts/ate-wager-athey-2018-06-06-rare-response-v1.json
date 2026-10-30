@@ -1,0 +1,238 @@
+{
+  "schema_version": "0.1",
+  "record_id": "ate-wager-athey-2018-06-06-rare-response-v1",
+  "kind": "synthetic_dgp",
+  "domain": "ate",
+  "english_display": {},
+  "paper": {
+    "citation": "Stefan Wager and Susan Athey (2018). Estimation and Inference of Heterogeneous Treatment Effects using Random Forests. Journal of the American Statistical Association, 113(523):1228–1242. DOI 10.1080/01621459.2017.1319839",
+    "title": "Estimation and Inference of Heterogeneous Treatment Effects using Random Forests",
+    "doi": "10.1080/01621459.2017.1319839",
+    "source_url": "https://doi.org/10.1080/01621459.2017.1319839",
+    "source_file_evidence": [],
+    "venue": "Journal of the American Statistical Association",
+    "year": 2018,
+    "source_version": "arXiv:1510.04342v4, submitted revision 2017-07-10; PDF title date July 11, 2017; 48-page prepublication version of the JASA article",
+    "source_locator": "arXiv:1510.04342v4 Appendix B, PDF p.31, unnumbered paragraph beginning “We are in a randomized controlled trial”, equation Yi=2WiAi+epsilon_i and noise/Bernoulli definitions"
+  },
+  "mechanism": {
+    "name": "随机处理与稀有个体响应",
+    "title_en": "Rare independent response mixture",
+    "family_id": "wager_rare",
+    "generation_equations": [
+      "X~Uniform([0,1]^10); A~Bernoulli(0.5), independent of X.",
+      "B~Bernoulli(0.05), epsilon~N(0,0.1**2), independent of X,A and each other.",
+      "Y=2*A*B+epsilon. Source W is treatment A here; source A_i is the latent response indicator B, not a baseline covariate."
+    ],
+    "observed_variables": [
+      {
+        "name": "X1",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X2",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X3",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X4",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X5",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X6",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X7",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X8",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X9",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X10",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "A",
+        "role": "treatment",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "B",
+        "role": "latent",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "false"
+      }
+    ],
+    "latent_variables": [
+      {
+        "name": "B",
+        "role": "unobserved independent response indicator",
+        "distribution": "Bernoulli(0.05), independent of X, A and Gaussian noise",
+        "observed": false,
+        "confounder": false,
+        "provenance": "collection.json explicit latent_variables"
+      }
+    ],
+    "latent_variables_status": "explicit_structured_metadata",
+    "sampling": {
+      "unit": "independent individual",
+      "dependence": "All ten observed covariates are irrelevant; effective_dimension=0 and high_dimensional=false. Latent B is never returned. No observed covariate interaction/nonlinear mean is claimed; mixture non-Gaussianity is described separately. Independent treatment/noise random draws conditional on covariates; no clusters or panel structure."
+    },
+    "assumptions": [
+      "Consistency and no interference across independent individuals.",
+      "Conditional exchangeability given observed baseline X under the declared synthetic assignment.",
+      "Pointwise positivity; no uniform overlap bound claimed for unbounded Gaussian logistic settings."
+    ],
+    "properties": {
+      "dimension": 10,
+      "effective_dimension": 0,
+      "high_dimensional": false,
+      "interactions": false,
+      "nonlinear": false,
+      "notes": "All ten observed covariates are irrelevant; effective_dimension=0 and high_dimensional=false. Latent B is never returned. No observed covariate interaction/nonlinear mean is claimed; mixture non-Gaussianity is described separately."
+    }
+  },
+  "estimand": {
+    "name": "ATE",
+    "definition": "E[Y(1)-Y(0)] in the full declared covariate population; treatment 1 versus 0; population, not sample-conditional, target.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "original",
+      "parameters": {
+        "dimension": 10,
+        "noise_sd": 0.1,
+        "treatment_probability": 0.5,
+        "response_probability": 0.05,
+        "response_magnitude": 2.0
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.1,
+        "expression": "E[Y(1)-Y(0)] in the full declared covariate population; treatment 1 versus 0; population, not sample-conditional, target.",
+        "derivation": "E[Y(1)-Y(0)]=2*E[B]=2*0.05=0.1. Individual responses are 0 or 2; the conditional mean effect is constant 0.1. The treated outcome is a normal mixture, not N(0.1,0.01).",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[original].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "Population ATE uses the constant source conditional mean effect 0.1; source pointwise forest-inference experiment is not reproduced.",
+    "Source treatment indicator is named A in the observed output; no scientific change.",
+    "Independently implemented Python/NumPy sampler; source estimator fitting and large simulation replications are outside this collection task.",
+    "Rename source rare-response A_i to latent B to avoid confusion with treatment; B is not exported."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "generator.py",
+    "truth_reference": "truth.py",
+    "source_archive": "ate-wager-athey-2018-06-06-rare-response-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/ate-wager-athey-2018-06-06-rare-response-v1.py",
+    "exported_generator_sha256": "c6a7bd0016c8b8b28132a2ca1138fac10cfa610133ec0b69954796a99bef4ac7"
+  },
+  "evidence": [
+    {
+      "file": "collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "71ba032d4b34a2ae9060d225d40d234beab4b6f35cb28ec2288be50529ec0a74",
+    "collection_sha256": "e7235b05e6c2fb711f44fc8a5a3e494d9d906312209b97615bb2df10341be47b",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "ai_source_audited_named_human_review_pending",
+    "submission_file": "incoming/ate-wager-athey-2018-06-06-rare-response-v1.zip",
+    "submitted_zip_sha256": "71ba032d4b34a2ae9060d225d40d234beab4b6f35cb28ec2288be50529ec0a74",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [],
+  "source_suggested_domain": "ate",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}
