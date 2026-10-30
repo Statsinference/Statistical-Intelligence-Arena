@@ -1,0 +1,291 @@
+{
+  "schema_version": "0.1",
+  "record_id": "iv-cui-2023-longitudinal-survival-v1",
+  "kind": "synthetic_dgp",
+  "domain": "iv",
+  "english_display": {},
+  "paper": {
+    "citation": "Cui, Y., Michael, H., Tanser, F. and Tchetgen Tchetgen, E. (2023). Instrumental variable estimation of the marginal structural Cox model for time-varying treatments. Biometrika 110(1),101-118. DOI:10.1093/biomet/asab062. Advance publication 2021.",
+    "title": null,
+    "doi": "10.1093/biomet/asab062",
+    "source_url": "https://doi.org/10.1093/biomet/asab062",
+    "source_file_evidence": [],
+    "venue": "Biometrika 110(1),2023,101-118; published full text PMC9919489",
+    "year": 2023,
+    "source_version": null,
+    "source_locator": "Actual read: published full-text PMC9919489 HTML, Sections2-4; Section4.2 eq(8) [image Equation24.gif], unnumbered integral [image Equation25.gif], factorization [Equation26.gif]; Section4.3 ordered simulation list [ImEquation185-209.gif]. These GIF names are asset identifiers, NOT paper equation numbers. Source equations visually checked from the original assets."
+  },
+  "mechanism": {
+    "name": "Time-varying instrumental variables with confounding and censored survival",
+    "title_en": null,
+    "family_id": "cui-2023-two-visit-iv-marginal-structural-cox",
+    "generation_equations": [
+      {
+        "label": "Exogenous draws",
+        "expression": "T00~Exponential(rate=1); independent epsilon1,...,epsilon4~N(0,0.5^2); independent Ctilde~Uniform(0,4)."
+      },
+      {
+        "label": "Baseline confounding",
+        "expression": "L0=1.5*T00+epsilon1; U0=1.5*T00+epsilon2."
+      },
+      {
+        "label": "Baseline instrument",
+        "expression": "Z0|L0~Bernoulli(Phi(-0.5+0.2*L0))."
+      },
+      {
+        "label": "Baseline treatment",
+        "expression": "Delta0=Phi(0.2*L0); A0|L0,U0,Z0~Bernoulli(Phi(0.2*L0-0.8*U0)*(1-Delta0)+Z0*Delta0)."
+      },
+      {
+        "label": "Second-visit confounding",
+        "expression": "L1=L0-U0+1.5*A0+T00+epsilon3; U1=0.5*L0-U0+A0+T00+epsilon4."
+      },
+      {
+        "label": "Second instrument",
+        "expression": "Z1|L1,A0,Z0~Bernoulli(Phi(-1+0.2*L1+0.2*A0+0.2*Z0))."
+      },
+      {
+        "label": "Second treatment",
+        "expression": "Delta1=Phi(0.2*L1); A1|L1,U1,Z1~Bernoulli(Phi(0.2*L1-0.8*U1)*(1-Delta1)+Z1*Delta1)."
+      },
+      {
+        "label": "Causal failure time",
+        "expression": "T00=int_0^T exp(psi*a(s))ds with a(s)=A0 for s<=1 and A1 for s>1; psi=-1 or0. Let q0=exp(psi*A0),q1=exp(psi*A1). T=T00/q0 if T00<=q0; T=1+(T00-q0)/q1 otherwise."
+      },
+      {
+        "label": "Censoring",
+        "expression": "C=min(Ctilde,2); Y=min(T,C); event=I(T<=C)."
+      },
+      {
+        "label": "Observed representation",
+        "expression": "R1=I(Y>=1); output second-visit L1,Z1,A1 multiplied by R1, together with R1. Never output T00,U0,U1,T,C or errors."
+      },
+      {
+        "label": "Population target",
+        "expression": "For fixed treatment regime a, lambda_Ta(t)=exp(psi*a(t)); psi=log(hazard under a(t)=1 / hazard under a(t)=0), at a common time away from1. Baseline hazard=1."
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "L0",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Z0",
+        "role": "instrument",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "A0",
+        "role": "treatment",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "R1",
+        "role": "observation_mask",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "L1",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Z1",
+        "role": "instrument",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "A1",
+        "role": "treatment",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "0",
+        "max": "2",
+        "observed": "true"
+      },
+      {
+        "name": "event",
+        "role": "event_indicator",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "T00",
+        "role": "latent",
+        "dtype": "float",
+        "min": "0",
+        "max": "",
+        "observed": "false"
+      },
+      {
+        "name": "U0",
+        "role": "latent",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "false"
+      },
+      {
+        "name": "U1",
+        "role": "latent",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "false"
+      }
+    ],
+    "latent_variables": [],
+    "latent_variables_status": "not_explicitly_specified",
+    "sampling": {
+      "unit": "individual longitudinal trajectory represented as a wide row",
+      "dependence": "iid persons; within-person observations at0 and1 depend through latent T00,U and treatment-confounder feedback"
+    },
+    "assumptions": [
+      "iid individuals; consistency and no interference; potential treatments constant on (0,1] and after1.",
+      "Time-varying Z generated conditional on observed pre-treatment history using independent Bernoulli draws; sequential instrument independence and exclusion given that history.",
+      "Instrument positivity and relevance: at visit j, the treatment-probability contrast for Z=1 versus0 equals Delta_j=Phi(0.2 L_j)>0 and is independent of unobserved U_j given L_j (independent compliance type, source Assumption6).",
+      "Unmeasured time-varying confounding is present; ordinary sequential ignorability given L alone is not asserted.",
+      "Independent censoring C=min(Uniform(0,4),2); estimation target is observed only up to administrative time2.",
+      "Second-visit covariates/instrument/treatment only observed while at risk R1=1; use mask and survival endpoint jointly."
+    ],
+    "properties": {
+      "dimension": 2,
+      "effective_dimension": 2,
+      "high_dimensional": false,
+      "interactions": true,
+      "nonlinear": true,
+      "notes": "L0,L1 are active observed covariate values at two visits, not two independent baseline variables. Phi links, Z_j*Delta_j treatment interactions and piecewise exponential time transformation are nonlinear. A0 affects L1 and U1, yielding treatment-confounder feedback. Second-visit values require R1=1."
+    }
+  },
+  "estimand": {
+    "name": "psi",
+    "definition": "Population marginal structural Cox log hazard ratio for the current binary treatment under fixed two-visit intervention regimes: lambda_Ta(t)=lambda0(t)*exp(psi*a(t)), lambda0(t)=1. Compare treatment1 versus0 at the same time t away from the visit1 switch. Target is psi=-1 or0, not a survival probability difference or LATE.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "source_effect_minus1",
+      "parameters": {
+        "psi": -1.0,
+        "baseline_hazard": 1.0,
+        "error_sd": 0.5,
+        "visit_time": 1.0,
+        "administrative_time": 2.0,
+        "censor_uniform_max": 4.0
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": -1.0,
+        "expression": "Population marginal structural Cox log hazard ratio for the current binary treatment under fixed two-visit intervention regimes: lambda_Ta(t)=lambda0(t)*exp(psi*a(t)), lambda0(t)=1. Compare treatment1 versus0 at the same time t away from the visit1 switch. Target is psi=-1 or0, not a survival probability difference or LATE.",
+        "derivation": "Analytic marginal structural Cox parameter; independent survival-transformation quadrature, root inversion and numerical hazard-ratio checks.",
+        "evidence": [
+          {
+            "file": "iv-cui-2023-longitudinal-survival-v1/checks/report.json",
+            "location": "execution.scenario_results[source_effect_minus1].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "source_null",
+      "parameters": {
+        "psi": 0.0,
+        "baseline_hazard": 1.0,
+        "error_sd": 0.5,
+        "visit_time": 1.0,
+        "administrative_time": 2.0,
+        "censor_uniform_max": 4.0
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.0,
+        "expression": "Population marginal structural Cox log hazard ratio for the current binary treatment under fixed two-visit intervention regimes: lambda_Ta(t)=lambda0(t)*exp(psi*a(t)), lambda0(t)=1. Compare treatment1 versus0 at the same time t away from the visit1 switch. Target is psi=-1 or0, not a survival probability difference or LATE.",
+        "derivation": "Analytic marginal structural Cox parameter; independent survival-transformation quadrature, root inversion and numerical hazard-ratio checks.",
+        "evidence": [
+          {
+            "file": "iv-cui-2023-longitudinal-survival-v1/checks/report.json",
+            "location": "execution.scenario_results[source_null].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "Represent one person as a finite numeric wide-table row, retaining visit0 and masking visit1 after failure/censoring before time1 using observed R1 and zero fill. R1 must be used to distinguish unavailable visits from true zeros.",
+    "Implement the unnumbered accelerated-failure-time integral with its exact piecewise inverse; original psi=-1 and psi=0 settings retained.",
+    "Use seeded NumPy draws rather than claiming the unrecovered author RNG stream; sample size is a hook parameter rather than original 2000,4000,8000.",
+    "Independently implement the fully specified main-text mechanism; no author program or supplementary sensitivity scenarios are reproduced."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "iv-cui-2023-longitudinal-survival-v1/generator.py",
+    "truth_reference": "iv-cui-2023-longitudinal-survival-v1/truth.py",
+    "source_archive": "T08_checked_batch_20261029_r1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/iv-cui-2023-longitudinal-survival-v1.py",
+    "exported_generator_sha256": "793bf0fa8bc26844384e5c4c8c0df6c9c7a174767af641810ac3c88591198ac8"
+  },
+  "evidence": [
+    {
+      "file": "iv-cui-2023-longitudinal-survival-v1/collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "iv-cui-2023-longitudinal-survival-v1/config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "iv-cui-2023-longitudinal-survival-v1/source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "fefa9861403641a7de129f7ce57023f1db8898e711b747e1a8bfa07e3440116c",
+    "collection_sha256": "aa97a000280d2e694392df7ea7245df0f1a4cf95e2a7e31a2770721658844f84",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/T08_checked_batch_20261029_r1.zip",
+    "submitted_zip_sha256": "fefa9861403641a7de129f7ce57023f1db8898e711b747e1a8bfa07e3440116c",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "No explicit latent-variable metadata or reliably identifiable latent declarations; absence from this list does not prove that no latent variables exist."
+  ],
+  "source_suggested_domain": "iv",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

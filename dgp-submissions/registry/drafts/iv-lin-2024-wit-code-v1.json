@@ -1,0 +1,482 @@
+{
+  "schema_version": "0.1",
+  "record_id": "iv-lin-2024-wit-code-v1",
+  "kind": "synthetic_dgp",
+  "domain": "iv",
+  "english_display": {},
+  "paper": {
+    "citation": "Lin, Y., Windmeijer, F., Song, X., and Fan, Q. (2024). On the instrumental variable estimation with many weak and invalid instruments. JRSS-B 86(4), 1068-1088. DOI: 10.1093/jrsssb/qkae025.",
+    "title": null,
+    "doi": null,
+    "source_url": "https://github.com/QoifoQ/WIT/blob/b0d078533650f0d0766b8c73aaaa99ddc97fe8a2/Numerical%20Demonstrations/Simulation.R",
+    "source_file_evidence": [],
+    "venue": "Journal of the Royal Statistical Society Series B",
+    "year": 2024,
+    "source_version": null,
+    "source_locator": "Commit b0d078533650f0d0766b8c73aaaa99ddc97fe8a2; blob 179178ad1f19ac946bc470e61b6e17e7bec63b59; Simulation.R one-based lines 40-49 and 101-136. Paper Section 2.1 Eq.(1), Section 4. Handoff PDF p.17/journal p.1084; typesetting unresolved."
+  },
+  "mechanism": {
+    "name": "Lin et al. (2024) linear IV adapted from pinned WIT code",
+    "title_en": null,
+    "family_id": "lin-2024-linear-correlated-multiple-invalid-iv",
+    "generation_equations": [
+      {
+        "label": "Instrument distribution",
+        "expression": "Z_i ~ N_21(0, Sigma_Z); (Sigma_Z)_{jk} = 0.8 * 0.3^{|j-k|} for j,k=1,...,21, including diagonal entries 0.8.",
+        "latex": "Z_i\\sim\\mathcal{N}_{21}(0,\\Sigma_Z),\\qquad (\\Sigma_Z)_{jk}=0.8(0.3)^{|j-k|},\\quad j,k=1,\\ldots,21."
+      },
+      {
+        "label": "Joint structural error distribution",
+        "expression": "(epsilon_i, eta_i)^T ~ N_2(0, [[1, 0.6], [0.6, 1]]); both variances are 1 and Corr(epsilon_i,eta_i)=0.6, following the pinned author code.",
+        "latex": "\\begin{pmatrix}\\varepsilon_i\\\\\\eta_i\\end{pmatrix}\\sim\\mathcal{N}_2\\!\\left(\\begin{pmatrix}0\\\\0\\end{pmatrix},\\begin{pmatrix}1&0.6\\\\0.6&1\\end{pmatrix}\\right)."
+      },
+      {
+        "label": "Sampling independence",
+        "expression": "Z_i is independent of (epsilon_i, eta_i). The vectors (Z_i, epsilon_i, eta_i) are iid across individuals i=1,...,n; epsilon_i and eta_i are correlated within an individual.",
+        "latex": "Z_i\\perp\\!\\!\\!\\perp(\\varepsilon_i,\\eta_i),\\qquad (Z_i,\\varepsilon_i,\\eta_i)\\overset{\\mathrm{iid}}{\\sim}P,\\quad i=1,\\ldots,n."
+      },
+      {
+        "label": "Common fixed parameters",
+        "expression": "p=21; beta=1; alpha=(0 repeated 9 times, 0.4 repeated 6 times, 0.2 repeated 6 times)^T. Thus Z1-Z9 have zero direct outcome coefficients, while Z10-Z21 have nonzero direct coefficients.",
+        "latex": "p=21,\\qquad\\beta=1,\\qquad\\alpha=(0\\mathbf{1}_{9}^{\\top},0.4\\mathbf{1}_{6}^{\\top},0.2\\mathbf{1}_{6}^{\\top})^{\\top}."
+      },
+      {
+        "label": "Default code_case_2 first-stage coefficients",
+        "expression": "In code_case_2 (default), gamma=0.15*1_21. This is the active Case 2 setting of the pinned author script.",
+        "latex": "\\gamma_{\\mathrm{code\\_case\\_2}}=0.15\\mathbf{1}_{21}."
+      },
+      {
+        "label": "Alternative code_case_1 first-stage coefficients",
+        "expression": "In code_case_1, gamma=0.4*1_21. This enables the commented Case 1 setting; it is another scenario of the same mechanism family.",
+        "latex": "\\gamma_{\\mathrm{code\\_case\\_1}}=0.4\\mathbf{1}_{21}."
+      },
+      {
+        "label": "Endogenous continuous treatment",
+        "expression": "D_i = Z_i^T gamma + eta_i.",
+        "latex": "D_i=Z_i^{\\top}\\gamma+\\eta_i."
+      },
+      {
+        "label": "Continuous outcome",
+        "expression": "Y_i = beta*D_i + Z_i^T alpha + epsilon_i. Only Z1,...,Z21,D,Y are observed outputs; epsilon and eta are internal disturbances.",
+        "latex": "Y_i=\\beta D_i+Z_i^{\\top}\\alpha+\\varepsilon_i."
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "Z1",
+        "role": "instrument",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Z2",
+        "role": "instrument",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Z3",
+        "role": "instrument",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Z4",
+        "role": "instrument",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Z5",
+        "role": "instrument",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Z6",
+        "role": "instrument",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Z7",
+        "role": "instrument",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Z8",
+        "role": "instrument",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Z9",
+        "role": "instrument",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Z10",
+        "role": "instrument",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Z11",
+        "role": "instrument",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Z12",
+        "role": "instrument",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Z13",
+        "role": "instrument",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Z14",
+        "role": "instrument",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Z15",
+        "role": "instrument",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Z16",
+        "role": "instrument",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Z17",
+        "role": "instrument",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Z18",
+        "role": "instrument",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Z19",
+        "role": "instrument",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Z20",
+        "role": "instrument",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Z21",
+        "role": "instrument",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "D",
+        "role": "treatment",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [
+      {
+        "name": "eta_i",
+        "role": "latent_candidate",
+        "evidence": {
+          "file": "collection.json",
+          "equation_index": 1,
+          "expression": "(epsilon_i, eta_i)^T ~ N_2(0, [[1, 0.6], [0.6, 1]])"
+        },
+        "provenance": "inferred_from_stochastic_declaration"
+      }
+    ],
+    "latent_variables_status": "candidates_from_equations_need_review",
+    "sampling": {
+      "unit": "individual",
+      "dependence": "iid individuals; correlated Z components and correlated epsilon/eta within individuals; Z independent of errors"
+    },
+    "assumptions": [
+      "iid individuals, consistency, no interference",
+      "Z independent of structural errors; positive definite covariances; nonzero first stage",
+      "Z1-Z9 have zero direct effects conditional on other instruments; Z10-Z21 violate exclusion",
+      "When validity is unknown, identification requires a rule such as plurality of equal reduced-form/first-stage coefficient ratios: valid group size 9 exceeds either invalid group size 6. No majority claimed.",
+      "No LATE monotonicity condition for this homogeneous continuous-treatment target"
+    ],
+    "properties": {
+      "dimension": 0,
+      "effective_dimension": 0,
+      "high_dimensional": false,
+      "interactions": false,
+      "nonlinear": false,
+      "notes": "No baseline covariates. 21 candidate instruments, all active in D; 12 direct Y effects. Instrument count recorded separately from baseline dimension. Fixed p=21, source n=500/1000, smoke n=128. Linear Gaussian SEM.",
+      "instrument_dimension": 21,
+      "effective_instrument_dimension": 21
+    }
+  },
+  "estimand": {
+    "name": "beta",
+    "definition": "Homogeneous structural coefficient: E[Y(do(D=d+1))-Y(do(D=d))]=beta for the specified superpopulation; both scenarios beta=1. Not LATE.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "code_case_2",
+      "parameters": {
+        "p": 21,
+        "beta": 1,
+        "alpha": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0.4,
+          0.4,
+          0.4,
+          0.4,
+          0.4,
+          0.4,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2
+        ],
+        "gamma": [
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15
+        ],
+        "instrument_variance": 0.8,
+        "instrument_rho": 0.3,
+        "epsilon_variance": 1,
+        "eta_variance": 1,
+        "error_correlation": 0.6
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 1.0,
+        "expression": "Homogeneous structural coefficient: E[Y(do(D=d+1))-Y(do(D=d))]=beta for the specified superpopulation; both scenarios beta=1. Not LATE.",
+        "derivation": "Analytic intervention contrast beta, population reduced-form coefficients and independent moment diagnostics.",
+        "evidence": [
+          {
+            "file": "iv-lin-2024-wit-code-v1/checks/report.json",
+            "location": "execution.scenario_results[code_case_2].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "code_case_1",
+      "parameters": {
+        "p": 21,
+        "beta": 1,
+        "alpha": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0.4,
+          0.4,
+          0.4,
+          0.4,
+          0.4,
+          0.4,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2
+        ],
+        "gamma": [
+          0.4,
+          0.4,
+          0.4,
+          0.4,
+          0.4,
+          0.4,
+          0.4,
+          0.4,
+          0.4,
+          0.4,
+          0.4,
+          0.4,
+          0.4,
+          0.4,
+          0.4,
+          0.4,
+          0.4,
+          0.4,
+          0.4,
+          0.4,
+          0.4
+        ],
+        "instrument_variance": 0.8,
+        "instrument_rho": 0.3,
+        "epsilon_variance": 1,
+        "eta_variance": 1,
+        "error_correlation": 0.6
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 1.0,
+        "expression": "Homogeneous structural coefficient: E[Y(do(D=d+1))-Y(do(D=d))]=beta for the specified superpopulation; both scenarios beta=1. Not LATE.",
+        "derivation": "Analytic intervention contrast beta, population reduced-form coefficients and independent moment diagnostics.",
+        "evidence": [
+          {
+            "file": "iv-lin-2024-wit-code-v1/checks/report.json",
+            "location": "execution.scenario_results[code_case_1].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "Use pinned author code covariance Sigma_Z[j,k]=0.8*0.3^abs(j-k); publication covariance typesetting unresolved.",
+    "Use code error variances 1 and 1, correlation 0.6; publication text specifies epsilon SD 0.5 and eta SD 1.",
+    "Default code_case_2 gamma=0.15; code_case_1 enables commented gamma=0.4. README says Case 1 while active script is Case 2.",
+    "Independently implement the probability law with NumPy local PCG64/Cholesky; no R/MASS seed-level equivalence claimed.",
+    "Accept n and seed; omit estimator comparisons, 500 repetitions and overwritten concentration calculations."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "iv-lin-2024-wit-code-v1/generator.py",
+    "truth_reference": "iv-lin-2024-wit-code-v1/truth.py",
+    "source_archive": "T08_checked_batch_20261029_r1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/iv-lin-2024-wit-code-v1.py",
+    "exported_generator_sha256": "397f1dbfdb373131cc2e848212735e9503c6623e49fe615fff534c65bf4eca95"
+  },
+  "evidence": [
+    {
+      "file": "iv-lin-2024-wit-code-v1/collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "iv-lin-2024-wit-code-v1/config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "iv-lin-2024-wit-code-v1/source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "fefa9861403641a7de129f7ce57023f1db8898e711b747e1a8bfa07e3440116c",
+    "collection_sha256": "4170e816a1afd4131eb965c710128d37a07eda1048c60719d748102dfd1abcca",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/T08_checked_batch_20261029_r1.zip",
+    "submitted_zip_sha256": "fefa9861403641a7de129f7ce57023f1db8898e711b747e1a8bfa07e3440116c",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "Latent-variable candidates inferred from source equations; confirm their roles and completeness against the original paper or generator."
+  ],
+  "source_suggested_domain": "iv",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

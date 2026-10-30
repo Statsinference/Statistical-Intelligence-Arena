@@ -1,13 +1,13 @@
 {
   "status": "draft_needs_review",
-  "paper_count": 35,
-  "mechanism_count": 46,
-  "scenario_count": 84,
+  "paper_count": 43,
+  "mechanism_count": 54,
+  "scenario_count": 101,
   "domains": {
     "ate": 12,
     "cate": 2,
     "mediation": 1,
-    "iv": 5,
+    "iv": 13,
     "proximal": 10,
     "did_sc": 3,
     "nonparametric_regression": 2,
@@ -16,6 +16,236 @@
     "missing_data": 0
   },
   "records": [
+    {
+      "record_id": "iv-choi-2017-double-censor-v1",
+      "domain": "iv",
+      "paper": "Choi, B. Y., Fine, J. P., and Brookhart, M. A. (2017). On two-stage estimation of structural instrumental variable models. Biometrika 104(4), 881-899. DOI 10.1093/biomet/asx056.",
+      "mechanism": "IV: left-censored continuous exposure and right-censored outcome",
+      "paper_title": "On two-stage estimation of structural instrumental variable models",
+      "venue_abbreviation": "Biometrika",
+      "keywords": [
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/iv-choi-2017-double-censor-v1.py",
+      "latent_variables": [
+        "U",
+        "delta",
+        "C_Y",
+        "C_D"
+      ],
+      "truth_by_scenario": "source_case1b_calibrated: alpha_YZ = 1.0",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "iv-cui-2023-longitudinal-survival-v1",
+      "domain": "iv",
+      "paper": "Cui, Y., Michael, H., Tanser, F. and Tchetgen Tchetgen, E. (2023). Instrumental variable estimation of the marginal structural Cox model for time-varying treatments. Biometrika 110(1),101-118. DOI:10.1093/biomet/asab062. Advance publication 2021.",
+      "mechanism": "Time-varying instrumental variables with confounding and censored survival",
+      "paper_title": "Instrumental variable estimation of the marginal structural Cox model for time-varying treatments",
+      "venue_abbreviation": "Biometrika",
+      "keywords": [
+        "Interactions",
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Interactions",
+          "source": "mechanism.properties.interactions",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/iv-cui-2023-longitudinal-survival-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "source_effect_minus1: psi = -1.0; source_null: psi = 0.0",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "iv-henckel-2024-conditional-graph-v1",
+      "domain": "iv",
+      "paper": "Henckel, L., Buttenschoen, M. and Maathuis, M. H. (2024). Graphical tools for selecting conditional instrumental sets. Biometrika 111(3), 771-788. DOI:10.1093/biomet/asad066.",
+      "mechanism": "Conditional instruments in a confounded graph with a mediated total effect",
+      "paper_title": "Graphical tools for selecting conditional instrumental sets",
+      "venue_abbreviation": "Biometrika",
+      "keywords": [
+        "Linearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Linearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": false,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/iv-henckel-2024-conditional-graph-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "frozen_gaussian: tau_YX = -0.018451871582129575; frozen_uniform: tau_YX = -0.018451871582129575",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "iv-lin-2024-wit-code-v1",
+      "domain": "iv",
+      "paper": "Lin, Y., Windmeijer, F., Song, X., and Fan, Q. (2024). On the instrumental variable estimation with many weak and invalid instruments. JRSS-B 86(4), 1068-1088. DOI: 10.1093/jrsssb/qkae025.",
+      "mechanism": "Lin et al. (2024) linear IV adapted from pinned WIT code",
+      "paper_title": "On the instrumental variable estimation with many weak and invalid instruments",
+      "venue_abbreviation": "JRSSB",
+      "keywords": [
+        "Linearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Linearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": false,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/iv-lin-2024-wit-code-v1.py",
+      "latent_variables": [
+        "eta_i"
+      ],
+      "truth_by_scenario": "code_case_2: beta = 1.0; code_case_1: beta = 1.0",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "iv-qiu-2021-principal-stratum-poisson-v1",
+      "domain": "iv",
+      "paper": "Qiu, Y., Tao, J., and Zhou, X.-H. (2021). Inference of Heterogeneous Treatment Effects using Observational Data with High-Dimensional Covariates. Journal of the Royal Statistical Society Series B 83(5), 1016-1043. DOI 10.1111/rssb.12469.",
+      "mechanism": "IV: monotone threshold compliance with Poisson principal-stratum confounding",
+      "paper_title": "Inference of Heterogeneous Treatment Effects using Observational Data with High-Dimensional Covariates",
+      "venue_abbreviation": "JRSSB",
+      "keywords": [
+        "Nonlinearity",
+        "High-dimensionality"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "High-dimensionality",
+          "source": "mechanism.properties.high_dimensional",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/iv-qiu-2021-principal-stratum-poisson-v1.py",
+      "latent_variables": [
+        "e_d0",
+        "e_d1",
+        "e0",
+        "K11",
+        "K00"
+      ],
+      "truth_by_scenario": "source_lambda11_0p5: alpha0 = LATE = 1.0; source_lambda11_0p75: alpha0 = LATE = 1.0; source_lambda11_1: alpha0 = LATE = 1.0; source_lambda11_1p25: alpha0 = LATE = 1.0",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "iv-wang-2018-average-wald-v1",
+      "domain": "iv",
+      "paper": "Wang, L. and Tchetgen Tchetgen, E. J. (2018). Bounded, efficient and multiply robust estimation of average treatment effects using instrumental variables. Journal of the Royal Statistical Society Series B, 80(3), 531-550. DOI: 10.1111/rssb.12262.",
+      "mechanism": "Wang and Tchetgen Tchetgen (2018) binary odds-product algebraic causal completion",
+      "paper_title": "Bounded, efficient and multiply robust estimation of average treatment effects using instrumental variables",
+      "venue_abbreviation": "JRSSB",
+      "keywords": [
+        "Interactions",
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Interactions",
+          "source": "mechanism.properties.interactions",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/iv-wang-2018-average-wald-v1.py",
+      "latent_variables": [
+        "V_D",
+        "V_Y"
+      ],
+      "truth_by_scenario": "source_section5: ATE = 0.08670199394664552",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "iv-wang-2021-binary-complier-odds-v1",
+      "domain": "iv",
+      "paper": "Wang, L., Zhang, Y., Richardson, T. S., and Robins, J. M. (2021). Estimation of local treatment effects under the binary instrumental variable model. Biometrika 108(4), 881-894. DOI 10.1093/biomet/asab003.",
+      "mechanism": "Binary IV: congenial complier risk difference and odds-product model",
+      "paper_title": "Estimation of local treatment effects under the binary instrumental variable model",
+      "venue_abbreviation": "Biometrika",
+      "keywords": [
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/iv-wang-2021-binary-complier-odds-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "source_additive: alpha1 = -1.0",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "iv-ye-2024-genius-heteroskedastic-v1",
+      "domain": "iv",
+      "paper": "Ye, T., Liu, Z., Sun, B. and Tchetgen Tchetgen, E. (2024). GENIUS-MAWII: for robust Mendelian randomization with many weak invalid instruments. Journal of the Royal Statistical Society Series B 86(4), 1045-1067. DOI:10.1093/jrsssb/qkae024.",
+      "mechanism": "GENIUS heteroskedastic exposure with many weak pleiotropic genetic instruments",
+      "paper_title": "GENIUS-MAWII: for robust Mendelian randomization with many weak invalid instruments",
+      "venue_abbreviation": "JRSSB",
+      "keywords": [
+        "Interactions",
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Interactions",
+          "source": "mechanism.properties.interactions",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/iv-ye-2024-genius-heteroskedastic-v1.py",
+      "latent_variables": [
+        "phi_gamma_j"
+      ],
+      "truth_by_scenario": "setting1_valid: beta = 0.4; setting2_mixed40: beta = 0.4; setting3_inside90: beta = 0.4; setting4_correlated90: beta = 0.4",
+      "status": "needs_scientific_review"
+    },
     {
       "record_id": "ate-huang-chan-2017-05-19-setting-2-v1",
       "domain": "ate",
@@ -1422,8 +1652,8 @@
   ],
   "intake": {
     "status": "success",
-    "zip_count": 23,
-    "indexed_dgp_count": 46,
+    "zip_count": 24,
+    "indexed_dgp_count": 54,
     "failure_count": 0,
     "stale_record_ids": [],
     "scientific_validation": "not_performed"

@@ -1,0 +1,558 @@
+{
+  "schema_version": "0.1",
+  "record_id": "iv-henckel-2024-conditional-graph-v1",
+  "kind": "synthetic_dgp",
+  "domain": "iv",
+  "english_display": {},
+  "paper": {
+    "citation": "Henckel, L., Buttenschoen, M. and Maathuis, M. H. (2024). Graphical tools for selecting conditional instrumental sets. Biometrika 111(3), 771-788. DOI:10.1093/biomet/asad066.",
+    "title": null,
+    "doi": "10.1093/biomet/asad066",
+    "source_url": "https://doi.org/10.1093/biomet/asad066",
+    "source_file_evidence": [],
+    "venue": "Biometrika; published 2024; actual full-text read is author arXiv main+supplement and fixed author code",
+    "year": 2024,
+    "source_version": null,
+    "source_locator": "arXiv:2208.03697 downloaded 2026-10-29: Section 2 eq (1), Figure 1(a), Section 5 PDF pp 11-13; supplement E PDF p 41; author efficientCIS commit 2882bded6c57aeaf8da9df8561da329e71dd932c, SimulationStudy/Main/G1a.R lines 31-42 and 93-95, HelperFunctions/functions.R lines 66-78, 100-121, 197-209."
+  },
+  "mechanism": {
+    "name": "Conditional instruments in a confounded graph with a mediated total effect",
+    "title_en": null,
+    "family_id": "henckel-2024-g1-conditional-instruments",
+    "generation_equations": [
+      {
+        "label": "Equation 1",
+        "expression": "A <- epsilon_A"
+      },
+      {
+        "label": "Equation 2",
+        "expression": "C <- epsilon_C"
+      },
+      {
+        "label": "Equation 3",
+        "expression": "L1 <- epsilon_L1"
+      },
+      {
+        "label": "Equation 4",
+        "expression": "B <- (-0.78408214029946133)*C + epsilon_B"
+      },
+      {
+        "label": "Equation 5",
+        "expression": "D <- (0.2011394215552596)*A + (0.40685244250001207)*L1 + (0.60072810314434222)*B + epsilon_D"
+      },
+      {
+        "label": "Equation 6",
+        "expression": "L2 <- epsilon_L2"
+      },
+      {
+        "label": "Equation 7",
+        "expression": "X <- (1.4038923130557954)*L1 + (-1.0690158213970873)*B + (-1.8992312433635747)*L2 + epsilon_X"
+      },
+      {
+        "label": "Equation 8",
+        "expression": "M <- (0.35800137127747389)*X + epsilon_M"
+      },
+      {
+        "label": "Equation 9",
+        "expression": "Y <- (-0.79585700972545459)*C + (-0.71641682995974743)*L2 + (-0.52749259051598618)*X + (1.4218960031282049)*M + epsilon_Y"
+      },
+      {
+        "label": "Equation 10",
+        "expression": "Gaussian scenario: independent epsilon_v ~ N(0,variance_v); uniform scenario: independent epsilon_v ~ Uniform(-sqrt(3 variance_v),sqrt(3 variance_v))."
+      },
+      {
+        "label": "Equation 11",
+        "expression": "tau_YX = coefficient[Y,X] + coefficient[M,X]*coefficient[Y,M]."
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "A",
+        "role": "instrument",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "C",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "L1",
+        "role": "latent",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "false"
+      },
+      {
+        "name": "B",
+        "role": "instrument",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "D",
+        "role": "instrument",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "L2",
+        "role": "latent",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "false"
+      },
+      {
+        "name": "X",
+        "role": "treatment",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "M",
+        "role": "mediator",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [],
+    "latent_variables_status": "not_explicitly_specified",
+    "sampling": {
+      "unit": "individual",
+      "dependence": "iid conditional on frozen structural coefficients; shared coefficients do not create observation-level dependence"
+    },
+    "assumptions": [
+      "Acyclic additive linear SEM with mutually independent node errors, including latent roots L1,L2; iid units and no interference.",
+      "Conditional IV tuple Z=(A,B,D), W=C is valid in source G1; use no adjustment for the post-treatment mediator M.",
+      "Population conditional relevance is checked from the full model covariance; conditional exclusion/exogeneity follow graph separation after removing directed causal paths X->Y."
+    ],
+    "properties": {
+      "dimension": 4,
+      "effective_dimension": 4,
+      "high_dimensional": false,
+      "interactions": false,
+      "nonlinear": false,
+      "notes": "Four baseline observed variables A,B,C,D; endogenous X, mediator M, outcome Y. L1 confounds D and X; L2 confounds X and Y. Linear additive equations; conditioning C blocks B->Y paths. A is informative jointly with D through collider conditioning, not alone given C."
+    }
+  },
+  "estimand": {
+    "name": "tau_YX",
+    "definition": "Population total effect d E[Y|do(X=x)]/dx, equivalently E[Y|do(X=1)]-E[Y|do(X=0)], including X->M->Y.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "frozen_gaussian",
+      "parameters": {
+        "nodes": [
+          "A",
+          "C",
+          "L1",
+          "B",
+          "D",
+          "L2",
+          "X",
+          "M",
+          "Y"
+        ],
+        "parents": [
+          [],
+          [],
+          [],
+          [
+            1
+          ],
+          [
+            0,
+            2,
+            3
+          ],
+          [],
+          [
+            2,
+            3,
+            5
+          ],
+          [
+            6
+          ],
+          [
+            1,
+            5,
+            6,
+            7
+          ]
+        ],
+        "coefficients": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            -0.7840821402994613,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.2011394215552596,
+            0.0,
+            0.40685244250001207,
+            0.6007281031443422,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.4038923130557954,
+            -1.0690158213970873,
+            0.0,
+            -1.8992312433635747,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.3580013712774739,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            -0.7958570097254546,
+            0.0,
+            0.0,
+            0.0,
+            -0.7164168299597474,
+            -0.5274925905159862,
+            1.4218960031282049,
+            0.0
+          ]
+        ],
+        "error_variances": [
+          0.12766782664465123,
+          0.25161173178845175,
+          0.3645554023407398,
+          0.6186267188666278,
+          0.8311346888002153,
+          0.9787206831460027,
+          0.5185013271477072,
+          0.22966228989364443,
+          0.9243025436148947
+        ],
+        "parameter_seed": 1729,
+        "error_distribution": "gaussian"
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": -0.018451871582129575,
+        "expression": "Population total effect d E[Y|do(X=x)]/dx, equivalently E[Y|do(X=1)]-E[Y|do(X=0)], including X->M->Y.",
+        "derivation": "Sum of direct and mediated path products; independent intervention recursion and population conditional IV covariance checks.",
+        "evidence": [
+          {
+            "file": "iv-henckel-2024-conditional-graph-v1/checks/report.json",
+            "location": "execution.scenario_results[frozen_gaussian].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "frozen_uniform",
+      "parameters": {
+        "nodes": [
+          "A",
+          "C",
+          "L1",
+          "B",
+          "D",
+          "L2",
+          "X",
+          "M",
+          "Y"
+        ],
+        "parents": [
+          [],
+          [],
+          [],
+          [
+            1
+          ],
+          [
+            0,
+            2,
+            3
+          ],
+          [],
+          [
+            2,
+            3,
+            5
+          ],
+          [
+            6
+          ],
+          [
+            1,
+            5,
+            6,
+            7
+          ]
+        ],
+        "coefficients": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            -0.7840821402994613,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.2011394215552596,
+            0.0,
+            0.40685244250001207,
+            0.6007281031443422,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.4038923130557954,
+            -1.0690158213970873,
+            0.0,
+            -1.8992312433635747,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.3580013712774739,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            -0.7958570097254546,
+            0.0,
+            0.0,
+            0.0,
+            -0.7164168299597474,
+            -0.5274925905159862,
+            1.4218960031282049,
+            0.0
+          ]
+        ],
+        "error_variances": [
+          0.12766782664465123,
+          0.25161173178845175,
+          0.3645554023407398,
+          0.6186267188666278,
+          0.8311346888002153,
+          0.9787206831460027,
+          0.5185013271477072,
+          0.22966228989364443,
+          0.9243025436148947
+        ],
+        "parameter_seed": 1729,
+        "error_distribution": "uniform"
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": -0.018451871582129575,
+        "expression": "Population total effect d E[Y|do(X=x)]/dx, equivalently E[Y|do(X=1)]-E[Y|do(X=0)], including X->M->Y.",
+        "derivation": "Sum of direct and mediated path products; independent intervention recursion and population conditional IV covariance checks.",
+        "evidence": [
+          {
+            "file": "iv-henckel-2024-conditional-graph-v1/checks/report.json",
+            "location": "execution.scenario_results[frozen_uniform].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "Freeze one new PCG64 parameter draw seed 1729 from the original coefficient and variance laws; this is not the original R seed-5 draw or its published RMSE experiment.",
+    "Keep the graph G1 from the author code; rename code node e to M to expose its mediator role.",
+    "Both Gaussian and uniform errors use the same frozen graph and coefficients as two scenarios, not separate families.",
+    "Return observed nodes only; latent L1 and L2 are retained internally. Sample size is a hook input rather than fixed at 50 or 500."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "iv-henckel-2024-conditional-graph-v1/generator.py",
+    "truth_reference": "iv-henckel-2024-conditional-graph-v1/truth.py",
+    "source_archive": "T08_checked_batch_20261029_r1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/iv-henckel-2024-conditional-graph-v1.py",
+    "exported_generator_sha256": "4790e41dd3d3877aa456cd6f2d19f439b7950f4d5998707caa358aac7126230e"
+  },
+  "evidence": [
+    {
+      "file": "iv-henckel-2024-conditional-graph-v1/collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "iv-henckel-2024-conditional-graph-v1/config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "iv-henckel-2024-conditional-graph-v1/source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "fefa9861403641a7de129f7ce57023f1db8898e711b747e1a8bfa07e3440116c",
+    "collection_sha256": "237d68de6752683afeacc3426b47e6ceeabdc67de762254c5ffe00b21a211443",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/T08_checked_batch_20261029_r1.zip",
+    "submitted_zip_sha256": "fefa9861403641a7de129f7ce57023f1db8898e711b747e1a8bfa07e3440116c",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "No explicit latent-variable metadata or reliably identifiable latent declarations; absence from this list does not prove that no latent variables exist."
+  ],
+  "source_suggested_domain": "iv",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

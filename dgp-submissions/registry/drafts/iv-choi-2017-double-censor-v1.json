@@ -1,0 +1,249 @@
+{
+  "schema_version": "0.1",
+  "record_id": "iv-choi-2017-double-censor-v1",
+  "kind": "synthetic_dgp",
+  "domain": "iv",
+  "english_display": {},
+  "paper": {
+    "citation": "Choi, B. Y., Fine, J. P., and Brookhart, M. A. (2017). On two-stage estimation of structural instrumental variable models. Biometrika 104(4), 881-899. DOI 10.1093/biomet/asx056.",
+    "title": null,
+    "doi": null,
+    "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5793491/",
+    "source_file_evidence": [],
+    "venue": "Biometrika",
+    "year": 2017,
+    "source_version": null,
+    "source_locator": "PMC author manuscript Section 4 Case 1B, equations (12)-(13) (Equation35.gif/Equation36.gif) and simulation parameter/censoring paragraph; Section 3.2 observed outcome min/event indicator, Section 3.3 left censoring sign reversal. Original equation GIFs visually read and saved in local source audit. No author software used; commit not applicable."
+  },
+  "mechanism": {
+    "name": "IV: left-censored continuous exposure and right-censored outcome",
+    "title_en": null,
+    "family_id": "choi-2017-double-censored-linear-iv",
+    "generation_equations": [
+      {
+        "label": "Covariates and errors",
+        "expression": "V1,V2,W1,W2,U iid N(0,1) conditional on [-2,2]; epsilon,delta iid N(0,1), independent of all covariates."
+      },
+      {
+        "label": "Latent exposure and outcome",
+        "expression": "D=1+V1+V2+W1+W2+U+delta; Y=1+D+W1+W2+U+epsilon; all source Eq12/13 parameters1."
+      },
+      {
+        "label": "Independent censoring",
+        "expression": "C_Y~Uniform(0,13.249945942133955); C_D~Uniform(-7,2.629814945797971); independent of all other variables and each other. Endpoints numerically calibrated to20% population censoring as an explicit adaptation."
+      },
+      {
+        "label": "Observed values",
+        "expression": "D_observed=max(D,C_D); D_exact=I(D>=C_D); Y_observed=min(Y,C_Y); Y_event=I(Y<=C_Y). Return V1,V2,W1,W2,D_observed,D_exact,Y_observed,Y_event only."
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "V1",
+        "role": "instrument",
+        "dtype": "float",
+        "min": "-2",
+        "max": "2",
+        "observed": "true"
+      },
+      {
+        "name": "V2",
+        "role": "instrument",
+        "dtype": "float",
+        "min": "-2",
+        "max": "2",
+        "observed": "true"
+      },
+      {
+        "name": "W1",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-2",
+        "max": "2",
+        "observed": "true"
+      },
+      {
+        "name": "W2",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-2",
+        "max": "2",
+        "observed": "true"
+      },
+      {
+        "name": "D_observed",
+        "role": "censored_treatment",
+        "dtype": "float",
+        "min": "-7",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "D_exact",
+        "role": "treatment_censoring_indicator",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Y_observed",
+        "role": "censored_outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "13.249945942133955",
+        "observed": "true"
+      },
+      {
+        "name": "Y_event",
+        "role": "outcome_event_indicator",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [
+      {
+        "name": "U",
+        "role": "latent_candidate",
+        "evidence": {
+          "file": "collection.json",
+          "equation_index": 0,
+          "expression": "V1,V2,W1,W2,U iid N(0,1) conditional on [-2,2]"
+        },
+        "provenance": "inferred_from_stochastic_declaration"
+      },
+      {
+        "name": "delta",
+        "role": "latent_candidate",
+        "evidence": {
+          "file": "collection.json",
+          "equation_index": 0,
+          "expression": "epsilon,delta iid N(0,1), independent of all covariates."
+        },
+        "provenance": "inferred_from_stochastic_declaration"
+      },
+      {
+        "name": "C_Y",
+        "role": "latent_candidate",
+        "evidence": {
+          "file": "collection.json",
+          "equation_index": 2,
+          "expression": "C_Y~Uniform(0,13.249945942133955)"
+        },
+        "provenance": "inferred_from_stochastic_declaration"
+      },
+      {
+        "name": "C_D",
+        "role": "latent_candidate",
+        "evidence": {
+          "file": "collection.json",
+          "equation_index": 2,
+          "expression": "C_D~Uniform(-7,2.629814945797971)"
+        },
+        "provenance": "inferred_from_stochastic_declaration"
+      }
+    ],
+    "latent_variables_status": "candidates_from_equations_need_review",
+    "sampling": {
+      "unit": "individual",
+      "dependence": "iid individuals; two independent truncated-normal instruments, two independent measured confounders and latent U. Shared U induces D,Y dependence; independent censoring thresholds."
+    },
+    "assumptions": [
+      "iid individuals, consistency, no interference",
+      "Independent instruments V1,V2, measured W1,W2 and latent U; instruments affect Y only through D",
+      "Nonzero instrument relevance: both exposure coefficients1",
+      "Independent normal structural innovations; unobserved U creates exposure/outcome confounding",
+      "Censoring thresholds independently generated from uniforms; proper left-exposure and right-outcome indicators retained",
+      "Uniform censoring support and AFT/rank identification require scientific review; machine checks establish generation/truth, not general missing-data identification"
+    ],
+    "properties": {
+      "dimension": 2,
+      "effective_dimension": 2,
+      "high_dimensional": false,
+      "interactions": false,
+      "nonlinear": true,
+      "notes": "Linear latent structural law with shared unobserved confounder. Nonlinearity is the observed max(D,C_D) left censoring and min(Y,C_Y) right censoring; four observed baseline/instrument variables are bounded independent truncated normals.",
+      "instrument_dimension": 2
+    }
+  },
+  "estimand": {
+    "name": "alpha_YZ",
+    "definition": "Structural coefficient1 of the true, possibly unobserved continuous exposure D in Y(d)=1+d+W1+W2+U+epsilon. Thus E[Y(d+1)-Y(d)]=1 on source linear/log-time outcome scale, not effect on exp(Y) survival time or complier LATE.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "source_case1b_calibrated",
+      "parameters": {
+        "beta": 1,
+        "cy": 13.249945942133955,
+        "cz": 2.629814945797971,
+        "covariate_truncation": 2,
+        "target_censoring_rate": 0.2
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 1.0,
+        "expression": "Structural coefficient1 of the true, possibly unobserved continuous exposure D in Y(d)=1+d+W1+W2+U+epsilon. Thus E[Y(d+1)-Y(d)]=1 on source linear/log-time outcome scale, not effect on exp(Y) survival time or complier LATE.",
+        "derivation": "Unit exposure intervention contrast alpha_YZ=1; independent latent IV population moment, rejection-sampler full-law comparison and censoring calibration diagnostics.",
+        "evidence": [
+          {
+            "file": "iv-choi-2017-double-censor-v1/checks/report.json",
+            "location": "execution.scenario_results[source_case1b_calibrated].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "Select source Case1B with all equation12/13 parameters1, two observed confounders and two instruments, independent standard-Normal errors, independent standard-Normal covariates truncated to [-2,2]. Explicit independent-covariate reading recorded because source prose does not list every pairwise dependence.",
+    "Source specifies Uniform(0,cy) right censoring and Uniform(-7,cz) left censoring at desired20%, without numeric endpoints. Derive cy=13.249945942133955 and cz=2.629814945797971 by deterministic midpoint-quadrature/FFT population convolution and root solving (8192 bins per four-unit covariate interval); record calibration grid convergence separately.",
+    "All censoring is applied on the source's linear/log-time scale; no exponentiation, zero truncation, complete-case deletion or uncensored-value leakage.",
+    "Independent NumPy/SciPy sampling, caller n/seed; omit rank fitting, perturbation resampling and CI coverage."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "iv-choi-2017-double-censor-v1/generator.py",
+    "truth_reference": "iv-choi-2017-double-censor-v1/truth.py",
+    "source_archive": "T08_checked_batch_20261029_r1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/iv-choi-2017-double-censor-v1.py",
+    "exported_generator_sha256": "60e8d47e0da2b3eb8c0c2a632a2167277c0e113ec64cc9ca8fc4558bc6b754c2"
+  },
+  "evidence": [
+    {
+      "file": "iv-choi-2017-double-censor-v1/collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "iv-choi-2017-double-censor-v1/config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "iv-choi-2017-double-censor-v1/source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "fefa9861403641a7de129f7ce57023f1db8898e711b747e1a8bfa07e3440116c",
+    "collection_sha256": "333f7390a6ddb17c2b4fdb3230ae5d243d63811ee388938710bd667106be4826",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/T08_checked_batch_20261029_r1.zip",
+    "submitted_zip_sha256": "fefa9861403641a7de129f7ce57023f1db8898e711b747e1a8bfa07e3440116c",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "Latent-variable candidates inferred from source equations; confirm their roles and completeness against the original paper or generator."
+  ],
+  "source_suggested_domain": "iv",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

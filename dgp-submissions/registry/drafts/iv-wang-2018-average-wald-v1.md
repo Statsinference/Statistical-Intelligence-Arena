@@ -1,0 +1,164 @@
+# Wang and Tchetgen Tchetgen (2018) binary odds-product algebraic causal completion
+
+> **Unverified extraction — scientific review required.**
+
+**Primary area:** IV — Instrumental Variables
+
+**Suggested cross-tags (unverified):** none
+
+## Reference paper
+
+**Citation:** Wang, L. and Tchetgen Tchetgen, E. J. (2018). Bounded, efficient and multiply robust estimation of average treatment effects using instrumental variables. Journal of the Royal Statistical Society Series B, 80(3), 531-550. DOI: 10.1111/rssb.12262.
+
+**DOI:** — · **Source locator:** PMC author manuscript, PMCID PMC6051728 / NIHMS927773; Section 4.1 Proposition 2 Eqs.(6),(7); Section 5 opening paragraph and seven unnumbered simulation displays, following parameter paragraph and Table 2 caption. Section 3 Theorem 1 for causal conditions. HTML section/eq anchors, not inferred PDF page numbers.
+
+## DGP / generation mechanism
+
+**Sampling design:** Unit: individual; Dependence: iid units. X2,U,V_Z,V_D,V_Y independent; U binary, V_Z,V_D,V_Y independent Uniform(0,1). Z depends on X2; D on X2,Z,U,V_D; potential Y(a) on X2,U,V_Y. Shared V_Y couples Y(0),Y(1). Only Y=Y(D) is observed; U and uniforms hidden.
+
+**Generator source:** [generator.py](../generators/iv-wang-2018-average-wald-v1.py)
+
+**Keywords (source-described):** Interactions · Nonlinearity
+
+**Observed variables**
+
+X2, Z, D, Y, U
+
+**Latent variables**
+
+V_D, V_Y
+
+**Latent-variable identification:** candidates from equations need review
+
+**Equations / distributions (LaTeX rendering)**
+
+> Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
+
+$$
+X=(1,X_{2})
+$$
+
+X2 uniform on (-1,-0.5) union (0.5,1), density 1
+
+$$
+U\sim \mathrm{Bernoulli}(0.5)
+$$
+
+independent of X2 (explicit adaptation). Individuals iid
+
+$$
+Z\mid X,U \sim \mathrm{Bernoulli}(\mathrm{expit}(0.1-0.5 X_{2})).
+$$
+
+$$
+\delta(X)=tanh(0.1+0.5 X_{2}), deltaD(X)=tanh(-0.5 X_{2}), OPD(X)=\exp(-0.5+X_{2}), OPY(X)=\exp(-X_{2}). \alpha=(0.1,0.5)
+$$
+
+$$
+\beta=(0,-0.5)
+$$
+
+$$
+\gamma=(0.1,-0.5)
+$$
+
+$$
+eta=(-0.5,1)
+$$
+
+$$
+\zeta=(0,-1)
+$$
+
+$$
+kappa=0.1.
+$$
+
+$$
+Let B=q(2-d)+d. F(d,q)=[B-sqrt(B^{2}+4q(1-d)(1-q))]/[2(q-1)]=2q(1-d)/[B+sqrt(B^{2}+4q(1-d)(1-q))]. For q=1, F(d,1)=(1-d)/2. p_{0}D=F(deltaD,OPD)
+$$
+
+$$
+p_{0}Y=F(deltaD\cdot \delta,OPY).
+$$
+
+$$
+D\mid Z,X,U \sim \mathrm{Bernoulli}(p_{0}D(X)+Z deltaD(X)+0.1(2U-1)).
+$$
+
+$$
+Y\mid Z,X,U \sim \mathrm{Bernoulli}(p_{0}Y(X)+Z deltaD(X)\delta(X)+0.1(2U-1)), recovered by the explicit causal completion below. No probability clipping.
+$$
+
+$$
+rD=p_{0}D+0.1(2U-1)
+$$
+
+$$
+rY=p_{0}Y+0.1(2U-1), t=\delta(X)
+$$
+
+$$
+independent V_Z,V_D,V_Y\sim \mathrm{Uniform}(0,1)
+$$
+
+independent of X,U. Z=1{V_Z&lt;expit(gamma^T X)}, D(z)=1{V_D&lt;rD+z deltaD}
+
+$$
+g_a=rY-t\cdot rD+a\cdot t, Y(a)=1\{V_Y<g_a\}. Observe D=D(Z)
+$$
+
+$$
+Y=Y(D). Then \mathbb{E}[Y|Z,X,U]=g_{0}+P(D=1|Z,X,U)\cdot (g_{1}-g_{0})=rY+Z deltaD\cdot t. \mathbb{E}[Y(1)-Y(0)|X,U]=t.
+$$
+
+$$
+Delta_W=integral_\{-1\}^\{-0.5\} tanh(0.1+0.5x) dx + integral_\{0.5\}^\{1\} tanh(0.1+0.5x) dx
+$$
+
+antiderivative 2 log cosh(0.1+0.5x).
+
+<details>
+<summary>Original source equations (verbatim)</summary>
+
+<pre>
+X=(1,X2); X2 uniform on (-1,-0.5) union (0.5,1), density 1; U~Bernoulli(0.5), independent of X2 (explicit adaptation). Individuals iid.
+Z|X,U ~ Bernoulli(expit(0.1-0.5 X2)).
+delta(X)=tanh(0.1+0.5 X2), deltaD(X)=tanh(-0.5 X2), OPD(X)=exp(-0.5+X2), OPY(X)=exp(-X2). alpha=(0.1,0.5), beta=(0,-0.5), gamma=(0.1,-0.5), eta=(-0.5,1), zeta=(0,-1), kappa=0.1.
+Let B=q(2-d)+d. F(d,q)=[B-sqrt(B^2+4q(1-d)(1-q))]/[2(q-1)]=2q(1-d)/[B+sqrt(B^2+4q(1-d)(1-q))]. For q=1, F(d,1)=(1-d)/2. p0D=F(deltaD,OPD), p0Y=F(deltaD*delta,OPY).
+D|Z,X,U ~ Bernoulli(p0D(X)+Z deltaD(X)+0.1(2U-1)).
+Y|Z,X,U ~ Bernoulli(p0Y(X)+Z deltaD(X)delta(X)+0.1(2U-1)), recovered by the explicit causal completion below. No probability clipping.
+rD=p0D+0.1(2U-1), rY=p0Y+0.1(2U-1), t=delta(X); independent V_Z,V_D,V_Y~Uniform(0,1), independent of X,U. Z=1{V_Z&lt;expit(gamma^T X)}, D(z)=1{V_D&lt;rD+z deltaD}, g_a=rY-t*rD+a*t, Y(a)=1{V_Y&lt;g_a}. Observe D=D(Z), Y=Y(D). Then E[Y|Z,X,U]=g0+P(D=1|Z,X,U)*(g1-g0)=rY+Z deltaD*t. E[Y(1)-Y(0)|X,U]=t.
+Delta_W=integral_{-1}^{-0.5} tanh(0.1+0.5x) dx + integral_{0.5}^{1} tanh(0.1+0.5x) dx; antiderivative 2 log cosh(0.1+0.5x).
+</pre>
+
+</details>
+
+
+## Parameter scenarios, estimands and truth
+
+| Scenario | Estimand | Definition | True value | Evidence status |
+|---|---|---|---|---|
+| source_section5 | ATE | Population causal ATE E[Y(1)-Y(0)] in the explicitly adapted algebraic causal completion = E[tanh(0.1+0.5 X2)] = average conditional Wald ratio. Binary intervention a=1 versus a=0, full iid superpopulation; not a LATE. | 0.08670199394664552 | reported_numeric |
+
+## Identifiability assumptions
+
+- iid individuals, X2 uniform on (-1,-0.5) union (0.5,1), U independent Bernoulli(0.5), conditional instrument overlap and nonzero deltaD on both intervals
+- Independent potential-response uniform V_Y and treatment uniform V_D, both independent of X,U and instrument innovation; consistency Y=Y(D), iid units and no interference
+- The adapted Y(a) depends on a,X,U,V_Y only, establishing exclusion; Z independent of U given X; Y(a) independent of D,Z given X,U by independent innovations
+- Conditional mean treatment effect g1-g0=delta(X) does not depend on U (A5.b); treatment mean difference deltaD(X) does not depend on U (A5.a). These are derived for our explicit completion, not asserted source structural equations
+- No monotonicity or causal LATE claim; deltaD changes sign between intervals
+
+## Provenance and review
+
+**Submitted by:** github_file_upload
+
+**Mode:** structured_zip
+
+**Original versus adapted:** adapted_from_source
+
+**Status:** needs_scientific_review
+
+**Warnings:**
+
+- Latent-variable candidates inferred from source equations; confirm their roles and completeness against the original paper or generator.

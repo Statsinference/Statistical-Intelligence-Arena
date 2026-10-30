@@ -1,7 +1,7 @@
 {
   "status": "success",
-  "zip_count": 23,
-  "indexed_dgp_count": 46,
+  "zip_count": 24,
+  "indexed_dgp_count": 54,
   "failure_count": 0,
   "stale_record_ids": [],
   "failures": [],

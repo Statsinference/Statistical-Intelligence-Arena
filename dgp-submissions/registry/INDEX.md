@@ -4,7 +4,7 @@
 
 > **Draft view:** all automatically extracted records still need human scientific review.
 
-**46 DGP mechanisms**, **84 parameter scenarios**, **35 reference papers**
+**54 DGP mechanisms**, **101 parameter scenarios**, **43 reference papers**
 
 ## Research areas
 
@@ -13,7 +13,7 @@
 | ATE — Average Treatment Effect | 5 | 12 | [Browse](by-domain/ate.md) |
 | CATE — Conditional Average Treatment Effect | 2 | 2 | [Browse](by-domain/cate.md) |
 | Mediation — Direct and Indirect Effects | 1 | 1 | [Browse](by-domain/mediation.md) |
-| IV — Instrumental Variables | 5 | 5 | [Browse](by-domain/iv.md) |
+| IV — Instrumental Variables | 13 | 13 | [Browse](by-domain/iv.md) |
 | Proximal Causal Inference | 7 | 10 | [Browse](by-domain/proximal.md) |
 | DiD / Synthetic Control | 3 | 3 | [Browse](by-domain/did_sc.md) |
 | Nonparametric Regression | 2 | 2 | [Browse](by-domain/nonparametric_regression.md) |
@@ -58,15 +58,23 @@ Each paper is listed **once per area**. Generators are source files from the sub
 
 ### [IV — Instrumental Variables](by-domain/iv.md)
 
-5 paper(s) · 5 DGP mechanism(s)
+13 paper(s) · 13 DGP mechanism(s)
 
 | Paper Title | DGPs | DGP Mechanisms | Keywords | Generator.py |
 |---|---:|---|---|---|
+| [Bounded, efficient and multiply robust estimation of average treatment effects using instrumental variables](https://doi.org/10.1111/rssb.12262) (JRSSB) | 1 | [Wang and Tchetgen Tchetgen (2018) binary odds-product algebraic causal completion](drafts/iv-wang-2018-average-wald-v1.md) | Interactions · Nonlinearity | [generator.py](generators/iv-wang-2018-average-wald-v1.py) |
 | Deep IV: A Flexible Approach for Counterfactual Prediction (ICML) | 1 | [IV: DeepIV raw-unit demand with endogenous continuous price](drafts/iv-hartford-2017-demand-v1.md) | Interactions · Nonlinearity | [generator.py](generators/iv-hartford-2017-demand-v1.py) |
+| [Estimation of local treatment effects under the binary instrumental variable model](https://doi.org/10.1093/biomet/asab003) (Biometrika) | 1 | [Binary IV: congenial complier risk difference and odds-product model](drafts/iv-wang-2021-binary-complier-odds-v1.md) | Nonlinearity | [generator.py](generators/iv-wang-2021-binary-complier-odds-v1.py) |
 | [Generalized random forests](https://doi.org/10.1214/18-aos1709) (AoS) | 1 | [Endogenous Noncompliance and Local Treatment Effects](drafts/iv-athey-tibshirani-wager-2019-compliance-v1.md) | Interactions · Nonlinearity | [generator.py](generators/iv-athey-tibshirani-wager-2019-compliance-v1.py) |
+| [GENIUS-MAWII: for robust Mendelian randomization with many weak invalid instruments](https://doi.org/10.1093/jrsssb/qkae024) (JRSSB) | 1 | [GENIUS heteroskedastic exposure with many weak pleiotropic genetic instruments](drafts/iv-ye-2024-genius-heteroskedastic-v1.md) | Interactions · Nonlinearity | [generator.py](generators/iv-ye-2024-genius-heteroskedastic-v1.py) |
+| [Graphical tools for selecting conditional instrumental sets](https://doi.org/10.1093/biomet/asad066) (Biometrika) | 1 | [Conditional instruments in a confounded graph with a mediated total effect](drafts/iv-henckel-2024-conditional-graph-v1.md) | Linearity | [generator.py](generators/iv-henckel-2024-conditional-graph-v1.py) |
+| [Inference of Heterogeneous Treatment Effects using Observational Data with High-Dimensional Covariates](https://doi.org/10.1111/rssb.12469) (JRSSB) | 1 | [IV: monotone threshold compliance with Poisson principal-stratum confounding](drafts/iv-qiu-2021-principal-stratum-poisson-v1.md) | Nonlinearity · High-dimensionality | [generator.py](generators/iv-qiu-2021-principal-stratum-poisson-v1.py) |
+| [Instrumental variable estimation of the marginal structural Cox model for time-varying treatments](https://doi.org/10.1093/biomet/asab062) (Biometrika) | 1 | [Time-varying instrumental variables with confounding and censored survival](drafts/iv-cui-2023-longitudinal-survival-v1.md) | Interactions · Nonlinearity | [generator.py](generators/iv-cui-2023-longitudinal-survival-v1.py) |
 | [Instrumental variables as bias amplifiers with general outcome and confounding](https://doi.org/10.1093/biomet/asx009) (Biometrika) | 1 | [DGP iv-ding-2017-binary-bias-v1 (English title required)](drafts/iv-ding-2017-binary-bias-v1.md) | Interactions · Nonlinearity | [generator.py](generators/iv-ding-2017-binary-bias-v1.py) |
 | [Instrumental Variables Estimation With Some Invalid Instruments and its Application to Mendelian Randomization](https://doi.org/10.1080/01621459.2014.994705) (JASA) | 1 | [Partially Invalid Instruments with Linear Endogenous Treatment](drafts/iv-kang-2016-invalid-linear-v1.md) | Linearity | [generator.py](generators/iv-kang-2016-invalid-linear-v1.py) |
 | Minimax Estimation of Conditional Moment Models (NeurIPS) | 1 | [IV: sine structural response with Gaussian confounding](drafts/iv-dikkala-2020-sine-v1.md) | Nonlinearity | [generator.py](generators/iv-dikkala-2020-sine-v1.py) |
+| [On the instrumental variable estimation with many weak and invalid instruments](https://doi.org/10.1093/jrsssb/qkae025) (JRSSB) | 1 | [Lin et al. (2024) linear IV adapted from pinned WIT code](drafts/iv-lin-2024-wit-code-v1.md) | Linearity | [generator.py](generators/iv-lin-2024-wit-code-v1.py) |
+| [On two-stage estimation of structural instrumental variable models](https://doi.org/10.1093/biomet/asx056) (Biometrika) | 1 | [IV: left-censored continuous exposure and right-censored outcome](drafts/iv-choi-2017-double-censor-v1.md) | Nonlinearity | [generator.py](generators/iv-choi-2017-double-censor-v1.py) |
 
 ### [Proximal Causal Inference](by-domain/proximal.md)
 
