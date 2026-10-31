@@ -1,0 +1,185 @@
+{
+  "schema_version": "0.1",
+  "record_id": "sspi-zhang-bradic-202206-interaction-v1",
+  "kind": "synthetic_dgp",
+  "domain": "semi_supervised",
+  "english_display": {},
+  "paper": {
+    "citation": "Zhang, Y. and Bradic, J. (2022). High-dimensional semi-supervised learning: in search of optimal inference of the mean. Biometrika 109(2), 387-403. DOI: 10.1093/biomet/asab042.",
+    "title": "High-dimensional semi-supervised learning: in search of optimal inference of the mean",
+    "doi": "10.1093/biomet/asab042",
+    "source_url": "https://doi.org/10.1093/biomet/asab042",
+    "source_file_evidence": [],
+    "venue": "Biometrika",
+    "year": 2022,
+    "source_version": "Published journal PDF, 17 pages; footer records download on 2022-08-02. Journal issue June 2022; online-date metadata differs across the current landing page and PDF, so IDs use the verified issue month 202206.",
+    "source_locator": "Section 5.1, Model 6, journal p. 399 = PDF p. 13; Model 1 covariates/noise on PDF p. 11; sampling PDF p. 1."
+  },
+  "mechanism": {
+    "name": "Interaction and Shifted Quadratic Semi-Supervised Mean",
+    "title_en": null,
+    "family_id": "zhang-bradic-202206-interaction",
+    "generation_equations": [
+      {
+        "label": "Covariates",
+        "expression": "X ~ N_3(0,I); independent standard Gaussian coordinates. Paper notation p includes intercept: input dimension is p-1."
+      },
+      {
+        "label": "Response",
+        "expression": "Y = X_1 X_2 + 0.5 (X_3 + 0.5)^2 + epsilon; epsilon ~ N(0,0.25)"
+      },
+      {
+        "label": "Sampling and observed data",
+        "expression": "Independent units and independent outcome noise. Two iid samples from the same population; fixed group sizes, R indicates observed Y. Export X,R,Y_obs where Y_obs=Y when R=1 and 0 otherwise; n_total=nL+nU."
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "X1",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X2",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X3",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "R",
+        "role": "label_observation_indicator",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Y_obs",
+        "role": "response_observed_if_R_1_zero_placeholder_if_R_0",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [
+      {
+        "name": "epsilon",
+        "role": "unobserved outcome noise; never exported",
+        "provenance": "collection.json explicit latent_variables"
+      }
+    ],
+    "latent_variables_status": "explicit_structured_metadata",
+    "sampling": {
+      "unit": "individual",
+      "dependence": "Independent complete-data units; fixed labeled/unlabeled group indicators, not independent Bernoulli indicators. Coordinate dependence is specified in equations.",
+      "n_semantics": "n is combined table row count",
+      "labeled_reference": 100,
+      "unlabeled_reference": 1000,
+      "predictor_source": "No external or oracle predictor supplied. Downstream nuisance regressors must be trained on labeled training folds only; cross-fitting and tuning belong to the later estimator benchmark. No prediction is substituted for Y_obs."
+    },
+    "assumptions": [
+      "Independent individuals; labeled and unlabeled observations have the same covariate law and common complete-data population.",
+      "Fixed-size labeling independent of X,Y (two-sample/MCAR design); no MAR selection or distribution shift.",
+      "Independent noise as specified; finite second moments; R must mask all uses of Y_obs."
+    ],
+    "properties": {
+      "dimension": 3,
+      "effective_dimension": 3,
+      "high_dimensional": false,
+      "interactions": true,
+      "nonlinear": true,
+      "observed_columns": 5,
+      "notes": "Total input dimension 3; source Model 6. X1 X2 is an interaction; shifted square in X3 is nonlinear. All three coordinates active."
+    }
+  },
+  "estimand": {
+    "name": "theta = E[Y]",
+    "definition": "Superpopulation mean theta=E[Y] under the declared fixed mechanism, shared by labeled and unlabeled samples.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "source_fixed",
+      "parameters": {
+        "mechanism": "interaction",
+        "dimension": 3,
+        "labeled_reference": 100,
+        "unlabeled_reference": 1000,
+        "scenario_origin": "Source formula and selected source parameters; declared interface adaptations apply.",
+        "noise_sd": 0.5
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.625,
+        "expression": "Superpopulation mean theta=E[Y] under the declared fixed mechanism, shared by labeled and unlabeled samples.",
+        "derivation": "Independent standard Gaussian moments; E[X1 X2]=0",
+        "evidence": [
+          {
+            "file": "sspi-zhang-bradic-202206-interaction-v1/checks/report.json",
+            "location": "execution.scenario_results[source_fixed].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "Map the two-sample SS design to one numeric table. API n is total rows, not the paper labeled n; R=1 for labeled rows; Y_obs=0 for R=0 is a sentinel, never a label. Source reference sample sizes are stored separately.",
+    "For arbitrary CPU test n, labeled_count=max(1,min(n-1,floor(n*nL_ref/(nL_ref+nU_ref)))); first labeled_count rows form the independent labeled sample. At n=nL_ref+nU_ref the source counts are exact.",
+    "Independent NumPy PCG64 implementation; no author code copied; original estimator tuning, fitted predictions, repeated CI experiments and PFN training are outside this DGP collection."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "sspi-zhang-bradic-202206-interaction-v1/generator.py",
+    "truth_reference": "sspi-zhang-bradic-202206-interaction-v1/truth.py",
+    "source_archive": "SSPI_8_DGP_submission_20261028.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/sspi-zhang-bradic-202206-interaction-v1.py",
+    "exported_generator_sha256": "b4643e83143289da7c21ee34aece21df73bef2bc2b99f59826b10cbbce405f66"
+  },
+  "evidence": [
+    {
+      "file": "sspi-zhang-bradic-202206-interaction-v1/collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "sspi-zhang-bradic-202206-interaction-v1/config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "sspi-zhang-bradic-202206-interaction-v1/source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "8b86fddd1caecc0403e6fc130a634f1976650c3d73f1d90c7fb536e450189ee8",
+    "collection_sha256": "3d6e8a99c5191581db816ccdf7f7511519f8d92801ccb7134a0716fbafab4bcd",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/SSPI_8_DGP_submission_20261028.zip",
+    "submitted_zip_sha256": "8b86fddd1caecc0403e6fc130a634f1976650c3d73f1d90c7fb536e450189ee8",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [],
+  "source_suggested_domain": "semi_supervised",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

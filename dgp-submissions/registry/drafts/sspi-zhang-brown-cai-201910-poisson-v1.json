@@ -1,0 +1,236 @@
+{
+  "schema_version": "0.1",
+  "record_id": "sspi-zhang-brown-cai-201910-poisson-v1",
+  "kind": "synthetic_dgp",
+  "domain": "semi_supervised",
+  "english_display": {},
+  "paper": {
+    "citation": "Zhang, A., Brown, L. D. and Cai, T. T. (2019). Semi-supervised inference: General theory and estimation of means. The Annals of Statistics 47(5), 2538-2566. DOI: 10.1214/18-AOS1756.",
+    "title": "Semi-supervised inference: General theory and estimation of means",
+    "doi": "10.1214/18-aos1756",
+    "source_url": "https://doi.org/10.1214/18-AOS1756",
+    "source_file_evidence": [],
+    "venue": "The Annals of Statistics",
+    "year": 2019,
+    "source_version": "Actually read arXiv:1606.07268v2 (2018-08-14), 62 pages, linked to the 2019 journal publication. Journal final simulation equations were not independently compared; this contribution claims fidelity to the pinned preprint setting only.",
+    "source_locator": "Pinned arXiv v2 Section 4, setting 3, PDF p. 19 (unnumbered display); Table 1 on PDF p. 20 supplies (p,n,m)=(10,100,1000); sampling equations (1.1)-(1.2), PDF p. 2. These are preprint PDF page numbers, not journal pages."
+  },
+  "mechanism": {
+    "name": "Poisson Covariates and Poisson Response Semi-Supervised Mean",
+    "title_en": null,
+    "family_id": "zhang-brown-cai-201910-poisson",
+    "generation_equations": [
+      {
+        "label": "Covariates",
+        "expression": "X_1,...,X_10 independent Poisson(10)"
+      },
+      {
+        "label": "Response",
+        "expression": "X_j iid ~ Poisson(10); Y | X ~ Poisson(10 X_1)"
+      },
+      {
+        "label": "Sampling and observed data",
+        "expression": "Independent units and independent outcome noise. Two iid samples from the same population; fixed group sizes, R indicates observed Y. Export X,R,Y_obs where Y_obs=Y when R=1 and 0 otherwise; n_total=nL+nU."
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "X1",
+        "role": "covariate",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X2",
+        "role": "covariate",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X3",
+        "role": "covariate",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X4",
+        "role": "covariate",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X5",
+        "role": "covariate",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X6",
+        "role": "covariate",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X7",
+        "role": "covariate",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X8",
+        "role": "covariate",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X9",
+        "role": "covariate",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X10",
+        "role": "covariate",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "R",
+        "role": "label_observation_indicator",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Y_obs",
+        "role": "response_observed_if_R_1_zero_placeholder_if_R_0",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [],
+    "latent_variables_status": "explicit_structured_metadata",
+    "sampling": {
+      "unit": "individual",
+      "dependence": "Independent complete-data units; fixed labeled/unlabeled group indicators, not independent Bernoulli indicators. Coordinate dependence is specified in equations.",
+      "n_semantics": "n is combined table row count",
+      "labeled_reference": 100,
+      "unlabeled_reference": 1000,
+      "predictor_source": "No external or oracle predictor supplied. Downstream nuisance regressors must be trained on labeled training folds only; cross-fitting and tuning belong to the later estimator benchmark. No prediction is substituted for Y_obs."
+    },
+    "assumptions": [
+      "Independent individuals; labeled and unlabeled observations have the same covariate law and common complete-data population.",
+      "Fixed-size labeling independent of X,Y (two-sample/MCAR design); no MAR selection or distribution shift.",
+      "Independent noise as specified; finite second moments; R must mask all uses of Y_obs."
+    ],
+    "properties": {
+      "dimension": 10,
+      "effective_dimension": 1,
+      "high_dimensional": false,
+      "interactions": false,
+      "nonlinear": false,
+      "observed_columns": 12,
+      "notes": "Total input dimension 10; source Section 4 setting 3. Only X1 affects response; other nine coordinates do not. Conditional mean is linear; conditional Poisson variance is 10 X1 (heteroskedastic)."
+    }
+  },
+  "estimand": {
+    "name": "theta = E[Y]",
+    "definition": "Superpopulation mean theta=E[Y] under the declared fixed mechanism, shared by labeled and unlabeled samples.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "source_fixed",
+      "parameters": {
+        "mechanism": "poisson",
+        "dimension": 10,
+        "labeled_reference": 100,
+        "unlabeled_reference": 1000,
+        "scenario_origin": "Source formula and selected source parameters; declared interface adaptations apply.",
+        "covariate_rate": 10.0,
+        "response_multiplier": 10.0
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 100.0,
+        "expression": "Superpopulation mean theta=E[Y] under the declared fixed mechanism, shared by labeled and unlabeled samples.",
+        "derivation": "Iterated expectation of nested Poisson laws",
+        "evidence": [
+          {
+            "file": "sspi-zhang-brown-cai-201910-poisson-v1/checks/report.json",
+            "location": "execution.scenario_results[source_fixed].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "Map the two-sample SS design to one numeric table. API n is total rows, not the paper labeled n; R=1 for labeled rows; Y_obs=0 for R=0 is a sentinel, never a label. Source reference sample sizes are stored separately.",
+    "For arbitrary CPU test n, labeled_count=max(1,min(n-1,floor(n*nL_ref/(nL_ref+nU_ref)))); first labeled_count rows form the independent labeled sample. At n=nL_ref+nU_ref the source counts are exact.",
+    "Independent NumPy PCG64 implementation; no author code copied; original estimator tuning, fitted predictions, repeated CI experiments and PFN training are outside this DGP collection."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "sspi-zhang-brown-cai-201910-poisson-v1/generator.py",
+    "truth_reference": "sspi-zhang-brown-cai-201910-poisson-v1/truth.py",
+    "source_archive": "SSPI_8_DGP_submission_20261028.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/sspi-zhang-brown-cai-201910-poisson-v1.py",
+    "exported_generator_sha256": "8baac3095edb0afabb2ad8fc3da3898a24ef9412b1c30a5271640a11921bf8a8"
+  },
+  "evidence": [
+    {
+      "file": "sspi-zhang-brown-cai-201910-poisson-v1/collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "sspi-zhang-brown-cai-201910-poisson-v1/config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "sspi-zhang-brown-cai-201910-poisson-v1/source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "8b86fddd1caecc0403e6fc130a634f1976650c3d73f1d90c7fb536e450189ee8",
+    "collection_sha256": "fa0bad141d010b9df1b2647777b194da6367238bb7ad572945a50b0c87d78254",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/SSPI_8_DGP_submission_20261028.zip",
+    "submitted_zip_sha256": "8b86fddd1caecc0403e6fc130a634f1976650c3d73f1d90c7fb536e450189ee8",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [],
+  "source_suggested_domain": "semi_supervised",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

@@ -4,7 +4,7 @@
 
 > **Draft view:** all automatically extracted records still need human scientific review.
 
-**77 DGP mechanisms**, **177 parameter scenarios**, **57 reference papers**
+**85 DGP mechanisms**, **187 parameter scenarios**, **60 reference papers**
 
 ## Research areas
 
@@ -18,7 +18,7 @@
 | DiD / Synthetic Control | 3 | 3 | [Browse](by-domain/did_sc.md) |
 | Nonparametric Regression | 2 | 2 | [Browse](by-domain/nonparametric_regression.md) |
 | Quantile Inference | 2 | 3 | [Browse](by-domain/quantile.md) |
-| Semi-Supervised Inference | 7 | 8 | [Browse](by-domain/semi_supervised.md) |
+| Semi-Supervised Inference | 10 | 16 | [Browse](by-domain/semi_supervised.md) |
 | Missing Data | 0 | 0 | [Browse](by-domain/missing_data.md) |
 
 ## Paper list by research area
@@ -130,15 +130,18 @@ Each paper is listed **once per area**. Generators are source files from the sub
 
 ### [Semi-Supervised Inference](by-domain/semi_supervised.md)
 
-7 paper(s) · 8 DGP mechanism(s)
+10 paper(s) · 16 DGP mechanism(s)
 
 | Paper Title | DGPs | DGP Mechanisms | Keywords | Generator.py |
 |---|---:|---|---|---|
 | [A General M-estimation Theory in Semi-Supervised Framework](https://doi.org/10.1080/01621459.2023.2169699) (JASA) | 2 | 1: [Linear projection under correlated nonlinear regression with shared noise](drafts/sspi-song-2024-nonlinear-noise-projection-v1.md)<br/>2: [Logistic projection under an even nonlinear Gaussian-mixture response](drafts/sspi-song-2024-even-mixture-logistic-projection-v1.md) | 1: Nonlinearity · Heteroskedasticity<br/>2: Interactions · Nonlinearity · Heteroskedasticity | [1: generator.py](generators/sspi-song-2024-nonlinear-noise-projection-v1.py)<br/>[2: generator.py](generators/sspi-song-2024-even-mixture-logistic-projection-v1.py) |
+| [Efficient and adaptive linear regression in semi-supervised settings](https://doi.org/10.1214/17-aos1594) (AoS) | 2 | 1: [Three-Component Quadratic Semi-Supervised Projection Intercept](drafts/sspi-chakrabortty-cai-201808-nl3c-v1.md)<br/>2: [Two-Component Interaction Semi-Supervised Projection Intercept](drafts/sspi-chakrabortty-cai-201808-nl2c-v1.md) | 1: Interactions · Nonlinearity<br/>2: Interactions · Nonlinearity | [1: generator.py](generators/sspi-chakrabortty-cai-201808-nl3c-v1.py)<br/>[2: generator.py](generators/sspi-chakrabortty-cai-201808-nl2c-v1.py) |
 | [Extreme Value Statistics in Semi-Supervised Models](https://doi.org/10.1080/01621459.2024.2333582) (JASA) | 1 | [Extreme quantile with a tail-dependent Cauchy auxiliary variable](drafts/sspi-ahmed-2025-cauchy-tail-quantile-v1.md) | Nonlinearity | [generator.py](generators/sspi-ahmed-2025-cauchy-tail-quantile-v1.py) |
-| [High-dimensional semi-supervised learning: in search of optimal inference of the mean](https://doi.org/10.1093/biomet/asab042) (Biometrika) | 1 | [Cosine single-index mean with Gaussian covariates](drafts/sspi-zhang-bradic-2022-cosine-index-v1.md) | Interactions · Nonlinearity | [generator.py](generators/sspi-zhang-bradic-2022-cosine-index-v1.py) |
+| [High-dimensional semi-supervised learning: in search of optimal inference of the mean](https://doi.org/10.1093/biomet/asab042) (Biometrika) | 3 | 1: [Cosine single-index mean with Gaussian covariates](drafts/sspi-zhang-bradic-2022-cosine-index-v1.md)<br/>2: [Equicorrelated High-Dimensional Additive Sine Mean](drafts/sspi-zhang-bradic-202206-additive-sine-v1.md)<br/>3: [Interaction and Shifted Quadratic Semi-Supervised Mean](drafts/sspi-zhang-bradic-202206-interaction-v1.md) | 1: Interactions · Nonlinearity<br/>2: Nonlinearity · High-dimensionality<br/>3: Interactions · Nonlinearity | [1: generator.py](generators/sspi-zhang-bradic-2022-cosine-index-v1.py)<br/>[2: generator.py](generators/sspi-zhang-bradic-202206-additive-sine-v1.py)<br/>[3: generator.py](generators/sspi-zhang-bradic-202206-interaction-v1.py) |
+| [Optimal and Safe Estimation for High-Dimensional Semi-Supervised Learning](https://doi.org/10.1080/01621459.2023.2277409) (JASA) | 3 | 1: [Folded-AR Gaussian Additive Polynomial Projection](drafts/sspi-deng-ning-zhao-zhang-2024-additive-polynomial-v1.md)<br/>2: [Folded-AR Gaussian Quadratic Interaction and Cubic Projection](drafts/sspi-deng-ning-zhao-zhang-2024-quadratic-cubic-v1.md)<br/>3: [Folded-AR Gaussian Third-Order Index Interaction Projection](drafts/sspi-deng-ning-zhao-zhang-2024-cubic-index-v1.md) | 1: Nonlinearity · High-dimensionality<br/>2: Interactions · Nonlinearity · High-dimensionality<br/>3: Interactions · Nonlinearity · High-dimensionality | [1: generator.py](generators/sspi-deng-ning-zhao-zhang-2024-additive-polynomial-v1.py)<br/>[2: generator.py](generators/sspi-deng-ning-zhao-zhang-2024-quadratic-cubic-v1.py)<br/>[3: generator.py](generators/sspi-deng-ning-zhao-zhang-2024-cubic-index-v1.py) |
 | [Predictions as Surrogates: Revisiting Surrogate Outcomes in the Age of AI](https://doi.org/10.1093/biomet/asag053) (Biometrika) | 1 | [Population mean with a miscalibrated three-level surrogate](drafts/sspi-ji-2026-discrete-surrogate-mean-v1.md) | Nonlinearity | [generator.py](generators/sspi-ji-2026-discrete-surrogate-mean-v1.py) |
 | [Semi-supervised distribution learning](https://doi.org/10.1093/biomet/asae056) (Biometrika) | 1 | [Marginal distribution inference with sparse Gaussian linear signal](drafts/sspi-wen-2025-gaussian-cdf-v1.md) | Linearity | [generator.py](generators/sspi-wen-2025-gaussian-cdf-v1.py) |
+| [Semi-supervised inference: General theory and estimation of means](https://doi.org/10.1214/18-aos1756) (AoS) | 1 | [Poisson Covariates and Poisson Response Semi-Supervised Mean](drafts/sspi-zhang-brown-cai-201910-poisson-v1.md) | Linearity | [generator.py](generators/sspi-zhang-brown-cai-201910-poisson-v1.py) |
 | [Semi-Supervised Linear Regression](https://doi.org/10.1080/01621459.2021.1915320) (JASA) | 1 | [Best linear slope under a quadratic Gaussian response](drafts/sspi-azriel-2022-quadratic-projection-v1.md) | Nonlinearity | [generator.py](generators/sspi-azriel-2022-quadratic-projection-v1.py) |
 | [Semisupervised inference for explained variance in high dimensional linear regression and its applications](https://doi.org/10.1111/rssb.12357) (JRSSB) | 1 | [Explained variance for dense decaying regression with AR covariance](drafts/sspi-cai-guo-2020-dense-explained-variance-v1.md) | Linearity · High-dimensionality | [generator.py](generators/sspi-cai-guo-2020-dense-explained-variance-v1.py) |
 

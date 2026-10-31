@@ -1,0 +1,37 @@
+"""Independent implementation of the cited mechanism; exports observed columns only."""
+import math
+import numpy as np
+
+MECHANISM = 'poisson'
+DIMENSION = 10
+
+def validate(config):
+    if config["dimension"] != DIMENSION or config["mechanism"] != MECHANISM:
+        raise ValueError("Use the declared mechanism and dimension matching schema.csv")
+    if config["labeled_reference"] <= 0 or config["unlabeled_reference"] <= 0:
+        raise ValueError("Both sample groups must be present")
+
+def conditional_mean(x, config):
+    return config["response_multiplier"] * x[:, 0]
+
+def generate(config, n, seed):
+    validate(config)
+    if isinstance(n, bool) or not isinstance(n, int) or n < 2:
+        raise ValueError("n is the combined row count and must be an integer >=2")
+    # Explicit PCG64, local streams; no global RNG and no fitted/oracle prediction column.
+    rng = np.random.Generator(np.random.PCG64(seed))
+    d = config["dimension"]
+    x = rng.poisson(config["covariate_rate"], size=(n,d))
+    n_l = min(n-1, max(1, n * config["labeled_reference"] //
+                       (config["labeled_reference"] + config["unlabeled_reference"])))
+    # Two independent iid samples concatenated: the first n_l rows are labeled.
+    # Generate Y ONLY for labeled units; unobserved labels never enter returned data.
+    mu = conditional_mean(x[:n_l], config)
+    labels = rng.poisson(mu)
+    y_obs = np.zeros(n, dtype=int)
+    y_obs[:n_l] = labels
+    r = np.zeros(n, dtype=int)
+    r[:n_l] = 1
+    result = {f"X{j+1}": x[:, j].tolist() for j in range(d)}
+    result.update(R=r.tolist(), Y_obs=y_obs.tolist())
+    return result

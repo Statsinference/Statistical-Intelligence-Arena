@@ -1,0 +1,345 @@
+{
+  "schema_version": "0.1",
+  "record_id": "sspi-chakrabortty-cai-201808-nl3c-v1",
+  "kind": "synthetic_dgp",
+  "domain": "semi_supervised",
+  "english_display": {},
+  "paper": {
+    "citation": "Chakrabortty, A. and Cai, T. (2018). Efficient and adaptive linear regression in semi-supervised settings. The Annals of Statistics 46(4), 1541-1572. DOI: 10.1214/17-AOS1594.",
+    "title": "Efficient and adaptive linear regression in semi-supervised settings",
+    "doi": "10.1214/17-aos1594",
+    "source_url": "https://doi.org/10.1214/17-AOS1594",
+    "source_file_evidence": [],
+    "venue": "The Annals of Statistics",
+    "year": 2018,
+    "source_version": "Published journal PDF hosted by the University of Pennsylvania, 32 pages; issue August 2018.",
+    "source_locator": "Section 6.1, model (iv), journal p. 1559 = PDF p. 19; n=500 and N=10000 on journal p. 1558 = PDF p. 18; regression target in Section 2."
+  },
+  "mechanism": {
+    "name": "Three-Component Quadratic Semi-Supervised Projection Intercept",
+    "title_en": null,
+    "family_id": "chakrabortty-cai-201808-nl3c",
+    "generation_equations": [
+      {
+        "label": "Covariates",
+        "expression": "Coordinates independent N(0,1) conditional on -5 <= X_j <= 5; implemented by rejection, not clipping. This makes the source restriction explicit."
+      },
+      {
+        "label": "Coefficient vectors",
+        "expression": "p=10; b1=(1,1,1,1,1,0,0,0,0,0), b2=(1,1,1,1,1,1,1,1,1,1); delta=(0,0,0,0,0,1,1,1,1,1); omega=(1,0,1,0,1,0,1,0,1,0)."
+      },
+      {
+        "label": "Response",
+        "expression": "Y = (X^T b)(1 + X^T delta) + (X^T omega)^2 + epsilon; epsilon ~ N(0,1)"
+      },
+      {
+        "label": "Sampling and observed data",
+        "expression": "Independent units and independent outcome noise. Two iid samples from the same population; fixed group sizes, R indicates observed Y. Export X,R,Y_obs where Y_obs=Y when R=1 and 0 otherwise; n_total=nL+nU."
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "X1",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-5",
+        "max": "5",
+        "observed": "true"
+      },
+      {
+        "name": "X2",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-5",
+        "max": "5",
+        "observed": "true"
+      },
+      {
+        "name": "X3",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-5",
+        "max": "5",
+        "observed": "true"
+      },
+      {
+        "name": "X4",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-5",
+        "max": "5",
+        "observed": "true"
+      },
+      {
+        "name": "X5",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-5",
+        "max": "5",
+        "observed": "true"
+      },
+      {
+        "name": "X6",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-5",
+        "max": "5",
+        "observed": "true"
+      },
+      {
+        "name": "X7",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-5",
+        "max": "5",
+        "observed": "true"
+      },
+      {
+        "name": "X8",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-5",
+        "max": "5",
+        "observed": "true"
+      },
+      {
+        "name": "X9",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-5",
+        "max": "5",
+        "observed": "true"
+      },
+      {
+        "name": "X10",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-5",
+        "max": "5",
+        "observed": "true"
+      },
+      {
+        "name": "R",
+        "role": "label_observation_indicator",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Y_obs",
+        "role": "response_observed_if_R_1_zero_placeholder_if_R_0",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [
+      {
+        "name": "epsilon",
+        "role": "unobserved outcome noise; never exported",
+        "provenance": "collection.json explicit latent_variables"
+      }
+    ],
+    "latent_variables_status": "explicit_structured_metadata",
+    "sampling": {
+      "unit": "individual",
+      "dependence": "Independent complete-data units; fixed labeled/unlabeled group indicators, not independent Bernoulli indicators. Coordinate dependence is specified in equations.",
+      "n_semantics": "n is combined table row count",
+      "labeled_reference": 500,
+      "unlabeled_reference": 10000,
+      "predictor_source": "No external or oracle predictor supplied. Downstream nuisance regressors must be trained on labeled training folds only; cross-fitting and tuning belong to the later estimator benchmark. No prediction is substituted for Y_obs."
+    },
+    "assumptions": [
+      "Independent individuals; labeled and unlabeled observations have the same covariate law and common complete-data population.",
+      "Fixed-size labeling independent of X,Y (two-sample/MCAR design); no MAR selection or distribution shift.",
+      "Independent noise as specified; finite second moments; R must mask all uses of Y_obs."
+    ],
+    "properties": {
+      "dimension": 10,
+      "effective_dimension": 10,
+      "high_dimensional": false,
+      "interactions": true,
+      "nonlinear": true,
+      "observed_columns": 12,
+      "notes": "Total input dimension 10; source Section 6.1(iv) NL3C. All ten coordinates enter the index products; polynomial terms are explicit. Fixed p=10 is not called high-dimensional relative to 500 labels."
+    }
+  },
+  "estimand": {
+    "name": "alpha_projection = E[Y]",
+    "definition": "Intercept alpha of argmin_(alpha,beta) E[(Y-alpha-X^T beta)^2]; since E[X]=0 and Cov(X) is positive definite, alpha=E[Y].",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "source_b1_conditional_truncation",
+      "parameters": {
+        "mechanism": "nl3c",
+        "dimension": 10,
+        "labeled_reference": 500,
+        "unlabeled_reference": 10000,
+        "scenario_origin": "Source p=10 and coefficient vectors; conditional truncation is an explicit implementation convention, not a verified author-code detail.",
+        "noise_sd": 1.0,
+        "truncation_bound": 5.0,
+        "delta": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "omega": [
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0
+        ],
+        "b": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 4.999925663981647,
+        "expression": "Intercept alpha of argmin_(alpha,beta) E[(Y-alpha-X^T beta)^2]; since E[X]=0 and Cov(X) is positive definite, alpha=E[Y].",
+        "derivation": "Projection intercept equals E[Y] because E[X]=0; truncated Gaussian second moment",
+        "evidence": [
+          {
+            "file": "sspi-chakrabortty-cai-201808-nl3c-v1/checks/report.json",
+            "location": "execution.scenario_results[source_b1_conditional_truncation].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "source_b2_conditional_truncation",
+      "parameters": {
+        "mechanism": "nl3c",
+        "dimension": 10,
+        "labeled_reference": 500,
+        "unlabeled_reference": 10000,
+        "scenario_origin": "Source p=10 and coefficient vectors; conditional truncation is an explicit implementation convention, not a verified author-code detail.",
+        "noise_sd": 1.0,
+        "truncation_bound": 5.0,
+        "delta": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "omega": [
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0
+        ],
+        "b": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 9.999851327963293,
+        "expression": "Intercept alpha of argmin_(alpha,beta) E[(Y-alpha-X^T beta)^2]; since E[X]=0 and Cov(X) is positive definite, alpha=E[Y].",
+        "derivation": "Projection intercept equals E[Y] because E[X]=0; truncated Gaussian second moment",
+        "evidence": [
+          {
+            "file": "sspi-chakrabortty-cai-201808-nl3c-v1/checks/report.json",
+            "location": "execution.scenario_results[source_b2_conditional_truncation].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "Map the two-sample SS design to one numeric table. API n is total rows, not the paper labeled n; R=1 for labeled rows; Y_obs=0 for R=0 is a sentinel, never a label. Source reference sample sizes are stored separately.",
+    "For arbitrary CPU test n, labeled_count=max(1,min(n-1,floor(n*nL_ref/(nL_ref+nU_ref)))); first labeled_count rows form the independent labeled sample. At n=nL_ref+nU_ref the source counts are exact.",
+    "Independent NumPy PCG64 implementation; no author code copied; original estimator tuning, fitted predictions, repeated CI experiments and PFN training are outside this DGP collection.",
+    "Fix p=10; retain both source coefficient vectors as scenarios, not separate mechanisms.",
+    "The paper states restriction to [-5,5]^p without specifying clipping versus rejection. We explicitly define independent conditional truncated normals via rejection; this is a declared adaptation requiring reviewer confirmation, not exact author-code reproduction.",
+    "Select the intercept component of the population least-squares projection with an intercept. Since E[X]=0, this scalar equals E[Y]; the full regression vector is outside the scalar truth interface."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "sspi-chakrabortty-cai-201808-nl3c-v1/generator.py",
+    "truth_reference": "sspi-chakrabortty-cai-201808-nl3c-v1/truth.py",
+    "source_archive": "SSPI_8_DGP_submission_20261028.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/sspi-chakrabortty-cai-201808-nl3c-v1.py",
+    "exported_generator_sha256": "3a0e2269b7f1c6d122cbf8e4198bb9ebe4b38f1f8261987f2eba4da3c2f66ac8"
+  },
+  "evidence": [
+    {
+      "file": "sspi-chakrabortty-cai-201808-nl3c-v1/collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "sspi-chakrabortty-cai-201808-nl3c-v1/config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "sspi-chakrabortty-cai-201808-nl3c-v1/source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "8b86fddd1caecc0403e6fc130a634f1976650c3d73f1d90c7fb536e450189ee8",
+    "collection_sha256": "fa996c2666d5e97c4ae73bdfdef1170606426d9c0553336f45b52dabedcd47d6",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/SSPI_8_DGP_submission_20261028.zip",
+    "submitted_zip_sha256": "8b86fddd1caecc0403e6fc130a634f1976650c3d73f1d90c7fb536e450189ee8",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [],
+  "source_suggested_domain": "semi_supervised",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

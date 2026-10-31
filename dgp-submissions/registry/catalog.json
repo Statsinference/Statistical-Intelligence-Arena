@@ -1,8 +1,8 @@
 {
   "status": "draft_needs_review",
-  "paper_count": 57,
-  "mechanism_count": 77,
-  "scenario_count": 177,
+  "paper_count": 60,
+  "mechanism_count": 85,
+  "scenario_count": 187,
   "domains": {
     "ate": 22,
     "cate": 2,
@@ -12,10 +12,275 @@
     "did_sc": 3,
     "nonparametric_regression": 2,
     "quantile": 3,
-    "semi_supervised": 8,
+    "semi_supervised": 16,
     "missing_data": 0
   },
   "records": [
+    {
+      "record_id": "sspi-chakrabortty-cai-201808-nl2c-v1",
+      "domain": "semi_supervised",
+      "paper": "Chakrabortty, A. and Cai, T. (2018). Efficient and adaptive linear regression in semi-supervised settings. The Annals of Statistics 46(4), 1541-1572. DOI: 10.1214/17-AOS1594.",
+      "mechanism": "Two-Component Interaction Semi-Supervised Projection Intercept",
+      "paper_title": "Efficient and adaptive linear regression in semi-supervised settings",
+      "venue_abbreviation": "AoS",
+      "keywords": [
+        "Interactions",
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Interactions",
+          "source": "mechanism.properties.interactions",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/sspi-chakrabortty-cai-201808-nl2c-v1.py",
+      "latent_variables": [
+        "epsilon"
+      ],
+      "truth_by_scenario": "source_b1_conditional_truncation: alpha_projection = E[Y] = 0.0; source_b2_conditional_truncation: alpha_projection = E[Y] = 4.999925663981647",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "sspi-chakrabortty-cai-201808-nl3c-v1",
+      "domain": "semi_supervised",
+      "paper": "Chakrabortty, A. and Cai, T. (2018). Efficient and adaptive linear regression in semi-supervised settings. The Annals of Statistics 46(4), 1541-1572. DOI: 10.1214/17-AOS1594.",
+      "mechanism": "Three-Component Quadratic Semi-Supervised Projection Intercept",
+      "paper_title": "Efficient and adaptive linear regression in semi-supervised settings",
+      "venue_abbreviation": "AoS",
+      "keywords": [
+        "Interactions",
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Interactions",
+          "source": "mechanism.properties.interactions",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/sspi-chakrabortty-cai-201808-nl3c-v1.py",
+      "latent_variables": [
+        "epsilon"
+      ],
+      "truth_by_scenario": "source_b1_conditional_truncation: alpha_projection = E[Y] = 4.999925663981647; source_b2_conditional_truncation: alpha_projection = E[Y] = 9.999851327963293",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "sspi-deng-ning-zhao-zhang-2024-additive-polynomial-v1",
+      "domain": "semi_supervised",
+      "paper": "Deng, S., Ning, Y., Zhao, J. and Zhang, H. (2024). Optimal and Safe Estimation for High-Dimensional Semi-Supervised Learning. Journal of the American Statistical Association 119(548), 2748-2759. DOI: 10.1080/01621459.2023.2277409.",
+      "mechanism": "Folded-AR Gaussian Additive Polynomial Projection",
+      "paper_title": "Optimal and Safe Estimation for High-Dimensional Semi-Supervised Learning",
+      "venue_abbreviation": "JASA",
+      "keywords": [
+        "Nonlinearity",
+        "High-dimensionality"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "High-dimensionality",
+          "source": "mechanism.properties.high_dimensional",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/sspi-deng-ning-zhao-zhang-2024-additive-polynomial-v1.py",
+      "latent_variables": [
+        "Z1",
+        "epsilon"
+      ],
+      "truth_by_scenario": "source_formula_fixed: beta_3 = 2.4000000000000004",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "sspi-deng-ning-zhao-zhang-2024-cubic-index-v1",
+      "domain": "semi_supervised",
+      "paper": "Deng, S., Ning, Y., Zhao, J. and Zhang, H. (2024). Optimal and Safe Estimation for High-Dimensional Semi-Supervised Learning. Journal of the American Statistical Association 119(548), 2748-2759. DOI: 10.1080/01621459.2023.2277409.",
+      "mechanism": "Folded-AR Gaussian Third-Order Index Interaction Projection",
+      "paper_title": "Optimal and Safe Estimation for High-Dimensional Semi-Supervised Learning",
+      "venue_abbreviation": "JASA",
+      "keywords": [
+        "Interactions",
+        "Nonlinearity",
+        "High-dimensionality"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Interactions",
+          "source": "mechanism.properties.interactions",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "High-dimensionality",
+          "source": "mechanism.properties.high_dimensional",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/sspi-deng-ning-zhao-zhang-2024-cubic-index-v1.py",
+      "latent_variables": [
+        "Z1",
+        "epsilon"
+      ],
+      "truth_by_scenario": "source_formula_fixed: beta_21 = 1.2096300000000002",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "sspi-deng-ning-zhao-zhang-2024-quadratic-cubic-v1",
+      "domain": "semi_supervised",
+      "paper": "Deng, S., Ning, Y., Zhao, J. and Zhang, H. (2024). Optimal and Safe Estimation for High-Dimensional Semi-Supervised Learning. Journal of the American Statistical Association 119(548), 2748-2759. DOI: 10.1080/01621459.2023.2277409.",
+      "mechanism": "Folded-AR Gaussian Quadratic Interaction and Cubic Projection",
+      "paper_title": "Optimal and Safe Estimation for High-Dimensional Semi-Supervised Learning",
+      "venue_abbreviation": "JASA",
+      "keywords": [
+        "Interactions",
+        "Nonlinearity",
+        "High-dimensionality"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Interactions",
+          "source": "mechanism.properties.interactions",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "High-dimensionality",
+          "source": "mechanism.properties.high_dimensional",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/sspi-deng-ning-zhao-zhang-2024-quadratic-cubic-v1.py",
+      "latent_variables": [
+        "Z1",
+        "epsilon"
+      ],
+      "truth_by_scenario": "source_formula_fixed: beta_4 = 1.2000000000000002",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "sspi-zhang-bradic-202206-additive-sine-v1",
+      "domain": "semi_supervised",
+      "paper": "Zhang, Y. and Bradic, J. (2022). High-dimensional semi-supervised learning: in search of optimal inference of the mean. Biometrika 109(2), 387-403. DOI: 10.1093/biomet/asab042.",
+      "mechanism": "Equicorrelated High-Dimensional Additive Sine Mean",
+      "paper_title": "High-dimensional semi-supervised learning: in search of optimal inference of the mean",
+      "venue_abbreviation": "Biometrika",
+      "keywords": [
+        "Nonlinearity",
+        "High-dimensionality"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "High-dimensionality",
+          "source": "mechanism.properties.high_dimensional",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/sspi-zhang-bradic-202206-additive-sine-v1.py",
+      "latent_variables": [
+        "epsilon",
+        "U,Z_j"
+      ],
+      "truth_by_scenario": "source_fixed: theta = E[Y] = 0.0",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "sspi-zhang-bradic-202206-interaction-v1",
+      "domain": "semi_supervised",
+      "paper": "Zhang, Y. and Bradic, J. (2022). High-dimensional semi-supervised learning: in search of optimal inference of the mean. Biometrika 109(2), 387-403. DOI: 10.1093/biomet/asab042.",
+      "mechanism": "Interaction and Shifted Quadratic Semi-Supervised Mean",
+      "paper_title": "High-dimensional semi-supervised learning: in search of optimal inference of the mean",
+      "venue_abbreviation": "Biometrika",
+      "keywords": [
+        "Interactions",
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Interactions",
+          "source": "mechanism.properties.interactions",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/sspi-zhang-bradic-202206-interaction-v1.py",
+      "latent_variables": [
+        "epsilon"
+      ],
+      "truth_by_scenario": "source_fixed: theta = E[Y] = 0.625",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "sspi-zhang-brown-cai-201910-poisson-v1",
+      "domain": "semi_supervised",
+      "paper": "Zhang, A., Brown, L. D. and Cai, T. T. (2019). Semi-supervised inference: General theory and estimation of means. The Annals of Statistics 47(5), 2538-2566. DOI: 10.1214/18-AOS1756.",
+      "mechanism": "Poisson Covariates and Poisson Response Semi-Supervised Mean",
+      "paper_title": "Semi-supervised inference: General theory and estimation of means",
+      "venue_abbreviation": "AoS",
+      "keywords": [
+        "Linearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Linearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": false,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/sspi-zhang-brown-cai-201910-poisson-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "source_fixed: theta = E[Y] = 100.0",
+      "status": "needs_scientific_review"
+    },
     {
       "record_id": "iv-guo-2018-author-linear-v1",
       "domain": "iv",
@@ -2315,8 +2580,8 @@
   ],
   "intake": {
     "status": "success",
-    "zip_count": 40,
-    "indexed_dgp_count": 77,
+    "zip_count": 41,
+    "indexed_dgp_count": 85,
     "failure_count": 0,
     "stale_record_ids": [],
     "scientific_validation": "not_performed"
