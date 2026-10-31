@@ -1,0 +1,1045 @@
+{
+  "schema_version": "0.1",
+  "record_id": "mediation-luo-et-al-2025-dynamic-markov-v1",
+  "kind": "synthetic_dgp",
+  "domain": "mediation",
+  "english_display": {},
+  "paper": {
+    "citation": "Luo, L., Shi, C., Wang, J., Wu, Z. and Li, L. (2025). Multivariate dynamic mediation analysis under a reinforcement learning framework. The Annals of Statistics 53(1). DOI: 10.1214/24-AOS2475.",
+    "title": null,
+    "doi": "10.1214/24-aos2475",
+    "source_url": "https://doi.org/10.1214/24-AOS2475",
+    "source_file_evidence": [],
+    "venue": "The Annals of Statistics",
+    "year": 2025,
+    "source_version": null,
+    "source_locator": "Author arXiv:2310.16203, equations (3),(4), Definition 1 Eq. (8), §4.1 Simulation setup PDF pp.15–16; §4.2 T=10 setting."
+  },
+  "mechanism": {
+    "name": "Finite-horizon Markov mediation with three contemporaneous mediators",
+    "title_en": null,
+    "family_id": "luo-et-al-2025-markov-dynamic-three-mediator",
+    "generation_equations": [
+      {
+        "label": "Treatment",
+        "expression": "A_t iid~Bernoulli(.5), t=1,...,10"
+      },
+      {
+        "label": "Coefficients",
+        "expression": "Every entry of Theta_1t=(alpha_1t,delta_1t,Gamma_1t,zeta_1t) and Theta_2t=(alpha_2t,delta_2t,gamma_2t,zeta_2t,kappa_t) is drawn independently Uniform(-0.5,0.5); realized arrays stored in config.json"
+      },
+      {
+        "label": "Mediators",
+        "expression": "mu_t=alpha_1t+delta_1t A_t+Gamma_1t M_(t-1)+zeta_1t R_(t-1); M_t=mu_t+(I-W^T)^-1 epsilon_wt. Equivalently M_t-mu_t=W^T(M_t-mu_t)+epsilon_wt"
+      },
+      {
+        "label": "Outcome",
+        "expression": "R_t=alpha_2t+delta_2t A_t+gamma_2t^T M_(t-1)+zeta_2t R_(t-1)+kappa_t^T M_t+epsilon_rt"
+      },
+      {
+        "label": "W",
+        "expression": "[[0,-0.80,0.61],[0,0,-0.82],[0,0,0]]; M_0=0,R_0=0; epsilon_wt and epsilon_rt independent standard normal"
+      },
+      {
+        "label": "Target",
+        "expression": "eta_1^(10)= [E sum R_t|do A=1 - E sum R_t|do A=0] - [E sum R_t|do A=1,M_t1=0 - E sum R_t|do A=0,M_t1=0]"
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "A01",
+        "role": "treatment",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "M01_1",
+        "role": "mediator",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "M01_2",
+        "role": "mediator",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "M01_3",
+        "role": "mediator",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "R01",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "A02",
+        "role": "treatment",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "M02_1",
+        "role": "mediator",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "M02_2",
+        "role": "mediator",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "M02_3",
+        "role": "mediator",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "R02",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "A03",
+        "role": "treatment",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "M03_1",
+        "role": "mediator",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "M03_2",
+        "role": "mediator",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "M03_3",
+        "role": "mediator",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "R03",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "A04",
+        "role": "treatment",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "M04_1",
+        "role": "mediator",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "M04_2",
+        "role": "mediator",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "M04_3",
+        "role": "mediator",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "R04",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "A05",
+        "role": "treatment",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "M05_1",
+        "role": "mediator",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "M05_2",
+        "role": "mediator",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "M05_3",
+        "role": "mediator",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "R05",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "A06",
+        "role": "treatment",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "M06_1",
+        "role": "mediator",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "M06_2",
+        "role": "mediator",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "M06_3",
+        "role": "mediator",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "R06",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "A07",
+        "role": "treatment",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "M07_1",
+        "role": "mediator",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "M07_2",
+        "role": "mediator",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "M07_3",
+        "role": "mediator",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "R07",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "A08",
+        "role": "treatment",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "M08_1",
+        "role": "mediator",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "M08_2",
+        "role": "mediator",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "M08_3",
+        "role": "mediator",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "R08",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "A09",
+        "role": "treatment",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "M09_1",
+        "role": "mediator",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "M09_2",
+        "role": "mediator",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "M09_3",
+        "role": "mediator",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "R09",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "A10",
+        "role": "treatment",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "M10_1",
+        "role": "mediator",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "M10_2",
+        "role": "mediator",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "M10_3",
+        "role": "mediator",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "R10",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [],
+    "latent_variables_status": "not_explicitly_specified",
+    "sampling": {
+      "unit": "subject trajectory",
+      "dependence": "IID subjects; ten temporally dependent observations retained in 50 wide columns per subject"
+    },
+    "assumptions": [
+      "IID subjects with within-subject Markov dependence",
+      "Sequential randomized A_t~Bernoulli(.5)",
+      "No unmeasured mediator-outcome confounding beyond independent standard normal structural errors",
+      "Linear recursive structural equations and fixed acyclic W",
+      "Knockout of mediator 1 at all times is well-defined"
+    ],
+    "properties": {
+      "dimension": 0,
+      "effective_dimension": 0,
+      "observed_columns": 50,
+      "high_dimensional": false,
+      "interactions": false,
+      "nonlinear": false,
+      "notes": "T=10, three mediators per stage, contemporaneous W and cross-stage Gamma/zeta carryover. All structural terms are linear; graph edges are not multiplicative interactions."
+    }
+  },
+  "estimand": {
+    "name": "eta_1^(10)",
+    "definition": "For ten time points, contrast E[sum_t R_t|do(A_s=1)]-E[sum_t R_t|do(A_s=0)] and subtract the same contrast with do(M_{s,1}=0) for all s.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "finite_T10_seeded_coefficients",
+      "parameters": {
+        "T": 10,
+        "d": 3,
+        "W": [
+          [
+            0.0,
+            -0.8,
+            0.61
+          ],
+          [
+            0.0,
+            0.0,
+            -0.82
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "p_treatment": 0.5,
+        "mediator_error_sd": 1.0,
+        "outcome_error_sd": 1.0,
+        "source_n": 100,
+        "coefficient_draw_seed": 20251031,
+        "coefficient_distribution": "independent Uniform(-0.5,0.5) for every Theta1t and Theta2t entry; this stored draw is new and not claimed to match author simulation",
+        "stages": [
+          {
+            "alpha1": [
+              0.00532602311130892,
+              -0.20947200906894714,
+              -0.36509564716255183
+            ],
+            "delta1": [
+              0.4639290844013424,
+              -0.06626135245382225,
+              0.2832041571506848
+            ],
+            "gamma1": [
+              [
+                -0.40891525296043396,
+                -0.23434008246023208,
+                0.23730338055678168
+              ],
+              [
+                -0.17599129193092522,
+                0.45768653773939627,
+                0.007645434947341712
+              ],
+              [
+                -0.177521625142119,
+                0.43066098083012083,
+                -0.2498425997722873
+              ]
+            ],
+            "zeta1": [
+              -0.3305167240443958,
+              -0.30149806603568297,
+              0.3352606437314757
+            ],
+            "alpha2": 0.15930670619387388,
+            "delta2": -0.3160225587572574,
+            "gamma2": [
+              -0.09586304259632716,
+              -0.3917572488126019,
+              -0.0768784980620818
+            ],
+            "zeta2": 0.3485811313379531,
+            "kappa": [
+              0.018634411067303014,
+              0.4130592841212196,
+              0.35407460525323575
+            ]
+          },
+          {
+            "alpha1": [
+              -0.0023077259025854335,
+              0.20492550159192147,
+              -0.24657044763253688
+            ],
+            "delta1": [
+              -0.3138163912855255,
+              -0.4373620950467362,
+              -0.05999209727804222
+            ],
+            "gamma1": [
+              [
+                0.010704437885291962,
+                -0.26143411443675946,
+                -0.3844365162255825
+              ],
+              [
+                0.3098862870403365,
+                0.452454695982324,
+                0.1303952791473182
+              ],
+              [
+                0.00843906609794054,
+                0.4945099702086113,
+                -0.2148788435684077
+              ]
+            ],
+            "zeta1": [
+              0.16294621893269834,
+              -0.0015025632104430642,
+              0.38589140717417736
+            ],
+            "alpha2": -0.37177041046082526,
+            "delta2": 0.4580876873507975,
+            "gamma2": [
+              -0.4723185878025973,
+              -0.16930283229650334,
+              0.11223523987955997
+            ],
+            "zeta2": -0.23595662423524444,
+            "kappa": [
+              -0.003847219323614315,
+              -0.007646422450679147,
+              0.17799581434653955
+            ]
+          },
+          {
+            "alpha1": [
+              -0.2832613086772009,
+              0.47240760469402643,
+              0.3335825240524617
+            ],
+            "delta1": [
+              0.0745078958755575,
+              -0.23687733196025185,
+              -0.131295120551847
+            ],
+            "gamma1": [
+              [
+                0.24954603353509208,
+                -0.26172891980739876,
+                0.14506885328645713
+              ],
+              [
+                -0.256350830646621,
+                -0.0737119387300944,
+                -0.1731249939382965
+              ],
+              [
+                0.46569121595657137,
+                0.14947330606199194,
+                -0.2654112435804896
+              ]
+            ],
+            "zeta1": [
+              -0.23951919355456097,
+              0.08643500876615229,
+              -0.4700055006931716
+            ],
+            "alpha2": 0.41281839676794363,
+            "delta2": -0.4097543789153939,
+            "gamma2": [
+              0.2880022583140194,
+              -0.19560976092398175,
+              -0.3541527218854028
+            ],
+            "zeta2": 0.24909341763627113,
+            "kappa": [
+              -0.1632146813291513,
+              0.11685255640349734,
+              0.4914230596560504
+            ]
+          },
+          {
+            "alpha1": [
+              -0.4520400621332433,
+              0.34843877842477344,
+              -0.28271062606582764
+            ],
+            "delta1": [
+              -0.18419691473256983,
+              0.3177241189348825,
+              -0.34593380574883215
+            ],
+            "gamma1": [
+              [
+                -0.09967411963691608,
+                0.29490517123029936,
+                -0.46327083144712355
+              ],
+              [
+                -0.04537419276491561,
+                -0.19283988653951456,
+                -0.05431381641728572
+              ],
+              [
+                -0.35365488795717914,
+                -0.09664462981661959,
+                0.14446917253141878
+              ]
+            ],
+            "zeta1": [
+              0.13634704072543347,
+              0.29478278090767285,
+              0.13671234334579563
+            ],
+            "alpha2": -0.231281640469169,
+            "delta2": 0.37120285300569966,
+            "gamma2": [
+              -0.04841597245411211,
+              0.041780022056826516,
+              -0.2908924685298677
+            ],
+            "zeta2": -0.21133612967914484,
+            "kappa": [
+              0.0321111840698991,
+              -0.37259847718647143,
+              -0.36787617966848374
+            ]
+          },
+          {
+            "alpha1": [
+              -0.1255224680485476,
+              -0.10731394228663627,
+              0.22014859026921885
+            ],
+            "delta1": [
+              -0.2287781305416935,
+              -0.4386939554954512,
+              -0.05515292302290453
+            ],
+            "gamma1": [
+              [
+                -0.3287724091105544,
+                0.015281615303378127,
+                0.027949887588538114
+              ],
+              [
+                0.18899498258153236,
+                -0.1669340371696394,
+                -0.43039424719741903
+              ],
+              [
+                0.3745710112814994,
+                0.3242598533224206,
+                -0.2344779349069056
+              ]
+            ],
+            "zeta1": [
+              -0.33610423347110785,
+              -0.21115398425568332,
+              0.026562115587517976
+            ],
+            "alpha2": 0.16827870818035584,
+            "delta2": 0.3257115239081372,
+            "gamma2": [
+              -0.4774986294764392,
+              0.3155482887964828,
+              -0.3619536560602228
+            ],
+            "zeta2": -0.09015274975570176,
+            "kappa": [
+              -0.08626764367999451,
+              0.04908644377846838,
+              0.41307151922810703
+            ]
+          },
+          {
+            "alpha1": [
+              -0.18727204732724156,
+              0.2757082115594305,
+              -0.2873772212498269
+            ],
+            "delta1": [
+              -0.31783608704961963,
+              -0.2097947401090985,
+              0.3615678585220723
+            ],
+            "gamma1": [
+              [
+                -0.06218700780534636,
+                -0.353771125855333,
+                0.36354975029473524
+              ],
+              [
+                0.3672139187490616,
+                0.4501510653568893,
+                0.007054851455666089
+              ],
+              [
+                0.17840190860973026,
+                0.4823611317127311,
+                -0.0710011970124409
+              ]
+            ],
+            "zeta1": [
+              0.2346124928879736,
+              -0.32563400701261114,
+              -0.1860694760046253
+            ],
+            "alpha2": 0.03346508991977393,
+            "delta2": 0.49544412710466046,
+            "gamma2": [
+              0.23048003076569334,
+              0.4720609057369879,
+              -0.13132706980355635
+            ],
+            "zeta2": -0.27002072259548393,
+            "kappa": [
+              -0.16137523229647432,
+              -0.2259763473662083,
+              -0.17603349174381488
+            ]
+          },
+          {
+            "alpha1": [
+              -0.09344374972923086,
+              -0.34958786846041034,
+              -0.03137007753374088
+            ],
+            "delta1": [
+              -0.37788450909569804,
+              0.46653641501621834,
+              0.009351868362909355
+            ],
+            "gamma1": [
+              [
+                0.31336840728196813,
+                0.26595240073724513,
+                -0.15427343400209093
+              ],
+              [
+                0.4771538882314499,
+                -0.004249751510711497,
+                0.20721228728761942
+              ],
+              [
+                -0.030188483779242326,
+                -0.27061277057472477,
+                0.2670318020041106
+              ]
+            ],
+            "zeta1": [
+              -0.35683969205383337,
+              0.44504229248361027,
+              -0.4913812364938056
+            ],
+            "alpha2": 0.0778811139754787,
+            "delta2": 0.06178551395027365,
+            "gamma2": [
+              0.36976219493579177,
+              0.11224890740292026,
+              0.28037986653428226
+            ],
+            "zeta2": 0.2041466339391993,
+            "kappa": [
+              -0.07164017535476142,
+              0.20031222302889806,
+              -0.17145294212800444
+            ]
+          },
+          {
+            "alpha1": [
+              -0.494391336283447,
+              -0.020940712885761492,
+              0.43111219947960144
+            ],
+            "delta1": [
+              -0.22830155244557737,
+              0.22549214879121604,
+              0.043079217670349834
+            ],
+            "gamma1": [
+              [
+                0.306540419152621,
+                0.32205137627420743,
+                0.34526319272769657
+              ],
+              [
+                0.10466600276821336,
+                -0.004299305031173151,
+                0.42873671239243893
+              ],
+              [
+                -0.26624194432925175,
+                0.15666812003382546,
+                -0.41823326182448517
+              ]
+            ],
+            "zeta1": [
+              0.07827633885056684,
+              0.3409842092123715,
+              0.046755018267039206
+            ],
+            "alpha2": -0.4695358378059312,
+            "delta2": -0.2213718369368246,
+            "gamma2": [
+              0.061444332233475785,
+              -0.413867481646759,
+              -0.4308525826981341
+            ],
+            "zeta2": -0.35319448636369544,
+            "kappa": [
+              -0.24451603972980518,
+              -0.18136985748322898,
+              0.284229776113334
+            ]
+          },
+          {
+            "alpha1": [
+              -0.04706733560594767,
+              -0.13951351356138342,
+              -0.38363582580548594
+            ],
+            "delta1": [
+              -0.20108184669450746,
+              0.04323238340327751,
+              -0.20589233676317842
+            ],
+            "gamma1": [
+              [
+                0.3147652158900145,
+                -0.21277172969768143,
+                0.30182415051288347
+              ],
+              [
+                -0.1645947796536622,
+                0.4321792338874947,
+                -0.3774046401587148
+              ],
+              [
+                0.14159024951585808,
+                -0.006842111508249427,
+                -0.34738291976344216
+              ]
+            ],
+            "zeta1": [
+              0.02068871936411243,
+              0.0692846812568394,
+              -0.16140154621250202
+            ],
+            "alpha2": 0.23527377813411887,
+            "delta2": 0.04387047415133227,
+            "gamma2": [
+              -0.3039516361551563,
+              0.07804472629312853,
+              -0.21304378372174548
+            ],
+            "zeta2": 0.38940645873069435,
+            "kappa": [
+              -0.4691716132348098,
+              0.4763747288979169,
+              -0.057570263935069366
+            ]
+          },
+          {
+            "alpha1": [
+              0.3071867169903809,
+              -0.43042595535426187,
+              -0.48376379971866135
+            ],
+            "delta1": [
+              0.4022070463460041,
+              -0.16057518383371283,
+              -0.46436379409619144
+            ],
+            "gamma1": [
+              [
+                -0.15500133328048915,
+                -0.11681355219353107,
+                -0.2568465882133437
+              ],
+              [
+                -0.30406873851605265,
+                0.13166702717675127,
+                -0.09033149486695824
+              ],
+              [
+                0.40576635771833813,
+                0.30656164619115045,
+                -0.43058895384489493
+              ]
+            ],
+            "zeta1": [
+              0.2731025091878463,
+              -0.023615823500474087,
+              -0.10438050137227983
+            ],
+            "alpha2": 0.219772806722489,
+            "delta2": -0.40348387656556206,
+            "gamma2": [
+              -0.47318076032565537,
+              0.4219267522307889,
+              -0.04542777163668721
+            ],
+            "zeta2": -0.0038923472696299477,
+            "kappa": [
+              0.008377560898934044,
+              0.4246342754349842,
+              -0.4335824883129026
+            ]
+          }
+        ],
+        "target_mediator_index": 1,
+        "knockout_value": 0.0
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": -0.02804345470955405,
+        "expression": "For ten time points, contrast E[sum_t R_t|do(A_s=1)]-E[sum_t R_t|do(A_s=0)] and subtract the same contrast with do(M_{s,1}=0) for all s.",
+        "derivation": "Exact four-policy mean recursion and independent treatment-derivative recursion for fixed coefficient draw.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[finite_T10_seeded_coefficients].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "Fix one reproducible draw of all time-specific coefficients from the source Uniform(-0.5,0.5) distribution using Python seed 20251031; the paper does not publish its realized coefficient arrays, so numeric truth differs from authors’ run.",
+    "Use wide per-subject rows (A01,M01_1,...,R10), retaining time dependence within each row; do not flatten panel observations as IID.",
+    "Compute the paper’s individual mediator-1 effect by exact linear expectation recursion rather than the authors’ 10-million-sample Monte Carlo approximation.",
+    "Use n input, with source n=100 recorded in config."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "generator.py",
+    "truth_reference": "truth.py",
+    "source_archive": "mediation-luo-et-al-2025-dynamic-markov-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/mediation-luo-et-al-2025-dynamic-markov-v1.py",
+    "exported_generator_sha256": "fc3a9244c494c619353e385e37e11b8d9c74a26a18743814510bad3454718fb7"
+  },
+  "evidence": [
+    {
+      "file": "collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "55e931c54cf881c7bd1747868c6901e10d804a3df9c8b3452ea0dbe62957cff2",
+    "collection_sha256": "b672d07ee33c7dba0b459ebe9f8a6ec74812ca78a47028c7ef752f091c97f6f9",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/mediation-luo-et-al-2025-dynamic-markov-v1.zip",
+    "submitted_zip_sha256": "55e931c54cf881c7bd1747868c6901e10d804a3df9c8b3452ea0dbe62957cff2",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "No explicit latent-variable metadata or reliably identifiable latent declarations; absence from this list does not prove that no latent variables exist."
+  ],
+  "source_suggested_domain": "mediation",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

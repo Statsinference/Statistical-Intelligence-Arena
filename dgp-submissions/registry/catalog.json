@@ -1,12 +1,12 @@
 {
   "status": "draft_needs_review",
-  "paper_count": 60,
-  "mechanism_count": 85,
-  "scenario_count": 187,
+  "paper_count": 67,
+  "mechanism_count": 93,
+  "scenario_count": 198,
   "domains": {
     "ate": 22,
     "cate": 2,
-    "mediation": 1,
+    "mediation": 9,
     "iv": 21,
     "proximal": 15,
     "did_sc": 3,
@@ -2143,6 +2143,230 @@
       "status": "needs_scientific_review"
     },
     {
+      "record_id": "mediation-diaz-et-al-2021-intermediate-confounding-v1",
+      "domain": "mediation",
+      "paper": "Díaz, I., Hejazi, N. S., Rudolph, K. E. and van der Laan, M. J. (2021). Non-parametric efficient causal mediation with intermediate confounders. Biometrika 108(3), 627–641. DOI: 10.1093/biomet/asaa085.",
+      "mechanism": "Interventional indirect effect with a treatment-induced binary confounder",
+      "paper_title": "Non-parametric efficient causal mediation with intermediate confounders",
+      "venue_abbreviation": "Biometrika",
+      "keywords": [
+        "Interactions",
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Interactions",
+          "source": "mechanism.properties.interactions",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/mediation-diaz-et-al-2021-intermediate-confounding-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "section_5: IIE_1 = 0.03026875404999696",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "mediation-diaz-hejazi-2020-discrete-three-mediators-v1",
+      "domain": "mediation",
+      "paper": "Díaz, I. and Hejazi, N. S. (2020). Causal Mediation Analysis for Stochastic Interventions. Journal of the Royal Statistical Society: Series B 82(3), 661–683. DOI: 10.1111/rssb.12362.",
+      "mechanism": "Natural indirect effect in the Díaz–Hejazi three-binary-mediator simulation",
+      "paper_title": "Causal Mediation Analysis for Stochastic Interventions",
+      "venue_abbreviation": "JRSSB",
+      "keywords": [
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/mediation-diaz-hejazi-2020-discrete-three-mediators-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "journal_section_5: NIE_1 = -0.11950701713951144",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "mediation-he-song-xu-2024-single-linear-v1",
+      "domain": "mediation",
+      "paper": "He, Y., Song, P. X.-K. and Xu, G. (2024). Adaptive Bootstrap Tests for Composite Null Hypotheses in the Mediation Pathway Analysis. Journal of the Royal Statistical Society: Series B 86(2), 411–434. DOI: 10.1093/jrsssb/qkad129.",
+      "mechanism": "Single linear mediator with independent mixed-type baseline covariates",
+      "paper_title": "Adaptive Bootstrap Tests for Composite Null Hypotheses in the Mediation Pathway Analysis",
+      "venue_abbreviation": "JRSSB",
+      "keywords": [
+        "Linearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Linearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": false,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/mediation-he-song-xu-2024-single-linear-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "fixed_product_004_ratio_1: NIE_1 = 0.04000000000000001; fixed_null_h01: NIE_1 = 0.0; fixed_null_h02: NIE_1 = 0.0; fixed_null_h03: NIE_1 = 0.0",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "mediation-jones-et-al-2025-correlated-sparse-v1",
+      "domain": "mediation",
+      "paper": "Jones, J., Ertefaie, A. and Strawderman, R. L. (2025). Causal mediation analysis: selection with asymptotically valid inference. Journal of the Royal Statistical Society: Series B 87(3), 678–700. DOI: 10.1093/jrsssb/qkae109.",
+      "mechanism": "Sparse high-dimensional linear mediation with correlated Gaussian errors",
+      "paper_title": "Causal mediation analysis: selection with asymptotically valid inference",
+      "venue_abbreviation": "JRSSB",
+      "keywords": [
+        "Linearity",
+        "High-dimensionality"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Linearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": false,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "High-dimensionality",
+          "source": "mechanism.properties.high_dimensional",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/mediation-jones-et-al-2025-correlated-sparse-v1.py",
+      "latent_variables": [
+        "E"
+      ],
+      "truth_by_scenario": "simulation_b_n200_p100_rho05: NIE_1 = 2.0",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "mediation-luo-et-al-2025-dynamic-markov-v1",
+      "domain": "mediation",
+      "paper": "Luo, L., Shi, C., Wang, J., Wu, Z. and Li, L. (2025). Multivariate dynamic mediation analysis under a reinforcement learning framework. The Annals of Statistics 53(1). DOI: 10.1214/24-AOS2475.",
+      "mechanism": "Finite-horizon Markov mediation with three contemporaneous mediators",
+      "paper_title": "Multivariate dynamic mediation analysis under a reinforcement learning framework",
+      "venue_abbreviation": "AoS",
+      "keywords": [
+        "Linearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Linearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": false,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/mediation-luo-et-al-2025-dynamic-markov-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "finite_T10_seeded_coefficients: eta_1^(10) = -0.02804345470955405",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "mediation-xia-chan-2023-binary-plackett-v1",
+      "domain": "mediation",
+      "paper": "Xia, F. and Chan, K. C. G. (2023). Identification, Semiparametric Efficiency, and Quadruply Robust Estimation in Mediation Analysis with Treatment-Induced Confounding. Journal of the American Statistical Association 118(542), 1272–1281. DOI: 10.1080/01621459.2021.1990765.",
+      "mechanism": "Binary mediator and induced confounder with Plackett odds-ratio copula",
+      "paper_title": "Identification, Semiparametric Efficiency, and Quadruply Robust Estimation in Mediation Analysis with Treatment-Induced Confounding",
+      "venue_abbreviation": "JASA",
+      "keywords": [
+        "Interactions",
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Interactions",
+          "source": "mechanism.properties.interactions",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/mediation-xia-chan-2023-binary-plackett-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "section_4_1_binary: NDE = 5.4954757582156875",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "mediation-xia-chan-2023-continuous-copula-v1",
+      "domain": "mediation",
+      "paper": "Xia, F. and Chan, K. C. G. (2023). Identification, Semiparametric Efficiency, and Quadruply Robust Estimation in Mediation Analysis with Treatment-Induced Confounding. Journal of the American Statistical Association 118(542), 1272–1281. DOI: 10.1080/01621459.2021.1990765.",
+      "mechanism": "Continuous Gaussian-copula mediator and treatment-induced confounder",
+      "paper_title": "Identification, Semiparametric Efficiency, and Quadruply Robust Estimation in Mediation Analysis with Treatment-Induced Confounding",
+      "venue_abbreviation": "JASA",
+      "keywords": [
+        "Interactions",
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Interactions",
+          "source": "mechanism.properties.interactions",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/mediation-xia-chan-2023-continuous-copula-v1.py",
+      "latent_variables": [
+        "E_M",
+        "E_C"
+      ],
+      "truth_by_scenario": "section_4_1_continuous: NDE = 26.0",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "mediation-zuo-et-al-2025-continuous-mnar-v1",
+      "domain": "mediation",
+      "paper": "Zuo, S., Ghosh, D., Ding, P. and Yang, F. (2025). Mediation Analysis with the Mediator and Outcome Missing Not at Random. Journal of the American Statistical Association 120(550), 794–804. DOI: 10.1080/01621459.2024.2359132.",
+      "mechanism": "Continuous mediation with MNAR mediator and outcome",
+      "paper_title": "Mediation Analysis with the Mediator and Outcome Missing Not at Random",
+      "venue_abbreviation": "JASA",
+      "keywords": [
+        "Interactions",
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Interactions",
+          "source": "mechanism.properties.interactions",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/mediation-zuo-et-al-2025-continuous-mnar-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "setting_C_III: NIE_1 = 2.0",
+      "status": "needs_scientific_review"
+    },
+    {
       "record_id": "nri-calonico-2018-asymmetric-sine-v1",
       "domain": "nonparametric_regression",
       "paper": "Calonico, S., Cattaneo, M. D., and Farrell, M. H. (2018). On the Effect of Bias Estimation on Coverage Accuracy in Nonparametric Inference. Journal of the American Statistical Association, 113(522), 767–779. DOI: 10.1080/01621459.2017.1285776.",
@@ -2580,8 +2804,8 @@
   ],
   "intake": {
     "status": "success",
-    "zip_count": 41,
-    "indexed_dgp_count": 85,
+    "zip_count": 49,
+    "indexed_dgp_count": 93,
     "failure_count": 0,
     "stale_record_ids": [],
     "scientific_validation": "not_performed"
