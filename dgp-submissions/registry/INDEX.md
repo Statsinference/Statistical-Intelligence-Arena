@@ -4,7 +4,7 @@
 
 > **Draft view:** all automatically extracted records still need human scientific review.
 
-**64 DGP mechanisms**, **150 parameter scenarios**, **48 reference papers**
+**69 DGP mechanisms**, **161 parameter scenarios**, **49 reference papers**
 
 ## Research areas
 
@@ -14,7 +14,7 @@
 | CATE — Conditional Average Treatment Effect | 2 | 2 | [Browse](by-domain/cate.md) |
 | Mediation — Direct and Indirect Effects | 1 | 1 | [Browse](by-domain/mediation.md) |
 | IV — Instrumental Variables | 13 | 13 | [Browse](by-domain/iv.md) |
-| Proximal Causal Inference | 7 | 10 | [Browse](by-domain/proximal.md) |
+| Proximal Causal Inference | 8 | 15 | [Browse](by-domain/proximal.md) |
 | DiD / Synthetic Control | 3 | 3 | [Browse](by-domain/did_sc.md) |
 | Nonparametric Regression | 2 | 2 | [Browse](by-domain/nonparametric_regression.md) |
 | Quantile Inference | 2 | 3 | [Browse](by-domain/quantile.md) |
@@ -82,16 +82,17 @@ Each paper is listed **once per area**. Generators are source files from the sub
 
 ### [Proximal Causal Inference](by-domain/proximal.md)
 
-7 paper(s) · 10 DGP mechanism(s)
+8 paper(s) · 15 DGP mechanism(s)
 
 | Paper Title | DGPs | DGP Mechanisms | Keywords | Generator.py |
 |---|---:|---|---|---|
+| [Double Negative Control Inference in Test-Negative Design Studies of Vaccine Effectiveness](https://doi.org/10.1080/01621459.2023.2220935) (JASA) | 2 | 1: [Binary double negative control test-negative design](drafts/proximal-li-2023-07-10-binary-tnd-v1.md)<br/>2: [Continuous-proxy double negative control test-negative design](drafts/proximal-li-2023-07-10-continuous-tnd-v1.md) | 1: Interactions · Nonlinearity<br/>2: Interactions · Nonlinearity | [1: generator.py](generators/proximal-li-2023-07-10-binary-tnd-v1.py)<br/>[2: generator.py](generators/proximal-li-2023-07-10-continuous-tnd-v1.py) |
 | [Long-term causal inference under persistent confounding via data combination](https://doi.org/10.1093/jrsssb/qkae095) (JRSSB) | 1 | [Sequential Proxies and Long-Term Causal Effects from Combined Data](drafts/proximal-imbens-2025-longterm-v1.md) | Nonlinearity | [generator.py](generators/proximal-imbens-2025-longterm-v1.py) |
-| [Proximal causal inference for complex longitudinal studies](https://doi.org/10.1093/jrsssb/qkad020) (JRSSB) | 1 | [Two-Period Treatment with Time-Varying Confounding and Feedback](drafts/proximal-ying-2023-longitudinal-v1.md) | Nonlinearity | [generator.py](generators/proximal-ying-2023-longitudinal-v1.py) |
+| [Proximal causal inference for complex longitudinal studies](https://doi.org/10.1093/jrsssb/qkad020) (JRSSB) | 2 | 1: [Longitudinal two-time proximal MSM coefficient](drafts/proximal-ying-2023-03-30-longitudinal-v1.md)<br/>2: [Two-Period Treatment with Time-Varying Confounding and Feedback](drafts/proximal-ying-2023-longitudinal-v1.md) | 1: Nonlinearity<br/>2: Nonlinearity | [1: generator.py](generators/proximal-ying-2023-03-30-longitudinal-v1.py)<br/>[2: generator.py](generators/proximal-ying-2023-longitudinal-v1.py) |
 | [Proximal indirect comparison](https://doi.org/10.1093/biomet/asaf044) (Biometrika) | 1 | [Cross-Trial Transportability with Unmeasured Effect Modification](drafts/proximal-su-2026-transport-v1.md) | Interactions · Nonlinearity · Effect heterogeneity | [generator.py](generators/proximal-su-2026-transport-v1.py) |
 | [Proximal Learning for Individualized Treatment Regimes Under Unmeasured Confounding](https://doi.org/10.1080/01621459.2022.2147841) (JASA) | 3 | 1: [Absolute-Value and Trigonometric Proxy Interactions (N1)](drafts/proximal-qi-2024-trigonometric-v1.md)<br/>2: [Linear Heterogeneous Treatment Effect Bridge (L1/L2)](drafts/proximal-qi-2024-linear-itr-v1.md)<br/>3: [Quadratic Baseline Effects and Product Treatment Effect (N2)](drafts/proximal-qi-2024-quadratic-v1.md) | 1: Interactions · Nonlinearity<br/>2: Interactions · Nonlinearity · Effect heterogeneity<br/>3: Interactions · Nonlinearity | [1: generator.py](generators/proximal-qi-2024-trigonometric-v1.py)<br/>[2: generator.py](generators/proximal-qi-2024-linear-itr-v1.py)<br/>[3: generator.py](generators/proximal-qi-2024-quadratic-v1.py) |
-| [Proximal mediation analysis](https://doi.org/10.1093/biomet/asad015) (Biometrika) | 1 | [Natural Direct Effect under Unmeasured Confounding](drafts/proximal-dukes-2023-mediation-v1.md) | Nonlinearity | [generator.py](generators/proximal-dukes-2023-mediation-v1.py) |
-| [Semiparametric Proximal Causal Inference](https://doi.org/10.1080/01621459.2023.2191817) (JASA) | 1 | [Linear Bridge Model with Constant ATE](drafts/proximal-cui-2024-linear-v1.md) | Nonlinearity | [generator.py](generators/proximal-cui-2024-linear-v1.py) |
+| [Proximal mediation analysis](https://doi.org/10.1093/biomet/asad015) (Biometrika) | 2 | 1: [Natural Direct Effect under Unmeasured Confounding](drafts/proximal-dukes-2023-mediation-v1.md)<br/>2: [Proximal mediation natural direct effect](drafts/proximal-dukes-2023-03-03-mediation-v1.md) | 1: Nonlinearity<br/>2: Nonlinearity | [1: generator.py](generators/proximal-dukes-2023-mediation-v1.py)<br/>[2: generator.py](generators/proximal-dukes-2023-03-03-mediation-v1.py) |
+| [Semiparametric Proximal Causal Inference](https://doi.org/10.1080/01621459.2023.2191817) (JASA) | 2 | 1: [Linear Bridge Model with Constant ATE](drafts/proximal-cui-2024-linear-v1.md)<br/>2: [Single-time Gaussian proximal ATE](drafts/proximal-cui-2023-04-18-gaussian-v2.md) | 1: Nonlinearity<br/>2: Nonlinearity | [1: generator.py](generators/proximal-cui-2024-linear-v1.py)<br/>[2: generator.py](generators/proximal-cui-2023-04-18-gaussian-v2.py) |
 | [Theory for Identification and Inference with Synthetic Controls: A Proximal Causal Inference Framework](https://doi.org/10.1080/01621459.2026.2639734) (JASA) | 2 | 1: [Poisson Synthetic Control with Truncated Normal Factors](drafts/proximal-shi-2026-sc-poisson-v1.md)<br/>2: [Stationary Multifactor Gaussian Synthetic Control](drafts/proximal-shi-2026-sc-gaussian-v1.md) | 1: Nonlinearity · Panel data<br/>2: Linearity · Panel data | [1: generator.py](generators/proximal-shi-2026-sc-poisson-v1.py)<br/>[2: generator.py](generators/proximal-shi-2026-sc-gaussian-v1.py) |
 
 ### [DiD / Synthetic Control](by-domain/did_sc.md)

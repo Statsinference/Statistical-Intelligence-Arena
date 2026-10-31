@@ -1,0 +1,274 @@
+{
+  "schema_version": "0.1",
+  "record_id": "proximal-ying-2023-03-30-longitudinal-v1",
+  "kind": "synthetic_dgp",
+  "domain": "proximal",
+  "english_display": {},
+  "paper": {
+    "citation": "Andrew Ying, Wang Miao, Xu Shi, Eric J. Tchetgen Tchetgen (2023). Proximal causal inference for complex longitudinal studies. Journal of the Royal Statistical Society Series B: Statistical Methodology, 85(3), 684-704. DOI: 10.1093/jrsssb/qkad020.",
+    "title": null,
+    "doi": "10.1093/jrsssb/qkad020",
+    "source_url": "https://doi.org/10.1093/jrsssb/qkad020",
+    "source_file_evidence": [],
+    "venue": "Journal of the Royal Statistical Society Series B: Statistical Methodology",
+    "year": 2023,
+    "source_version": null,
+    "source_locator": "arXiv:2109.07030v5; PDF pp.47-48, Appendix F.1 (printed appendix pp.22-23), Eqs.(F.1)-(F.3)"
+  },
+  "mechanism": {
+    "name": "Longitudinal two-time proximal MSM coefficient",
+    "title_en": null,
+    "family_id": "ying-miao-shi-tchetgen-2023-two-time-proximal",
+    "generation_equations": [
+      "定义 `σ(t)=1/(1+exp(-t))`，所有下述高斯误差分别独立服从 `Normal(0,0.5²)`。每个个体生成以下变量：",
+      "1. `X0 ~ Normal(-0.35,0.5²)`；`U0 ~ Normal(0.35,0.5²)`；两者独立。",
+      "2. `A0 | X0,U0 ~ Bernoulli(σ(-0.5 + 0.35X0 - 0.35U0))`。",
+      "3. `Z0 = 0.2 + 0.5A0 + 0.5X0 + 0.75U0 + εZ0`。",
+      "4. `W0 = 0.2 + 0.5X0 - 0.95U0 + εW0`。",
+      "5. `X1 = 0.2 + 0.7A0 + 0.7X0 + εX1`。",
+      "6. `U1 = 0.2 + 0.7A0 + 0.7U0 + εU1`。",
+      "7. `A1 | A0,X0,X1,U0,U1 ~ Bernoulli(σ(-0.5 + 0.5A0 + 0.35(X0+X1) + 0.35(U0+U1)))`。",
+      "8. `Z1 = 0.2 + 0.5(A0+A1) + 0.5(X0+X1) - 0.75(U0+U1) + εZ1`。",
+      "9. `W1 = 0.35 + 0.45(X0+X1) - 0.85(U0+U1) + εW1`。",
+      "10. `Y = -1.3 + A1 + 1.14A0 + 0.5X1 - 0.7U1 + 0.2X0 - 0.7U0 + εY`。",
+      "除 `X0,U0` 的独立起始抽样外，时间节点所用结构误差也分别独立抽取。每名个体对应一行宽表，观测列为 `X0,A0,Z0,W0,X1,A1,Z1,W1,Y`；`U0,U1` 为内部潜在混杂。个体间独立，两个时点的观测在个体内按转移方程关联。"
+    ],
+    "observed_variables": [
+      {
+        "name": "X0",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "A0",
+        "role": "treatment",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Z0",
+        "role": "treatment_proxy",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "W0",
+        "role": "outcome_proxy",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X1",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "A1",
+        "role": "treatment",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Z1",
+        "role": "treatment_proxy",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "W1",
+        "role": "outcome_proxy",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "U0",
+        "role": "latent_confounder",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "false"
+      },
+      {
+        "name": "U1",
+        "role": "latent_confounder",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "false"
+      }
+    ],
+    "latent_variables": [],
+    "latent_variables_status": "not_explicitly_specified",
+    "sampling": {
+      "unit": "individual subject (one wide row)",
+      "dependence": "个体间独立；个体内变量按生成方程相关。"
+    },
+    "assumptions": [
+      "Consistency, no interference; IID subjects with explicitly dependent observations within subject",
+      "Sequential latent exchangeability for treatment histories given latent U and observed X histories",
+      "Z and W satisfy sequential proxy exclusion restrictions at each time given the relevant treatment/confounder history",
+      "Sequential outcome bridges exist; proxy relevance/completeness conditions are those of the longitudinal proximal identification result",
+      "Sequential positivity; Gaussian tails do not imply uniform overlap",
+      "Independent initial X0,U0 and independent structural errors are an explicit joint-generation completion, separately disclosed as an implementation assumption"
+    ],
+    "properties": {
+      "dimension": 1,
+      "effective_dimension": 1,
+      "high_dimensional": false,
+      "interactions": false,
+      "nonlinear": true,
+      "notes": "有效基线变量为 X0；受 A0 影响的 X1 属于时变协变量。U0/U1 及代理历史另计。处理分配为 logistic 形式，均值方程无乘积交互。"
+    }
+  },
+  "estimand": {
+    "name": "beta1",
+    "definition": "Common slope beta1 in E[Y(a0,a1)]=beta0+beta1*(a0+a1). The 11-vs-00 contrast is separately 2*beta1.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "original",
+      "parameters": {
+        "x0_mean": -0.35,
+        "u0_mean": 0.35,
+        "noise_sd": 0.5,
+        "a0_logit": [
+          -0.5,
+          0.35,
+          -0.35
+        ],
+        "z0": [
+          0.2,
+          0.5,
+          0.5,
+          0.75
+        ],
+        "w0": [
+          0.2,
+          0.5,
+          -0.95
+        ],
+        "x1": [
+          0.2,
+          0.7,
+          0.7
+        ],
+        "u1": [
+          0.2,
+          0.7,
+          0.7
+        ],
+        "a1_logit": [
+          -0.5,
+          0.5,
+          0.35,
+          0.35
+        ],
+        "z1": [
+          0.2,
+          0.5,
+          0.5,
+          -0.75
+        ],
+        "w1": [
+          0.35,
+          0.45,
+          -0.85
+        ],
+        "y": [
+          -1.3,
+          1,
+          1.14,
+          0.5,
+          -0.7,
+          0.2,
+          -0.7
+        ]
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 1.0,
+        "expression": "Common slope beta1 in E[Y(a0,a1)]=beta0+beta1*(a0+a1). The 11-vs-00 contrast is separately 2*beta1.",
+        "derivation": "对结构方程求边际均值，另对四种干预策略作数值积分。",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[original].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "初始 X0、U0 独立生成，时序节点的外生误差也相互独立。附录给出了各条件分布，本实现据此指定联合抽样方式。"
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "generator.py",
+    "truth_reference": "truth.py",
+    "source_archive": "proximal-ying-2023-03-30-longitudinal-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/proximal-ying-2023-03-30-longitudinal-v1.py",
+    "exported_generator_sha256": "f9ebc0f3bb3de08a5ea76ea701c0b488c04a845d86449d932315e5871fb50076"
+  },
+  "evidence": [
+    {
+      "file": "collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "cb747a03902984847bc6077b5385db71244824eadf266bacbcfa5727c3924aaa",
+    "collection_sha256": "91c570d3d06cb198a76caff2cef0be3ff6afd4344130f608ad4ada1b34d71688",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/proximal-ying-2023-03-30-longitudinal-v1.zip",
+    "submitted_zip_sha256": "cb747a03902984847bc6077b5385db71244824eadf266bacbcfa5727c3924aaa",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "No explicit latent-variable metadata or reliably identifiable latent declarations; absence from this list does not prove that no latent variables exist."
+  ],
+  "source_suggested_domain": "proximal",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

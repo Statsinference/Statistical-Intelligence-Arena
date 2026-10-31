@@ -1,0 +1,247 @@
+{
+  "schema_version": "0.1",
+  "record_id": "proximal-dukes-2023-03-03-mediation-v1",
+  "kind": "synthetic_dgp",
+  "domain": "proximal",
+  "english_display": {},
+  "paper": {
+    "citation": "Oliver Dukes, Ilya Shpitser, Eric J. Tchetgen Tchetgen (2023). Proximal mediation analysis. Biometrika, 110(4), 973-987. DOI: 10.1093/biomet/asad015.",
+    "title": null,
+    "doi": "10.1093/biomet/asad015",
+    "source_url": "https://doi.org/10.1093/biomet/asad015",
+    "source_file_evidence": [],
+    "venue": "Biometrika",
+    "year": 2023,
+    "source_version": null,
+    "source_locator": "arXiv:2109.11904v2; PDF pp.13-14, Section 4"
+  },
+  "mechanism": {
+    "name": "Proximal mediation natural direct effect",
+    "title_en": null,
+    "family_id": "dukes-shpitser-tchetgen-2023-proximal-mediation",
+    "generation_equations": [
+      "设 `T=X1+X2`，`σ(t)=1/(1+exp(-t))`。个体按以下条件方程抽样：",
+      "1. `(X1,X2,U)^T ~ Normal_3((0.25,0.25,0)^T, [[0.25,0,0.05],[0,0.25,0.05],[0.05,0.05,1]])`。",
+      "2. `A | T,U ~ Bernoulli(σ(-0.5T - 0.4U))`。",
+      "3. `Z = 0.2 - 0.52A + 0.2T - U + εZ`。",
+      "4. `W = 0.3 + 0.2T - 0.6U + εW`。",
+      "5. `M = -0.3A - 0.5T + 0.4U + εM`。",
+      "6. `Y = 2 + 2A + M + 2W - T - U + εY`。",
+      "`εZ,εW,εM` 分别服从 `Normal(0,1)`；`εY ~ Normal(0,2²)`。生成器保留基线三元高斯的协方差，并对基线抽样以外的外生噪声分别独立生成。所有个体独立，个体内变量由上述结构方程关联。观测列为 `X1,X2,A,Z,W,M,Y`；`U` 为未观测混杂变量。"
+    ],
+    "observed_variables": [
+      {
+        "name": "X1",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X2",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "A",
+        "role": "treatment",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Z",
+        "role": "treatment_proxy",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "W",
+        "role": "outcome_proxy",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "M",
+        "role": "mediator",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "U",
+        "role": "latent_confounder",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "false"
+      }
+    ],
+    "latent_variables": [],
+    "latent_variables_status": "not_explicitly_specified",
+    "sampling": {
+      "unit": "individual",
+      "dependence": "个体间独立；个体内变量按生成方程相关。"
+    },
+    "assumptions": [
+      "Consistency for treatment and mediator interventions, no interference and IID people",
+      "Proxy exclusions and latent confounding/cross-world conditions for Y(1,M(0)) in the proximal mediation model",
+      "Outcome bridge and nested bridge existence with completeness and treatment/mediator positivity",
+      "Baseline W is not causally affected by A; M(a) and Y(a,m) use the structural equations with shared baseline and exogenous errors",
+      "Independent exogenous errors conditional on the declared correlated baseline form the joint-generation completion, separately disclosed"
+    ],
+    "properties": {
+      "dimension": 2,
+      "effective_dimension": 2,
+      "high_dimensional": false,
+      "interactions": false,
+      "nonlinear": true,
+      "notes": "有效基线变量为 X1、X2；U 和代理变量另计。A 使用 logistic 链接，M/Y 的均值为加性形式。该机制兼属 Mediation，归档时仅计一次。"
+    }
+  },
+  "estimand": {
+    "name": "NDE",
+    "definition": "E[Y(1,M(0))-Y(0,M(0))] in the source population; NIE and total effect are auxiliary only.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "original",
+      "parameters": {
+        "baseline_mean": [
+          0.25,
+          0.25,
+          0
+        ],
+        "baseline_cov": [
+          [
+            0.25,
+            0,
+            0.05
+          ],
+          [
+            0,
+            0.25,
+            0.05
+          ],
+          [
+            0.05,
+            0.05,
+            1
+          ]
+        ],
+        "a_logit": [
+          0,
+          -0.5,
+          -0.4
+        ],
+        "z": [
+          0.2,
+          -0.52,
+          0.2,
+          -1
+        ],
+        "w": [
+          0.3,
+          0.2,
+          -0.6
+        ],
+        "m": [
+          0,
+          -0.3,
+          -0.5,
+          0.4
+        ],
+        "y": [
+          2,
+          2,
+          1,
+          2,
+          -1,
+          -1
+        ],
+        "proxy_sd": 1,
+        "mediator_sd": 1,
+        "y_sd": 2
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 2.0,
+        "expression": "E[Y(1,M(0))-Y(0,M(0))] in the source population; NIE and total effect are auxiliary only.",
+        "derivation": "由共享外生误差的潜在结果计算 NDE，并检查嵌套结果桥。",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[original].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "基线 (X1,X2,U) 保留原文指定的协方差；其他节点使用相互独立的外生误差完成联合抽样。该独立性约定由本实现补充。"
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "generator.py",
+    "truth_reference": "truth.py",
+    "source_archive": "proximal-dukes-2023-03-03-mediation-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/proximal-dukes-2023-03-03-mediation-v1.py",
+    "exported_generator_sha256": "3037cbc00f428612d40cf35deab28bfd5f2c475dd9d1a9561b866c95b11cdf0f"
+  },
+  "evidence": [
+    {
+      "file": "collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "1e520cfdf0c6b2d02f5922266f8a524c57c3c0f5f366be865709769a3c41191c",
+    "collection_sha256": "2cedbe07e5f771bd0400a37f387733b0411df0fb1ab13ca79eed325d59ed8486",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/proximal-dukes-2023-03-03-mediation-v1.zip",
+    "submitted_zip_sha256": "1e520cfdf0c6b2d02f5922266f8a524c57c3c0f5f366be865709769a3c41191c",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "No explicit latent-variable metadata or reliably identifiable latent declarations; absence from this list does not prove that no latent variables exist."
+  ],
+  "source_suggested_domain": "proximal",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": [
+    "mediation"
+  ]
+}

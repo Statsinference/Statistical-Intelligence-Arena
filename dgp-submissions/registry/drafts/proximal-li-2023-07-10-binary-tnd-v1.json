@@ -1,0 +1,342 @@
+{
+  "schema_version": "0.1",
+  "record_id": "proximal-li-2023-07-10-binary-tnd-v1",
+  "kind": "synthetic_dgp",
+  "domain": "proximal",
+  "english_display": {},
+  "paper": {
+    "citation": "Kendrick Qijun Li, Xu Shi, Wang Miao, Eric Tchetgen Tchetgen (2024). Double Negative Control Inference in Test-Negative Design Studies of Vaccine Effectiveness. Journal of the American Statistical Association, 119(547), 1859-1870. DOI: 10.1080/01621459.2023.2220935.",
+    "title": null,
+    "doi": "10.1080/01621459.2023.2220935",
+    "source_url": "https://doi.org/10.1080/01621459.2023.2220935",
+    "source_file_evidence": [],
+    "venue": "Journal of the American Statistical Association",
+    "year": 2024,
+    "source_version": null,
+    "source_locator": "Author supplementary PDF at Git commit ba9dc3c581390fcefce0ca4cdabf65688a91a455; PDF p.25, Section I, Table S.1, binary and continuous blocks. Binary block."
+  },
+  "mechanism": {
+    "name": "Binary double negative control test-negative design",
+    "title_en": null,
+    "family_id": "li-shi-miao-tchetgen-2024-binary-tnd",
+    "generation_equations": [
+      "以来源总体中的独立个体为单位，令 `U` 表示未观测二元混杂，`D` 表示其他疾病指示，`S` 为纳入检验阴性样本的指示。各二元节点按顺序使用独立的均匀随机数生成：",
+      "1. `U ~ Bernoulli(0.5)`。",
+      "2. `Z | U ~ Bernoulli(0.2 + 0.4U)`。",
+      "3. `A | U ~ Bernoulli(0.2 + 0.4U)`。",
+      "4. `Y | A,U ~ Bernoulli(exp(η0 + βA - 0.693U))`，其中 `η0=ln(0.01)`。",
+      "5. `W | U ~ Bernoulli(0.02 - 0.01U)`。",
+      "6. `D | U ~ Bernoulli(0.02 - 0.015U)`。",
+      "7. `S | Y,D,W,U ~ Bernoulli(max(Y,D,W) × (0.1 + 0.4U))`。",
+      "只保留 `S=1` 的记录，观察列为 `A,Z,W,Y`；内部变量为 `U,D,S`，不写入模型输入数据表。二元节点的支持集均为 `{0,1}`。分配概率及疾病风险通过方程计算，生成器不裁剪概率。",
+      "四个场景均固定 `η0=log(0.01)`，只改变处理效应 `β∈{log(0.2), log(0.5), log(0.7), 0}`。\r"
+    ],
+    "observed_variables": [
+      {
+        "name": "A",
+        "role": "treatment",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Z",
+        "role": "treatment_proxy",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "W",
+        "role": "outcome_proxy",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "U",
+        "role": "latent_confounder",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "false"
+      },
+      {
+        "name": "D",
+        "role": "selection_auxiliary",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "false"
+      },
+      {
+        "name": "S",
+        "role": "selection",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "false"
+      }
+    ],
+    "latent_variables": [],
+    "latent_variables_status": "not_explicitly_specified",
+    "sampling": {
+      "unit": "individual",
+      "dependence": "个体间独立；个体内变量按生成方程相关。仅保留 S=1 的个体，n 表示入选样本量。"
+    },
+    "assumptions": [
+      "Consistency, no interference and IID source individuals",
+      "Latent exchangeability given U and treatment positivity; negative-control exclusions for Z and W given U",
+      "Binary proxy probability matrices have sufficient rank and a treatment confounding bridge exists",
+      "Common log-risk coefficient beta; among cases, selection depends on U but not A after conditioning on U",
+      "The unknown-bridge estimator based on selected controls uses a rare-disease approximation; this package does not assert exact unbiasedness for that estimator",
+      "Conditional errors use independent random draws; only S=1 rows are observed"
+    ],
+    "properties": {
+      "dimension": 0,
+      "effective_dimension": 0,
+      "high_dimensional": false,
+      "interactions": true,
+      "nonlinear": true,
+      "notes": "无观测基线 X；U 为隐变量，Z/W 为二元代理。Y 采用对数风险模型，入选公式含乘积项。"
+    }
+  },
+  "estimand": {
+    "name": "beta_log_RR",
+    "definition": "log(E[Y(1)]/E[Y(0)]) in the source population before S selection; not selected-sample log odds ratio.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "table-eta001-rr020",
+      "parameters": {
+        "u_probability": 0.5,
+        "z_probability": [
+          0.2,
+          0.4
+        ],
+        "a_probability": [
+          0.2,
+          0.4
+        ],
+        "eta0": -4.605170185988091,
+        "beta": -1.6094379124341003,
+        "y_u": -0.693,
+        "w_probability": [
+          0.02,
+          -0.01
+        ],
+        "d_probability": [
+          0.02,
+          -0.015
+        ],
+        "s_probability": [
+          0.1,
+          0.4
+        ],
+        "selected_sample": true,
+        "max_candidates": 100000000
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": -1.6094379124341003,
+        "expression": "log(E[Y(1)]/E[Y(0)]) in the source population before S selection; not selected-sample log odds ratio.",
+        "derivation": "由共同的对数风险系数 β 得到总体 log RR；完整枚举用于复核。",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[table-eta001-rr020].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "table-eta001-rr050",
+      "parameters": {
+        "u_probability": 0.5,
+        "z_probability": [
+          0.2,
+          0.4
+        ],
+        "a_probability": [
+          0.2,
+          0.4
+        ],
+        "eta0": -4.605170185988091,
+        "beta": -0.6931471805599453,
+        "y_u": -0.693,
+        "w_probability": [
+          0.02,
+          -0.01
+        ],
+        "d_probability": [
+          0.02,
+          -0.015
+        ],
+        "s_probability": [
+          0.1,
+          0.4
+        ],
+        "selected_sample": true,
+        "max_candidates": 100000000
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": -0.6931471805599453,
+        "expression": "log(E[Y(1)]/E[Y(0)]) in the source population before S selection; not selected-sample log odds ratio.",
+        "derivation": "由共同的对数风险系数 β 得到总体 log RR；完整枚举用于复核。",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[table-eta001-rr050].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "table-eta001-rr070",
+      "parameters": {
+        "u_probability": 0.5,
+        "z_probability": [
+          0.2,
+          0.4
+        ],
+        "a_probability": [
+          0.2,
+          0.4
+        ],
+        "eta0": -4.605170185988091,
+        "beta": -0.35667494393873245,
+        "y_u": -0.693,
+        "w_probability": [
+          0.02,
+          -0.01
+        ],
+        "d_probability": [
+          0.02,
+          -0.015
+        ],
+        "s_probability": [
+          0.1,
+          0.4
+        ],
+        "selected_sample": true,
+        "max_candidates": 100000000
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": -0.35667494393873245,
+        "expression": "log(E[Y(1)]/E[Y(0)]) in the source population before S selection; not selected-sample log odds ratio.",
+        "derivation": "由共同的对数风险系数 β 得到总体 log RR；完整枚举用于复核。",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[table-eta001-rr070].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "table-eta001-rr100",
+      "parameters": {
+        "u_probability": 0.5,
+        "z_probability": [
+          0.2,
+          0.4
+        ],
+        "a_probability": [
+          0.2,
+          0.4
+        ],
+        "eta0": -4.605170185988091,
+        "beta": 0.0,
+        "y_u": -0.693,
+        "w_probability": [
+          0.02,
+          -0.01
+        ],
+        "d_probability": [
+          0.02,
+          -0.015
+        ],
+        "s_probability": [
+          0.1,
+          0.4
+        ],
+        "selected_sample": true,
+        "max_candidates": 100000000
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.0,
+        "expression": "log(E[Y(1)]/E[Y(0)]) in the source population before S selection; not selected-sample log odds ratio.",
+        "derivation": "由共同的对数风险系数 β 得到总体 log RR；完整枚举用于复核。",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[table-eta001-rr100].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "Table S.1 给出各二元节点的条件概率；本实现用独立 Uniform 随机数生成这些节点和每个个体。此设定没有基线协方差矩阵。",
+    "Table S.1 允许 η0 变化；这里固定 η0=log(0.01)，四个场景仅改变 β。",
+    "采用拒绝抽样获得固定 n 名 S=1 的观测者；原文固定来源总体规模，入选人数随机。"
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "generator.py",
+    "truth_reference": "truth.py",
+    "source_archive": "proximal-li-2023-07-10-binary-tnd-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/proximal-li-2023-07-10-binary-tnd-v1.py",
+    "exported_generator_sha256": "4829be27328cb60f3d45b05d6e974a638e3500acbc8a2170d6fb583621abe237"
+  },
+  "evidence": [
+    {
+      "file": "collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "729f6b412c8c886f83d6b52a4abc498c5640eab68e417a77fc3a033689ab52df",
+    "collection_sha256": "89ff610c789a3b2c03184dfacefc898c7cd55068ffbeaec911fa14c3bb48091d",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/proximal-li-2023-07-10-binary-tnd-v1.zip",
+    "submitted_zip_sha256": "729f6b412c8c886f83d6b52a4abc498c5640eab68e417a77fc3a033689ab52df",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "No explicit latent-variable metadata or reliably identifiable latent declarations; absence from this list does not prove that no latent variables exist."
+  ],
+  "source_suggested_domain": "proximal",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

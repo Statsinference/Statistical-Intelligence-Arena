@@ -1,14 +1,14 @@
 {
   "status": "draft_needs_review",
-  "paper_count": 48,
-  "mechanism_count": 64,
-  "scenario_count": 150,
+  "paper_count": 49,
+  "mechanism_count": 69,
+  "scenario_count": 161,
   "domains": {
     "ate": 22,
     "cate": 2,
     "mediation": 1,
     "iv": 13,
-    "proximal": 10,
+    "proximal": 15,
     "did_sc": 3,
     "nonparametric_regression": 2,
     "quantile": 3,
@@ -1703,6 +1703,135 @@
       "status": "needs_scientific_review"
     },
     {
+      "record_id": "proximal-cui-2023-04-18-gaussian-v2",
+      "domain": "proximal",
+      "paper": "Yifan Cui, Hongming Pu, Xu Shi, Wang Miao, Eric Tchetgen Tchetgen (2024). Semiparametric Proximal Causal Inference. Journal of the American Statistical Association, 119(546), 1348-1359. DOI: 10.1080/01621459.2023.2191817.",
+      "mechanism": "Single-time Gaussian proximal ATE",
+      "paper_title": "Semiparametric Proximal Causal Inference",
+      "venue_abbreviation": "JASA",
+      "keywords": [
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/proximal-cui-2023-04-18-gaussian-v2.py",
+      "latent_variables": [],
+      "truth_by_scenario": "original: psi_ATE = 2.0",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "proximal-dukes-2023-03-03-mediation-v1",
+      "domain": "proximal",
+      "paper": "Oliver Dukes, Ilya Shpitser, Eric J. Tchetgen Tchetgen (2023). Proximal mediation analysis. Biometrika, 110(4), 973-987. DOI: 10.1093/biomet/asad015.",
+      "mechanism": "Proximal mediation natural direct effect",
+      "paper_title": "Proximal mediation analysis",
+      "venue_abbreviation": "Biometrika",
+      "keywords": [
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/proximal-dukes-2023-03-03-mediation-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "original: NDE = 2.0",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "proximal-li-2023-07-10-binary-tnd-v1",
+      "domain": "proximal",
+      "paper": "Kendrick Qijun Li, Xu Shi, Wang Miao, Eric Tchetgen Tchetgen (2024). Double Negative Control Inference in Test-Negative Design Studies of Vaccine Effectiveness. Journal of the American Statistical Association, 119(547), 1859-1870. DOI: 10.1080/01621459.2023.2220935.",
+      "mechanism": "Binary double negative control test-negative design",
+      "paper_title": "Double Negative Control Inference in Test-Negative Design Studies of Vaccine Effectiveness",
+      "venue_abbreviation": "JASA",
+      "keywords": [
+        "Interactions",
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Interactions",
+          "source": "mechanism.properties.interactions",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/proximal-li-2023-07-10-binary-tnd-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "table-eta001-rr020: beta_log_RR = -1.6094379124341003; table-eta001-rr050: beta_log_RR = -0.6931471805599453; table-eta001-rr070: beta_log_RR = -0.35667494393873245; table-eta001-rr100: beta_log_RR = 0.0",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "proximal-li-2023-07-10-continuous-tnd-v1",
+      "domain": "proximal",
+      "paper": "Kendrick Qijun Li, Xu Shi, Wang Miao, Eric Tchetgen Tchetgen (2024). Double Negative Control Inference in Test-Negative Design Studies of Vaccine Effectiveness. Journal of the American Statistical Association, 119(547), 1859-1870. DOI: 10.1080/01621459.2023.2220935.",
+      "mechanism": "Continuous-proxy double negative control test-negative design",
+      "paper_title": "Double Negative Control Inference in Test-Negative Design Studies of Vaccine Effectiveness",
+      "venue_abbreviation": "JASA",
+      "keywords": [
+        "Interactions",
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Interactions",
+          "source": "mechanism.properties.interactions",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/proximal-li-2023-07-10-continuous-tnd-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "table-eta001-rr020: beta_log_RR = -1.6094379124341003; table-eta001-rr050: beta_log_RR = -0.6931471805599453; table-eta001-rr070: beta_log_RR = -0.35667494393873245; table-eta001-rr100: beta_log_RR = 0.0",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "proximal-ying-2023-03-30-longitudinal-v1",
+      "domain": "proximal",
+      "paper": "Andrew Ying, Wang Miao, Xu Shi, Eric J. Tchetgen Tchetgen (2023). Proximal causal inference for complex longitudinal studies. Journal of the Royal Statistical Society Series B: Statistical Methodology, 85(3), 684-704. DOI: 10.1093/jrsssb/qkad020.",
+      "mechanism": "Longitudinal two-time proximal MSM coefficient",
+      "paper_title": "Proximal causal inference for complex longitudinal studies",
+      "venue_abbreviation": "JRSSB",
+      "keywords": [
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/proximal-ying-2023-03-30-longitudinal-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "original: beta1 = 1.0",
+      "status": "needs_scientific_review"
+    },
+    {
       "record_id": "qdi-tan-wang-zhou-20220201-active10-mixture-v2",
       "domain": "quantile",
       "paper": "Tan, K. M., Wang, L., and Zhou, W.-X. (2022). High-Dimensional Quantile Regression: Convolution Smoothing and Concave Regularization. Journal of the Royal Statistical Society Series B: Statistical Methodology 84(1), 205-233. DOI: 10.1111/rssb.12485.",
@@ -1964,8 +2093,8 @@
   ],
   "intake": {
     "status": "success",
-    "zip_count": 34,
-    "indexed_dgp_count": 64,
+    "zip_count": 39,
+    "indexed_dgp_count": 69,
     "failure_count": 0,
     "stale_record_ids": [],
     "scientific_validation": "not_performed"

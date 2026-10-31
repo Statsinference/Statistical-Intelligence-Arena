@@ -1,0 +1,402 @@
+{
+  "schema_version": "0.1",
+  "record_id": "proximal-li-2023-07-10-continuous-tnd-v1",
+  "kind": "synthetic_dgp",
+  "domain": "proximal",
+  "english_display": {},
+  "paper": {
+    "citation": "Kendrick Qijun Li, Xu Shi, Wang Miao, Eric Tchetgen Tchetgen (2024). Double Negative Control Inference in Test-Negative Design Studies of Vaccine Effectiveness. Journal of the American Statistical Association, 119(547), 1859-1870. DOI: 10.1080/01621459.2023.2220935.",
+    "title": null,
+    "doi": "10.1080/01621459.2023.2220935",
+    "source_url": "https://doi.org/10.1080/01621459.2023.2220935",
+    "source_file_evidence": [],
+    "venue": "Journal of the American Statistical Association",
+    "year": 2024,
+    "source_version": null,
+    "source_locator": "Author supplementary PDF at Git commit ba9dc3c581390fcefce0ca4cdabf65688a91a455; PDF p.25, Section I, Table S.1, binary and continuous blocks. Continuous block."
+  },
+  "mechanism": {
+    "name": "Continuous-proxy double negative control test-negative design",
+    "title_en": null,
+    "family_id": "li-shi-miao-tchetgen-2024-continuous-tnd",
+    "generation_equations": [
+      "取 `σ(t)=1/(1+exp(-t))`。对来源总体独立个体依次生成：",
+      "1. `U ~ Uniform(0,1)`，`X ~ Uniform(0,1)`；两者独立。",
+      "2. `A | U,X ~ Bernoulli(σ(-1 + U + 0.25X))`。",
+      "3. `Z = 0.25A + 0.25X + 5U + εZ`。",
+      "4. `W = 0.25X + 2U + εW`。",
+      "5. `Y | A,U,X ~ Bernoulli(exp(η0 + βA - 2U - 0.25X - 0.75UX))`，`η0=ln(0.01)`。",
+      "6. `D | U,X ~ Bernoulli(exp(-4.605 + 0.25X - 0.2U))`。",
+      "7. `S | Y,D,U,X ~ Bernoulli(max(Y,D) × σ(-1.4 + 0.5X + 2U + UX))`。",
+      "`εZ` 与 `εW` 为独立 `Normal(0,0.25²)`，并独立于 `U,X` 及二元节点的随机数。最终只返回 `S=1` 个体的观测列 `X,A,Z,W,Y`；内部变量为 `U,D,S`。连续协变量 `X` 的边界是 `[0,1]`；连续代理与正态噪声无固定数值截断。",
+      "四个场景均固定 `η0=log(0.01)`，只改变处理效应 `β∈{log(0.2), log(0.5), log(0.7), 0}`。\r"
+    ],
+    "observed_variables": [
+      {
+        "name": "X",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "A",
+        "role": "treatment",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Z",
+        "role": "treatment_proxy",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "W",
+        "role": "outcome_proxy",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "U",
+        "role": "latent_confounder",
+        "dtype": "float",
+        "min": "0",
+        "max": "1",
+        "observed": "false"
+      },
+      {
+        "name": "D",
+        "role": "selection_auxiliary",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "false"
+      },
+      {
+        "name": "S",
+        "role": "selection",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "false"
+      }
+    ],
+    "latent_variables": [],
+    "latent_variables_status": "not_explicitly_specified",
+    "sampling": {
+      "unit": "individual",
+      "dependence": "个体间独立；个体内变量按生成方程相关。仅保留 S=1 的个体，n 表示入选样本量。"
+    },
+    "assumptions": [
+      "Consistency, no interference and IID source individuals",
+      "Latent exchangeability given U,X and treatment positivity; negative-control exclusions and conditional proxy relevance/completeness",
+      "The normal treatment bridge exists; common log-risk coefficient beta across U,X",
+      "Among cases, S depends on U,X and not directly on A; case bridge weighting cancels the common selection factor in the risk ratio",
+      "Estimating an unknown bridge from selected controls invokes the rare-disease approximation; no exact finite-sample estimator claim is made",
+      "U and X, conditional proxy errors and Bernoulli draws use independent exogenous random numbers"
+    ],
+    "properties": {
+      "dimension": 1,
+      "effective_dimension": 1,
+      "high_dimensional": false,
+      "interactions": true,
+      "nonlinear": true,
+      "notes": "基线 X 一维；U 为隐变量，Z/W 为连续正态代理。Y 与 S 的公式均含 U×X，采用 log/logit 链接。"
+    }
+  },
+  "estimand": {
+    "name": "beta_log_RR",
+    "definition": "log(E[Y(1)]/E[Y(0)]) in the source population before S selection; not selected-sample log odds ratio.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "table-eta001-rr020",
+      "parameters": {
+        "uniform_min": 0,
+        "uniform_max": 1,
+        "a_logit": [
+          -1,
+          1,
+          0.25
+        ],
+        "z": [
+          0,
+          0.25,
+          0.25,
+          5
+        ],
+        "w": [
+          0,
+          0.25,
+          2
+        ],
+        "proxy_sd": 0.25,
+        "eta0": -4.605170185988091,
+        "beta": -1.6094379124341003,
+        "y": [
+          -2,
+          -0.25,
+          -0.75
+        ],
+        "d_logrisk": [
+          -4.605,
+          0.25,
+          -0.2
+        ],
+        "s_logit": [
+          -1.4,
+          0.5,
+          2,
+          1
+        ],
+        "selected_sample": true,
+        "max_candidates": 100000000
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": -1.6094379124341003,
+        "expression": "log(E[Y(1)]/E[Y(0)]) in the source population before S selection; not selected-sample log odds ratio.",
+        "derivation": "总体 log RR 等于 β；另用二维 Gauss–Legendre 积分复核。",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[table-eta001-rr020].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "table-eta001-rr050",
+      "parameters": {
+        "uniform_min": 0,
+        "uniform_max": 1,
+        "a_logit": [
+          -1,
+          1,
+          0.25
+        ],
+        "z": [
+          0,
+          0.25,
+          0.25,
+          5
+        ],
+        "w": [
+          0,
+          0.25,
+          2
+        ],
+        "proxy_sd": 0.25,
+        "eta0": -4.605170185988091,
+        "beta": -0.6931471805599453,
+        "y": [
+          -2,
+          -0.25,
+          -0.75
+        ],
+        "d_logrisk": [
+          -4.605,
+          0.25,
+          -0.2
+        ],
+        "s_logit": [
+          -1.4,
+          0.5,
+          2,
+          1
+        ],
+        "selected_sample": true,
+        "max_candidates": 100000000
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": -0.6931471805599453,
+        "expression": "log(E[Y(1)]/E[Y(0)]) in the source population before S selection; not selected-sample log odds ratio.",
+        "derivation": "总体 log RR 等于 β；另用二维 Gauss–Legendre 积分复核。",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[table-eta001-rr050].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "table-eta001-rr070",
+      "parameters": {
+        "uniform_min": 0,
+        "uniform_max": 1,
+        "a_logit": [
+          -1,
+          1,
+          0.25
+        ],
+        "z": [
+          0,
+          0.25,
+          0.25,
+          5
+        ],
+        "w": [
+          0,
+          0.25,
+          2
+        ],
+        "proxy_sd": 0.25,
+        "eta0": -4.605170185988091,
+        "beta": -0.35667494393873245,
+        "y": [
+          -2,
+          -0.25,
+          -0.75
+        ],
+        "d_logrisk": [
+          -4.605,
+          0.25,
+          -0.2
+        ],
+        "s_logit": [
+          -1.4,
+          0.5,
+          2,
+          1
+        ],
+        "selected_sample": true,
+        "max_candidates": 100000000
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": -0.35667494393873245,
+        "expression": "log(E[Y(1)]/E[Y(0)]) in the source population before S selection; not selected-sample log odds ratio.",
+        "derivation": "总体 log RR 等于 β；另用二维 Gauss–Legendre 积分复核。",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[table-eta001-rr070].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "table-eta001-rr100",
+      "parameters": {
+        "uniform_min": 0,
+        "uniform_max": 1,
+        "a_logit": [
+          -1,
+          1,
+          0.25
+        ],
+        "z": [
+          0,
+          0.25,
+          0.25,
+          5
+        ],
+        "w": [
+          0,
+          0.25,
+          2
+        ],
+        "proxy_sd": 0.25,
+        "eta0": -4.605170185988091,
+        "beta": 0.0,
+        "y": [
+          -2,
+          -0.25,
+          -0.75
+        ],
+        "d_logrisk": [
+          -4.605,
+          0.25,
+          -0.2
+        ],
+        "s_logit": [
+          -1.4,
+          0.5,
+          2,
+          1
+        ],
+        "selected_sample": true,
+        "max_candidates": 100000000
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.0,
+        "expression": "log(E[Y(1)]/E[Y(0)]) in the source population before S selection; not selected-sample log odds ratio.",
+        "derivation": "总体 log RR 等于 β；另用二维 Gauss–Legendre 积分复核。",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[table-eta001-rr100].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "U 和 X 按 Table S.1 独立抽取 Uniform(0,1)；其余节点使用独立外生随机数生成。此设定没有基线协方差矩阵。",
+    "Table S.1 允许 η0 变化；这里固定 η0=log(0.01)，四个场景仅改变 β。",
+    "采用拒绝抽样获得固定 n 名 S=1 的观测者；原文固定来源总体规模，入选人数随机。"
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "generator.py",
+    "truth_reference": "truth.py",
+    "source_archive": "proximal-li-2023-07-10-continuous-tnd-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/proximal-li-2023-07-10-continuous-tnd-v1.py",
+    "exported_generator_sha256": "985501e34db9fe7c643574d1d23579ae7e119270d978203fbfd9de9e8990adca"
+  },
+  "evidence": [
+    {
+      "file": "collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "5619ab808a8cdf8d6c98ea58d93f6c919adcac54cef36e4330a3a0ce5fd398db",
+    "collection_sha256": "84e13bf6c67d4ec533bfd63bf1baedb6579c0f20b9b5ad4312bedb4e7193ecc9",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/proximal-li-2023-07-10-continuous-tnd-v1.zip",
+    "submitted_zip_sha256": "5619ab808a8cdf8d6c98ea58d93f6c919adcac54cef36e4330a3a0ce5fd398db",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "No explicit latent-variable metadata or reliably identifiable latent declarations; absence from this list does not prove that no latent variables exist."
+  ],
+  "source_suggested_domain": "proximal",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}
