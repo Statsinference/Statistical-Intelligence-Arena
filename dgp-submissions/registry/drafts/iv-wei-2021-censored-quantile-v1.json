@@ -1,0 +1,232 @@
+{
+  "schema_version": "0.1",
+  "record_id": "iv-wei-2021-censored-quantile-v1",
+  "kind": "synthetic_dgp",
+  "domain": "iv",
+  "english_display": {},
+  "paper": {
+    "citation": "Wei B, Peng L, Zhang MJ, Fine JP (2021). Estimation of causal quantile effects with a binary instrumental variable and censored data. JRSS-B 83(3):559–578. DOI:10.1111/rssb.12431.",
+    "title": null,
+    "doi": null,
+    "source_url": "https://academic.oup.com/jrsssb/article/83/3/559/7056039",
+    "source_file_evidence": [],
+    "venue": "JRSS-B",
+    "year": 2021,
+    "source_version": "JRSS-B 83(3),2021,559-578, journal full-text HTML Section4 G/H; no immutable HTML version identifier supplied",
+    "source_locator": "期刊全文HTML：JRSS-B83(3),2021,559–578；§2 A1–A4；§3.1 Eq.(1)及CQCE定义；§4六步生成，A/B结局及紧随的log-quantile公式，G/H段删失端点2.2/1.4。本轮全文由academic.oup.com重定向oup.silverchair-cdn.com/article-minimal/7056039并可读。"
+  },
+  "mechanism": {
+    "name": "Wei：右删失依从者生存分位数IV",
+    "title_en": null,
+    "family_id": "iv-wei-2021-censored-quantile",
+    "generation_equations": [
+      {
+        "label": "DGP equation 1",
+        "expression": "X_{1}~Uniform(0,1), X_{2}~Bernoulli(0.5), (p_{CO},p_{AT},p_{NT})=(2/3,1/6,1/6)."
+      },
+      {
+        "label": "DGP equation 2",
+        "expression": "ε_{V}~N(0,0.5^{2}), V|X,ε_{V}~Bernoulli[expit(0.1X_{2}+X_{1}^{2}+X_{1}X_{2}+ε_{V})]."
+      },
+      {
+        "label": "DGP equation 3",
+        "expression": "D=V (CO), D=1 (AT), D=0 (NT); u~Uniform(0,1)."
+      },
+      {
+        "label": "DGP equation 4",
+        "expression": "G, CO: log T=−0.2X_{1}−0.3X_{2}+0.5D+log{−log(1−u)}."
+      },
+      {
+        "label": "DGP equation 5",
+        "expression": "H, CO: log T=−0.2X_{1}−0.3X_{2}+log u+0.5exp(0.3u)D."
+      },
+      {
+        "label": "DGP equation 6",
+        "expression": "Non-CO: log T=−0.1X_{1}−0.2X_{2}+0.2D+ε, ε~N(0,0.5^{2})."
+      },
+      {
+        "label": "DGP equation 7",
+        "expression": "C=Uniform(0,b)+X_{2}, b=2.2 (G), 1.4 (H); W=min(T,C), E=1{T≤C}."
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "X1",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X2",
+        "role": "covariate",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "V",
+        "role": "instrument",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "D",
+        "role": "treatment",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "W",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "E",
+        "role": "event_indicator",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [
+      {
+        "name": "u",
+        "role": "latent_candidate",
+        "evidence": {
+          "file": "collection.json",
+          "equation_index": 2,
+          "expression": "u~Uniform(0,1)."
+        },
+        "provenance": "inferred_from_stochastic_declaration"
+      }
+    ],
+    "latent_variables_status": "candidates_from_equations_need_review",
+    "sampling": {
+      "unit": "独立个体，保留右删失观察过程",
+      "dependence": "iid individuals; latent compliance stratum independent of the IV-generation noise given X. Given X2, censoring is generated independently; observed W=min(T,C), E=1(T<=C). No latent stratum, uncensored T or C exported."
+    },
+    "assumptions": [
+      "给定X的IV独立、排除、相关、正性、单调无defier；条件独立删失；所选分位数可辨识；不是总体ATE或风险比"
+    ],
+    "properties": {
+      "dimension": 2,
+      "effective_dimension": 2,
+      "observed_columns": 6,
+      "high_dimensional": false,
+      "interactions": true,
+      "nonlinear": true,
+      "notes": "X1,X2 both active; IV propensity includes X1^2 and X1*X2; exp survival map; H contains treatment times exp(.3*u). No latent stratum, censoring time or uncensored T is exported. Baseline-dimension convention: p=2, effective_p=2, baseline_columns=['X1', 'X2']; instruments, posttreatment variables, time points and network nodes are excluded. Reference sample size n_ref=128 independent subjects (the CPU interface-check setting), p/n_ref=0.01562500; high_dimensional=false refers to baseline p in this stated setting, not the full observed-column count. n remains a runtime argument; reassess the dimension/sample-size regime if n or p changes rather than treating this tag as a guarantee for arbitrary scaling."
+    }
+  },
+  "estimand": {
+    "name": "CQCE(.5)",
+    "definition": "CQCE(.5)：条件complier的log生存时间中位数，处理1减0；G为.5，H为.5 exp(.15)。",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "source_G",
+      "parameters": {
+        "model": "G",
+        "tau": 0.5,
+        "pc": 0.6666666666666666,
+        "pa": 0.16666666666666666,
+        "effect": 0.5,
+        "censor_upper": 2.2
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.5,
+        "expression": "CQCE(.5)：条件complier的log生存时间中位数，处理1减0；G为.5，H为.5 exp(.15)。",
+        "derivation": "Analytic complier log-time quantile treatment contrast: effect for G and effect*exp(.3*tau) for H, checked by independent CDF inversion and controlled full observation-process draws.",
+        "evidence": [
+          {
+            "file": "iv-wei-2021-censored-quantile-v1/checks/report.json",
+            "location": "execution.scenario_results[source_G].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "source_H",
+      "parameters": {
+        "model": "H",
+        "tau": 0.5,
+        "pc": 0.6666666666666666,
+        "pa": 0.16666666666666666,
+        "effect": 0.5,
+        "censor_upper": 1.4
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.5809171213641415,
+        "expression": "CQCE(.5)：条件complier的log生存时间中位数，处理1减0；G为.5，H为.5 exp(.15)。",
+        "derivation": "Analytic complier log-time quantile treatment contrast: effect for G and effect*exp(.3*tau) for H, checked by independent CDF inversion and controlled full observation-process draws.",
+        "evidence": [
+          {
+            "file": "iv-wei-2021-censored-quantile-v1/checks/report.json",
+            "location": "execution.scenario_results[source_H].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "Select original G/H scenarios because their censoring laws are explicitly supplied; A/B only state approximately30% without endpoints and are not claimed implemented.",
+    "Scalar interface selects original CQCE at tau=.5; new local RNG; no quantile regression fitting/bootstrap or coverage experiments."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "iv-wei-2021-censored-quantile-v1/generator.py",
+    "truth_reference": "iv-wei-2021-censored-quantile-v1/truth.py",
+    "source_archive": "T07_IV.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/iv-wei-2021-censored-quantile-v1.py",
+    "exported_generator_sha256": "a56adc26f23dca9eece43172646403d73b74859c7137831001e3923dac578bd5"
+  },
+  "evidence": [
+    {
+      "file": "iv-wei-2021-censored-quantile-v1/collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "iv-wei-2021-censored-quantile-v1/config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "iv-wei-2021-censored-quantile-v1/source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "14ca55eecd286b849c32caeb830c67625a2b207b805bbe46bf6e69e1943c3445",
+    "collection_sha256": "c256cc1f7b8cfe5800fdc0374c3c8468ab688ce7dd1cd928a21eea80c8cb92ca",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/T07_IV.zip",
+    "submitted_zip_sha256": "14ca55eecd286b849c32caeb830c67625a2b207b805bbe46bf6e69e1943c3445",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "Latent-variable candidates inferred from source equations; confirm their roles and completeness against the original paper or generator."
+  ],
+  "source_suggested_domain": "iv",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

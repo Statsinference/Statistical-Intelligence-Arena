@@ -1,0 +1,101 @@
+# DGP iv-hoshino-2024-ring-network-v1 (English title required)
+
+> **Unverified extraction — scientific review required.**
+
+**Primary area:** IV — Instrumental Variables
+
+**Suggested cross-tags (unverified):** none
+
+## Reference paper
+
+**Citation:** Hoshino T, Yanagi T (2024). Causal Inference with Noncompliance and Unknown Interference. JASA 119(548):2869–2880. DOI:10.1080/01621459.2023.2284413.
+
+**DOI:** — · **Source locator:** English description not yet supplied; consult the original scientific record (JSON).
+
+## DGP / generation mechanism
+
+**Sampling design:** Unit: English description not yet supplied; consult the original scientific record (JSON).; Dependence: One row is an entire fixed 500-node ring experiment with 1500 observed columns. Rows are independent repeated encouragement assignments conditional on fixed coefficients; nodes within each row are dependent. No no-interference or iid-node assumption.
+
+**Generator source:** [generator.py](../generators/iv-hoshino-2024-ring-network-v1.py)
+
+**Keywords (source-described):** Nonlinearity
+
+**Observed variables**
+
+Z0, D0, Y0, Z1, D1, Y1, Z2, D2, Y2, Z3, D3, Y3, Z4, D4, Y4, Z5, D5, Y5, Z6, D6, Y6, Z7, D7, Y7, Z8, D8, Y8, Z9, D9, Y9, Z10, D10, Y10, Z11, D11, Y11, Z12, D12, Y12, Z13, D13, Y13, Z14, D14, Y14, Z15, D15, Y15, Z16, D16, Y16, Z17, D17, Y17, Z18, D18, Y18, Z19, D19, Y19, Z20, D20, Y20, Z21, D21, Y21, Z22, D22, Y22, Z23, D23, Y23, Z24, D24, Y24, Z25, D25, Y25, Z26, D26, Y26, Z27, D27, Y27, Z28, D28, Y28, Z29, D29, Y29, Z30, D30, Y30, Z31, D31, Y31, Z32, D32, Y32, Z33, D33, Y33, Z34, D34, Y34, Z35, D35, Y35, Z36, D36, Y36, Z37, D37, Y37, Z38, D38, Y38, Z39, D39, Y39, Z40, D40, Y40, Z41, D41, Y41, Z42, D42, Y42, Z43, D43, Y43, Z44, D44, Y44, Z45, D45, Y45, Z46, D46, Y46, Z47, D47, Y47, Z48, D48, Y48, Z49, D49, Y49, Z50, D50, Y50, Z51, D51, Y51, Z52, D52, Y52, Z53, D53, Y53, Z54, D54, Y54, Z55, D55, Y55, Z56, D56, Y56, Z57, D57, Y57, Z58, D58, Y58, Z59, D59, Y59, Z60, D60, Y60, Z61, D61, Y61, Z62, D62, Y62, Z63, D63, Y63, Z64, D64, Y64, Z65, D65, Y65, Z66, D66, Y66, Z67, D67, Y67, Z68, D68, Y68, Z69, D69, Y69, Z70, D70, Y70, Z71, D71, Y71, Z72, D72, Y72, Z73, D73, Y73, Z74, D74, Y74, Z75, D75, Y75, Z76, D76, Y76, Z77, D77, Y77, Z78, D78, Y78, Z79, D79, Y79, Z80, D80, Y80, Z81, D81, Y81, Z82, D82, Y82, Z83, D83, Y83, Z84, D84, Y84, Z85, D85, Y85, Z86, D86, Y86, Z87, D87, Y87, Z88, D88, Y88, Z89, D89, Y89, Z90, D90, Y90, Z91, D91, Y91, Z92, D92, Y92, Z93, D93, Y93, Z94, D94, Y94, Z95, D95, Y95, Z96, D96, Y96, Z97, D97, Y97, Z98, D98, Y98, Z99, D99, Y99, Z100, D100, Y100, Z101, D101, Y101, Z102, D102, Y102, Z103, D103, Y103, Z104, D104, Y104, Z105, D105, Y105, Z106, D106, Y106, Z107, D107, Y107, Z108, D108, Y108, Z109, D109, Y109, Z110, D110, Y110, Z111, D111, Y111, Z112, D112, Y112, Z113, D113, Y113, Z114, D114, Y114, Z115, D115, Y115, Z116, D116, Y116, Z117, D117, Y117, Z118, D118, Y118, Z119, D119, Y119, Z120, D120, Y120, Z121, D121, Y121, Z122, D122, Y122, Z123, D123, Y123, Z124, D124, Y124, Z125, D125, Y125, Z126, D126, Y126, Z127, D127, Y127, Z128, D128, Y128, Z129, D129, Y129, Z130, D130, Y130, Z131, D131, Y131, Z132, D132, Y132, Z133, D133, Y133, Z134, D134, Y134, Z135, D135, Y135, Z136, D136, Y136, Z137, D137, Y137, Z138, D138, Y138, Z139, D139, Y139, Z140, D140, Y140, Z141, D141, Y141, Z142, D142, Y142, Z143, D143, Y143, Z144, D144, Y144, Z145, D145, Y145, Z146, D146, Y146, Z147, D147, Y147, Z148, D148, Y148, Z149, D149, Y149, Z150, D150, Y150, Z151, D151, Y151, Z152, D152, Y152, Z153, D153, Y153, Z154, D154, Y154, Z155, D155, Y155, Z156, D156, Y156, Z157, D157, Y157, Z158, D158, Y158, Z159, D159, Y159, Z160, D160, Y160, Z161, D161, Y161, Z162, D162, Y162, Z163, D163, Y163, Z164, D164, Y164, Z165, D165, Y165, Z166, D166, Y166, Z167, D167, Y167, Z168, D168, Y168, Z169, D169, Y169, Z170, D170, Y170, Z171, D171, Y171, Z172, D172, Y172, Z173, D173, Y173, Z174, D174, Y174, Z175, D175, Y175, Z176, D176, Y176, Z177, D177, Y177, Z178, D178, Y178, Z179, D179, Y179, Z180, D180, Y180, Z181, D181, Y181, Z182, D182, Y182, Z183, D183, Y183, Z184, D184, Y184, Z185, D185, Y185, Z186, D186, Y186, Z187, D187, Y187, Z188, D188, Y188, Z189, D189, Y189, Z190, D190, Y190, Z191, D191, Y191, Z192, D192, Y192, Z193, D193, Y193, Z194, D194, Y194, Z195, D195, Y195, Z196, D196, Y196, Z197, D197, Y197, Z198, D198, Y198, Z199, D199, Y199, Z200, D200, Y200, Z201, D201, Y201, Z202, D202, Y202, Z203, D203, Y203, Z204, D204, Y204, Z205, D205, Y205, Z206, D206, Y206, Z207, D207, Y207, Z208, D208, Y208, Z209, D209, Y209, Z210, D210, Y210, Z211, D211, Y211, Z212, D212, Y212, Z213, D213, Y213, Z214, D214, Y214, Z215, D215, Y215, Z216, D216, Y216, Z217, D217, Y217, Z218, D218, Y218, Z219, D219, Y219, Z220, D220, Y220, Z221, D221, Y221, Z222, D222, Y222, Z223, D223, Y223, Z224, D224, Y224, Z225, D225, Y225, Z226, D226, Y226, Z227, D227, Y227, Z228, D228, Y228, Z229, D229, Y229, Z230, D230, Y230, Z231, D231, Y231, Z232, D232, Y232, Z233, D233, Y233, Z234, D234, Y234, Z235, D235, Y235, Z236, D236, Y236, Z237, D237, Y237, Z238, D238, Y238, Z239, D239, Y239, Z240, D240, Y240, Z241, D241, Y241, Z242, D242, Y242, Z243, D243, Y243, Z244, D244, Y244, Z245, D245, Y245, Z246, D246, Y246, Z247, D247, Y247, Z248, D248, Y248, Z249, D249, Y249, Z250, D250, Y250, Z251, D251, Y251, Z252, D252, Y252, Z253, D253, Y253, Z254, D254, Y254, Z255, D255, Y255, Z256, D256, Y256, Z257, D257, Y257, Z258, D258, Y258, Z259, D259, Y259, Z260, D260, Y260, Z261, D261, Y261, Z262, D262, Y262, Z263, D263, Y263, Z264, D264, Y264, Z265, D265, Y265, Z266, D266, Y266, Z267, D267, Y267, Z268, D268, Y268, Z269, D269, Y269, Z270, D270, Y270, Z271, D271, Y271, Z272, D272, Y272, Z273, D273, Y273, Z274, D274, Y274, Z275, D275, Y275, Z276, D276, Y276, Z277, D277, Y277, Z278, D278, Y278, Z279, D279, Y279, Z280, D280, Y280, Z281, D281, Y281, Z282, D282, Y282, Z283, D283, Y283, Z284, D284, Y284, Z285, D285, Y285, Z286, D286, Y286, Z287, D287, Y287, Z288, D288, Y288, Z289, D289, Y289, Z290, D290, Y290, Z291, D291, Y291, Z292, D292, Y292, Z293, D293, Y293, Z294, D294, Y294, Z295, D295, Y295, Z296, D296, Y296, Z297, D297, Y297, Z298, D298, Y298, Z299, D299, Y299, Z300, D300, Y300, Z301, D301, Y301, Z302, D302, Y302, Z303, D303, Y303, Z304, D304, Y304, Z305, D305, Y305, Z306, D306, Y306, Z307, D307, Y307, Z308, D308, Y308, Z309, D309, Y309, Z310, D310, Y310, Z311, D311, Y311, Z312, D312, Y312, Z313, D313, Y313, Z314, D314, Y314, Z315, D315, Y315, Z316, D316, Y316, Z317, D317, Y317, Z318, D318, Y318, Z319, D319, Y319, Z320, D320, Y320, Z321, D321, Y321, Z322, D322, Y322, Z323, D323, Y323, Z324, D324, Y324, Z325, D325, Y325, Z326, D326, Y326, Z327, D327, Y327, Z328, D328, Y328, Z329, D329, Y329, Z330, D330, Y330, Z331, D331, Y331, Z332, D332, Y332, Z333, D333, Y333, Z334, D334, Y334, Z335, D335, Y335, Z336, D336, Y336, Z337, D337, Y337, Z338, D338, Y338, Z339, D339, Y339, Z340, D340, Y340, Z341, D341, Y341, Z342, D342, Y342, Z343, D343, Y343, Z344, D344, Y344, Z345, D345, Y345, Z346, D346, Y346, Z347, D347, Y347, Z348, D348, Y348, Z349, D349, Y349, Z350, D350, Y350, Z351, D351, Y351, Z352, D352, Y352, Z353, D353, Y353, Z354, D354, Y354, Z355, D355, Y355, Z356, D356, Y356, Z357, D357, Y357, Z358, D358, Y358, Z359, D359, Y359, Z360, D360, Y360, Z361, D361, Y361, Z362, D362, Y362, Z363, D363, Y363, Z364, D364, Y364, Z365, D365, Y365, Z366, D366, Y366, Z367, D367, Y367, Z368, D368, Y368, Z369, D369, Y369, Z370, D370, Y370, Z371, D371, Y371, Z372, D372, Y372, Z373, D373, Y373, Z374, D374, Y374, Z375, D375, Y375, Z376, D376, Y376, Z377, D377, Y377, Z378, D378, Y378, Z379, D379, Y379, Z380, D380, Y380, Z381, D381, Y381, Z382, D382, Y382, Z383, D383, Y383, Z384, D384, Y384, Z385, D385, Y385, Z386, D386, Y386, Z387, D387, Y387, Z388, D388, Y388, Z389, D389, Y389, Z390, D390, Y390, Z391, D391, Y391, Z392, D392, Y392, Z393, D393, Y393, Z394, D394, Y394, Z395, D395, Y395, Z396, D396, Y396, Z397, D397, Y397, Z398, D398, Y398, Z399, D399, Y399, Z400, D400, Y400, Z401, D401, Y401, Z402, D402, Y402, Z403, D403, Y403, Z404, D404, Y404, Z405, D405, Y405, Z406, D406, Y406, Z407, D407, Y407, Z408, D408, Y408, Z409, D409, Y409, Z410, D410, Y410, Z411, D411, Y411, Z412, D412, Y412, Z413, D413, Y413, Z414, D414, Y414, Z415, D415, Y415, Z416, D416, Y416, Z417, D417, Y417, Z418, D418, Y418, Z419, D419, Y419, Z420, D420, Y420, Z421, D421, Y421, Z422, D422, Y422, Z423, D423, Y423, Z424, D424, Y424, Z425, D425, Y425, Z426, D426, Y426, Z427, D427, Y427, Z428, D428, Y428, Z429, D429, Y429, Z430, D430, Y430, Z431, D431, Y431, Z432, D432, Y432, Z433, D433, Y433, Z434, D434, Y434, Z435, D435, Y435, Z436, D436, Y436, Z437, D437, Y437, Z438, D438, Y438, Z439, D439, Y439, Z440, D440, Y440, Z441, D441, Y441, Z442, D442, Y442, Z443, D443, Y443, Z444, D444, Y444, Z445, D445, Y445, Z446, D446, Y446, Z447, D447, Y447, Z448, D448, Y448, Z449, D449, Y449, Z450, D450, Y450, Z451, D451, Y451, Z452, D452, Y452, Z453, D453, Y453, Z454, D454, Y454, Z455, D455, Y455, Z456, D456, Y456, Z457, D457, Y457, Z458, D458, Y458, Z459, D459, Y459, Z460, D460, Y460, Z461, D461, Y461, Z462, D462, Y462, Z463, D463, Y463, Z464, D464, Y464, Z465, D465, Y465, Z466, D466, Y466, Z467, D467, Y467, Z468, D468, Y468, Z469, D469, Y469, Z470, D470, Y470, Z471, D471, Y471, Z472, D472, Y472, Z473, D473, Y473, Z474, D474, Y474, Z475, D475, Y475, Z476, D476, Y476, Z477, D477, Y477, Z478, D478, Y478, Z479, D479, Y479, Z480, D480, Y480, Z481, D481, Y481, Z482, D482, Y482, Z483, D483, Y483, Z484, D484, Y484, Z485, D485, Y485, Z486, D486, Y486, Z487, D487, Y487, Z488, D488, Y488, Z489, D489, Y489, Z490, D490, Y490, Z491, D491, Y491, Z492, D492, Y492, Z493, D493, Y493, Z494, D494, Y494, Z495, D495, Y495, Z496, D496, Y496, Z497, D497, Y497, Z498, D498, Y498, Z499, D499, Y499
+
+**Latent variables**
+
+Not explicitly identified (review required)
+
+**Latent-variable identification:** not explicitly specified
+
+**Equations / distributions (LaTeX rendering)**
+
+> Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
+
+**Original source equations (verbatim):** [Open raw scientific record (JSON)](./iv-hoshino-2024-ring-network-v1.json).
+
+$$
+N=500, i=0,\ldots ,499
+$$
+
+$$
+N_\{i\}=\{i±1,\ldots ,i±L\} mod 500
+$$
+
+$$
+L\in \{2,3\}.
+$$
+
+$$
+Z_\{i\} iid \sim \mathrm{Bernoulli}(0.4).
+$$
+
+$$
+DGP1: D_\{i\}=1\{\gamma_\{0i\}+Z_\{i\}+\Sigma_\{j\in N_{i}\}Z_\{j\} \geq 0\}
+$$
+
+$$
+Y_\{i\}=\beta_\{0i\}+\beta_\{1i\}D_\{i\}.
+$$
+
+$$
+DGP2: D_\{i\}=1\{\gamma_\{0i\}+Z_\{i\} \geq 0\}
+$$
+
+$$
+Y_\{i\}=\beta_\{0i\}+\beta_\{1i\}D_\{i\}+\beta_\{2i\}\Sigma_\{j\in N_{i}\}D_\{j\}.
+$$
+
+$$
+\theta=\Sigma_\{i\}\beta_\{1i\}w_\{i\} / \Sigma_\{i\}w_\{i\}.
+$$
+
+
+## Parameter scenarios, estimands and truth
+
+| Scenario | Estimand | Definition | True value | Evidence status |
+|---|---|---|---|---|
+| DGP1_L2_new_draw | unconditional_LADE | English description not yet supplied; consult the original scientific record (JSON). | 1.5004749754609084 | reported_numeric |
+| DGP1_L3_new_draw | unconditional_LADE | English description not yet supplied; consult the original scientific record (JSON). | 1.4982310561355603 | reported_numeric |
+| DGP2_L2_new_draw | unconditional_LADE | English description not yet supplied; consult the original scientific record (JSON). | 1.52768116166732 | reported_numeric |
+| DGP2_L3_new_draw | unconditional_LADE | English description not yet supplied; consult the original scientific record (JSON). | 1.52768116166732 | reported_numeric |
+
+## Identifiability assumptions
+
+- English description not yet supplied; consult the original scientific record (JSON).
+
+## Provenance and review
+
+**Submitted by:** github_file_upload
+
+**Mode:** structured_zip
+
+**Original versus adapted:** adapted_from_source
+
+**Status:** needs_scientific_review
+
+**Warnings:**
+
+- No explicit latent-variable metadata or reliably identifiable latent declarations; absence from this list does not prove that no latent variables exist.

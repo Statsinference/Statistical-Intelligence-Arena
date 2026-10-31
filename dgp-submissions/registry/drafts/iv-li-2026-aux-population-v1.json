@@ -1,0 +1,229 @@
+{
+  "schema_version": "0.1",
+  "record_id": "iv-li-2026-aux-population-v1",
+  "kind": "synthetic_dgp",
+  "domain": "iv",
+  "english_display": {},
+  "paper": {
+    "citation": "Li W, Liu J, Ding P, Geng Z (2026). Identification and Multiply Robust Estimation of Causal Effects via Instrumental Variables from An Auxiliary Population. JASA 121(554):1372–1383. DOI:10.1080/01621459.2025.2576797. Read version has title ending auxiliary heterogeneous population.",
+    "title": null,
+    "doi": null,
+    "source_url": "https://arxiv.org/pdf/2407.18166v1",
+    "source_file_evidence": [],
+    "venue": "JASA",
+    "year": 2026,
+    "source_version": "arXiv:2407.18166v1, 2024-07-25; journal bibliographic record retained separately; version-of-record equations not fully compared",
+    "source_locator": "实际机制版本arXiv:2407.18166v1，2024-07-25：物理4–6页§2目标及Assumptions1–3；物理14–15页§6，14页V/U，15页R/Z/X/Y及目标2.22（已重新渲染15页）。PDF SHA256 bc12afdbee138b16f57d53977a349ffb84b81b08e89bb266389debb2334935a2。期刊2026记录与v1未逐式比较。"
+  },
+  "mechanism": {
+    "name": "Li：辅助总体IV数据融合机制",
+    "title_en": null,
+    "family_id": "iv-li-2026-aux-population",
+    "generation_equations": [
+      {
+        "label": "DGP equation 1",
+        "expression": "V_{k} iid ~ N(0,1), v_{k}=expit(2V_{k}−1), k=1,…,4."
+      },
+      {
+        "label": "DGP equation 2",
+        "expression": "ρ^{2}=0.75+1.5v_{1}+1.5v_{2}−0.3v_{3}−0.3v_{4}; U|V ~ Uniform(−ρ,ρ)."
+      },
+      {
+        "label": "DGP equation 3",
+        "expression": "p_{R}=expit(0.8+3v_{1}−2v_{2}−v_{3}−v_{4}), R|V ~ Bernoulli(p_{R})."
+      },
+      {
+        "label": "DGP equation 4",
+        "expression": "Z|V,R=1 ~ Bernoulli[expit(−0.5−v_{1}+1.5v_{2}+2v_{3}−v_{4})]."
+      },
+      {
+        "label": "DGP equation 5",
+        "expression": "a_{1}=expit(1.3−2.4Z), a_{0}=expit(v_{1}−v_{2}+0.8v_{3}−0.6v_{4})."
+      },
+      {
+        "label": "DGP equation 6",
+        "expression": "X|V,U,R,Z ~ Bernoulli[Ra_{1}+(1−R)a_{0}+0.1U]."
+      },
+      {
+        "label": "DGP equation 7",
+        "expression": "Y=(2−R+2v_{1}−v_{2}+v_{3}−0.5v_{4})(1+X)+U+ε, ε~N(0,0.5^{2})."
+      },
+      {
+        "label": "DGP equation 8",
+        "expression": "τ=E[(1−p_{R})(2+2v_{1}−v_{2}+v_{3}−0.5v_{4})] / E[1−p_{R}]."
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "V1",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "V2",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "V3",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "V4",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "R",
+        "role": "sample_source",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Z_obs",
+        "role": "instrument_slot",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X",
+        "role": "treatment",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [
+      {
+        "name": "U",
+        "role": "latent_candidate",
+        "evidence": {
+          "file": "collection.json",
+          "equation_index": 1,
+          "expression": "U|V ~ Uniform(−ρ,ρ)."
+        },
+        "provenance": "inferred_from_stochastic_declaration"
+      }
+    ],
+    "latent_variables_status": "candidates_from_equations_need_review",
+    "sampling": {
+      "unit": "从两个总体合并而来的独立个体；R=0没有观测IV",
+      "dependence": "iid individuals from the merged population; R selects the target or auxiliary population. Z is observed only when R=1; Z_obs=0 is a masked slot when R=0, not an observed target-population instrument. U is latent."
+    },
+    "assumptions": [
+      "一致性、潜在可忽略性；R=1中的条件IV独立/排除/相关；U⊥R|V；§2结构均值与equi-confounding限制；总体选择/处理正性"
+    ],
+    "properties": {
+      "dimension": 4,
+      "effective_dimension": 4,
+      "observed_columns": 8,
+      "high_dimensional": false,
+      "interactions": true,
+      "nonlinear": true,
+      "notes": "Four active V components; expit(2V-1) transformations, heterogeneous treatment by V and R, product (2-R+...)*(1+X). IV recorded only for R=1; zero-filled slot with mask R is observation encoding, not exposure of missing Z. Baseline-dimension convention: p=4, effective_p=4, baseline_columns=['V1', 'V2', 'V3', 'V4']; instruments, posttreatment variables, time points and network nodes are excluded. Reference sample size n_ref=128 independent subjects (the CPU interface-check setting), p/n_ref=0.03125000; high_dimensional=false refers to baseline p in this stated setting, not the full observed-column count. n remains a runtime argument; reassess the dimension/sample-size regime if n or p changes rather than treating this tag as a guarantee for arbitrary scaling."
+    }
+  },
+  "estimand": {
+    "name": "tau",
+    "definition": "tau：目标总体R=0中E[Y(1)−Y(0)|R=0]，处理1减0。",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "source_v1",
+      "parameters": {
+        "transform_slope": 2.0,
+        "transform_intercept": -1.0,
+        "noise_sd": 0.5,
+        "u_treatment_coef": 0.1,
+        "effect_scale": 1.0
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 2.224373475244555,
+        "expression": "tau：目标总体R=0中E[Y(1)−Y(0)|R=0]，处理1减0。",
+        "derivation": "Target R=0 ATE from E[(1-p_R(V))*tau(V)]/E[1-p_R(V)]; Gauss-Hermite80/96 with independent Legendre96/112 convergence diagnostics, plus actual-sampler interventions and threshold tests.",
+        "evidence": [
+          {
+            "file": "iv-li-2026-aux-population-v1/checks/report.json",
+            "location": "execution.scenario_results[source_v1].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "Use explicitly read v1 DGP; 2026 journal bibliographic status does not imply line-by-line matching with version of record.",
+    "Encode missing IV as Z_obs=0 when R=0 and supply R as the observation mask; never output the true unobserved IV.",
+    "Numerically integrate the exact population target instead of using source rounded value2.22 as exact truth; fit misspecification variants are not new DGPs."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "iv-li-2026-aux-population-v1/generator.py",
+    "truth_reference": "iv-li-2026-aux-population-v1/truth.py",
+    "source_archive": "T07_IV.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/iv-li-2026-aux-population-v1.py",
+    "exported_generator_sha256": "d329ebab4b56ab2d4926e554272eaed9c39ea128f843cc0317e978f9a6faa32e"
+  },
+  "evidence": [
+    {
+      "file": "iv-li-2026-aux-population-v1/collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "iv-li-2026-aux-population-v1/config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "iv-li-2026-aux-population-v1/source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "14ca55eecd286b849c32caeb830c67625a2b207b805bbe46bf6e69e1943c3445",
+    "collection_sha256": "37055ea4126c3a1cd23bece18e97bd6e6a94de29676ff62abd5853e199fe765c",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/T07_IV.zip",
+    "submitted_zip_sha256": "14ca55eecd286b849c32caeb830c67625a2b207b805bbe46bf6e69e1943c3445",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "Latent-variable candidates inferred from source equations; confirm their roles and completeness against the original paper or generator."
+  ],
+  "source_suggested_domain": "iv",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

@@ -1,13 +1,13 @@
 {
   "status": "draft_needs_review",
-  "paper_count": 49,
-  "mechanism_count": 69,
-  "scenario_count": 161,
+  "paper_count": 57,
+  "mechanism_count": 77,
+  "scenario_count": 177,
   "domains": {
     "ate": 22,
     "cate": 2,
     "mediation": 1,
-    "iv": 13,
+    "iv": 21,
     "proximal": 15,
     "did_sc": 3,
     "nonparametric_regression": 2,
@@ -16,6 +16,227 @@
     "missing_data": 0
   },
   "records": [
+    {
+      "record_id": "iv-guo-2018-author-linear-v1",
+      "domain": "iv",
+      "paper": "Guo Z, Kang H, Cai TT, Small DS (2018). Confidence intervals for causal effects with invalid instruments by using two-stage hard thresholding with voting. JRSS-B 80(4):793–815. DOI:10.1111/rssb.12275.",
+      "mechanism": "DGP iv-guo-2018-author-linear-v1 (English title required)",
+      "paper_title": "Confidence intervals for causal effects with invalid instruments by using two-stage hard thresholding with voting",
+      "venue_abbreviation": "JRSSB",
+      "keywords": [
+        "Linearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Linearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": false,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/iv-guo-2018-author-linear-v1.py",
+      "latent_variables": [
+        "e",
+        "v"
+      ],
+      "truth_by_scenario": "author_lowdim: beta = 1.0",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "iv-henckel-2024-g1-sem-v1",
+      "domain": "iv",
+      "paper": "Henckel L, Buttenschön M, Maathuis MH (2024). Graphical tools for selecting conditional instrumental sets. Biometrika 111(3):771–788. DOI:10.1093/biomet/asad066.",
+      "mechanism": "DGP iv-henckel-2024-g1-sem-v1 (English title required)",
+      "paper_title": "Graphical tools for selecting conditional instrumental sets",
+      "venue_abbreviation": "Biometrika",
+      "keywords": [
+        "Linearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Linearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": false,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/iv-henckel-2024-g1-sem-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "G1_gaussian_new_draw: tau_YX = 0.7324265699272281; G1_uniform_new_draw: tau_YX = 0.7324265699272281",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "iv-hoshino-2024-ring-network-v1",
+      "domain": "iv",
+      "paper": "Hoshino T, Yanagi T (2024). Causal Inference with Noncompliance and Unknown Interference. JASA 119(548):2869–2880. DOI:10.1080/01621459.2023.2284413.",
+      "mechanism": "DGP iv-hoshino-2024-ring-network-v1 (English title required)",
+      "paper_title": "Causal Inference with Noncompliance and Unknown Interference",
+      "venue_abbreviation": "JASA",
+      "keywords": [
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/iv-hoshino-2024-ring-network-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "DGP1_L2_new_draw: unconditional_LADE = 1.5004749754609084; DGP1_L3_new_draw: unconditional_LADE = 1.4982310561355603; DGP2_L2_new_draw: unconditional_LADE = 1.52768116166732; DGP2_L3_new_draw: unconditional_LADE = 1.52768116166732",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "iv-li-2026-aux-population-v1",
+      "domain": "iv",
+      "paper": "Li W, Liu J, Ding P, Geng Z (2026). Identification and Multiply Robust Estimation of Causal Effects via Instrumental Variables from An Auxiliary Population. JASA 121(554):1372–1383. DOI:10.1080/01621459.2025.2576797. Read version has title ending auxiliary heterogeneous population.",
+      "mechanism": "DGP iv-li-2026-aux-population-v1 (English title required)",
+      "paper_title": "Identification and Multiply Robust Estimation of Causal Effects via Instrumental Variables from An Auxiliary Population",
+      "venue_abbreviation": "JASA",
+      "keywords": [
+        "Interactions",
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Interactions",
+          "source": "mechanism.properties.interactions",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/iv-li-2026-aux-population-v1.py",
+      "latent_variables": [
+        "U"
+      ],
+      "truth_by_scenario": "source_v1: tau = 2.224373475244555",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "iv-michael-2024-author-msmm-v1",
+      "domain": "iv",
+      "paper": "Michael H, Cui Y, Lorch SA, Tchetgen Tchetgen EJ (2024). Instrumental Variable Estimation of Marginal Structural Mean Models for Time-Varying Treatment. JASA 119(546):1240–1251. DOI:10.1080/01621459.2023.2183131.",
+      "mechanism": "DGP iv-michael-2024-author-msmm-v1 (English title required)",
+      "paper_title": "Instrumental Variable Estimation of Marginal Structural Mean Models for Time-Varying Treatment",
+      "venue_abbreviation": "JASA",
+      "keywords": [
+        "Interactions",
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Interactions",
+          "source": "mechanism.properties.interactions",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/iv-michael-2024-author-msmm-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "author_T3: beta_T = 1.0",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "iv-wang-2021-binary-late-v1",
+      "domain": "iv",
+      "paper": "Wang L, Zhang Y, Richardson TS, Robins JM (2021). Estimation of local treatment effects under the binary instrumental variable model. Biometrika 108(4):881-894. DOI:10.1093/biomet/asab003.",
+      "mechanism": "Binary instrumental variable model with a nonlinear complier effect curve",
+      "paper_title": "Estimation of local treatment effects under the binary instrumental variable model",
+      "venue_abbreviation": "Biometrika",
+      "keywords": [
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/iv-wang-2021-binary-late-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "source_additive: alpha1 = -1.0",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "iv-wei-2021-censored-quantile-v1",
+      "domain": "iv",
+      "paper": "Wei B, Peng L, Zhang MJ, Fine JP (2021). Estimation of causal quantile effects with a binary instrumental variable and censored data. JRSS-B 83(3):559–578. DOI:10.1111/rssb.12431.",
+      "mechanism": "DGP iv-wei-2021-censored-quantile-v1 (English title required)",
+      "paper_title": "Estimation of causal quantile effects with a binary instrumental variable and censored data",
+      "venue_abbreviation": "JRSSB",
+      "keywords": [
+        "Interactions",
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Interactions",
+          "source": "mechanism.properties.interactions",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/iv-wei-2021-censored-quantile-v1.py",
+      "latent_variables": [
+        "u"
+      ],
+      "truth_by_scenario": "source_G: CQCE(.5) = 0.5; source_H: CQCE(.5) = 0.5809171213641415",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "iv-ye-2024-genius-heteroskedastic-v1",
+      "domain": "iv",
+      "paper": "Ye T, Liu Z, Sun B, Tchetgen Tchetgen E (2024). GENIUS-MAWII: For robust Mendelian randomization with many weak invalid instruments. JRSS-B 86(4):1045–1067. DOI:10.1093/jrsssb/qkae024.",
+      "mechanism": "DGP iv-ye-2024-genius-heteroskedastic-v1 (English title required)",
+      "paper_title": "GENIUS-MAWII: For robust Mendelian randomization with many weak invalid instruments",
+      "venue_abbreviation": "JRSSB",
+      "keywords": [
+        "Interactions",
+        "Linearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Interactions",
+          "source": "mechanism.properties.interactions",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "Linearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": false,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/iv-ye-2024-genius-heteroskedastic-v1.py",
+      "latent_variables": [
+        "U"
+      ],
+      "truth_by_scenario": "setting1_new_draw: β0=.4 = 0.4; setting2_new_draw: β0=.4 = 0.4; setting3_new_draw: β0=.4 = 0.4; setting4_new_draw: β0=.4 = 0.4",
+      "status": "duplicate_conflict_needs_review"
+    },
     {
       "record_id": "iv-choi-2017-double-censor-v1",
       "domain": "iv",
@@ -215,7 +436,7 @@
       "status": "needs_scientific_review"
     },
     {
-      "record_id": "iv-ye-2024-genius-heteroskedastic-v1",
+      "record_id": "iv-ye-2024-genius-heteroskedastic-v1-conflict-8dd1770580",
       "domain": "iv",
       "paper": "Ye, T., Liu, Z., Sun, B. and Tchetgen Tchetgen, E. (2024). GENIUS-MAWII: for robust Mendelian randomization with many weak invalid instruments. Journal of the Royal Statistical Society Series B 86(4), 1045-1067. DOI:10.1093/jrsssb/qkae024.",
       "mechanism": "GENIUS heteroskedastic exposure with many weak pleiotropic genetic instruments",
@@ -239,12 +460,12 @@
           "method": "explicit_boolean"
         }
       ],
-      "generator_file": "generators/iv-ye-2024-genius-heteroskedastic-v1.py",
+      "generator_file": "generators/iv-ye-2024-genius-heteroskedastic-v1-conflict-8dd1770580.py",
       "latent_variables": [
         "phi_gamma_j"
       ],
       "truth_by_scenario": "setting1_valid: beta = 0.4; setting2_mixed40: beta = 0.4; setting3_inside90: beta = 0.4; setting4_correlated90: beta = 0.4",
-      "status": "needs_scientific_review"
+      "status": "duplicate_conflict_needs_review"
     },
     {
       "record_id": "ate-athey-imbens-wager-2018-arb-v1",
@@ -2088,13 +2309,14 @@
     }
   ],
   "notes": [
+    "CONFLICT: DGP ID iv-ye-2024-genius-heteroskedastic-v1 differs across archives; kept both as review drafts (second record: iv-ye-2024-genius-heteroskedastic-v1-conflict-8dd1770580).",
     "Equivalent DGP ate-nie-wager-2021-a-v1 in incoming/contributions.zip is already registered from incoming/ate-nie-wager-2021-a-v1.zip; merged duplicate source reference.",
     "Equivalent DGP cate-athey-tibshirani-wager-2019-confounded-v1 in incoming/contributions.zip is already registered from incoming/cate-athey-tibshirani-wager-2019-confounded-v1.zip; merged duplicate source reference."
   ],
   "intake": {
     "status": "success",
-    "zip_count": 39,
-    "indexed_dgp_count": 69,
+    "zip_count": 40,
+    "indexed_dgp_count": 77,
     "failure_count": 0,
     "stale_record_ids": [],
     "scientific_validation": "not_performed"

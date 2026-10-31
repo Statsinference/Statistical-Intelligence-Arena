@@ -1,0 +1,265 @@
+{
+  "schema_version": "0.1",
+  "record_id": "iv-henckel-2024-g1-sem-v1",
+  "kind": "synthetic_dgp",
+  "domain": "iv",
+  "english_display": {},
+  "paper": {
+    "citation": "Henckel L, Buttenschön M, Maathuis MH (2024). Graphical tools for selecting conditional instrumental sets. Biometrika 111(3):771–788. DOI:10.1093/biomet/asad066.",
+    "title": null,
+    "doi": null,
+    "source_url": "https://arxiv.org/pdf/2208.03697v3",
+    "source_file_evidence": [],
+    "venue": "Biometrika",
+    "year": 2024,
+    "source_version": "arXiv:2208.03697v3, 2023-11-06; fixed new SEM realization, not original author parameter snapshots",
+    "source_locator": "arXiv:2208.03697v3，2023-11-06：物理第3页§2 Eq.(1)线性SEM；物理第5页Figure1a/Example3.5（已重新渲染核箭头）；物理第12页§5随机SEM抽取规则；物理41页Supplement E。PDF SHA256 60d4569a7d49a7c4a69467eefb4a58afb0ba96b22a7ec0200dd8bdb47d76957f。"
+  },
+  "mechanism": {
+    "name": "Henckel：条件工具集合的混合图SEM",
+    "title_en": null,
+    "family_id": "iv-henckel-2024-g1-sem",
+    "generation_equations": [
+      {
+        "label": "DGP equation 1",
+        "expression": "A=ε_{A}, C=ε_{C}, B=b_{CB}C+ε_{B},"
+      },
+      {
+        "label": "DGP equation 2",
+        "expression": "D=b_{AD}A+b_{BD}B+b_{HD}H_{DX}+ε_{D},"
+      },
+      {
+        "label": "DGP equation 3",
+        "expression": "X=b_{BX}B+b_{HX}H_{DX}+b_{GX}H_{XY}+ε_{X},"
+      },
+      {
+        "label": "DGP equation 4",
+        "expression": "M=b_{XM}X+ε_{M},"
+      },
+      {
+        "label": "DGP equation 5",
+        "expression": "Y=b_{XY}X+b_{MY}M+b_{CY}C+b_{GY}H_{XY}+ε_{Y}."
+      },
+      {
+        "label": "DGP equation 6",
+        "expression": "ε_{k} ~ N(0,v_{k})  or  Uniform(−√(3v_{k}),√(3v_{k}))."
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "A",
+        "role": "instrument",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "B",
+        "role": "instrument",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "C",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "D",
+        "role": "instrument",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X",
+        "role": "treatment",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "M",
+        "role": "mediator",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [],
+    "latent_variables_status": "not_explicitly_specified",
+    "sampling": {
+      "unit": "固定SEM后的独立个体；个体内保留潜在共同原因",
+      "dependence": "iid individuals conditional on one frozen SEM. Independent node noises include two hidden common causes; D-X and X-Y dependence is retained. M is posttreatment, C is the selected conditioning covariate."
+    },
+    "assumptions": [
+      "已知无环混合图；线性SEM、指定独立噪声/潜变量；Theorem3.2有效条件IV集合；Cov(D,X|C)非零；总效应包括中介路径"
+    ],
+    "properties": {
+      "dimension": 1,
+      "effective_dimension": 1,
+      "observed_columns": 7,
+      "high_dimensional": false,
+      "interactions": false,
+      "nonlinear": false,
+      "notes": "C is an active pretreatment conditioning covariate; A,B,D are candidate instruments, M posttreatment mediator, X treatment, Y outcome. Seven observed nodes plus two hidden common causes; no padding, no high-dimensional confounding claim. Baseline-dimension convention: p=1, effective_p=1, baseline_columns=['C']; instruments, posttreatment variables, time points and network nodes are excluded. Reference sample size n_ref=128 independent subjects (the CPU interface-check setting), p/n_ref=0.00781250; high_dimensional=false refers to baseline p in this stated setting, not the full observed-column count. n remains a runtime argument; reassess the dimension/sample-size regime if n or p changes rather than treating this tag as a guarantee for arbitrary scaling."
+    }
+  },
+  "estimand": {
+    "name": "tau_YX",
+    "definition": "tau_YX：do(X=x+1)相对do(X=x)的总效应，b_XY+b_XM b_MY。",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "G1_gaussian_new_draw",
+      "parameters": {
+        "coeff": {
+          "A_D": 1.078350568059269,
+          "B_D": 1.4314237662236486,
+          "C_B": -1.3380081484566604,
+          "B_X": -0.6582891623640873,
+          "C_Y": -1.3509304193523184,
+          "X_M": 1.033103188500275,
+          "M_Y": 1.0356723621974981,
+          "X_Y": -0.33752984970061894,
+          "Hdx_D": 0.12712545524379087,
+          "Hdx_X": 1.9393743580911176,
+          "Hxy_X": -0.23590266884958047,
+          "Hxy_Y": 1.1734806519791738
+        },
+        "variance": {
+          "Hdx": 0.11104578216734791,
+          "Hxy": 0.770908222306392,
+          "A": 0.4628210043736475,
+          "C": 0.8052091648094688,
+          "B": 0.4565326107104911,
+          "D": 0.16621931024429953,
+          "X": 0.833114314710704,
+          "M": 0.3321622143205957,
+          "Y": 0.18732084206610655
+        },
+        "error_family": "gaussian"
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.7324265699272281,
+        "expression": "tau_YX：do(X=x+1)相对do(X=x)的总效应，b_XY+b_XM b_MY。",
+        "derivation": "Analytic total path effect b_XY+b_XM*b_MY; independently checked using conditional-IV covariance from a matrix SEM and actual-sampler second moments, including the null graph.",
+        "evidence": [
+          {
+            "file": "iv-henckel-2024-g1-sem-v1/checks/report.json",
+            "location": "execution.scenario_results[G1_gaussian_new_draw].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "G1_uniform_new_draw",
+      "parameters": {
+        "coeff": {
+          "A_D": 1.078350568059269,
+          "B_D": 1.4314237662236486,
+          "C_B": -1.3380081484566604,
+          "B_X": -0.6582891623640873,
+          "C_Y": -1.3509304193523184,
+          "X_M": 1.033103188500275,
+          "M_Y": 1.0356723621974981,
+          "X_Y": -0.33752984970061894,
+          "Hdx_D": 0.12712545524379087,
+          "Hdx_X": 1.9393743580911176,
+          "Hxy_X": -0.23590266884958047,
+          "Hxy_Y": 1.1734806519791738
+        },
+        "variance": {
+          "Hdx": 0.11104578216734791,
+          "Hxy": 0.770908222306392,
+          "A": 0.4628210043736475,
+          "C": 0.8052091648094688,
+          "B": 0.4565326107104911,
+          "D": 0.16621931024429953,
+          "X": 0.833114314710704,
+          "M": 0.3321622143205957,
+          "Y": 0.18732084206610655
+        },
+        "error_family": "uniform"
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.7324265699272281,
+        "expression": "tau_YX：do(X=x+1)相对do(X=x)的总效应，b_XY+b_XM b_MY。",
+        "derivation": "Analytic total path effect b_XY+b_XM*b_MY; independently checked using conditional-IV covariance from a matrix SEM and actual-sampler second moments, including the null graph.",
+        "evidence": [
+          {
+            "file": "iv-henckel-2024-g1-sem-v1/checks/report.json",
+            "location": "execution.scenario_results[G1_uniform_new_draw].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "Freeze a new realization under source coefficient/variance distributions using seed1618033; original frozen100 SEMs not provided. Both Gaussian/uniform error-law branches retained as scenarios of the same family.",
+    "Keep original Figure1a mediator M and both bidirected edges via two hidden parents; no forbidden-projection shortcut. New Python RNG, scalar original total-effect target."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "iv-henckel-2024-g1-sem-v1/generator.py",
+    "truth_reference": "iv-henckel-2024-g1-sem-v1/truth.py",
+    "source_archive": "T07_IV.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/iv-henckel-2024-g1-sem-v1.py",
+    "exported_generator_sha256": "652dca7738d6e33189d6716294370b22e5ee16b9e8293ceceb7352350651231c"
+  },
+  "evidence": [
+    {
+      "file": "iv-henckel-2024-g1-sem-v1/collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "iv-henckel-2024-g1-sem-v1/config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "iv-henckel-2024-g1-sem-v1/source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "14ca55eecd286b849c32caeb830c67625a2b207b805bbe46bf6e69e1943c3445",
+    "collection_sha256": "8d1b570518ecf53d7c9e0de171f030493d6b0fd6bc881192fad3c63f17b2a021",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/T07_IV.zip",
+    "submitted_zip_sha256": "14ca55eecd286b849c32caeb830c67625a2b207b805bbe46bf6e69e1943c3445",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "No explicit latent-variable metadata or reliably identifiable latent declarations; absence from this list does not prove that no latent variables exist."
+  ],
+  "source_suggested_domain": "iv",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

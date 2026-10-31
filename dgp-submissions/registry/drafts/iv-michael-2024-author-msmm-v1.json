@@ -1,0 +1,243 @@
+{
+  "schema_version": "0.1",
+  "record_id": "iv-michael-2024-author-msmm-v1",
+  "kind": "synthetic_dgp",
+  "domain": "iv",
+  "english_display": {},
+  "paper": {
+    "citation": "Michael H, Cui Y, Lorch SA, Tchetgen Tchetgen EJ (2024). Instrumental Variable Estimation of Marginal Structural Mean Models for Time-Varying Treatment. JASA 119(546):1240–1251. DOI:10.1080/01621459.2023.2183131.",
+    "title": null,
+    "doi": null,
+    "source_url": "https://github.com/haben-michael/iv-msmm/blob/b1e405f81400b13e58ea0bd3b0aa47728f681d8c/table/sim.R",
+    "source_file_evidence": [],
+    "venue": "JASA",
+    "year": 2024,
+    "source_version": "Author table/sim.R commit b1e405f81400b13e58ea0bd3b0aa47728f681d8c; comparison arXiv:2004.11769v2 (2020-07-24); not a hybrid of both sources",
+    "source_locator": "实际机制为table/sim.R，commit b1e405f81400b13e58ea0bd3b0aa47728f681d8c，行11–40生成块，T/n为命令行参数；raw LF SHA256 df23204b8237dace7fa1c4ab8f381cdf74637942f9f0b4d9a926e60afd57a8d4。论文对照arXiv:2004.11769v2，2020-07-24，§6、物理63–64页Appendix16.1 Eq.(41)；两来源系数/噪声不同。"
+  },
+  "mechanism": {
+    "name": "Michael：作者代码纵向MSMM机制",
+    "title_en": null,
+    "family_id": "iv-michael-2024-author-msmm",
+    "generation_equations": [
+      {
+        "label": "DGP equation 1",
+        "expression": "T=3; U_{t} iid ~ N(0,1); m_{1}=1, m_{t}=A_{t−1} (t≥2)."
+      },
+      {
+        "label": "DGP equation 2",
+        "expression": "L_{t}=m_{t}+U_{t}, δ_{t}=Φ(0.96+0.46L_{t})."
+      },
+      {
+        "label": "DGP equation 3",
+        "expression": "Z_{t}|L_{t} ~ Bernoulli[expit(0.53−0.10L_{t})]."
+      },
+      {
+        "label": "DGP equation 4",
+        "expression": "p_{t}=Φ(−0.16+0.11L_{t}+0.26U_{t})(1−δ_{t})+Z_{t}δ_{t},"
+      },
+      {
+        "label": "DGP equation 5",
+        "expression": "A_{t}|L_{t},U_{t},Z_{t} ~ Bernoulli(p_{t})."
+      },
+      {
+        "label": "DGP equation 6",
+        "expression": "Y=Σ_{t=1}^{3}U_{t}/√3+Σ_{t=1}^{3}(L_{t}−m_{t})/√3+Σ_{t=1}^{3}β_{t}A_{t}+ε,"
+      },
+      {
+        "label": "DGP equation 7",
+        "expression": "β_{1}=β_{2}=β_{3}=1; ε~N(0,1)."
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "L1",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Z1",
+        "role": "instrument",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "A1",
+        "role": "treatment",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "L2",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Z2",
+        "role": "instrument",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "A2",
+        "role": "treatment",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "L3",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Z3",
+        "role": "instrument",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "A3",
+        "role": "treatment",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [],
+    "latent_variables_status": "not_explicitly_specified",
+    "sampling": {
+      "unit": "独立受试者的完整T步轨迹，宽表一行一个人",
+      "dependence": "iid subjects, each with a full T=3 trajectory. A_(t-1) feeds into L_t; U_t is shared between L and treatment/outcome. Source implementation makes U_t recoverable from observed history; no irreducible hidden-confounding claim."
+    },
+    "assumptions": [
+      "一致性、序贯IV相关/排除/给定历史的独立及正性；正确MSMM；保留作者代码的共享U结构，不能宣称不可恢复的未测混杂"
+    ],
+    "properties": {
+      "dimension": 1,
+      "effective_dimension": 1,
+      "observed_columns": 10,
+      "high_dimensional": false,
+      "interactions": true,
+      "nonlinear": true,
+      "notes": "Baseline L1 is observed before A1; L2 and L3 are time-varying covariates, not extra baseline dimensions. One row retains the full T=3 trajectory. Delta(L)*Z in treatment probability; normal-CDF and logistic links. Author code has U_t=L_t-Lmean_t, recoverable from observed history; no irreducible hidden-confounding label. Baseline-dimension convention: p=1, effective_p=1, baseline_columns=['L1']; instruments, posttreatment variables, time points and network nodes are excluded. Reference sample size n_ref=128 independent subjects (the CPU interface-check setting), p/n_ref=0.00781250; high_dimensional=false refers to baseline p in this stated setting, not the full observed-column count. n remains a runtime argument; reassess the dimension/sample-size regime if n or p changes rather than treating this tag as a guarantee for arbitrary scaling."
+    }
+  },
+  "estimand": {
+    "name": "beta_T",
+    "definition": "beta_T：最后一次处理增加1的MSMM均值效应，1。",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "author_T3",
+      "parameters": {
+        "T": 3,
+        "beta": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "alpha": [
+          0.96,
+          0.46
+        ],
+        "nu": [
+          -0.16,
+          0.11,
+          0.26
+        ],
+        "gamma": [
+          0.53,
+          -0.1
+        ]
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 1.0,
+        "expression": "beta_T：最后一次处理增加1的MSMM均值效应，1。",
+        "derivation": "Analytic final-time unit intervention beta_T=1; treatment feedback cancels in centered L increments. Actual-source probability thresholds and nonzero-U trajectories supplement zero-path checks.",
+        "evidence": [
+          {
+            "file": "iv-michael-2024-author-msmm-v1/checks/report.json",
+            "location": "execution.scenario_results[author_T3].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "Use complete pinned-author DGP; do not combine beta=1 with older preprint Eq41 coefficients.",
+    "Wide table retains full longitudinal history; report final-time causal coefficient. New local RNG; no R estimator/bootstrap code executed."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "iv-michael-2024-author-msmm-v1/generator.py",
+    "truth_reference": "iv-michael-2024-author-msmm-v1/truth.py",
+    "source_archive": "T07_IV.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/iv-michael-2024-author-msmm-v1.py",
+    "exported_generator_sha256": "61949a7ce9e7b2a890b1cba103c342b28bdd698411f63f782c8e2a042d6febba"
+  },
+  "evidence": [
+    {
+      "file": "iv-michael-2024-author-msmm-v1/collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "iv-michael-2024-author-msmm-v1/config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "iv-michael-2024-author-msmm-v1/source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "14ca55eecd286b849c32caeb830c67625a2b207b805bbe46bf6e69e1943c3445",
+    "collection_sha256": "a3c81306ea5c31643ee7e46b83517420de6da08264d85b04df46f613060aa901",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/T07_IV.zip",
+    "submitted_zip_sha256": "14ca55eecd286b849c32caeb830c67625a2b207b805bbe46bf6e69e1943c3445",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "No explicit latent-variable metadata or reliably identifiable latent declarations; absence from this list does not prove that no latent variables exist."
+  ],
+  "source_suggested_domain": "iv",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}
