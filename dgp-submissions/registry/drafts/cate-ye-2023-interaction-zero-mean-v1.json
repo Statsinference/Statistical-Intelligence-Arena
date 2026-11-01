@@ -1,0 +1,175 @@
+{
+  "schema_version": "0.1",
+  "record_id": "cate-ye-2023-interaction-zero-mean-v1",
+  "kind": "synthetic_dgp",
+  "domain": "cate",
+  "english_display": {},
+  "paper": {
+    "citation": "Ye, T., Shao, J., Yi, Y. and Zhao, Q. (2023). Toward better practice of covariate adjustment in analyzing randomized clinical trials. Journal of the American Statistical Association 118(544), 2370-2382. DOI: 10.1080/01621459.2022.2049278.",
+    "title": null,
+    "doi": null,
+    "source_url": "https://arxiv.org/abs/2009.11828",
+    "source_file_evidence": [],
+    "venue": "Journal of the American Statistical Association",
+    "year": 2023,
+    "source_version": null,
+    "source_locator": "Section 4.1 'Simulation results', equation (20) on PDF p.23 ('Y (2) = Y (1) + zeta(U - muU), Y (3) = Y (2)'), with the following sentence on the same page defining theta1 = theta2 = theta3 and the allocation proportions. arXiv:2009.11828v2 (13 Jul 2021), 62-page author manuscript."
+  },
+  "mechanism": {
+    "name": "Ye-Shao-Yi-Zhao (2023) setting 1: treatment-by-covariate interaction with zero average effect",
+    "title_en": null,
+    "family_id": "ye-2023-interaction-zero-mean",
+    "generation_equations": [
+      {
+        "label": "U, W",
+        "expression": "U, W ~ Normal(0,1) independently (standardised surrogate for the trial's empirical distribution)"
+      },
+      {
+        "label": "Treatment",
+        "expression": "P(A=1) = 0.5 (simple randomisation, two arms at 1:1)"
+      },
+      {
+        "label": "Potential responses",
+        "expression": "Y(1) = eps, Y(2) = Y(1) + zeta (U - muU), zeta = 1, muU = 0"
+      },
+      {
+        "label": "Heterogeneity",
+        "expression": "tau(U) = zeta (U - muU) = U, with E[tau(U)] = 0"
+      },
+      {
+        "label": "Observed",
+        "expression": "Y = A Y(2) + (1-A) Y(1) = eps + A tau(U)"
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "U",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "W",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "A",
+        "role": "treatment",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [],
+    "latent_variables_status": "not_explicitly_specified",
+    "sampling": {
+      "unit": "patient",
+      "dependence": "independent and identically distributed"
+    },
+    "assumptions": [
+      "SUTVA: one version of treatment, no interference between patients",
+      "Randomised assignment: e = 0.5, so the treatment is independent of the potential responses by design",
+      "Overlap: e = 0.5 with margin 0.5",
+      "The baseline response Y(1) is independent of (U,W) in this package, which is the declared surrogate for the source's near-zero R-squared"
+    ],
+    "properties": {
+      "dimension": 2,
+      "effective_dimension": 1,
+      "high_dimensional": false,
+      "interactions": true,
+      "nonlinear": false,
+      "notes": "Two baseline covariates but only U enters the effect, so effective dimension is 1. The interaction is treatment-by-covariate (A x U), which is the object the source studies through the coefficient zeta. The surface is affine, with zero mean over the covariate law: heterogeneity without an average effect."
+    }
+  },
+  "estimand": {
+    "name": "tau(u0) = E[Y(1) - Y(0) | U = u0]",
+    "definition": "Conditional average treatment effect at the declared query points for the arm-2 versus arm-1 contrast; the surface is linear in U with slope zeta = 1 and has exactly zero mean over the covariate distribution, so there is heterogeneity but no average effect.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "original",
+      "parameters": {
+        "tau_scale": 1.0,
+        "noise_scale": 1.0
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.5,
+        "expression": "Conditional average treatment effect at the declared query points for the arm-2 versus arm-1 contrast; the surface is linear in U with slope zeta = 1 and has exactly zero mean over the covariate distribution, so there is heterogeneity but no average effect.",
+        "derivation": "Closed form: the contrast in equation (20) is zeta (U - muU), so with muU = 0 and zeta = 1 the surface is tau(u) = u exactly; cross-checked by a second typing and by the realised outcome column.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[original].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "Three arms reduced to two: only the arm-2 versus arm-1 contrast is kept, because the registered target family is the binary-treatment CATE. The contrast surface is exactly the increment in equation (20).",
+    "Y(1) in the source is the observed placebo-arm response of 481 real patients and is not distributed with the paper; this package replaces it with independent N(0,1) noise. The source reports R-squared <= 0.05 for a linear fit of Y(1) on (U,W), so the replacement preserves the near-independence of the baseline response from the covariates; it does change the paper's beta1 = -0.255 to 0 and this is a declared deviation.",
+    "(U,W) in the source follow the empirical distribution of the same 481 patients; this package uses U, W ~ N(0,1) with muU = muW = 0 and E[U^2] = 1, i.e. the paper's centring constants are set to their standardised values.",
+    "The source uses allocation 1:2:2 or 1:1:1 over three arms; this package uses simple randomisation with two arms at 1:1, so e = 0.5.",
+    "The source varies zeta over [-1, 1]; this package fixes zeta = 1 as the single declared scenario."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "generator.py",
+    "truth_reference": "truth.py",
+    "source_archive": "cate-ye-2023-interaction-zero-mean-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/cate-ye-2023-interaction-zero-mean-v1.py",
+    "exported_generator_sha256": "a2561dde1e96da5b627daebde4355497fbbd5cb57f46daee9955109dd1232a7c"
+  },
+  "evidence": [
+    {
+      "file": "collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "f9fb04d030c9864c009bc7552068bacca7906e6bbf7bca82e20c72b3b9bbe153",
+    "collection_sha256": "55aebd2378d9146ce776ce3ea5673e7b432bde91a58b18ac2cea28410631f0ae",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/cate-ye-2023-interaction-zero-mean-v1.zip",
+    "submitted_zip_sha256": "f9fb04d030c9864c009bc7552068bacca7906e6bbf7bca82e20c72b3b9bbe153",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "No explicit latent-variable metadata or reliably identifiable latent declarations; absence from this list does not prove that no latent variables exist."
+  ],
+  "source_suggested_domain": "cate",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

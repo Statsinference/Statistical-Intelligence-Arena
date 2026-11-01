@@ -1,0 +1,209 @@
+{
+  "schema_version": "0.1",
+  "record_id": "cate-nie-2021-setup-a-v1",
+  "kind": "synthetic_dgp",
+  "domain": "cate",
+  "english_display": {},
+  "paper": {
+    "citation": "Nie, X. and Wager, S. (2021). Quasi-oracle estimation of heterogeneous treatment effects. Biometrika 108(2), 299-319. DOI: 10.1093/biomet/asaa076.",
+    "title": null,
+    "doi": null,
+    "source_url": "https://arxiv.org/abs/1712.04912",
+    "source_file_evidence": [],
+    "venue": "Biometrika",
+    "year": 2021,
+    "source_version": null,
+    "source_locator": "Section 6.1 'Baseline methods and simulation setups', arXiv:1712.04912v4 (6 Aug 2020) PDF p.15 (general data-generating law) and PDF p.16 (unnumbered Setup A paragraph, since the setups carry no equation numbers: 'We use the scaled Friedman (1991) function ... e*(Xi) = trim0.1{sin(pi Xi1 Xi2)} and tau*(Xi) = (Xi1 + Xi2)/2')."
+  },
+  "mechanism": {
+    "name": "Nie–Wager (2021) Setup A: Friedman baseline with a sinusoidal propensity",
+    "title_en": null,
+    "family_id": "nie-wager-2021-setup-a",
+    "generation_equations": [
+      {
+        "label": "X1-X5",
+        "expression": "Xj ~ Uniform(0,1) independently, j = 1..5"
+      },
+      {
+        "label": "Treatment",
+        "expression": "e(X) = trim_{0.1}{ sin(pi X1 X2) }, trim_eta(u) = max{eta, min(u, 1-eta)}"
+      },
+      {
+        "label": "Baseline",
+        "expression": "b(X) = sin(pi X1 X2) + 2 (X3 - 1/2)^2 + X4 + 0.5 X5"
+      },
+      {
+        "label": "Heterogeneity",
+        "expression": "tau(X) = (X1 + X2) / 2"
+      },
+      {
+        "label": "Outcome",
+        "expression": "Y = b(X) + A tau(X) + sigma eps, eps ~ Normal(0,1), sigma = 1"
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "X1",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "0.0",
+        "max": "1.0",
+        "observed": "true"
+      },
+      {
+        "name": "X2",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "0.0",
+        "max": "1.0",
+        "observed": "true"
+      },
+      {
+        "name": "X3",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "0.0",
+        "max": "1.0",
+        "observed": "true"
+      },
+      {
+        "name": "X4",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "0.0",
+        "max": "1.0",
+        "observed": "true"
+      },
+      {
+        "name": "X5",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "0.0",
+        "max": "1.0",
+        "observed": "true"
+      },
+      {
+        "name": "A",
+        "role": "treatment",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [
+      {
+        "name": "Xj",
+        "role": "latent_candidate",
+        "evidence": {
+          "file": "collection.json",
+          "equation_index": 0,
+          "expression": "Xj ~ Uniform(0,1) independently, j = 1..5"
+        },
+        "provenance": "inferred_from_stochastic_declaration"
+      }
+    ],
+    "latent_variables_status": "candidates_from_equations_need_review",
+    "sampling": {
+      "unit": "individual",
+      "dependence": "independent and identically distributed"
+    },
+    "assumptions": [
+      "SUTVA: one version of treatment, no interference",
+      "Unconfoundedness: treatment depends on X only through sin(pi X1 X2), which is also part of the baseline; the design is observational by construction",
+      "Overlap: e(X) is trimmed to [0.1, 0.9], so positivity holds with margin 0.1",
+      "Homoscedastic Gaussian noise; sigma = 1 in this scenario"
+    ],
+    "properties": {
+      "dimension": 5,
+      "effective_dimension": 5,
+      "high_dimensional": false,
+      "interactions": true,
+      "nonlinear": true,
+      "notes": "All five coordinates enter the mechanism. The interaction is sin(pi X1 X2) in both the baseline and the propensity, which is why e(X) and b(X) are correlated; the effect surface itself is additive and linear."
+    }
+  },
+  "estimand": {
+    "name": "tau(x0) = E[Y(1) - Y(0) | X = x0]",
+    "definition": "Conditional average treatment effect at the declared query points; a simple linear surface in the first two coordinates, embedded in a deliberately difficult nuisance structure.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "original",
+      "parameters": {
+        "tau_scale": 1.0,
+        "noise_scale": 1.0
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.25,
+        "expression": "Conditional average treatment effect at the declared query points; a simple linear surface in the first two coordinates, embedded in a deliberately difficult nuisance structure.",
+        "derivation": "Closed form: the surface is linear in X1, X2, so tau(x0) = (x1 + x2)/2 exactly; cross-checked by a second typing and by the realised outcome column.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[original].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "Dimension fixed at d = 5, the smallest dimension for which the source's baseline is fully defined (it uses X1..X5); the source varies d in {6, 12} for the reported grid.",
+    "The source writes Y = b(X) + (W - 0.5) tau(X) + sigma eps; this package uses Y = b(X) + A tau(X) + sigma eps with A in {0,1}. The CATE is unchanged; the marginal outcome law differs by the constant 0.5 tau(X).",
+    "Noise scale is fixed at sigma = 1 (the source also reports sigma in {0.5, 2, 3}); those are scenarios, not implemented here.",
+    "trim_eta is implemented as np.clip(., 0.1, 0.9), matching trim_0.1 in the source."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "generator.py",
+    "truth_reference": "truth.py",
+    "source_archive": "cate-nie-2021-setup-a-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/cate-nie-2021-setup-a-v1.py",
+    "exported_generator_sha256": "bc2ee08277293dcf5ef152749feb553d6f5ba905246975e65c3668d4a16d3d07"
+  },
+  "evidence": [
+    {
+      "file": "collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "8b9918daf6bd8dd2fc800b4a3f3893e6f5754d36784b7a1ef30415f4d3358a52",
+    "collection_sha256": "df010d536bb7035bfe1acd79cdc746bb2247ffc40355cb6e50cb634fc9787d9c",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/cate-nie-2021-setup-a-v1.zip",
+    "submitted_zip_sha256": "8b9918daf6bd8dd2fc800b4a3f3893e6f5754d36784b7a1ef30415f4d3358a52",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "Latent-variable candidates inferred from source equations; confirm their roles and completeness against the original paper or generator."
+  ],
+  "source_suggested_domain": "cate",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

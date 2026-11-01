@@ -1,0 +1,217 @@
+{
+  "schema_version": "0.1",
+  "record_id": "cate-wager-2018-sparse-signal-v1",
+  "kind": "synthetic_dgp",
+  "domain": "cate",
+  "english_display": {},
+  "paper": {
+    "citation": "Wager, S. and Athey, S. (2018). Estimation and Inference of Heterogeneous Treatment Effects using Random Forests. Journal of the American Statistical Association 113(523), 1228-1242. DOI: 10.1080/01621459.2017.1319839.",
+    "title": null,
+    "doi": null,
+    "source_url": "https://arxiv.org/abs/1510.04342",
+    "source_file_evidence": [],
+    "venue": "Journal of the American Statistical Association",
+    "year": 2018,
+    "source_version": null,
+    "source_locator": "Appendix A 'Additional Simulations', arXiv:1510.04342v4 (10 Jul 2017) PDF p.30, equation (30) for tau(x) and Table 5 (p.30) for the (q, d) grid; the preceding paragraph states 'we generate data with a treatment effect function (30)'."
+  },
+  "mechanism": {
+    "name": "Wager–Athey (2018) appendix design: effect spread over q signal coordinates",
+    "title_en": null,
+    "family_id": "wager-athey-2018-sparse-signal",
+    "generation_equations": [
+      {
+        "label": "X1-X6",
+        "expression": "Xj ~ Uniform(0,1) independently, j = 1..6"
+      },
+      {
+        "label": "Treatment",
+        "expression": "P(A=1|X) = 0.5"
+      },
+      {
+        "label": "Baseline",
+        "expression": "m(X) = 0"
+      },
+      {
+        "label": "Heterogeneity",
+        "expression": "tau(X) = (4/q) sum_{j=1..q} [1/(1+exp(-12 (Xj - 1/2))) - 1/2], q = 4"
+      },
+      {
+        "label": "Outcome",
+        "expression": "Y = m(X) + A tau(X) + eps, eps ~ Normal(0,1)"
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "X1",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "0.0",
+        "max": "1.0",
+        "observed": "true"
+      },
+      {
+        "name": "X2",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "0.0",
+        "max": "1.0",
+        "observed": "true"
+      },
+      {
+        "name": "X3",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "0.0",
+        "max": "1.0",
+        "observed": "true"
+      },
+      {
+        "name": "X4",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "0.0",
+        "max": "1.0",
+        "observed": "true"
+      },
+      {
+        "name": "X5",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "0.0",
+        "max": "1.0",
+        "observed": "true"
+      },
+      {
+        "name": "X6",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "0.0",
+        "max": "1.0",
+        "observed": "true"
+      },
+      {
+        "name": "A",
+        "role": "treatment",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [
+      {
+        "name": "Xj",
+        "role": "latent_candidate",
+        "evidence": {
+          "file": "collection.json",
+          "equation_index": 0,
+          "expression": "Xj ~ Uniform(0,1) independently, j = 1..6"
+        },
+        "provenance": "inferred_from_stochastic_declaration"
+      }
+    ],
+    "latent_variables_status": "candidates_from_equations_need_review",
+    "sampling": {
+      "unit": "individual",
+      "dependence": "independent and identically distributed"
+    },
+    "assumptions": [
+      "SUTVA: one version of treatment, no interference",
+      "Randomised assignment: e(x) = 0.5, so unconfoundedness holds by design",
+      "Overlap: e(x) = 0.5 with margin 0.5",
+      "Homoscedastic Gaussian noise with unit variance"
+    ],
+    "properties": {
+      "dimension": 6,
+      "effective_dimension": 4,
+      "high_dimensional": false,
+      "interactions": false,
+      "nonlinear": true,
+      "notes": "Four active coordinates, each contributing a small additive logistic term; this is the 'dense signal' regime the source uses to argue forests have less advantage. Additive, so no interaction; nonlinear through each sigmoid."
+    }
+  },
+  "estimand": {
+    "name": "tau(x0) = E[Y(1) - Y(0) | X = x0]",
+    "definition": "Conditional average treatment effect when the signal is spread additively over q = 4 of the 6 coordinates; the estimand at a query point is the sum of four sigmoid contributions minus 2.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "original",
+      "parameters": {
+        "tau_scale": 1.0,
+        "noise_scale": 1.0
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.9836748576936802,
+        "expression": "Conditional average treatment effect when the signal is spread additively over q = 4 of the 6 coordinates; the estimand at a query point is the sum of four sigmoid contributions minus 2.",
+        "derivation": "Closed form: a sum of four logistic sigmoids minus q/2, evaluated exactly; cross-checked by a second typing (loop form) and by the realised outcome column.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[original].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "The source varies q in {2,4,6} and d in {6,12}; this package fixes the (q, d) = (4, 6) cell so that the surface has an exact closed form with 4/q = 1.",
+    "The source's second experiment (p.20, immediately after Eq. 28) states 'we evaluated the ability of causal forests to adapt to heterogeneity in tau(x), while holding m(x) = 0 and e(x) = 0.5 fixed'; the same values are used here and stated explicitly. Eq. (27) on the same page uses a beta-density propensity with m(x) = 2 X1 - 1 for a different experiment and does not apply to this design.",
+    "The source writes (W - 0.5) tau(X); this package uses A tau(X) with A in {0,1}. The CATE is unchanged.",
+    "The source reports Table 5 over 20 replications; no replication experiment is run here."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "generator.py",
+    "truth_reference": "truth.py",
+    "source_archive": "cate-wager-2018-sparse-signal-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/cate-wager-2018-sparse-signal-v1.py",
+    "exported_generator_sha256": "a358138c953afa4f6ac8d9e7de7de9ccd60380e28284638b5dad81b570449ee0"
+  },
+  "evidence": [
+    {
+      "file": "collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "80599f04d3e7dcd38b4e4dc2db2dc3af539b690679638c2a1be79424814001c6",
+    "collection_sha256": "5b226a4dfb4201a2d4cc10de8ff79164d8b74f44f37b51c974edab716025491c",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/cate-wager-2018-sparse-signal-v1.zip",
+    "submitted_zip_sha256": "80599f04d3e7dcd38b4e4dc2db2dc3af539b690679638c2a1be79424814001c6",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "Latent-variable candidates inferred from source equations; confirm their roles and completeness against the original paper or generator."
+  ],
+  "source_suggested_domain": "cate",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

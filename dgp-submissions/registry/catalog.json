@@ -1,11 +1,11 @@
 {
   "status": "draft_needs_review",
-  "paper_count": 97,
-  "mechanism_count": 135,
-  "scenario_count": 327,
+  "paper_count": 99,
+  "mechanism_count": 145,
+  "scenario_count": 337,
   "domains": {
     "ate": 22,
-    "cate": 2,
+    "cate": 12,
     "mediation": 17,
     "iv": 21,
     "proximal": 15,
@@ -1393,6 +1393,38 @@
       "status": "needs_scientific_review"
     },
     {
+      "record_id": "cate-athey-2019-heterogeneity-confounding-v1",
+      "domain": "cate",
+      "paper": "Athey, S., Tibshirani, J. and Wager, S. (2019). Generalized random forests. The Annals of Statistics 47(2), 1148-1178. DOI: 10.1214/18-AOS1709.",
+      "mechanism": "Athey-Tibshirani-Wager (2019) third setting: heterogeneity and confounding combined",
+      "paper_title": "Generalized random forests",
+      "venue_abbreviation": "AoS",
+      "keywords": [
+        "Interactions",
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Interactions",
+          "source": "mechanism.properties.interactions",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/cate-athey-2019-heterogeneity-confounding-v1.py",
+      "latent_variables": [
+        "Xj"
+      ],
+      "truth_by_scenario": "original: tau(x0) = E[Y(1) - Y(0) \\| X = x0] = 2.25",
+      "status": "needs_scientific_review"
+    },
+    {
       "record_id": "cate-athey-tibshirani-wager-2019-confounded-v1",
       "domain": "cate",
       "paper": "Athey, S., Tibshirani, J. and Wager, S. (2019). Generalized Random Forests. The Annals of Statistics 47(2), 1148-1178. DOI: 10.1214/18-AOS1709.",
@@ -1427,6 +1459,267 @@
       "generator_file": "generators/cate-athey-tibshirani-wager-2019-confounded-v1.py",
       "latent_variables": [],
       "truth_by_scenario": "source_d10_sigma1_fixed_query: tau(x_star)=E[Y(1)-Y(0)\\|X=x_star] = 2.25",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "cate-lei-2021-conformal-cate-v1",
+      "domain": "cate",
+      "paper": "Lei, L. and Candes, E. J. (2021). Conformal inference of counterfactuals and individual treatment effects. Journal of the Royal Statistical Society: Series B (Statistical Methodology) 83(5), 911-938. DOI: 10.1111/rssb.12445.",
+      "mechanism": "Lei–Candès (2021) simulation: zero control outcome with a double-sigmoid effect",
+      "paper_title": "Conformal inference of counterfactuals and individual treatment effects",
+      "venue_abbreviation": "JRSSB",
+      "keywords": [
+        "Interactions",
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Interactions",
+          "source": "mechanism.properties.interactions",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/cate-lei-2021-conformal-cate-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "original: tau(x0) = E[Y(1) - Y(0) \\| X = x0] = 1.0",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "cate-nie-2021-setup-a-v1",
+      "domain": "cate",
+      "paper": "Nie, X. and Wager, S. (2021). Quasi-oracle estimation of heterogeneous treatment effects. Biometrika 108(2), 299-319. DOI: 10.1093/biomet/asaa076.",
+      "mechanism": "Nie–Wager (2021) Setup A: Friedman baseline with a sinusoidal propensity",
+      "paper_title": "Quasi-oracle estimation of heterogeneous treatment effects",
+      "venue_abbreviation": "Biometrika",
+      "keywords": [
+        "Interactions",
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Interactions",
+          "source": "mechanism.properties.interactions",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/cate-nie-2021-setup-a-v1.py",
+      "latent_variables": [
+        "Xj"
+      ],
+      "truth_by_scenario": "original: tau(x0) = E[Y(1) - Y(0) \\| X = x0] = 0.25",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "cate-nie-2021-setup-b-v1",
+      "domain": "cate",
+      "paper": "Nie, X. and Wager, S. (2021). Quasi-oracle estimation of heterogeneous treatment effects. Biometrika 108(2), 299-319. DOI: 10.1093/biomet/asaa076.",
+      "mechanism": "Nie–Wager (2021) Setup B: randomised trial with a logarithmic treatment effect",
+      "paper_title": "Quasi-oracle estimation of heterogeneous treatment effects",
+      "venue_abbreviation": "Biometrika",
+      "keywords": [
+        "Interactions",
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Interactions",
+          "source": "mechanism.properties.interactions",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/cate-nie-2021-setup-b-v1.py",
+      "latent_variables": [
+        "Xj"
+      ],
+      "truth_by_scenario": "original: tau(x0) = E[Y(1) - Y(0) \\| X = x0] = 1.4740769841801067",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "cate-nie-2021-setup-c-v1",
+      "domain": "cate",
+      "paper": "Nie, X. and Wager, S. (2021). Quasi-oracle estimation of heterogeneous treatment effects. Biometrika 108(2), 299-319. DOI: 10.1093/biomet/asaa076.",
+      "mechanism": "Nie–Wager (2021) Setup C: constant effect under a logistic propensity",
+      "paper_title": "Quasi-oracle estimation of heterogeneous treatment effects",
+      "venue_abbreviation": "Biometrika",
+      "keywords": [
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/cate-nie-2021-setup-c-v1.py",
+      "latent_variables": [
+        "Xj"
+      ],
+      "truth_by_scenario": "original: tau(x0) = E[Y(1) - Y(0) \\| X = x0] = 1.0",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "cate-nie-2021-setup-d-v1",
+      "domain": "cate",
+      "paper": "Nie, X. and Wager, S. (2021). Quasi-oracle estimation of heterogeneous treatment effects. Biometrika 108(2), 299-319. DOI: 10.1093/biomet/asaa076.",
+      "mechanism": "Nie–Wager (2021) Setup D: unrelated treatment and control surfaces",
+      "paper_title": "Quasi-oracle estimation of heterogeneous treatment effects",
+      "venue_abbreviation": "Biometrika",
+      "keywords": [
+        "Interactions",
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Interactions",
+          "source": "mechanism.properties.interactions",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/cate-nie-2021-setup-d-v1.py",
+      "latent_variables": [
+        "Xj"
+      ],
+      "truth_by_scenario": "original: tau(x0) = E[Y(1) - Y(0) \\| X = x0] = 1.5",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "cate-wager-2018-null-confounded-v1",
+      "domain": "cate",
+      "paper": "Wager, S. and Athey, S. (2018). Estimation and Inference of Heterogeneous Treatment Effects using Random Forests. Journal of the American Statistical Association 113(523), 1228-1242. DOI: 10.1080/01621459.2017.1319839.",
+      "mechanism": "Wager–Athey (2018) simulation 1: zero treatment effect with a beta-density propensity",
+      "paper_title": "Estimation and Inference of Heterogeneous Treatment Effects using Random Forests",
+      "venue_abbreviation": "JASA",
+      "keywords": [
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/cate-wager-2018-null-confounded-v1.py",
+      "latent_variables": [
+        "Xj"
+      ],
+      "truth_by_scenario": "original: tau(x0) = E[Y(1) - Y(0) \\| X = x0] = 0.0",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "cate-wager-2018-sparse-signal-v1",
+      "domain": "cate",
+      "paper": "Wager, S. and Athey, S. (2018). Estimation and Inference of Heterogeneous Treatment Effects using Random Forests. Journal of the American Statistical Association 113(523), 1228-1242. DOI: 10.1080/01621459.2017.1319839.",
+      "mechanism": "Wager–Athey (2018) appendix design: effect spread over q signal coordinates",
+      "paper_title": "Estimation and Inference of Heterogeneous Treatment Effects using Random Forests",
+      "venue_abbreviation": "JASA",
+      "keywords": [
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/cate-wager-2018-sparse-signal-v1.py",
+      "latent_variables": [
+        "Xj"
+      ],
+      "truth_by_scenario": "original: tau(x0) = E[Y(1) - Y(0) \\| X = x0] = 0.9836748576936802",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "cate-ye-2023-interaction-zero-mean-v1",
+      "domain": "cate",
+      "paper": "Ye, T., Shao, J., Yi, Y. and Zhao, Q. (2023). Toward better practice of covariate adjustment in analyzing randomized clinical trials. Journal of the American Statistical Association 118(544), 2370-2382. DOI: 10.1080/01621459.2022.2049278.",
+      "mechanism": "Ye-Shao-Yi-Zhao (2023) setting 1: treatment-by-covariate interaction with zero average effect",
+      "paper_title": "Toward better practice of covariate adjustment in analyzing randomized clinical trials",
+      "venue_abbreviation": "JASA",
+      "keywords": [
+        "Interactions",
+        "Linearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Interactions",
+          "source": "mechanism.properties.interactions",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "Linearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": false,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/cate-ye-2023-interaction-zero-mean-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "original: tau(u0) = E[Y(1) - Y(0) \\| U = u0] = 0.5",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "cate-ye-2023-quadratic-misspecified-v1",
+      "domain": "cate",
+      "paper": "Ye, T., Shao, J., Yi, Y. and Zhao, Q. (2023). Toward better practice of covariate adjustment in analyzing randomized clinical trials. Journal of the American Statistical Association 118(544), 2370-2382. DOI: 10.1080/01621459.2022.2049278.",
+      "mechanism": "Ye-Shao-Yi-Zhao (2023) setting 2: quadratic-in-U effect with a misspecified working model",
+      "paper_title": "Toward better practice of covariate adjustment in analyzing randomized clinical trials",
+      "venue_abbreviation": "JASA",
+      "keywords": [
+        "Interactions",
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Interactions",
+          "source": "mechanism.properties.interactions",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/cate-ye-2023-quadratic-misspecified-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "original: tau(u0, w0) = E[Y(1) - Y(0) \\| U = u0, W = w0] = -1.3925",
       "status": "needs_scientific_review"
     },
     {
@@ -3861,8 +4154,8 @@
   ],
   "intake": {
     "status": "success",
-    "zip_count": 91,
-    "indexed_dgp_count": 135,
+    "zip_count": 101,
+    "indexed_dgp_count": 145,
     "failure_count": 0,
     "stale_record_ids": [],
     "scientific_validation": "not_performed"

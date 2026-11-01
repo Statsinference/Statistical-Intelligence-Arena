@@ -1,0 +1,209 @@
+{
+  "schema_version": "0.1",
+  "record_id": "cate-wager-2018-null-confounded-v1",
+  "kind": "synthetic_dgp",
+  "domain": "cate",
+  "english_display": {},
+  "paper": {
+    "citation": "Wager, S. and Athey, S. (2018). Estimation and Inference of Heterogeneous Treatment Effects using Random Forests. Journal of the American Statistical Association 113(523), 1228-1242. DOI: 10.1080/01621459.2017.1319839.",
+    "title": null,
+    "doi": null,
+    "source_url": "https://arxiv.org/abs/1510.04342",
+    "source_file_evidence": [],
+    "venue": "Journal of the American Statistical Association",
+    "year": 2018,
+    "source_version": null,
+    "source_locator": "Section 5.1 'Experimental Setup', arXiv:1510.04342v4 (10 Jul 2017) PDF p.20, equation (27); the sentence 'We used n = 500 samples and varied d between 2 and 30' follows the equation on the same page."
+  },
+  "mechanism": {
+    "name": "Wager–Athey (2018) simulation 1: zero treatment effect with a beta-density propensity",
+    "title_en": null,
+    "family_id": "wager-athey-2018-null-confounding",
+    "generation_equations": [
+      {
+        "label": "X1-X5",
+        "expression": "Xj ~ Uniform(0,1) independently, j = 1..5"
+      },
+      {
+        "label": "Treatment",
+        "expression": "P(A=1|X) = 0.25 * (1 + 20 X1 (1-X1)^3)"
+      },
+      {
+        "label": "Baseline",
+        "expression": "m(X) = 2 X1 - 1"
+      },
+      {
+        "label": "Heterogeneity",
+        "expression": "tau(X) = 0"
+      },
+      {
+        "label": "Outcome",
+        "expression": "Y = m(X) + A tau(X) + eps, eps ~ Normal(0,1)"
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "X1",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "0.0",
+        "max": "1.0",
+        "observed": "true"
+      },
+      {
+        "name": "X2",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "0.0",
+        "max": "1.0",
+        "observed": "true"
+      },
+      {
+        "name": "X3",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "0.0",
+        "max": "1.0",
+        "observed": "true"
+      },
+      {
+        "name": "X4",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "0.0",
+        "max": "1.0",
+        "observed": "true"
+      },
+      {
+        "name": "X5",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "0.0",
+        "max": "1.0",
+        "observed": "true"
+      },
+      {
+        "name": "A",
+        "role": "treatment",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [
+      {
+        "name": "Xj",
+        "role": "latent_candidate",
+        "evidence": {
+          "file": "collection.json",
+          "equation_index": 0,
+          "expression": "Xj ~ Uniform(0,1) independently, j = 1..5"
+        },
+        "provenance": "inferred_from_stochastic_declaration"
+      }
+    ],
+    "latent_variables_status": "candidates_from_equations_need_review",
+    "sampling": {
+      "unit": "individual",
+      "dependence": "independent and identically distributed"
+    },
+    "assumptions": [
+      "SUTVA: one version of treatment, no interference between individuals",
+      "Unconfoundedness: {Y(0), Y(1)} independent of A given X. In the source this is enforced by construction because the outcome depends on X only through m(X) and the effect is constant",
+      "Overlap: 0.25 <= e(X) <= 0.777 on the whole support of X, since 20 u (1-u)^3 attains its maximum 2.109 at u = 0.25",
+      "Homoscedastic Gaussian noise with unit variance, as in the source"
+    ],
+    "properties": {
+      "dimension": 5,
+      "effective_dimension": 1,
+      "high_dimensional": false,
+      "interactions": false,
+      "nonlinear": true,
+      "notes": "Five ambient covariates but only X1 is active, so effective dimension is 1. Nonlinearity comes from the quartic beta-density propensity, not from the effect surface, which is constant. No interaction term."
+    }
+  },
+  "estimand": {
+    "name": "tau(x0) = E[Y(1) - Y(0) | X = x0]",
+    "definition": "Conditional average treatment effect at the declared query point; in this design it is identically zero for every x, which makes it a null-effect control for bias and interval coverage under confounding.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "original",
+      "parameters": {
+        "tau_scale": 1.0,
+        "noise_scale": 1.0
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.0,
+        "expression": "Conditional average treatment effect at the declared query point; in this design it is identically zero for every x, which makes it a null-effect control for bias and interval coverage under confounding.",
+        "derivation": "Closed form: the declared surface is identically zero, so the population CATE is exactly 0 at every query point; verified against the realised outcome column.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[original].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "Dimension is fixed at d = 5 instead of the source's d in {2,...,30}; only X1 enters the propensity and the baseline, X2-X5 are irrelevant coordinates kept so the design still has ambient dimension.",
+    "The source writes Y = m(X) + (W - 0.5) tau(X) + eps; this package uses the equivalent contrast form Y = m(X) + A tau(X) + eps with A in {0,1}. The CATE is unchanged, the marginal outcome law differs by the constant 0.5 tau(X) = 0.",
+    "The source reports MSE and coverage over 500 replications at n = 500; this package fixes one scenario and is checked at n = 128 for interface purposes only. No estimator is re-run.",
+    "beta_{2,4} is the Beta(2,4) *density* in the source; it is implemented as 20 u (1-u)^3 so that e(X) = 0.25 (1 + 20 X1 (1-X1)^3)."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "generator.py",
+    "truth_reference": "truth.py",
+    "source_archive": "cate-wager-2018-null-confounded-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/cate-wager-2018-null-confounded-v1.py",
+    "exported_generator_sha256": "f891fa346507b595a231757a275280f153da8e9ccfac6faf283911d8b9d120a4"
+  },
+  "evidence": [
+    {
+      "file": "collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "e1b78107298183a3a94f37f7294b85343fd7f8208c32cfe71290c862fb81b835",
+    "collection_sha256": "d0949a74ee33fba2fcfe286e94d2465c273df4d9371213d33c58e6dc2f4da220",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/cate-wager-2018-null-confounded-v1.zip",
+    "submitted_zip_sha256": "e1b78107298183a3a94f37f7294b85343fd7f8208c32cfe71290c862fb81b835",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "Latent-variable candidates inferred from source equations; confirm their roles and completeness against the original paper or generator."
+  ],
+  "source_suggested_domain": "cate",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

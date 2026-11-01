@@ -1,0 +1,208 @@
+{
+  "schema_version": "0.1",
+  "record_id": "cate-nie-2021-setup-b-v1",
+  "kind": "synthetic_dgp",
+  "domain": "cate",
+  "english_display": {},
+  "paper": {
+    "citation": "Nie, X. and Wager, S. (2021). Quasi-oracle estimation of heterogeneous treatment effects. Biometrika 108(2), 299-319. DOI: 10.1093/biomet/asaa076.",
+    "title": null,
+    "doi": null,
+    "source_url": "https://arxiv.org/abs/1712.04912",
+    "source_file_evidence": [],
+    "venue": "Biometrika",
+    "year": 2021,
+    "source_version": null,
+    "source_locator": "Section 6.1, arXiv:1712.04912v4 (6 Aug 2020) PDF p.16, unnumbered Setup B paragraph (no equation number in the source): 'Here, e*(x) = 1/2 for all x ... Xi ~ N(0, I_{d x d}), tau*(Xi) = Xi1 + log(1 + e^{Xi2}), and b*(Xi) = max{Xi1 + Xi2, Xi3, 0} + max{Xi4 + Xi5, 0}'."
+  },
+  "mechanism": {
+    "name": "Nie–Wager (2021) Setup B: randomised trial with a logarithmic treatment effect",
+    "title_en": null,
+    "family_id": "nie-wager-2021-setup-b",
+    "generation_equations": [
+      {
+        "label": "X1-X5",
+        "expression": "Xj ~ Normal(0,1) independently, j = 1..5"
+      },
+      {
+        "label": "Treatment",
+        "expression": "e(X) = 1/2"
+      },
+      {
+        "label": "Baseline",
+        "expression": "b(X) = max{X1 + X2, X3, 0} + max{X4 + X5, 0}"
+      },
+      {
+        "label": "Heterogeneity",
+        "expression": "tau(X) = X1 + log(1 + exp(X2))"
+      },
+      {
+        "label": "Outcome",
+        "expression": "Y = b(X) + A tau(X) + sigma eps, eps ~ Normal(0,1), sigma = 1"
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "X1",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X2",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X3",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X4",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X5",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "A",
+        "role": "treatment",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [
+      {
+        "name": "Xj",
+        "role": "latent_candidate",
+        "evidence": {
+          "file": "collection.json",
+          "equation_index": 0,
+          "expression": "Xj ~ Normal(0,1) independently, j = 1..5"
+        },
+        "provenance": "inferred_from_stochastic_declaration"
+      }
+    ],
+    "latent_variables_status": "candidates_from_equations_need_review",
+    "sampling": {
+      "unit": "individual",
+      "dependence": "independent and identically distributed"
+    },
+    "assumptions": [
+      "SUTVA: one version of treatment, no interference",
+      "Randomised assignment: e(x) = 1/2, so unconfoundedness holds by design and no propensity adjustment is needed",
+      "Overlap: e(x) = 1/2 with margin 0.5",
+      "Homoscedastic Gaussian noise with sigma = 1"
+    ],
+    "properties": {
+      "dimension": 5,
+      "effective_dimension": 5,
+      "high_dimensional": false,
+      "interactions": true,
+      "nonlinear": true,
+      "notes": "The baseline is a sum of two group maxima, which creates genuine interaction between X1, X2 and X3 on one side and X4, X5 on the other. The effect is additive in X1 and a smooth convex transform of X2, with no interaction of its own."
+    }
+  },
+  "estimand": {
+    "name": "tau(x0) = E[Y(1) - Y(0) | X = x0]",
+    "definition": "Conditional average treatment effect at the declared query points; linear in X1 plus a log-sum-exp transform of X2.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "original",
+      "parameters": {
+        "tau_scale": 1.0,
+        "noise_scale": 1.0
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 1.4740769841801067,
+        "expression": "Conditional average treatment effect at the declared query points; linear in X1 plus a log-sum-exp transform of X2.",
+        "derivation": "Closed form: tau(x0) = x1 + log(1 + e^{x2}); the second typing uses log1p(exp(.)) directly. Checked end-to-end against the realised outcome column.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[original].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "Dimension fixed at d = 5, the smallest dimension for which b(x) is fully defined; the source varies d in {6, 12}.",
+    "The source writes Y = b(X) + (W - 0.5) tau(X) + sigma eps; this package uses A in {0,1} and the same b, tau. The CATE is unchanged.",
+    "sigma is fixed at 1 (the source also reports 0.5, 2, 3)."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "generator.py",
+    "truth_reference": "truth.py",
+    "source_archive": "cate-nie-2021-setup-b-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/cate-nie-2021-setup-b-v1.py",
+    "exported_generator_sha256": "0e8688fd6da0004b579102c6a68a427b3d13c4d6492ce18b6b46b175fc918422"
+  },
+  "evidence": [
+    {
+      "file": "collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "b5d68dba405c02c499eb80d2eae41de7bcf7ae3fddb6b7aca02ac718c01e143a",
+    "collection_sha256": "e68d5653a84de8b767b6608550ceff5224ab8927768f386a7fe1079649ac886c",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/cate-nie-2021-setup-b-v1.zip",
+    "submitted_zip_sha256": "b5d68dba405c02c499eb80d2eae41de7bcf7ae3fddb6b7aca02ac718c01e143a",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "Latent-variable candidates inferred from source equations; confirm their roles and completeness against the original paper or generator."
+  ],
+  "source_suggested_domain": "cate",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

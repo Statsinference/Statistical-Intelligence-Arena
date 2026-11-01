@@ -1,0 +1,242 @@
+{
+  "schema_version": "0.1",
+  "record_id": "cate-lei-2021-conformal-cate-v1",
+  "kind": "synthetic_dgp",
+  "domain": "cate",
+  "english_display": {},
+  "paper": {
+    "citation": "Lei, L. and Candes, E. J. (2021). Conformal inference of counterfactuals and individual treatment effects. Journal of the Royal Statistical Society: Series B (Statistical Methodology) 83(5), 911-938. DOI: 10.1111/rssb.12445.",
+    "title": null,
+    "doi": null,
+    "source_url": "https://arxiv.org/abs/2006.06138",
+    "source_file_evidence": [],
+    "venue": "Journal of the Royal Statistical Society Series B: Statistical Methodology",
+    "year": 2021,
+    "source_version": null,
+    "source_locator": "Section 3.6 'Numerical experiments', arXiv:2006.06138v2 (6 May 2021) PDF p.9 (covariate construction: 'Xj = Phi(X'_j) ... equicorrelated multivariate Gaussian') and PDF p.10 (second and third bullets: 'Y(0) = 0', 'E[Y(1)|X] = f(X1) f(X2), f(x) = 2/(1+exp{-12(x-0.5)})', and 'e(x) = (1/4){1 + beta_{2,4}(x1)}'). The section uses unnumbered bullets, so the locator cites the bullets and page rather than an equation number."
+  },
+  "mechanism": {
+    "name": "Lei–Candès (2021) simulation: zero control outcome with a double-sigmoid effect",
+    "title_en": null,
+    "family_id": "lei-candes-2021-double-sigmoid",
+    "generation_equations": [
+      {
+        "label": "X1-X10",
+        "expression": "Xj = Phi(X'_j), X' equicorrelated Gaussian with rho = 0, so Xj ~ Uniform(0,1) independently, j = 1..10"
+      },
+      {
+        "label": "Treatment",
+        "expression": "e(X) = (1/4) { 1 + F_{2,4}(X1) }, F_{2,4} the Beta(2,4) cdf"
+      },
+      {
+        "label": "Control outcome",
+        "expression": "Y(0) = 0"
+      },
+      {
+        "label": "Treated outcome",
+        "expression": "E[Y(1)|X] = f(X1) f(X2), f(u) = 2 / (1 + exp(-12 (u - 1/2)));  Y(1) = E[Y(1)|X] + sigma eps"
+      },
+      {
+        "label": "Heterogeneity",
+        "expression": "tau(X) = f(X1) f(X2)"
+      },
+      {
+        "label": "Observed",
+        "expression": "Y = A Y(1) + (1-A) Y(0), sigma = 1"
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "X1",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "0.0",
+        "max": "1.0",
+        "observed": "true"
+      },
+      {
+        "name": "X2",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "0.0",
+        "max": "1.0",
+        "observed": "true"
+      },
+      {
+        "name": "X3",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "0.0",
+        "max": "1.0",
+        "observed": "true"
+      },
+      {
+        "name": "X4",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "0.0",
+        "max": "1.0",
+        "observed": "true"
+      },
+      {
+        "name": "X5",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "0.0",
+        "max": "1.0",
+        "observed": "true"
+      },
+      {
+        "name": "X6",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "0.0",
+        "max": "1.0",
+        "observed": "true"
+      },
+      {
+        "name": "X7",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "0.0",
+        "max": "1.0",
+        "observed": "true"
+      },
+      {
+        "name": "X8",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "0.0",
+        "max": "1.0",
+        "observed": "true"
+      },
+      {
+        "name": "X9",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "0.0",
+        "max": "1.0",
+        "observed": "true"
+      },
+      {
+        "name": "X10",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "0.0",
+        "max": "1.0",
+        "observed": "true"
+      },
+      {
+        "name": "A",
+        "role": "treatment",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [],
+    "latent_variables_status": "not_explicitly_specified",
+    "sampling": {
+      "unit": "individual",
+      "dependence": "independent and identically distributed at rho = 0"
+    },
+    "assumptions": [
+      "SUTVA: one version of treatment, no interference",
+      "Unconfoundedness: the propensity depends on X1 only, and Y(1) depends on X1 and X2, so the assignment is confounded",
+      "Overlap: e(X) in [0.25, 0.5] by construction, giving a uniform overlap margin of 0.25",
+      "Homoscedastic Gaussian noise with sigma^2 = 1, added only under treatment because Y(0) = 0"
+    ],
+    "properties": {
+      "dimension": 10,
+      "effective_dimension": 2,
+      "high_dimensional": false,
+      "interactions": true,
+      "nonlinear": true,
+      "notes": "Ten ambient covariates, only X1 and X2 active, so effective dimension is 2. The effect is a product across coordinates (interaction) of two logistic sigmoids (nonlinear). d = 10 against the source's sample sizes is not high-dimensional, hence the flag is false."
+    }
+  },
+  "estimand": {
+    "name": "tau(x0) = E[Y(1) - Y(0) | X = x0]",
+    "definition": "Conditional average treatment effect at the declared query points when the control potential outcome is identically zero, so the effect equals the treated conditional mean.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "original",
+      "parameters": {
+        "tau_scale": 1.0,
+        "noise_scale": 1.0
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 1.0,
+        "expression": "Conditional average treatment effect at the declared query points when the control potential outcome is identically zero, so the effect equals the treated conditional mean.",
+        "derivation": "Closed form: tau(x0) = f(x1) f(x2) with f a logistic sigmoid, exact up to floating point; cross-checked by a second typing and by the realised outcome column.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[original].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "The source uses d = 10 or d = 100 covariates and an equicorrelation rho in {0, 0.9}; this package fixes d = 10 with rho = 0, so the covariates are independent uniforms and X3..X10 are inert.",
+    "Only the homoscedastic scenario sigma^2 = 1 is used; the source also reports sigma^2(x) = -log(x1).",
+    "Phi(Z) with Z standard normal is distributed as Uniform(0,1), so the covariates are drawn directly as uniforms; no numerical normal cdf is needed at rho = 0.",
+    "The source evaluates interval coverage of CATE and ITE; this package only declares the mechanism and its population CATE. No conformal procedure is run."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "generator.py",
+    "truth_reference": "truth.py",
+    "source_archive": "cate-lei-2021-conformal-cate-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/cate-lei-2021-conformal-cate-v1.py",
+    "exported_generator_sha256": "93e5188cc2763d5e2be924ba2d1441617aa9e2ff823ad58681f015bac68e9975"
+  },
+  "evidence": [
+    {
+      "file": "collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "287d732da3ef6fd35b21bff5aa55cfae47452d7d61e586a1f980c1a1f732572a",
+    "collection_sha256": "70bf60abf2400e391c14b25a66600bdec8e4dcf396fc8c328f9c6f118b0c91db",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/cate-lei-2021-conformal-cate-v1.zip",
+    "submitted_zip_sha256": "287d732da3ef6fd35b21bff5aa55cfae47452d7d61e586a1f980c1a1f732572a",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "No explicit latent-variable metadata or reliably identifiable latent declarations; absence from this list does not prove that no latent variables exist."
+  ],
+  "source_suggested_domain": "cate",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

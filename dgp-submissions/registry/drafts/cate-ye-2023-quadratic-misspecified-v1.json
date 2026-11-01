@@ -1,0 +1,175 @@
+{
+  "schema_version": "0.1",
+  "record_id": "cate-ye-2023-quadratic-misspecified-v1",
+  "kind": "synthetic_dgp",
+  "domain": "cate",
+  "english_display": {},
+  "paper": {
+    "citation": "Ye, T., Shao, J., Yi, Y. and Zhao, Q. (2023). Toward better practice of covariate adjustment in analyzing randomized clinical trials. Journal of the American Statistical Association 118(544), 2370-2382. DOI: 10.1080/01621459.2022.2049278.",
+    "title": null,
+    "doi": null,
+    "source_url": "https://arxiv.org/abs/2009.11828",
+    "source_file_evidence": [],
+    "venue": "Journal of the American Statistical Association",
+    "year": 2023,
+    "source_version": null,
+    "source_locator": "Section 4.1 'Simulation results', equation (21) on PDF p.24 ('Y (2) = -1.3 + Y (1) - 0.5(U - muU) - 0.01(U^2 - muU2) + 0.3(W - muW)'), with the sentence 'a quadratic term U^2 - muU2 appears in the data generating process (21) but is not adjusted by ANCOVA or ANHECOVA' on the same page. arXiv:2009.11828v2 (13 Jul 2021), 62-page author manuscript."
+  },
+  "mechanism": {
+    "name": "Ye-Shao-Yi-Zhao (2023) setting 2: quadratic-in-U effect with a misspecified working model",
+    "title_en": null,
+    "family_id": "ye-2023-quadratic-misspecified",
+    "generation_equations": [
+      {
+        "label": "U, W",
+        "expression": "U, W ~ Normal(0,1) independently (standardised surrogate for the trial's empirical distribution)"
+      },
+      {
+        "label": "Treatment",
+        "expression": "P(A=1) = 0.5 (simple randomisation, two arms at 1:1)"
+      },
+      {
+        "label": "Potential responses",
+        "expression": "Y(1) = eps, Y(2) = -1.3 + Y(1) - 0.5(U - muU) - 0.01(U^2 - muU2) + 0.3(W - muW)"
+      },
+      {
+        "label": "Heterogeneity",
+        "expression": "tau(U, W) = -1.3 - 0.5 U - 0.01(U^2 - 1) + 0.3 W"
+      },
+      {
+        "label": "Observed",
+        "expression": "Y = eps + A tau(U, W)"
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "U",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "W",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "A",
+        "role": "treatment",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [],
+    "latent_variables_status": "not_explicitly_specified",
+    "sampling": {
+      "unit": "patient",
+      "dependence": "independent and identically distributed"
+    },
+    "assumptions": [
+      "SUTVA: one version of treatment, no interference between patients",
+      "Randomised assignment: e = 0.5, so treatment is independent of the potential responses by design",
+      "Overlap: e = 0.5 with margin 0.5",
+      "The baseline response Y(1) is independent of (U,W) in this package, the declared surrogate for the source's low R-squared"
+    ],
+    "properties": {
+      "dimension": 2,
+      "effective_dimension": 2,
+      "high_dimensional": false,
+      "interactions": true,
+      "nonlinear": true,
+      "notes": "Both covariates act. The interaction is treatment-by-covariate on two coordinates; nonlinearity is the U^2 term with coefficient -0.01, which the source deliberately omits from the working model. The curvature is mild on the N(0,1) bulk, so this mechanism tests misspecification rather than strong non-linearity."
+    }
+  },
+  "estimand": {
+    "name": "tau(u0, w0) = E[Y(1) - Y(0) | U = u0, W = w0]",
+    "definition": "Conditional average treatment effect at the declared query points for the arm-2 versus arm-1 contrast; affine in U and W with a small negative quadratic term in U, so the surface is curved but close to linear over the bulk of the covariate law.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "original",
+      "parameters": {
+        "tau_scale": 1.0,
+        "noise_scale": 1.0
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": -1.3925,
+        "expression": "Conditional average treatment effect at the declared query points for the arm-2 versus arm-1 contrast; affine in U and W with a small negative quadratic term in U, so the surface is curved but close to linear over the bulk of the covariate law.",
+        "derivation": "Closed form: the contrast in equation (21) is -1.3 - 0.5(U - muU) - 0.01(U^2 - muU2) + 0.3(W - muW), evaluated exactly with the standardised centring constants; cross-checked by a second typing and by the realised outcome column.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[original].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "Three arms reduced to two: only the arm-2 versus arm-1 contrast is kept, so the registered target is the binary-treatment CATE of that contrast. The surface is exactly the increment in equation (21).",
+    "Y(1) in the source is the observed placebo-arm response of 481 real patients and is not distributed with the paper; this package replaces it with independent N(0,1) noise, which preserves the low R-squared reported for the real baseline but sets the paper's beta1 = -0.240 to 0. Declared deviation.",
+    "(U,W) are drawn as independent standard normals, with the paper's centring constants set to muU = muW = 0 and muU2 = E[U^2] = 1.",
+    "The source runs simple randomisation, stratified permuted blocks and Pocock-Simon minimisation with allocation 1:1:1 or 1:2:2 over three arms; this package uses simple randomisation with two arms at 1:1, so e = 0.5.",
+    "The source draws a random sample of n = 200 or 400 from the 481 subjects; no resampling of real subjects occurs here."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "generator.py",
+    "truth_reference": "truth.py",
+    "source_archive": "cate-ye-2023-quadratic-misspecified-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/cate-ye-2023-quadratic-misspecified-v1.py",
+    "exported_generator_sha256": "a4da7b9542e36b144558a2548588c1952411646ebc9f4d58f35f1e1f65e0dc2f"
+  },
+  "evidence": [
+    {
+      "file": "collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "8470244ccd31c6233a7c5ae0a772b378ab3c33b2bc89b827bfb14e10e0d3826d",
+    "collection_sha256": "6172f9cad03577c826e0b711ca6a22e43b7902cc3cf42d47d3a545c59528c072",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/cate-ye-2023-quadratic-misspecified-v1.zip",
+    "submitted_zip_sha256": "8470244ccd31c6233a7c5ae0a772b378ab3c33b2bc89b827bfb14e10e0d3826d",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "No explicit latent-variable metadata or reliably identifiable latent declarations; absence from this list does not prove that no latent variables exist."
+  ],
+  "source_suggested_domain": "cate",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}
