@@ -245,12 +245,12 @@
   ],
   "provenance": {
     "mode": "structured_zip",
-    "archive_sha256": "5440809f1303c8ed09ed6996b3073b6e28c1544f6a77ec45dd0b0f9c39500c54",
+    "archive_sha256": "ebd36d1d3f00e0aaece7804e8d5ec237d71edff59e77549ca8c93dfc58edd544",
     "collection_sha256": "c682a25e820b7a5d69fb3e9df6ff830b8f9444158bfe9a5fd4307fc374fd8f31",
     "provided_source_pdf_verified": false,
     "source_review_status": "AI-assisted source audit by the collector; named human scientific review and independent-person reproduction pending",
     "submission_file": "incoming/mediation-shan-li-ai-2026-missing-confounders-aux-shadow-v1.zip",
-    "submitted_zip_sha256": "5440809f1303c8ed09ed6996b3073b6e28c1544f6a77ec45dd0b0f9c39500c54",
+    "submitted_zip_sha256": "ebd36d1d3f00e0aaece7804e8d5ec237d71edff59e77549ca8c93dfc58edd544",
     "reviewed_original_paper": false,
     "submitted_by": "github_file_upload"
   },

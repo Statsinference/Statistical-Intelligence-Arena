@@ -231,12 +231,12 @@
   ],
   "provenance": {
     "mode": "structured_zip",
-    "archive_sha256": "037683a6e059afa790f2a685e01e7e09dcc1da9fda34284d1b57d7f95843833b",
+    "archive_sha256": "530e2c42805b44b99f105e8829684eeed8dc1d44cd442170ed2db9693b27e0b7",
     "collection_sha256": "1aae921be1bdf777ea6a1e5ad845f18976a95e2777f1c0b14e12b0405ebb541f",
     "provided_source_pdf_verified": false,
     "source_review_status": "AI-assisted source audit by the collector; named human scientific review and independent-person reproduction pending",
     "submission_file": "incoming/mediation-cheng-li-2025-principal-strata-kang-schafer-v1.zip",
-    "submitted_zip_sha256": "037683a6e059afa790f2a685e01e7e09dcc1da9fda34284d1b57d7f95843833b",
+    "submitted_zip_sha256": "530e2c42805b44b99f105e8829684eeed8dc1d44cd442170ed2db9693b27e0b7",
     "reviewed_original_paper": false,
     "submitted_by": "github_file_upload"
   },

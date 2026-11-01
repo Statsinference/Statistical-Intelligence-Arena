@@ -2399,7 +2399,7 @@
       ],
       "generator_file": "generators/mediation-miles-2019-toxicity-path-specific-v1.py",
       "latent_variables": [],
-      "truth_by_scenario": "original: beta_0 = E(Y[M{a, C1(a')}, C1(a'), a']) = 2.678",
+      "truth_by_scenario": "original: P_AMY = E(Y[M{a, C1(a')}, C1(a'), a']) - E[Y(a')] = -0.9180000000000001",
       "status": "needs_scientific_review"
     },
     {

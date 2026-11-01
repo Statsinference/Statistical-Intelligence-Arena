@@ -289,12 +289,12 @@
   ],
   "provenance": {
     "mode": "structured_zip",
-    "archive_sha256": "1c3b80120915731aed5bd5c672428622254cc967c8da20534db7a3f7a9db84be",
+    "archive_sha256": "6a2ba891c8880884dabe418852528de18b8611a790c3c6fd56b73ab539dba0e2",
     "collection_sha256": "5460759ef12e0dbd621a8f8ded467bd5652ef8cccdff65abf0920337379ae691",
     "provided_source_pdf_verified": false,
     "source_review_status": "AI-assisted source audit by the collector; named human scientific review and independent-person reproduction pending",
     "submission_file": "incoming/mediation-zhou-2022-ordered-two-mediators-v1.zip",
-    "submitted_zip_sha256": "1c3b80120915731aed5bd5c672428622254cc967c8da20534db7a3f7a9db84be",
+    "submitted_zip_sha256": "6a2ba891c8880884dabe418852528de18b8611a790c3c6fd56b73ab539dba0e2",
     "reviewed_original_paper": false,
     "submitted_by": "github_file_upload"
   },

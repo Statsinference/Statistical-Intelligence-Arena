@@ -294,12 +294,12 @@
   ],
   "provenance": {
     "mode": "structured_zip",
-    "archive_sha256": "12a4f97e983c601ba6180f688e8ea2bb416b8a8279e61652fb4dec313368464e",
+    "archive_sha256": "ad49d4f447a4c5bef52f14b629d1b4984924e959621419fdd9a02c131f569d3e",
     "collection_sha256": "cdf3efbf6119baba6c52fe0f4b86628b5d764a3db9cff7c22c7172ee72e6dffd",
     "provided_source_pdf_verified": false,
     "source_review_status": "AI-assisted source audit by the collector; named human scientific review and independent-person reproduction pending",
     "submission_file": "incoming/mediation-jones-2024-sparse-mediators-nnn-v1.zip",
-    "submitted_zip_sha256": "12a4f97e983c601ba6180f688e8ea2bb416b8a8279e61652fb4dec313368464e",
+    "submitted_zip_sha256": "ad49d4f447a4c5bef52f14b629d1b4984924e959621419fdd9a02c131f569d3e",
     "reviewed_original_paper": false,
     "submitted_by": "github_file_upload"
   },

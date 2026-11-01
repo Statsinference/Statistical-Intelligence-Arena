@@ -127,8 +127,8 @@
     }
   },
   "estimand": {
-    "name": "beta_0 = E(Y[M{a, C1(a')}, C1(a'), a'])",
-    "definition": "The first term of the path-specific effect of A on Y along the path A -> M -> Y: the exposure is set to the reference level a' = 0 for the outcome AND for the treatment-induced confounder vector C1, while the mediator takes the value it would have had under the comparison level a = 1 with the reference-level confounder C1(a'). The full path-specific effect is P_AMY = beta_0 - E[Y(a')]. This is NOT a natural indirect effect, NOT a natural direct effect and NOT a total effect; the nesting keeps C1 at a' inside the mediator counterfactual, which is what distinguishes this estimand from the standard natural effects.",
+    "name": "P_AMY = E(Y[M{a, C1(a')}, C1(a'), a']) - E[Y(a')]",
+    "definition": "The path-specific effect of A on Y along the path A -> M -> Y, as defined in Section 2 of the source. It is the CONTRAST of two nested counterfactual means: in both arms the treatment-induced confounder vector C1 and the outcome are held at the reference level a' = 0, and only the exposure level fed to the mediator equation moves, from a' = 0 to a = 1. Writing beta_0 = E(Y[M{a, C1(a')}, C1(a'), a']) for the moved arm and E[Y(a')] for the unmoved arm, P_AMY = beta_0 - E[Y(a')]. beta_0 on its own is a counterfactual MEAN, not an effect, and is registered only as a component; the source's Figure 2 plots beta_0, which is why that figure is used as coding evidence rather than as the target. P_AMY is NOT a natural indirect effect, NOT a natural direct effect and NOT a total effect; keeping C1 at a' inside the mediator counterfactual is what distinguishes it from the standard natural effects.",
     "population": null
   },
   "scenarios": [
@@ -191,13 +191,13 @@
         "outcome_sd": 1.0,
         "reference_level": 0,
         "comparison_level": 1,
-        "target": "beta_0"
+        "target": "P_AMY"
       },
       "truth": {
         "status": "reported_numeric",
-        "value": 2.678,
-        "expression": "The first term of the path-specific effect of A on Y along the path A -> M -> Y: the exposure is set to the reference level a' = 0 for the outcome AND for the treatment-induced confounder vector C1, while the mediator takes the value it would have had under the comparison level a = 1 with the reference-level confounder C1(a'). The full path-specific effect is P_AMY = beta_0 - E[Y(a')]. This is NOT a natural indirect effect, NOT a natural direct effect and NOT a total effect; the nesting keeps C1 at a' inside the mediator counterfactual, which is what distinguishes this estimand from the standard natural effects.",
-        "derivation": "Closed form. Each conditional mean is linear with additive mean-zero noise and the nested expectation is affine in C0, so the integral over C0 ~ Uniform(0,2) reduces to substituting E[C0] = 1.",
+        "value": -0.9180000000000001,
+        "expression": "The path-specific effect of A on Y along the path A -> M -> Y, as defined in Section 2 of the source. It is the CONTRAST of two nested counterfactual means: in both arms the treatment-induced confounder vector C1 and the outcome are held at the reference level a' = 0, and only the exposure level fed to the mediator equation moves, from a' = 0 to a = 1. Writing beta_0 = E(Y[M{a, C1(a')}, C1(a'), a']) for the moved arm and E[Y(a')] for the unmoved arm, P_AMY = beta_0 - E[Y(a')]. beta_0 on its own is a counterfactual MEAN, not an effect, and is registered only as a component; the source's Figure 2 plots beta_0, which is why that figure is used as coding evidence rather than as the target. P_AMY is NOT a natural indirect effect, NOT a natural direct effect and NOT a total effect; keeping C1 at a' inside the mediator counterfactual is what distinguishes it from the standard natural effects.",
+        "derivation": "Closed form. Both arms of the contrast come from the same identification formula and differ only in the exposure level fed to the mediator equation; each nested expectation is linear with additive mean-zero noise and affine in C0, so the integral over C0 ~ Uniform(0,2) reduces to substituting E[C0] = 1. The arms are beta_0 = 2.678 and E[Y(a')] = 3.596, so P_AMY = -0.918. Cross-checked by per-arm Simpson and three-dimensional Gauss-Hermite quadrature and by a 400000-unit common-random-number simulation of both nested counterfactuals.",
         "evidence": [
           {
             "file": "checks/report.json",
@@ -209,6 +209,7 @@
   ],
   "source_relation": "adapted_from_source",
   "adaptations": [
+    "CORRECTION (2026-11-01): an earlier version of this contribution registered beta_0 = 2.678 as truth.reference_value while titling the contribution a path-specific effect. beta_0 is a nested counterfactual MEAN; the effect the source defines is P_AMY = beta_0 - E[Y(a')] = -0.918. The generating mechanism and the truth code always distinguished the two quantities and both were reported, but the registered scalar was the wrong one of the pair. The registered target is now the effect; beta_0 and E[Y(a')] are carried as components and anchored in verify.py.",
     "Version used: arXiv:1710.02011v1 preprint; the published journal version was not accessible to the collector, so section and page locators refer to the preprint PDF. The journal volume, issue and pages recorded in the citation come from the Crossref record for DOI 10.1093/biomet/asz063 and were not read by the collector.",
     "The source writes the reference level as a' and the comparison level as a without giving them numerical codes. The registered scenario reads a' = 0 and a = 1. Evidence: the source's Figure 2 y-axis spans 2 to 5 with a dashed line at the true beta_0; the registered mechanism gives beta_0 = 2.678 under a' = 0, a = 1, which falls inside that range, while the opposite reading gives 5.611, which does not. This is the collector's inference and must be confirmed by a reviewer.",
     "Truth method: the source prints no numerical value of beta_0. The registered 2.678 is derived analytically by the collector from the displayed coefficients and must be checked by a reviewer.",
@@ -242,12 +243,12 @@
   ],
   "provenance": {
     "mode": "structured_zip",
-    "archive_sha256": "e026476a66b459a8be914b8dc57cf538f6ff992aa6e1a7bc3f75aba6d682a595",
-    "collection_sha256": "35c6bdd56e27b169cfe5bda7ba1ecc9fe931a1d94769b42fff955b455b3ed747",
+    "archive_sha256": "ac44390eee4cf40f9bca0a2f691d5738d94929a554ace1956aa4e8a8f8333ef5",
+    "collection_sha256": "8afda7a19466fae4fd84beb95788f214f7766777994cc1707e4cce976311e902",
     "provided_source_pdf_verified": false,
     "source_review_status": "AI-assisted source audit by the collector; named human scientific review and independent-person reproduction pending",
     "submission_file": "incoming/mediation-miles-2019-toxicity-path-specific-v1.zip",
-    "submitted_zip_sha256": "e026476a66b459a8be914b8dc57cf538f6ff992aa6e1a7bc3f75aba6d682a595",
+    "submitted_zip_sha256": "ac44390eee4cf40f9bca0a2f691d5738d94929a554ace1956aa4e8a8f8333ef5",
     "reviewed_original_paper": false,
     "submitted_by": "github_file_upload"
   },
