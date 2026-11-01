@@ -4,7 +4,7 @@
 
 > **Draft view:** all automatically extracted records still need human scientific review.
 
-**93 DGP mechanisms**, **198 parameter scenarios**, **67 reference papers**
+**101 DGP mechanisms**, **219 parameter scenarios**, **75 reference papers**
 
 ## Research areas
 
@@ -16,7 +16,7 @@
 | IV — Instrumental Variables | 18 | 21 | [Browse](by-domain/iv.md) |
 | Proximal Causal Inference | 8 | 15 | [Browse](by-domain/proximal.md) |
 | DiD / Synthetic Control | 3 | 3 | [Browse](by-domain/did_sc.md) |
-| Nonparametric Regression | 2 | 2 | [Browse](by-domain/nonparametric_regression.md) |
+| Nonparametric Regression | 9 | 10 | [Browse](by-domain/nonparametric_regression.md) |
 | Quantile Inference | 2 | 3 | [Browse](by-domain/quantile.md) |
 | Semi-Supervised Inference | 10 | 16 | [Browse](by-domain/semi_supervised.md) |
 | Missing Data | 0 | 0 | [Browse](by-domain/missing_data.md) |
@@ -119,12 +119,19 @@ Each paper is listed **once per area**. Generators are source files from the sub
 
 ### [Nonparametric Regression](by-domain/nonparametric_regression.md)
 
-2 paper(s) · 2 DGP mechanism(s)
+9 paper(s) · 10 DGP mechanism(s)
 
 | Paper Title | DGPs | DGP Mechanisms | Keywords | Generator.py |
 |---|---:|---|---|---|
-| [A simple bootstrap method for constructing nonparametric confidence bands for functions](https://doi.org/10.1214/13-aos1137) (AoS) | 1 | [Hall--Horowitz Gaussian bump on a linear trend: pointwise regression-mean inference](drafts/nri-hall-horowitz-2013-gaussian-bump-v1.md) | Nonlinearity | [generator.py](generators/nri-hall-horowitz-2013-gaussian-bump-v1.py) |
+| [A semiparametric model for cluster data](https://doi.org/10.1214/08-aos662) (AoS) | 1 | [Full conditional mean in the two-level varying-coefficient cluster model](drafts/nri-zhangfansun-2009-clustervc-v1.md) | Interactions · Nonlinearity | [generator.py](generators/nri-zhangfansun-2009-clustervc-v1.py) |
+| [A simple bootstrap method for constructing nonparametric confidence bands for functions](https://doi.org/10.1214/13-aos1137) (AoS) | 2 | 1: [Hall--Horowitz Gaussian bump on a linear trend: pointwise regression-mean inference](drafts/nri-hall-horowitz-2013-gaussian-bump-v1.md)<br/>2: [Pointwise conditional-mean query at a fixed interior design point in the Hall and Horowitz (2013) univariate smooth regression design](drafts/nri-hallhorowitz-2013-band-v1.md) | 1: Nonlinearity<br/>2: Nonlinearity | [1: generator.py](generators/nri-hall-horowitz-2013-gaussian-bump-v1.py)<br/>[2: generator.py](generators/nri-hallhorowitz-2013-band-v1.py) |
+| [Confidence bands in nonparametric time series regression](https://doi.org/10.1214/07-aos533) (AoS) | 1 | [Conditional mean of the nonlinear AR(1) regression in the Zhao–Wu simultaneous confidence band simulation](drafts/nri-zhao-wu-2008-ar1scb-v1.md) | Nonlinearity | [generator.py](generators/nri-zhao-wu-2008-ar1scb-v1.py) |
+| [Coverage of credible intervals in Bayesian multivariate isotonic regression](https://doi.org/10.1214/23-aos2298) (AoS) | 1 | [Pointwise conditional mean in the bivariate isotonic regression design of Wang and Ghosal (2023), Section 5.2](drafts/nri-wangghosal-2023-isotonic-v1.md) | Interactions · Nonlinearity | [generator.py](generators/nri-wangghosal-2023-isotonic-v1.py) |
+| [Estimation and testing for partially linear single-index models](https://doi.org/10.1214/10-aos835) (AoS) | 1 | [Pointwise conditional mean in the Liang-Liu-Li-Tsai partially linear single-index design](drafts/nri-liangliu-2010-singleindex-v1.md) | Interactions · Nonlinearity | [generator.py](generators/nri-liangliu-2010-singleindex-v1.py) |
+| [Local and global asymptotic inference in smoothing spline models](https://doi.org/10.1214/13-aos1164) (AoS) | 1 | [Pointwise conditional mean in the Shang–Cheng smoothing-spline design](drafts/nri-shangcheng-2013-spline-v1.md) | Nonlinearity | [generator.py](generators/nri-shangcheng-2013-spline-v1.py) |
 | [On the Effect of Bias Estimation on Coverage Accuracy in Nonparametric Inference](https://doi.org/10.1080/01621459.2017.1285776) (JASA) | 1 | [DGP nri-calonico-2018-asymmetric-sine-v1 (English title required)](drafts/nri-calonico-2018-asymmetric-sine-v1.md) | Nonlinearity | [generator.py](generators/nri-calonico-2018-asymmetric-sine-v1.py) |
+| [Smooth backfitting in generalized additive models](https://doi.org/10.1214/009053607000000596) (AoS) | 1 | [Pointwise binary-response and count-response mean in the Yu-Park-Mammen smooth-backfitting GAM design](drafts/nri-yuparkmammen-2008-binarygam-v1.md) | Nonlinearity | [generator.py](generators/nri-yuparkmammen-2008-binarygam-v1.py) |
+| [Spline-backfitted kernel smoothing of nonlinear additive autoregression model](https://doi.org/10.1214/009053607000000488) (AoS) | 1 | [Pointwise conditional mean in the Wang-Yang (2007) d=30 additive heteroscedastic design](drafts/nri-wangyang-2007-hdadditive-v1.md) | Nonlinearity | [generator.py](generators/nri-wangyang-2007-hdadditive-v1.py) |
 
 ### [Quantile Inference](by-domain/quantile.md)
 

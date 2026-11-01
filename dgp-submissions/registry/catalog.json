@@ -1,8 +1,8 @@
 {
   "status": "draft_needs_review",
-  "paper_count": 67,
-  "mechanism_count": 93,
-  "scenario_count": 198,
+  "paper_count": 75,
+  "mechanism_count": 101,
+  "scenario_count": 219,
   "domains": {
     "ate": 22,
     "cate": 2,
@@ -10,7 +10,7 @@
     "iv": 21,
     "proximal": 15,
     "did_sc": 3,
-    "nonparametric_regression": 2,
+    "nonparametric_regression": 10,
     "quantile": 3,
     "semi_supervised": 16,
     "missing_data": 0
@@ -2413,6 +2413,215 @@
       "status": "needs_scientific_review"
     },
     {
+      "record_id": "nri-hallhorowitz-2013-band-v1",
+      "domain": "nonparametric_regression",
+      "paper": "Hall, P. and Horowitz, J. L. (2013). A simple bootstrap method for constructing nonparametric confidence bands for functions. The Annals of Statistics 41(4), 1892-1921. DOI: 10.1214/13-AOS1137.",
+      "mechanism": "Pointwise conditional-mean query at a fixed interior design point in the Hall and Horowitz (2013) univariate smooth regression design",
+      "paper_title": "A simple bootstrap method for constructing nonparametric confidence bands for functions",
+      "venue_abbreviation": "AoS",
+      "keywords": [
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/nri-hallhorowitz-2013-band-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "g1-sigma1: m(x0) = E[Y \\| X = x0] = g_j(x0) = 1.9947114020071635; g2-sigma05: m(x0) = E[Y \\| X = x0] = g_j(x0) = 0.23294536334790983; g3-sigma02: m(x0) = E[Y \\| X = x0] = g_j(x0) = 0.3535533905932738",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "nri-liangliu-2010-singleindex-v1",
+      "domain": "nonparametric_regression",
+      "paper": "Liang, H., Liu, X., Li, R. and Tsai, C.-L. (2010). Estimation and testing for partially linear single-index models. The Annals of Statistics 38(6), 3811-3836. DOI: 10.1214/10-AOS835.",
+      "mechanism": "Pointwise conditional mean in the Liang-Liu-Li-Tsai partially linear single-index design",
+      "paper_title": "Estimation and testing for partially linear single-index models",
+      "venue_abbreviation": "AoS",
+      "keywords": [
+        "Interactions",
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Interactions",
+          "source": "mechanism.properties.interactions",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/nri-liangliu-2010-singleindex-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "index-mid-x0: eta(z0'alpha) + x0*beta = E[Y \\| Z = z0, X = x0] = 0.9818328784088086; index-mid-x1: eta(z0'alpha) + x0*beta = E[Y \\| Z = z0, X = x0] = 1.2818328784088087; index-low-x0: eta(z0'alpha) + x0*beta = E[Y \\| Z = z0, X = x0] = 0.8402560393492512; index-high-x1: eta(z0'alpha) + x0*beta = E[Y \\| Z = z0, X = x0] = 0.47575809676587577",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "nri-shangcheng-2013-spline-v1",
+      "domain": "nonparametric_regression",
+      "paper": "Shang, Z. and Cheng, G. (2013). Local and global asymptotic inference in smoothing spline models. The Annals of Statistics 41(5), 2608–2638. DOI: 10.1214/13-AOS1164.",
+      "mechanism": "Pointwise conditional mean in the Shang–Cheng smoothing-spline design",
+      "paper_title": "Local and global asymptotic inference in smoothing spline models",
+      "venue_abbreviation": "AoS",
+      "keywords": [
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/nri-shangcheng-2013-spline-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "peak-mode: g0(z0) = E[Y \\| Z = z0] = 3.406258317314956; query-z0-050: g0(z0) = E[Y \\| Z = z0] = 0.5910281636814358",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "nri-wangghosal-2023-isotonic-v1",
+      "domain": "nonparametric_regression",
+      "paper": "Wang, K. and Ghosal, S. (2023). Coverage of credible intervals in Bayesian multivariate isotonic regression. The Annals of Statistics 51(3), 1376-1400. DOI: 10.1214/23-AOS2298. Author preprint arXiv:2211.12566.",
+      "mechanism": "Pointwise conditional mean in the bivariate isotonic regression design of Wang and Ghosal (2023), Section 5.2",
+      "paper_title": "Coverage of credible intervals in Bayesian multivariate isotonic regression",
+      "venue_abbreviation": "AoS",
+      "keywords": [
+        "Interactions",
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Interactions",
+          "source": "mechanism.properties.interactions",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/nri-wangghosal-2023-isotonic-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "original-f1: f_k(x0) = E[Y \\| X = x0] = 1.0; original-f2: f_k(x0) = E[Y \\| X = x0] = 1.0; original-f3: f_k(x0) = E[Y \\| X = x0] = 0.25; original-f4: f_k(x0) = E[Y \\| X = x0] = 2.718281828459045; original-f5: f_k(x0) = E[Y \\| X = x0] = 1.2840254166877414",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "nri-wangyang-2007-hdadditive-v1",
+      "domain": "nonparametric_regression",
+      "paper": "Wang, L. and Yang, L. (2007). Spline-backfitted kernel smoothing of nonlinear additive autoregression model. The Annals of Statistics 35(6), 2474-2503. DOI: 10.1214/009053607000000488.",
+      "mechanism": "Pointwise conditional mean in the Wang-Yang (2007) d=30 additive heteroscedastic design",
+      "paper_title": "Spline-backfitted kernel smoothing of nonlinear additive autoregression model",
+      "venue_abbreviation": "AoS",
+      "keywords": [
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/nri-wangyang-2007-hdadditive-v1.py",
+      "latent_variables": [
+        "Z_s"
+      ],
+      "truth_by_scenario": "original-sigma01: m(x0) = E[Y \\| X = x0] = sum_{alpha=1}^{30} sin(pi * x0_alpha / 2.5) = 1.0; origin-query: m(x0) = E[Y \\| X = x0] = sum_{alpha=1}^{30} sin(pi * x0_alpha / 2.5) = 0.0",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "nri-yuparkmammen-2008-binarygam-v1",
+      "domain": "nonparametric_regression",
+      "paper": "Yu, K., Park, B. U. and Mammen, E. (2008). Smooth backfitting in generalized additive models. The Annals of Statistics 36(1), 228-260. DOI: 10.1214/009053607000000596.",
+      "mechanism": "Pointwise binary-response and count-response mean in the Yu-Park-Mammen smooth-backfitting GAM design",
+      "paper_title": "Smooth backfitting in generalized additive models",
+      "venue_abbreviation": "AoS",
+      "keywords": [
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/nri-yuparkmammen-2008-binarygam-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "original-bernoulli: m(x0) = E[Y \\| X = x0] = 0.8519528019683106; original-poisson: m(x0) = E[Y \\| X = x0] = 5.754602676005731",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "nri-zhangfansun-2009-clustervc-v1",
+      "domain": "nonparametric_regression",
+      "paper": "Zhang, W., Fan, J. and Sun, Y. (2009). A semiparametric model for cluster data. The Annals of Statistics 37(5A), 2377-2408. DOI: 10.1214/08-AOS662.",
+      "mechanism": "Full conditional mean in the two-level varying-coefficient cluster model",
+      "paper_title": "A semiparametric model for cluster data",
+      "venue_abbreviation": "AoS",
+      "keywords": [
+        "Interactions",
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Interactions",
+          "source": "mechanism.properties.interactions",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/nri-zhangfansun-2009-clustervc-v1.py",
+      "latent_variables": [
+        "e_i"
+      ],
+      "truth_by_scenario": "original-sigma05: m(u0,x0,z0)=E[Y\\|U=u0,X=x0,Z=z0] = 1.0",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "nri-zhao-wu-2008-ar1scb-v1",
+      "domain": "nonparametric_regression",
+      "paper": "Zhao, Z. and Wu, W. B. (2008). Confidence bands in nonparametric time series regression. The Annals of Statistics 36(4), 1854-1878. DOI: 10.1214/07-AOS533.",
+      "mechanism": "Conditional mean of the nonlinear AR(1) regression in the Zhao–Wu simultaneous confidence band simulation",
+      "paper_title": "Confidence bands in nonparametric time series regression",
+      "venue_abbreviation": "AoS",
+      "keywords": [
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/nri-zhao-wu-2008-ar1scb-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "original-s04: mu(x0) = E[Y_i \\| X_i = x0] = 0.9*sin(x0) = 0.4314829847437827; interior-anchor: mu(x0) = E[Y_i \\| X_i = x0] = 0.9*sin(x0) = 0.0",
+      "status": "needs_scientific_review"
+    },
+    {
       "record_id": "proximal-cui-2023-04-18-gaussian-v2",
       "domain": "proximal",
       "paper": "Yifan Cui, Hongming Pu, Xu Shi, Wang Miao, Eric Tchetgen Tchetgen (2024). Semiparametric Proximal Causal Inference. Journal of the American Statistical Association, 119(546), 1348-1359. DOI: 10.1080/01621459.2023.2191817.",
@@ -2804,8 +3013,8 @@
   ],
   "intake": {
     "status": "success",
-    "zip_count": 49,
-    "indexed_dgp_count": 93,
+    "zip_count": 57,
+    "indexed_dgp_count": 101,
     "failure_count": 0,
     "stale_record_ids": [],
     "scientific_validation": "not_performed"

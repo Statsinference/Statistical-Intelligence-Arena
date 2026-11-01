@@ -1,0 +1,206 @@
+{
+  "schema_version": "0.1",
+  "record_id": "nri-hallhorowitz-2013-band-v1",
+  "kind": "synthetic_dgp",
+  "domain": "nonparametric_regression",
+  "english_display": {},
+  "paper": {
+    "citation": "Hall, P. and Horowitz, J. L. (2013). A simple bootstrap method for constructing nonparametric confidence bands for functions. The Annals of Statistics 41(4), 1892-1921. DOI: 10.1214/13-AOS1137.",
+    "title": null,
+    "doi": null,
+    "source_url": "https://arxiv.org/abs/1309.4864v1",
+    "source_file_evidence": [],
+    "venue": "The Annals of Statistics",
+    "year": 2013,
+    "source_version": null,
+    "source_locator": "Formula bodies: (2.1) on PDF p.4. Section starts: Section 2.1 on PDF p.4, Section 3 on PDF p.13, Section 3.1 on PDF p.13, Section 3.2 on PDF p.14. Unnumbered paragraph on PDF p.13: \"For n = 100, 200 or 400\" (three g functions, n, sigma, distribution and repetition parameters). Unnumbered paragraph on PDF p.14: \"a proportion of values\" (evaluation interval [-0.9,0.9]). All PDF pages are 1-based pages of the fixed reading file 1309.4864v1. No printed journal page is inferred by adding an offset."
+  },
+  "mechanism": {
+    "name": "Pointwise conditional-mean query at a fixed interior design point in the Hall and Horowitz (2013) univariate smooth regression design",
+    "title_en": null,
+    "family_id": "hall-horowitz-2013-univariate-smooth-band",
+    "generation_equations": [
+      {
+        "label": "1. Observed design",
+        "expression": "X_i iid Uniform(-1,1). Source support -1..1; one scalar covariate per row."
+      },
+      {
+        "label": "2. Mean function",
+        "expression": "g1(x)=x+5*exp(-50*x^2)/sqrt(2*pi); g2(x)=sin(3*pi*x/2)/(1+18*x^2*(sgn(x)+1)); g3(x)=sin(pi*x/2)/(1+2*x^2*(sgn(x)+1)). Deterministic; sgn(x)=-1/0/1 for x<0/=0/>0. All coefficients are from the source unnumbered functions."
+      },
+      {
+        "label": "3. Regression error",
+        "expression": "epsilon_i iid N(0,sigma^2), independent of X; registered pairs are (g1,sigma=1),(g2,0.5),(g3,0.2). sigma is a standard deviation, not a variance; the source has a full 3-by-3 design."
+      },
+      {
+        "label": "4. Observed response",
+        "expression": "Y_i=g_j(X_i)+epsilon_i; return X,Y. No extra noise, latent mean or oracle column."
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "X",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-1",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [],
+    "latent_variables_status": "not_explicitly_specified",
+    "sampling": {
+      "unit": "One scalar covariate/outcome pair (X_i, Y_i), one observation per independent unit",
+      "dependence": "iid across i with no within-cluster correlation; X_i is drawn independently of epsilon_i, so observations share nothing beyond the fixed DGP parameters"
+    },
+    "assumptions": [
+      "Independent and identically distributed pairs (X_i, Y_i); no clustering, serial dependence, spatial or network interference is present.",
+      "X_i is drawn uniformly on [-1,1], so its density is bounded away from zero at every interior query point used here and local smoothing has design points on both sides of x0.",
+      "epsilon_i ~ N(0, sigma^2) is independent of X_i and additive, so no correction for heteroskedasticity, measurement error or endogenous regressors is required to identify E[Y | X = x0].",
+      "g_j is bounded on [-1,1] and smooth enough for the local-polynomial regularity assumed in Section 2 of the source; g2 and g3 are continuous at x = 0 where the sign convention switches.",
+      "The query point x0 is fixed interior to the support and chosen before seeing data; pointwise verification at one or several x0 does not establish simultaneous coverage over the source evaluation interval [-0.9, 0.9].",
+      "This is a non-causal regression target: no intervention, exposure, exchangeability or counterfactual consistency assumption is claimed."
+    ],
+    "properties": {
+      "dimension": 1,
+      "effective_dimension": 1,
+      "observed_columns": 2,
+      "high_dimensional": false,
+      "interactions": false,
+      "nonlinear": true,
+      "notes": "The single covariate X is the only input, so dimension = effective_dimension = 1 and high_dimensional is false relative to the source sample sizes n = 100, 200, 400. interactions is false: the mean depends on X through one univariate function with no product term between covariates. nonlinear is true for two explicit reasons: g1 adds a narrow Gaussian spike 5*phi(10x) = 5*exp(-50x^2)/sqrt(2*pi) (effective bandwidth 0.1) to a linear trend, and g2/g3 are sign-split rational sine functions whose denominator is 1 for x<0 (sgn(x)+1=0); at x=0 that factor equals 1 but x^2=0, so the denominator remains 1. For x > 0 the denominator is 1 + 2*a*x^2 with a = 18 (g2) and a = 2 (g3). The observed columns are only X and Y; the noise draw is not exported."
+    }
+  },
+  "estimand": {
+    "name": "m(x0) = E[Y | X = x0] = g_j(x0)",
+    "definition": "The value of the conditional mean function at one fixed interior design point x0 specified per scenario, in the superpopulation defined by the declared regression model with X uniform on [-1,1] and additive N(0, sigma^2) noise. This is a pointwise scalar query, not a simultaneous confidence band and not a coverage claim over any interval.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "g1-sigma1",
+      "parameters": {
+        "source_case": "g1-sigma1",
+        "function": "g1",
+        "sigma": 1.0,
+        "support_min": -1.0,
+        "support_max": 1.0,
+        "query_x": 0.0
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 1.9947114020071635,
+        "expression": "The value of the conditional mean function at one fixed interior design point x0 specified per scenario, in the superpopulation defined by the declared regression model with X uniform on [-1,1] and additive N(0, sigma^2) noise. This is a pointwise scalar query, not a simultaneous confidence band and not a coverage claim over any interval.",
+        "derivation": "Closed-form substitution of the scenario query point into g_j, with phi(10x) = exp(-50x^2)/sqrt(2*pi) evaluated directly and sgn(x) applied branch-wise; a single elementary evaluation, so the reported error is a floating-point rounding allowance rather than a quadrature or Monte Carlo error estimate. Reported estimated_error is 1e-12.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[g1-sigma1].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "g2-sigma05",
+      "parameters": {
+        "source_case": "g2-sigma05",
+        "function": "g2",
+        "sigma": 0.5,
+        "support_min": -1.0,
+        "support_max": 1.0,
+        "query_x": 0.3
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.23294536334790983,
+        "expression": "The value of the conditional mean function at one fixed interior design point x0 specified per scenario, in the superpopulation defined by the declared regression model with X uniform on [-1,1] and additive N(0, sigma^2) noise. This is a pointwise scalar query, not a simultaneous confidence band and not a coverage claim over any interval.",
+        "derivation": "Closed-form substitution of the scenario query point into g_j, with phi(10x) = exp(-50x^2)/sqrt(2*pi) evaluated directly and sgn(x) applied branch-wise; a single elementary evaluation, so the reported error is a floating-point rounding allowance rather than a quadrature or Monte Carlo error estimate. Reported estimated_error is 1e-12.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[g2-sigma05].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "g3-sigma02",
+      "parameters": {
+        "source_case": "g3-sigma02",
+        "function": "g3",
+        "sigma": 0.2,
+        "support_min": -1.0,
+        "support_max": 1.0,
+        "query_x": 0.5
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.3535533905932738,
+        "expression": "The value of the conditional mean function at one fixed interior design point x0 specified per scenario, in the superpopulation defined by the declared regression model with X uniform on [-1,1] and additive N(0, sigma^2) noise. This is a pointwise scalar query, not a simultaneous confidence band and not a coverage claim over any interval.",
+        "derivation": "Closed-form substitution of the scenario query point into g_j, with phi(10x) = exp(-50x^2)/sqrt(2*pi) evaluated directly and sgn(x) applied branch-wise; a single elementary evaluation, so the reported error is a floating-point rounding allowance rather than a quadrature or Monte Carlo error estimate. Reported estimated_error is 1e-12.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[g3-sigma02].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "Select three cells of the source's 3-by-3 g_j by sigma design: (g1,1), (g2,0.5), (g3,0.2).",
+    "Replace the source pointwise confidence-band/coverage study over an interval by the scalar response mean m(x0); add x0=0,.3,.5. The source is not described as a conventional all-points simultaneous-coverage experiment.",
+    "Use the interface's requested n and CPU checks, without fitting estimators or reproducing coverage."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "generator.py",
+    "truth_reference": "truth.py",
+    "source_archive": "nri-hallhorowitz-2013-band-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/nri-hallhorowitz-2013-band-v1.py",
+    "exported_generator_sha256": "34b42368a35dcc28fccff6925efe04fd7eb438c19b57083ee5e1468222e70343"
+  },
+  "evidence": [
+    {
+      "file": "collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "b0d02d0244d6f526e2599535f9407980659e701aa1e7484bc5ce33861790a821",
+    "collection_sha256": "2dd32bb61aa9e9afabcbd2aacd03b430da487c4a68595c7b913c6a2c991f9807",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/nri-hallhorowitz-2013-band-v1.zip",
+    "submitted_zip_sha256": "b0d02d0244d6f526e2599535f9407980659e701aa1e7484bc5ce33861790a821",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "No explicit latent-variable metadata or reliably identifiable latent declarations; absence from this list does not prove that no latent variables exist."
+  ],
+  "source_suggested_domain": "nonparametric_regression",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

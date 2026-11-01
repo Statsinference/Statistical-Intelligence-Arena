@@ -1,0 +1,296 @@
+{
+  "schema_version": "0.1",
+  "record_id": "nri-liangliu-2010-singleindex-v1",
+  "kind": "synthetic_dgp",
+  "domain": "nonparametric_regression",
+  "english_display": {},
+  "paper": {
+    "citation": "Liang, H., Liu, X., Li, R. and Tsai, C.-L. (2010). Estimation and testing for partially linear single-index models. The Annals of Statistics 38(6), 3811-3836. DOI: 10.1214/10-AOS835.",
+    "title": null,
+    "doi": null,
+    "source_url": "https://arxiv.org/pdf/1211.3509v1",
+    "source_file_evidence": [],
+    "venue": "The Annals of Statistics",
+    "year": 2010,
+    "source_version": null,
+    "source_locator": "Formula bodies: (2.1) on PDF p.3, (4.2) on PDF p.10. Section starts: Section 2 on PDF p.3, Section 2.1 on PDF p.3, Section 4 on PDF p.10, Section Example4.1 on PDF p.10, Section Table2 on PDF p.11. Unnumbered paragraph on PDF p.10: \"We generated 500 realizations\" (Example4.1 repetition count and sample-size grid). Unnumbered paragraph on PDF p.10: \"where z1,z2,z3 are independent\" (covariate laws, odd/even X, epsilon distribution, a,b and resulting alpha,beta). All PDF pages are 1-based pages of the fixed reading file 1211.3509v1. No printed journal page is inferred by adding an offset."
+  },
+  "mechanism": {
+    "name": "Pointwise conditional mean in the Liang-Liu-Li-Tsai partially linear single-index design",
+    "title_en": null,
+    "family_id": "liang-liu-2010-partially-linear-single-index",
+    "generation_equations": [
+      {
+        "label": "1. Continuous design",
+        "expression": "For each row i=1..n, independently draw Z_i1,Z_i2,Z_i3 iid Uniform(0,1). Three independent source uniforms; no truncation of the resulting index."
+      },
+      {
+        "label": "2. Fixed binary design",
+        "expression": "Set X_i=0 for odd i, X_i=1 for even i (1-based row index). Deterministic source design; no Bernoulli random draw, no added index column, no new noise."
+      },
+      {
+        "label": "3. Single index",
+        "expression": "t_i=(Z_i1+Z_i2+Z_i3)/sqrt(3), with 0<=t_i<=sqrt(3). Weights 1/sqrt(3), stored as their finite JSON approximations; 0.5774 is only a four-decimal display."
+      },
+      {
+        "label": "4. Mean function",
+        "expression": "m_i=sin(pi*(t_i-0.3912)/(1.3409-0.3912))+0.3*X_i. Deterministic; a,b are phase/scale constants, not truncation limits. Sine can be negative outside [a,b]."
+      },
+      {
+        "label": "5. Innovation",
+        "expression": "epsilon_i iid N(0,1), independent of all design uniforms. Source multiplier 0.1 gives noise sd=0.1 and variance=0.01; it is applied once."
+      },
+      {
+        "label": "6. Response and export",
+        "expression": "Y_i=m_i+0.1*epsilon_i; export Z1,Z2,Z3,X,Y in row order. No index t, noiseless mean or noise column is returned."
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "Z1",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Z2",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Z3",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X",
+        "role": "covariate",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [],
+    "latent_variables_status": "not_explicitly_specified",
+    "sampling": {
+      "unit": "one independent observed row (Z1,Z2,Z3,X,Y), preserving 1-based row order",
+      "dependence": "Independent rows with deterministic alternating X: odd rows 0, even rows 1. They are not identically distributed. Z draws and errors are independent across rows; there is no cluster/Markov dependence."
+    },
+    "assumptions": [
+      "For each row, Z1,Z2,Z3 are independent Uniform(0,1); uniforms and zero-mean Gaussian errors are independent across rows.",
+      "X is fixed by the 1-based row index: odd rows 0, even rows 1. Rows are independent but not identically distributed; no stochastic Bernoulli design or causal treatment assignment is introduced.",
+      "With fixed design X, the common regression function is m(z,x)=sin(pi*((z1+z2+z3)/sqrt(3)-a)/(b-a))+beta*x. Independent centred errors identify this function in both X groups.",
+      "The source formula uses the full index support [0,sqrt(3)]; a=.3912 and b=1.3409 are phase/scale constants, not clipping, truncation or domain limits.",
+      "Complete queries fix Z1,Z2,Z3 and X in config. All queries have valid Z in [0,1]^3 and binary X. The n>=2 interface check has both fixed X levels; this is pointwise mean verification, not a confidence-band result."
+    ],
+    "properties": {
+      "dimension": 4,
+      "effective_dimension": 4,
+      "observed_columns": 5,
+      "high_dimensional": false,
+      "interactions": true,
+      "nonlinear": true,
+      "notes": "Four observed input covariates Z1,Z2,Z3,X all affect the full conditional mean; dimension=effective_dimension=4 as the student guide defines active covariates. The continuous nonparametric component has one structural index, a separate notion from the number of active covariates. With k=pi/(b-a), mixed derivatives across distinct Z coordinates are -k^2*w_j*w_l*sin(k*(t-a)), generally nonzero, so the mean has nonadditive Z-Z interactions. X enters only as beta*X, with no X-Z interaction. d=4 is small relative to source n50/100/200. The index t is not an exported column."
+    }
+  },
+  "estimand": {
+    "name": "eta(z0'alpha) + x0*beta = E[Y | Z = z0, X = x0]",
+    "definition": "The scalar conditional mean at the scenario's fixed covariate query (z0, x0). The nonparametric component is evaluated at the single-index value t0 = z0'alpha with alpha = (1,1,1)/sqrt(3); the linear component contributes x0*beta. This is a pointwise target, not a curve-level or band target.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "index-mid-x0",
+      "parameters": {
+        "sigma": 0.1,
+        "beta": 0.3,
+        "a": 0.3912,
+        "b": 1.3409,
+        "index_weights": [
+          0.5773502691896258,
+          0.5773502691896258,
+          0.5773502691896258
+        ],
+        "query_z": [
+          0.2,
+          0.5,
+          0.9
+        ],
+        "query_x": 0
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.9818328784088086,
+        "expression": "The scalar conditional mean at the scenario's fixed covariate query (z0, x0). The nonparametric component is evaluated at the single-index value t0 = z0'alpha with alpha = (1,1,1)/sqrt(3); the linear component contributes x0*beta. This is a pointwise target, not a curve-level or band target.",
+        "derivation": "Closed-form evaluation of sin((t0-a)*pi/(b-a)) with t0 = z0'alpha plus x0*beta at the fixed query.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[index-mid-x0].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "index-mid-x1",
+      "parameters": {
+        "sigma": 0.1,
+        "beta": 0.3,
+        "a": 0.3912,
+        "b": 1.3409,
+        "index_weights": [
+          0.5773502691896258,
+          0.5773502691896258,
+          0.5773502691896258
+        ],
+        "query_z": [
+          0.2,
+          0.5,
+          0.9
+        ],
+        "query_x": 1
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 1.2818328784088087,
+        "expression": "The scalar conditional mean at the scenario's fixed covariate query (z0, x0). The nonparametric component is evaluated at the single-index value t0 = z0'alpha with alpha = (1,1,1)/sqrt(3); the linear component contributes x0*beta. This is a pointwise target, not a curve-level or band target.",
+        "derivation": "Closed-form evaluation of sin((t0-a)*pi/(b-a)) with t0 = z0'alpha plus x0*beta at the fixed query.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[index-mid-x1].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "index-low-x0",
+      "parameters": {
+        "sigma": 0.1,
+        "beta": 0.3,
+        "a": 0.3912,
+        "b": 1.3409,
+        "index_weights": [
+          0.5773502691896258,
+          0.5773502691896258,
+          0.5773502691896258
+        ],
+        "query_z": [
+          0.3,
+          0.4,
+          0.5
+        ],
+        "query_x": 0
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.8402560393492512,
+        "expression": "The scalar conditional mean at the scenario's fixed covariate query (z0, x0). The nonparametric component is evaluated at the single-index value t0 = z0'alpha with alpha = (1,1,1)/sqrt(3); the linear component contributes x0*beta. This is a pointwise target, not a curve-level or band target.",
+        "derivation": "Closed-form evaluation of sin((t0-a)*pi/(b-a)) with t0 = z0'alpha plus x0*beta at the fixed query.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[index-low-x0].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "index-high-x1",
+      "parameters": {
+        "sigma": 0.1,
+        "beta": 0.3,
+        "a": 0.3912,
+        "b": 1.3409,
+        "index_weights": [
+          0.5773502691896258,
+          0.5773502691896258,
+          0.5773502691896258
+        ],
+        "query_z": [
+          0.68,
+          0.75,
+          0.8
+        ],
+        "query_x": 1
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.47575809676587577,
+        "expression": "The scalar conditional mean at the scenario's fixed covariate query (z0, x0). The nonparametric component is evaluated at the single-index value t0 = z0'alpha with alpha = (1,1,1)/sqrt(3); the linear component contributes x0*beta. This is a pointwise target, not a curve-level or band target.",
+        "derivation": "Closed-form evaluation of sin((t0-a)*pi/(b-a)) with t0 = z0'alpha plus x0*beta at the fixed query.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[index-high-x1].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "Retain model (4.2), independent U(0,1) Z coordinates, source 1-based fixed odd/even X=0/1, exact index formula (Z1+Z2+Z3)/sqrt(3), beta=.3, a=.3912, b=1.3409 and error sd=.1. Weights are stored as finite JSON approximations to 1/sqrt(3); .5774 in the source is its four-decimal display.",
+    "Select four fixed complete queries (Z1,Z2,Z3,X) and target their scalar conditional response means. These queries are contribution choices, not source experiment parameters.",
+    "Use the requested interface row count rather than only source n=50/100/200. Preserve alternating X in numeric list order; a separate index column is unnecessary. Source 500 estimator repetitions, profile least squares, SCAD and tests are not executed."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "generator.py",
+    "truth_reference": "truth.py",
+    "source_archive": "nri-liangliu-2010-singleindex-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/nri-liangliu-2010-singleindex-v1.py",
+    "exported_generator_sha256": "e4ea461991c1ee470566ccb7a107c1629339a20a547834ae56ce9af60b0989bf"
+  },
+  "evidence": [
+    {
+      "file": "collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "38efe7d60d1dbaad313fcec71cba6bbe6047d468ed344651714c26d58df178b6",
+    "collection_sha256": "13cc2d5f3b1dd39f8b1bf45c2941af06bc55df6d7b0c5b71325def755e3215c6",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/nri-liangliu-2010-singleindex-v1.zip",
+    "submitted_zip_sha256": "38efe7d60d1dbaad313fcec71cba6bbe6047d468ed344651714c26d58df178b6",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "No explicit latent-variable metadata or reliably identifiable latent declarations; absence from this list does not prove that no latent variables exist."
+  ],
+  "source_suggested_domain": "nonparametric_regression",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

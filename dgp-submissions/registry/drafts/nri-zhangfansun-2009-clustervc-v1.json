@@ -1,0 +1,243 @@
+{
+  "schema_version": "0.1",
+  "record_id": "nri-zhangfansun-2009-clustervc-v1",
+  "kind": "synthetic_dgp",
+  "domain": "nonparametric_regression",
+  "english_display": {},
+  "paper": {
+    "citation": "Zhang, W., Fan, J. and Sun, Y. (2009). A semiparametric model for cluster data. The Annals of Statistics 37(5A), 2377-2408. DOI: 10.1214/08-AOS662.",
+    "title": null,
+    "doi": null,
+    "source_url": "https://arxiv.org/abs/0908.3382v1",
+    "source_file_evidence": [],
+    "venue": "The Annals of Statistics",
+    "year": 2009,
+    "source_version": null,
+    "source_locator": "Formula bodies: (1.4) on PDF p.4. Section starts: Section 5 on PDF p.13. Unnumbered paragraph on PDF p.13: \"In model (1.4), we take\" (dimensions, cluster sizes, all distributions and coefficient functions). All PDF pages are 1-based pages of the fixed reading file 0908.3382v1. No printed journal page is inferred by adding an offset."
+  },
+  "mechanism": {
+    "name": "Full conditional mean in the two-level varying-coefficient cluster model",
+    "title_en": null,
+    "family_id": "zhang-fan-sun-2009-cluster-varying-coefficient",
+    "generation_equations": [
+      {
+        "label": "1. Cluster size and row budget",
+        "expression": "For each cluster draw xi_i~N(0,1) and source candidate size floor(2*abs(xi_i)+6); apply the declared fixed-n terminal-budget rule. Source base=6, scale=2; when remaining<12, the terminal cluster takes the remaining rows. Other oversized draws also absorb the remaining budget."
+      },
+      {
+        "label": "2. Cluster covariates",
+        "expression": "Z_i~N(0,I_2), one two-vector shared by all rows of cluster i. Mean zero, each sd=1, independent components and independent cluster draws."
+      },
+      {
+        "label": "3. Random coefficients",
+        "expression": "e_i~N(0,0.25*I_3), shared within cluster and independent of Z_i. Each random-effect sd=0.5; not observed/exported."
+      },
+      {
+        "label": "4. Individual index",
+        "expression": "U_ij~Uniform(0,1), newly drawn for each individual. Independent of cluster variables and other individual draws."
+      },
+      {
+        "label": "5. Individual covariates",
+        "expression": "X_ij~N(0,I_3), newly drawn for each individual. Each sd=1; independent coordinates and independent of U,Z,e."
+      },
+      {
+        "label": "6. Coefficient functions",
+        "expression": "beta0(u)=sin(2*pi*u); beta(u)=ones(2)*sin(2*pi*u); alpha0(u)=ones(3)*sin(2*pi*u); alpha1(u)=ones(3)*cos(2*pi*u); alpha2(u)=ones(3)*sin(pi*u); a_i(u)=alpha0(u)+alpha1(u)*Z_i1+alpha2(u)*Z_i2+e_i. Deterministic functions of current u and shared Z/e. Follow the source simulation paragraph including beta0."
+      },
+      {
+        "label": "7. Measurement error",
+        "expression": "epsilon_ij~N(0,0.5^2), independent of all previous variables and errors. Measurement-error sd=0.5."
+      },
+      {
+        "label": "8. Outcome and observed columns",
+        "expression": "Y_ij=beta0(U_ij)+X_ij^T*a_i(U_ij)+Z_i^T*beta(U_ij)+epsilon_ij; return cluster,U,X1,X2,X3,Z1,Z2,Y. Independent cluster-level Z/e draws induce shared within-cluster effects; sizes are coupled by the n-row budget."
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "cluster",
+        "role": "cluster_id",
+        "dtype": "integer",
+        "min": "1",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "U",
+        "role": "index_variable",
+        "dtype": "float",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X1",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X2",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X3",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Z1",
+        "role": "cluster_covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Z2",
+        "role": "cluster_covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [
+      {
+        "name": "e_i",
+        "role": "latent_candidate",
+        "evidence": {
+          "file": "collection.json",
+          "equation_index": 2,
+          "expression": "e_i~N(0,0.25*I_3), shared within cluster and independent of Z_i. Each random-effect sd=0.5"
+        },
+        "provenance": "inferred_from_stochastic_declaration"
+      }
+    ],
+    "latent_variables_status": "candidates_from_equations_need_review",
+    "sampling": {
+      "unit": "A numeric row for one individual, retaining its cluster identifier. The interface fixes n individuals rather than the source m=100 clusters. The terminal cluster absorbs the row budget; all clusters have at least 6 rows when n>=6, while n<6 produces one smaller budget cluster.",
+      "dependence": "Shared Z_i and random effect e_i induce within-cluster dependence. Independent per-cluster Z/e draws; fixed total n couples cluster sizes and determines the terminal budget cluster. Preserve cluster identifiers in analysis."
+    },
+    "assumptions": [
+      "Random effect e~N(0,0.25*I3) is independent of X,Z,U and has mean zero.",
+      "Errors are independent N(0,0.5^2). Individual covariates are independent N(0,I3), cluster covariates N(0,I2), and U is Uniform(0,1).",
+      "Different clusters use independent Z/e draws, while their sizes are coupled by the fixed row budget. Individuals in the same cluster are dependent and cannot be treated as independent rows.",
+      "The interface adaptation constrains the terminal cluster size. Cluster-table acceptance requires maintainer confirmation under the student guide; executable schema compliance is not that confirmation.",
+      "The whole conditional query is specified before generation and does not condition on unobserved random effects."
+    ],
+    "properties": {
+      "dimension": 6,
+      "effective_dimension": 6,
+      "high_dimensional": false,
+      "interactions": true,
+      "nonlinear": true,
+      "notes": "Six covariates U, X1..X3, Z1..Z2 all affect the full conditional mean. X_j*Z_k terms are genuine interactions. At fixed U the mean is affine in X for fixed Z, and affine in Z for fixed X, but is not jointly linear in (X,Z). Sine/cosine coefficients are nonlinear in U. Six inputs with the source cluster sizes are not a sparse high-dimensional design. The cluster identifier is an observed index and is excluded from dimension."
+    }
+  },
+  "estimand": {
+    "name": "m(u0,x0,z0)=E[Y|U=u0,X=x0,Z=z0]",
+    "definition": "Integrate the mean-zero random effect from the Section 5 simulation model: sin(2*pi*u)*(1+z1+z2)+sum(x)*(sin(2*pi*u)+z1*cos(2*pi*u)+z2*sin(pi*u)). The fixed query is u=.25, x=(0,0,0), z=(0,0), yielding 1. The source coefficient alpha01 is a different estimand, though it happens to equal 1 here.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "original-sigma05",
+      "parameters": {
+        "sigma": 0.5,
+        "random_effect_var": 0.25,
+        "query_u": 0.25,
+        "cluster_size_base": 6.0,
+        "cluster_size_scale": 2.0,
+        "query_x": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "query_z": [
+          0.0,
+          0.0
+        ]
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 1.0,
+        "expression": "Integrate the mean-zero random effect from the Section 5 simulation model: sin(2*pi*u)*(1+z1+z2)+sum(x)*(sin(2*pi*u)+z1*cos(2*pi*u)+z2*sin(pi*u)). The fixed query is u=.25, x=(0,0,0), z=(0,0), yielding 1. The source coefficient alpha01 is a different estimand, though it happens to equal 1 here.",
+        "derivation": "Evaluate the full conditional-mean equation after integrating the mean-zero random effect; independent closed form and Monte Carlo verify.py checks.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[original-sigma05].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "Follow the Section 5 simulation paragraph, which explicitly includes beta0(u)=sin(2*pi*u); disclose that general display (1.4) omits it.",
+    "Preserve cluster identifiers and shared Z/e in a numeric table. The interface fixes n individuals rather than m=100 clusters; the terminal cluster size is budget-constrained, so cluster sizes are not iid under this interface. For n<6 the sole budget cluster is smaller than the source support. This is an adaptation, not an exact source design.",
+    "Replace the source coefficient-function target alpha01(u0) by the full conditional mean m(u0,x0,z0)=E[Y|U=u0,X=x0,Z=z0], integrating the unobserved random effect. Fix u0=0.25 and x0=z0=0; truth remains 1 by coincidence of these chosen values.",
+    "Cluster-table acceptance by the maintainer is not proven by the open schema role vocabulary. The numeric contract runs, but the guide's request to confirm multilayer data remains an external review step.",
+    "Use CPU mechanism checks, not the paper's estimator, MISE or confidence-band experiment."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "generator.py",
+    "truth_reference": "truth.py",
+    "source_archive": "nri-zhangfansun-2009-clustervc-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/nri-zhangfansun-2009-clustervc-v1.py",
+    "exported_generator_sha256": "874ca933389b4b52558e062056821723c848fd98f807d92d22d5d6900b69ab1d"
+  },
+  "evidence": [
+    {
+      "file": "collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "ca3e3284fede1f9e89126dcae4691a92f96ca21ccb22c6be4f7613d8910b2f90",
+    "collection_sha256": "896f1f21b43a902da65e39d68fef3e71b5ac5dbcc77f7a788511712366cbe876",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/nri-zhangfansun-2009-clustervc-v1.zip",
+    "submitted_zip_sha256": "ca3e3284fede1f9e89126dcae4691a92f96ca21ccb22c6be4f7613d8910b2f90",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "Latent-variable candidates inferred from source equations; confirm their roles and completeness against the original paper or generator."
+  ],
+  "source_suggested_domain": "nonparametric_regression",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

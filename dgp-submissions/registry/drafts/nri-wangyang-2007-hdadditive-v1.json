@@ -1,0 +1,492 @@
+{
+  "schema_version": "0.1",
+  "record_id": "nri-wangyang-2007-hdadditive-v1",
+  "kind": "synthetic_dgp",
+  "domain": "nonparametric_regression",
+  "english_display": {},
+  "paper": {
+    "citation": "Wang, L. and Yang, L. (2007). Spline-backfitted kernel smoothing of nonlinear additive autoregression model. The Annals of Statistics 35(6), 2474-2503. DOI: 10.1214/009053607000000488.",
+    "title": null,
+    "doi": null,
+    "source_url": "https://arxiv.org/abs/math/0612677v5",
+    "source_file_evidence": [],
+    "venue": "The Annals of Statistics",
+    "year": 2007,
+    "source_version": null,
+    "source_locator": "Section starts: Section 6 on PDF p.14, Section Example 6.2 on PDF p.18. Unnumbered paragraph on PDF p.18: \"Consider the nonlinear additive heteroscedastic model\" (Example6.2 mean, signed heteroscedastic scale, truncated-normal design and experiment parameters). All PDF pages are 1-based pages of the fixed reading file math/0612677v5. No printed journal page is inferred by adding an offset."
+  },
+  "mechanism": {
+    "name": "Pointwise conditional mean in the Wang-Yang (2007) d=30 additive heteroscedastic design",
+    "title_en": null,
+    "family_id": "wang-yang-2007-d30-additive-heteroscedastic",
+    "generation_equations": [
+      {
+        "label": "1. Scalar stream",
+        "expression": "Z_s iid N(0,1) conditional on -2.5<=Z_s<=2.5, s=0..n+29-1; rejection sampling; sd=1 before truncation. One scalar truncated-normal stream; source d=30, bound=2.5."
+      },
+      {
+        "label": "2. Lag window",
+        "expression": "X_t=(Z_(t+29),Z_(t+28),...,Z_t), t=0..n-1; X1 is the most recent lag. Deterministic window; no new noise. Adjacent rows share 29 stream values."
+      },
+      {
+        "label": "3. Mean and scale",
+        "expression": "m(X)=sum_(a=1)^30 sin(pi*X_a/2.5); L=mean(abs(X_a)); sigma(X)=0.1*(sqrt(30)/2)*(5-exp(L))/(5+exp(L)). Deterministic; signed source multiplier retained. Divisor 2 is outside the radical."
+      },
+      {
+        "label": "4. Innovation",
+        "expression": "epsilon_t iid N(0,1), independent of the scalar stream and other innovations. Noise sd=1 before multiplication by sigma(X)."
+      },
+      {
+        "label": "5. Outcome and columns",
+        "expression": "Y_t=m(X_t)+sigma(X_t)*epsilon_t; return X1..X30,Y in chronological window order. Conditional variance=sigma(X_t)^2; no latent/noiseless column is exported."
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "X1",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-2.5",
+        "max": "2.5",
+        "observed": "true"
+      },
+      {
+        "name": "X2",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-2.5",
+        "max": "2.5",
+        "observed": "true"
+      },
+      {
+        "name": "X3",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-2.5",
+        "max": "2.5",
+        "observed": "true"
+      },
+      {
+        "name": "X4",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-2.5",
+        "max": "2.5",
+        "observed": "true"
+      },
+      {
+        "name": "X5",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-2.5",
+        "max": "2.5",
+        "observed": "true"
+      },
+      {
+        "name": "X6",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-2.5",
+        "max": "2.5",
+        "observed": "true"
+      },
+      {
+        "name": "X7",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-2.5",
+        "max": "2.5",
+        "observed": "true"
+      },
+      {
+        "name": "X8",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-2.5",
+        "max": "2.5",
+        "observed": "true"
+      },
+      {
+        "name": "X9",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-2.5",
+        "max": "2.5",
+        "observed": "true"
+      },
+      {
+        "name": "X10",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-2.5",
+        "max": "2.5",
+        "observed": "true"
+      },
+      {
+        "name": "X11",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-2.5",
+        "max": "2.5",
+        "observed": "true"
+      },
+      {
+        "name": "X12",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-2.5",
+        "max": "2.5",
+        "observed": "true"
+      },
+      {
+        "name": "X13",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-2.5",
+        "max": "2.5",
+        "observed": "true"
+      },
+      {
+        "name": "X14",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-2.5",
+        "max": "2.5",
+        "observed": "true"
+      },
+      {
+        "name": "X15",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-2.5",
+        "max": "2.5",
+        "observed": "true"
+      },
+      {
+        "name": "X16",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-2.5",
+        "max": "2.5",
+        "observed": "true"
+      },
+      {
+        "name": "X17",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-2.5",
+        "max": "2.5",
+        "observed": "true"
+      },
+      {
+        "name": "X18",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-2.5",
+        "max": "2.5",
+        "observed": "true"
+      },
+      {
+        "name": "X19",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-2.5",
+        "max": "2.5",
+        "observed": "true"
+      },
+      {
+        "name": "X20",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-2.5",
+        "max": "2.5",
+        "observed": "true"
+      },
+      {
+        "name": "X21",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-2.5",
+        "max": "2.5",
+        "observed": "true"
+      },
+      {
+        "name": "X22",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-2.5",
+        "max": "2.5",
+        "observed": "true"
+      },
+      {
+        "name": "X23",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-2.5",
+        "max": "2.5",
+        "observed": "true"
+      },
+      {
+        "name": "X24",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-2.5",
+        "max": "2.5",
+        "observed": "true"
+      },
+      {
+        "name": "X25",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-2.5",
+        "max": "2.5",
+        "observed": "true"
+      },
+      {
+        "name": "X26",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-2.5",
+        "max": "2.5",
+        "observed": "true"
+      },
+      {
+        "name": "X27",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-2.5",
+        "max": "2.5",
+        "observed": "true"
+      },
+      {
+        "name": "X28",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-2.5",
+        "max": "2.5",
+        "observed": "true"
+      },
+      {
+        "name": "X29",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-2.5",
+        "max": "2.5",
+        "observed": "true"
+      },
+      {
+        "name": "X30",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-2.5",
+        "max": "2.5",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [
+      {
+        "name": "Z_s",
+        "role": "latent_candidate",
+        "evidence": {
+          "file": "collection.json",
+          "equation_index": 0,
+          "expression": "Z_s iid N(0,1) conditional on -2.5<=Z_s<=2.5, s=0..n+29-1"
+        },
+        "provenance": "inferred_from_stochastic_declaration"
+      }
+    ],
+    "latent_variables_status": "candidates_from_equations_need_review",
+    "sampling": {
+      "unit": "observation row (one simulated time index t together with its 30 covariate coordinates X1..X30)",
+      "dependence": "Under the declared lag-window interpretation, rows at distance at least d=30 use disjoint innovations and covariate draws; adjacent rows share 29 coordinates. Consecutive length-30 blocks still overlap in their underlying covariate draws and are not independent. There is no statistic-independent effective sample size."
+    },
+    "assumptions": [
+      "The displayed lag subscripts are interpreted as one shared iid truncated-normal stream, independent of the iid N(0,1) innovations.",
+      "The query is fixed inside the 30-dimensional truncated-normal support.",
+      "The noise multiplier may have either sign; conditional variance is its square and conditional mean is zero.",
+      "Pointwise truth does not imply an estimator or coverage result; the source's unspecified cross-row sampling algorithm remains an interpretation boundary."
+    ],
+    "properties": {
+      "dimension": 30,
+      "effective_dimension": 30,
+      "observed_columns": 31,
+      "high_dimensional": false,
+      "interactions": false,
+      "nonlinear": true,
+      "notes": "All 30 covariates enter the additive sine mean. The source uses n=500,1000,1500,2000, so d=30 is multivariate but not a d>=n sparse high-dimensional design. Nonlinear=true for sine functions. Interactions=false refers to the additive conditional mean; the noise multiplier is a nonseparable nonlinear function of the aggregate L. Observed columns=31."
+    }
+  },
+  "estimand": {
+    "name": "m(x0) = E[Y | X = x0] = sum_{alpha=1}^{30} sin(pi * x0_alpha / 2.5)",
+    "definition": "Scalar conditional mean of Y at a fixed 30-dimensional query point x0 in the superpopulation defined by the fixed Example 6.2 DGP. It is a pointwise regression functional, not a causal effect; the query is a parameter of each scenario and is read from config by truth(config).",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "original-sigma01",
+      "parameters": {
+        "sigma0": 0.1,
+        "dimension": 30,
+        "truncation_bound": 2.5,
+        "sin_frequency_scale": 1.2566370614359172,
+        "noise_sd": 1.0,
+        "query": [
+          1.25,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 1.0,
+        "expression": "Scalar conditional mean of Y at a fixed 30-dimensional query point x0 in the superpopulation defined by the fixed Example 6.2 DGP. It is a pointwise regression functional, not a causal effect; the query is a parameter of each scenario and is read from config by truth(config).",
+        "derivation": "Closed-form m(x0)=sum sin(pi*x0_alpha/2.5); independently evaluated and checked by quadrature and Monte Carlo. Table-mean signal variance uses exact scalar-stream overlap counts; the noise part uses observed conditional innovation variance. Adjacent length-d blocks are not assumed independent. Numerical estimated_error is a floating-point allowance, not a statistical error.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[original-sigma01].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "origin-query",
+      "parameters": {
+        "sigma0": 0.1,
+        "dimension": 30,
+        "truncation_bound": 2.5,
+        "sin_frequency_scale": 1.2566370614359172,
+        "noise_sd": 1.0,
+        "query": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.0,
+        "expression": "Scalar conditional mean of Y at a fixed 30-dimensional query point x0 in the superpopulation defined by the fixed Example 6.2 DGP. It is a pointwise regression functional, not a causal effect; the query is a parameter of each scenario and is read from config by truth(config).",
+        "derivation": "Closed-form m(x0)=sum sin(pi*x0_alpha/2.5); independently evaluated and checked by quadrature and Monte Carlo. Table-mean signal variance uses exact scalar-stream overlap counts; the noise part uses observed conditional innovation variance. Adjacent length-d blocks are not assumed independent. Numerical estimated_error is a floating-point allowance, not a statistical error.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[origin-query].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "Read the displayed X_{t-alpha} subscripts consistently across rows as overlapping windows of one iid truncated-normal stream. This is the declared interpretation of the source notation; no claim is made that an author implementation has been recovered.",
+    "Replace component-estimator comparisons by scalar m(x0)=E[Y|X=x0]; x0=(1.25,0,...,0) and the zero vector are our choices.",
+    "Implement truncation by rejection sampling; retain the source's signed noise multiplier without clipping.",
+    "For the shared-stream interpretation, use exact overlap counts for signal variance of the whole-table mean and conditional noise variance; adjacent length-d blocks are dependent, and no universal n/d effective sample size is assumed.",
+    "Use interface sample sizes and CPU checks without fitting the source estimators."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "generator.py",
+    "truth_reference": "truth.py",
+    "source_archive": "nri-wangyang-2007-hdadditive-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/nri-wangyang-2007-hdadditive-v1.py",
+    "exported_generator_sha256": "5c630d11dc0242ee50d91cab416d4c957262ceae5c705ccf21d97fced955d5db"
+  },
+  "evidence": [
+    {
+      "file": "collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "c169ab1ed75bb4c11fcb25fc34001433aa348ef8fc9dc983f11062ab9985b739",
+    "collection_sha256": "70cb0177f5340c2d157a6c0cd80a4e54b9d474a0a2afcdce6a294a3501775c8d",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/nri-wangyang-2007-hdadditive-v1.zip",
+    "submitted_zip_sha256": "c169ab1ed75bb4c11fcb25fc34001433aa348ef8fc9dc983f11062ab9985b739",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "Latent-variable candidates inferred from source equations; confirm their roles and completeness against the original paper or generator."
+  ],
+  "source_suggested_domain": "nonparametric_regression",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

@@ -1,0 +1,201 @@
+{
+  "schema_version": "0.1",
+  "record_id": "nri-shangcheng-2013-spline-v1",
+  "kind": "synthetic_dgp",
+  "domain": "nonparametric_regression",
+  "english_display": {},
+  "paper": {
+    "citation": "Shang, Z. and Cheng, G. (2013). Local and global asymptotic inference in smoothing spline models. The Annals of Statistics 41(5), 2608–2638. DOI: 10.1214/13-AOS1164.",
+    "title": null,
+    "doi": null,
+    "source_url": "https://arxiv.org/abs/1212.6788v3",
+    "source_file_evidence": [],
+    "venue": "The Annals of Statistics",
+    "year": 2013,
+    "source_version": null,
+    "source_locator": "Formula bodies: (6.1) on PDF p.24, (6.2) on PDF p.24, (6.4) on PDF p.25. Section starts: Section 6 on PDF p.24. Unnumbered paragraph on PDF p.25: \"To examine the pointwise asymptotic CI\" (unnumbered Beta-density mixture and experiment parameters). All PDF pages are 1-based pages of the fixed reading file 1212.6788v3. No printed journal page is inferred by adding an offset."
+  },
+  "mechanism": {
+    "name": "Pointwise conditional mean in the Shang–Cheng smoothing-spline design",
+    "title_en": null,
+    "family_id": "shang-cheng-2013-periodic-spline-bump",
+    "generation_equations": [
+      {
+        "label": "1. Observed design",
+        "expression": "Z_i iid Uniform(0,1). Source interval [0,1]."
+      },
+      {
+        "label": "2. Regression function",
+        "expression": "B_(a,b)(z)=Gamma(a+b)/(Gamma(a)*Gamma(b))*z^(a-1)*(1-z)^(b-1); g0(z)=0.6*B_(30,17)(z)+0.4*B_(3,11)(z). Deterministic source Beta densities; all declared shapes exceed 1, so both endpoint limits are 0."
+      },
+      {
+        "label": "3. Gaussian error",
+        "expression": "epsilon_i iid N(0,0.05^2), independent of Z. Noise sd=0.05; variance=0.0025."
+      },
+      {
+        "label": "4. Observed response",
+        "expression": "Y_i=g0(Z_i)+epsilon_i; return Z,Y. No additional noise or oracle column. Both z0=.5 and .64 are contribution query choices."
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "Z",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [],
+    "latent_variables_status": "not_explicitly_specified",
+    "sampling": {
+      "unit": "independent observed pair (Z,Y)",
+      "dependence": "iid across pairs; within a pair, Y depends on Z through g0(Z)"
+    },
+    "assumptions": [
+      "Observed pairs (Z,Y) are independent and identically distributed across sampling units",
+      "Z is Uniform(0,1) and the Gaussian regression error is independent of Z",
+      "The declared two-component Beta-density mixture is the conditional mean function",
+      "The query point is fixed in the interior of [0,1]; machine checks do not establish smoothing-spline confidence-interval or simultaneous-band coverage"
+    ],
+    "properties": {
+      "dimension": 1,
+      "effective_dimension": 1,
+      "observed_columns": 2,
+      "high_dimensional": false,
+      "interactions": false,
+      "nonlinear": true,
+      "notes": "The only covariate Z is active. Nonlinearity is the bimodal mixture g0(z)=0.6 beta_30,17(z)+0.4 beta_3,11(z); there are no covariate interactions."
+    }
+  },
+  "estimand": {
+    "name": "g0(z0) = E[Y | Z = z0]",
+    "definition": "The scalar conditional mean at the scenario's fixed query point z0. This is a pointwise target, not a simultaneous confidence-band target.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "peak-mode",
+      "parameters": {
+        "sigma": 0.05,
+        "query_z": 0.64,
+        "mixture_weights": [
+          0.6,
+          0.4
+        ],
+        "beta_shapes": [
+          [
+            30,
+            17
+          ],
+          [
+            3,
+            11
+          ]
+        ]
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 3.406258317314956,
+        "expression": "The scalar conditional mean at the scenario's fixed query point z0. This is a pointwise target, not a simultaneous confidence-band target.",
+        "derivation": "Closed-form evaluation of the two Beta densities using math.lgamma at the fixed query point.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[peak-mode].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "query-z0-050",
+      "parameters": {
+        "sigma": 0.05,
+        "query_z": 0.5,
+        "mixture_weights": [
+          0.6,
+          0.4
+        ],
+        "beta_shapes": [
+          [
+            30,
+            17
+          ],
+          [
+            3,
+            11
+          ]
+        ]
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.5910281636814358,
+        "expression": "The scalar conditional mean at the scenario's fixed query point z0. This is a pointwise target, not a simultaneous confidence-band target.",
+        "derivation": "Closed-form evaluation of the two Beta densities using math.lgamma at the fixed query point.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[query-z0-050].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "Keep the Case (I) Gaussian regression DGP and its Beta mixture unchanged.",
+    "Replace interval/curve-level inference by scalar g0(z0); both z0=0.5 and z0=0.64 are contribution choices. A 30-point evaluation grid does not establish an original fixed query at 0.5.",
+    "Use the requested n and CPU checks; do not fit periodic splines or assess coverage."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "generator.py",
+    "truth_reference": "truth.py",
+    "source_archive": "nri-shangcheng-2013-spline-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/nri-shangcheng-2013-spline-v1.py",
+    "exported_generator_sha256": "b889cb8d1c3f9565aa6d9f9987a02d1a7a3d7281eb5afde3abbd72f10ba9d70c"
+  },
+  "evidence": [
+    {
+      "file": "collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "ca6611ab3578aa4bc6faa19119dc56e0a748e446d0f022bd1c7048cd4a9e8d43",
+    "collection_sha256": "1f78ebb3dcaf49ee0d2da6b47e6e138cb3532f6c035d162f45d5c6cc4d863f4f",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/nri-shangcheng-2013-spline-v1.zip",
+    "submitted_zip_sha256": "ca6611ab3578aa4bc6faa19119dc56e0a748e446d0f022bd1c7048cd4a9e8d43",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "No explicit latent-variable metadata or reliably identifiable latent declarations; absence from this list does not prove that no latent variables exist."
+  ],
+  "source_suggested_domain": "nonparametric_regression",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

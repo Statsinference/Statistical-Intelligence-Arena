@@ -1,0 +1,210 @@
+{
+  "schema_version": "0.1",
+  "record_id": "nri-yuparkmammen-2008-binarygam-v1",
+  "kind": "synthetic_dgp",
+  "domain": "nonparametric_regression",
+  "english_display": {},
+  "paper": {
+    "citation": "Yu, K., Park, B. U. and Mammen, E. (2008). Smooth backfitting in generalized additive models. The Annals of Statistics 36(1), 228-260. DOI: 10.1214/009053607000000596.",
+    "title": null,
+    "doi": null,
+    "source_url": "https://arxiv.org/abs/0803.1922v1",
+    "source_file_evidence": [],
+    "venue": "The Annals of Statistics",
+    "year": 2008,
+    "source_version": null,
+    "source_locator": "Formula bodies: (5) on PDF p.7. Section starts: Section 2.2 on PDF p.6, Section 5 on PDF p.20. Unnumbered paragraph on PDF p.20: \"The simulation was done under the following two models\" (two conditional-response laws and following design/normalisation paragraphs). All PDF pages are 1-based pages of the fixed reading file 0803.1922v1. No printed journal page is inferred by adding an offset."
+  },
+  "mechanism": {
+    "name": "Pointwise binary-response and count-response mean in the Yu-Park-Mammen smooth-backfitting GAM design",
+    "title_en": null,
+    "family_id": "yu-park-mammen-2008-sbf-gam-logit",
+    "generation_equations": [
+      {
+        "label": "1. First covariate",
+        "expression": "X1~N(0,1) conditional on -1<=X1<=1, using rejection resampling. Source design j=1; pre-truncation mean=0, sd=1."
+      },
+      {
+        "label": "2. Second covariate",
+        "expression": "X2~N(0,1) conditional on -1<=X2<=1, independently of X1. Source j=1 correlation=0; the correlated j=2 design is not generated."
+      },
+      {
+        "label": "3. Predictor",
+        "expression": "eta=sin(pi*X1)+0.5*(X2+sin(pi*X2)). Deterministic source predictor; no extra noise."
+      },
+      {
+        "label": "4. Response mean",
+        "expression": "m=1/(1+exp(-eta)) for Bernoulli; m=exp(eta) for Poisson. Stable logistic evaluation; finite eta on [-1,1]^2."
+      },
+      {
+        "label": "5. Observed response",
+        "expression": "Y|X~Bernoulli(m) or Poisson(m); Bernoulli inversion or Knuth product sampler; return X1,X2,Y. Conditional variance=m*(1-m) or m, respectively; no independent additive error is used."
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "X1",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-1",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X2",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-1",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "integer",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [],
+    "latent_variables_status": "not_explicitly_specified",
+    "sampling": {
+      "unit": "independent observation (X, Y) pair",
+      "dependence": "iid across observations; the two covariate components are independent within an observation (no Markov, cluster or repeated-measure structure)"
+    },
+    "assumptions": [
+      "Observations (X_i, Y_i) are independent and identically distributed; there is no clustering, serial, spatial or network dependence.",
+      "Covariates follow the source distribution j=1: two independent standard normal components, each truncated to [-1, 1], so the joint support is the box [-1, 1]^2.",
+      "The conditional response law is exactly the source model: Y | X = x ~ Bernoulli(expit(eta(x))) in scenario original-bernoulli and Y | X = x ~ Poisson(exp(eta(x))) in scenario original-poisson; no link misspecification and no extra noise component.",
+      "The query point (0.5, 0.5) is interior to the covariate support, so the target is determined by the sampling law evaluated at a point of positive density; no extrapolation is involved.",
+      "The target is a pointwise scalar, not a simultaneous band, not a coverage claim, and not the source's ISB/IV/MISE criterion; a correct pointwise check does not license any band or coverage statement."
+    ],
+    "properties": {
+      "dimension": 2,
+      "effective_dimension": 2,
+      "observed_columns": 3,
+      "high_dimensional": false,
+      "interactions": false,
+      "nonlinear": true,
+      "notes": "Both covariates enter eta(x) = sin(pi x1) + 0.5 [x2 + sin(pi x2)] and are therefore effective. Nonlinearity comes from the sin(pi x1) and sin(pi x2) terms and from the logit link (Bernoulli) or log link (Poisson). The additive predictor contains no product term, so interactions is false. high_dimensional is false: d = 2 against the source sample sizes n = 100 and n = 500. The source's d = 3, 4, 5 extensions and its correlated covariate distribution j=2 are not included here and are recorded as candidate later scenarios of the same mechanism family."
+    }
+  },
+  "estimand": {
+    "name": "m(x0) = E[Y | X = x0]",
+    "definition": "Conditional mean of the response at the fixed query point x0 = (0.5, 0.5) in the superpopulation defined by the fixed DGP: m(x0) = expit(eta(x0)) in scenario original-bernoulli (a classification probability) and m(x0) = exp(eta(x0)) in scenario original-poisson (a conditional count mean), with eta(x) = sin(pi x1) + 0.5 [x2 + sin(pi x2)]. A pointwise scalar query only; it is not a simultaneous confidence band over the covariate region.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "original-bernoulli",
+      "parameters": {
+        "family": "bernoulli",
+        "query_x1": 0.5,
+        "query_x2": 0.5,
+        "covariate_distribution": "truncated_standard_normal_independent",
+        "covariate_correlation": 0.0,
+        "truncation_min": -1.0,
+        "truncation_max": 1.0,
+        "eta_frequency": 3.141592653589793,
+        "eta_first_component_coefficient": 1.0,
+        "eta_second_component_coefficient": 0.5,
+        "source_sample_sizes": [
+          100,
+          500
+        ]
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.8519528019683106,
+        "expression": "Conditional mean of the response at the fixed query point x0 = (0.5, 0.5) in the superpopulation defined by the fixed DGP: m(x0) = expit(eta(x0)) in scenario original-bernoulli (a classification probability) and m(x0) = exp(eta(x0)) in scenario original-poisson (a conditional count mean), with eta(x) = sin(pi x1) + 0.5 [x2 + sin(pi x2)]. A pointwise scalar query only; it is not a simultaneous confidence band over the covariate region.",
+        "derivation": "Closed form: evaluate eta(x0) = sin(pi * 0.5) + 0.5 [0.5 + sin(pi * 0.5)] = 1.75 at the fixed query point and apply the scenario link, expit for original-bernoulli and exp for original-poisson. No quadrature and no simulation enter the oracle; the verifier re-derives the same value with a tanh-form logistic, a math.e power, and 60-digit decimal arithmetic.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[original-bernoulli].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "original-poisson",
+      "parameters": {
+        "family": "poisson",
+        "query_x1": 0.5,
+        "query_x2": 0.5,
+        "covariate_distribution": "truncated_standard_normal_independent",
+        "covariate_correlation": 0.0,
+        "truncation_min": -1.0,
+        "truncation_max": 1.0,
+        "eta_frequency": 3.141592653589793,
+        "eta_first_component_coefficient": 1.0,
+        "eta_second_component_coefficient": 0.5,
+        "source_sample_sizes": [
+          100,
+          500
+        ]
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 5.754602676005731,
+        "expression": "Conditional mean of the response at the fixed query point x0 = (0.5, 0.5) in the superpopulation defined by the fixed DGP: m(x0) = expit(eta(x0)) in scenario original-bernoulli (a classification probability) and m(x0) = exp(eta(x0)) in scenario original-poisson (a conditional count mean), with eta(x) = sin(pi x1) + 0.5 [x2 + sin(pi x2)]. A pointwise scalar query only; it is not a simultaneous confidence band over the covariate region.",
+        "derivation": "Closed form: evaluate eta(x0) = sin(pi * 0.5) + 0.5 [0.5 + sin(pi * 0.5)] = 1.75 at the fixed query point and apply the scenario link, expit for original-bernoulli and exp for original-poisson. No quadrature and no simulation enter the oracle; the verifier re-derives the same value with a tanh-form logistic, a math.e power, and 60-digit decimal arithmetic.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[original-poisson].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "Select design j=1, with independent standard-normal components jointly truncated to [-1,1]^2; keep Bernoulli/logit and Poisson/log as two scenarios.",
+    "Use the source's generating predictor with sin(pi*x1). The later cos expression conflicts with it; weighted centring integrals support the sin reading, but do not constitute an author-issued erratum.",
+    "Add the fixed query (0.5,0.5) and target the conditional response mean; do not reproduce smooth-backfitting estimators or coverage."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "generator.py",
+    "truth_reference": "truth.py",
+    "source_archive": "nri-yuparkmammen-2008-binarygam-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/nri-yuparkmammen-2008-binarygam-v1.py",
+    "exported_generator_sha256": "b3d249eda4f668f9c18aebff4f2c8b0e896f28b01872139bf2e6c4196d6b4a28"
+  },
+  "evidence": [
+    {
+      "file": "collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "257ece2beb6c70082d9740f53981edbc2dd30fca0db427b3e25c4501b2b8604d",
+    "collection_sha256": "2df1b0b4c35ae8a7ea50a9c3f66a421c1584ee22ce8af07c39bbd1ddb7db55b6",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/nri-yuparkmammen-2008-binarygam-v1.zip",
+    "submitted_zip_sha256": "257ece2beb6c70082d9740f53981edbc2dd30fca0db427b3e25c4501b2b8604d",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "No explicit latent-variable metadata or reliably identifiable latent declarations; absence from this list does not prove that no latent variables exist."
+  ],
+  "source_suggested_domain": "nonparametric_regression",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

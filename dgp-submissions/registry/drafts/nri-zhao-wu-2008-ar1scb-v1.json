@@ -1,0 +1,179 @@
+{
+  "schema_version": "0.1",
+  "record_id": "nri-zhao-wu-2008-ar1scb-v1",
+  "kind": "synthetic_dgp",
+  "domain": "nonparametric_regression",
+  "english_display": {},
+  "paper": {
+    "citation": "Zhao, Z. and Wu, W. B. (2008). Confidence bands in nonparametric time series regression. The Annals of Statistics 36(4), 1854-1878. DOI: 10.1214/07-AOS533.",
+    "title": null,
+    "doi": null,
+    "source_url": "https://arxiv.org/abs/0808.1010v1",
+    "source_file_evidence": [],
+    "venue": "The Annals of Statistics",
+    "year": 2008,
+    "source_version": null,
+    "source_locator": "Formula bodies: (1.1) on PDF p.2, (5.1) on PDF p.12, (5.2) on PDF p.12. Section starts: Section 5 on PDF p.11, Section 6 on PDF p.13. Unnumbered paragraph on PDF p.11: \"In this section\" (standard-normal innovations and two structural models). Unnumbered paragraph on PDF p.12: \"To assess the performance of our SCB\" (Model1 numerical mean, scale, n, replications, evaluation interval). All PDF pages are 1-based pages of the fixed reading file 0808.1010v1. No printed journal page is inferred by adding an offset."
+  },
+  "mechanism": {
+    "name": "Conditional mean of the nonlinear AR(1) regression in the Zhao–Wu simultaneous confidence band simulation",
+    "title_en": null,
+    "family_id": "zhao-wu-2008-nonlinear-ar1",
+    "generation_equations": [
+      {
+        "label": "1. Initialization",
+        "expression": "Set Y0=0 and burn_in=1000 before collecting the n regression pairs. Implementation choices; not source-specified initialization or burn-in parameters."
+      },
+      {
+        "label": "2. Innovation sequence",
+        "expression": "epsilon_t iid N(0,1), independent of the past; draw sequentially during recursion. Source standard-normal innovations; noise multiplier s=0.4."
+      },
+      {
+        "label": "3. Recursion",
+        "expression": "Y_t=0.9*sin(Y_(t-1))+0.4*epsilon_t for burn_in+n updates. Compute source nonlinear mean before adding each independent innovation."
+      },
+      {
+        "label": "4. Observation pairs",
+        "expression": "Return (X_i,Y_i)=(Y_(burn_in+i-1),Y_(burn_in+i)), i=1..n. Deterministic export in time order; X_(i+1)=Y_i exactly; no innovation column."
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "X",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [],
+    "latent_variables_status": "not_explicitly_specified",
+    "sampling": {
+      "unit": "time series observation (consecutive pairs of one Markov chain realisation)",
+      "dependence": "Time-homogeneous Markov recursion with finite zero initialization and burn-in 1000; adjacent pairs share X_(i+1)=Y_i; exact stationarity is not asserted."
+    },
+    "assumptions": [
+      "Time-homogeneous first-order Markov recursion Y_t=.9*sin(Y_(t-1))+.4*epsilon_t; innovations iid N(0,1) and independent of the past.",
+      "The mean map is globally contractive with Lipschitz constant .9. The process admits an invariant law, but the finite simulation starts at zero; burn-in 1000 does not certify exact stationarity.",
+      "Adjacent exported rows are dependent: X_(i+1)=Y_i. The marginal distribution after finite initialization need not equal the invariant law.",
+      "For every exported time, the new innovation has conditional mean zero. Therefore E[Y_t|Y_(t-1)=x]=.9*sin(x) without an exact-stationarity assumption.",
+      "The positive Gaussian transition density gives support around each fixed query after at least one update.",
+      "No band coverage, finite-sample cutoff, mixing-rate estimate or named human scientific acceptance is established by the diagnostics."
+    ],
+    "properties": {
+      "dimension": 1,
+      "effective_dimension": 1,
+      "observed_columns": 2,
+      "high_dimensional": false,
+      "interactions": false,
+      "nonlinear": true,
+      "notes": "Single scalar covariate X = Y_{i-1}; the regression function mu(x) = 0.9*sin(x) is nonlinear in x. The serial dependence itself comes from the first-order Markov recursion, not from interactions or from extra covariates. No products of covariates are formed. high_dimensional is false: there is exactly one covariate for any sample size."
+    }
+  },
+  "estimand": {
+    "name": "mu(x0) = E[Y_i | X_i = x0] = 0.9*sin(x0)",
+    "definition": "Pointwise conditional mean of the Markov regression at a single fixed query point x0 inside the source design interval T = [-1.1,1.1]; a scalar quantity, not a simultaneous confidence band and not a coverage probability.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "original-s04",
+      "parameters": {
+        "mu_scale": 0.9,
+        "noise_sd": 0.4,
+        "burn_in": 1000,
+        "query_x": 0.5
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.4314829847437827,
+        "expression": "Pointwise conditional mean of the Markov regression at a single fixed query point x0 inside the source design interval T = [-1.1,1.1]; a scalar quantity, not a simultaneous confidence band and not a coverage probability.",
+        "derivation": "Closed form mu(x0) = a*sin(x0) with a = 0.9, evaluated by standard-library math.sin and cross-checked by a numpy evaluation, a 60-digit Decimal Taylor series and a Gauss-Hermite integration of the innovation law; no rows from generate() are used.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[original-s04].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "interior-anchor",
+      "parameters": {
+        "mu_scale": 0.9,
+        "noise_sd": 0.4,
+        "burn_in": 1000,
+        "query_x": 0.0
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.0,
+        "expression": "Pointwise conditional mean of the Markov regression at a single fixed query point x0 inside the source design interval T = [-1.1,1.1]; a scalar quantity, not a simultaneous confidence band and not a coverage probability.",
+        "derivation": "Closed form mu(x0) = a*sin(x0) with a = 0.9, evaluated by standard-library math.sin and cross-checked by a numpy evaluation, a 60-digit Decimal Taylor series and a Gauss-Hermite integration of the innovation law; no rows from generate() are used.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[interior-anchor].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "Keep Model 1 only; Model 2 targets conditional variance rather than the selected mean target.",
+    "Set Y0=0 and burn-in=1000 as explicit implementation choices, not recovered paper parameters.",
+    "Keep chronological Markov pairs and add fixed query x0=0.5 or 0.0; run CPU pointwise checks instead of the original band experiment."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "generator.py",
+    "truth_reference": "truth.py",
+    "source_archive": "nri-zhao-wu-2008-ar1scb-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/nri-zhao-wu-2008-ar1scb-v1.py",
+    "exported_generator_sha256": "c1a0842237614cb9cf442e1f343487fff83108f6150d6c270e80622bbdcf7f84"
+  },
+  "evidence": [
+    {
+      "file": "collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "ff17a65b7fe053acdc5f57257de468ff2e882988b380e7cc031ecefb6ae2ab4c",
+    "collection_sha256": "430753b7a5fde1534a72e13b5477d0d71e8d070a922db838aaecc56a16c6161c",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/nri-zhao-wu-2008-ar1scb-v1.zip",
+    "submitted_zip_sha256": "ff17a65b7fe053acdc5f57257de468ff2e882988b380e7cc031ecefb6ae2ab4c",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "No explicit latent-variable metadata or reliably identifiable latent declarations; absence from this list does not prove that no latent variables exist."
+  ],
+  "source_suggested_domain": "nonparametric_regression",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}
