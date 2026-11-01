@@ -1,0 +1,255 @@
+{
+  "schema_version": "0.1",
+  "record_id": "nri-two-gaussian-peaks-v1",
+  "kind": "synthetic_dgp",
+  "domain": "nonparametric_regression",
+  "english_display": {},
+  "paper": {
+    "citation": "Calonico, S., Cattaneo, M. D., and Farrell, M. H. (2018). On the Effect of Bias Estimation on Coverage Accuracy in Nonparametric Inference. Journal of the American Statistical Association 113(522), 767-779. DOI: 10.1080/01621459.2017.1285776.",
+    "title": null,
+    "doi": "10.1080/01621459.2017.1285776",
+    "source_url": "https://doi.org/10.1080/01621459.2017.1285776",
+    "source_file_evidence": [],
+    "venue": "Journal of the American Statistical Association",
+    "year": 2018,
+    "source_version": null,
+    "source_locator": "Supplement S.II.7 (Complete Simulation Results), printed p.80, PDF p.81: data-generating process Y=m(X)+eps, X~U[-1,1], eps~N(0,1) (homoscedastic), and Model 3 regression function m(x)=0.3*exp(-4*(2x+1)^2)+0.7*exp(-16*(2x-1)^2). Main text Section 4 (Simulation Results), printed p.776, PDF p.10: the five-point evaluation grid x in {-2/3,-1/3,0,1/3,2/3}."
+  },
+  "mechanism": {
+    "name": "Nonparametric regression with two Gaussian peaks: CCF2018 Model 3 (homoscedastic)",
+    "title_en": null,
+    "family_id": "calonico-cattaneo-farrell-2018-two-peak-gaussian",
+    "generation_equations": [
+      {
+        "label": "DGP structure",
+        "expression": "Y = m(X) + eps,  X ~ U[-1,1],  eps ~ N(0,1)  homoscedastic, independently of X"
+      },
+      {
+        "label": "Model 3 (two Gaussian peaks)",
+        "expression": "m(x) = 0.3*exp(-4*(2x+1)^2) + 0.7*exp(-16*(2x-1)^2)"
+      },
+      {
+        "label": "Peak locations",
+        "expression": "left peak at x=-1/2 (amplitude 0.3); right peak at x=1/2 (amplitude 0.7)"
+      },
+      {
+        "label": "Estimand (fixed query point)",
+        "expression": "m(x0) = E[Y | X = x0]  at  x0 in {-2/3,-1/3,0,1/3,2/3}"
+      },
+      {
+        "label": "Five-point analytic forms",
+        "expression": "m3(-2/3)=0.3*e^(-4/9)+0.7*e^(-784/9); m3(-1/3)=0.3*e^(-4/9)+0.7*e^(-400/9); m3(0)=0.3*e^(-4)+0.7*e^(-16); m3(1/3)=0.3*e^(-100/9)+0.7*e^(-16/9); m3(2/3)=0.3*e^(-196/9)+0.7*e^(-16/9)"
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "X",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-1.0",
+        "max": "1.0",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [],
+    "latent_variables_status": "not_explicitly_specified",
+    "sampling": {
+      "unit": "individual",
+      "dependence": "iid"
+    },
+    "assumptions": [
+      "iid observations; X is independent of the noise eps",
+      "eps ~ N(0,1) with mean zero and constant variance (homoscedastic), so E[Y|X=x0] = m(x0) is deterministic and known in closed form",
+      "m(x) is smooth (infinitely differentiable); each Gaussian peak is C-infinity; the two peaks are well separated (left at x=-1/2, right at x=1/2)",
+      "Pointwise inference at each fixed query point; the five-point grid is NOT evaluated as a simultaneous confidence band by the current scalar truth interface",
+      "No causal interpretation; this is a nonparametric regression inference (NRI) task with no treatment, mediator, or intervention"
+    ],
+    "properties": {
+      "dimension": 1,
+      "effective_dimension": 1,
+      "high_dimensional": false,
+      "interactions": false,
+      "nonlinear": true,
+      "notes": "Univariate nonparametric regression (dimension=1, effective_dimension=1: one covariate X fully determines the conditional mean). Nonlinearity from a mixture of two Gaussian peaks: m(x)=0.3*exp(-4*(2x+1)^2)+0.7*exp(-16*(2x-1)^2). Left peak: amplitude 0.3, centered at x=-1/2 (where 2x+1=0), effective width ~1/(2*sqrt(2))~0.35. Right peak: amplitude 0.7, centered at x=1/2 (where 2x-1=0), effective width ~1/(4*sqrt(2))~0.18 (sharper). The two peaks are well separated and create a bimodal regression surface. No interactions, no high-dimensional structure, no irrelevant padding. Note: heteroscedasticity is NOT a property of this scenario (homoscedastic eps~N(0,1))."
+    }
+  },
+  "estimand": {
+    "name": "m(x0) = E[Y | X = x0]",
+    "definition": "Conditional mean of Y given X = x0 at a fixed query point x0 from the grid {-2/3,-1/3,0,1/3,2/3}, in the superpopulation defined by Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1) (homoscedastic). Model 3: m(x) = 0.3*exp(-4*(2x+1)^2) + 0.7*exp(-16*(2x-1)^2), a mixture of two Gaussian peaks with the left peak (amplitude 0.3, narrower width) centered at x=-1/2 and the right peak (amplitude 0.7, sharper width) centered at x=1/2. Each query point is a separate pointwise inference target; the five points are not a simultaneous confidence band. This contribution collects only the CCF M3 homoscedastic scenario; the Chen-Qin (2000) two-peak structure m_CQ(x) = m_CCF_M3(2x-1) with heteroscedastic noise, support [0,1], and query points {0,0.5} is a separate contribution because its complete observation law differs.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "m3_x0_neg2o3",
+      "parameters": {
+        "model_name": "M3",
+        "description": "CCF2018 S.II.7 Model 3: m(x)=0.3*exp(-4*(2x+1)^2)+0.7*exp(-16*(2x-1)^2), query x0=-2/3",
+        "query_point": -0.6666666666666666,
+        "x_lower": -1.0,
+        "x_upper": 1.0,
+        "noise_mean": 0.0,
+        "noise_sd": 1.0
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.1923541165289864,
+        "expression": "Conditional mean of Y given X = x0 at a fixed query point x0 from the grid {-2/3,-1/3,0,1/3,2/3}, in the superpopulation defined by Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1) (homoscedastic). Model 3: m(x) = 0.3*exp(-4*(2x+1)^2) + 0.7*exp(-16*(2x-1)^2), a mixture of two Gaussian peaks with the left peak (amplitude 0.3, narrower width) centered at x=-1/2 and the right peak (amplitude 0.7, sharper width) centered at x=1/2. Each query point is a separate pointwise inference target; the five points are not a simultaneous confidence band. This contribution collects only the CCF M3 homoscedastic scenario; the Chen-Qin (2000) two-peak structure m_CQ(x) = m_CCF_M3(2x-1) with heteroscedastic noise, support [0,1], and query points {0,0.5} is a separate contribution because its complete observation law differs.",
+        "derivation": "Direct analytic evaluation of m(x0)=0.3*exp(-4*(2x0+1)^2)+0.7*exp(-16*(2x0-1)^2). Each query point has an exact closed form in terms of exp of rationals: m3(-2/3)=0.3*exp(-4/9)+0.7*exp(-784/9); m3(-1/3)=0.3*exp(-4/9)+0.7*exp(-400/9); m3(0)=0.3*exp(-4)+0.7*exp(-16); m3(1/3)=0.3*exp(-100/9)+0.7*exp(-16/9); m3(2/3)=0.3*exp(-196/9)+0.7*exp(-16/9). Independent verification uses a separately-factored exponent path and peak-pair symmetry identities.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[m3_x0_neg2o3].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "m3_x0_neg1o3",
+      "parameters": {
+        "model_name": "M3",
+        "description": "CCF2018 S.II.7 Model 3: m(x)=0.3*exp(-4*(2x+1)^2)+0.7*exp(-16*(2x-1)^2), query x0=-1/3",
+        "query_point": -0.3333333333333333,
+        "x_lower": -1.0,
+        "x_upper": 1.0,
+        "noise_mean": 0.0,
+        "noise_sd": 1.0
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.19235411652898635,
+        "expression": "Conditional mean of Y given X = x0 at a fixed query point x0 from the grid {-2/3,-1/3,0,1/3,2/3}, in the superpopulation defined by Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1) (homoscedastic). Model 3: m(x) = 0.3*exp(-4*(2x+1)^2) + 0.7*exp(-16*(2x-1)^2), a mixture of two Gaussian peaks with the left peak (amplitude 0.3, narrower width) centered at x=-1/2 and the right peak (amplitude 0.7, sharper width) centered at x=1/2. Each query point is a separate pointwise inference target; the five points are not a simultaneous confidence band. This contribution collects only the CCF M3 homoscedastic scenario; the Chen-Qin (2000) two-peak structure m_CQ(x) = m_CCF_M3(2x-1) with heteroscedastic noise, support [0,1], and query points {0,0.5} is a separate contribution because its complete observation law differs.",
+        "derivation": "Direct analytic evaluation of m(x0)=0.3*exp(-4*(2x0+1)^2)+0.7*exp(-16*(2x0-1)^2). Each query point has an exact closed form in terms of exp of rationals: m3(-2/3)=0.3*exp(-4/9)+0.7*exp(-784/9); m3(-1/3)=0.3*exp(-4/9)+0.7*exp(-400/9); m3(0)=0.3*exp(-4)+0.7*exp(-16); m3(1/3)=0.3*exp(-100/9)+0.7*exp(-16/9); m3(2/3)=0.3*exp(-196/9)+0.7*exp(-16/9). Independent verification uses a separately-factored exponent path and peak-pair symmetry identities.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[m3_x0_neg1o3].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "m3_x0_0",
+      "parameters": {
+        "model_name": "M3",
+        "description": "CCF2018 S.II.7 Model 3: m(x)=0.3*exp(-4*(2x+1)^2)+0.7*exp(-16*(2x-1)^2), query x0=0 (default)",
+        "query_point": 0.0,
+        "x_lower": -1.0,
+        "x_upper": 1.0,
+        "noise_mean": 0.0,
+        "noise_sd": 1.0
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.005494770441242557,
+        "expression": "Conditional mean of Y given X = x0 at a fixed query point x0 from the grid {-2/3,-1/3,0,1/3,2/3}, in the superpopulation defined by Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1) (homoscedastic). Model 3: m(x) = 0.3*exp(-4*(2x+1)^2) + 0.7*exp(-16*(2x-1)^2), a mixture of two Gaussian peaks with the left peak (amplitude 0.3, narrower width) centered at x=-1/2 and the right peak (amplitude 0.7, sharper width) centered at x=1/2. Each query point is a separate pointwise inference target; the five points are not a simultaneous confidence band. This contribution collects only the CCF M3 homoscedastic scenario; the Chen-Qin (2000) two-peak structure m_CQ(x) = m_CCF_M3(2x-1) with heteroscedastic noise, support [0,1], and query points {0,0.5} is a separate contribution because its complete observation law differs.",
+        "derivation": "Direct analytic evaluation of m(x0)=0.3*exp(-4*(2x0+1)^2)+0.7*exp(-16*(2x0-1)^2). Each query point has an exact closed form in terms of exp of rationals: m3(-2/3)=0.3*exp(-4/9)+0.7*exp(-784/9); m3(-1/3)=0.3*exp(-4/9)+0.7*exp(-400/9); m3(0)=0.3*exp(-4)+0.7*exp(-16); m3(1/3)=0.3*exp(-100/9)+0.7*exp(-16/9); m3(2/3)=0.3*exp(-196/9)+0.7*exp(-16/9). Independent verification uses a separately-factored exponent path and peak-pair symmetry identities.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[m3_x0_0].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "m3_x0_1o3",
+      "parameters": {
+        "model_name": "M3",
+        "description": "CCF2018 S.II.7 Model 3: m(x)=0.3*exp(-4*(2x+1)^2)+0.7*exp(-16*(2x-1)^2), query x0=1/3",
+        "query_point": 0.3333333333333333,
+        "x_lower": -1.0,
+        "x_upper": 1.0,
+        "noise_mean": 0.0,
+        "noise_sd": 1.0
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.11831380438580363,
+        "expression": "Conditional mean of Y given X = x0 at a fixed query point x0 from the grid {-2/3,-1/3,0,1/3,2/3}, in the superpopulation defined by Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1) (homoscedastic). Model 3: m(x) = 0.3*exp(-4*(2x+1)^2) + 0.7*exp(-16*(2x-1)^2), a mixture of two Gaussian peaks with the left peak (amplitude 0.3, narrower width) centered at x=-1/2 and the right peak (amplitude 0.7, sharper width) centered at x=1/2. Each query point is a separate pointwise inference target; the five points are not a simultaneous confidence band. This contribution collects only the CCF M3 homoscedastic scenario; the Chen-Qin (2000) two-peak structure m_CQ(x) = m_CCF_M3(2x-1) with heteroscedastic noise, support [0,1], and query points {0,0.5} is a separate contribution because its complete observation law differs.",
+        "derivation": "Direct analytic evaluation of m(x0)=0.3*exp(-4*(2x0+1)^2)+0.7*exp(-16*(2x0-1)^2). Each query point has an exact closed form in terms of exp of rationals: m3(-2/3)=0.3*exp(-4/9)+0.7*exp(-784/9); m3(-1/3)=0.3*exp(-4/9)+0.7*exp(-400/9); m3(0)=0.3*exp(-4)+0.7*exp(-16); m3(1/3)=0.3*exp(-100/9)+0.7*exp(-16/9); m3(2/3)=0.3*exp(-196/9)+0.7*exp(-16/9). Independent verification uses a separately-factored exponent path and peak-pair symmetry identities.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[m3_x0_1o3].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "m3_x0_2o3",
+      "parameters": {
+        "model_name": "M3",
+        "description": "CCF2018 S.II.7 Model 3: m(x)=0.3*exp(-4*(2x+1)^2)+0.7*exp(-16*(2x-1)^2), query x0=2/3",
+        "query_point": 0.6666666666666666,
+        "x_lower": -1.0,
+        "x_upper": 1.0,
+        "noise_mean": 0.0,
+        "noise_sd": 1.0
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.11830932088875505,
+        "expression": "Conditional mean of Y given X = x0 at a fixed query point x0 from the grid {-2/3,-1/3,0,1/3,2/3}, in the superpopulation defined by Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1) (homoscedastic). Model 3: m(x) = 0.3*exp(-4*(2x+1)^2) + 0.7*exp(-16*(2x-1)^2), a mixture of two Gaussian peaks with the left peak (amplitude 0.3, narrower width) centered at x=-1/2 and the right peak (amplitude 0.7, sharper width) centered at x=1/2. Each query point is a separate pointwise inference target; the five points are not a simultaneous confidence band. This contribution collects only the CCF M3 homoscedastic scenario; the Chen-Qin (2000) two-peak structure m_CQ(x) = m_CCF_M3(2x-1) with heteroscedastic noise, support [0,1], and query points {0,0.5} is a separate contribution because its complete observation law differs.",
+        "derivation": "Direct analytic evaluation of m(x0)=0.3*exp(-4*(2x0+1)^2)+0.7*exp(-16*(2x0-1)^2). Each query point has an exact closed form in terms of exp of rationals: m3(-2/3)=0.3*exp(-4/9)+0.7*exp(-784/9); m3(-1/3)=0.3*exp(-4/9)+0.7*exp(-400/9); m3(0)=0.3*exp(-4)+0.7*exp(-16); m3(1/3)=0.3*exp(-100/9)+0.7*exp(-16/9); m3(2/3)=0.3*exp(-196/9)+0.7*exp(-16/9). Independent verification uses a separately-factored exponent path and peak-pair symmetry identities.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[m3_x0_2o3].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "exact_reproduction",
+  "adaptations": [],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "generator.py",
+    "truth_reference": "truth.py",
+    "source_archive": "nri-calonico-2018-two-gaussian-peaks-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/nri-two-gaussian-peaks-v1.py",
+    "exported_generator_sha256": "e1236787bc4c77f9d363547b3ab8f49774d466c2fd79c92329d19a63daf8c99f"
+  },
+  "evidence": [
+    {
+      "file": "collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "2b705e5925414ab36b61874b4a42b210082fc4072adb94770079d0f176424971",
+    "collection_sha256": "04fed55c1c17e9c3d7e51c9188e8c057ee1ddecf16e949b5685f238f2e36978b",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/nri-calonico-2018-two-gaussian-peaks-v1.zip",
+    "submitted_zip_sha256": "2b705e5925414ab36b61874b4a42b210082fc4072adb94770079d0f176424971",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "No explicit latent-variable metadata or reliably identifiable latent declarations; absence from this list does not prove that no latent variables exist."
+  ],
+  "source_suggested_domain": "nonparametric_regression",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

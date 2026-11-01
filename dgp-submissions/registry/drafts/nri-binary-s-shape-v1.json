@@ -1,0 +1,480 @@
+{
+  "schema_version": "0.1",
+  "record_id": "nri-binary-s-shape-v1",
+  "kind": "synthetic_dgp",
+  "domain": "nonparametric_regression",
+  "english_display": {},
+  "paper": {
+    "citation": "Dimitriadis, T., Dümbgen, L., Henzi, A., Puke, M. and Ziegel, J. (2023). Honest calibration assessment for binary outcome predictions. Biometrika, 110(3), 663–680. DOI: 10.1093/biomet/asac068.",
+    "title": null,
+    "doi": null,
+    "source_url": "https://arxiv.org/abs/2203.04065",
+    "source_file_evidence": [],
+    "venue": "Biometrika (formal publication, 2023); arXiv preprint v2 is the checked DGP version",
+    "year": 2023,
+    "source_version": null,
+    "source_locator": "DGP source actually checked in arXiv:2203.04065v2 (2022-11-02), PDF p.8, Section 5, item 2 (S-shaped); X~U[0,1] and Y~Bernoulli{p_s(X)} are specified on the same page. Supplementary Material PDF pp.17–20 covers rounding, application details, and proofs and does not state a changed S-shaped DGP. The paper gives replication URL https://github.com/marius-cp/replication_DDHPZ22 but no fixed code commit. Formal Biometrika DGP differences were not checked."
+  },
+  "mechanism": {
+    "name": "S-shaped binary regression functions from Dimitriadis et al. (2023)",
+    "title_en": null,
+    "family_id": "dimitriadis-2023-binary-calibration-s-shaped",
+    "generation_equations": [
+      {
+        "label": "Covariate",
+        "expression": "X_i ~ Uniform[0,1] independently"
+      },
+      {
+        "label": "S-shaped regression function (source form)",
+        "expression": "p_s(x) = [1 + ((1-x)/x)^(1+s)]^(-1), s in {0,0.1,...,1}, 0<x<1; p_s(0)=0 and p_s(1)=1 by limits"
+      },
+      {
+        "label": "S-shaped regression function (endpoint-safe equivalent)",
+        "expression": "p_s(x) = x^(1+s) / (x^(1+s) + (1-x)^(1+s)), with endpoint values 0 and 1"
+      },
+      {
+        "label": "Binary outcome",
+        "expression": "Y_i | X_i=x ~ Bernoulli(p_s(x)) independently"
+      },
+      {
+        "label": "NRI scalar target",
+        "expression": "m_s(0.5) = E[Y | X=0.5] = p_s(0.5) = 0.5 for every declared s"
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "X",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [],
+    "latent_variables_status": "not_explicitly_specified",
+    "sampling": {
+      "unit": "individual observation (X_i,Y_i)",
+      "dependence": "iid across observations; no cluster, panel, network, or within-unit dependence"
+    },
+    "assumptions": [
+      "Independent and identically distributed individual observations (X_i,Y_i).",
+      "X has the source distribution Uniform[0,1] and the fixed query x*=0.5 lies in its support interior.",
+      "Given X=x, Y is Bernoulli with success probability p_s(x); at x=0 and x=1 the regression function is defined by the continuous endpoint limits 0 and 1.",
+      "For every declared scenario s>=0, p_s is nondecreasing on [0,1] and smooth on (0,1), matching the monotonicity condition used for the source simultaneous-band method.",
+      "The scalar truth is evaluated under the known DGP; no causal exchangeability, treatment, mediator, or interference assumption is relevant."
+    ],
+    "properties": {
+      "dimension": 1,
+      "effective_dimension": 1,
+      "high_dimensional": false,
+      "interactions": false,
+      "nonlinear": true,
+      "notes": "The only covariate is X, so total and effective dimensions are both one. There are no interaction terms. The S-shaped regression function is p_s(x)=x^(1+s)/(x^(1+s)+(1-x)^(1+s)); it is nonlinear for s>0 and reduces to the linear diagonal p_0(x)=x at s=0. The binary outcome link is Bernoulli with this conditional probability. The s=0 case is retained for source fidelity but must be deduplicated against s=0 scenarios from the monomial, kink, or wave templates."
+    }
+  },
+  "estimand": {
+    "name": "m_s(x*) = E[Y | X=x*] = p_s(x*)",
+    "definition": "Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0,0.1,...,1}; with p_s(x)=[1+{(1-x)/x}^(1+s)]^(-1), the target is p_s(0.5). This is a conditional Bernoulli probability, not an intervention effect or a prediction interval.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "s00",
+      "parameters": {
+        "s": 0.0,
+        "x_star": 0.5,
+        "source_replications": 1000,
+        "source_alpha": 0.05,
+        "source_rounding_K": 1000,
+        "source_sample_sizes": [
+          512,
+          1024,
+          2048,
+          4096,
+          8192,
+          16384,
+          32768
+        ]
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.5,
+        "expression": "Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0,0.1,...,1}; with p_s(x)=[1+{(1-x)/x}^(1+s)]^(-1), the target is p_s(0.5). This is a conditional Bernoulli probability, not an intervention effect or a prediction interval.",
+        "derivation": "Closed-form stable evaluation at the fixed query p_s(0.5)=0.5 because the two powers are equal; independently checked with the original odds expression and the endpoint/symmetry identities.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[s00].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "s01",
+      "parameters": {
+        "s": 0.1,
+        "x_star": 0.5,
+        "source_replications": 1000,
+        "source_alpha": 0.05,
+        "source_rounding_K": 1000,
+        "source_sample_sizes": [
+          512,
+          1024,
+          2048,
+          4096,
+          8192,
+          16384,
+          32768
+        ]
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.5,
+        "expression": "Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0,0.1,...,1}; with p_s(x)=[1+{(1-x)/x}^(1+s)]^(-1), the target is p_s(0.5). This is a conditional Bernoulli probability, not an intervention effect or a prediction interval.",
+        "derivation": "Closed-form stable evaluation at the fixed query p_s(0.5)=0.5 because the two powers are equal; independently checked with the original odds expression and the endpoint/symmetry identities.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[s01].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "s02",
+      "parameters": {
+        "s": 0.2,
+        "x_star": 0.5,
+        "source_replications": 1000,
+        "source_alpha": 0.05,
+        "source_rounding_K": 1000,
+        "source_sample_sizes": [
+          512,
+          1024,
+          2048,
+          4096,
+          8192,
+          16384,
+          32768
+        ]
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.5,
+        "expression": "Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0,0.1,...,1}; with p_s(x)=[1+{(1-x)/x}^(1+s)]^(-1), the target is p_s(0.5). This is a conditional Bernoulli probability, not an intervention effect or a prediction interval.",
+        "derivation": "Closed-form stable evaluation at the fixed query p_s(0.5)=0.5 because the two powers are equal; independently checked with the original odds expression and the endpoint/symmetry identities.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[s02].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "s03",
+      "parameters": {
+        "s": 0.3,
+        "x_star": 0.5,
+        "source_replications": 1000,
+        "source_alpha": 0.05,
+        "source_rounding_K": 1000,
+        "source_sample_sizes": [
+          512,
+          1024,
+          2048,
+          4096,
+          8192,
+          16384,
+          32768
+        ]
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.5,
+        "expression": "Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0,0.1,...,1}; with p_s(x)=[1+{(1-x)/x}^(1+s)]^(-1), the target is p_s(0.5). This is a conditional Bernoulli probability, not an intervention effect or a prediction interval.",
+        "derivation": "Closed-form stable evaluation at the fixed query p_s(0.5)=0.5 because the two powers are equal; independently checked with the original odds expression and the endpoint/symmetry identities.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[s03].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "s04",
+      "parameters": {
+        "s": 0.4,
+        "x_star": 0.5,
+        "source_replications": 1000,
+        "source_alpha": 0.05,
+        "source_rounding_K": 1000,
+        "source_sample_sizes": [
+          512,
+          1024,
+          2048,
+          4096,
+          8192,
+          16384,
+          32768
+        ]
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.5,
+        "expression": "Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0,0.1,...,1}; with p_s(x)=[1+{(1-x)/x}^(1+s)]^(-1), the target is p_s(0.5). This is a conditional Bernoulli probability, not an intervention effect or a prediction interval.",
+        "derivation": "Closed-form stable evaluation at the fixed query p_s(0.5)=0.5 because the two powers are equal; independently checked with the original odds expression and the endpoint/symmetry identities.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[s04].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "s05",
+      "parameters": {
+        "s": 0.5,
+        "x_star": 0.5,
+        "source_replications": 1000,
+        "source_alpha": 0.05,
+        "source_rounding_K": 1000,
+        "source_sample_sizes": [
+          512,
+          1024,
+          2048,
+          4096,
+          8192,
+          16384,
+          32768
+        ]
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.5,
+        "expression": "Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0,0.1,...,1}; with p_s(x)=[1+{(1-x)/x}^(1+s)]^(-1), the target is p_s(0.5). This is a conditional Bernoulli probability, not an intervention effect or a prediction interval.",
+        "derivation": "Closed-form stable evaluation at the fixed query p_s(0.5)=0.5 because the two powers are equal; independently checked with the original odds expression and the endpoint/symmetry identities.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[s05].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "s06",
+      "parameters": {
+        "s": 0.6,
+        "x_star": 0.5,
+        "source_replications": 1000,
+        "source_alpha": 0.05,
+        "source_rounding_K": 1000,
+        "source_sample_sizes": [
+          512,
+          1024,
+          2048,
+          4096,
+          8192,
+          16384,
+          32768
+        ]
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.5,
+        "expression": "Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0,0.1,...,1}; with p_s(x)=[1+{(1-x)/x}^(1+s)]^(-1), the target is p_s(0.5). This is a conditional Bernoulli probability, not an intervention effect or a prediction interval.",
+        "derivation": "Closed-form stable evaluation at the fixed query p_s(0.5)=0.5 because the two powers are equal; independently checked with the original odds expression and the endpoint/symmetry identities.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[s06].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "s07",
+      "parameters": {
+        "s": 0.7,
+        "x_star": 0.5,
+        "source_replications": 1000,
+        "source_alpha": 0.05,
+        "source_rounding_K": 1000,
+        "source_sample_sizes": [
+          512,
+          1024,
+          2048,
+          4096,
+          8192,
+          16384,
+          32768
+        ]
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.5,
+        "expression": "Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0,0.1,...,1}; with p_s(x)=[1+{(1-x)/x}^(1+s)]^(-1), the target is p_s(0.5). This is a conditional Bernoulli probability, not an intervention effect or a prediction interval.",
+        "derivation": "Closed-form stable evaluation at the fixed query p_s(0.5)=0.5 because the two powers are equal; independently checked with the original odds expression and the endpoint/symmetry identities.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[s07].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "s08",
+      "parameters": {
+        "s": 0.8,
+        "x_star": 0.5,
+        "source_replications": 1000,
+        "source_alpha": 0.05,
+        "source_rounding_K": 1000,
+        "source_sample_sizes": [
+          512,
+          1024,
+          2048,
+          4096,
+          8192,
+          16384,
+          32768
+        ]
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.5,
+        "expression": "Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0,0.1,...,1}; with p_s(x)=[1+{(1-x)/x}^(1+s)]^(-1), the target is p_s(0.5). This is a conditional Bernoulli probability, not an intervention effect or a prediction interval.",
+        "derivation": "Closed-form stable evaluation at the fixed query p_s(0.5)=0.5 because the two powers are equal; independently checked with the original odds expression and the endpoint/symmetry identities.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[s08].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "s09",
+      "parameters": {
+        "s": 0.9,
+        "x_star": 0.5,
+        "source_replications": 1000,
+        "source_alpha": 0.05,
+        "source_rounding_K": 1000,
+        "source_sample_sizes": [
+          512,
+          1024,
+          2048,
+          4096,
+          8192,
+          16384,
+          32768
+        ]
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.5,
+        "expression": "Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0,0.1,...,1}; with p_s(x)=[1+{(1-x)/x}^(1+s)]^(-1), the target is p_s(0.5). This is a conditional Bernoulli probability, not an intervention effect or a prediction interval.",
+        "derivation": "Closed-form stable evaluation at the fixed query p_s(0.5)=0.5 because the two powers are equal; independently checked with the original odds expression and the endpoint/symmetry identities.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[s09].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "s10",
+      "parameters": {
+        "s": 1.0,
+        "x_star": 0.5,
+        "source_replications": 1000,
+        "source_alpha": 0.05,
+        "source_rounding_K": 1000,
+        "source_sample_sizes": [
+          512,
+          1024,
+          2048,
+          4096,
+          8192,
+          16384,
+          32768
+        ]
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.5,
+        "expression": "Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0,0.1,...,1}; with p_s(x)=[1+{(1-x)/x}^(1+s)]^(-1), the target is p_s(0.5). This is a conditional Bernoulli probability, not an intervention effect or a prediction interval.",
+        "derivation": "Closed-form stable evaluation at the fixed query p_s(0.5)=0.5 because the two powers are equal; independently checked with the original odds expression and the endpoint/symmetry identities.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[s10].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "Register the source shape grid s=0,0.1,...,1 as eleven named scenarios and use s=0.5 as the default; these are source parameter settings, not new mechanism families.",
+    "Expose the scalar NRI target p_s(0.5)=E[Y|X=0.5] required by the collection interface. The source studies simultaneous confidence bands over x, not this scalar truth hook.",
+    "Implement the algebraically equivalent endpoint-safe formula x^(1+s)/(x^(1+s)+(1-x)^(1+s)) and run the collection smoke check instead of the source's 1000-replication coverage experiment; no confidence band, bootstrap, or coverage result is claimed."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "generator.py",
+    "truth_reference": "truth.py",
+    "source_archive": "nri-dimitriadis-2023-binary-s-shape-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/nri-binary-s-shape-v1.py",
+    "exported_generator_sha256": "ffa4a0d046df0df3318d5c9da712b59e0d9cf27e39e3a62517646d9ce3efff95"
+  },
+  "evidence": [
+    {
+      "file": "collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "f2ad46468938a397465a91cfe500569f8448f31fa7f1b9c199480c850a841867",
+    "collection_sha256": "8326ef8b0dcb12f534869808b00c8a9dc23ba16426c0430e563c0a47f7375382",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/nri-dimitriadis-2023-binary-s-shape-v1.zip",
+    "submitted_zip_sha256": "f2ad46468938a397465a91cfe500569f8448f31fa7f1b9c199480c850a841867",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "No explicit latent-variable metadata or reliably identifiable latent declarations; absence from this list does not prove that no latent variables exist."
+  ],
+  "source_suggested_domain": "nonparametric_regression",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

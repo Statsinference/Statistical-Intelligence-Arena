@@ -1,0 +1,439 @@
+{
+  "schema_version": "0.1",
+  "record_id": "nri-binary-step-v1",
+  "kind": "synthetic_dgp",
+  "domain": "nonparametric_regression",
+  "english_display": {},
+  "paper": {
+    "citation": "Dimitriadis, T., Dümbgen, L., Henzi, A., Puke, M. and Ziegel, J. (2023). Honest calibration assessment for binary outcome predictions. Biometrika, 110(3), 663-680. DOI: 10.1093/biomet/asac068.",
+    "title": null,
+    "doi": null,
+    "source_url": "https://arxiv.org/abs/2203.04065",
+    "source_file_evidence": [],
+    "venue": "Biometrika (formal publication, 2023); arXiv preprint v2 is the checked DGP version",
+    "year": 2023,
+    "source_version": null,
+    "source_locator": "DGP source actually checked in arXiv:2203.04065v2 (2022-11-02), PDF p.8, Section 5, item 4 (Step): upper staircase p_s(x)=(floor(k*x)+1{x!=1})/k with k=15-10*s; X~U[0,1] and Y~Bernoulli{p_s(X)} are specified on the same page. Supplementary Material PDF pp.17-20 covers rounding, application details and proofs and does not state a changed step DGP. The paper gives replication URL https://github.com/marius-cp/replication_DDHPZ22 but no fixed code commit. Formal Biometrika DGP differences were not checked [*]."
+  },
+  "mechanism": {
+    "name": "Upper step binary regression functions from Dimitriadis et al. (2023)",
+    "title_en": null,
+    "family_id": "dimitriadis-2023-binary-calibration-step",
+    "generation_equations": [
+      {
+        "label": "Covariate",
+        "expression": "X_i ~ Uniform[0,1] independently"
+      },
+      {
+        "label": "Step regression function",
+        "expression": "p_s(x) = (floor(k*x) + 1{x != 1}) / k, k = 15 - 10*s, s in {0.1, 0.2, ..., 1.0}, k in {14, 13, ..., 5}"
+      },
+      {
+        "label": "Special values",
+        "expression": "p_s(0) = 1/k; p_s(j/k) = (j+1)/k for j=0,...,k-1; p_s(1) = 1"
+      },
+      {
+        "label": "Binary outcome",
+        "expression": "Y_i | X_i=x ~ Bernoulli(p_s(x)) independently"
+      },
+      {
+        "label": "NRI scalar target (default)",
+        "expression": "m_s(0.5) = E[Y | X=0.5] = p_s(0.5) = (floor(k*0.5)+1)/k; for s=0.5, k=10: floor(5.0)=5, value=6/10=0.6"
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "X",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "0.0",
+        "max": "1.0",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [],
+    "latent_variables_status": "not_explicitly_specified",
+    "sampling": {
+      "unit": "individual observation (X_i,Y_i)",
+      "dependence": "iid across observations; no cluster, panel, network, or within-unit dependence"
+    },
+    "assumptions": [
+      "Independent and identically distributed individual observations (X_i,Y_i).",
+      "X has the source distribution Uniform[0,1] and the fixed query x*=0.5 lies in its support interior.",
+      "Given X=x, Y is Bernoulli with success probability p_s(x)=(floor(k*x)+1{x!=1})/k; k=15-10*s is a positive integer in {5,...,14} for the declared scenarios.",
+      "For every declared scenario s in {0.1,...,1.0}, p_s is nondecreasing and right-continuous on [0,1] with p_s(0)=1/k>0 and p_s(1)=1, satisfying the monotonicity condition used for the source simultaneous-band method.",
+      "The scalar truth is evaluated under the known DGP; no causal exchangeability, treatment, mediator, or interference assumption is relevant."
+    ],
+    "properties": {
+      "dimension": 1,
+      "effective_dimension": 1,
+      "high_dimensional": false,
+      "interactions": false,
+      "nonlinear": true,
+      "notes": "The only covariate is X, so total and effective dimensions are both one. There are no interaction terms. The regression function is a piecewise-constant (step) function with k equal-height jumps at x=0,1/k,2/k,...,(k-1)/k; this is nonlinear (non-smooth). The binary outcome link is Bernoulli with this conditional probability. The function is discontinuous at each knot x=j/k (right-continuous from the left: value jumps up at the knot). The s=0 endpoint is excluded because k=15 is outside the declared range {5,...,14}."
+    }
+  },
+  "estimand": {
+    "name": "m_s(x*) = E[Y | X=x*] = p_s(x*)",
+    "definition": "Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0.1,0.2,...,1.0}; the step function is p_s(x)=(floor(k*x)+1{x!=1})/k with k=15-10*s, yielding a piecewise-constant right-continuous function with k equal steps of height 1/k. The target is a conditional Bernoulli probability, not an intervention effect or a prediction interval.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "s01",
+      "parameters": {
+        "s": 0.1,
+        "x_star": 0.5,
+        "source_replications": 1000,
+        "source_alpha": 0.05,
+        "source_sample_sizes": [
+          512,
+          1024,
+          2048,
+          4096,
+          8192,
+          16384,
+          32768
+        ]
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.5714285714285714,
+        "expression": "Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0.1,0.2,...,1.0}; the step function is p_s(x)=(floor(k*x)+1{x!=1})/k with k=15-10*s, yielding a piecewise-constant right-continuous function with k equal steps of height 1/k. The target is a conditional Bernoulli probability, not an intervention effect or a prediction interval.",
+        "derivation": "Exact step formula: p_s(0.5)=(floor(k*0.5)+1)/k, k=15-10*s; this is exact rational arithmetic. For default s=0.5 (k=10): floor(5.0)=5, p=(5+1)/10=6/10=0.6. Independently verified with fractions.Fraction exact rational arithmetic in verify.py.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[s01].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "s02",
+      "parameters": {
+        "s": 0.2,
+        "x_star": 0.5,
+        "source_replications": 1000,
+        "source_alpha": 0.05,
+        "source_sample_sizes": [
+          512,
+          1024,
+          2048,
+          4096,
+          8192,
+          16384,
+          32768
+        ]
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.5384615384615384,
+        "expression": "Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0.1,0.2,...,1.0}; the step function is p_s(x)=(floor(k*x)+1{x!=1})/k with k=15-10*s, yielding a piecewise-constant right-continuous function with k equal steps of height 1/k. The target is a conditional Bernoulli probability, not an intervention effect or a prediction interval.",
+        "derivation": "Exact step formula: p_s(0.5)=(floor(k*0.5)+1)/k, k=15-10*s; this is exact rational arithmetic. For default s=0.5 (k=10): floor(5.0)=5, p=(5+1)/10=6/10=0.6. Independently verified with fractions.Fraction exact rational arithmetic in verify.py.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[s02].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "s03",
+      "parameters": {
+        "s": 0.3,
+        "x_star": 0.5,
+        "source_replications": 1000,
+        "source_alpha": 0.05,
+        "source_sample_sizes": [
+          512,
+          1024,
+          2048,
+          4096,
+          8192,
+          16384,
+          32768
+        ]
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.5833333333333334,
+        "expression": "Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0.1,0.2,...,1.0}; the step function is p_s(x)=(floor(k*x)+1{x!=1})/k with k=15-10*s, yielding a piecewise-constant right-continuous function with k equal steps of height 1/k. The target is a conditional Bernoulli probability, not an intervention effect or a prediction interval.",
+        "derivation": "Exact step formula: p_s(0.5)=(floor(k*0.5)+1)/k, k=15-10*s; this is exact rational arithmetic. For default s=0.5 (k=10): floor(5.0)=5, p=(5+1)/10=6/10=0.6. Independently verified with fractions.Fraction exact rational arithmetic in verify.py.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[s03].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "s04",
+      "parameters": {
+        "s": 0.4,
+        "x_star": 0.5,
+        "source_replications": 1000,
+        "source_alpha": 0.05,
+        "source_sample_sizes": [
+          512,
+          1024,
+          2048,
+          4096,
+          8192,
+          16384,
+          32768
+        ]
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.5454545454545454,
+        "expression": "Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0.1,0.2,...,1.0}; the step function is p_s(x)=(floor(k*x)+1{x!=1})/k with k=15-10*s, yielding a piecewise-constant right-continuous function with k equal steps of height 1/k. The target is a conditional Bernoulli probability, not an intervention effect or a prediction interval.",
+        "derivation": "Exact step formula: p_s(0.5)=(floor(k*0.5)+1)/k, k=15-10*s; this is exact rational arithmetic. For default s=0.5 (k=10): floor(5.0)=5, p=(5+1)/10=6/10=0.6. Independently verified with fractions.Fraction exact rational arithmetic in verify.py.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[s04].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "s05",
+      "parameters": {
+        "s": 0.5,
+        "x_star": 0.5,
+        "source_replications": 1000,
+        "source_alpha": 0.05,
+        "source_sample_sizes": [
+          512,
+          1024,
+          2048,
+          4096,
+          8192,
+          16384,
+          32768
+        ]
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.6,
+        "expression": "Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0.1,0.2,...,1.0}; the step function is p_s(x)=(floor(k*x)+1{x!=1})/k with k=15-10*s, yielding a piecewise-constant right-continuous function with k equal steps of height 1/k. The target is a conditional Bernoulli probability, not an intervention effect or a prediction interval.",
+        "derivation": "Exact step formula: p_s(0.5)=(floor(k*0.5)+1)/k, k=15-10*s; this is exact rational arithmetic. For default s=0.5 (k=10): floor(5.0)=5, p=(5+1)/10=6/10=0.6. Independently verified with fractions.Fraction exact rational arithmetic in verify.py.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[s05].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "s06",
+      "parameters": {
+        "s": 0.6,
+        "x_star": 0.5,
+        "source_replications": 1000,
+        "source_alpha": 0.05,
+        "source_sample_sizes": [
+          512,
+          1024,
+          2048,
+          4096,
+          8192,
+          16384,
+          32768
+        ]
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.5555555555555556,
+        "expression": "Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0.1,0.2,...,1.0}; the step function is p_s(x)=(floor(k*x)+1{x!=1})/k with k=15-10*s, yielding a piecewise-constant right-continuous function with k equal steps of height 1/k. The target is a conditional Bernoulli probability, not an intervention effect or a prediction interval.",
+        "derivation": "Exact step formula: p_s(0.5)=(floor(k*0.5)+1)/k, k=15-10*s; this is exact rational arithmetic. For default s=0.5 (k=10): floor(5.0)=5, p=(5+1)/10=6/10=0.6. Independently verified with fractions.Fraction exact rational arithmetic in verify.py.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[s06].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "s07",
+      "parameters": {
+        "s": 0.7,
+        "x_star": 0.5,
+        "source_replications": 1000,
+        "source_alpha": 0.05,
+        "source_sample_sizes": [
+          512,
+          1024,
+          2048,
+          4096,
+          8192,
+          16384,
+          32768
+        ]
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.625,
+        "expression": "Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0.1,0.2,...,1.0}; the step function is p_s(x)=(floor(k*x)+1{x!=1})/k with k=15-10*s, yielding a piecewise-constant right-continuous function with k equal steps of height 1/k. The target is a conditional Bernoulli probability, not an intervention effect or a prediction interval.",
+        "derivation": "Exact step formula: p_s(0.5)=(floor(k*0.5)+1)/k, k=15-10*s; this is exact rational arithmetic. For default s=0.5 (k=10): floor(5.0)=5, p=(5+1)/10=6/10=0.6. Independently verified with fractions.Fraction exact rational arithmetic in verify.py.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[s07].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "s08",
+      "parameters": {
+        "s": 0.8,
+        "x_star": 0.5,
+        "source_replications": 1000,
+        "source_alpha": 0.05,
+        "source_sample_sizes": [
+          512,
+          1024,
+          2048,
+          4096,
+          8192,
+          16384,
+          32768
+        ]
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.5714285714285714,
+        "expression": "Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0.1,0.2,...,1.0}; the step function is p_s(x)=(floor(k*x)+1{x!=1})/k with k=15-10*s, yielding a piecewise-constant right-continuous function with k equal steps of height 1/k. The target is a conditional Bernoulli probability, not an intervention effect or a prediction interval.",
+        "derivation": "Exact step formula: p_s(0.5)=(floor(k*0.5)+1)/k, k=15-10*s; this is exact rational arithmetic. For default s=0.5 (k=10): floor(5.0)=5, p=(5+1)/10=6/10=0.6. Independently verified with fractions.Fraction exact rational arithmetic in verify.py.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[s08].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "s09",
+      "parameters": {
+        "s": 0.9,
+        "x_star": 0.5,
+        "source_replications": 1000,
+        "source_alpha": 0.05,
+        "source_sample_sizes": [
+          512,
+          1024,
+          2048,
+          4096,
+          8192,
+          16384,
+          32768
+        ]
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.6666666666666666,
+        "expression": "Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0.1,0.2,...,1.0}; the step function is p_s(x)=(floor(k*x)+1{x!=1})/k with k=15-10*s, yielding a piecewise-constant right-continuous function with k equal steps of height 1/k. The target is a conditional Bernoulli probability, not an intervention effect or a prediction interval.",
+        "derivation": "Exact step formula: p_s(0.5)=(floor(k*0.5)+1)/k, k=15-10*s; this is exact rational arithmetic. For default s=0.5 (k=10): floor(5.0)=5, p=(5+1)/10=6/10=0.6. Independently verified with fractions.Fraction exact rational arithmetic in verify.py.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[s09].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "s10",
+      "parameters": {
+        "s": 1.0,
+        "x_star": 0.5,
+        "source_replications": 1000,
+        "source_alpha": 0.05,
+        "source_sample_sizes": [
+          512,
+          1024,
+          2048,
+          4096,
+          8192,
+          16384,
+          32768
+        ]
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.6,
+        "expression": "Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0.1,0.2,...,1.0}; the step function is p_s(x)=(floor(k*x)+1{x!=1})/k with k=15-10*s, yielding a piecewise-constant right-continuous function with k equal steps of height 1/k. The target is a conditional Bernoulli probability, not an intervention effect or a prediction interval.",
+        "derivation": "Exact step formula: p_s(0.5)=(floor(k*0.5)+1)/k, k=15-10*s; this is exact rational arithmetic. For default s=0.5 (k=10): floor(5.0)=5, p=(5+1)/10=6/10=0.6. Independently verified with fractions.Fraction exact rational arithmetic in verify.py.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[s10].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "Register s=0.1,0.2,...,1.0 as named scenarios (s=0 excluded per the source upper-step definition k=15-10*s in {5,...,14}); these are source parameter settings, not new mechanism families.",
+    "Expose the scalar NRI target p_s(0.5)=E[Y|X=0.5] required by the collection interface. The source studies simultaneous confidence bands under monotonicity, not this scalar truth hook.",
+    "Run the collection smoke check instead of the source's 1000-replication coverage experiment; no confidence band, bootstrap, or coverage result is claimed."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "generator.py",
+    "truth_reference": "truth.py",
+    "source_archive": "nri-dimitriadis-2023-binary-step-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/nri-binary-step-v1.py",
+    "exported_generator_sha256": "c6552b419f110890a26eb98c6cac0d000ceac02b8e43191860d31b0321a1c0de"
+  },
+  "evidence": [
+    {
+      "file": "collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "cae5ba3ee0f7df6413e10ad8e112d5feb094e5919410cb23317dadddb292bed2",
+    "collection_sha256": "7df8abcc95ef850fafe19300a3581b0d1c357a458b6d355434585ae9de93804c",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/nri-dimitriadis-2023-binary-step-v1.zip",
+    "submitted_zip_sha256": "cae5ba3ee0f7df6413e10ad8e112d5feb094e5919410cb23317dadddb292bed2",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "No explicit latent-variable metadata or reliably identifiable latent declarations; absence from this list does not prove that no latent variables exist."
+  ],
+  "source_suggested_domain": "nonparametric_regression",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

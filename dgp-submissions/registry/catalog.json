@@ -1,8 +1,8 @@
 {
   "status": "draft_needs_review",
-  "paper_count": 85,
-  "mechanism_count": 117,
-  "scenario_count": 244,
+  "paper_count": 89,
+  "mechanism_count": 127,
+  "scenario_count": 319,
   "domains": {
     "ate": 22,
     "cate": 2,
@@ -10,7 +10,7 @@
     "iv": 21,
     "proximal": 15,
     "did_sc": 3,
-    "nonparametric_regression": 10,
+    "nonparametric_regression": 20,
     "quantile": 11,
     "semi_supervised": 16,
     "missing_data": 0
@@ -2607,6 +2607,213 @@
       "status": "needs_scientific_review"
     },
     {
+      "record_id": "nri-damped-sine-v1",
+      "domain": "nonparametric_regression",
+      "paper": "Calonico, S., Cattaneo, M. D., and Farrell, M. H. (2018). On the Effect of Bias Estimation on Coverage Accuracy in Nonparametric Inference. Journal of the American Statistical Association 113(522), 767-779. DOI: 10.1080/01621459.2017.1285776. Models 5 and 6 originate from Hall, P. G. and Horowitz, J. L. (2013), A simple bootstrap method for constructing nonparametric confidence bands for functions, Annals of Statistics 41(4), 1892-1921, where they appear as g2 and g3=g2(x/3).",
+      "mechanism": "Nonparametric regression with damped-sine mean: CCF2018 Models 5 and 6 (Hall-Horowitz g2/g3 family)",
+      "paper_title": "On the Effect of Bias Estimation on Coverage Accuracy in Nonparametric Inference",
+      "venue_abbreviation": "JASA",
+      "keywords": [
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/nri-damped-sine-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "m5_x0_neg2o3: m(x0) = E[Y \\| X = x0] = -1.2246467991473532e-16; m5_x0_neg1o3: m(x0) = E[Y \\| X = x0] = -1.0; m5_x0_0: m(x0) = E[Y \\| X = x0] = 0.0; m5_x0_1o3: m(x0) = E[Y \\| X = x0] = 0.2; m5_x0_2o3: m(x0) = E[Y \\| X = x0] = 7.203804700866784e-18; m6_x0_neg2o3: m(x0) = E[Y \\| X = x0] = -0.8660254037844386; m6_x0_neg1o3: m(x0) = E[Y \\| X = x0] = -0.49999999999999994; m6_x0_0: m(x0) = E[Y \\| X = x0] = 0.0; m6_x0_1o3: m(x0) = E[Y \\| X = x0] = 0.34615384615384615; m6_x0_2o3: m(x0) = E[Y \\| X = x0] = 0.3117691453623979",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "nri-linear-gaussian-bump-v1",
+      "domain": "nonparametric_regression",
+      "paper": "Calonico, S., Cattaneo, M. D., and Farrell, M. H. (2018). On the Effect of Bias Estimation on Coverage Accuracy in Nonparametric Inference. Journal of the American Statistical Association 113(522), 767-779. DOI: 10.1080/01621459.2017.1285776.",
+      "mechanism": "Nonparametric regression with linear mean and Gaussian bump: CCF2018 Models 2 and 4",
+      "paper_title": "On the Effect of Bias Estimation on Coverage Accuracy in Nonparametric Inference",
+      "venue_abbreviation": "JASA",
+      "keywords": [
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/nri-linear-gaussian-bump-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "model2: m(x0) = E[Y \\| X = x0] = 2.0; model4: m(x0) = E[Y \\| X = x0] = 1.9947114020071635",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "nri-sine-gaussian-bump-v1",
+      "domain": "nonparametric_regression",
+      "paper": "Calonico, S., Cattaneo, M. D., and Farrell, M. H. (2018). On the Effect of Bias Estimation on Coverage Accuracy in Nonparametric Inference. Journal of the American Statistical Association 113(522), 767-779. DOI: 10.1080/01621459.2017.1285776.",
+      "mechanism": "Nonparametric regression with sine plus Gaussian bump: CCF2018 Model 1 (m(x)=sin(4x)+2*exp(-64x^2))",
+      "paper_title": "On the Effect of Bias Estimation on Coverage Accuracy in Nonparametric Inference",
+      "venue_abbreviation": "JASA",
+      "keywords": [
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/nri-sine-gaussian-bump-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "m1_x0_neg2o3: m(x0) = E[Y \\| X = x0] = -0.4572726266349253; m1_x0_neg1o3: m(x0) = E[Y \\| X = x0] = -0.9703059256931684; m1_x0_0: m(x0) = E[Y \\| X = x0] = 2.0; m1_x0_1o3: m(x0) = E[Y \\| X = x0] = 0.973569877033457; m1_x0_2o3: m(x0) = E[Y \\| X = x0] = 0.45727262663669865",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "nri-two-gaussian-peaks-v1",
+      "domain": "nonparametric_regression",
+      "paper": "Calonico, S., Cattaneo, M. D., and Farrell, M. H. (2018). On the Effect of Bias Estimation on Coverage Accuracy in Nonparametric Inference. Journal of the American Statistical Association 113(522), 767-779. DOI: 10.1080/01621459.2017.1285776.",
+      "mechanism": "Nonparametric regression with two Gaussian peaks: CCF2018 Model 3 (homoscedastic)",
+      "paper_title": "On the Effect of Bias Estimation on Coverage Accuracy in Nonparametric Inference",
+      "venue_abbreviation": "JASA",
+      "keywords": [
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/nri-two-gaussian-peaks-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "m3_x0_neg2o3: m(x0) = E[Y \\| X = x0] = 0.1923541165289864; m3_x0_neg1o3: m(x0) = E[Y \\| X = x0] = 0.19235411652898635; m3_x0_0: m(x0) = E[Y \\| X = x0] = 0.005494770441242557; m3_x0_1o3: m(x0) = E[Y \\| X = x0] = 0.11831380438580363; m3_x0_2o3: m(x0) = E[Y \\| X = x0] = 0.11830932088875505",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "nri-binary-kink-v1",
+      "domain": "nonparametric_regression",
+      "paper": "Dimitriadis, T., Dümbgen, L., Henzi, A., Puke, M. and Ziegel, J. (2023). Honest calibration assessment for binary outcome predictions. Biometrika, 110(3), 663–680. DOI: 10.1093/biomet/asac068.",
+      "mechanism": "Kink binary regression functions from Dimitriadis et al. (2023)",
+      "paper_title": "Honest calibration assessment for binary outcome predictions",
+      "venue_abbreviation": "Biometrika",
+      "keywords": [
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/nri-binary-kink-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "s00: m_s(x*) = E[Y \\| X=x*] = p_s(x*) = 0.5; s01: m_s(x*) = E[Y \\| X=x*] = p_s(x*) = 0.4444444444444444; s02: m_s(x*) = E[Y \\| X=x*] = p_s(x*) = 0.375; s03: m_s(x*) = E[Y \\| X=x*] = p_s(x*) = 0.2857142857142857; s04: m_s(x*) = E[Y \\| X=x*] = p_s(x*) = 0.19230769230769232; s05: m_s(x*) = E[Y \\| X=x*] = p_s(x*) = 0.16666666666666666; s06: m_s(x*) = E[Y \\| X=x*] = p_s(x*) = 0.1470588235294118; s07: m_s(x*) = E[Y \\| X=x*] = p_s(x*) = 0.13157894736842105; s08: m_s(x*) = E[Y \\| X=x*] = p_s(x*) = 0.11904761904761904; s09: m_s(x*) = E[Y \\| X=x*] = p_s(x*) = 0.10869565217391303; s10: m_s(x*) = E[Y \\| X=x*] = p_s(x*) = 0.1",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "nri-binary-monomial-v1",
+      "domain": "nonparametric_regression",
+      "paper": "Dimitriadis, T., Dümbgen, L., Henzi, A., Puke, M. and Ziegel, J. (2023). Honest calibration assessment for binary outcome predictions. Biometrika, 110(3), 663–680. DOI: 10.1093/biomet/asac068.",
+      "mechanism": "Monomial binary regression functions from Dimitriadis et al. (2023)",
+      "paper_title": "Honest calibration assessment for binary outcome predictions",
+      "venue_abbreviation": "Biometrika",
+      "keywords": [
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/nri-binary-monomial-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "s00: m_s(x*) = E[Y \\| X=x*] = p_s(x*) = 0.5; s01: m_s(x*) = E[Y \\| X=x*] = p_s(x*) = 0.5358867312681466; s02: m_s(x*) = E[Y \\| X=x*] = p_s(x*) = 0.5743491774985174; s03: m_s(x*) = E[Y \\| X=x*] = p_s(x*) = 0.6155722066724582; s04: m_s(x*) = E[Y \\| X=x*] = p_s(x*) = 0.6597539553864471; s05: m_s(x*) = E[Y \\| X=x*] = p_s(x*) = 0.7071067811865476; s06: m_s(x*) = E[Y \\| X=x*] = p_s(x*) = 0.757858283255199; s07: m_s(x*) = E[Y \\| X=x*] = p_s(x*) = 0.8122523963562355; s08: m_s(x*) = E[Y \\| X=x*] = p_s(x*) = 0.8705505632961241; s09: m_s(x*) = E[Y \\| X=x*] = p_s(x*) = 0.9330329915368074",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "nri-binary-s-shape-v1",
+      "domain": "nonparametric_regression",
+      "paper": "Dimitriadis, T., Dümbgen, L., Henzi, A., Puke, M. and Ziegel, J. (2023). Honest calibration assessment for binary outcome predictions. Biometrika, 110(3), 663–680. DOI: 10.1093/biomet/asac068.",
+      "mechanism": "S-shaped binary regression functions from Dimitriadis et al. (2023)",
+      "paper_title": "Honest calibration assessment for binary outcome predictions",
+      "venue_abbreviation": "Biometrika",
+      "keywords": [
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/nri-binary-s-shape-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "s00: m_s(x*) = E[Y \\| X=x*] = p_s(x*) = 0.5; s01: m_s(x*) = E[Y \\| X=x*] = p_s(x*) = 0.5; s02: m_s(x*) = E[Y \\| X=x*] = p_s(x*) = 0.5; s03: m_s(x*) = E[Y \\| X=x*] = p_s(x*) = 0.5; s04: m_s(x*) = E[Y \\| X=x*] = p_s(x*) = 0.5; s05: m_s(x*) = E[Y \\| X=x*] = p_s(x*) = 0.5; s06: m_s(x*) = E[Y \\| X=x*] = p_s(x*) = 0.5; s07: m_s(x*) = E[Y \\| X=x*] = p_s(x*) = 0.5; s08: m_s(x*) = E[Y \\| X=x*] = p_s(x*) = 0.5; s09: m_s(x*) = E[Y \\| X=x*] = p_s(x*) = 0.5; s10: m_s(x*) = E[Y \\| X=x*] = p_s(x*) = 0.5",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "nri-binary-step-v1",
+      "domain": "nonparametric_regression",
+      "paper": "Dimitriadis, T., Dümbgen, L., Henzi, A., Puke, M. and Ziegel, J. (2023). Honest calibration assessment for binary outcome predictions. Biometrika, 110(3), 663-680. DOI: 10.1093/biomet/asac068.",
+      "mechanism": "Upper step binary regression functions from Dimitriadis et al. (2023)",
+      "paper_title": "Honest calibration assessment for binary outcome predictions",
+      "venue_abbreviation": "Biometrika",
+      "keywords": [
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/nri-binary-step-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "s01: m_s(x*) = E[Y \\| X=x*] = p_s(x*) = 0.5714285714285714; s02: m_s(x*) = E[Y \\| X=x*] = p_s(x*) = 0.5384615384615384; s03: m_s(x*) = E[Y \\| X=x*] = p_s(x*) = 0.5833333333333334; s04: m_s(x*) = E[Y \\| X=x*] = p_s(x*) = 0.5454545454545454; s05: m_s(x*) = E[Y \\| X=x*] = p_s(x*) = 0.6; s06: m_s(x*) = E[Y \\| X=x*] = p_s(x*) = 0.5555555555555556; s07: m_s(x*) = E[Y \\| X=x*] = p_s(x*) = 0.625; s08: m_s(x*) = E[Y \\| X=x*] = p_s(x*) = 0.5714285714285714; s09: m_s(x*) = E[Y \\| X=x*] = p_s(x*) = 0.6666666666666666; s10: m_s(x*) = E[Y \\| X=x*] = p_s(x*) = 0.6",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "nri-binary-wave-v1",
+      "domain": "nonparametric_regression",
+      "paper": "Dimitriadis, T., Dümbgen, L., Henzi, A., Puke, M. and Ziegel, J. (2023). Honest calibration assessment for binary outcome predictions. Biometrika, 110(3), 663-680. DOI: 10.1093/biomet/asac068.",
+      "mechanism": "Cubic wave binary regression functions from Dimitriadis et al. (2023)",
+      "paper_title": "Honest calibration assessment for binary outcome predictions",
+      "venue_abbreviation": "Biometrika",
+      "keywords": [
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/nri-binary-wave-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "s01: m_s(x*) = E[Y \\| X=x*] = p_s(x*) = 0.5; s02: m_s(x*) = E[Y \\| X=x*] = p_s(x*) = 0.5; s03: m_s(x*) = E[Y \\| X=x*] = p_s(x*) = 0.5; s04: m_s(x*) = E[Y \\| X=x*] = p_s(x*) = 0.5; s05: m_s(x*) = E[Y \\| X=x*] = p_s(x*) = 0.5; s06: m_s(x*) = E[Y \\| X=x*] = p_s(x*) = 0.5; s07: m_s(x*) = E[Y \\| X=x*] = p_s(x*) = 0.5; s08: m_s(x*) = E[Y \\| X=x*] = p_s(x*) = 0.5; s09: m_s(x*) = E[Y \\| X=x*] = p_s(x*) = 0.5; s10: m_s(x*) = E[Y \\| X=x*] = p_s(x*) = 0.5",
+      "status": "needs_scientific_review"
+    },
+    {
       "record_id": "nri-hall-horowitz-2013-gaussian-bump-v1",
       "domain": "nonparametric_regression",
       "paper": "Hall, P. and Horowitz, J. (2013). A simple bootstrap method for constructing nonparametric confidence bands for functions. The Annals of Statistics, 41(4), 1892-1921. DOI: 10.1214/13-AOS1137.",
@@ -2680,6 +2887,36 @@
       "generator_file": "generators/nri-liangliu-2010-singleindex-v1.py",
       "latent_variables": [],
       "truth_by_scenario": "index-mid-x0: eta(z0'alpha) + x0*beta = E[Y \\| Z = z0, X = x0] = 0.9818328784088086; index-mid-x1: eta(z0'alpha) + x0*beta = E[Y \\| Z = z0, X = x0] = 1.2818328784088087; index-low-x0: eta(z0'alpha) + x0*beta = E[Y \\| Z = z0, X = x0] = 0.8402560393492512; index-high-x1: eta(z0'alpha) + x0*beta = E[Y \\| Z = z0, X = x0] = 0.47575809676587577",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "nri-highdim-sparse-additive-v1",
+      "domain": "nonparametric_regression",
+      "paper": "Junwei Lu, Mladen Kolar and Han Liu (2020), Kernel Meets Sieve: Post-Regularization Confidence Bands for Sparse Additive Model, Journal of the American Statistical Association 115(532):2084–2099, DOI: 10.1080/01621459.2019.1689984. DGP locator: arXiv:1503.02978v2 (2018-02-12).",
+      "mechanism": "Kernel Meets Sieve Example 5.1: high-dimensional sparse additive regression",
+      "paper_title": "Title not supplied (review needed)",
+      "venue_abbreviation": "JASA",
+      "keywords": [
+        "Nonlinearity",
+        "High-dimensionality"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "High-dimensionality",
+          "source": "mechanism.properties.high_dimensional",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/nri-highdim-sparse-additive-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "original: m(x*) = E[Y \\| X=x*] = sum_{j=1}^4 f_j(0.5), x*=(0.5,...,0.5) in R^600 = -1.1000000000000003",
       "status": "needs_scientific_review"
     },
     {
@@ -3431,8 +3668,8 @@
   ],
   "intake": {
     "status": "success",
-    "zip_count": 73,
-    "indexed_dgp_count": 117,
+    "zip_count": 83,
+    "indexed_dgp_count": 127,
     "failure_count": 0,
     "stale_record_ids": [],
     "scientific_validation": "not_performed"

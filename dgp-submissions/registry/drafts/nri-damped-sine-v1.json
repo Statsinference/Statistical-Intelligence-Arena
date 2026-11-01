@@ -1,0 +1,379 @@
+{
+  "schema_version": "0.1",
+  "record_id": "nri-damped-sine-v1",
+  "kind": "synthetic_dgp",
+  "domain": "nonparametric_regression",
+  "english_display": {},
+  "paper": {
+    "citation": "Calonico, S., Cattaneo, M. D., and Farrell, M. H. (2018). On the Effect of Bias Estimation on Coverage Accuracy in Nonparametric Inference. Journal of the American Statistical Association 113(522), 767-779. DOI: 10.1080/01621459.2017.1285776. Models 5 and 6 originate from Hall, P. G. and Horowitz, J. L. (2013), A simple bootstrap method for constructing nonparametric confidence bands for functions, Annals of Statistics 41(4), 1892-1921, where they appear as g2 and g3=g2(x/3).",
+    "title": null,
+    "doi": "10.1080/01621459.2017.1285776",
+    "source_url": "https://doi.org/10.1080/01621459.2017.1285776",
+    "source_file_evidence": [],
+    "venue": "Journal of the American Statistical Association",
+    "year": 2018,
+    "source_version": null,
+    "source_locator": "Supplement S.II.7 (Complete Simulation Results), printed p.80, PDF p.81: DGP structure Y=m(X)+eps, X~U[-1,1], eps~N(0,1), and Models 5-6 regression functions. Main text Section 4 (Simulation Results), printed p.776, PDF p.10: representative Model 5 example and the five-point evaluation grid x in {-2/3,-1/3,0,1/3,2/3}."
+  },
+  "mechanism": {
+    "name": "Nonparametric regression with damped-sine mean: CCF2018 Models 5 and 6 (Hall-Horowitz g2/g3 family)",
+    "title_en": null,
+    "family_id": "hall-horowitz-2013-damped-sine",
+    "generation_equations": [
+      {
+        "label": "DGP structure",
+        "expression": "Y = m(X) + eps,  X ~ U[-1,1],  eps ~ N(0,1)  independently of X"
+      },
+      {
+        "label": "Model 5 (g2 of Hall-Horowitz)",
+        "expression": "m(x) = sin(3*pi*x/2) / (1 + 18*x^2*(sgn(x)+1))"
+      },
+      {
+        "label": "Model 6 (g3 = g2(x/3))",
+        "expression": "m(x) = sin(pi*x/2) / (1 + 2*x^2*(sgn(x)+1))"
+      },
+      {
+        "label": "Estimand (fixed query point)",
+        "expression": "m(x0) = E[Y | X = x0]  at  x0 in {-2/3,-1/3,0,1/3,2/3}"
+      },
+      {
+        "label": "M5 five-point truth",
+        "expression": "m5(-2/3)=0, m5(-1/3)=-1, m5(0)=0, m5(1/3)=0.2, m5(2/3)=0"
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "X",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-1.0",
+        "max": "1.0",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [],
+    "latent_variables_status": "not_explicitly_specified",
+    "sampling": {
+      "unit": "individual",
+      "dependence": "iid"
+    },
+    "assumptions": [
+      "iid observations; X is independent of the noise eps",
+      "eps ~ N(0,1) with mean zero, so E[Y|X=x0] = m(x0) is deterministic and known in closed form",
+      "m(x) is smooth away from x=0; at x=0 the sgn(x) factor makes the damping denominator piecewise, but m(0)=0 by continuity (sin(0)=0 and x^2=0 removes the sgn dependence)",
+      "Pointwise inference at each fixed query point; the five-point grid is NOT evaluated as a simultaneous confidence band by the current scalar truth interface",
+      "No causal interpretation; this is a nonparametric regression inference (NRI) task with no treatment, mediator, or intervention"
+    ],
+    "properties": {
+      "dimension": 1,
+      "effective_dimension": 1,
+      "high_dimensional": false,
+      "interactions": false,
+      "nonlinear": true,
+      "notes": "Univariate nonparametric regression (dimension=1, effective_dimension=1: one covariate X fully determines the conditional mean). Nonlinearity from the damped-sine structure: Model 5 m(x)=sin(3*pi*x/2)/(1+18*x^2*(sgn(x)+1)) combines a sinusoidal oscillation with an asymmetric polynomial damping that is stronger for x>0 (sgn(x)+1=2) than for x<0 (sgn(x)+1=0, so the damping term vanishes and m(x)=sin(3*pi*x/2) on x<0). Model 6 m(x)=sin(pi*x/2)/(1+2*x^2*(sgn(x)+1)) is the same family with gentler damping, equal to g3(x)=g2(x/3) of Hall-Horowitz (2013). No interactions, no high-dimensional structure, no irrelevant padding."
+    }
+  },
+  "estimand": {
+    "name": "m(x0) = E[Y | X = x0]",
+    "definition": "Conditional mean of Y given X = x0 at a fixed query point x0 from the grid {-2/3,-1/3,0,1/3,2/3}, in the superpopulation defined by Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1). Model 5: m(x)=sin(3*pi*x/2)/(1+18*x^2*(sgn(x)+1)). Model 6: m(x)=sin(pi*x/2)/(1+2*x^2*(sgn(x)+1)) = g3(x) = g2(x/3) of the Hall-Horowitz family. Each (model, query point) is a separate pointwise inference target; the five points are not a simultaneous confidence band.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "m5_x0_neg2o3",
+      "parameters": {
+        "model_name": "M5",
+        "description": "CCF2018 S.II.7 Model 5: m(x)=sin(3*pi*x/2)/(1+18*x^2*(sgn(x)+1)), query x0=-2/3",
+        "query_point": -0.6666666666666666,
+        "x_lower": -1.0,
+        "x_upper": 1.0,
+        "noise_mean": 0.0,
+        "noise_sd": 1.0
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": -1.2246467991473532e-16,
+        "expression": "Conditional mean of Y given X = x0 at a fixed query point x0 from the grid {-2/3,-1/3,0,1/3,2/3}, in the superpopulation defined by Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1). Model 5: m(x)=sin(3*pi*x/2)/(1+18*x^2*(sgn(x)+1)). Model 6: m(x)=sin(pi*x/2)/(1+2*x^2*(sgn(x)+1)) = g3(x) = g2(x/3) of the Hall-Horowitz family. Each (model, query point) is a separate pointwise inference target; the five points are not a simultaneous confidence band.",
+        "derivation": "Direct analytic evaluation of m(x0): both models have closed-form regression functions. At the five query points the sine arguments are multiples of pi/2 giving exact values 0, +/-1, and rational results. M5 five-point truth = (0, -1, 0, 0.2, 0) exactly. Independent verification uses a separately coded sgn function and decomposed arithmetic.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[m5_x0_neg2o3].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "m5_x0_neg1o3",
+      "parameters": {
+        "model_name": "M5",
+        "description": "CCF2018 S.II.7 Model 5: m(x)=sin(3*pi*x/2)/(1+18*x^2*(sgn(x)+1)), query x0=-1/3",
+        "query_point": -0.3333333333333333,
+        "x_lower": -1.0,
+        "x_upper": 1.0,
+        "noise_mean": 0.0,
+        "noise_sd": 1.0
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": -1.0,
+        "expression": "Conditional mean of Y given X = x0 at a fixed query point x0 from the grid {-2/3,-1/3,0,1/3,2/3}, in the superpopulation defined by Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1). Model 5: m(x)=sin(3*pi*x/2)/(1+18*x^2*(sgn(x)+1)). Model 6: m(x)=sin(pi*x/2)/(1+2*x^2*(sgn(x)+1)) = g3(x) = g2(x/3) of the Hall-Horowitz family. Each (model, query point) is a separate pointwise inference target; the five points are not a simultaneous confidence band.",
+        "derivation": "Direct analytic evaluation of m(x0): both models have closed-form regression functions. At the five query points the sine arguments are multiples of pi/2 giving exact values 0, +/-1, and rational results. M5 five-point truth = (0, -1, 0, 0.2, 0) exactly. Independent verification uses a separately coded sgn function and decomposed arithmetic.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[m5_x0_neg1o3].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "m5_x0_0",
+      "parameters": {
+        "model_name": "M5",
+        "description": "CCF2018 S.II.7 Model 5: m(x)=sin(3*pi*x/2)/(1+18*x^2*(sgn(x)+1)), query x0=0 (default)",
+        "query_point": 0.0,
+        "x_lower": -1.0,
+        "x_upper": 1.0,
+        "noise_mean": 0.0,
+        "noise_sd": 1.0
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.0,
+        "expression": "Conditional mean of Y given X = x0 at a fixed query point x0 from the grid {-2/3,-1/3,0,1/3,2/3}, in the superpopulation defined by Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1). Model 5: m(x)=sin(3*pi*x/2)/(1+18*x^2*(sgn(x)+1)). Model 6: m(x)=sin(pi*x/2)/(1+2*x^2*(sgn(x)+1)) = g3(x) = g2(x/3) of the Hall-Horowitz family. Each (model, query point) is a separate pointwise inference target; the five points are not a simultaneous confidence band.",
+        "derivation": "Direct analytic evaluation of m(x0): both models have closed-form regression functions. At the five query points the sine arguments are multiples of pi/2 giving exact values 0, +/-1, and rational results. M5 five-point truth = (0, -1, 0, 0.2, 0) exactly. Independent verification uses a separately coded sgn function and decomposed arithmetic.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[m5_x0_0].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "m5_x0_1o3",
+      "parameters": {
+        "model_name": "M5",
+        "description": "CCF2018 S.II.7 Model 5: m(x)=sin(3*pi*x/2)/(1+18*x^2*(sgn(x)+1)), query x0=1/3",
+        "query_point": 0.3333333333333333,
+        "x_lower": -1.0,
+        "x_upper": 1.0,
+        "noise_mean": 0.0,
+        "noise_sd": 1.0
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.2,
+        "expression": "Conditional mean of Y given X = x0 at a fixed query point x0 from the grid {-2/3,-1/3,0,1/3,2/3}, in the superpopulation defined by Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1). Model 5: m(x)=sin(3*pi*x/2)/(1+18*x^2*(sgn(x)+1)). Model 6: m(x)=sin(pi*x/2)/(1+2*x^2*(sgn(x)+1)) = g3(x) = g2(x/3) of the Hall-Horowitz family. Each (model, query point) is a separate pointwise inference target; the five points are not a simultaneous confidence band.",
+        "derivation": "Direct analytic evaluation of m(x0): both models have closed-form regression functions. At the five query points the sine arguments are multiples of pi/2 giving exact values 0, +/-1, and rational results. M5 five-point truth = (0, -1, 0, 0.2, 0) exactly. Independent verification uses a separately coded sgn function and decomposed arithmetic.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[m5_x0_1o3].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "m5_x0_2o3",
+      "parameters": {
+        "model_name": "M5",
+        "description": "CCF2018 S.II.7 Model 5: m(x)=sin(3*pi*x/2)/(1+18*x^2*(sgn(x)+1)), query x0=2/3",
+        "query_point": 0.6666666666666666,
+        "x_lower": -1.0,
+        "x_upper": 1.0,
+        "noise_mean": 0.0,
+        "noise_sd": 1.0
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 7.203804700866784e-18,
+        "expression": "Conditional mean of Y given X = x0 at a fixed query point x0 from the grid {-2/3,-1/3,0,1/3,2/3}, in the superpopulation defined by Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1). Model 5: m(x)=sin(3*pi*x/2)/(1+18*x^2*(sgn(x)+1)). Model 6: m(x)=sin(pi*x/2)/(1+2*x^2*(sgn(x)+1)) = g3(x) = g2(x/3) of the Hall-Horowitz family. Each (model, query point) is a separate pointwise inference target; the five points are not a simultaneous confidence band.",
+        "derivation": "Direct analytic evaluation of m(x0): both models have closed-form regression functions. At the five query points the sine arguments are multiples of pi/2 giving exact values 0, +/-1, and rational results. M5 five-point truth = (0, -1, 0, 0.2, 0) exactly. Independent verification uses a separately coded sgn function and decomposed arithmetic.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[m5_x0_2o3].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "m6_x0_neg2o3",
+      "parameters": {
+        "model_name": "M6",
+        "description": "CCF2018 S.II.7 Model 6 (g3=g2(x/3)): m(x)=sin(pi*x/2)/(1+2*x^2*(sgn(x)+1)), query x0=-2/3",
+        "query_point": -0.6666666666666666,
+        "x_lower": -1.0,
+        "x_upper": 1.0,
+        "noise_mean": 0.0,
+        "noise_sd": 1.0
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": -0.8660254037844386,
+        "expression": "Conditional mean of Y given X = x0 at a fixed query point x0 from the grid {-2/3,-1/3,0,1/3,2/3}, in the superpopulation defined by Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1). Model 5: m(x)=sin(3*pi*x/2)/(1+18*x^2*(sgn(x)+1)). Model 6: m(x)=sin(pi*x/2)/(1+2*x^2*(sgn(x)+1)) = g3(x) = g2(x/3) of the Hall-Horowitz family. Each (model, query point) is a separate pointwise inference target; the five points are not a simultaneous confidence band.",
+        "derivation": "Direct analytic evaluation of m(x0): both models have closed-form regression functions. At the five query points the sine arguments are multiples of pi/2 giving exact values 0, +/-1, and rational results. M5 five-point truth = (0, -1, 0, 0.2, 0) exactly. Independent verification uses a separately coded sgn function and decomposed arithmetic.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[m6_x0_neg2o3].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "m6_x0_neg1o3",
+      "parameters": {
+        "model_name": "M6",
+        "description": "CCF2018 S.II.7 Model 6 (g3=g2(x/3)): m(x)=sin(pi*x/2)/(1+2*x^2*(sgn(x)+1)), query x0=-1/3",
+        "query_point": -0.3333333333333333,
+        "x_lower": -1.0,
+        "x_upper": 1.0,
+        "noise_mean": 0.0,
+        "noise_sd": 1.0
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": -0.49999999999999994,
+        "expression": "Conditional mean of Y given X = x0 at a fixed query point x0 from the grid {-2/3,-1/3,0,1/3,2/3}, in the superpopulation defined by Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1). Model 5: m(x)=sin(3*pi*x/2)/(1+18*x^2*(sgn(x)+1)). Model 6: m(x)=sin(pi*x/2)/(1+2*x^2*(sgn(x)+1)) = g3(x) = g2(x/3) of the Hall-Horowitz family. Each (model, query point) is a separate pointwise inference target; the five points are not a simultaneous confidence band.",
+        "derivation": "Direct analytic evaluation of m(x0): both models have closed-form regression functions. At the five query points the sine arguments are multiples of pi/2 giving exact values 0, +/-1, and rational results. M5 five-point truth = (0, -1, 0, 0.2, 0) exactly. Independent verification uses a separately coded sgn function and decomposed arithmetic.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[m6_x0_neg1o3].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "m6_x0_0",
+      "parameters": {
+        "model_name": "M6",
+        "description": "CCF2018 S.II.7 Model 6 (g3=g2(x/3)): m(x)=sin(pi*x/2)/(1+2*x^2*(sgn(x)+1)), query x0=0",
+        "query_point": 0.0,
+        "x_lower": -1.0,
+        "x_upper": 1.0,
+        "noise_mean": 0.0,
+        "noise_sd": 1.0
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.0,
+        "expression": "Conditional mean of Y given X = x0 at a fixed query point x0 from the grid {-2/3,-1/3,0,1/3,2/3}, in the superpopulation defined by Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1). Model 5: m(x)=sin(3*pi*x/2)/(1+18*x^2*(sgn(x)+1)). Model 6: m(x)=sin(pi*x/2)/(1+2*x^2*(sgn(x)+1)) = g3(x) = g2(x/3) of the Hall-Horowitz family. Each (model, query point) is a separate pointwise inference target; the five points are not a simultaneous confidence band.",
+        "derivation": "Direct analytic evaluation of m(x0): both models have closed-form regression functions. At the five query points the sine arguments are multiples of pi/2 giving exact values 0, +/-1, and rational results. M5 five-point truth = (0, -1, 0, 0.2, 0) exactly. Independent verification uses a separately coded sgn function and decomposed arithmetic.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[m6_x0_0].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "m6_x0_1o3",
+      "parameters": {
+        "model_name": "M6",
+        "description": "CCF2018 S.II.7 Model 6 (g3=g2(x/3)): m(x)=sin(pi*x/2)/(1+2*x^2*(sgn(x)+1)), query x0=1/3",
+        "query_point": 0.3333333333333333,
+        "x_lower": -1.0,
+        "x_upper": 1.0,
+        "noise_mean": 0.0,
+        "noise_sd": 1.0
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.34615384615384615,
+        "expression": "Conditional mean of Y given X = x0 at a fixed query point x0 from the grid {-2/3,-1/3,0,1/3,2/3}, in the superpopulation defined by Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1). Model 5: m(x)=sin(3*pi*x/2)/(1+18*x^2*(sgn(x)+1)). Model 6: m(x)=sin(pi*x/2)/(1+2*x^2*(sgn(x)+1)) = g3(x) = g2(x/3) of the Hall-Horowitz family. Each (model, query point) is a separate pointwise inference target; the five points are not a simultaneous confidence band.",
+        "derivation": "Direct analytic evaluation of m(x0): both models have closed-form regression functions. At the five query points the sine arguments are multiples of pi/2 giving exact values 0, +/-1, and rational results. M5 five-point truth = (0, -1, 0, 0.2, 0) exactly. Independent verification uses a separately coded sgn function and decomposed arithmetic.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[m6_x0_1o3].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "m6_x0_2o3",
+      "parameters": {
+        "model_name": "M6",
+        "description": "CCF2018 S.II.7 Model 6 (g3=g2(x/3)): m(x)=sin(pi*x/2)/(1+2*x^2*(sgn(x)+1)), query x0=2/3",
+        "query_point": 0.6666666666666666,
+        "x_lower": -1.0,
+        "x_upper": 1.0,
+        "noise_mean": 0.0,
+        "noise_sd": 1.0
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.3117691453623979,
+        "expression": "Conditional mean of Y given X = x0 at a fixed query point x0 from the grid {-2/3,-1/3,0,1/3,2/3}, in the superpopulation defined by Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1). Model 5: m(x)=sin(3*pi*x/2)/(1+18*x^2*(sgn(x)+1)). Model 6: m(x)=sin(pi*x/2)/(1+2*x^2*(sgn(x)+1)) = g3(x) = g2(x/3) of the Hall-Horowitz family. Each (model, query point) is a separate pointwise inference target; the five points are not a simultaneous confidence band.",
+        "derivation": "Direct analytic evaluation of m(x0): both models have closed-form regression functions. At the five query points the sine arguments are multiples of pi/2 giving exact values 0, +/-1, and rational results. M5 five-point truth = (0, -1, 0, 0.2, 0) exactly. Independent verification uses a separately coded sgn function and decomposed arithmetic.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[m6_x0_2o3].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "Models 5 and 6 are registered as scenarios of the Hall-Horowitz (2013) damped-sine mechanism family (g2 and g3=g2(x/3)), not as a new independent family, per the cross-paper no-double-counting rule.",
+    "The five evaluation points {-2/3,-1/3,0,1/3,2/3} are registered as separate fixed-query-point scenarios because the current scalar truth interface returns one m(x0) per call; each is a pointwise 95% interval target, not a simultaneous confidence band.",
+    "Population truth is computed analytically (closed form); no coverage simulation, bootstrap, or PFN training is run in this collection."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "generator.py",
+    "truth_reference": "truth.py",
+    "source_archive": "nri-calonico-2018-damped-sine-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/nri-damped-sine-v1.py",
+    "exported_generator_sha256": "034390d02a4c9338d48c7c7d91729899954be9f0348c69809a047c2d3aa75192"
+  },
+  "evidence": [
+    {
+      "file": "collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "f12ada0d1009c4f06c88b194a6b83eb954b989f79067a630c156c2980f439af9",
+    "collection_sha256": "766afe28969eb5506297c8e0a5186ef2c01727c189d4db0045ae2e70af694327",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/nri-calonico-2018-damped-sine-v1.zip",
+    "submitted_zip_sha256": "f12ada0d1009c4f06c88b194a6b83eb954b989f79067a630c156c2980f439af9",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "No explicit latent-variable metadata or reliably identifiable latent declarations; absence from this list does not prove that no latent variables exist."
+  ],
+  "source_suggested_domain": "nonparametric_regression",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

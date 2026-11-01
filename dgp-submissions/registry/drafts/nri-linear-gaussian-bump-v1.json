@@ -1,0 +1,195 @@
+{
+  "schema_version": "0.1",
+  "record_id": "nri-linear-gaussian-bump-v1",
+  "kind": "synthetic_dgp",
+  "domain": "nonparametric_regression",
+  "english_display": {},
+  "paper": {
+    "citation": "Calonico, S., Cattaneo, M. D., and Farrell, M. H. (2018). On the Effect of Bias Estimation on Coverage Accuracy in Nonparametric Inference. Journal of the American Statistical Association 113(522), 767-779. DOI: 10.1080/01621459.2017.1285776.",
+    "title": null,
+    "doi": "10.1080/01621459.2017.1285776",
+    "source_url": "https://doi.org/10.1080/01621459.2017.1285776",
+    "source_file_evidence": [],
+    "venue": "Journal of the American Statistical Association",
+    "year": 2018,
+    "source_version": null,
+    "source_locator": "Supplement S.II.7 (Complete Simulation Results), printed p.80, PDF p.81: data-generating process Y=m(X)+eps, X~U[-1,1], eps~N(0,1), and Models 1-6 with regression functions. Main text Section 4 (Simulation Results), printed p.776, PDF p.10: representative Model 5 and the evaluation grid x in {-2/3,-1/3,0,1/3,2/3}."
+  },
+  "mechanism": {
+    "name": "Nonparametric regression with linear mean and Gaussian bump: CCF2018 Models 2 and 4",
+    "title_en": null,
+    "family_id": "calonico-cattaneo-farrell-2018-npreg-bump",
+    "generation_equations": [
+      {
+        "label": "DGP structure",
+        "expression": "Y = m(X) + eps,  X ~ U[-1,1],  eps ~ N(0,1)  independently of X"
+      },
+      {
+        "label": "Model 2 (linear + Gaussian bump)",
+        "expression": "m(x) = 2x + 2*exp(-64*x^2)"
+      },
+      {
+        "label": "Model 4 (linear + scaled Gaussian density)",
+        "expression": "m(x) = x + 5*phi(10x),  phi(z) = exp(-z^2/2)/sqrt(2*pi)"
+      },
+      {
+        "label": "Estimand (fixed query point)",
+        "expression": "m(x0) = E[Y | X = x0]  at  x0 = 0"
+      },
+      {
+        "label": "Truth Model 2",
+        "expression": "m(0) = 2*0 + 2*exp(0) = 2"
+      },
+      {
+        "label": "Truth Model 4",
+        "expression": "m(0) = 0 + 5*phi(0) = 5/sqrt(2*pi) approx 1.994711"
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "X",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-1.0",
+        "max": "1.0",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [],
+    "latent_variables_status": "not_explicitly_specified",
+    "sampling": {
+      "unit": "individual",
+      "dependence": "iid"
+    },
+    "assumptions": [
+      "iid observations; X is independent of the noise eps",
+      "eps ~ N(0,1) with mean zero, so E[Y|X=x0] = m(x0) is deterministic and known in closed form",
+      "m(x) is smooth (infinitely differentiable) on [-1,1]; the Gaussian bump creates high curvature near x=0",
+      "Pointwise inference at a single fixed query point x0=0; this is not a simultaneous confidence band over the paper's evaluation grid {-2/3,-1/3,0,1/3,2/3}",
+      "No causal interpretation; this is a nonparametric regression inference (NRI) task with no treatment, mediator, or intervention"
+    ],
+    "properties": {
+      "dimension": 1,
+      "effective_dimension": 1,
+      "high_dimensional": false,
+      "interactions": false,
+      "nonlinear": true,
+      "notes": "Univariate nonparametric regression (dimension=1, effective_dimension=1: one covariate X fully determines the conditional mean). Nonlinearity from the Gaussian bump: Model 2 adds 2*exp(-64*x^2) to a linear term 2x; Model 4 adds 5*phi(10x) to a linear term x. The bump is centered at x=0 with effective width ~1/8 (M2) and ~1/10 (M4). Away from the bump, m(x) is nearly linear. No interactions, no high-dimensional structure, no irrelevant padding."
+    }
+  },
+  "estimand": {
+    "name": "m(x0) = E[Y | X = x0]",
+    "definition": "Conditional mean of Y given X = x0 at the fixed query point x0 = 0, in the superpopulation defined by the DGP Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1). Models 2 and 4 from supplement S.II.7 are collected as two scenarios of the same mechanism family; both are linear-plus-Gaussian-bump regression functions.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "model2",
+      "parameters": {
+        "model_name": "M2",
+        "description": "Linear plus Gaussian bump from CCF2018 supplement S.II.7 Model 2: m(x)=2x+2*exp(-64x^2)",
+        "linear_coeff": 2.0,
+        "bump_amplitude": 2.0,
+        "bump_width_sq": 64.0,
+        "bump_center": 0.0,
+        "query_point": 0.0,
+        "x_lower": -1.0,
+        "x_upper": 1.0,
+        "noise_mean": 0.0,
+        "noise_sd": 1.0
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 2.0,
+        "expression": "Conditional mean of Y given X = x0 at the fixed query point x0 = 0, in the superpopulation defined by the DGP Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1). Models 2 and 4 from supplement S.II.7 are collected as two scenarios of the same mechanism family; both are linear-plus-Gaussian-bump regression functions.",
+        "derivation": "Direct analytic evaluation of m(x0): both models have closed-form regression functions. Model 2 at x0=0: m(0) = 2*exp(0) = 2. Model 4 at x0=0: m(0) = 5*phi(0) = 5/sqrt(2*pi). Two independent arithmetic routes (math.exp vs ** operator; composed vs decomposed phi) confirm machine-precision agreement.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[model2].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "model4",
+      "parameters": {
+        "model_name": "M4",
+        "description": "Linear plus scaled Gaussian density from CCF2018 supplement S.II.7 Model 4: m(x)=x+5*phi(10x)",
+        "linear_coeff": 1.0,
+        "bump_amplitude": 5.0,
+        "phi_scale": 10.0,
+        "bump_center": 0.0,
+        "query_point": 0.0,
+        "x_lower": -1.0,
+        "x_upper": 1.0,
+        "noise_mean": 0.0,
+        "noise_sd": 1.0
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 1.9947114020071635,
+        "expression": "Conditional mean of Y given X = x0 at the fixed query point x0 = 0, in the superpopulation defined by the DGP Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1). Models 2 and 4 from supplement S.II.7 are collected as two scenarios of the same mechanism family; both are linear-plus-Gaussian-bump regression functions.",
+        "derivation": "Direct analytic evaluation of m(x0): both models have closed-form regression functions. Model 2 at x0=0: m(0) = 2*exp(0) = 2. Model 4 at x0=0: m(0) = 5*phi(0) = 5/sqrt(2*pi). Two independent arithmetic routes (math.exp vs ** operator; composed vs decomposed phi) confirm machine-precision agreement.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[model4].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "exact_reproduction",
+  "adaptations": [],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "generator.py",
+    "truth_reference": "truth.py",
+    "source_archive": "nri-calonico-2018-linear-gaussian-bump-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/nri-linear-gaussian-bump-v1.py",
+    "exported_generator_sha256": "669280f180e9d279d716c01bd3b6fe9b0bba96703618fb5728319604c04dcd20"
+  },
+  "evidence": [
+    {
+      "file": "collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "7f275e3564b0b900af6fa9765529f9789894bb7b94e3d6cb8634ac9be4d6d79a",
+    "collection_sha256": "af89a8678dadf30fd77da37f216672035e56924899b1480de69f01cd54786d22",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/nri-calonico-2018-linear-gaussian-bump-v1.zip",
+    "submitted_zip_sha256": "7f275e3564b0b900af6fa9765529f9789894bb7b94e3d6cb8634ac9be4d6d79a",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "No explicit latent-variable metadata or reliably identifiable latent declarations; absence from this list does not prove that no latent variables exist."
+  ],
+  "source_suggested_domain": "nonparametric_regression",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}
