@@ -1,0 +1,326 @@
+{
+  "schema_version": "0.1",
+  "record_id": "qdi-yang-he-2012-conditional-quantile-v1",
+  "kind": "synthetic_dgp",
+  "domain": "quantile",
+  "english_display": {},
+  "paper": {
+    "citation": "Yang, Yunwen and He, Xuming (2012). Bayesian Empirical Likelihood for Quantile Regression. The Annals of Statistics 40(2), 1102-1131. DOI: 10.1214/12-AOS1005.",
+    "title": null,
+    "doi": "10.1214/12-aos1005",
+    "source_url": "https://doi.org/10.1214/12-AOS1005",
+    "source_file_evidence": [],
+    "venue": "The Annals of Statistics",
+    "year": 2012,
+    "source_version": "Final published journal pagination, user-supplied 30-page PDF; not the differently paginated arXiv electronic reprint.",
+    "source_locator": "Section 4.2, Efficiency of BEL under various priors, main PDF p.13 / printed p.1114, unnumbered Models 1-4; priors main PDF pp.13-14 / printed pp.1114-1115; Table 3 main PDF p.15 / printed p.1116 and Table 4 main PDF p.16 / printed p.1117. Quantile definition Eq.(1.1), main PDF p.1 / printed p.1102; random sampling Eq.(2.1), main PDF p.4 / printed p.1105; Section 3.1 Assumptions 3.1-3.5, main PDF p.7 / printed p.1108. Supplement PDF pages are counted separately."
+  },
+  "mechanism": {
+    "name": "Yang-He (2012) Section 4.2 Models 1-4: fixed-query conditional 0.95 quantile",
+    "title_en": null,
+    "family_id": "yang-he-2012-section42-location-scale",
+    "generation_equations": [
+      {
+        "label": "Common covariate law, Section 4.2 p.1114",
+        "expression": "X ~ chi-square(df=2); Z = 2B, B ~ Bernoulli(0.5); X, Z, e mutually independent."
+      },
+      {
+        "label": "Model 1, p.1114",
+        "expression": "Y=X+Z+e; e~Normal(mean=0, variance=4)."
+      },
+      {
+        "label": "Model 2, p.1114",
+        "expression": "Y=X+Z+e; log(e)~Normal(mean=0, variance=1); e is not centered."
+      },
+      {
+        "label": "Model 3, p.1114",
+        "expression": "Y=X+Z+(1+X/2)e; e~Normal(mean=0, variance=4)."
+      },
+      {
+        "label": "Model 4, p.1114",
+        "expression": "Y=X+Z+(1+X/2)e; log(e)~Normal(mean=0, variance=1); e is not centered."
+      },
+      {
+        "label": "Derived target adaptation",
+        "expression": "theta_m=2+s_m(2)q_e(0.95), with s_1=s_2=1, s_3(x)=s_4(x)=1+x/2; q_normal(tau)=2 Phi^{-1}(tau), q_lognormal(tau)=exp(Phi^{-1}(tau))."
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "X",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Z",
+        "role": "covariate",
+        "dtype": "integer",
+        "min": "0",
+        "max": "2",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [
+      {
+        "name": "B",
+        "role": "latent_candidate",
+        "evidence": {
+          "file": "collection.json",
+          "equation_index": 0,
+          "expression": "Z = 2B, B ~ Bernoulli(0.5)"
+        },
+        "provenance": "inferred_from_stochastic_declaration"
+      },
+      {
+        "name": "e",
+        "role": "latent_candidate",
+        "evidence": {
+          "file": "collection.json",
+          "equation_index": 1,
+          "expression": "e~Normal(mean=0, variance=4)."
+        },
+        "provenance": "inferred_from_stochastic_declaration"
+      }
+    ],
+    "latent_variables_status": "candidates_from_equations_need_review",
+    "sampling": {
+      "unit": "One synthetic observation (X,Z,Y); n is the number of rows.",
+      "dependence": "iid across rows; X, Z, e mutually independent before constructing Y; Y depends on X and Z through the declared law.",
+      "within_unit_dependence": "Primitive X,Z,e independent; Z=2B deterministic; G=log(e) for Models2/4; Y depends on X,Z,e. Heteroscedastic scaled noise s(X)e is not independent of X.",
+      "between_unit_dependence": "iid synthetic rows; no shared random effects, clusters, panels or network structure."
+    },
+    "assumptions": [
+      "Independent identically distributed observed rows (X,Z,Y), as in the random-sample framework of Section 2; within each row X, Z and e are mutually independent as explicitly stated on p.1114.",
+      "Complete observation of X,Z,Y; n denotes the number of iid rows. No missingness, clustering, panel or network dependence is introduced.",
+      "The declared conditional location-scale law defines a continuous version at X=2 despite P(X=2)=0; the query lies inside the continuous X support and Z=0 has probability 0.5.",
+      "The source scale is 1 or 1+X/2, strictly positive on X>=0. Conditional density is continuous and positive at the queried 0.95 quantile, so this quantile is unique.",
+      "For inference using a quantile-regression estimator, correct conditional-quantile specification and a nondegenerate design are relevant. Both covariates are active and E[(1,X,Z)(1,X,Z)^T] is positive definite.",
+      "The source Assumption 3.2 requires bounded covariate support, but the simulation X~chi-square(2) is unbounded. Preserve the simulation law, do not assert all BEL theorem conditions or finite-sample coverage. Prior and EL feasibility assumptions are method-specific and are not certified here.",
+      "Noncausal QDI functional: no intervention, treatment exchangeability, mediation, cross-world or interference assumptions are imposed."
+    ],
+    "properties": {
+      "dimension": 2,
+      "effective_dimension": 2,
+      "observed_columns": 3,
+      "high_dimensional": false,
+      "interactions": false,
+      "nonlinear": false,
+      "notes": "Two observed covariates X and Z, both active; the intercept is not a covariate column. This is low-dimensional (p=2; source n=100, smoke n=128). Q_tau=x+z+s(x)q_e(tau) is affine in observed covariates for all models, with no X*Z term. In Models 3-4, (X/2)e is a covariate-noise product inducing heteroscedasticity, not an observed-covariate interaction. Models 2/4 use the nonlinear latent transform exp(G), explicitly recorded as non-Gaussian noise; the nonlinear tag here describes the observed-covariate quantile surface, not noise simulation. Var(Y|X,Z)=s(X)^2 Var(e); no padding variables or causal confounding claim."
+    }
+  },
+  "estimand": {
+    "name": "theta_m = Q_0.95(Y | X=2,Z=0), m=1,2,3,4",
+    "definition": "inf{y: F_m(y|X=2,Z=0)>=0.95} in the model-specific synthetic superpopulation. Conditional, pointwise scalar; not a marginal quantile, regression slope, posterior quantile, sample-mean adjusted intercept or simultaneous band.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "model1_normal_homoscedastic",
+      "parameters": {
+        "model": 1,
+        "description": "Published Section 4.2 Model 1; original data law, adapted scalar conditional-quantile target.",
+        "x_df": 2,
+        "z_probability": 0.5,
+        "z_multiplier": 2,
+        "location_coefficients": [
+          0,
+          1,
+          1
+        ],
+        "error_distribution": "normal",
+        "error_normal_mean": 0,
+        "error_normal_sd": 2,
+        "scale_intercept": 1,
+        "scale_x": 0,
+        "tau": 0.95,
+        "query": {
+          "X": 2,
+          "Z": 0
+        }
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 5.289707253902943,
+        "expression": "inf{y: F_m(y|X=2,Z=0)>=0.95} in the model-specific synthetic superpopulation. Conditional, pointwise scalar; not a marginal quantile, regression slope, posterior quantile, sample-mean adjusted intercept or simultaneous band.",
+        "derivation": "Analytic positive location-scale quantile transform using NormalDist.inv_cdf; separate 70-digit Decimal CDF power-series integration plus bisection in verify.py. Absolute scalar tolerance 1e-10, fixed before execution.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[model1_normal_homoscedastic].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "model2_lognormal_homoscedastic",
+      "parameters": {
+        "model": 2,
+        "description": "Published Section 4.2 Model 2; original data law, adapted scalar conditional-quantile target.",
+        "x_df": 2,
+        "z_probability": 0.5,
+        "z_multiplier": 2,
+        "location_coefficients": [
+          0,
+          1,
+          1
+        ],
+        "error_distribution": "lognormal",
+        "error_normal_mean": 0,
+        "error_normal_sd": 1,
+        "scale_intercept": 1,
+        "scale_x": 0,
+        "tau": 0.95,
+        "query": {
+          "X": 2,
+          "Z": 0
+        }
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 7.18025160223301,
+        "expression": "inf{y: F_m(y|X=2,Z=0)>=0.95} in the model-specific synthetic superpopulation. Conditional, pointwise scalar; not a marginal quantile, regression slope, posterior quantile, sample-mean adjusted intercept or simultaneous band.",
+        "derivation": "Analytic positive location-scale quantile transform using NormalDist.inv_cdf; separate 70-digit Decimal CDF power-series integration plus bisection in verify.py. Absolute scalar tolerance 1e-10, fixed before execution.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[model2_lognormal_homoscedastic].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "model3_normal_heteroscedastic",
+      "parameters": {
+        "model": 3,
+        "description": "Published Section 4.2 Model 3; original data law, adapted scalar conditional-quantile target.",
+        "x_df": 2,
+        "z_probability": 0.5,
+        "z_multiplier": 2,
+        "location_coefficients": [
+          0,
+          1,
+          1
+        ],
+        "error_distribution": "normal",
+        "error_normal_mean": 0,
+        "error_normal_sd": 2,
+        "scale_intercept": 1,
+        "scale_x": 0.5,
+        "tau": 0.95,
+        "query": {
+          "X": 2,
+          "Z": 0
+        }
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 8.579414507805886,
+        "expression": "inf{y: F_m(y|X=2,Z=0)>=0.95} in the model-specific synthetic superpopulation. Conditional, pointwise scalar; not a marginal quantile, regression slope, posterior quantile, sample-mean adjusted intercept or simultaneous band.",
+        "derivation": "Analytic positive location-scale quantile transform using NormalDist.inv_cdf; separate 70-digit Decimal CDF power-series integration plus bisection in verify.py. Absolute scalar tolerance 1e-10, fixed before execution.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[model3_normal_heteroscedastic].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "model4_lognormal_heteroscedastic",
+      "parameters": {
+        "model": 4,
+        "description": "Published Section 4.2 Model 4; original data law, adapted scalar conditional-quantile target.",
+        "x_df": 2,
+        "z_probability": 0.5,
+        "z_multiplier": 2,
+        "location_coefficients": [
+          0,
+          1,
+          1
+        ],
+        "error_distribution": "lognormal",
+        "error_normal_mean": 0,
+        "error_normal_sd": 1,
+        "scale_intercept": 1,
+        "scale_x": 0.5,
+        "tau": 0.95,
+        "query": {
+          "X": 2,
+          "Z": 0
+        }
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 12.36050320446602,
+        "expression": "inf{y: F_m(y|X=2,Z=0)>=0.95} in the model-specific synthetic superpopulation. Conditional, pointwise scalar; not a marginal quantile, regression slope, posterior quantile, sample-mean adjusted intercept or simultaneous band.",
+        "derivation": "Analytic positive location-scale quantile transform using NormalDist.inv_cdf; separate 70-digit Decimal CDF power-series integration plus bisection in verify.py. Absolute scalar tolerance 1e-10, fixed before execution.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[model4_lognormal_heteroscedastic].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "Retain the four published data-generating laws and all their parameters. Treat Models 1-4 as four scenarios in one mechanism family.",
+    "Select only tau=0.95 from the original joint levels 0.9, 0.925, 0.95 and target a scalar conditional quantile, not the full vector of regression coefficients.",
+    "Replace the original sample-dependent adjusted intercept at (sample mean X,0) with the fixed query (X,Z)=(2,0), where 2=E[X]. This is a target adaptation, not a reported source-paper truth.",
+    "Use local Python RNG and CPU smoke n=128, seed=1729; original simulations use n=100 and 500 samples. No claim to replicate the original random stream, estimator MSE, priors or MCMC computations."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "generator.py",
+    "truth_reference": "truth.py",
+    "source_archive": "qdi-yang-he-2012-conditional-quantile-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/qdi-yang-he-2012-conditional-quantile-v1.py",
+    "exported_generator_sha256": "a84e2ab640a0055f67b2ab414919cc90d50992e1133b76001c9bdf6d52a6f3e8"
+  },
+  "evidence": [
+    {
+      "file": "collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "a1424aced5822e5ae1cb75c820583d4565fcaf9f66d5d155257f2b19693a88fe",
+    "collection_sha256": "9e757988895e3df2334ba5f2413e23a303a22d60da5d8cbe00cd1eaabb0b4afe",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/qdi-yang-he-2012-conditional-quantile-v1.zip",
+    "submitted_zip_sha256": "a1424aced5822e5ae1cb75c820583d4565fcaf9f66d5d155257f2b19693a88fe",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "Latent-variable candidates inferred from source equations; confirm their roles and completeness against the original paper or generator."
+  ],
+  "source_suggested_domain": "quantile_distribution",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

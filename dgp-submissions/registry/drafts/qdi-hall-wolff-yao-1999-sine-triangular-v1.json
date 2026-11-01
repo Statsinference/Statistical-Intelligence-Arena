@@ -1,0 +1,193 @@
+{
+  "schema_version": "0.1",
+  "record_id": "qdi-hall-wolff-yao-1999-sine-triangular-v1",
+  "kind": "synthetic_dgp",
+  "domain": "quantile",
+  "english_display": {},
+  "paper": {
+    "citation": "Hall, Peter; Wolff, Rodney C. L.; Yao, Qiwei (1999). Methods for Estimating a Conditional Distribution Function. Journal of the American Statistical Association 94(445), 154-163. DOI: 10.1080/01621459.1999.10473832.",
+    "title": null,
+    "doi": "10.1080/01621459.1999.10473832",
+    "source_url": "https://doi.org/10.1080/01621459.1999.10473832",
+    "source_file_evidence": [],
+    "venue": "Journal of the American Statistical Association (JASA)",
+    "year": 1999,
+    "source_version": "Version of record, JASA 94(445), March 1999; supplied local publisher PDF directly inspected on 2026-11-01",
+    "source_locator": "Version of record, supplied 11-page PDF (publisher cover is PDF p.1): Section 3.1 Simulation Studies, Example 1 first paragraph and unnumbered DGP equation, PDF p.4 / journal p.156. Equation (4) on that page is a bandwidth criterion, not this DGP. Example 1 continuation and Figure 1: PDF p.5 / journal p.157. Figure 2(d), x=0.1: PDF p.6 / journal p.158. Section 4 C1-C4 and Remark 1: PDF p.7 / journal p.159. Accepted-manuscript comparison locators are separately recorded below."
+  },
+  "mechanism": {
+    "name": "Conditional CDF in Hall-Wolff-Yao sine regression with triangular noise",
+    "title_en": null,
+    "family_id": "hall-wolff-yao-1999-example1-sine-triangular",
+    "generation_equations": [
+      {
+        "label": "Source law and sampling (Example 1, unnumbered)",
+        "expression": "X_i iid ~ f_T; epsilon_i iid ~ f_T; {X_i} independent of {epsilon_i}; f_T(u)=(1-|u|)1{-1<=u<=1}."
+      },
+      {
+        "label": "Source response (Example 1, unnumbered)",
+        "expression": "Y_i = 2*sin(3.1416*X_i) + epsilon_i."
+      },
+      {
+        "label": "Equivalent-law RNG implementation (derived)",
+        "expression": "For independent U_i1,...,U_i4 ~ Uniform(0,1): X_i=U_i1-U_i2; epsilon_i=U_i3-U_i4. Only X_i,Y_i are exported."
+      },
+      {
+        "label": "Conditional CDF (derived)",
+        "expression": "F(y|x)=G(z), z=y-2*sin(3.1416*x); G(z)=0 for z<=-1; (1+z)^2/2 for -1<z<=0; 1-(1-z)^2/2 for 0<z<1; 1 for z>=1."
+      },
+      {
+        "label": "Scalar target adaptation (derived)",
+        "expression": "theta=F(1|0.1)=1-2*sin(0.31416)^2=0.8090161307517588 (binary64 evaluation)."
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "X",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-1",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "-3",
+        "max": "3",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [
+      {
+        "name": "U_i4",
+        "role": "latent_candidate",
+        "evidence": {
+          "file": "collection.json",
+          "equation_index": 2,
+          "expression": "For independent U_i1,...,U_i4 ~ Uniform(0,1): X_i=U_i1-U_i2"
+        },
+        "provenance": "inferred_from_stochastic_declaration"
+      }
+    ],
+    "latent_variables_status": "candidates_from_equations_need_review",
+    "sampling": {
+      "unit": "one observed pair (X_i,Y_i)",
+      "dependence": "iid across rows; X_i independent of epsilon_i, while Y_i depends nonlinearly on X_i; no time-series or clustering structure in Example 1",
+      "source_sample_size": 600,
+      "source_replications": {
+        "optimal_bandwidth_stage": 400,
+        "bootstrap_bandwidth_stage": 200
+      },
+      "n_semantics": "n is the number of observed iid pairs requested by generate; seed is an implementation choice, not an original-paper seed"
+    },
+    "assumptions": [
+      "Sampling: {(X_i,epsilon_i)} are iid across rows; the X and epsilon sequences are mutually independent, exactly as Example 1 specifies.",
+      "Observation: X and Y are fully observed numeric variables; there is no missingness, label selection, censoring or measurement-error mechanism.",
+      "Conditional-law identification: independent additive noise gives F(y|x)=G(y-m(x)). As P(X=0.1)=0, the target uses the continuous conditional-distribution version determined by this model; continuity and positive design density near the query select its point value.",
+      "Local regularity: f_X(0.1)=0.9>0 and z=1-m(0.1) lies strictly inside (0,1), away from the triangular mode and support knots. Thus 0<F<1 and F(1|x) is smooth in a neighborhood of x=0.1. No global smoothness at the triangular knots or uniform density lower bound near support endpoints is asserted.",
+      "Source Section 4 C1-C4 are estimator-specific regularity/kernel/bandwidth/dependence conditions. iid rows satisfy its absolute-regularity component; no fitted estimator, bandwidth asymptotics, or confidence-band result is validated here. No causal exchangeability or intervention assumptions apply."
+    ],
+    "properties": {
+      "dimension": 1,
+      "effective_dimension": 1,
+      "observed_columns": 2,
+      "high_dimensional": false,
+      "interactions": false,
+      "nonlinear": true,
+      "notes": "One input covariate X, which is active through m(x)=2*sin(3.1416*x). Y is the outcome, not a second covariate. No covariate interaction terms and no padding variables. Additive homoskedastic triangular noise has variance 1/6 (derived), bounded support and density vanishing at endpoints. At the registered target f_Y|X(1|0.1)=0.6180353861199878>0. Independent noncausal regression; no confounding dimension. Scalar checks do not validate simultaneous bands."
+    }
+  },
+  "estimand": {
+    "name": "theta = F_{Y|X=0.1}(1)",
+    "definition": "P(Y<=1 | X=0.1) in the Example 1 superpopulation, using the continuous version F(y|x)=G(y-2*sin(3.1416*x)) induced by independent triangular noise. Conditional CDF, not a marginal CDF, quantile, conditional mean, causal contrast, or prediction interval. Query x=0.1 and CDF threshold y=1 are fixed in config.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "original_mechanism_fixed_cdf",
+      "parameters": {
+        "amplitude": 2.0,
+        "frequency": 3.1416,
+        "x_distribution": "symmetric_triangular",
+        "x_support": [
+          -1.0,
+          1.0
+        ],
+        "x_mode": 0.0,
+        "noise_distribution": "symmetric_triangular",
+        "noise_support": [
+          -1.0,
+          1.0
+        ],
+        "noise_mode": 0.0,
+        "query": {
+          "x": 0.1,
+          "y": 1.0
+        }
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.8090161307517588,
+        "expression": "P(Y<=1 | X=0.1) in the Example 1 superpopulation, using the continuous version F(y|x)=G(y-2*sin(3.1416*x)) induced by independent triangular noise. Conditional CDF, not a marginal CDF, quantile, conditional mean, causal contrast, or prediction interval. Query x=0.1 and CDF threshold y=1 are fixed in config.",
+        "derivation": "Closed-form integral of f_e(u)=1-|u| on [-1,1], shifted by m(x). Independent 80-digit Decimal Taylor sine plus Simpson integration of the shifted density, split at its mode, and rational x=0 anchors.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[original_mechanism_fixed_cdf].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "Preserve the full Example 1 observed-data mechanism, including the literal frequency 3.1416, two independent iid triangular sequences, amplitude 2, support [-1,1] and unit noise scale.",
+    "Restrict the paper's conditional distribution estimation task to scalar P(Y<=1|X=0.1). The paper considers x=0.1, but selecting y=1 as the sole target is this contribution's adaptation; its numerical truth is derived here, not a reported paper result.",
+    "Use the API's caller-supplied sample size and local seeded Python RNG. The requested n=128, seed=1729 check does not reproduce the paper's 400/200 experiments at n=600 or its MADE, bandwidth, estimator and bootstrap comparisons.",
+    "Generate triangular variables as differences of independent uniforms; this is an equivalent-law implementation choice, not a claim about the authors' RNG or code."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "generator.py",
+    "truth_reference": "truth.py",
+    "source_archive": "qdi-hall-wolff-yao-1999-sine-triangular-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/qdi-hall-wolff-yao-1999-sine-triangular-v1.py",
+    "exported_generator_sha256": "883b864693d09427460b855ac1957e67f00af9acdc6e52c9e35164edfd236e2f"
+  },
+  "evidence": [
+    {
+      "file": "collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "af75071b61193b08ecc94e19b65e6453db410f67fb44da43f33c49b7ca050f6a",
+    "collection_sha256": "77327b6e6d924fa330787aa58e0186cd95c1842fb0cca434ba50e8b91fd798f9",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/qdi-hall-wolff-yao-1999-sine-triangular-v1.zip",
+    "submitted_zip_sha256": "af75071b61193b08ecc94e19b65e6453db410f67fb44da43f33c49b7ca050f6a",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "Latent-variable candidates inferred from source equations; confirm their roles and completeness against the original paper or generator."
+  ],
+  "source_suggested_domain": "quantile_distribution",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

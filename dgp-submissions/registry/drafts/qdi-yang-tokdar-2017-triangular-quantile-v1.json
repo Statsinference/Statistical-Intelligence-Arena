@@ -1,0 +1,255 @@
+{
+  "schema_version": "0.1",
+  "record_id": "qdi-yang-tokdar-2017-triangular-quantile-v1",
+  "kind": "synthetic_dgp",
+  "domain": "quantile",
+  "english_display": {},
+  "paper": {
+    "citation": "Yang, Yun and Tokdar, Surya T. (2017). Joint Estimation of Quantile Planes Over Arbitrary Predictor Spaces. Journal of the American Statistical Association 112(519), 1107-1120. DOI: 10.1080/01621459.2016.1192545.",
+    "title": null,
+    "doi": "10.1080/01621459.2016.1192545",
+    "source_url": "https://doi.org/10.1080/01621459.2016.1192545",
+    "source_file_evidence": [],
+    "venue": "Journal of the American Statistical Association",
+    "year": 2017,
+    "source_version": null,
+    "source_locator": "Published Figure 1 caption (unnumbered quantile equation), Sec.1.3 context: journal p.1108 / PDF p.3 including publisher cover; citation PDF p.1. Quantile definition and shared-rank inverse transform: journal p.1107/PDF p.2 Eqs.(1)–(3). Density/row likelihood: journal p.1110/PDF p.5 Sec.2.3. Independent stochastic design: journal p.1112/PDF p.7 Sec.4. Supplement p.1 and Sec.B.1 pp.9–11. Upstream repository/commit/file/function/line evidence is in source_records.json and card.md; it is provenance context, not executed DGP code. Published Sec.5.1 is a separate univariate design."
+  },
+  "mechanism": {
+    "name": "Published Figure 1 triangular predictor DGP: conditional 0.95 quantile at the centroid",
+    "title_en": null,
+    "family_id": "yang-tokdar-2017-triangular-quantile",
+    "generation_equations": [
+      {
+        "label": "Generation step 0: n, seed, fixed constants",
+        "expression": "Published illustration n=1000; check n=128, seed=1729 are collector choices. A=(-1,1), B=(-1,2), C=(2,-1); normal means (0,1), standard deviations (1,1/5)."
+      },
+      {
+        "label": "Generation step 1: R_i,T_i; u_i,v_i (internal)",
+        "expression": "R_i,T_i iid Uniform(0,1); if R_i+T_i>1 then (u_i,v_i)=(1-R_i,1-T_i), else (R_i,T_i). Density of (u_i,v_i) is 2 on u>=0,v>=0,u+v<=1."
+      },
+      {
+        "label": "Generation step 2: X_i=(X1_i,X2_i) (observed)",
+        "expression": "X_i=A+u_i(B-A)+v_i(C-A)=(-1+3v_i,1+u_i-2v_i); X_i~Uniform_area(D). D={x1>=-1,2x1+3x2>=1,x1+x2<=1}; area=3/2, density=2/3."
+      },
+      {
+        "label": "Generation step 3: s_i,a_i,b_i (internal deterministic values)",
+        "expression": "s_i=X1_i+X2_i in [0,1]; a_i=(1-s_i)/3 in [0,1/3]; b_i=(2+s_i)/3 in [2/3,1]; a_i+b_i=1."
+      },
+      {
+        "label": "Generation step 4: Z_i (internal common rank)",
+        "expression": "Z_i~N(0,1), independent of (R_i,T_i), X_i and other rows. Equivalently U_i=Phi(Z_i)~Uniform(0,1). L0_i=Z_i and L1_i=1+(1/5)Z_i share this same Z_i, hence have correlation 1."
+      },
+      {
+        "label": "Generation step 5: Y_i (observed)",
+        "expression": "Y_i=a_i Z_i+b_i(1+Z_i/5)=mu_i+sigma_i Z_i; mu_i=(2+s_i)/3, sigma_i=(7-4s_i)/15 in [1/5,7/15]. Y_i|X_i~N(mu_i,sigma_i^2). epsilon_i=Y_i-mu_i has conditional variance sigma_i^2; epsilon_i is not marginally independent of X_i because its scale varies."
+      },
+      {
+        "label": "Generation step 6: Observed table and independent rows",
+        "expression": "Repeat the row law iid for i=1,...,n. Return X1,X2,Y only. Within-row X1/X2 covariance=-5/12; Y depends on their sum. No treatment/mediator, assignment, label selection, missingness, censoring, measurement error, predictor training, cluster, panel or interference mechanism."
+      },
+      {
+        "label": "Published quantile law",
+        "expression": "s=x1+x2; Q_Y(tau|x)=(1-s)/3*Q_N(tau|0,1)+(2+s)/3*Q_N(tau|1,0.2^2), where second Q_N parameter is variance."
+      },
+      {
+        "label": "Derived coefficient functions",
+        "expression": "z_tau=Phi^-1(tau); beta0(tau)=2/3+(7/15)z_tau; beta1(tau)=beta2(tau)=1/3-(4/15)z_tau. Derived, not new parameters."
+      },
+      {
+        "label": "Joint density and CDF",
+        "expression": "f_X,Y(x,y)=(2/3)*1_D(x)*phi((y-mu(x))/sigma(x))/sigma(x); F_Y(y|x)=Phi((y-mu(x))/sigma(x))."
+      },
+      {
+        "label": "Adapted fixed query",
+        "expression": "x*=(0,2/3), tau*=19/20; theta=8/9+(13/45)*Phi^-1(19/20)."
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "X1",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-1",
+        "max": "2",
+        "observed": "true"
+      },
+      {
+        "name": "X2",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-1",
+        "max": "2",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [
+      {
+        "name": "R_i",
+        "role": "latent_candidate",
+        "evidence": {
+          "file": "collection.json",
+          "equation_index": 1,
+          "expression": "R_i,T_i iid Uniform(0,1)"
+        },
+        "provenance": "inferred_from_stochastic_declaration"
+      },
+      {
+        "name": "T_i",
+        "role": "latent_candidate",
+        "evidence": {
+          "file": "collection.json",
+          "equation_index": 1,
+          "expression": "R_i,T_i iid Uniform(0,1)"
+        },
+        "provenance": "inferred_from_stochastic_declaration"
+      },
+      {
+        "name": "Z_i",
+        "role": "latent_candidate",
+        "evidence": {
+          "file": "collection.json",
+          "equation_index": 4,
+          "expression": "Z_i~N(0,1), independent of (R_i,T_i), X_i and other rows. Equivalently U_i=Phi(Z_i)~Uniform(0,1). L0_i=Z_i and L1_i=1+(1/5)Z_i share this same Z_i, hence have correlation 1."
+        },
+        "provenance": "inferred_from_stochastic_declaration"
+      }
+    ],
+    "latent_variables_status": "candidates_from_equations_need_review",
+    "sampling": {
+      "unit": "One fully observed synthetic vector (X1,X2,Y); n is row count. Published illustration n=1000.",
+      "dependence": "iid rows; within-row predictor covariance Cov(X1,X2)=-5/12 (derived). A single independent standard Gaussian rank generates each Y. No network, panel, cluster or interference structure."
+    },
+    "assumptions": [
+      "iid observation rows (X1,X2,Y); X jointly uniform on conv{(-1,1),(-1,2),(2,-1)}. The two coordinates are dependent within rows.",
+      "Complete observations: no censoring, missingness, selection or measurement error added. Latent Gaussian rank is independent of X and across rows and is never returned.",
+      "Use the conditional distribution version continuous in x specified by the published equation. This makes the probability-zero fixed conditioning point meaningful.",
+      "The centroid (0,2/3) is strictly interior; f_X=2/3 in a neighborhood. s=X1+X2 lies in [0,1]; sigma=(7-4s)/15 lies in [1/5,7/15]. The conditional CDF is continuous, strictly increasing, and has positive density at the target.",
+      "The original coordinate origin is outside this triangle. The theory in Sec.2.1 allows translation to an interior origin, but this generator does not translate observed coordinates or alter the published law. No claim is made that the original origin satisfies that theoretical assumption.",
+      "No causal intervention target; no unconfoundedness, cross-world, treatment-positivity or interference assumptions are imposed."
+    ],
+    "properties": {
+      "dimension": 2,
+      "effective_dimension": 2,
+      "observed_columns": 3,
+      "high_dimensional": false,
+      "interactions": false,
+      "nonlinear": false,
+      "notes": "Both original predictor columns are active, so effective_dimension=2 under the guide column-count convention. Intrinsic index dimension is 1 because conditional law depends only on s=X1+X2. Q=(2+s)/3+(7-4s)/15*Phi^-1(tau) is affine in x and contains no X1*X2 predictor term. nonlinear=false refers to the predictor quantile/mean surface; Phi^-1 is nonlinear in tau and conditional variance ((7-4s)/15)^2 is quadratic. Gaussian, heteroskedastic, low-dimensional; this is not high-dimensional confounding."
+    }
+  },
+  "estimand": {
+    "name": "theta = Q_Y(19/20 | X=(0,2/3))",
+    "definition": "inf{y:F_Y(y|X=(0,2/3))>=19/20} under the continuous conditional-law version specified by the published Figure 1 law. Exact centroid and quantile level are stored as rational metadata. One pointwise conditional quantile, not a marginal target or simultaneous band.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "published_triangle_centroid",
+      "parameters": {
+        "triangle_vertices": [
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            2.0
+          ],
+          [
+            2.0,
+            -1.0
+          ]
+        ],
+        "normal_means": [
+          0.0,
+          1.0
+        ],
+        "normal_sds": [
+          1.0,
+          0.2
+        ],
+        "query_x": [
+          0.0,
+          0.6666666666666666
+        ],
+        "query_x_exact": [
+          "0",
+          "2/3"
+        ],
+        "quantile_level": 0.95,
+        "quantile_level_exact": "19/20",
+        "paper_n": 1000
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 1.3640688255637583,
+        "expression": "inf{y:F_Y(y|X=(0,2/3))>=19/20} under the continuous conditional-law version specified by the published Figure 1 law. Exact centroid and quantile level are stored as rational metadata. One pointwise conditional quantile, not a marginal target or simultaneous band.",
+        "derivation": "Exact query implies mu=8/9 and sigma=13/45, so theta=8/9+(13/45)*Phi^-1(19/20). Main route uses NormalDist.inv_cdf; independent Decimal Gaussian-CDF power-series integration and response-scale bisection at 60/80 digits; analytic boundary/median/symmetry checks. Diagnostics are not rigorous error bounds.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[published_triangle_centroid].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "Use the published Figure 1 caption literally for the joint uniform triangle and response law. Select the centroid query x=(0,2/3), tau=19/20 as an explicitly declared collection target adaptation; the paper does not report this scalar truth.",
+    "Implement uniform-triangle sampling by reflection on the unit square followed by A+u(B-A)+v(C-A); use one shared standard Gaussian rank in the weighted quantile expression. This is an independently written distribution-equivalent implementation, not claimed author code/random-stream replay.",
+    "Record original illustration n=1000; local interface check uses n=128 and seed=1729. The verifier also uses 2048 transient diagnostic rows. No estimator/MCMC comparison, bootstrap, PFN training or confidence-band coverage is reproduced.",
+    "This revision changes source and completeness documentation only; all six implementation/config/schema/dependency files are byte-identical to adopted ZIP a790ce219f314f8c680110df0532207437291efa01fa03d486dc723927aa33b3. No new law, query or scenario."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "generator.py",
+    "truth_reference": "truth.py",
+    "source_archive": "qdi-yang-tokdar-2017-triangular-quantile-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/qdi-yang-tokdar-2017-triangular-quantile-v1.py",
+    "exported_generator_sha256": "3d3b5505156d7d1303f97ebb2fd22921b2da6827ef3f4046d0ff06dd414ecb2f"
+  },
+  "evidence": [
+    {
+      "file": "collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "390f77c9678fcd80a0a63ddd4fb1d50f838b4171e6b110898e6f60671036a6fa",
+    "collection_sha256": "58620ddf72f98f9551f284e44e333d59c46ef027ae5b89d959c898ccdf84df33",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/qdi-yang-tokdar-2017-triangular-quantile-v1.zip",
+    "submitted_zip_sha256": "390f77c9678fcd80a0a63ddd4fb1d50f838b4171e6b110898e6f60671036a6fa",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "Latent-variable candidates inferred from source equations; confirm their roles and completeness against the original paper or generator."
+  ],
+  "source_suggested_domain": "quantile_distribution",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

@@ -1,0 +1,165 @@
+{
+  "schema_version": "0.1",
+  "record_id": "qdi-henzi-2021-poisson-clipped-rate-v1",
+  "kind": "synthetic_dgp",
+  "domain": "quantile",
+  "english_display": {},
+  "paper": {
+    "citation": "Henzi, Alexander; Ziegel, Johanna F.; Gneiting, Tilmann (2021). Isotonic Distributional Regression. Journal of the Royal Statistical Society: Series B (Statistical Methodology), 83(5), 963-993. DOI: 10.1111/rssb.12450.",
+    "title": null,
+    "doi": "10.1111/rssb.12450",
+    "source_url": "https://doi.org/10.1111/rssb.12450",
+    "source_file_evidence": [],
+    "venue": "Journal of the Royal Statistical Society: Series B (Statistical Methodology)",
+    "year": 2021,
+    "source_version": null,
+    "source_locator": "Primary: published Version of Record, JRSS-B 83(5):963-993 (2021), Section 4. Covariate law: PDF p.17 / journal p.979, unnumbered paragraph immediately before equation (23); Poisson law: equation (26), PDF p.19 / journal p.981. Regularity: Section 2.4, Theorem 3, PDF pp.12-13 / journal pp.974-975. Official supplement rssb12450-sup-0001-Supinfo.pdf (dated 19 March 2021), S2 PDF pp.2-5 (proof still called Theorem 2.3), S4 PDF p.7, S5 Table S1 PDF p.8. Historical arXiv v3: equation (26) p.19, Theorem 2.3 pp.13-14, Appendix D pp.41-42, Appendix E Table 3 p.43. Author reference commit c339ffa652ca24111f183ed833aa7bd5fa43acfd, simulation_example.R top-level script lines 42-79; seeds at 55/70, Poisson at 61/79, training jitter at 67-68."
+  },
+  "mechanism": {
+    "name": "Conditional CDF at (x=5,y=3) in the Henzi-Ziegel-Gneiting clipped-rate Poisson mechanism",
+    "title_en": null,
+    "family_id": "henzi-ziegel-gneiting-2021-poisson-clipped-rate",
+    "generation_equations": [
+      {
+        "label": "Source covariate: published Section 4, PDF p.17 / journal p.979, unnumbered paragraph before (23)",
+        "expression": "X_i iid ~ Uniform(0,10)"
+      },
+      {
+        "label": "Source conditional intensity: published equation (26), PDF p.19 / journal p.981",
+        "expression": "lambda(x)=min(max(x,1),6) = 1 if 0<x<=1; x if 1<x<6; 6 if 6<=x<10"
+      },
+      {
+        "label": "Source count: published equation (26), PDF p.19 / journal p.981; Y4 renamed Y",
+        "expression": "Y_i | X_i=x ~ Poisson(lambda(x)), independently across i; P(Y_i=k|X_i=x)=exp(-lambda(x))*lambda(x)^k/k!, k=0,1,..."
+      },
+      {
+        "label": "Adapted scalar target",
+        "expression": "theta=P(Y<=3|X=5)=exp(-5)*(1+5+25/2+125/6)=(118/3)*exp(-5)"
+      },
+      {
+        "label": "Independent verification identity",
+        "expression": "theta=Integral_5^infinity t^3*exp(-t)/6 dt (Gamma/Erlang survival)"
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "X",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "0",
+        "max": "10",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [],
+    "latent_variables_status": "not_explicitly_specified",
+    "sampling": {
+      "unit": "one observed covariate-count pair (X_i,Y_i)",
+      "dependence": "iid observed pairs across rows; within each pair, Y depends on X only through lambda(X). n counts fully observed pairs, not clusters or repeated measurements. No treatment, mediator, missingness, label indicator, censoring or interference mechanism applies."
+    },
+    "assumptions": [
+      "One fully observed pair (X_i,Y_i) per independent identically distributed row; X_i~Uniform(0,10), Y_i|X_i~Poisson(min(max(X_i,1),6)); no missingness, censoring, selection or cross-row dependence.",
+      "The conditional kernel is the one defined by equation (26). Because P(X=5)=0, point identification from the joint law uses the continuous-in-x version with positive covariate density around 5; a single zero-probability conditioning event alone does not identify an arbitrary conditional version.",
+      "For isotonic interpretation, the usual numerical order of X is used. Nondecreasing clipped intensity implies stochastically increasing conditional laws, hence nonincreasing F_x(y) in x. These properties follow from the DGP and are not causal assumptions.",
+      "Uniform design has positive density 0.1 on (0,10); lambda is continuous and 1-Lipschitz, bounded in [1,6]. Poisson coupling gives sup_y |F_x(y)-F_xprime(y)| <= |x-xprime|. After X/10 rescaling, these support the density/order/continuity setting of published Section 2.4 Theorem 3 (PDF pp.12-13 / journal pp.974-975; supplement S2 retains the label Theorem 2.3); this submission proves no estimator rate or confidence-band coverage.",
+      "Y is discrete on the nonnegative integers, with finite moments and no Lebesgue density. Positive response-density assumptions for continuous quantiles are inapplicable. No treatment, intervention, exchangeability or mediation condition is imposed."
+    ],
+    "properties": {
+      "dimension": 1,
+      "effective_dimension": 1,
+      "observed_columns": 2,
+      "high_dimensional": false,
+      "interactions": false,
+      "nonlinear": true,
+      "notes": "Only input covariate X; Y is the response, not an extra dimension. X acts through lambda(x)=min(max(x,1),6): constant 1 for x<=1, x on (1,6), constant 6 for x>=6. This is globally non-affine and has kinks at 1 and 6; no product/interaction terms. F_x(3)=exp(-lambda)*(1+lambda+lambda^2/2+lambda^3/6) is nonlinear on (1,6). One active dimension, no padding or high-dimensional confounding; discrete heteroskedastic response with mean=variance=lambda(x). The bounds 1 and 6 truncate the intensity, not Y: the conditional count support is all nonnegative integers and is unbounded above."
+    }
+  },
+  "estimand": {
+    "name": "theta = F_{Y|X=5}(3)",
+    "definition": "P(Y<=3 | X=5) in the source synthetic superpopulation, using its continuous-in-x conditional probability kernel. Inclusive CDF threshold y=3, fixed covariate query x=5, scalar probability in [0,1]. This is conditional, not marginal, and not a quantile or a causal effect.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "original_poisson_qdi",
+      "parameters": {
+        "x_low": 0.0,
+        "x_high": 10.0,
+        "rate_floor": 1.0,
+        "rate_cap": 6.0,
+        "query_x": 5.0,
+        "cdf_threshold": 3
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.2650259152973617,
+        "expression": "P(Y<=3 | X=5) in the source synthetic superpopulation, using its continuous-in-x conditional probability kernel. Inclusive CDF threshold y=3, fixed covariate query x=5, scalar probability in [0,1]. This is conditional, not marginal, and not a quantile or a causal effect.",
+        "derivation": "Finite Poisson PMF sum; Decimal precisions 60/90 audit; separately implemented Gamma(shape=4,rate=1) survival integral over [5,60] by composite Simpson 4096/8192 intervals plus analytic upper-tail bound. Special support, threshold jump and clipped-platform checks.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[original_poisson_qdi].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "Keep the published Section 4 equation (26) Uniform(0,10) and Poisson(min(max(x,1),6)) law unchanged; rename source response Y4 to observed column Y.",
+    "Use the requested fixed scalar conditional CDF P(Y<=3 | X=5). This is a user-selected QDI target, not a numerical result reported by the source, which evaluates distributional predictions by CRPS.",
+    "Implement the unjittered equation (26), without the author training-script perturbations X+=Uniform(-1e-6,1e-6) and Y+=Uniform(-1e-6,1e-6) at lines 67-68. This preserves the requested discrete response. Do not claim exact reproduction of the full author preprocessing pipeline.",
+    "Use local Python random.Random and a Poisson arrival-count sampler instead of R runif/rpois. Equality in law is intended; R/Python draws are not bitwise identical.",
+    "Run only n=128 CPU interface checks and numerical truth checks. Do not reproduce the 500-replicate training/validation experiment, fit predictors, train PFN, or evaluate interval coverage."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "generator.py",
+    "truth_reference": "truth.py",
+    "source_archive": "qdi-henzi-2021-poisson-clipped-rate-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/qdi-henzi-2021-poisson-clipped-rate-v1.py",
+    "exported_generator_sha256": "833f97a08f194f1b8b7ef326d5e59541028a1a4bfc4c381c6ecb39724c12584b"
+  },
+  "evidence": [
+    {
+      "file": "collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "9de7c7a7ab40d4e1ff3b9a6597238580c59cf701f5aabd52a510693c3ca6b3d0",
+    "collection_sha256": "2058a1043fe71dace45fe61de2629468b9da849c7394eb1dcd9bd69273039fe9",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/qdi-henzi-2021-poisson-clipped-rate-v1.zip",
+    "submitted_zip_sha256": "9de7c7a7ab40d4e1ff3b9a6597238580c59cf701f5aabd52a510693c3ca6b3d0",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "No explicit latent-variable metadata or reliably identifiable latent declarations; absence from this list does not prove that no latent variables exist."
+  ],
+  "source_suggested_domain": "quantile_distribution",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

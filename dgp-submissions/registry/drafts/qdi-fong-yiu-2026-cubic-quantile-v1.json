@@ -1,0 +1,196 @@
+{
+  "schema_version": "0.1",
+  "record_id": "qdi-fong-yiu-2026-cubic-quantile-v1",
+  "kind": "synthetic_dgp",
+  "domain": "quantile",
+  "english_display": {},
+  "paper": {
+    "citation": "Fong, Edwin and Yiu, Andrew (2026). Bayesian quantile estimation and regression with martingale posteriors. Journal of the Royal Statistical Society Series B: Statistical Methodology, 88(4), 1130-1159. doi:10.1093/jrsssb/qkaf080. Reference preprint: arXiv:2406.03358v1 (5 June 2024). First published online 16 December 2025; issue assignment September 2026. These are distinct dates.",
+    "title": null,
+    "doi": "10.1093/jrsssb/qkaf080",
+    "source_url": "https://doi.org/10.1093/jrsssb/qkaf080",
+    "source_file_evidence": [],
+    "venue": "Journal of the Royal Statistical Society Series B: Statistical Methodology (JRSS-B)",
+    "year": 2026,
+    "source_version": null,
+    "source_locator": "Primary: publisher 2026 issue PDF, Section 7.1, PDF p.23 / journal p.1152, first-paragraph unnumbered quantile equation; Figure 4 and discussion PDF p.24 / journal p.1153. Code availability: PDF p.28 / journal p.1157. Supporting arXiv:2406.03358v1 Section 7.1 PDF/printed p.25, Figure 4 and p.26 discussion; publisher supplement E.3.1 PDF/printed pp.47-48, formula/support on p.48. Author code: commit a779aef7ce40d6403e006c65b5177603cebd4758, run_scripts/7.1_sim_qmp.py lines 14-36 (grid, quantile, sim, seed, sizes); qmp/qmp_functions.py lines 45-49 (Q0). Full file hashes and paper-code differences in author_code_audit.json."
+  },
+  "mechanism": {
+    "name": "Fong-Yiu bounded cubic quantile distribution: marginal 0.9 quantile",
+    "title_en": null,
+    "family_id": "fong-yiu-qkaf080-bounded-cubic-quantile",
+    "generation_equations": [
+      {
+        "label": "Source sampling law",
+        "expression": "Y_1,...,Y_n iid ~ P*, Q*(u)=4(u-0.4)^3+0.2u, 0<u<1; n in {50,500}."
+      },
+      {
+        "label": "Equivalent inverse-transform construction",
+        "expression": "U_i iid ~ Uniform(0,1); Y_i=4(U_i-0.4)^3+0.2U_i. No added noise; only Y is observed."
+      },
+      {
+        "label": "Derived monotonicity and support",
+        "expression": "Q'(u)=12(u-0.4)^2+0.2>=0.2; Q(0)=-0.256; Q(1)=1.064 (continuous endpoint extensions)."
+      },
+      {
+        "label": "Adapted scalar target",
+        "expression": "theta=inf{y:F_Y(y)>=0.9}=Q*(0.9)=17/25=0.68."
+      },
+      {
+        "label": "Independent verification route",
+        "expression": "Q*(u)=4u^3-4.8u^2+2.12u-0.256; F_Y(y) is the unique inverse root in [0,1] on the support, with 0/1 outside."
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "-0.256",
+        "max": "1.064",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [
+      {
+        "name": "U_i",
+        "role": "latent_candidate",
+        "evidence": {
+          "file": "collection.json",
+          "equation_index": 1,
+          "expression": "U_i iid ~ Uniform(0,1)"
+        },
+        "provenance": "inferred_from_stochastic_declaration"
+      }
+    ],
+    "latent_variables_status": "candidates_from_equations_need_review",
+    "sampling": {
+      "unit": "one fully observed scalar response Y per row",
+      "dependence": "iid across rows; no clustering, serial dependence or interference structure",
+      "sample_sizes": [
+        50,
+        500
+      ],
+      "n_semantics": "n is the actual requested row count and overrides nominal paper_n; the latter is design metadata only.",
+      "cross_scenario_coupling": "Author script uses n=50 as prefix of a single n=500 sample. Local generator yields prefixes for matching seed across n; iid refers to rows within a dataset, not independence of scenarios sharing a seed."
+    },
+    "assumptions": [
+      "Independent and identically distributed scalar observations from the declared P*: explicitly stated in publisher Section 7.1 journal p.1152 (PDF p.23), consistent with arXiv v1 p.25.",
+      "Y is fully observed; no selection, censoring or missingness is introduced. The simulator has no covariates; U is internal inverse-transform randomness, not an observed covariate.",
+      "Derived regularity: Q is continuous and Q'(u)=12(u-0.4)^2+0.2>=0.2 on [0,1], so the marginal quantile is unique and F has positive continuous density at the interior target.",
+      "The target is a functional of the observed marginal distribution. At Q(0.9)=0.68 the density is 0.3125. No causal intervention, confounding, cross-world or mediation assumptions apply."
+    ],
+    "properties": {
+      "dimension": 0,
+      "effective_dimension": 0,
+      "observed_columns": 1,
+      "high_dimensional": false,
+      "interactions": false,
+      "nonlinear": true,
+      "notes": "dimension/effective_dimension count observed input covariates: both 0. There is one response Y and one internal Uniform variable U. Nonlinearity is 4(U-0.4)^3; powers of one scalar are not multivariable interactions. No high-dimensional or confounding claim. Bounded support [-0.256,1.064], f_Y(Q(.9))=.3125."
+    }
+  },
+  "estimand": {
+    "name": "theta = Q_Y(0.9)",
+    "definition": "Marginal population quantile inf{y: P(Y<=y)>=0.9} under Y=4(U-0.4)^3+0.2U, U~Uniform(0,1); no conditioning variables or interventions. The fixed query is tau=0.9 in both scenarios.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "original_n50",
+      "parameters": {
+        "cubic_coefficient": 4.0,
+        "shift": 0.4,
+        "linear_coefficient": 0.2,
+        "quantile_level": 0.9,
+        "paper_n": 50,
+        "description": "Original bounded cubic distribution at paper sample size n=50; fixed tau=.9 is the declared target adaptation."
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.68,
+        "expression": "Marginal population quantile inf{y: P(Y<=y)>=0.9} under Y=4(U-0.4)^3+0.2U, U~Uniform(0,1); no conditioning variables or interventions. The fixed query is tau=0.9 in both scenarios.",
+        "derivation": "Strictly increasing inverse transform: Q_Y(tau)=4(tau-.4)^3+.2*tau. Fraction arithmetic yields exact 17/25; independent Decimal expanded-polynomial CDF inversion plus uniform/center analytic cases. Float conversion error is reported separately from sampling/source uncertainty.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[original_n50].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "original_n500",
+      "parameters": {
+        "cubic_coefficient": 4.0,
+        "shift": 0.4,
+        "linear_coefficient": 0.2,
+        "quantile_level": 0.9,
+        "paper_n": 500,
+        "description": "Original bounded cubic distribution at paper sample size n=500; fixed tau=.9 is the declared target adaptation."
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.68,
+        "expression": "Marginal population quantile inf{y: P(Y<=y)>=0.9} under Y=4(U-0.4)^3+0.2U, U~Uniform(0,1); no conditioning variables or interventions. The fixed query is tau=0.9 in both scenarios.",
+        "derivation": "Strictly increasing inverse transform: Q_Y(tau)=4(tau-.4)^3+.2*tau. Fraction arithmetic yields exact 17/25; independent Decimal expanded-polynomial CDF inversion plus uniform/center analytic cases. Float conversion error is reported separately from sampling/source uncertainty.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[original_n500].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "Preserve the paper analytic cubic distribution and n=50/n=500; restrict to scalar tau=.9. Author code instead implements a finite-grid interpolant with flat tails, so paper-law preservation does not imply exact author-code distribution reproduction.",
+    "Use direct cubic evaluation with local Python random.Random, instead of author NumPy global seed 2024 and np.interp over a JAX interior grid. Author n=50/500 data are nested prefixes; this local generator also has prefix coupling when called with the same seed at different n. No claim to author samples, posterior fitting or Figure 4 reproduction.",
+    "Declare original_n50 and original_n500 as two scenarios of one mechanism. The n argument controls generated row count; paper_n records the original design. CLI smoke checks use n=128 and verify additionally generates each original nominal sample size.",
+    "Linear-only and tau=0.4 cases are auxiliary verification cases, not additional source scenarios or new mechanism families.",
+    "2026-11-01 numerical endpoint correction only: for random draw u=0 evaluate -a*b^3 using exact decimal-parameter fractions before float conversion; all nonzero draws use the previous expression. No clipping, changed schema, parameter or population law."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "generator.py",
+    "truth_reference": "truth.py",
+    "source_archive": "qdi-fong-yiu-2026-cubic-quantile-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/qdi-fong-yiu-2026-cubic-quantile-v1.py",
+    "exported_generator_sha256": "f9b87b052dcae9c65439f8864a1909aa48ae8c0252e61b836d99ae6e3eba7aee"
+  },
+  "evidence": [
+    {
+      "file": "collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "24ab9f925fef077c9a9b6f212f577fa31a321a3ad4b6b277901561a8f0ffeecf",
+    "collection_sha256": "8f7439c38e21e63e704139864d66fba623f11aa5540e04c9bd539e0baf315d29",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/qdi-fong-yiu-2026-cubic-quantile-v1.zip",
+    "submitted_zip_sha256": "24ab9f925fef077c9a9b6f212f577fa31a321a3ad4b6b277901561a8f0ffeecf",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "Latent-variable candidates inferred from source equations; confirm their roles and completeness against the original paper or generator."
+  ],
+  "source_suggested_domain": "quantile_distribution",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

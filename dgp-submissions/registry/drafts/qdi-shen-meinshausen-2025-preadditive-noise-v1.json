@@ -1,0 +1,288 @@
+{
+  "schema_version": "0.1",
+  "record_id": "qdi-shen-meinshausen-2025-preadditive-noise-v1",
+  "kind": "synthetic_dgp",
+  "domain": "quantile",
+  "english_display": {},
+  "paper": {
+    "citation": "Shen, Xinwei and Meinshausen, Nicolai (2025). Engression: extrapolation through the lens of distributional regression. Journal of the Royal Statistical Society Series B: Statistical Methodology 87(3):653–677. DOI:10.1093/jrsssb/qkae108.",
+    "title": null,
+    "doi": "10.1093/jrsssb/qkae108",
+    "source_url": "https://doi.org/10.1093/jrsssb/qkae108",
+    "source_file_evidence": [],
+    "venue": "Journal of the Royal Statistical Society Series B: Statistical Methodology (JRSS-B)",
+    "year": 2025,
+    "source_version": null,
+    "source_locator": "Published main PDF (25 pages, no cover): equation (2), journal p.655/PDF p.3; Section 2.1 equation (4), journal p.656/PDF p.4; Section 3.2, journal pp.662–663/PDF pp.10–11; Section 6, journal p.671/PDF p.19, defers simulations to supplementary C.1. Official supplement: C.1/Table C.1 PDF p.2, H.1 PDF p.29. Relevant pages personally read as text and rendered images. Official code fixed snapshot eb6b83b1613458b5b3547e4e44a81da4712ab581: engression-python/engression/data/simulator.py, preanm_simulator lines 6–57, transforms 22–30, Log 30, noise 35–40, training 42–46. See source_record.json."
+  },
+  "mechanism": {
+    "name": "Engression official supplementary pre-additive noise: four scenarios, interior conditional medians",
+    "title_en": null,
+    "family_id": "shen-meinshausen-engression-preadditive-noise",
+    "generation_equations": [
+      {
+        "label": "Source pre-ANM (4)",
+        "expression": "Y=g(WX+eta)+beta^T X; collected simulation specializes to d=k=1,W=1,beta=0, so Y=g_s(X+eta)."
+      },
+      {
+        "label": "Independent noise and rows",
+        "expression": "eta_i independent of X_i; (X_i,eta_i) iid across i; eta_i~N(0,sigma_s^2), sigma_cubic=1.1, all others=1."
+      },
+      {
+        "label": "Covariate laws",
+        "expression": "X_i~Unif[-2,2] for softplus,cubic; X_i~Unif[0,2] for square,log."
+      },
+      {
+        "label": "Softplus",
+        "expression": "g_softplus(u)=ln(1+exp(u))."
+      },
+      {
+        "label": "Square",
+        "expression": "g_square(u)=max(u,0)^2/2."
+      },
+      {
+        "label": "Cubic",
+        "expression": "g_cubic(u)=u^3/3."
+      },
+      {
+        "label": "Log, literal table",
+        "expression": "g_log(u)=(u-2)/3+ln(3) if u<=2; ln(u) if u>2. Literal official supplementary Table C.1, explicitly selected by user; inspected author fixed-snapshot simulator.py line 30 differs."
+      },
+      {
+        "label": "Scalar QDI target",
+        "expression": "q_s=inf{y:P_eta(g_s(0.5+eta)<=y)>=0.5}; (q_softplus,q_square,q_cubic,q_log)=(ln(1+exp(0.5)),1/8,1/24,ln(3)-1/2)."
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "X",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-2",
+        "max": "2",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [
+      {
+        "name": "eta_i",
+        "role": "latent_candidate",
+        "evidence": {
+          "file": "collection.json",
+          "equation_index": 1,
+          "expression": "(X_i,eta_i) iid across i"
+        },
+        "provenance": "inferred_from_stochastic_declaration"
+      }
+    ],
+    "latent_variables_status": "candidates_from_equations_need_review",
+    "sampling": {
+      "unit": "One simulated complete observation (X_i,Y_i)",
+      "dependence": "iid across rows; within each row Y is a deterministic nonlinear function of X plus an independent latent Gaussian noise before transformation.",
+      "n_semantics": "n is the number of observed training-distribution rows, not the source neural-network training sample size and not the number of conditional draws at the query."
+    },
+    "assumptions": [
+      "Rows (X_i,eta_i) are iid; eta independent of X; all X,Y fully observed; no clustering, panel or network dependence.",
+      "The declared original Table C.1 transforms and nontruncated Gaussian laws are fixed. Cubic SD=1.1; other SDs=1.",
+      "query_x=0.5 lies strictly inside every original uniform X support, with positive design density. The DGP provides a conditional-CDF version continuous in x near the query; pointwise conditional inference requires local smoothness/design assumptions, not causal exchangeability.",
+      "Softplus/cubic are strictly increasing. Square has an atom Phi(-0.5)=0.30853753872598694 at zero for this query, below 0.5; its selected median 1/8 is in the continuous part.",
+      "Literal Log is not globally monotone and jumps at u=2, but its selected median ln3-1/2 is below ln2. Locally only the left affine branch contributes, with continuous positive target density 3*phi(0). No current-target CDF kink or out-of-support identification problem is asserted.",
+      "The supplement statement median=g(x) is not globally true for literal Log; at x=2, F(g(2);2)=Phi(1). Do not apply the paper global monotone extrapolation theorem blindly to square/log.",
+      "No estimator-specific inference theory, interval coverage or named scientific acceptance is established by executable checks."
+    ],
+    "properties": {
+      "dimension": 1,
+      "effective_dimension": 1,
+      "observed_columns": 2,
+      "high_dimensional": false,
+      "interactions": false,
+      "nonlinear": true,
+      "notes": "One observed input X, one active input. Nonlinearity: softplus, positive-part square /2, cubic /3, or printed piecewise log. No cross-covariate interaction: there is only one covariate. Polynomial expansions contain X*eta terms but eta is latent noise, not an observed covariate interaction. Original NN noise dimension 100 is not DGP covariate dimension. Conditional shape/spread varies with X."
+    }
+  },
+  "estimand": {
+    "name": "q_s(0.5;0.5)",
+    "definition": "For each scenario s, q_s(0.5;0.5)=inf{y:F_s(y;0.5)>=0.5}, F_s(y;x)=P_eta[g_s(x+eta)<=y], eta~N(0,sigma_s^2). A scalar conditional median at an interior covariate point; not a marginal quantile, causal effect, prediction interval or simultaneous band.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "softplus",
+      "parameters": {
+        "transform": "softplus",
+        "source_variant": "literal_printed_table",
+        "x_distribution": "uniform",
+        "x_lower": -2.0,
+        "x_upper": 2.0,
+        "noise_distribution": "normal",
+        "noise_mean": 0.0,
+        "noise_sd": 1.0,
+        "w": 1.0,
+        "beta": 0.0,
+        "query_x": 0.5,
+        "tau": 0.5,
+        "source_training_n": 50000
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.9740769841801067,
+        "expression": "For each scenario s, q_s(0.5;0.5)=inf{y:F_s(y;0.5)>=0.5}, F_s(y;x)=P_eta[g_s(x+eta)<=y], eta~N(0,sigma_s^2). A scalar conditional median at an interior covariate point; not a marginal quantile, causal effect, prediction interval or simultaneous band.",
+        "derivation": "Analytic interior median at x=0.5,tau=0.5; Decimal60/80 and float-rounding audit; separate full inverse-image CDF with Simpson4096/8192 and bisection.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[softplus].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "square",
+      "parameters": {
+        "transform": "square",
+        "source_variant": "literal_printed_table",
+        "x_distribution": "uniform",
+        "x_lower": 0.0,
+        "x_upper": 2.0,
+        "noise_distribution": "normal",
+        "noise_mean": 0.0,
+        "noise_sd": 1.0,
+        "w": 1.0,
+        "beta": 0.0,
+        "query_x": 0.5,
+        "tau": 0.5,
+        "source_training_n": 50000
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.125,
+        "expression": "For each scenario s, q_s(0.5;0.5)=inf{y:F_s(y;0.5)>=0.5}, F_s(y;x)=P_eta[g_s(x+eta)<=y], eta~N(0,sigma_s^2). A scalar conditional median at an interior covariate point; not a marginal quantile, causal effect, prediction interval or simultaneous band.",
+        "derivation": "Analytic interior median at x=0.5,tau=0.5; Decimal60/80 and float-rounding audit; separate full inverse-image CDF with Simpson4096/8192 and bisection.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[square].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "cubic",
+      "parameters": {
+        "transform": "cubic",
+        "source_variant": "literal_printed_table",
+        "x_distribution": "uniform",
+        "x_lower": -2.0,
+        "x_upper": 2.0,
+        "noise_distribution": "normal",
+        "noise_mean": 0.0,
+        "noise_sd": 1.1,
+        "w": 1.0,
+        "beta": 0.0,
+        "query_x": 0.5,
+        "tau": 0.5,
+        "source_training_n": 100000
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.041666666666666664,
+        "expression": "For each scenario s, q_s(0.5;0.5)=inf{y:F_s(y;0.5)>=0.5}, F_s(y;x)=P_eta[g_s(x+eta)<=y], eta~N(0,sigma_s^2). A scalar conditional median at an interior covariate point; not a marginal quantile, causal effect, prediction interval or simultaneous band.",
+        "derivation": "Analytic interior median at x=0.5,tau=0.5; Decimal60/80 and float-rounding audit; separate full inverse-image CDF with Simpson4096/8192 and bisection.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[cubic].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "log",
+      "parameters": {
+        "transform": "log",
+        "source_variant": "literal_printed_table",
+        "x_distribution": "uniform",
+        "x_lower": 0.0,
+        "x_upper": 2.0,
+        "noise_distribution": "normal",
+        "noise_mean": 0.0,
+        "noise_sd": 1.0,
+        "w": 1.0,
+        "beta": 0.0,
+        "query_x": 0.5,
+        "tau": 0.5,
+        "source_training_n": 100000
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.5986122886681097,
+        "expression": "For each scenario s, q_s(0.5;0.5)=inf{y:F_s(y;0.5)>=0.5}, F_s(y;x)=P_eta[g_s(x+eta)<=y], eta~N(0,sigma_s^2). A scalar conditional median at an interior covariate point; not a marginal quantile, causal effect, prediction interval or simultaneous band.",
+        "derivation": "Analytic interior median at x=0.5,tau=0.5; Decimal60/80 and float-rounding audit; separate full inverse-image CDF with Simpson4096/8192 and bisection.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[log].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "Preserve all four official supplementary Table C.1 transformations, X distributions and Gaussian laws. Use the simulation model Y=g_s(X+eta), corresponding to the published equation (2) and W=1,beta=0 specialization of equation (4).",
+    "The current user-authorized target is a single conditional median at interior query_x=0.5,tau=0.5 for each scenario. The query is an Arena scalar adaptation, not a point specified by the paper.",
+    "Caller-supplied n, with n=128 for smoke checks, replaces source training sizes 50000/100000. No training or full simulation experiment is reproduced.",
+    "The user explicitly selected the literal official supplementary Log formula: ln(u) for u>2. Keep its downward jump; disclose the mismatch with author fixed snapshot eb6b83b1613458b5b3547e4e44a81da4712ab581, simulator.py line 30, ln(1+u). This choice is not author confirmation of a typo or confirmation of the original experiment code.",
+    "Use local standard-library RNG and analytic truth with separate CDF inversion, not author PyTorch simulation/evaluation routines. This revision updates provenance only; config and mathematical code remain unchanged from the immediate interior-query baseline. The author simulator defaults are not the Table C.1 scenario settings."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "generator.py",
+    "truth_reference": "truth.py",
+    "source_archive": "qdi-shen-meinshausen-2025-preadditive-noise-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/qdi-shen-meinshausen-2025-preadditive-noise-v1.py",
+    "exported_generator_sha256": "badf44f4c27792066a4c10fa8be19367dcbd8366fd5b1e3f73c065064e1d1aad"
+  },
+  "evidence": [
+    {
+      "file": "collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "b8d959030367be7b145ceee1ae688974cb877f6853951eee262ff4e1ec03617d",
+    "collection_sha256": "9d1acad365ed0041165c054c2cffdc62c7cdfa38d44c966e24ca54a0e22bce3f",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/qdi-shen-meinshausen-2025-preadditive-noise-v1.zip",
+    "submitted_zip_sha256": "b8d959030367be7b145ceee1ae688974cb877f6853951eee262ff4e1ec03617d",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "Latent-variable candidates inferred from source equations; confirm their roles and completeness against the original paper or generator."
+  ],
+  "source_suggested_domain": "quantile_distribution",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

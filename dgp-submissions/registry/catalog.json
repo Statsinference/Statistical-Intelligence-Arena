@@ -1,8 +1,8 @@
 {
   "status": "draft_needs_review",
-  "paper_count": 79,
-  "mechanism_count": 109,
-  "scenario_count": 227,
+  "paper_count": 85,
+  "mechanism_count": 117,
+  "scenario_count": 244,
   "domains": {
     "ate": 22,
     "cate": 2,
@@ -11,7 +11,7 @@
     "proximal": 15,
     "did_sc": 3,
     "nonparametric_regression": 10,
-    "quantile": 3,
+    "quantile": 11,
     "semi_supervised": 16,
     "missing_data": 0
   },
@@ -2968,6 +2968,129 @@
       "status": "needs_scientific_review"
     },
     {
+      "record_id": "qdi-fong-yiu-2026-cubic-quantile-v1",
+      "domain": "quantile",
+      "paper": "Fong, Edwin and Yiu, Andrew (2026). Bayesian quantile estimation and regression with martingale posteriors. Journal of the Royal Statistical Society Series B: Statistical Methodology, 88(4), 1130-1159. doi:10.1093/jrsssb/qkaf080. Reference preprint: arXiv:2406.03358v1 (5 June 2024). First published online 16 December 2025; issue assignment September 2026. These are distinct dates.",
+      "mechanism": "Fong-Yiu bounded cubic quantile distribution: marginal 0.9 quantile",
+      "paper_title": "Bayesian quantile estimation and regression with martingale posteriors",
+      "venue_abbreviation": "JRSSB",
+      "keywords": [
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/qdi-fong-yiu-2026-cubic-quantile-v1.py",
+      "latent_variables": [
+        "U_i"
+      ],
+      "truth_by_scenario": "original_n50: theta = Q_Y(0.9) = 0.68; original_n500: theta = Q_Y(0.9) = 0.68",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "qdi-hall-wolff-yao-1999-sine-triangular-v1",
+      "domain": "quantile",
+      "paper": "Hall, Peter; Wolff, Rodney C. L.; Yao, Qiwei (1999). Methods for Estimating a Conditional Distribution Function. Journal of the American Statistical Association 94(445), 154-163. DOI: 10.1080/01621459.1999.10473832.",
+      "mechanism": "Conditional CDF in Hall-Wolff-Yao sine regression with triangular noise",
+      "paper_title": "Methods for Estimating a Conditional Distribution Function",
+      "venue_abbreviation": "JASA",
+      "keywords": [
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/qdi-hall-wolff-yao-1999-sine-triangular-v1.py",
+      "latent_variables": [
+        "U_i4"
+      ],
+      "truth_by_scenario": "original_mechanism_fixed_cdf: theta = F_{Y\\|X=0.1}(1) = 0.8090161307517588",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "qdi-henzi-2021-gamma-shift-v1",
+      "domain": "quantile",
+      "paper": "Henzi, A., Ziegel, J. F., and Gneiting, T. (2021). Isotonic distributional regression. Journal of the Royal Statistical Society: Series B (Statistical Methodology), 83(5), 963–993. DOI: 10.1111/rssb.12450.",
+      "mechanism": "Henzi–Ziegel–Gneiting Gamma conditional CDF: smooth and two threshold shifts",
+      "paper_title": "Isotonic distributional regression",
+      "venue_abbreviation": "JRSSB",
+      "keywords": [
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/qdi-henzi-2021-gamma-shift-v1.py",
+      "latent_variables": [
+        "G_i"
+      ],
+      "truth_by_scenario": "smooth_gamma: theta_s = F_s(10 \\| 5.5) = 0.44022759069779993; discontinuous_gamma: theta_s = F_s(10 \\| 5.5) = 0.0; non_isotonic_gamma: theta_s = F_s(10 \\| 5.5) = 0.44022759069779993",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "qdi-henzi-2021-poisson-clipped-rate-v1",
+      "domain": "quantile",
+      "paper": "Henzi, Alexander; Ziegel, Johanna F.; Gneiting, Tilmann (2021). Isotonic Distributional Regression. Journal of the Royal Statistical Society: Series B (Statistical Methodology), 83(5), 963-993. DOI: 10.1111/rssb.12450.",
+      "mechanism": "Conditional CDF at (x=5,y=3) in the Henzi-Ziegel-Gneiting clipped-rate Poisson mechanism",
+      "paper_title": "Isotonic Distributional Regression",
+      "venue_abbreviation": "JRSSB",
+      "keywords": [
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/qdi-henzi-2021-poisson-clipped-rate-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "original_poisson_qdi: theta = F_{Y\\|X=5}(3) = 0.2650259152973617",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "qdi-shen-meinshausen-2025-preadditive-noise-v1",
+      "domain": "quantile",
+      "paper": "Shen, Xinwei and Meinshausen, Nicolai (2025). Engression: extrapolation through the lens of distributional regression. Journal of the Royal Statistical Society Series B: Statistical Methodology 87(3):653–677. DOI:10.1093/jrsssb/qkae108.",
+      "mechanism": "Engression official supplementary pre-additive noise: four scenarios, interior conditional medians",
+      "paper_title": "Engression: extrapolation through the lens of distributional regression",
+      "venue_abbreviation": "JRSSB",
+      "keywords": [
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/qdi-shen-meinshausen-2025-preadditive-noise-v1.py",
+      "latent_variables": [
+        "eta_i"
+      ],
+      "truth_by_scenario": "softplus: q_s(0.5;0.5) = 0.9740769841801067; square: q_s(0.5;0.5) = 0.125; cubic: q_s(0.5;0.5) = 0.041666666666666664; log: q_s(0.5;0.5) = 0.5986122886681097",
+      "status": "needs_scientific_review"
+    },
+    {
       "record_id": "qdi-tan-wang-zhou-20220201-active10-mixture-v2",
       "domain": "quantile",
       "paper": "Tan, K. M., Wang, L., and Zhou, W.-X. (2022). High-Dimensional Quantile Regression: Convolution Smoothing and Concave Regularization. Journal of the Royal Statistical Society Series B: Statistical Methodology 84(1), 205-233. DOI: 10.1111/rssb.12485.",
@@ -2992,6 +3115,84 @@
         "U_i"
       ],
       "truth_by_scenario": "q50-active10-mixture: theta_tau = Q_tau(Y \\| W = e1) = 1.7999999999997158; q90-active10-mixture: theta_tau = Q_tau(Y \\| W = e1) = 4.2114834571051345",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "qdi-yang-he-2012-conditional-quantile-v1",
+      "domain": "quantile",
+      "paper": "Yang, Yunwen and He, Xuming (2012). Bayesian Empirical Likelihood for Quantile Regression. The Annals of Statistics 40(2), 1102-1131. DOI: 10.1214/12-AOS1005.",
+      "mechanism": "Yang-He (2012) Section 4.2 Models 1-4: fixed-query conditional 0.95 quantile",
+      "paper_title": "Bayesian Empirical Likelihood for Quantile Regression",
+      "venue_abbreviation": "AoS",
+      "keywords": [
+        "Linearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Linearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": false,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/qdi-yang-he-2012-conditional-quantile-v1.py",
+      "latent_variables": [
+        "B",
+        "e"
+      ],
+      "truth_by_scenario": "model1_normal_homoscedastic: theta_m = Q_0.95(Y \\| X=2,Z=0), m=1,2,3,4 = 5.289707253902943; model2_lognormal_homoscedastic: theta_m = Q_0.95(Y \\| X=2,Z=0), m=1,2,3,4 = 7.18025160223301; model3_normal_heteroscedastic: theta_m = Q_0.95(Y \\| X=2,Z=0), m=1,2,3,4 = 8.579414507805886; model4_lognormal_heteroscedastic: theta_m = Q_0.95(Y \\| X=2,Z=0), m=1,2,3,4 = 12.36050320446602",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "qdi-yang-tokdar-2017-triangular-quantile-v1",
+      "domain": "quantile",
+      "paper": "Yang, Yun and Tokdar, Surya T. (2017). Joint Estimation of Quantile Planes Over Arbitrary Predictor Spaces. Journal of the American Statistical Association 112(519), 1107-1120. DOI: 10.1080/01621459.2016.1192545.",
+      "mechanism": "Published Figure 1 triangular predictor DGP: conditional 0.95 quantile at the centroid",
+      "paper_title": "Joint Estimation of Quantile Planes Over Arbitrary Predictor Spaces",
+      "venue_abbreviation": "JASA",
+      "keywords": [
+        "Linearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Linearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": false,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/qdi-yang-tokdar-2017-triangular-quantile-v1.py",
+      "latent_variables": [
+        "R_i",
+        "T_i",
+        "Z_i"
+      ],
+      "truth_by_scenario": "published_triangle_centroid: theta = Q_Y(19/20 \\| X=(0,2/3)) = 1.3640688255637583",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "qdi-yang-tokdar-20170412-univariate-quantile-v1",
+      "domain": "quantile",
+      "paper": "Yang, Yun and Tokdar, Surya T. (2017). Joint Estimation of Quantile Planes Over Arbitrary Predictor Spaces. Journal of the American Statistical Association 112(519), 1107-1120. DOI: 10.1080/01621459.2016.1192545. Published online 2017-04-12. Current primary source: published Section 5.1, journal page 1113 (local PDF page 8 including cover).",
+      "mechanism": "Yang--Tokdar univariate quantile-plane DGP: conditional 0.9 quantile at X=0.5",
+      "paper_title": "Joint Estimation of Quantile Planes Over Arbitrary Predictor Spaces",
+      "venue_abbreviation": "JASA",
+      "keywords": [
+        "Linearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Linearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": false,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/qdi-yang-tokdar-20170412-univariate-quantile-v1.py",
+      "latent_variables": [
+        "U"
+      ],
+      "truth_by_scenario": "original_law_x05_tau09: theta = Q_Y(0.9 \\| X=0.5) = 3.6600773251508456",
       "status": "needs_scientific_review"
     },
     {
@@ -3230,8 +3431,8 @@
   ],
   "intake": {
     "status": "success",
-    "zip_count": 65,
-    "indexed_dgp_count": 109,
+    "zip_count": 73,
+    "indexed_dgp_count": 117,
     "failure_count": 0,
     "stale_record_ids": [],
     "scientific_validation": "not_performed"

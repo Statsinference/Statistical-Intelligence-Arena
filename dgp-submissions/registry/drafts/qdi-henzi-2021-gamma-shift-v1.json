@@ -1,0 +1,237 @@
+{
+  "schema_version": "0.1",
+  "record_id": "qdi-henzi-2021-gamma-shift-v1",
+  "kind": "synthetic_dgp",
+  "domain": "quantile",
+  "english_display": {},
+  "paper": {
+    "citation": "Henzi, A., Ziegel, J. F., and Gneiting, T. (2021). Isotonic distributional regression. Journal of the Royal Statistical Society: Series B (Statistical Methodology), 83(5), 963–993. DOI: 10.1111/rssb.12450.",
+    "title": null,
+    "doi": "10.1111/rssb.12450",
+    "source_url": "https://doi.org/10.1111/rssb.12450",
+    "source_file_evidence": [],
+    "venue": "Journal of the Royal Statistical Society: Series B (JRSS-B)",
+    "year": 2021,
+    "source_version": null,
+    "source_locator": "Version of Record, JRSS-B 83(5), 2021, 31-page PDF. Section 4: X~Uniform(0,10) in unnumbered paragraph immediately before (23), PDF p.17 / journal p.979; (23) Smooth Gamma and (24) Discontinuous Gamma on PDF p.17 / p.979; (25) Non-isotonic Gamma on PDF p.19 / p.981. PDF p.18 / p.980 is Table 1. Section 2.4 Theorem 3: PDF pp.12–13 / pp.974–975. Supplement dated 2021-03-19: S4 p.7 and S5/Table S1 p.8."
+  },
+  "mechanism": {
+    "name": "Henzi–Ziegel–Gneiting Gamma conditional CDF: smooth and two threshold shifts",
+    "title_en": null,
+    "family_id": "henzi-ziegel-gneiting-2021-gamma-threshold-shifts",
+    "generation_equations": [
+      {
+        "label": "Formal Section 4, PDF p.17 / journal p.979, unnumbered paragraph before (23)",
+        "expression": "X_i iid Uniform(0,10)"
+      },
+      {
+        "label": "(23) Smooth Gamma; formal PDF p.17 / journal p.979",
+        "expression": "G_i | X_i=x ~ Gamma(shape=sqrt(x), scale=min(max(x,1),6)); Y_i=G_i"
+      },
+      {
+        "label": "(24) Discontinuous Gamma; formal PDF p.17 / journal p.979",
+        "expression": "Y_i=G_i+10*1{X_i>=5}"
+      },
+      {
+        "label": "(25) Non-isotonic Gamma; formal PDF p.19 / journal p.981",
+        "expression": "Y_i=G_i-2*1{X_i>=7}"
+      },
+      {
+        "label": "Adapted QDI target",
+        "expression": "theta_s=P(Y_i<=10 | X_i=5.5)"
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "X",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "0",
+        "max": "10",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "-2",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [
+      {
+        "name": "G_i",
+        "role": "latent_candidate",
+        "evidence": {
+          "file": "collection.json",
+          "equation_index": 1,
+          "expression": "G_i | X_i=x ~ Gamma(shape=sqrt(x), scale=min(max(x,1),6))"
+        },
+        "provenance": "inferred_from_stochastic_declaration"
+      }
+    ],
+    "latent_variables_status": "candidates_from_equations_need_review",
+    "sampling": {
+      "unit": "one fully observed scalar-covariate/response pair (X,Y_s)",
+      "dependence": "iid across rows, dependent X and Y within each row; no clusters, panel, network or interference. Reusing a seed across scenarios is only a computational coupling, not an extra observed joint vector."
+    },
+    "assumptions": [
+      "Independent identically distributed observation pairs (X,Y_s), as implemented from the Section 4 sampling design; independent validation sampling is explicit in supplement S4.",
+      "X is fully observed Uniform(0,10); Y_s is fully observed. No censoring, selection or missingness.",
+      "X=5.5 is interior with design density 0.1. Since P(X=5.5)=0, pointwise observational identification uses the locally continuous version of the conditional CDF specified by the DGP, not conditioning on a positive-mass stratum.",
+      "All three conditional laws are continuous in y; at the discontinuous scenario query the CDF is exactly zero at its lower support endpoint. Positive density and interior-CDF asymptotics are not asserted there.",
+      "Smooth and upward-shift laws are stochastically increasing in X; downward shift at X=7 violates global isotonicity. Uniform continuity in X fails at shifts; formal Theorem 3 is not claimed for all scenarios or at the X=0 limiting boundary.",
+      "No causal interpretation or causal identification assumptions are needed."
+    ],
+    "properties": {
+      "dimension": 1,
+      "effective_dimension": 1,
+      "observed_columns": 2,
+      "high_dimensional": false,
+      "interactions": false,
+      "nonlinear": true,
+      "notes": "One input covariate X, active through shape sqrt(X), clipped scale min(max(X,1),6), and scenario threshold shifts. E[Y|X]=sqrt(X)*min(max(X,1),6)+d_s(X), nonlinear. No multivariable interaction; indicators are transformations of X. Smooth means continuous here: scale has kinks at 1 and 6. Gamma scale is not rate; Var(Y|X)=sqrt(X)*scale(X)^2. No irrelevant padding."
+    }
+  },
+  "estimand": {
+    "name": "theta_s = F_s(10 | 5.5)",
+    "definition": "Scalar conditional CDF P(Y_s<=10 | X=5.5) for each source scenario, using the explicitly specified conditional-law version. Not a marginal CDF, quantile, causal effect, or simultaneous band.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "smooth_gamma",
+      "parameters": {
+        "scenario": "smooth_gamma",
+        "source_equation": "23",
+        "x_min": 0.0,
+        "x_max": 10.0,
+        "shape_power": 0.5,
+        "scale_min": 1.0,
+        "scale_max": 6.0,
+        "shift_threshold": null,
+        "shift_size": 0.0,
+        "query_x": 5.5,
+        "cdf_threshold": 10.0
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.44022759069779993,
+        "expression": "Scalar conditional CDF P(Y_s<=10 | X=5.5) for each source scenario, using the explicitly specified conditional-law version. Not a marginal CDF, quantile, causal effect, or simultaneous band.",
+        "derivation": "F_s(y|x)=0 for y<=d_s(x), otherwise P(sqrt(x),(y-d_s(x))/min(max(x,1),6)). mpmath at 40/70 digits; independent transformed-density QUADPACK integration; exponential/Erlang cases.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[smooth_gamma].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "discontinuous_gamma",
+      "parameters": {
+        "scenario": "discontinuous_gamma",
+        "source_equation": "24",
+        "x_min": 0.0,
+        "x_max": 10.0,
+        "shape_power": 0.5,
+        "scale_min": 1.0,
+        "scale_max": 6.0,
+        "shift_threshold": 5.0,
+        "shift_size": 10.0,
+        "query_x": 5.5,
+        "cdf_threshold": 10.0
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.0,
+        "expression": "Scalar conditional CDF P(Y_s<=10 | X=5.5) for each source scenario, using the explicitly specified conditional-law version. Not a marginal CDF, quantile, causal effect, or simultaneous band.",
+        "derivation": "F_s(y|x)=0 for y<=d_s(x), otherwise P(sqrt(x),(y-d_s(x))/min(max(x,1),6)). mpmath at 40/70 digits; independent transformed-density QUADPACK integration; exponential/Erlang cases.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[discontinuous_gamma].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "non_isotonic_gamma",
+      "parameters": {
+        "scenario": "non_isotonic_gamma",
+        "source_equation": "25",
+        "x_min": 0.0,
+        "x_max": 10.0,
+        "shape_power": 0.5,
+        "scale_min": 1.0,
+        "scale_max": 6.0,
+        "shift_threshold": 7.0,
+        "shift_size": -2.0,
+        "query_x": 5.5,
+        "cdf_threshold": 10.0
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.44022759069779993,
+        "expression": "Scalar conditional CDF P(Y_s<=10 | X=5.5) for each source scenario, using the explicitly specified conditional-law version. Not a marginal CDF, quantile, causal effect, or simultaneous band.",
+        "derivation": "F_s(y|x)=0 for y<=d_s(x), otherwise P(sqrt(x),(y-d_s(x))/min(max(x,1),6)). mpmath at 40/70 digits; independent transformed-density QUADPACK integration; exponential/Erlang cases.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[non_isotonic_gamma].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "Keep published equations (23)–(25) and their parameters unchanged; rename the selected scenario response to Y. Use the formal unjittered law and >=7 NI threshold; separately document differences from the inspected author R script.",
+    "Fix the scalar noncausal QDI target P(Y<=10 | X=5.5), selected by the user; the source evaluates distributional predictions by CRPS/L2, not this scalar numeric truth.",
+    "Use n=128, seed=1729 local checks instead of the source 500 replicates at n=500/1000/2000/4000 with independent m=5000 test sets. No estimator fitting or coverage evaluation.",
+    "Use local NumPy RNG and independently written Python rather than reproducing the author R random stream. Redraw exact X=0 finite-RNG endpoint; ideal continuous law gives that endpoint zero mass."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "generator.py",
+    "truth_reference": "truth.py",
+    "source_archive": "qdi-henzi-2021-gamma-shift-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/qdi-henzi-2021-gamma-shift-v1.py",
+    "exported_generator_sha256": "cabb26d90f793670a9c523e7a73a673a7c7b0372b38bec294ab229f7101f495a"
+  },
+  "evidence": [
+    {
+      "file": "collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "1aae522120661a72597d19f61f455248ceb1b99ebf35be2b71f46256404158ec",
+    "collection_sha256": "969ab1d59227d40be6331b803b8e21c8c5dc5622d7b4138b2c2b3901eb7e2f35",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/qdi-henzi-2021-gamma-shift-v1.zip",
+    "submitted_zip_sha256": "1aae522120661a72597d19f61f455248ceb1b99ebf35be2b71f46256404158ec",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "Latent-variable candidates inferred from source equations; confirm their roles and completeness against the original paper or generator."
+  ],
+  "source_suggested_domain": "quantile_distribution",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

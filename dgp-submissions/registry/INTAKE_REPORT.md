@@ -2,7 +2,7 @@
 
 **Status:** success
 
-65 ZIP(s); 109 indexed DGP(s); 0 processing failure(s).
+73 ZIP(s); 117 indexed DGP(s); 0 processing failure(s).
 
 A failed ZIP or DGP does not block unrelated valid submissions. Processing success is not scientific approval.
 
