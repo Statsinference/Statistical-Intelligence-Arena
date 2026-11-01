@@ -1,12 +1,12 @@
 {
   "status": "draft_needs_review",
-  "paper_count": 75,
-  "mechanism_count": 101,
-  "scenario_count": 219,
+  "paper_count": 79,
+  "mechanism_count": 109,
+  "scenario_count": 227,
   "domains": {
     "ate": 22,
     "cate": 2,
-    "mediation": 9,
+    "mediation": 17,
     "iv": 21,
     "proximal": 15,
     "did_sc": 3,
@@ -2143,6 +2143,29 @@
       "status": "needs_scientific_review"
     },
     {
+      "record_id": "mediation-cheng-li-2025-principal-strata-kang-schafer-v1",
+      "domain": "mediation",
+      "paper": "Cheng, C. and Li, F. (2025). Identification and multiply robust estimation in causal mediation analysis across principal strata. Journal of the Royal Statistical Society Series B: Statistical Methodology 88(1), 1-22. DOI: 10.1093/jrsssb/qkaf037.",
+      "mechanism": "Intention-to-treat natural direct effect with a post-treatment event in a Kang-Schafer style design",
+      "paper_title": "Identification and multiply robust estimation in causal mediation analysis across principal strata",
+      "venue_abbreviation": "JRSSB",
+      "keywords": [
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/mediation-cheng-li-2025-principal-strata-kang-schafer-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "original: ITT-NDE = E[Y_{1 M_0}] - E[Y_{0 M_0}] = 1.180857104770165",
+      "status": "needs_scientific_review"
+    },
+    {
       "record_id": "mediation-diaz-et-al-2021-intermediate-confounding-v1",
       "domain": "mediation",
       "paper": "Díaz, I., Hejazi, N. S., Rudolph, K. E. and van der Laan, M. J. (2021). Non-parametric efficient causal mediation with intermediate confounders. Biometrika 108(3), 627–641. DOI: 10.1093/biomet/asaa085.",
@@ -2219,6 +2242,82 @@
       "status": "needs_scientific_review"
     },
     {
+      "record_id": "mediation-jones-2024-sparse-mediators-lnl-v1",
+      "domain": "mediation",
+      "paper": "Jones, J., Ertefaie, A. and Strawderman, R. L. (2025). Causal mediation analysis: selection with asymptotically valid inference. Journal of the Royal Statistical Society Series B: Statistical Methodology 87(3), 678-700. DOI: 10.1093/jrsssb/qkae109.",
+      "mechanism": "Sparse natural indirect effect with ten candidate mediators, scenario LNL (linear propensity, nonlinear mediator confounding, linear outcome confounding)",
+      "paper_title": "Causal mediation analysis: selection with asymptotically valid inference",
+      "venue_abbreviation": "JRSSB",
+      "keywords": [
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/mediation-jones-2024-sparse-mediators-lnl-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "LNL: NIE = alpha_0 . beta_0 = 2.4000000000000004",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "mediation-jones-2024-sparse-mediators-lnn-v1",
+      "domain": "mediation",
+      "paper": "Jones, J., Ertefaie, A. and Strawderman, R. L. (2025). Causal mediation analysis: selection with asymptotically valid inference. Journal of the Royal Statistical Society Series B: Statistical Methodology 87(3), 678-700. DOI: 10.1093/jrsssb/qkae109.",
+      "mechanism": "Sparse natural indirect effect with ten candidate mediators, scenario LNN (linear propensity, nonlinear mediator confounding, nonlinear outcome confounding)",
+      "paper_title": "Causal mediation analysis: selection with asymptotically valid inference",
+      "venue_abbreviation": "JRSSB",
+      "keywords": [
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/mediation-jones-2024-sparse-mediators-lnn-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "LNN: NIE = alpha_0 . beta_0 = 2.4000000000000004",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "mediation-jones-2024-sparse-mediators-nnn-v1",
+      "domain": "mediation",
+      "paper": "Jones, J., Ertefaie, A. and Strawderman, R. L. (2025). Causal mediation analysis: selection with asymptotically valid inference. Journal of the Royal Statistical Society Series B: Statistical Methodology 87(3), 678-700. DOI: 10.1093/jrsssb/qkae109.",
+      "mechanism": "Sparse natural indirect effect with ten candidate mediators, scenario NNN (nonlinear propensity, nonlinear mediator confounding, nonlinear outcome confounding)",
+      "paper_title": "Causal mediation analysis: selection with asymptotically valid inference",
+      "venue_abbreviation": "JRSSB",
+      "keywords": [
+        "Interactions",
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Interactions",
+          "source": "mechanism.properties.interactions",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/mediation-jones-2024-sparse-mediators-nnn-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "NNN: NIE = alpha_0 . beta_0 = 2.4000000000000004",
+      "status": "needs_scientific_review"
+    },
+    {
       "record_id": "mediation-jones-et-al-2025-correlated-sparse-v1",
       "domain": "mediation",
       "paper": "Jones, J., Ertefaie, A. and Strawderman, R. L. (2025). Causal mediation analysis: selection with asymptotically valid inference. Journal of the Royal Statistical Society: Series B 87(3), 678–700. DOI: 10.1093/jrsssb/qkae109.",
@@ -2271,6 +2370,96 @@
       "generator_file": "generators/mediation-luo-et-al-2025-dynamic-markov-v1.py",
       "latent_variables": [],
       "truth_by_scenario": "finite_T10_seeded_coefficients: eta_1^(10) = -0.02804345470955405",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "mediation-miles-2019-toxicity-path-specific-v1",
+      "domain": "mediation",
+      "paper": "Miles, C. H., Shpitser, I., Kanki, P., Meloni, S. and Tchetgen Tchetgen, E. J. (2019). On semiparametric estimation of a path-specific effect in the presence of mediator-outcome confounding. Biometrika 107(1), 159-172. DOI: 10.1093/biomet/asz063.",
+      "mechanism": "Path-specific effect along A to M to Y with a treatment-induced mediator-outcome confounder vector",
+      "paper_title": "On semiparametric estimation of a path-specific effect in the presence of mediator-outcome confounding",
+      "venue_abbreviation": "Biometrika",
+      "keywords": [
+        "Interactions",
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Interactions",
+          "source": "mechanism.properties.interactions",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/mediation-miles-2019-toxicity-path-specific-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "original: beta_0 = E(Y[M{a, C1(a')}, C1(a'), a']) = 2.678",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "mediation-shan-li-ai-2026-missing-confounders-aux-shadow-v1",
+      "domain": "mediation",
+      "paper": "Shan, J., Li, W. and Ai, C. (2026). Efficient Nonparametric Inference for Mediation Analysis with Nonignorable Missing Confounders. Journal of the American Statistical Association, published online 25 June 2026, pages 1-12. DOI: 10.1080/01621459.2026.2654218.",
+      "mechanism": "Mediation functional under nonignorable missing confounders with residual-dependent missingness and external shadow variables",
+      "paper_title": "Efficient Nonparametric Inference for Mediation Analysis with Nonignorable Missing Confounders",
+      "venue_abbreviation": "JASA",
+      "keywords": [
+        "Interactions",
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Interactions",
+          "source": "mechanism.properties.interactions",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/mediation-shan-li-ai-2026-missing-confounders-aux-shadow-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "dgp1_auxiliary_shadow: MF theta = E[Y(1, M(0))] = 3.192275262794844",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "mediation-shan-li-ai-2026-missing-confounders-internal-shadow-v1",
+      "domain": "mediation",
+      "paper": "Shan, J., Li, W. and Ai, C. (2026). Efficient Nonparametric Inference for Mediation Analysis with Nonignorable Missing Confounders. Journal of the American Statistical Association, published online 25 June 2026, pages 1-12. DOI: 10.1080/01621459.2026.2654218.",
+      "mechanism": "Mediation functional under nonignorable missing confounders with covariate- and treatment-dependent missingness and internal shadow variables",
+      "paper_title": "Efficient Nonparametric Inference for Mediation Analysis with Nonignorable Missing Confounders",
+      "venue_abbreviation": "JASA",
+      "keywords": [
+        "Interactions",
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Interactions",
+          "source": "mechanism.properties.interactions",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/mediation-shan-li-ai-2026-missing-confounders-internal-shadow-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "dgp2_internal_shadow: MF theta = E[Y(1, M(0))] = 3.192275262794844",
       "status": "needs_scientific_review"
     },
     {
@@ -2334,6 +2523,34 @@
         "E_C"
       ],
       "truth_by_scenario": "section_4_1_continuous: NDE = 26.0",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "mediation-zhou-2022-ordered-two-mediators-v1",
+      "domain": "mediation",
+      "paper": "Zhou, X. (2022). Semiparametric estimation for causal mediation analysis with multiple causally ordered mediators. Journal of the Royal Statistical Society Series B: Statistical Methodology 84(3), 794-821. DOI: 10.1111/rssb.12487.",
+      "mechanism": "Cumulative path-specific effect through the second of two causally ordered mediators",
+      "paper_title": "Semiparametric estimation for causal mediation analysis with multiple causally ordered mediators",
+      "venue_abbreviation": "JRSSB",
+      "keywords": [
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/mediation-zhou-2022-ordered-two-mediators-v1.py",
+      "latent_variables": [
+        "U1",
+        "U2",
+        "U3",
+        "UXY"
+      ],
+      "truth_by_scenario": "original: cPSE_M2 = theta_011 - theta_001 = 0.3264",
       "status": "needs_scientific_review"
     },
     {
@@ -3013,8 +3230,8 @@
   ],
   "intake": {
     "status": "success",
-    "zip_count": 57,
-    "indexed_dgp_count": 101,
+    "zip_count": 65,
+    "indexed_dgp_count": 109,
     "failure_count": 0,
     "stale_record_ids": [],
     "scientific_validation": "not_performed"

@@ -1,0 +1,306 @@
+{
+  "schema_version": "0.1",
+  "record_id": "mediation-zhou-2022-ordered-two-mediators-v1",
+  "kind": "synthetic_dgp",
+  "domain": "mediation",
+  "english_display": {},
+  "paper": {
+    "citation": "Zhou, X. (2022). Semiparametric estimation for causal mediation analysis with multiple causally ordered mediators. Journal of the Royal Statistical Society Series B: Statistical Methodology 84(3), 794-821. DOI: 10.1111/rssb.12487.",
+    "title": null,
+    "doi": "10.1111/rssb.12487",
+    "source_url": "https://doi.org/10.1111/rssb.12487",
+    "source_file_evidence": [],
+    "venue": "Journal of the Royal Statistical Society Series B: Statistical Methodology",
+    "year": 2022,
+    "source_version": null,
+    "source_locator": "Section 5 'A Simulation Study' (arXiv:2011.12751v2 PDF page 28) gives the structural model; Supplementary Material F (arXiv:2011.12751v2 PDF page 56) gives the numerical coefficients beta_X1..beta_X4, beta_A, beta_M1, beta_M2, beta_Y. Estimand cPSE defined in Section 4.4 and equation (19), PDF page 32."
+  },
+  "mechanism": {
+    "name": "Cumulative path-specific effect through the second of two causally ordered mediators",
+    "title_en": null,
+    "family_id": "zhou-2022-two-ordered-mediators-linear-gaussian",
+    "generation_equations": [
+      {
+        "label": "Latent errors",
+        "expression": "(U1,U2,U3,UXY) ~ N(0, I_4)"
+      },
+      {
+        "label": "Baseline covariates",
+        "expression": "Xj ~ N((U1,U2,U3,UXY) beta_Xj, 1), j = 1,2,3,4"
+      },
+      {
+        "label": "Treatment",
+        "expression": "A ~ Bernoulli(logit^{-1}[(1,X1,X2,X3,X4) beta_A])"
+      },
+      {
+        "label": "First mediator",
+        "expression": "M1 ~ N((1,X1,X2,X3,X4,A) beta_M1, 1)"
+      },
+      {
+        "label": "Second mediator",
+        "expression": "M2 ~ N((1,X1,X2,X3,X4,A,M1) beta_M2, 1)"
+      },
+      {
+        "label": "Outcome",
+        "expression": "Y ~ N((1,UXY,X1,X2,X3,X4,A,M1,M2) beta_Y, 1)"
+      },
+      {
+        "label": "Coefficients (Supplementary Material F)",
+        "expression": "beta_X1=(0.77,-0.86,0.35,0.88); beta_X2=(-0.99,-0.72,-0.1,0.54); beta_X3=(-0.74,0.1,0.91,0.46); beta_X4=(-0.21,-0.43,-0.21,-0.7); beta_A=(-0.36,-0.08,-0.06,0.4,-0.14); beta_M1=(0,0.3,0.42,0.48,0.28,0.41); beta_M2=(0.04,0.2,0.09,0.12,0.39,0.34,0.24); beta_Y=(-0.27,-0.1,0.25,0.2,-0.08,0.78,0.76,-0.4,0.96)"
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "X1",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X2",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X3",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X4",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "A",
+        "role": "treatment",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "M1",
+        "role": "first_mediator",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "M2",
+        "role": "second_mediator",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [
+      {
+        "name": "U1",
+        "role": "exogenous_error_shared_by_covariates",
+        "dimension": 1,
+        "provenance": "collection.json explicit latent_variables"
+      },
+      {
+        "name": "U2",
+        "role": "exogenous_error_shared_by_covariates",
+        "dimension": 1,
+        "provenance": "collection.json explicit latent_variables"
+      },
+      {
+        "name": "U3",
+        "role": "exogenous_error_shared_by_covariates",
+        "dimension": 1,
+        "provenance": "collection.json explicit latent_variables"
+      },
+      {
+        "name": "UXY",
+        "role": "unmeasured_covariate_outcome_confounder",
+        "dimension": 1,
+        "provenance": "collection.json explicit latent_variables"
+      }
+    ],
+    "latent_variables_status": "explicit_structured_metadata",
+    "sampling": {
+      "unit": "individual",
+      "dependence": "iid individuals; all variables within an individual are generated jointly in temporal order"
+    },
+    "assumptions": [
+      "Consistency and well-defined joint interventions on A, M1 and M2",
+      "Independent individuals; no interference",
+      "Pearl NPSEM with mutually independent errors, as assumed by the source (its Assumptions 1-3)",
+      "Causal ordering A -> M1 -> M2 -> Y with no M2 -> M1 arrow",
+      "Cross-world independence implied by the mutually independent-error NPSEM; cPSEs are not identified by conditional-exchangeability assumptions alone",
+      "Treatment positivity on the declared support; the logistic propensity is bounded away from 0 and 1 for finite covariates but no uniform overlap bound is claimed on unbounded Gaussian support",
+      "The latent variable UXY confounds X and Y but, as the source states, does not threaten identification of theta_{a1,a2,a3} because it is a pre-treatment common cause"
+    ],
+    "properties": {
+      "dimension": 4,
+      "effective_dimension": 4,
+      "high_dimensional": false,
+      "interactions": false,
+      "nonlinear": true,
+      "notes": "Four baseline covariates X1..X4, all four of which enter the treatment, both mediator and the outcome equations with nonzero coefficients, so dimension = effective_dimension = 4. Not high dimensional: p = 4 against the source sample size n = 2000. No product/interaction term appears anywhere in the structural equations, hence interactions = false. nonlinear = true refers only to the logistic link in the treatment equation logit P(A=1|X) = (1,X1..X4) beta_A; the M1, M2 and Y conditional means are linear in their arguments. X1..X4 are mutually dependent because they share the latent errors U1,U2,U3,UXY."
+    }
+  },
+  "estimand": {
+    "name": "cPSE_M2 = theta_011 - theta_001",
+    "definition": "Cumulative path-specific effect through the second mediator: theta_{a1,a2,a3} = E[Y(a3, M1(a1), M2(a2, M1(a1)))], and cPSE_M2 = theta_011 - theta_001 holds the Y-argument at A=1 and the M1-argument at A=0 while moving only the M2-argument from A=0 to A=1. This is NOT the natural indirect effect, NOT the natural direct effect and NOT the total effect.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "original",
+      "parameters": {
+        "beta_X": [
+          [
+            0.77,
+            -0.86,
+            0.35,
+            0.88
+          ],
+          [
+            -0.99,
+            -0.72,
+            -0.1,
+            0.54
+          ],
+          [
+            -0.74,
+            0.1,
+            0.91,
+            0.46
+          ],
+          [
+            -0.21,
+            -0.43,
+            -0.21,
+            -0.7
+          ]
+        ],
+        "x_sd": 1.0,
+        "beta_A": [
+          -0.36,
+          -0.08,
+          -0.06,
+          0.4,
+          -0.14
+        ],
+        "beta_M1": [
+          0.0,
+          0.3,
+          0.42,
+          0.48,
+          0.28,
+          0.41
+        ],
+        "m1_sd": 1.0,
+        "beta_M2": [
+          0.04,
+          0.2,
+          0.09,
+          0.12,
+          0.39,
+          0.34,
+          0.24
+        ],
+        "m2_sd": 1.0,
+        "beta_Y": [
+          -0.27,
+          -0.1,
+          0.25,
+          0.2,
+          -0.08,
+          0.78,
+          0.76,
+          -0.4,
+          0.96
+        ],
+        "y_sd": 1.0,
+        "target": "cPSE_M2"
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.3264,
+        "expression": "Cumulative path-specific effect through the second mediator: theta_{a1,a2,a3} = E[Y(a3, M1(a1), M2(a2, M1(a1)))], and cPSE_M2 = theta_011 - theta_001 holds the Y-argument at A=1 and the M1-argument at A=0 while moving only the M2-argument from A=0 to A=1. This is NOT the natural indirect effect, NOT the natural direct effect and NOT the total effect.",
+        "derivation": "Closed form. Because M1, M2 and Y are linear with additive mean-zero noise and A is intervened on, cPSE_M2 = beta_Y[M2] * beta_M2[A] = 0.96 * 0.34. The pre-treatment terms, the latent UXY and all X contributions cancel in the contrast.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[original].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "Version used: arXiv:2011.12751v2 (2021-11-10) preprint of the JRSS-B 2022 article; the journal version was not accessible to the collector, so section/page locators refer to the preprint PDF and the coefficient values are taken from its Supplementary Material F. Any numbering difference between preprint and journal version is unverified.",
+    "The source draws beta_X1..beta_X4 and beta_Y from Uniform[-1,1], beta_A from Uniform[-0.5,0.5], and beta_M1, beta_M2 from Uniform[0,0.5]; Supplementary Material F reports the realised values, which are registered here as FIXED parameters of one mechanism. The uniform draw itself is not re-sampled, so this is a single fixed mechanism, not a hyperdistribution.",
+    "Registered target is the cumulative path-specific effect cPSE_M2 = theta_011 - theta_001 that the source analyses in Section 5. The source reports no numerical value for it (its Figure 3 only re-centres estimators at the truth); the value 0.3264 registered here is derived analytically by the collector from the registered coefficients and must be checked by a reviewer.",
+    "The source generates 1000 Monte Carlo samples of size 2000 and compares eight estimators under five misspecification cases; none of that estimation work is reproduced. The 'false covariates' Z = (X1, exp(X2/2), (X3/X1)^(1/3), X4/(exp(X1/2)+1)) used there are an estimation device applied to the same data, not a different data-generating mechanism, so they are not registered as a separate DGP.",
+    "Sampling is re-implemented with NumPy Generator(PCG64); no attempt is made to match the source software draw-for-draw.",
+    "Only the eight observed columns are exported. The latent errors U1,U2,U3 and the latent X-Y confounder UXY are generated internally and never returned."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "generator.py",
+    "truth_reference": "truth.py",
+    "source_archive": "mediation-zhou-2022-ordered-two-mediators-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/mediation-zhou-2022-ordered-two-mediators-v1.py",
+    "exported_generator_sha256": "499cc2d54c12b93c902dcb580e155d6557b1ec91164a5cad46acafa5677dfd72"
+  },
+  "evidence": [
+    {
+      "file": "collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "1c3b80120915731aed5bd5c672428622254cc967c8da20534db7a3f7a9db84be",
+    "collection_sha256": "5460759ef12e0dbd621a8f8ded467bd5652ef8cccdff65abf0920337379ae691",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "AI-assisted source audit by the collector; named human scientific review and independent-person reproduction pending",
+    "submission_file": "incoming/mediation-zhou-2022-ordered-two-mediators-v1.zip",
+    "submitted_zip_sha256": "1c3b80120915731aed5bd5c672428622254cc967c8da20534db7a3f7a9db84be",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [],
+  "source_suggested_domain": "mediation",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

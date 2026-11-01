@@ -4,7 +4,7 @@
 
 > **Draft view:** all automatically extracted records still need human scientific review.
 
-**101 DGP mechanisms**, **219 parameter scenarios**, **75 reference papers**
+**109 DGP mechanisms**, **227 parameter scenarios**, **79 reference papers**
 
 ## Research areas
 
@@ -12,7 +12,7 @@
 |---|---:|---:|---|
 | ATE — Average Treatment Effect | 9 | 22 | [Browse](by-domain/ate.md) |
 | CATE — Conditional Average Treatment Effect | 2 | 2 | [Browse](by-domain/cate.md) |
-| Mediation — Direct and Indirect Effects | 8 | 9 | [Browse](by-domain/mediation.md) |
+| Mediation — Direct and Indirect Effects | 12 | 17 | [Browse](by-domain/mediation.md) |
 | IV — Instrumental Variables | 18 | 21 | [Browse](by-domain/iv.md) |
 | Proximal Causal Inference | 8 | 15 | [Browse](by-domain/proximal.md) |
 | DiD / Synthetic Control | 3 | 3 | [Browse](by-domain/did_sc.md) |
@@ -54,17 +54,21 @@ Each paper is listed **once per area**. Generators are source files from the sub
 
 ### [Mediation — Direct and Indirect Effects](by-domain/mediation.md)
 
-8 paper(s) · 9 DGP mechanism(s)
+12 paper(s) · 17 DGP mechanism(s)
 
 | Paper Title | DGPs | DGP Mechanisms | Keywords | Generator.py |
 |---|---:|---|---|---|
 | [Adaptive Bootstrap Tests for Composite Null Hypotheses in the Mediation Pathway Analysis](https://doi.org/10.1093/jrsssb/qkad129) (JRSSB) | 1 | [Single linear mediator with independent mixed-type baseline covariates](drafts/mediation-he-song-xu-2024-single-linear-v1.md) | Linearity | [generator.py](generators/mediation-he-song-xu-2024-single-linear-v1.py) |
 | [Causal Mediation Analysis for Stochastic Interventions](https://doi.org/10.1111/rssb.12362) (JRSSB) | 1 | [Natural indirect effect in the Díaz–Hejazi three-binary-mediator simulation](drafts/mediation-diaz-hejazi-2020-discrete-three-mediators-v1.md) | Nonlinearity | [generator.py](generators/mediation-diaz-hejazi-2020-discrete-three-mediators-v1.py) |
-| [Causal mediation analysis: selection with asymptotically valid inference](https://doi.org/10.1093/jrsssb/qkae109) (JRSSB) | 1 | [Sparse high-dimensional linear mediation with correlated Gaussian errors](drafts/mediation-jones-et-al-2025-correlated-sparse-v1.md) | Linearity · High-dimensionality | [generator.py](generators/mediation-jones-et-al-2025-correlated-sparse-v1.py) |
+| [Causal mediation analysis: selection with asymptotically valid inference](https://doi.org/10.1093/jrsssb/qkae109) (JRSSB) | 4 | 1: [Sparse high-dimensional linear mediation with correlated Gaussian errors](drafts/mediation-jones-et-al-2025-correlated-sparse-v1.md)<br/>2: [Sparse natural indirect effect with ten candidate mediators, scenario LNL (linear propensity, nonlinear mediator confounding, linear outcome confounding)](drafts/mediation-jones-2024-sparse-mediators-lnl-v1.md)<br/>3: [Sparse natural indirect effect with ten candidate mediators, scenario LNN (linear propensity, nonlinear mediator confounding, nonlinear outcome confounding)](drafts/mediation-jones-2024-sparse-mediators-lnn-v1.md)<br/>4: [Sparse natural indirect effect with ten candidate mediators, scenario NNN (nonlinear propensity, nonlinear mediator confounding, nonlinear outcome confounding)](drafts/mediation-jones-2024-sparse-mediators-nnn-v1.md) | 1: Linearity · High-dimensionality<br/>2: Nonlinearity<br/>3: Nonlinearity<br/>4: Interactions · Nonlinearity | [1: generator.py](generators/mediation-jones-et-al-2025-correlated-sparse-v1.py)<br/>[2: generator.py](generators/mediation-jones-2024-sparse-mediators-lnl-v1.py)<br/>[3: generator.py](generators/mediation-jones-2024-sparse-mediators-lnn-v1.py)<br/>[4: generator.py](generators/mediation-jones-2024-sparse-mediators-nnn-v1.py) |
+| [Efficient Nonparametric Inference for Mediation Analysis with Nonignorable Missing Confounders](https://doi.org/10.1080/01621459.2026.2654218) (JASA) | 2 | 1: [Mediation functional under nonignorable missing confounders with covariate- and treatment-dependent missingness and internal shadow variables](drafts/mediation-shan-li-ai-2026-missing-confounders-internal-shadow-v1.md)<br/>2: [Mediation functional under nonignorable missing confounders with residual-dependent missingness and external shadow variables](drafts/mediation-shan-li-ai-2026-missing-confounders-aux-shadow-v1.md) | 1: Interactions · Nonlinearity<br/>2: Interactions · Nonlinearity | [1: generator.py](generators/mediation-shan-li-ai-2026-missing-confounders-internal-shadow-v1.py)<br/>[2: generator.py](generators/mediation-shan-li-ai-2026-missing-confounders-aux-shadow-v1.py) |
+| [Identification and multiply robust estimation in causal mediation analysis across principal strata](https://doi.org/10.1093/jrsssb/qkaf037) (JRSSB) | 1 | [Intention-to-treat natural direct effect with a post-treatment event in a Kang-Schafer style design](drafts/mediation-cheng-li-2025-principal-strata-kang-schafer-v1.md) | Nonlinearity | [generator.py](generators/mediation-cheng-li-2025-principal-strata-kang-schafer-v1.py) |
 | [Identification, Semiparametric Efficiency, and Quadruply Robust Estimation in Mediation Analysis with Treatment-Induced Confounding](https://doi.org/10.1080/01621459.2021.1990765) (JASA) | 2 | 1: [Binary mediator and induced confounder with Plackett odds-ratio copula](drafts/mediation-xia-chan-2023-binary-plackett-v1.md)<br/>2: [Continuous Gaussian-copula mediator and treatment-induced confounder](drafts/mediation-xia-chan-2023-continuous-copula-v1.md) | 1: Interactions · Nonlinearity<br/>2: Interactions · Nonlinearity | [1: generator.py](generators/mediation-xia-chan-2023-binary-plackett-v1.py)<br/>[2: generator.py](generators/mediation-xia-chan-2023-continuous-copula-v1.py) |
 | [Mediation Analysis with the Mediator and Outcome Missing Not at Random](https://doi.org/10.1080/01621459.2024.2359132) (JASA) | 1 | [Continuous mediation with MNAR mediator and outcome](drafts/mediation-zuo-et-al-2025-continuous-mnar-v1.md) | Interactions · Nonlinearity | [generator.py](generators/mediation-zuo-et-al-2025-continuous-mnar-v1.py) |
 | [Multivariate dynamic mediation analysis under a reinforcement learning framework](https://doi.org/10.1214/24-aos2475) (AoS) | 1 | [Finite-horizon Markov mediation with three contemporaneous mediators](drafts/mediation-luo-et-al-2025-dynamic-markov-v1.md) | Linearity | [generator.py](generators/mediation-luo-et-al-2025-dynamic-markov-v1.py) |
 | [Non-parametric efficient causal mediation with intermediate confounders](https://doi.org/10.1093/biomet/asaa085) (Biometrika) | 1 | [Interventional indirect effect with a treatment-induced binary confounder](drafts/mediation-diaz-et-al-2021-intermediate-confounding-v1.md) | Interactions · Nonlinearity | [generator.py](generators/mediation-diaz-et-al-2021-intermediate-confounding-v1.py) |
+| [On semiparametric estimation of a path-specific effect in the presence of mediator-outcome confounding](https://doi.org/10.1093/biomet/asz063) (Biometrika) | 1 | [Path-specific effect along A to M to Y with a treatment-induced mediator-outcome confounder vector](drafts/mediation-miles-2019-toxicity-path-specific-v1.md) | Interactions · Nonlinearity | [generator.py](generators/mediation-miles-2019-toxicity-path-specific-v1.py) |
+| [Semiparametric estimation for causal mediation analysis with multiple causally ordered mediators](https://doi.org/10.1111/rssb.12487) (JRSSB) | 1 | [Cumulative path-specific effect through the second of two causally ordered mediators](drafts/mediation-zhou-2022-ordered-two-mediators-v1.md) | Nonlinearity | [generator.py](generators/mediation-zhou-2022-ordered-two-mediators-v1.py) |
 | [Semiparametric theory for causal mediation analysis: efficiency bounds, multiple robustness and sensitivity analysis](https://doi.org/10.1214/12-aos990) (AoS) | 1 | [Natural indirect effect in the Tchetgen Tchetgen–Shpitser mediation design](drafts/nie-eric-original-v1.md) | Interactions · Nonlinearity | [generator.py](generators/nie-eric-original-v1.py) |
 
 ### [IV — Instrumental Variables](by-domain/iv.md)
