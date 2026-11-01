@@ -1,0 +1,180 @@
+{
+  "schema_version": "0.1",
+  "record_id": "mdi-liu-fan-2023-light-tail-model2-v1",
+  "kind": "synthetic_dgp",
+  "domain": "missing_data",
+  "english_display": {},
+  "paper": {
+    "citation": "Liu, Y. and Fan, Y. (2023). Biased-sample empirical likelihood weighting for missing data problems: an alternative to inverse probability weighting. Journal of the Royal Statistical Society Series B 85(1), 67–83. DOI: 10.1093/jrsssb/qkac006.",
+    "title": null,
+    "doi": "10.1093/jrsssb/qkac006",
+    "source_url": "https://doi.org/10.1093/jrsssb/qkac006",
+    "source_file_evidence": [],
+    "venue": "Journal of the Royal Statistical Society Series B",
+    "year": 2023,
+    "source_version": null,
+    "source_locator": "Section 3, Example 1, journal p. 76 (PDF p. 10); choose gamma=2.5, c=1, Model 2; Table 1 on journal p. 77/PDF p. 11."
+  },
+  "mechanism": {
+    "name": "MAR response with directly generated propensity score, light-tail Model 2",
+    "title_en": null,
+    "family_id": "liu-fan-2023-section3-example1-model2",
+    "generation_equations": [
+      {
+        "label": "Propensity score coordinate",
+        "expression": "P=pi(X) generated directly: Pr(P<=u)=u^(gamma-1), u in [0,1], gamma=2.5; equivalently Beta(1.5,1)"
+      },
+      {
+        "label": "Full outcome",
+        "expression": "eta~chi-square(4) independent of P; Y=1-P+c*(eta-4)/sqrt(8), c=1 (Model 2)"
+      },
+      {
+        "label": "Observation",
+        "expression": "D|P~Bernoulli(P); D=1 means Y observed"
+      },
+      {
+        "label": "Observed encoding",
+        "expression": "Y_observed=Y when D=1 and 0 placeholder when D=0"
+      },
+      {
+        "label": "Target",
+        "expression": "theta=E(Y)=1/gamma=0.4"
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "P",
+        "role": "fully observed propensity score coordinate",
+        "dtype": "float",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "D",
+        "role": "outcome observation indicator; 1 means measured",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Y_observed",
+        "role": "outcome when D=1; zero placeholder otherwise; mask using D",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [
+      {
+        "name": "eta",
+        "role": "latent_candidate",
+        "evidence": {
+          "file": "collection.json",
+          "equation_index": 1,
+          "expression": "eta~chi-square(4) independent of P"
+        },
+        "provenance": "inferred_from_stochastic_declaration"
+      }
+    ],
+    "latent_variables_status": "candidates_from_equations_need_review",
+    "sampling": {
+      "unit": "individual",
+      "dependence": "iid"
+    },
+    "assumptions": [
+      "The fully observed propensity score P=pi(X) is generated directly with CDF u^(gamma-1), 0<=u<=1. No original X is simulated.",
+      "Independent eta~chi-square(df=4); Y=1-P+c(eta-4)/sqrt(8).",
+      "MAR: D|P~Bernoulli(P), D=1 means Y observed; D conditionally independent of eta and Y given P.",
+      "P>0 almost surely but is not bounded uniformly away from zero."
+    ],
+    "properties": {
+      "dimension": 1,
+      "effective_dimension": 1,
+      "high_dimensional": false,
+      "interactions": false,
+      "nonlinear": false,
+      "notes": "One fully observed propensity-score coordinate P, generated directly rather than inventing an X. Model 2 has a linear conditional mean in P; P has a nonuniform beta distribution."
+    }
+  },
+  "estimand": {
+    "name": "theta = E(Y)",
+    "definition": "Full-data superpopulation response mean before outcome masking.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "original",
+      "parameters": {
+        "gamma": 2.5,
+        "noise_scale_c": 1.0,
+        "chi_square_df": 4,
+        "model": 2,
+        "missing_outcome_placeholder": 0.0,
+        "paper_sample_size": 2000,
+        "paper_simulation_repetitions": 5000
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.4,
+        "expression": "Full-data superpopulation response mean before outcome masking.",
+        "derivation": "P~Beta(gamma-1,1) gives E(P)=(gamma-1)/gamma; centered chi-square noise has mean zero. For gamma=2.5, E(Y)=1/gamma=0.4.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[original].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "One generate call returns one sample rather than all paper Monte Carlo repetitions.",
+    "A finite zero placeholder encodes missing Y in the numeric-only interface; mask with the observation indicator."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "generator.py",
+    "truth_reference": "truth.py",
+    "source_archive": "mdi-liu-fan-2023-light-tail-model2-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/mdi-liu-fan-2023-light-tail-model2-v1.py",
+    "exported_generator_sha256": "219b0e3601d843d9341797c7920eeaa1a4b87a8d925821346812c791539d9b9e"
+  },
+  "evidence": [
+    {
+      "file": "collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "a572a67d892bb9f9acf3470f6106eb2289c69290c74800445a756cb1b2f333e4",
+    "collection_sha256": "a4cc3b987133408ac9e3d55b3e541142be0880d9b121cca0036952c4fc0c1ef5",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/mdi-liu-fan-2023-light-tail-model2-v1.zip",
+    "submitted_zip_sha256": "a572a67d892bb9f9acf3470f6106eb2289c69290c74800445a756cb1b2f333e4",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "Latent-variable candidates inferred from source equations; confirm their roles and completeness against the original paper or generator."
+  ],
+  "source_suggested_domain": "missing_data",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

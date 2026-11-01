@@ -1,0 +1,180 @@
+{
+  "schema_version": "0.1",
+  "record_id": "mdi-hu-follmann-qin-2010-cubic-mean-v1",
+  "kind": "synthetic_dgp",
+  "domain": "missing_data",
+  "english_display": {},
+  "paper": {
+    "citation": "Hu, Z., Follmann, D. A. and Qin, J. (2010). Semiparametric dimension reduction estimation for mean response with missing data. Biometrika 97(2), 305–319. DOI: 10.1093/biomet/asq005.",
+    "title": null,
+    "doi": null,
+    "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3412576/",
+    "source_file_evidence": [],
+    "venue": "Biometrika",
+    "year": 2010,
+    "source_version": null,
+    "source_locator": "Section 4, Simulation studies, first simulation, paragraph beginning 'In the first simulation'; journal p. 311, PDF p. 7 of the 15-page PMC article PDF (asq005.pdf)."
+  },
+  "mechanism": {
+    "name": "MAR mean response with a cubic outcome regression",
+    "title_en": null,
+    "family_id": "hu-follmann-qin-2010-section4-first-simulation",
+    "generation_equations": [
+      {
+        "label": "Covariates",
+        "expression": "X1,X2 independently ~ N(0,1)"
+      },
+      {
+        "label": "Full outcome",
+        "expression": "Y|X ~ N((X1+X2)^3,1)"
+      },
+      {
+        "label": "Observation",
+        "expression": "R|X ~ Bernoulli(pi(X)), pi(X)=1-1/[1+exp(1-3X1+2X2^2)]=expit(1-3X1+2X2^2); R independent of Y given X"
+      },
+      {
+        "label": "Observed encoding",
+        "expression": "Y_observed=Y if R=1, otherwise 0 placeholder"
+      },
+      {
+        "label": "Target",
+        "expression": "theta=E(Y)=E[(X1+X2)^3]=0"
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "X1",
+        "role": "fully observed covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X2",
+        "role": "fully observed covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "R",
+        "role": "outcome observation indicator; 1 means measured",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Y_observed",
+        "role": "outcome when R=1; zero placeholder when R=0; mask with R",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [],
+    "latent_variables_status": "not_explicitly_specified",
+    "sampling": {
+      "unit": "individual",
+      "dependence": "iid"
+    },
+    "assumptions": [
+      "Individuals iid; X1 and X2 independent N(0,1).",
+      "MAR: R independent of Y conditional on fully observed X1,X2.",
+      "P(R=1|X)>0 at every finite X, without a uniform lower bound over Gaussian support.",
+      "Independent mean-zero outcome noise."
+    ],
+    "properties": {
+      "dimension": 2,
+      "effective_dimension": 2,
+      "high_dimensional": false,
+      "interactions": true,
+      "nonlinear": true,
+      "notes": "Both covariates matter. (X1+X2)^3 contains X1^2 X2 and X1 X2^2; observation logit contains X2^2."
+    }
+  },
+  "estimand": {
+    "name": "theta = E(Y)",
+    "definition": "Marginal full-data response mean in the iid superpopulation, before outcome masking.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "original",
+      "parameters": {
+        "covariate_sd": 1.0,
+        "outcome_noise_sd": 1.0,
+        "observation_logit_coefficients": [
+          1.0,
+          -3.0,
+          2.0
+        ],
+        "missing_outcome_placeholder": 0.0,
+        "paper_sample_size": 500,
+        "paper_simulation_repetitions": 1000
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.0,
+        "expression": "Marginal full-data response mean in the iid superpopulation, before outcome masking.",
+        "derivation": "Centered Gaussian odd-moment symmetry and zero-mean outcome noise.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[original].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "One call generates one sample instead of repeating the paper's n=500 simulation 1000 times.",
+    "R=0 and finite Y_observed=0 encode missing Y for the numeric-only interface; always mask using R."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "generator.py",
+    "truth_reference": "truth.py",
+    "source_archive": "mdi-hu-follmann-qin-2010-cubic-mean-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/mdi-hu-follmann-qin-2010-cubic-mean-v1.py",
+    "exported_generator_sha256": "1206be621719b0fa23879b1921c057f89e4e3b480ff4cf13541e3553e7ef4d5a"
+  },
+  "evidence": [
+    {
+      "file": "collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "a08e3d94da0a92f4ed548f2f453aadf94981a545918d3dfbe41ce1ba040a457c",
+    "collection_sha256": "d453910809dec88e38103400c86711c0db592b5395892dc3dcaf887023fc4089",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/mdi-hu-follmann-qin-2010-cubic-mean-v1.zip",
+    "submitted_zip_sha256": "a08e3d94da0a92f4ed548f2f453aadf94981a545918d3dfbe41ce1ba040a457c",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "No explicit latent-variable metadata or reliably identifiable latent declarations; absence from this list does not prove that no latent variables exist."
+  ],
+  "source_suggested_domain": "missing_data",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

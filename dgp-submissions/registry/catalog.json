@@ -1,8 +1,8 @@
 {
   "status": "draft_needs_review",
-  "paper_count": 89,
-  "mechanism_count": 127,
-  "scenario_count": 319,
+  "paper_count": 97,
+  "mechanism_count": 135,
+  "scenario_count": 327,
   "domains": {
     "ate": 22,
     "cate": 2,
@@ -13,7 +13,7 @@
     "nonparametric_regression": 20,
     "quantile": 11,
     "semi_supervised": 16,
-    "missing_data": 0
+    "missing_data": 8
   },
   "records": [
     {
@@ -2143,6 +2143,199 @@
       "status": "needs_scientific_review"
     },
     {
+      "record_id": "mdi-han-wang-2013-quadratic-mean-v1",
+      "domain": "missing_data",
+      "paper": "Han, P. and Wang, L. (2013). Estimation with missing data: beyond double robustness. Biometrika 100(2), 417–430. DOI: 10.1093/biomet/ass087.",
+      "mechanism": "MAR response with quadratic conditional mean and heteroscedastic noise",
+      "paper_title": "Estimation with missing data: beyond double robustness",
+      "venue_abbreviation": "Biometrika",
+      "keywords": [
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/mdi-han-wang-2013-quadratic-mean-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "original: theta = E(Y) = 7.25",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "mdi-hu-follmann-qin-2010-cubic-mean-v1",
+      "domain": "missing_data",
+      "paper": "Hu, Z., Follmann, D. A. and Qin, J. (2010). Semiparametric dimension reduction estimation for mean response with missing data. Biometrika 97(2), 305–319. DOI: 10.1093/biomet/asq005.",
+      "mechanism": "MAR mean response with a cubic outcome regression",
+      "paper_title": "Semiparametric dimension reduction estimation for mean response with missing data",
+      "venue_abbreviation": "Biometrika",
+      "keywords": [
+        "Interactions",
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Interactions",
+          "source": "mechanism.properties.interactions",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/mdi-hu-follmann-qin-2010-cubic-mean-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "original: theta = E(Y) = 0.0",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "mdi-hu-follmann-wang-2014-linear-balance-v2",
+      "domain": "missing_data",
+      "paper": "Hu, Z., Follmann, D. A. and Wang, N. (2014). Estimation of mean response via the effective balancing score. Biometrika 101(3), 613–624. DOI: 10.1093/biomet/asu022.",
+      "mechanism": "MAR mean response with ten Gaussian covariates and two active coordinates",
+      "paper_title": "Estimation of mean response via the effective balancing score",
+      "venue_abbreviation": "Biometrika",
+      "keywords": [
+        "Linearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Linearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": false,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/mdi-hu-follmann-wang-2014-linear-balance-v2.py",
+      "latent_variables": [],
+      "truth_by_scenario": "original: theta = E(Y) = 0.0",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "mdi-liu-fan-2023-light-tail-model2-v1",
+      "domain": "missing_data",
+      "paper": "Liu, Y. and Fan, Y. (2023). Biased-sample empirical likelihood weighting for missing data problems: an alternative to inverse probability weighting. Journal of the Royal Statistical Society Series B 85(1), 67–83. DOI: 10.1093/jrsssb/qkac006.",
+      "mechanism": "MAR response with directly generated propensity score, light-tail Model 2",
+      "paper_title": "Biased-sample empirical likelihood weighting for missing data problems: an alternative to inverse probability weighting",
+      "venue_abbreviation": "JRSSB",
+      "keywords": [
+        "Linearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Linearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": false,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/mdi-liu-fan-2023-light-tail-model2-v1.py",
+      "latent_variables": [
+        "eta"
+      ],
+      "truth_by_scenario": "original: theta = E(Y) = 0.4",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "mdi-mueller-2009-cosine-mean-mar-v1",
+      "domain": "missing_data",
+      "paper": "Müller, U. U. (2009). Estimating linear functionals in nonlinear regression with responses missing at random. The Annals of Statistics 37(5A), 2245-2277. DOI: 10.1214/08-AOS642.",
+      "mechanism": "Cosine response mean with logistic MAR",
+      "paper_title": "Estimating linear functionals in nonlinear regression with responses missing at random",
+      "venue_abbreviation": "AoS",
+      "keywords": [
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/mdi-mueller-2009-cosine-mean-mar-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "original: theta = E(Y) = 0.45464871341284085",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "mdi-rotnitzky-lei-sued-robins-2012-continuous-first-v1",
+      "domain": "missing_data",
+      "paper": "Rotnitzky, A., Lei, Q., Sued, M. and Robins, J. M. (2012). Improved double-robust estimation in missing data and causal inference models. Biometrika 99(2), 439–456. DOI: 10.1093/biomet/ass013.",
+      "mechanism": "MAR continuous response, first Kang-Schafer experiment in Rotnitzky et al. 2012",
+      "paper_title": "Improved double-robust estimation in missing data and causal inference models",
+      "venue_abbreviation": "Biometrika",
+      "keywords": [
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/mdi-rotnitzky-lei-sued-robins-2012-continuous-first-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "original: beta_0 = E(Y) = 210.0",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "mdi-vermeulen-vansteelandt-2015-quadratic-logistic-v1",
+      "domain": "missing_data",
+      "paper": "Vermeulen, K. and Vansteelandt, S. (2015). Bias-reduced doubly robust estimation. Journal of the American Statistical Association 110(511), 1024-1036. DOI: 10.1080/01621459.2014.958155.",
+      "mechanism": "Quadratic mean response with logistic MAR selection",
+      "paper_title": "Bias-reduced doubly robust estimation",
+      "venue_abbreviation": "JASA",
+      "keywords": [
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/mdi-vermeulen-vansteelandt-2015-quadratic-logistic-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "original: theta = E(Y) = 1.0",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "mdi-yiu-fong-holmes-rousseau-2025-piecewise-mean-mar-v1",
+      "domain": "missing_data",
+      "paper": "Yiu, S., Fong, E., Holmes, C. and Rousseau, J. (2025). Semiparametric posterior corrections. Journal of the Royal Statistical Society: Series B 87(4), 1025-1054. DOI: 10.1093/jrsssb/qkaf005.",
+      "mechanism": "Piecewise response mean with discontinuous MAR propensity",
+      "paper_title": "Semiparametric posterior corrections",
+      "venue_abbreviation": "JRSSB",
+      "keywords": [
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/mdi-yiu-fong-holmes-rousseau-2025-piecewise-mean-mar-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "original: theta = E(Y) = 0.84375",
+      "status": "needs_scientific_review"
+    },
+    {
       "record_id": "mediation-cheng-li-2025-principal-strata-kang-schafer-v1",
       "domain": "mediation",
       "paper": "Cheng, C. and Li, F. (2025). Identification and multiply robust estimation in causal mediation analysis across principal strata. Journal of the Royal Statistical Society Series B: Statistical Methodology 88(1), 1-22. DOI: 10.1093/jrsssb/qkaf037.",
@@ -3668,8 +3861,8 @@
   ],
   "intake": {
     "status": "success",
-    "zip_count": 83,
-    "indexed_dgp_count": 127,
+    "zip_count": 91,
+    "indexed_dgp_count": 135,
     "failure_count": 0,
     "stale_record_ids": [],
     "scientific_validation": "not_performed"

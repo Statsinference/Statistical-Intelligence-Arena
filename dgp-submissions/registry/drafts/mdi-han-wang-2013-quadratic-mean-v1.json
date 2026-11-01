@@ -1,0 +1,183 @@
+{
+  "schema_version": "0.1",
+  "record_id": "mdi-han-wang-2013-quadratic-mean-v1",
+  "kind": "synthetic_dgp",
+  "domain": "missing_data",
+  "english_display": {},
+  "paper": {
+    "citation": "Han, P. and Wang, L. (2013). Estimation with missing data: beyond double robustness. Biometrika 100(2), 417–430. DOI: 10.1093/biomet/ass087.",
+    "title": null,
+    "doi": "10.1093/biomet/ass087",
+    "source_url": "https://doi.org/10.1093/biomet/ass087",
+    "source_file_evidence": [],
+    "venue": "Biometrika",
+    "year": 2013,
+    "source_version": null,
+    "source_locator": "Section 6, first of four data-generating models, journal p. 426 (PDF p. 10); Table 1, journal p. 427 (PDF p. 11), gives n=300,1000 and 5000 replications."
+  },
+  "mechanism": {
+    "name": "MAR response with quadratic conditional mean and heteroscedastic noise",
+    "title_en": null,
+    "family_id": "han-wang-2013-section6-first-model",
+    "generation_equations": [
+      {
+        "label": "Covariate",
+        "expression": "X ~ Uniform(-2.5,2.5)"
+      },
+      {
+        "label": "Full outcome",
+        "expression": "Y|X=x ~ Normal(1+2x+3x^2, 4x^2+2), with second argument variance"
+      },
+      {
+        "label": "Observation",
+        "expression": "R|X=x ~ Bernoulli(1/[1+exp(0.8+0.5x-0.3x^2)]); R=1 means observed"
+      },
+      {
+        "label": "Observed encoding",
+        "expression": "Y_observed=Y when R=1 and 0 placeholder when R=0"
+      },
+      {
+        "label": "Target",
+        "expression": "theta=E(Y)=7.25"
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "X",
+        "role": "fully observed covariate",
+        "dtype": "float",
+        "min": "-2.5",
+        "max": "2.5",
+        "observed": "true"
+      },
+      {
+        "name": "R",
+        "role": "outcome observation indicator; 1 means measured",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Y_observed",
+        "role": "outcome when R=1; zero placeholder otherwise; mask using R",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [],
+    "latent_variables_status": "not_explicitly_specified",
+    "sampling": {
+      "unit": "individual",
+      "dependence": "iid"
+    },
+    "assumptions": [
+      "X is fully observed Uniform(-2.5,2.5).",
+      "Y|X=x is normal with mean 1+2x+3x^2 and variance 4x^2+2.",
+      "MAR: R is independent of Y conditional on X, and R=1 means Y is observed.",
+      "Observation probability is strictly positive for all X in its compact support."
+    ],
+    "properties": {
+      "dimension": 1,
+      "effective_dimension": 1,
+      "high_dimensional": false,
+      "interactions": false,
+      "nonlinear": true,
+      "notes": "Quadratic outcome mean, quadratic observation logit, and X-dependent outcome variance."
+    }
+  },
+  "estimand": {
+    "name": "theta = E(Y)",
+    "definition": "Full-data superpopulation response mean before outcome masking.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "original",
+      "parameters": {
+        "x_half_width": 2.5,
+        "outcome_mean_coefficients": [
+          1.0,
+          2.0,
+          3.0
+        ],
+        "outcome_variance_coefficients": [
+          2.0,
+          4.0
+        ],
+        "observation_logit_coefficients": [
+          -0.8,
+          -0.5,
+          0.3
+        ],
+        "missing_outcome_placeholder": 0.0,
+        "paper_sample_sizes": [
+          300,
+          1000
+        ],
+        "paper_simulation_repetitions": 5000
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 7.25,
+        "expression": "Full-data superpopulation response mean before outcome masking.",
+        "derivation": "Uniform second moment: E(X)=0, E(X^2)=2.5^2/3; theta=1+3 E(X^2)=7.25.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[original].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "One generate call returns one sample rather than all paper Monte Carlo repetitions.",
+    "A finite zero placeholder encodes missing Y in the numeric-only interface; mask with the observation indicator."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "generator.py",
+    "truth_reference": "truth.py",
+    "source_archive": "mdi-han-wang-2013-quadratic-mean-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/mdi-han-wang-2013-quadratic-mean-v1.py",
+    "exported_generator_sha256": "1a2786d19445b5a799276f6f2a19374e46a40d31295e352d81be063bc6745520"
+  },
+  "evidence": [
+    {
+      "file": "collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "05f0833be4dc7291b15bca25b972edc95cca2fc3e24f9f9cc6a9c28d0cb1b611",
+    "collection_sha256": "cca698b053c80bad0ca32df17a43d6ef49ec97c45f31f3b1c1b79256507c277a",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/mdi-han-wang-2013-quadratic-mean-v1.zip",
+    "submitted_zip_sha256": "05f0833be4dc7291b15bca25b972edc95cca2fc3e24f9f9cc6a9c28d0cb1b611",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "No explicit latent-variable metadata or reliably identifiable latent declarations; absence from this list does not prove that no latent variables exist."
+  ],
+  "source_suggested_domain": "missing_data",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

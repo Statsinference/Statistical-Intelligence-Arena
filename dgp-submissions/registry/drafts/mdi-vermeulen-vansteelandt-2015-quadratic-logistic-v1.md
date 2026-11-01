@@ -1,0 +1,94 @@
+# Quadratic mean response with logistic MAR selection
+
+> **Unverified extraction — scientific review required.**
+
+**Primary area:** Missing Data
+
+**Suggested cross-tags (unverified):** none
+
+## Reference paper
+
+**Citation:** Vermeulen, K. and Vansteelandt, S. (2015). Bias-reduced doubly robust estimation. Journal of the American Statistical Association 110(511), 1024-1036. DOI: 10.1080/01621459.2014.958155.
+
+**DOI:** 10.1080/01621459.2014.958155 · **Source locator:** Section 4.1, Scenario 1, journal pp. 1029-1030 / PDF pp. 7-8; quadratic mean and logistic propensity with xi=1.
+
+## DGP / generation mechanism
+
+**Sampling design:** Unit: individual; Dependence: iid
+
+**Generator source:** [generator.py](../generators/mdi-vermeulen-vansteelandt-2015-quadratic-logistic-v1.py)
+
+**Keywords (source-described):** Nonlinearity
+
+**Observed variables**
+
+X, R, Y_observed
+
+**Latent variables**
+
+Not explicitly identified (review required)
+
+**Latent-variable identification:** not explicitly specified
+
+**Equations / distributions (LaTeX rendering)**
+
+> Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
+
+$$
+X\sim \mathcal{N}(0,1)
+$$
+
+$$
+Y\mid X=x\sim \mathcal{N}(x^{2},1)
+$$
+
+$$
+R\mid X=x\sim \mathrm{Bernoulli}(\mathrm{expit}(x)).
+$$
+
+$$
+Y_observed=Y when R=1, and finite 0 placeholder when R=0.
+$$
+
+$$
+\theta=\mathbb{E}(Y)=1
+$$
+
+<details>
+<summary>Original source equations (verbatim)</summary>
+
+<pre>
+X~N(0,1); Y|X=x~N(x^2,1); R|X=x~Bernoulli(expit(x)).
+Y_observed=Y when R=1, and finite 0 placeholder when R=0.
+theta=E(Y)=1
+</pre>
+
+</details>
+
+
+## Parameter scenarios, estimands and truth
+
+| Scenario | Estimand | Definition | True value | Evidence status |
+|---|---|---|---|---|
+| original | theta = E(Y) | Full-data superpopulation response mean before outcome masking. | 1.0 | reported_numeric |
+
+## Identifiability assumptions
+
+- Covariates are fully observed.
+- R is conditionally independent of Y given fully observed covariates (MAR).
+- R=1 means Y is observed.
+- Observation probabilities are positive.
+
+## Provenance and review
+
+**Submitted by:** github_file_upload
+
+**Mode:** structured_zip
+
+**Original versus adapted:** adapted_from_source
+
+**Status:** needs_scientific_review
+
+**Warnings:**
+
+- No explicit latent-variable metadata or reliably identifiable latent declarations; absence from this list does not prove that no latent variables exist.

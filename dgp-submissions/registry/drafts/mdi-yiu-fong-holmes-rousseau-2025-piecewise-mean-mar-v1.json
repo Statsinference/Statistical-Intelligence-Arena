@@ -1,0 +1,163 @@
+{
+  "schema_version": "0.1",
+  "record_id": "mdi-yiu-fong-holmes-rousseau-2025-piecewise-mean-mar-v1",
+  "kind": "synthetic_dgp",
+  "domain": "missing_data",
+  "english_display": {},
+  "paper": {
+    "citation": "Yiu, S., Fong, E., Holmes, C. and Rousseau, J. (2025). Semiparametric posterior corrections. Journal of the Royal Statistical Society: Series B 87(4), 1025-1054. DOI: 10.1093/jrsssb/qkaf005.",
+    "title": null,
+    "doi": "10.1093/jrsssb/qkaf005",
+    "source_url": "https://doi.org/10.1093/jrsssb/qkaf005",
+    "source_file_evidence": [],
+    "venue": "Journal of the Royal Statistical Society: Series B",
+    "year": 2025,
+    "source_version": null,
+    "source_locator": "Section 6.2, journal p. 1045 / local main-text PDF p. 21; Table 2 journal p. 1046 / PDF p. 22 labels outcome-mean estimation."
+  },
+  "mechanism": {
+    "name": "Piecewise response mean with discontinuous MAR propensity",
+    "title_en": null,
+    "family_id": "yiu-fong-holmes-rousseau-2025-section6-2-piecewise-mar",
+    "generation_equations": [
+      {
+        "label": "Full data and observation",
+        "expression": "X~Uniform[-1,1]; m(x)=(x+2)^2/2 on [-1,-0.5), x/2+0.875 on [-0.5,0), -5(x-0.2)^2+1.075 on [0,0.5), x+0.125 on [0.5,1]; Y|X=x~N(m(x), [0.2-0.1cos(2pi x)]^2); R|X=x~Bernoulli(0.5+0.4sign(x))."
+      },
+      {
+        "label": "Observed encoding",
+        "expression": "Y_observed=Y if R=1, else finite zero placeholder."
+      },
+      {
+        "label": "Target",
+        "expression": "theta=E(Y)=0.84375"
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "X",
+        "role": "fully observed covariate",
+        "dtype": "float",
+        "min": "-1",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "R",
+        "role": "outcome observation indicator",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Y_observed",
+        "role": "outcome if R=1; zero placeholder otherwise; mask using R",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [],
+    "latent_variables_status": "not_explicitly_specified",
+    "sampling": {
+      "unit": "individual",
+      "dependence": "iid"
+    },
+    "assumptions": [
+      "Covariates are fully observed.",
+      "R is conditionally independent of Y given fully observed covariates (MAR).",
+      "R=1 means Y is observed.",
+      "Observation probabilities are positive."
+    ],
+    "properties": {
+      "dimension": 1,
+      "effective_dimension": 1,
+      "high_dimensional": false,
+      "interactions": false,
+      "nonlinear": true,
+      "notes": "Piecewise conditional mean, heteroskedastic outcome, and 0.1/0.9 MAR observation probability."
+    }
+  },
+  "estimand": {
+    "name": "theta = E(Y)",
+    "definition": "Full-data superpopulation response mean before outcome masking.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "original",
+      "parameters": {
+        "mode": "piecewise_mar",
+        "missing_outcome_placeholder": 0.0,
+        "paper_sample_sizes": [
+          500,
+          1000,
+          2000
+        ]
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.84375,
+        "expression": "Full-data superpopulation response mean before outcome masking.",
+        "derivation": "Integrate the four source-specified polynomial branches under Uniform[-1,1]: E(Y)=27/32.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[original].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "One generator call returns one iid sample rather than reproducing paper Monte Carlo estimator comparisons.",
+    "Unobserved Y is encoded by a finite zero placeholder and must always be masked by R.",
+    "Source explicitly attributes this DGP to Kennedy (2023), with piecewise regression originally from Györfi et al. (2002); check mechanism-level duplication.",
+    "The exact numerical E(Y) is derived by integration from the paper-specified DGP; the paper does not state the evaluated number."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "generator.py",
+    "truth_reference": "truth.py",
+    "source_archive": "mdi-yiu-fong-holmes-rousseau-2025-piecewise-mean-mar-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/mdi-yiu-fong-holmes-rousseau-2025-piecewise-mean-mar-v1.py",
+    "exported_generator_sha256": "38a135cba1b515f36950550f83aa51ddce480d09d0255496164cc5eb5e385d6b"
+  },
+  "evidence": [
+    {
+      "file": "collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "9210c75dfa81271fbd89c741be8fd07260f340f8ed59a43a24a2930cc9d2bed5",
+    "collection_sha256": "1908a72ce5cf63f83ad8d2abe2d5f7ebd0f7bde38b8db68fc10934c37ee96de3",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/mdi-yiu-fong-holmes-rousseau-2025-piecewise-mean-mar-v1.zip",
+    "submitted_zip_sha256": "9210c75dfa81271fbd89c741be8fd07260f340f8ed59a43a24a2930cc9d2bed5",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "No explicit latent-variable metadata or reliably identifiable latent declarations; absence from this list does not prove that no latent variables exist."
+  ],
+  "source_suggested_domain": "missing_data",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

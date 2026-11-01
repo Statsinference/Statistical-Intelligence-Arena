@@ -1,0 +1,208 @@
+{
+  "schema_version": "0.1",
+  "record_id": "mdi-rotnitzky-lei-sued-robins-2012-continuous-first-v1",
+  "kind": "synthetic_dgp",
+  "domain": "missing_data",
+  "english_display": {},
+  "paper": {
+    "citation": "Rotnitzky, A., Lei, Q., Sued, M. and Robins, J. M. (2012). Improved double-robust estimation in missing data and causal inference models. Biometrika 99(2), 439–456. DOI: 10.1093/biomet/ass013.",
+    "title": null,
+    "doi": null,
+    "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3635709/",
+    "source_file_evidence": [],
+    "venue": "Biometrika",
+    "year": 2012,
+    "source_version": null,
+    "source_locator": "Section 5, first continuous-outcome experiment, journal pp. 451–452; Table 1 journal p. 453. The authors explicitly credit the Kang and Schafer (2007) design."
+  },
+  "mechanism": {
+    "name": "MAR continuous response, first Kang-Schafer experiment in Rotnitzky et al. 2012",
+    "title_en": null,
+    "family_id": "rotnitzky-lei-sued-robins-2012-section5-first-experiment-kang-schafer",
+    "generation_equations": [
+      {
+        "label": "Covariates and noise",
+        "expression": "(L1,L2,L3,L4,epsilon) ~ N(0,I5)"
+      },
+      {
+        "label": "Full outcome",
+        "expression": "Y=210+27.4L1+13.7(L2+L3+L4)+epsilon"
+      },
+      {
+        "label": "Observation",
+        "expression": "A|L~Bernoulli(expit(-L1+0.5L2-0.25L3-0.1L4)); A=1 means Y observed"
+      },
+      {
+        "label": "Observed encoding",
+        "expression": "Y_observed=Y if A=1, otherwise finite zero placeholder"
+      },
+      {
+        "label": "Target",
+        "expression": "beta_0=E(Y)=210"
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "L1",
+        "role": "fully observed covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "L2",
+        "role": "fully observed covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "L3",
+        "role": "fully observed covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "L4",
+        "role": "fully observed covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "A",
+        "role": "outcome observation indicator; 1 means measured",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Y_observed",
+        "role": "outcome if A=1; zero placeholder otherwise; mask with A",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [],
+    "latent_variables_status": "not_explicitly_specified",
+    "sampling": {
+      "unit": "individual",
+      "dependence": "iid"
+    },
+    "assumptions": [
+      "(L1,L2,L3,L4,epsilon) have independent standard-normal components.",
+      "Y=210+27.4 L1+13.7(L2+L3+L4)+epsilon.",
+      "A is the observation indicator and A|L~Bernoulli(expit(-L1+0.5L2-0.25L3-0.1L4)); conditional on L, A is independent of epsilon and Y.",
+      "MAR given fully observed L; selection probability positive for every finite L, without a uniform lower bound on Gaussian support."
+    ],
+    "properties": {
+      "dimension": 4,
+      "effective_dimension": 4,
+      "high_dimensional": false,
+      "interactions": false,
+      "nonlinear": true,
+      "notes": "Four active L coordinates. Outcome mean is additive linear; logistic observation probability is nonlinear as a probability function. Paper also computes transformed X for estimator misspecification; X is not needed to generate Y or A."
+    }
+  },
+  "estimand": {
+    "name": "beta_0 = E(Y)",
+    "definition": "Full-data superpopulation mean of continuous Y before missingness.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "original",
+      "parameters": {
+        "covariate_sd": 1.0,
+        "outcome_intercept": 210.0,
+        "outcome_coefficients": [
+          27.4,
+          13.7,
+          13.7,
+          13.7
+        ],
+        "outcome_noise_sd": 1.0,
+        "observation_logit_coefficients": [
+          -1.0,
+          0.5,
+          -0.25,
+          -0.1
+        ],
+        "missing_outcome_placeholder": 0.0,
+        "paper_sample_sizes": [
+          200,
+          1000
+        ],
+        "paper_simulation_repetitions": 1000
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 210.0,
+        "expression": "Full-data superpopulation mean of continuous Y before missingness.",
+        "derivation": "All Gaussian L components and epsilon are mean zero, so E(Y)=210.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[original].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "One generate call produces one sample instead of paper n=200 or 1000 with 1000 Monte Carlo datasets.",
+    "Finite zero placeholder encodes missing Y; use A as its mask.",
+    "Auxiliary transformed X variables used only to fit intentionally misspecified working estimators are not output; fully observed L and the outcome/missingness mechanism are preserved."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "generator.py",
+    "truth_reference": "truth.py",
+    "source_archive": "mdi-rotnitzky-lei-sued-robins-2012-continuous-first-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/mdi-rotnitzky-lei-sued-robins-2012-continuous-first-v1.py",
+    "exported_generator_sha256": "82a1b560fff8321542b65cc985bdcf1d6dc46b0d7a1c8ce415f92b7a8d646ffd"
+  },
+  "evidence": [
+    {
+      "file": "collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "6e56dfef7c4097a694b3dca8db77b57d9c607e89fad445dd28ca2d6142b5079e",
+    "collection_sha256": "2eed9cf3469ad002b561cceed6bd8b2d60cc6d14efdb75d534b1840fdc72268f",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/mdi-rotnitzky-lei-sued-robins-2012-continuous-first-v1.zip",
+    "submitted_zip_sha256": "6e56dfef7c4097a694b3dca8db77b57d9c607e89fad445dd28ca2d6142b5079e",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "No explicit latent-variable metadata or reliably identifiable latent declarations; absence from this list does not prove that no latent variables exist."
+  ],
+  "source_suggested_domain": "missing_data",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

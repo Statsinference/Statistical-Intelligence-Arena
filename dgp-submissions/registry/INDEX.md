@@ -4,7 +4,7 @@
 
 > **Draft view:** all automatically extracted records still need human scientific review.
 
-**127 DGP mechanisms**, **319 parameter scenarios**, **89 reference papers**
+**135 DGP mechanisms**, **327 parameter scenarios**, **97 reference papers**
 
 ## Research areas
 
@@ -19,7 +19,7 @@
 | Nonparametric Regression | 11 | 20 | [Browse](by-domain/nonparametric_regression.md) |
 | Quantile Inference | 8 | 11 | [Browse](by-domain/quantile.md) |
 | Semi-Supervised Inference | 10 | 16 | [Browse](by-domain/semi_supervised.md) |
-| Missing Data | 0 | 0 | [Browse](by-domain/missing_data.md) |
+| Missing Data | 8 | 8 | [Browse](by-domain/missing_data.md) |
 
 ## Paper list by research area
 
@@ -173,11 +173,18 @@ Each paper is listed **once per area**. Generators are source files from the sub
 
 ### [Missing Data](by-domain/missing_data.md)
 
-0 paper(s) · 0 DGP mechanism(s)
+8 paper(s) · 8 DGP mechanism(s)
 
 | Paper Title | DGPs | DGP Mechanisms | Keywords | Generator.py |
 |---|---:|---|---|---|
-| — | 0 | No submissions yet | — | — |
+| [Bias-reduced doubly robust estimation](https://doi.org/10.1080/01621459.2014.958155) (JASA) | 1 | [Quadratic mean response with logistic MAR selection](drafts/mdi-vermeulen-vansteelandt-2015-quadratic-logistic-v1.md) | Nonlinearity | [generator.py](generators/mdi-vermeulen-vansteelandt-2015-quadratic-logistic-v1.py) |
+| [Biased-sample empirical likelihood weighting for missing data problems: an alternative to inverse probability weighting](https://doi.org/10.1093/jrsssb/qkac006) (JRSSB) | 1 | [MAR response with directly generated propensity score, light-tail Model 2](drafts/mdi-liu-fan-2023-light-tail-model2-v1.md) | Linearity | [generator.py](generators/mdi-liu-fan-2023-light-tail-model2-v1.py) |
+| [Estimating linear functionals in nonlinear regression with responses missing at random](https://doi.org/10.1214/08-aos642) (AoS) | 1 | [Cosine response mean with logistic MAR](drafts/mdi-mueller-2009-cosine-mean-mar-v1.md) | Nonlinearity | [generator.py](generators/mdi-mueller-2009-cosine-mean-mar-v1.py) |
+| [Estimation of mean response via the effective balancing score](https://doi.org/10.1093/biomet/asu022) (Biometrika) | 1 | [MAR mean response with ten Gaussian covariates and two active coordinates](drafts/mdi-hu-follmann-wang-2014-linear-balance-v2.md) | Linearity | [generator.py](generators/mdi-hu-follmann-wang-2014-linear-balance-v2.py) |
+| [Estimation with missing data: beyond double robustness](https://doi.org/10.1093/biomet/ass087) (Biometrika) | 1 | [MAR response with quadratic conditional mean and heteroscedastic noise](drafts/mdi-han-wang-2013-quadratic-mean-v1.md) | Nonlinearity | [generator.py](generators/mdi-han-wang-2013-quadratic-mean-v1.py) |
+| [Improved double-robust estimation in missing data and causal inference models](https://doi.org/10.1093/biomet/ass013) (Biometrika) | 1 | [MAR continuous response, first Kang-Schafer experiment in Rotnitzky et al. 2012](drafts/mdi-rotnitzky-lei-sued-robins-2012-continuous-first-v1.md) | Nonlinearity | [generator.py](generators/mdi-rotnitzky-lei-sued-robins-2012-continuous-first-v1.py) |
+| [Semiparametric dimension reduction estimation for mean response with missing data](https://doi.org/10.1093/biomet/asq005) (Biometrika) | 1 | [MAR mean response with a cubic outcome regression](drafts/mdi-hu-follmann-qin-2010-cubic-mean-v1.md) | Interactions · Nonlinearity | [generator.py](generators/mdi-hu-follmann-qin-2010-cubic-mean-v1.py) |
+| [Semiparametric posterior corrections](https://doi.org/10.1093/jrsssb/qkaf005) (JRSSB) | 1 | [Piecewise response mean with discontinuous MAR propensity](drafts/mdi-yiu-fong-holmes-rousseau-2025-piecewise-mean-mar-v1.md) | Nonlinearity | [generator.py](generators/mdi-yiu-fong-holmes-rousseau-2025-piecewise-mean-mar-v1.py) |
 
 
 ## Extraction notes
