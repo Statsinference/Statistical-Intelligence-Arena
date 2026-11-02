@@ -1,0 +1,178 @@
+{
+  "schema_version": "0.1",
+  "record_id": "did-ye-2024-code-case2-gaussian-bracketing-v1",
+  "kind": "synthetic_dgp",
+  "domain": "did_sc",
+  "english_display": {},
+  "paper": {
+    "citation": "Ye, Keele, Hasegawa, Small (2024), A Negative Correlation Strategy for Bracketing in Difference-in-Differences, JASA119(547):2256–2268",
+    "title": null,
+    "doi": null,
+    "source_url": "https://github.com/tye27/DIDBracket/blob/b82f4ae3f40c89b7a0a1aa49591fa223718d1e71/R/DIDBracket.R",
+    "source_file_evidence": [],
+    "venue": "Journal of the American Statistical Association",
+    "year": 2024,
+    "source_version": null,
+    "source_locator": "data_gen case2 and default att; table_summary t4 coverage target; DOI10.1080/01621459.2023.2252576; current author https://ting-ye.com/publication links same paper and repository"
+  },
+  "mechanism": {
+    "name": "Ye et al. author2020 code-version CaseII bracketing",
+    "title_en": null,
+    "family_id": "ye-code2020-fixed-three-group-nonparallel-gaussian-cells",
+    "generation_equations": [
+      {
+        "label": "observed",
+        "expression": "Y_gtj~N(mu_gt+I(g=trt)att_t,1), independent all cells; mu_trt=(3,4,0,1),mu_a=(10,11,10,11),mu_b=(4,6,2,3),att=(0,2,3,1)"
+      },
+      {
+        "label": "truth",
+        "expression": "Population ATT4=1; finite-sample cross-world coupling unspecified"
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "G",
+        "role": "treatment_group_indicator",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "C",
+        "role": "group_design_indicator",
+        "dtype": "integer",
+        "min": "0",
+        "max": "2",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre001",
+        "role": "observed_outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post001",
+        "role": "observed_outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post002",
+        "role": "observed_outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post003",
+        "role": "observed_outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [],
+    "latent_variables_status": "not_explicitly_specified",
+    "sampling": {
+      "unit": "1000 unit rows,4 observed periods; fixed300trt500b200a; n strictly1000",
+      "dependence": "All observed Gaussian cell innovations independent; fixed deterministic group/time means, no persistent latent state."
+    },
+    "assumptions": [
+      "Source additive treatment shift in treated-group marginal means; no interference and consistency."
+    ],
+    "properties": {
+      "dimension": 0,
+      "effective_dimension": 0,
+      "high_dimensional": false,
+      "interactions": false,
+      "nonlinear": false,
+      "notes": "Nonparallel three-group deterministic paths. G/C are design labels, not baseline measured covariates."
+    }
+  },
+  "estimand": {
+    "name": "ATT_4",
+    "definition": "Population mean treatment effect at final period4 conditional on treated group, source-declared att[4]=1; not finite-sample SATT.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "baseline",
+      "parameters": {
+        "scenario": "author_code_case2",
+        "units": 1000,
+        "T_pre": 1,
+        "T_post": 3
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 1.0,
+        "expression": "Population mean treatment effect at final period4 conditional on treated group, source-declared att[4]=1; not finite-sample SATT.",
+        "derivation": "Source population treatment shift at t4",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[baseline].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "User-authorized fixed2020 AUTHOR CODE VERSION reproduction, not formal2023 simulation formulas verified.",
+    "CaseII parameter match to arXiv2006.02423v3 established; fixed counts differ from Pr(G) presentation; only CaseII selected; no S_t/phi mixture.",
+    "Independent NumPy local RNG preserves distributions/call block order, not R bitwise stream; author seed and RNGkind unpinned.",
+    "N1000 strictly; group-local ordinal wide mapping is lossless independent-cell rearrangement, not original tracked unit IDs. C0=trt,C1=b,C2=a.",
+    "Source draws observed Gaussians directly. Population ATT4 only; no cross-world coupling or fixed SATT claim."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "generator.py",
+    "truth_reference": "truth.py",
+    "source_archive": "did-ye-2024-code-case2-gaussian-bracketing-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/did-ye-2024-code-case2-gaussian-bracketing-v1.py",
+    "exported_generator_sha256": "0eedf92d9bc5b6a7c7abb80822eba65b109b8e87a6ce3ac356ccf0cb8520533e"
+  },
+  "evidence": [
+    {
+      "file": "collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "66e5cc9d875124b472d3b8e80c55ac8d367fe676bd0c9469a1eaedcb77347728",
+    "collection_sha256": "ffea58c1271b59740368a5559b8d73faf57c8b6dadcb87ad63b20d6343206859",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/did-ye-2024-code-case2-gaussian-bracketing-v1.zip",
+    "submitted_zip_sha256": "66e5cc9d875124b472d3b8e80c55ac8d367fe676bd0c9469a1eaedcb77347728",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "No explicit latent-variable metadata or reliably identifiable latent declarations; absence from this list does not prove that no latent variables exist."
+  ],
+  "source_suggested_domain": "did_sc",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

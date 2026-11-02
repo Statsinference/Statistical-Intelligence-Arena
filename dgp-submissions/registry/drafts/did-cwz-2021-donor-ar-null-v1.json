@@ -1,0 +1,446 @@
+{
+  "schema_version": "0.1",
+  "record_id": "did-cwz-2021-donor-ar-null-v1",
+  "kind": "synthetic_dgp",
+  "domain": "did_sc",
+  "english_display": {},
+  "paper": {
+    "citation": "Chernozhukov, V., Wüthrich, K., and Zhu, Y. (2021). An Exact and Robust Conformal Inference Method for Counterfactual and Synthetic Controls. Journal of the American Statistical Association, 116(536), 1849–1864. DOI:10.1080/01621459.2021.1920957",
+    "title": null,
+    "doi": "10.1080/01621459.2021.1920957",
+    "source_url": "https://doi.org/10.1080/01621459.2021.1920957",
+    "source_file_evidence": [],
+    "venue": "Journal of the American Statistical Association",
+    "year": 2021,
+    "source_version": null,
+    "source_locator": "Official supplemental appendix (2021-04-05), Appendix G PDF pp.14–15, Table I.2 PDF p.57. Official Figshare 10.6084/m9.figshare.14473870.v1, file ID27702607, archive MD5 45cd06497fcc35dcd7b30f5340565fc2. replication_package_final/simulations_conformal_final.R:31–39 (AR start and recursion),43–73 (factors/donors/weights/treated),98 (one post),149–150,164 (source baseline grid)."
+  },
+  "mechanism": {
+    "name": "Chernozhukov–Wüthrich–Zhu (2021): donor-combination panel with stationary AR residuals",
+    "title_en": null,
+    "family_id": "cwz-2021-donor-combination-ar-residual",
+    "generation_equations": [
+      {
+        "label": "factors and stationary residuals",
+        "expression": "t=1,...,21; F_1t,F_2t iid N(0,1), independent across factors and times. epsilon_d0,u_0 iid N(0,1); epsilon_dt=0.6*epsilon_d,t-1+eta_dt; u_t=0.6*u_t-1+xi_t; eta_dt,xi_t iid N(0,0.64). Initial states and innovations mutually independent and independent of factors."
+      },
+      {
+        "label": "donor observations",
+        "expression": "J=20; reindex donors d=1,...,20 (source j=d+1); a_d=b_d=d/20. Y_dt=a_d+F_1t+b_d*F_2t+epsilon_dt."
+      },
+      {
+        "label": "source weight scenarios",
+        "expression": "W1: w_d=1/20 (default); W2: w_1=w_2=w_3=1/3, others0; W3: w_d=-1/20; W4: w_1=1,w_2=-1,others0. These are four scenarios of one family."
+      },
+      {
+        "label": "treated observation",
+        "expression": "Y_0t(0)=sum_(d=1)^20 w_d*Y_dt+u_t, using actual donor outcomes including donor errors; Y_0t=Y_0t(0)+1{t=21}*theta_T, theta_T=0. G_0=1,donors G=0; 20pre+1post; n=21 only."
+      },
+      {
+        "label": "causal target",
+        "expression": "Y_0,21(1)-Y_0,21(0)=theta_T=0 for every realization; design expectation and single-treated finite SATT are zero for every weight scenario."
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "G",
+        "role": "treatment",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre_01",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre_02",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre_03",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre_04",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre_05",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre_06",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre_07",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre_08",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre_09",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre_10",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre_11",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre_12",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre_13",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre_14",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre_15",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre_16",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre_17",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre_18",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre_19",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre_20",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post_01",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [
+      {
+        "name": "F_1t",
+        "role": "latent_candidate",
+        "evidence": {
+          "file": "collection.json",
+          "equation_index": 0,
+          "expression": "F_1t,F_2t iid N(0,1), independent across factors and times. epsilon_d0,u_0 iid N(0,1)"
+        },
+        "provenance": "inferred_from_stochastic_declaration"
+      },
+      {
+        "name": "F_2t",
+        "role": "latent_candidate",
+        "evidence": {
+          "file": "collection.json",
+          "equation_index": 0,
+          "expression": "F_1t,F_2t iid N(0,1), independent across factors and times. epsilon_d0,u_0 iid N(0,1)"
+        },
+        "provenance": "inferred_from_stochastic_declaration"
+      },
+      {
+        "name": "eta_dt",
+        "role": "latent_candidate",
+        "evidence": {
+          "file": "collection.json",
+          "equation_index": 0,
+          "expression": "eta_dt,xi_t iid N(0,0.64). Initial states and innovations mutually independent and independent of factors."
+        },
+        "provenance": "inferred_from_stochastic_declaration"
+      },
+      {
+        "name": "xi_t",
+        "role": "latent_candidate",
+        "evidence": {
+          "file": "collection.json",
+          "equation_index": 0,
+          "expression": "eta_dt,xi_t iid N(0,0.64). Initial states and innovations mutually independent and independent of factors."
+        },
+        "provenance": "inferred_from_stochastic_declaration"
+      }
+    ],
+    "latent_variables_status": "candidates_from_equations_need_review",
+    "sampling": {
+      "unit": "One joint 21-unit panel with20 pre and1 post periods, returned in unit-wide rows; one fixed treated unit and20 untreated donors.",
+      "dependence": "Shared iid Gaussian factors across units, stationary independent AR(1) donor residuals, and extra independent AR(1) u. Total treated residual inherits weighted donor residuals and is not independent of them."
+    },
+    "assumptions": [
+      "Consistency and no anticipation: only the designated treated unit at the last period receives the additive response; treatment changes neither donor outcomes nor exogenous processes.",
+      "The same donor panel and extra residual are held fixed across potential treatment states. Stable source untreated relationships and Gaussian processes are explicit DGP restrictions.",
+      "SC nonnegative sum-one weight restrictions hold for W1/W2, not for W3/W4. These are intentional source misspecification scenarios; causal truth does not require an estimator to be correctly specified."
+    ],
+    "properties": {
+      "dimension": 0,
+      "effective_dimension": 0,
+      "high_dimensional": false,
+      "interactions": false,
+      "nonlinear": false,
+      "notes": "No observed baseline covariates; the two latent factors are internal and excluded from the observed schema. Linear Gaussian panel relationships. Donor units are not baseline covariate dimensions."
+    }
+  },
+  "estimand": {
+    "name": "tau_T",
+    "definition": "Y_1,T(1)-Y_1,T(0) at the fixed treated unit and T=T0+1=21. Its design-population expectation and the finite single-treated-unit SATT equal theta_T=0.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "W1",
+      "parameters": {
+        "J": 20,
+        "T0": 20,
+        "T_post": 1,
+        "rho_epsilon": 0.6,
+        "rho_u": 0.6,
+        "innovation_variance": 0.64,
+        "initial_variance": 1,
+        "factor_variance": 1,
+        "theta_T": 0,
+        "weight_scheme": "W1"
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.0,
+        "expression": "Y_1,T(1)-Y_1,T(0) at the fixed treated unit and T=T0+1=21. Its design-population expectation and the finite single-treated-unit SATT equal theta_T=0.",
+        "derivation": "Exact same-world additive response cancellation. Independent rational finite-innovation covariance expansion and response-coefficient checks in verify.py.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[W1].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "W2",
+      "parameters": {
+        "J": 20,
+        "T0": 20,
+        "T_post": 1,
+        "rho_epsilon": 0.6,
+        "rho_u": 0.6,
+        "innovation_variance": 0.64,
+        "initial_variance": 1,
+        "factor_variance": 1,
+        "theta_T": 0,
+        "weight_scheme": "W2"
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.0,
+        "expression": "Y_1,T(1)-Y_1,T(0) at the fixed treated unit and T=T0+1=21. Its design-population expectation and the finite single-treated-unit SATT equal theta_T=0.",
+        "derivation": "Exact same-world additive response cancellation. Independent rational finite-innovation covariance expansion and response-coefficient checks in verify.py.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[W2].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "W3",
+      "parameters": {
+        "J": 20,
+        "T0": 20,
+        "T_post": 1,
+        "rho_epsilon": 0.6,
+        "rho_u": 0.6,
+        "innovation_variance": 0.64,
+        "initial_variance": 1,
+        "factor_variance": 1,
+        "theta_T": 0,
+        "weight_scheme": "W3"
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.0,
+        "expression": "Y_1,T(1)-Y_1,T(0) at the fixed treated unit and T=T0+1=21. Its design-population expectation and the finite single-treated-unit SATT equal theta_T=0.",
+        "derivation": "Exact same-world additive response cancellation. Independent rational finite-innovation covariance expansion and response-coefficient checks in verify.py.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[W3].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "W4",
+      "parameters": {
+        "J": 20,
+        "T0": 20,
+        "T_post": 1,
+        "rho_epsilon": 0.6,
+        "rho_u": 0.6,
+        "innovation_variance": 0.64,
+        "initial_variance": 1,
+        "factor_variance": 1,
+        "theta_T": 0,
+        "weight_scheme": "W4"
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.0,
+        "expression": "Y_1,T(1)-Y_1,T(0) at the fixed treated unit and T=T0+1=21. Its design-population expectation and the finite single-treated-unit SATT equal theta_T=0.",
+        "derivation": "Exact same-world additive response cancellation. Independent rational finite-innovation covariance expansion and response-coefficient checks in verify.py.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[W4].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "Select the published supplemental Table I.2 cell J=20,T0=20,T_post=1,rho_epsilon=rho_u=0.6,theta_T=0. All four official weights are scenarios of one mechanism family; W1 is default.",
+    "Represent the single jointly generated panel as 21 unit rows and 22 observed columns; n must equal21. No sample-size extensions or latent labels are exported.",
+    "Use independently written standard-library Python with a local random stream. Preserve source distributions and generation equations, without claiming R bitwise replay or estimator-performance replication."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "generator.py",
+    "truth_reference": "truth.py",
+    "source_archive": "did-cwz-2021-donor-ar-null-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/did-cwz-2021-donor-ar-null-v1.py",
+    "exported_generator_sha256": "437a2d124e233566cb2a4c94c79e461c6824e14aef272dd2fddccef4b52483ed"
+  },
+  "evidence": [
+    {
+      "file": "collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "591a91a8b1005655b5e0839e4dc24a1db43a0bbbdbfbf292dfe6af25c5d6cf52",
+    "collection_sha256": "0f081a19c06f552d2c55293465d0d404eae917cdf8ac6be2e98ebc0dca7053f6",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/did-cwz-2021-donor-ar-null-v1.zip",
+    "submitted_zip_sha256": "591a91a8b1005655b5e0839e4dc24a1db43a0bbbdbfbf292dfe6af25c5d6cf52",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "Latent-variable candidates inferred from source equations; confirm their roles and completeness against the original paper or generator."
+  ],
+  "source_suggested_domain": "did_sc",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

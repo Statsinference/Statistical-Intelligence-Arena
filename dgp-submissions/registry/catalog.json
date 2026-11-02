@@ -1,15 +1,15 @@
 {
   "status": "draft_needs_review",
-  "paper_count": 99,
-  "mechanism_count": 145,
-  "scenario_count": 337,
+  "paper_count": 105,
+  "mechanism_count": 153,
+  "scenario_count": 348,
   "domains": {
     "ate": 22,
     "cate": 12,
     "mediation": 17,
     "iv": 21,
     "proximal": 15,
-    "did_sc": 3,
+    "did_sc": 11,
     "nonparametric_regression": 20,
     "quantile": 11,
     "semi_supervised": 16,
@@ -2280,6 +2280,189 @@
       "status": "needs_scientific_review"
     },
     {
+      "record_id": "did-abadie-lhour-2021-nonlinear-null-v1",
+      "domain": "did_sc",
+      "paper": "Abadie, A. and L'Hour, J. (2021). A Penalized Synthetic Control Estimator for Disaggregated Data. JASA 116(536), 1817–1834. DOI:10.1080/01621459.2021.1971535",
+      "mechanism": "Abadie–L'Hour (2021): two-period nonlinear zero-effect mechanism",
+      "paper_title": "A Penalized Synthetic Control Estimator for Disaggregated Data",
+      "venue_abbreviation": "JASA",
+      "keywords": [
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/did-abadie-lhour-2021-nonlinear-null-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "paper_table4_p4_r2_with_declared_n_extension: ATT_post = 0.0",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "did-cwz-2021-donor-ar-null-v1",
+      "domain": "did_sc",
+      "paper": "Chernozhukov, V., Wüthrich, K., and Zhu, Y. (2021). An Exact and Robust Conformal Inference Method for Counterfactual and Synthetic Controls. Journal of the American Statistical Association, 116(536), 1849–1864. DOI:10.1080/01621459.2021.1920957",
+      "mechanism": "Chernozhukov–Wüthrich–Zhu (2021): donor-combination panel with stationary AR residuals",
+      "paper_title": "An Exact and Robust Conformal Inference Method for Counterfactual and Synthetic Controls",
+      "venue_abbreviation": "JASA",
+      "keywords": [
+        "Linearity",
+        "Panel data"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Linearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": false,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "Panel data",
+          "source": "mechanism.sampling.unit",
+          "value": "One joint 21-unit panel with20 pre and1 post periods, returned in unit-wide rows; one fixed treated unit and20 untreated donors.",
+          "method": "explicit_source_description"
+        }
+      ],
+      "generator_file": "generators/did-cwz-2021-donor-ar-null-v1.py",
+      "latent_variables": [
+        "F_1t",
+        "F_2t",
+        "eta_dt",
+        "xi_t"
+      ],
+      "truth_by_scenario": "W1: tau_T = 0.0; W2: tau_T = 0.0; W3: tau_T = 0.0; W4: tau_T = 0.0",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "did-ferman-2021-two-factor-null-v1",
+      "domain": "did_sc",
+      "paper": "Bruno Ferman (2021). On the Properties of the Synthetic Control Estimator with Many Periods and Many Controls. Journal of the American Statistical Association 116(536),1764–1772. DOI:10.1080/01621459.2021.1965613",
+      "mechanism": "Ferman (2021): two fixed donor types with stationary common AR(1) factors",
+      "paper_title": "On the Properties of the Synthetic Control Estimator with Many Periods and Many Controls",
+      "venue_abbreviation": "JASA",
+      "keywords": [
+        "Linearity",
+        "Panel data"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Linearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": false,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "Panel data",
+          "source": "mechanism.sampling.unit",
+          "value": "One jointly generated panel: 11 units (one treated and ten donors), 20 pre periods and one post, represented by one wide row per unit.",
+          "method": "explicit_source_description"
+        }
+      ],
+      "generator_file": "generators/did-ferman-2021-two-factor-null-v1.py",
+      "latent_variables": [
+        "F_k0",
+        "eta_ks",
+        "F_ks"
+      ],
+      "truth_by_scenario": "table1_j10_t020_null: tau_01 = 0.0",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "did-karmakar-2025-code-truncated-cluster-null-v1",
+      "domain": "did_sc",
+      "paper": "Karmakar, Mukherjee, Kar (2025), Using Penalized Synthetic Controls on Truncated Data, JASA120(549):64–79",
+      "mechanism": "Karmakar et al. official2024 code-version truncated cluster null",
+      "paper_title": "Title not supplied (review needed)",
+      "venue_abbreviation": "JASA",
+      "keywords": [
+        "Nonlinearity",
+        "Panel data"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "Panel data",
+          "source": "mechanism.sampling.unit",
+          "value": "One30-unit panel; n must equal30,3groups each10;45pre10post observed.",
+          "method": "explicit_source_description"
+        }
+      ],
+      "generator_file": "generators/did-karmakar-2025-code-truncated-cluster-null-v1.py",
+      "latent_variables": [
+        "Z_it"
+      ],
+      "truth_by_scenario": "baseline: ATT = 0.0",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "did-shaikh-toulis-2021-conditional-first-adopter-null-v1",
+      "domain": "did_sc",
+      "paper": "Shaikh and Toulis (2021), Randomization Tests in Observational Studies With Staggered Adoption of Treatment, JASA116(536):1835–1848",
+      "mechanism": "Shaikh–Toulis author-code null conditional on whole-experiment success",
+      "paper_title": "Title not supplied (review needed)",
+      "venue_abbreviation": "JASA",
+      "keywords": [
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/did-shaikh-toulis-2021-conditional-first-adopter-null-v1.py",
+      "latent_variables": [
+        "Ti"
+      ],
+      "truth_by_scenario": "baseline: ATT_cond = 0.0",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "did-shi-2026-poisson-proxy-logrr-v1",
+      "domain": "did_sc",
+      "paper": "Shi et al. (2026), Theory for Identification and Inference with Synthetic Controls: A Proximal Causal Inference Framework",
+      "mechanism": "Shi et al. (2026) adapted r1 Poisson proxy panel: population log rate ratio",
+      "paper_title": "Title not supplied (review needed)",
+      "venue_abbreviation": "JASA",
+      "keywords": [
+        "Nonlinearity",
+        "Panel data"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "Panel data",
+          "source": "mechanism.sampling.unit",
+          "value": "One fixed three-unit panel experiment; n=3 means treated, donor, supplemental proxy unit rows; columns are 100 pre and100 post counts.",
+          "method": "explicit_source_description"
+        }
+      ],
+      "generator_file": "generators/did-shi-2026-poisson-proxy-logrr-v1.py",
+      "latent_variables": [
+        "lambda_t",
+        "W_1t",
+        "W_2t"
+      ],
+      "truth_by_scenario": "baseline: log_RR_pop = -2.0",
+      "status": "needs_scientific_review"
+    },
+    {
       "record_id": "did-ye-2024-bracketing-v1",
       "domain": "did_sc",
       "paper": "Ye, T., Keele, L., Hasegawa, R. B., & Small, D. S. (2024). A Negative Correlation Strategy for Bracketing in Difference-in-Differences. JASA, 119(547), 2256–2268.",
@@ -2307,6 +2490,71 @@
       "generator_file": "generators/did-ye-2024-bracketing-v1.py",
       "latent_variables": [],
       "truth_by_scenario": "case1_parallel: ATT_4 = 1.0; case2_partial: ATT_4 = 1.0",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "did-ye-2024-code-case2-gaussian-bracketing-v1",
+      "domain": "did_sc",
+      "paper": "Ye, Keele, Hasegawa, Small (2024), A Negative Correlation Strategy for Bracketing in Difference-in-Differences, JASA119(547):2256–2268",
+      "mechanism": "Ye et al. author2020 code-version CaseII bracketing",
+      "paper_title": "Title not supplied (review needed)",
+      "venue_abbreviation": "JASA",
+      "keywords": [
+        "Linearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Linearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": false,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/did-ye-2024-code-case2-gaussian-bracketing-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "baseline: ATT_4 = 1.0",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "did-zhao-cui-2025-bridge-iv-v1",
+      "domain": "did_sc",
+      "paper": "Pan Zhao and Yifan Cui (2025). A semiparametric instrumented difference-in-differences approach to policy learning. Biometrika 112(4), asaf043. DOI:10.1093/biomet/asaf043",
+      "mechanism": "Zhao and Cui (2025): repeated-cross-sectional instrumented DiD with bridge confounding",
+      "paper_title": "A semiparametric instrumented difference-in-differences approach to policy learning",
+      "venue_abbreviation": "Biometrika",
+      "keywords": [
+        "Interactions",
+        "Nonlinearity",
+        "Panel data"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Interactions",
+          "source": "mechanism.properties.interactions",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "Panel data",
+          "source": "mechanism.sampling.unit",
+          "value": "One independent cross-sectional individual observed at exactly one time T in{0,1}. External n is total row count, not n per period and not a paired panel.",
+          "method": "explicit_source_description"
+        }
+      ],
+      "generator_file": "generators/did-zhao-cui-2025-bridge-iv-v1.py",
+      "latent_variables": [
+        "U0",
+        "U1",
+        "e0",
+        "e1"
+      ],
+      "truth_by_scenario": "section6_main: ATE = -5.0",
       "status": "needs_scientific_review"
     },
     {
@@ -4154,8 +4402,8 @@
   ],
   "intake": {
     "status": "success",
-    "zip_count": 101,
-    "indexed_dgp_count": 145,
+    "zip_count": 109,
+    "indexed_dgp_count": 153,
     "failure_count": 0,
     "stale_record_ids": [],
     "scientific_validation": "not_performed"
