@@ -140,21 +140,13 @@ Each paper is listed **once per area**. Generators are source files from the sub
 
 ### [DiD / Synthetic Control](dgp-submissions/registry/by-domain/did_sc.md)
 
-11 paper(s) · 11 DGP mechanism(s)
+3 paper(s) · 3 DGP mechanism(s)
 
 | Paper Title | DGPs | DGP Mechanisms | Keywords | Generator.py |
 |---|---:|---|---|---|
 | A Negative Correlation Strategy for Bracketing in Difference-in-Differences (JASA) | 1 | [DGP did-ye-2024-bracketing-v1 (English title required)](dgp-submissions/registry/drafts/did-ye-2024-bracketing-v1.md) | Linearity · Panel data | [generator.py](dgp-submissions/registry/generators/did-ye-2024-bracketing-v1.py) |
-| [A Penalized Synthetic Control Estimator for Disaggregated Data](https://doi.org/10.1080/01621459.2021.1971535) (JASA) | 1 | [Abadie–L'Hour (2021): two-period nonlinear zero-effect mechanism](dgp-submissions/registry/drafts/did-abadie-lhour-2021-nonlinear-null-v1.md) | Nonlinearity | [generator.py](dgp-submissions/registry/generators/did-abadie-lhour-2021-nonlinear-null-v1.py) |
-| [A semiparametric instrumented difference-in-differences approach to policy learning](https://doi.org/10.1093/biomet/asaf043) (Biometrika) | 1 | [Zhao and Cui (2025): repeated-cross-sectional instrumented DiD with bridge confounding](dgp-submissions/registry/drafts/did-zhao-cui-2025-bridge-iv-v1.md) | Interactions · Nonlinearity · Panel data | [generator.py](dgp-submissions/registry/generators/did-zhao-cui-2025-bridge-iv-v1.py) |
 | A semiparametric instrumented difference-in-differences approach to policy learning (Biometrika) | 1 | [DGP did-zhao-cui-2025-instrumented-v1 (English title required)](dgp-submissions/registry/drafts/did-zhao-cui-2025-instrumented-v1.md) | Interactions · Nonlinearity · Effect heterogeneity | [generator.py](dgp-submissions/registry/generators/did-zhao-cui-2025-instrumented-v1.py) |
-| [An Exact and Robust Conformal Inference Method for Counterfactual and Synthetic Controls](https://doi.org/10.1080/01621459.2021.1920957) (JASA) | 1 | [Chernozhukov–Wüthrich–Zhu (2021): donor-combination panel with stationary AR residuals](dgp-submissions/registry/drafts/did-cwz-2021-donor-ar-null-v1.md) | Linearity · Panel data | [generator.py](dgp-submissions/registry/generators/did-cwz-2021-donor-ar-null-v1.py) |
 | [Doubly robust difference-in-differences estimators](https://doi.org/10.1016/j.jeconom.2020.06.003) (JoE) | 1 | [Sant'Anna--Zhao DGP1: two-period panel with covariate-specific trends](dgp-submissions/registry/drafts/did-santanna-zhao-2020-panel-dgp1-v1.md) | Interactions · Nonlinearity · Panel data | [generator.py](dgp-submissions/registry/generators/did-santanna-zhao-2020-panel-dgp1-v1.py) |
-| [On the Properties of the Synthetic Control Estimator with Many Periods and Many Controls](https://doi.org/10.1080/01621459.2021.1965613) (JASA) | 1 | [Ferman (2021): two fixed donor types with stationary common AR(1) factors](dgp-submissions/registry/drafts/did-ferman-2021-two-factor-null-v1.md) | Linearity · Panel data | [generator.py](dgp-submissions/registry/generators/did-ferman-2021-two-factor-null-v1.py) |
-| Title not supplied (review needed) (JASA) | 1 | [Karmakar et al. official2024 code-version truncated cluster null](dgp-submissions/registry/drafts/did-karmakar-2025-code-truncated-cluster-null-v1.md) | Nonlinearity · Panel data | [generator.py](dgp-submissions/registry/generators/did-karmakar-2025-code-truncated-cluster-null-v1.py) |
-| Title not supplied (review needed) (JASA) | 1 | [Shaikh–Toulis author-code null conditional on whole-experiment success](dgp-submissions/registry/drafts/did-shaikh-toulis-2021-conditional-first-adopter-null-v1.md) | Nonlinearity | [generator.py](dgp-submissions/registry/generators/did-shaikh-toulis-2021-conditional-first-adopter-null-v1.py) |
-| Title not supplied (review needed) (JASA) | 1 | [Shi et al. (2026) adapted r1 Poisson proxy panel: population log rate ratio](dgp-submissions/registry/drafts/did-shi-2026-poisson-proxy-logrr-v1.md) | Nonlinearity · Panel data | [generator.py](dgp-submissions/registry/generators/did-shi-2026-poisson-proxy-logrr-v1.py) |
-| Title not supplied (review needed) (JASA) | 1 | [Ye et al. author2020 code-version CaseII bracketing](dgp-submissions/registry/drafts/did-ye-2024-code-case2-gaussian-bracketing-v1.md) | Linearity | [generator.py](dgp-submissions/registry/generators/did-ye-2024-code-case2-gaussian-bracketing-v1.py) |
 
 ### [Nonparametric Regression](dgp-submissions/registry/by-domain/nonparametric_regression.md)
 
