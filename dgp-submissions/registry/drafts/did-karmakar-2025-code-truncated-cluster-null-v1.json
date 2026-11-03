@@ -1,0 +1,610 @@
+{
+  "schema_version": "0.1",
+  "record_id": "did-karmakar-2025-code-truncated-cluster-null-v1",
+  "kind": "synthetic_dgp",
+  "domain": "did_sc",
+  "english_display": {},
+  "paper": {
+    "citation": "Karmakar, B., Mukherjee, G., and Kar, W. (2025). Using Penalized Synthetic Controls on Truncated Data: A Case Study on Effect of Marijuana Legalization on Direct Payments to Physicians by Opioid Manufacturers. Journal of the American Statistical Association, 120(549), 64–79. DOI:10.1080/01621459.2024.2406583",
+    "title": "Using Penalized Synthetic Controls on Truncated Data: A Case Study on Effect of Marijuana Legalization on Direct Payments to Physicians by Opioid Manufacturers",
+    "doi": "10.1080/01621459.2024.2406583",
+    "source_url": "https://doi.org/10.1080/01621459.2024.2406583",
+    "source_file_evidence": [],
+    "venue": "Journal of the American Statistical Association",
+    "year": 2025,
+    "source_version": "User-approved official2024 Figshare27115129.v2,file49432675,id1 null code version; not claimed published-formula reproduction.",
+    "source_locator": "Official2024 file49432675 simulation/gen_control.R7–88;3assign_trt.R3–37;run_sc_simulation_comparison.R18–37; article DOI10.1080/01621459.2024.2406583"
+  },
+  "mechanism": {
+    "name": "History-selected cluster panel with renewal damping and zero-censored outcomes",
+    "title_en": null,
+    "family_id": "karmakar-code2024-truncated-shared-damping-history-selection",
+    "generation_equations": [
+      {
+        "label": "latent",
+        "expression": "Z_it=a_i+floor((t-1)/4)+2*((t-1)mod4)+eps_it-80q_ct; a_i iidU(10,60),eps iidN(0,25)"
+      },
+      {
+        "label": "observed",
+        "expression": "Y_it=max(Z_it,0),t1..55; q from source inclusive floor/ceil renewal algorithm across99 periods"
+      },
+      {
+        "label": "assignment",
+        "expression": "one selected per10-unit group; p_i=(1+mean(Y_i,20:45))/sum_group(1+mean(Y_j,20:45))"
+      },
+      {
+        "label": "truth",
+        "expression": "Eff=(0,0,0); ATT=SATT=0"
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "G",
+        "role": "treatment_group_indicator",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "C",
+        "role": "cluster_design_indicator",
+        "dtype": "integer",
+        "min": "1",
+        "max": "3",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre001",
+        "role": "observed_outcome",
+        "dtype": "float",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre002",
+        "role": "observed_outcome",
+        "dtype": "float",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre003",
+        "role": "observed_outcome",
+        "dtype": "float",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre004",
+        "role": "observed_outcome",
+        "dtype": "float",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre005",
+        "role": "observed_outcome",
+        "dtype": "float",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre006",
+        "role": "observed_outcome",
+        "dtype": "float",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre007",
+        "role": "observed_outcome",
+        "dtype": "float",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre008",
+        "role": "observed_outcome",
+        "dtype": "float",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre009",
+        "role": "observed_outcome",
+        "dtype": "float",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre010",
+        "role": "observed_outcome",
+        "dtype": "float",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre011",
+        "role": "observed_outcome",
+        "dtype": "float",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre012",
+        "role": "observed_outcome",
+        "dtype": "float",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre013",
+        "role": "observed_outcome",
+        "dtype": "float",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre014",
+        "role": "observed_outcome",
+        "dtype": "float",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre015",
+        "role": "observed_outcome",
+        "dtype": "float",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre016",
+        "role": "observed_outcome",
+        "dtype": "float",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre017",
+        "role": "observed_outcome",
+        "dtype": "float",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre018",
+        "role": "observed_outcome",
+        "dtype": "float",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre019",
+        "role": "observed_outcome",
+        "dtype": "float",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre020",
+        "role": "observed_outcome",
+        "dtype": "float",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre021",
+        "role": "observed_outcome",
+        "dtype": "float",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre022",
+        "role": "observed_outcome",
+        "dtype": "float",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre023",
+        "role": "observed_outcome",
+        "dtype": "float",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre024",
+        "role": "observed_outcome",
+        "dtype": "float",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre025",
+        "role": "observed_outcome",
+        "dtype": "float",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre026",
+        "role": "observed_outcome",
+        "dtype": "float",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre027",
+        "role": "observed_outcome",
+        "dtype": "float",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre028",
+        "role": "observed_outcome",
+        "dtype": "float",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre029",
+        "role": "observed_outcome",
+        "dtype": "float",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre030",
+        "role": "observed_outcome",
+        "dtype": "float",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre031",
+        "role": "observed_outcome",
+        "dtype": "float",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre032",
+        "role": "observed_outcome",
+        "dtype": "float",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre033",
+        "role": "observed_outcome",
+        "dtype": "float",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre034",
+        "role": "observed_outcome",
+        "dtype": "float",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre035",
+        "role": "observed_outcome",
+        "dtype": "float",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre036",
+        "role": "observed_outcome",
+        "dtype": "float",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre037",
+        "role": "observed_outcome",
+        "dtype": "float",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre038",
+        "role": "observed_outcome",
+        "dtype": "float",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre039",
+        "role": "observed_outcome",
+        "dtype": "float",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre040",
+        "role": "observed_outcome",
+        "dtype": "float",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre041",
+        "role": "observed_outcome",
+        "dtype": "float",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre042",
+        "role": "observed_outcome",
+        "dtype": "float",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre043",
+        "role": "observed_outcome",
+        "dtype": "float",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre044",
+        "role": "observed_outcome",
+        "dtype": "float",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre045",
+        "role": "observed_outcome",
+        "dtype": "float",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post001",
+        "role": "observed_outcome",
+        "dtype": "float",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post002",
+        "role": "observed_outcome",
+        "dtype": "float",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post003",
+        "role": "observed_outcome",
+        "dtype": "float",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post004",
+        "role": "observed_outcome",
+        "dtype": "float",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post005",
+        "role": "observed_outcome",
+        "dtype": "float",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post006",
+        "role": "observed_outcome",
+        "dtype": "float",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post007",
+        "role": "observed_outcome",
+        "dtype": "float",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post008",
+        "role": "observed_outcome",
+        "dtype": "float",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post009",
+        "role": "observed_outcome",
+        "dtype": "float",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post010",
+        "role": "observed_outcome",
+        "dtype": "float",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [
+      {
+        "name": "Z_it",
+        "role": "latent_candidate",
+        "evidence": {
+          "file": "collection.json",
+          "equation_index": 0,
+          "expression": "Z_it=a_i+floor((t-1)/4)+2*((t-1)mod4)+eps_it-80q_ct"
+        },
+        "provenance": "inferred_from_explicit_latent_label"
+      }
+    ],
+    "latent_variables_status": "candidates_from_equations_need_review",
+    "sampling": {
+      "unit": "One30-unit panel; n must equal30,3groups each10;45pre10post observed.",
+      "dependence": "Unit intercepts persistent; independent normal errors; shared group renewal damping induces serial and within-group dependence; treatment depends on pre outcomes."
+    },
+    "assumptions": [
+      "Code id1 heteroTRUE sets every group effect0.",
+      "Consistency and no interference; history-dependent assignment retained."
+    ],
+    "properties": {
+      "dimension": 0,
+      "effective_dimension": 0,
+      "high_dimensional": false,
+      "interactions": false,
+      "nonlinear": true,
+      "notes": "Zero-truncation plus shared intermittent damping and endogenous assignment. G/C are design labels, outcomes are repeated measurements; no measured baseline covariates."
+    }
+  },
+  "estimand": {
+    "name": "ATT",
+    "definition": "Population average post-period treatment effect conditional on selected treated units; equals finite-panel SATT=0 under sharp null.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "baseline",
+      "parameters": {
+        "scenario": "official_code_null_id1",
+        "units": 30,
+        "clusters": 3,
+        "cluster_size": 10,
+        "generated_periods": 99,
+        "T_pre": 45,
+        "T_post": 10,
+        "similarclus": 0,
+        "hetero": true
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.0,
+        "expression": "Population average post-period treatment effect conditional on selected treated units; equals finite-panel SATT=0 under sharp null.",
+        "derivation": "Every source post-treatment increment equals0, so pathwise contrast, SATT and ATT0",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[baseline].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "User-authorized official2024 CODE VERSION, not published-formula replication. Only original id1 null distribution.",
+    "Independent local NumPy RNG; size1 weighted draw equals marginal first element of R weighted permutation but changes RNG consumption. No historical R bitwise replay.",
+    "Single30-row panel, observed55 of99 generated periods,57 output columns. C is observed design label.",
+    "Helper manuscript trend/selection/effect placement differ; formal main text inaccessible. Code law retained without mixing versions."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "generator.py",
+    "truth_reference": "truth.py",
+    "source_archive": "did-karmakar-2025-code-truncated-cluster-null-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/did-karmakar-2025-code-truncated-cluster-null-v1.py",
+    "exported_generator_sha256": "1a563400d449e7ace867d657fb84e7e83a948385dea1dde1d67ad3b078470df6"
+  },
+  "evidence": [
+    {
+      "file": "collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "15e2a04225ae67a2a87a5e9420bb7d02449b0fd2c4da6bcb92f43921d798facb",
+    "collection_sha256": "443d9c71401bdbb0570537bfe3fc73897e22da83147d1b06b3788ea62faf488a",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/did-karmakar-2025-code-truncated-cluster-null-v1.zip",
+    "submitted_zip_sha256": "15e2a04225ae67a2a87a5e9420bb7d02449b0fd2c4da6bcb92f43921d798facb",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "Latent-variable candidates inferred from source equations; confirm their roles and completeness against the original paper or generator."
+  ],
+  "source_suggested_domain": "did_sc",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

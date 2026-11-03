@@ -4,7 +4,7 @@
 
 > **Draft view:** all automatically extracted records still need human scientific review.
 
-**145 DGP mechanisms**, **337 parameter scenarios**, **99 reference papers**
+**153 DGP mechanisms**, **348 parameter scenarios**, **104 reference papers**
 
 ## Research areas
 
@@ -15,7 +15,7 @@
 | Mediation — Direct and Indirect Effects | 12 | 17 | [Browse](by-domain/mediation.md) |
 | IV — Instrumental Variables | 18 | 21 | [Browse](by-domain/iv.md) |
 | Proximal Causal Inference | 8 | 15 | [Browse](by-domain/proximal.md) |
-| DiD / Synthetic Control | 3 | 3 | [Browse](by-domain/did_sc.md) |
+| DiD / Synthetic Control | 9 | 11 | [Browse](by-domain/did_sc.md) |
 | Nonparametric Regression | 11 | 20 | [Browse](by-domain/nonparametric_regression.md) |
 | Quantile Inference | 8 | 11 | [Browse](by-domain/quantile.md) |
 | Semi-Supervised Inference | 10 | 16 | [Browse](by-domain/semi_supervised.md) |
@@ -116,13 +116,19 @@ Each paper is listed **once per area**. Generators are source files from the sub
 
 ### [DiD / Synthetic Control](by-domain/did_sc.md)
 
-3 paper(s) · 3 DGP mechanism(s)
+9 paper(s) · 11 DGP mechanism(s)
 
 | Paper Title | DGPs | DGP Mechanisms | Keywords | Generator.py |
 |---|---:|---|---|---|
-| [A Negative Correlation Strategy for Bracketing in Difference-in-Differences](https://doi.org/10.1080/01621459.2023.2252576) (JASA) | 1 | [DGP did-ye-2024-bracketing-v1 (English title required)](drafts/did-ye-2024-bracketing-v1.md) | Linearity · Panel data | [generator.py](generators/did-ye-2024-bracketing-v1.py) |
-| [A semiparametric instrumented difference-in-differences approach to policy learning](https://doi.org/10.1093/biomet/asaf043) (Biometrika) | 1 | [DGP did-zhao-cui-2025-instrumented-v1 (English title required)](drafts/did-zhao-cui-2025-instrumented-v1.md) | Interactions · Nonlinearity · Effect heterogeneity | [generator.py](generators/did-zhao-cui-2025-instrumented-v1.py) |
+| [A Negative Correlation Strategy for Bracketing in Difference-in-Differences](https://doi.org/10.1080/01621459.2023.2252576) (JASA) | 2 | 1: [DGP did-ye-2024-bracketing-v1 (English title required)](drafts/did-ye-2024-bracketing-v1.md)<br/>2: [Three-group Gaussian outcomes with nonparallel untreated trends](drafts/did-ye-2024-code-case2-gaussian-bracketing-v1.md) | 1: Linearity · Panel data<br/>2: Linearity | [1: generator.py](generators/did-ye-2024-bracketing-v1.py)<br/>[2: generator.py](generators/did-ye-2024-code-case2-gaussian-bracketing-v1.py) |
+| [A Penalized Synthetic Control Estimator for Disaggregated Data](https://doi.org/10.1080/01621459.2021.1971535) (JASA) | 1 | [Two-period nonlinear-covariate panel with a zero treatment effect](drafts/did-abadie-lhour-2021-nonlinear-null-v1.md) | Nonlinearity | [generator.py](generators/did-abadie-lhour-2021-nonlinear-null-v1.py) |
+| [A semiparametric instrumented difference-in-differences approach to policy learning](https://doi.org/10.1093/biomet/asaf043) (Biometrika) | 2 | 1: [DGP did-zhao-cui-2025-instrumented-v1 (English title required)](drafts/did-zhao-cui-2025-instrumented-v1.md)<br/>2: [Repeated-cross-sectional instrumented DiD with bridge confounding](drafts/did-zhao-cui-2025-bridge-iv-v1.md) | 1: Interactions · Nonlinearity · Effect heterogeneity<br/>2: Interactions · Nonlinearity · Panel data | [1: generator.py](generators/did-zhao-cui-2025-instrumented-v1.py)<br/>[2: generator.py](generators/did-zhao-cui-2025-bridge-iv-v1.py) |
+| [An Exact and Robust Conformal Inference Method for Counterfactual and Synthetic Controls](https://doi.org/10.1080/01621459.2021.1920957) (JASA) | 1 | [Donor-outcome-weighted panel with stationary AR(1) residuals](drafts/did-cwz-2021-donor-ar-null-v1.md) | Linearity · Panel data | [generator.py](generators/did-cwz-2021-donor-ar-null-v1.py) |
 | [Doubly robust difference-in-differences estimators](https://doi.org/10.1016/j.jeconom.2020.06.003) (JoE) | 1 | [Sant'Anna--Zhao DGP1: two-period panel with covariate-specific trends](drafts/did-santanna-zhao-2020-panel-dgp1-v1.md) | Interactions · Nonlinearity · Panel data | [generator.py](generators/did-santanna-zhao-2020-panel-dgp1-v1.py) |
+| [On the Properties of the Synthetic Control Estimator with Many Periods and Many Controls](https://doi.org/10.1080/01621459.2021.1965613) (JASA) | 1 | [Two-type donor panel with stationary common AR(1) factors](drafts/did-ferman-2021-two-factor-null-v1.md) | Linearity · Panel data | [generator.py](generators/did-ferman-2021-two-factor-null-v1.py) |
+| [Randomization Tests in Observational Studies With Staggered Adoption of Treatment](https://doi.org/10.1080/01621459.2021.1974458) (JASA) | 1 | [First-adopter Cox adoption with AR(1) outcomes conditional on whole-experiment success](drafts/did-shaikh-toulis-2021-conditional-first-adopter-null-v1.md) | Nonlinearity | [generator.py](generators/did-shaikh-toulis-2021-conditional-first-adopter-null-v1.py) |
+| [Theory for Identification and Inference with Synthetic Controls: A Proximal Causal Inference Framework](https://doi.org/10.1080/01621459.2026.2639734) (JASA) | 1 | [Truncated-normal-factor Poisson donor-and-proxy panel](drafts/did-shi-2026-poisson-proxy-logrr-v1.md) | Nonlinearity · Panel data | [generator.py](generators/did-shi-2026-poisson-proxy-logrr-v1.py) |
+| [Using Penalized Synthetic Controls on Truncated Data: A Case Study on Effect of Marijuana Legalization on Direct Payments to Physicians by Opioid Manufacturers](https://doi.org/10.1080/01621459.2024.2406583) (JASA) | 1 | [History-selected cluster panel with renewal damping and zero-censored outcomes](drafts/did-karmakar-2025-code-truncated-cluster-null-v1.md) | Nonlinearity · Panel data | [generator.py](generators/did-karmakar-2025-code-truncated-cluster-null-v1.py) |
 
 ### [Nonparametric Regression](by-domain/nonparametric_regression.md)
 

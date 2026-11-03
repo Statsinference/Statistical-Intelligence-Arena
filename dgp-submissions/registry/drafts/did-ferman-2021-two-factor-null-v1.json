@@ -1,0 +1,356 @@
+{
+  "schema_version": "0.1",
+  "record_id": "did-ferman-2021-two-factor-null-v1",
+  "kind": "synthetic_dgp",
+  "domain": "did_sc",
+  "english_display": {},
+  "paper": {
+    "citation": "Ferman, B. (2021). On the Properties of the Synthetic Control Estimator with Many Periods and Many Controls. Journal of the American Statistical Association, 116(536), 1764–1772. DOI:10.1080/01621459.2021.1965613",
+    "title": "On the Properties of the Synthetic Control Estimator with Many Periods and Many Controls",
+    "doi": "10.1080/01621459.2021.1965613",
+    "source_url": "https://doi.org/10.1080/01621459.2021.1965613",
+    "source_file_evidence": [],
+    "venue": "Journal of the American Statistical Association",
+    "year": 2021,
+    "source_version": "Publication-linked Figshare15135426.v3,file31887422,main.R/aux.R; auxiliary arXiv1906.06665v5 only; full main-text comparison incomplete.",
+    "source_locator": "Publication-linked replication archive: Figshare10.6084/m9.figshare.15135426.v3, file31887422, MD5 5d0337c0f1da966466b54a2e35362456; Codes/Readme.rtf line10 links main.R and aux.R to Table1. main.R30,34–37,44–60,66–94; aux.R12–19. Auxiliary arXiv1906.06665v5 Section5 PDF17–18, Table1 PDF46; these are not journal page numbers."
+  },
+  "mechanism": {
+    "name": "Two-type donor panel with stationary common AR(1) factors",
+    "title_en": null,
+    "family_id": "ferman-2021-two-type-common-ar1-null",
+    "generation_equations": [
+      {
+        "label": "stationary common factors",
+        "expression": "k=1,2; F_k0 iid N(0,1); F_ks=0.5*F_k,s-1+eta_ks for s=1,...,21, eta_ks iid N(0,0.75), independent across k,s and of the initial states. Omit only s=0; no extra burn-in."
+      },
+      {
+        "label": "unit loadings and noise",
+        "expression": "N=11,J=10; mu_0=mu_1=...=mu_5=(1,0); mu_6=...=mu_10=(0,1); epsilon_is iid N(0,1), independent of both factor paths."
+      },
+      {
+        "label": "observed outcomes and treatment",
+        "expression": "Y_is=mu_i^T F_s+epsilon_is+1{i=0,s=21}*post_effect; post_effect=0. G_0=1,G_1:10=0; s=1,...,20 pre and s=21 post. n must equal11."
+      },
+      {
+        "label": "causal target",
+        "expression": "tau_01=Y_0,21(1)-Y_0,21(0)=post_effect=0 with common exogenous draws held fixed; single-treated SATT and its design expectation are zero."
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "G",
+        "role": "treatment",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre_01",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre_02",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre_03",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre_04",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre_05",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre_06",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre_07",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre_08",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre_09",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre_10",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre_11",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre_12",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre_13",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre_14",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre_15",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre_16",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre_17",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre_18",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre_19",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre_20",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post_01",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [
+      {
+        "name": "F_k0",
+        "role": "latent_candidate",
+        "evidence": {
+          "file": "collection.json",
+          "equation_index": 0,
+          "expression": "F_k0 iid N(0,1)"
+        },
+        "provenance": "inferred_from_stochastic_declaration"
+      },
+      {
+        "name": "eta_ks",
+        "role": "latent_candidate",
+        "evidence": {
+          "file": "collection.json",
+          "equation_index": 0,
+          "expression": "F_ks=0.5*F_k,s-1+eta_ks for s=1,...,21, eta_ks iid N(0,0.75), independent across k,s and of the initial states. Omit only s=0"
+        },
+        "provenance": "inferred_from_stochastic_declaration"
+      },
+      {
+        "name": "F_ks",
+        "role": "latent_candidate",
+        "evidence": {
+          "file": "collection.json",
+          "equation_index": 0,
+          "expression": "F_ks=0.5*F_k,s-1+eta_ks for s=1,...,21, eta_ks iid N(0,0.75), independent across k,s and of the initial states. Omit only s=0"
+        },
+        "provenance": "inferred_from_structural_assignment"
+      }
+    ],
+    "latent_variables_status": "candidates_from_equations_need_review",
+    "sampling": {
+      "unit": "One jointly generated panel: 11 units (one treated and ten donors), 20 pre periods and one post, represented by one wide row per unit.",
+      "dependence": "Two independent stationary Gaussian AR(1) common factors with rho=.5; five donors share the treated loading and five share the second loading. Unit/time idiosyncratic errors are iid standard normal and independent of factors."
+    },
+    "assumptions": [
+      "Consistency, no interference and no anticipation; only i=0 is exposed in the single post period.",
+      "Shared common factors with fixed two-type loadings and independent unit/time disturbances; null effect is a structural response restriction. SC estimation quality and identification claims are distinct from the analytic response truth."
+    ],
+    "properties": {
+      "dimension": 0,
+      "effective_dimension": 0,
+      "high_dimensional": false,
+      "interactions": false,
+      "nonlinear": false,
+      "notes": "No observed baseline covariates are exported. The shared two-dimensional factors and fixed loadings are latent; the observed response equation is linear. Twenty-one outcome columns are not 21 baseline covariates."
+    }
+  },
+  "estimand": {
+    "name": "tau_01",
+    "definition": "Specified treated unit i=0, first and only post period t=1: Y_01(1)-Y_01(0). Its design-population mean and single-treated-unit finite SATT both equal zero pointwise.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "table1_j10_t020_null",
+      "parameters": {
+        "J": 10,
+        "N": 11,
+        "T0": 20,
+        "T1": 1,
+        "K": 2,
+        "rho": 0.5,
+        "alpha": 0,
+        "factor_innovation_variance": 0.75,
+        "factor_initial_variance": 1,
+        "error_variance": 1,
+        "donors_type1": 5,
+        "donors_type2": 5,
+        "post_effect": 0,
+        "burn_in": 0,
+        "representation": "unit_wide_22_observed_columns",
+        "sample_size_policy": "strict_n_equals_11"
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.0,
+        "expression": "Specified treated unit i=0, first and only post period t=1: Y_01(1)-Y_01(0). Its design-population mean and single-treated-unit finite SATT both equal zero pointwise.",
+        "derivation": "Pointwise identical potential-response exogenous components under both intervention states and post_effect=0; independent rational impulse-response covariance derivation verifies process moments.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[table1_j10_t020_null].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "Preserve source Table1 cell J=10,T0=2J=20,T1=1, zero effect; unit-wide numerical representation and strict n=11 are approved collection-interface adaptations.",
+    "Independent Python implementation with local random.Random preserves specified distributions and dependence, not R random-stream identity; no estimator-performance replication.",
+    "Formal publication-linked archive supplies AR recursion and initialization; formal main article full-text version comparison remains incomplete and no unverified journal equation/page locator is claimed."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "generator.py",
+    "truth_reference": "truth.py",
+    "source_archive": "did-ferman-2021-two-factor-null-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/did-ferman-2021-two-factor-null-v1.py",
+    "exported_generator_sha256": "8318ca3c6754c97b23f84ad09029ae2ccfce695fdc9334816842b990968c044d"
+  },
+  "evidence": [
+    {
+      "file": "collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "3dcd9582d7ce5b7b8851217464fdacbf5079de20dec7a2c8b9c4c6ad6103d314",
+    "collection_sha256": "d27d4c49b90dfdc66ac09673b3cd06139de058f4d0e01403818bc4ced1d25de2",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/did-ferman-2021-two-factor-null-v1.zip",
+    "submitted_zip_sha256": "3dcd9582d7ce5b7b8851217464fdacbf5079de20dec7a2c8b9c4c6ad6103d314",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "Latent-variable candidates inferred from source equations; confirm their roles and completeness against the original paper or generator."
+  ],
+  "source_suggested_domain": "did_sc",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

@@ -1,0 +1,270 @@
+{
+  "schema_version": "0.1",
+  "record_id": "did-zhao-cui-2025-bridge-iv-v1",
+  "kind": "synthetic_dgp",
+  "domain": "did_sc",
+  "english_display": {},
+  "paper": {
+    "citation": "Zhao, P., and Cui, Y. (2025). A semiparametric instrumented difference-in-differences approach to policy learning. Biometrika, 112(4), asaf043. DOI:10.1093/biomet/asaf043",
+    "title": "A semiparametric instrumented difference-in-differences approach to policy learning",
+    "doi": "10.1093/biomet/asaf043",
+    "source_url": "https://doi.org/10.1093/biomet/asaf043",
+    "source_file_evidence": [],
+    "venue": "Biometrika",
+    "year": 2025,
+    "source_version": "Formal2025 Section6/supplementL; author commit11f92f2c29316810531935985a981b567b8abab5; independentn5000 versus officialn32 extension kept distinct.",
+    "source_locator": "Formal published 16-page PDF, Section6, PDF/printed pp11-12 (unnumbered generation equations); Section2 PDF4-5 CATE and policy value; Section4 PDF8 population E[deltaY(X)/deltaA(X)]. Official supplementary ZIP, 2.pdf, SectionL pp21-22 says same DGP. Author repository panzhaooo/policy-learning-instrumented-DiD commit11f92f2c29316810531935985a981b567b8abab5, simulation/main.R6-28, main.R6-28, source n driver near file end; bridgedist0.1.2 CRAN Archive R/Bridge.R rbridge and qbridge defaults phi1/2 (cross-check only, author package version not pinned)."
+  },
+  "mechanism": {
+    "name": "Repeated-cross-sectional instrumented DiD with bridge confounding",
+    "title_en": null,
+    "family_id": "zhao-cui-2025-bridge-confounded-instrumented-did",
+    "generation_equations": [
+      {
+        "label": "baseline repeated cross-section",
+        "expression": "X1,X2 iid N(0,1); Z,T iid Bernoulli(0.5); U0,U1 iid bridge(phi=0.5), density f(u)=1/[2*pi*cosh(u/2)]. Baseline/exogenous draws independent across rows and variables. U=2*log(tan(pi*V/2)), V Uniform(0,1); exact machine endpoint0 is redrawn."
+      },
+      {
+        "label": "treatment propensities",
+        "expression": "p0=expit(2-7Z+0.2U0+2X1); p1=expit(-1.5+5Z-0.15U1+1.5X2); A0~Bernoulli(p0),A1~Bernoulli(p1), conditionally independent."
+      },
+      {
+        "label": "period outcomes",
+        "expression": "s(X)=1.5X1+2X2-0.5; Y0=200+10*[A0*s(X)+0.5U0+2Z+1.5X1+2X2]+e0; Y1=240+10*[A1*s(X)+0.5U1+2Z+2X1+1.5X2]+e1; e0,e1 iid N(0,1), independent of all other primitive draws."
+      },
+      {
+        "label": "observation and sample-size interface",
+        "expression": "A=(1-T)*A0+T*A1; Y=(1-T)*Y0+T*Y1; return X1,X2,Z,T,A,Y only. n is total individuals; paper baseline n=5000 independently tested; official n=32 smoke is a sample-size extension due to unmodified tool cap2048, not an official n5000 pass."
+      },
+      {
+        "label": "population causal target",
+        "expression": "tau_t(x)=E[Y_t(1)-Y_t(0)|X=x]=10*s(x); ATE=E[tau_t(X)]=-5. This is not ATT, finite-sample SATT, PCD or a policy-performance estimand."
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "X1",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X2",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Z",
+        "role": "instrument",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "T",
+        "role": "time",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "A",
+        "role": "treatment",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [
+      {
+        "name": "U0",
+        "role": "latent_candidate",
+        "evidence": {
+          "file": "collection.json",
+          "equation_index": 0,
+          "expression": "U0,U1 iid bridge(phi=0.5), density f(u)=1/[2*pi*cosh(u/2)]. Baseline/exogenous draws independent across rows and variables. U=2*log(tan(pi*V/2)), V Uniform(0,1)"
+        },
+        "provenance": "inferred_from_stochastic_declaration"
+      },
+      {
+        "name": "U1",
+        "role": "latent_candidate",
+        "evidence": {
+          "file": "collection.json",
+          "equation_index": 0,
+          "expression": "U0,U1 iid bridge(phi=0.5), density f(u)=1/[2*pi*cosh(u/2)]. Baseline/exogenous draws independent across rows and variables. U=2*log(tan(pi*V/2)), V Uniform(0,1)"
+        },
+        "provenance": "inferred_from_stochastic_declaration"
+      },
+      {
+        "name": "e0",
+        "role": "latent_candidate",
+        "evidence": {
+          "file": "collection.json",
+          "equation_index": 2,
+          "expression": "e0,e1 iid N(0,1), independent of all other primitive draws."
+        },
+        "provenance": "inferred_from_stochastic_declaration"
+      },
+      {
+        "name": "e1",
+        "role": "latent_candidate",
+        "evidence": {
+          "file": "collection.json",
+          "equation_index": 2,
+          "expression": "e0,e1 iid N(0,1), independent of all other primitive draws."
+        },
+        "provenance": "inferred_from_stochastic_declaration"
+      }
+    ],
+    "latent_variables_status": "candidates_from_equations_need_review",
+    "sampling": {
+      "unit": "One independent cross-sectional individual observed at exactly one time T in{0,1}. External n is total row count, not n per period and not a paired panel.",
+      "dependence": "Rows iid; independent X1,X2 standard normals; independent U0,U1 bridge(phi=.5); independent Z,T Bernoulli(.5); conditionally independent treatment draws and N(0,1) outcome errors. No serial initialization, common factors or donor construction."
+    },
+    "assumptions": [
+      "Source instrumented-DiD consistency/random sampling, random Z and T, no instrument effect on the untreated trend, stable CATE and no shared unmeasured effect modifier.",
+      "All normal/bridge/Bernoulli innovations are independent as in author simulation/main.R; treatment depends on latent U and observed X, so ordinary unconfoundedness and ordinary unconditional parallel trends are not asserted.",
+      "The scalar truth uses specified intervention conditional means and the standard-normal population, not a finite sample average of heterogenous individual effects."
+    ],
+    "properties": {
+      "dimension": 2,
+      "effective_dimension": 2,
+      "high_dimensional": false,
+      "interactions": true,
+      "nonlinear": true,
+      "notes": "Two baseline Gaussian covariates; observed binary IV Z and observation-period T have separate schema roles. Treatment logit depends on latent bridge confounding; response has A-by-X interactions. No latent bridge values are observed."
+    }
+  },
+  "estimand": {
+    "name": "ATE",
+    "definition": "Population average causal effect E[Y_t(1)-Y_t(0)]=E[10(1.5X1+2X2-0.5)]=-5 for either t=0 or1, over X~N(0,I2), and original natural Z,U. Not ATT, a finite-sample SATT, optimal-policy value or PCD.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "section6_main",
+      "parameters": {
+        "baseline_n": 5000,
+        "bridge_phi": 0.5,
+        "x_sd": 1,
+        "time_probability": 0.5,
+        "instrument_probability": 0.5,
+        "a0_coefficients": [
+          2,
+          -7,
+          0.2,
+          2
+        ],
+        "a1_coefficients": [
+          -1.5,
+          5,
+          -0.15,
+          1.5
+        ],
+        "outcome_intercepts": [
+          200,
+          240
+        ],
+        "outcome_scale": 10,
+        "cate_coefficients": [
+          -0.5,
+          1.5,
+          2
+        ],
+        "u_coefficient": 0.5,
+        "z_coefficient": 2,
+        "baseline_x_coefficients": [
+          [
+            1.5,
+            2
+          ],
+          [
+            2,
+            1.5
+          ]
+        ],
+        "outcome_error_sd": 1,
+        "estimand": "population_ATE",
+        "sample_size_policy": "external_n_independent_cross_sectional_rows"
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": -5.0,
+        "expression": "Population average causal effect E[Y_t(1)-Y_t(0)]=E[10(1.5X1+2X2-0.5)]=-5 for either t=0 or1, over X~N(0,I2), and original natural Z,U. Not ATT, a finite-sample SATT, optimal-policy value or PCD.",
+        "derivation": "Conditional intervention mean difference is15X1+20X2-5; independent zero-mean normal population gives ATE=-5 exactly. Independent verify uses rational polynomial coefficient subtraction and normal symmetry.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[section6_main].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "Preserve the complete Section6 main-simulation distribution. Python local random.Random replaces R RNG; no claim of stream or estimator-performance reproduction.",
+    "Choose scalar population ATE E[tau(X)]=-5, the Section4 underlying estimand, rather than learning a policy or reporting PCD; it is not ATT.",
+    "External n counts independent repeated-cross-sectional rows; n=5000 is the main parametric-model source baseline. Other n are interface sample-size extensions; sample-size changes remain one family.",
+    "Only observed X1,X2,Z,T,A,Y are returned. No coupled potential outcomes or latent variables are exported; only the source-observed law and conditional mean causal effect are needed."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "generator.py",
+    "truth_reference": "truth.py",
+    "source_archive": "did-zhao-cui-2025-bridge-iv-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/did-zhao-cui-2025-bridge-iv-v1.py",
+    "exported_generator_sha256": "179ac6cb662b3071164d0cd6e6d8336f97ec841f1155ea1f3e0f34fb4b46d97c"
+  },
+  "evidence": [
+    {
+      "file": "collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "f6fe23488549481c09b46d1bfe5335042b0ff3fe07500ff98ade848a9a78654d",
+    "collection_sha256": "b4bf373b0cdbd05b306a9d421548c7fa36d1da1286e12dc5763a957ce81787f9",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/did-zhao-cui-2025-bridge-iv-v1.zip",
+    "submitted_zip_sha256": "f6fe23488549481c09b46d1bfe5335042b0ff3fe07500ff98ade848a9a78654d",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "Latent-variable candidates inferred from source equations; confirm their roles and completeness against the original paper or generator."
+  ],
+  "source_suggested_domain": "did_sc",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

@@ -1,0 +1,208 @@
+{
+  "schema_version": "0.1",
+  "record_id": "did-abadie-lhour-2021-nonlinear-null-v1",
+  "kind": "synthetic_dgp",
+  "domain": "did_sc",
+  "english_display": {},
+  "paper": {
+    "citation": "Abadie, A., and L’Hour, J. (2021). A Penalized Synthetic Control Estimator for Disaggregated Data. Journal of the American Statistical Association, 116(536), 1817–1834. DOI:10.1080/01621459.2021.1971535",
+    "title": "A Penalized Synthetic Control Estimator for Disaggregated Data",
+    "doi": "10.1080/01621459.2021.1971535",
+    "source_url": "https://doi.org/10.1080/01621459.2021.1971535",
+    "source_file_evidence": [],
+    "venue": "Journal of the American Statistical Association",
+    "year": 2021,
+    "source_version": "Published Table4 baseline100/400; author v3 commit3f2ad93a96acd558841275d07cd70576c78d451f default100/1000 differs; approved n extension retained.",
+    "source_locator": "Published PDF: Section 5, PDF p.8/journal p.1824 (unnumbered DGP), PDF p.9/journal p.1825 (sample sizes), Table 4 PDF p.13/journal p.1829. Author simulations/Main_MonteCarlo_v3.m commit 3f2ad93a96acd558841275d07cd70576c78d451f, lines 33–37,69–81,205–219."
+  },
+  "mechanism": {
+    "name": "Two-period nonlinear-covariate panel with a zero treatment effect",
+    "title_en": null,
+    "family_id": "abadie-lhour-2021-section5-two-period-power-null",
+    "generation_equations": [
+      {
+        "label": "fixed strata and sample-size interface",
+        "expression": "n is units; n1=min(n-1,max(1,floor(n/5+0.5))), n0=n-n1; baseline n=500 gives n1=100,n0=400. Other n are sample_size_extension_not_paper_table4. G_i=1 for first n1 units and 0 otherwise."
+      },
+      {
+        "label": "covariates",
+        "expression": "p=4,r=2,a=0.1,b=0.9,h=0.1; X_ij|G_i=1 iid Uniform(a,b); X_ij|G_i=0=sqrt(U_ij), U_ij iid Uniform(0,1). Independent across units and covariate coordinates."
+      },
+      {
+        "label": "population normalization",
+        "expression": "v=sqrt(p*Var(X^r|G=1)); E[X^k|G=1]=(b^(k+1)-a^(k+1))/((k+1)*(b-a)); v^2=6256/28125; mu_i=sum_(j=1)^4 X_ij^2/v."
+      },
+      {
+        "label": "observed two-period outcomes",
+        "expression": "Y_pre_i=mu_i+epsilon_pre_i; Y_post_i=mu_i+epsilon_post_i; all period/unit errors iid N(0,1), independent of X. The same X is shared across periods. A_pre=0,A_post=G; treatment_effect=0."
+      },
+      {
+        "label": "causal target",
+        "expression": "ATT_post=E[Y_2(1)-Y_2(0)|G=1]=0; holding the same post error fixed across intervention states gives finite-sample SATT=0."
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "G",
+        "role": "treatment",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X1",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X2",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X3",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X4",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [],
+    "latent_variables_status": "not_explicitly_specified",
+    "sampling": {
+      "unit": "Independent units in fixed treated/control strata; two observations per unit represented by one wide row.",
+      "dependence": "Shared four baseline covariates within unit; independent standard-normal period disturbances. Covariates iid within strata and across dimensions; no missingness or attrition."
+    },
+    "assumptions": [
+      "Consistency, no interference and no anticipation; A_pre=0 and A_post=G.",
+      "Shared time-invariant unit signal and independent mean-zero period disturbances imply parallel untreated mean trends; zero treatment response is a structural DGP restriction."
+    ],
+    "properties": {
+      "dimension": 4,
+      "effective_dimension": 4,
+      "high_dimensional": false,
+      "interactions": false,
+      "nonlinear": true,
+      "notes": "Four squared covariates enter additively; no products across covariates. G is the fixed stratum indicator."
+    }
+  },
+  "estimand": {
+    "name": "ATT_post",
+    "definition": "E[Y_2(1)-Y_2(0)|G=1] in the treated covariate population. Equal-weight finite-sample treated SATT also equals zero pointwise.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "paper_table4_p4_r2_with_declared_n_extension",
+      "parameters": {
+        "p": 4,
+        "r": 2,
+        "a": 0.1,
+        "b": 0.9,
+        "h": 0.1,
+        "error_sd": 1,
+        "periods": 2,
+        "treatment_effect": 0,
+        "baseline_n": 500,
+        "baseline_n1": 100,
+        "baseline_n0": 400,
+        "sample_size_rule": "n1=min(n-1,max(1,floor(n/5+0.5)));n0=n-n1",
+        "nonbaseline_sample_status": "sample_size_extension_not_paper_table4",
+        "representation": "unit_wide_seven_observed_columns",
+        "rng": "Python random.Random, independent sequential normal draws; not MATLAB bitwise replay"
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.0,
+        "expression": "E[Y_2(1)-Y_2(0)|G=1] in the treated covariate population. Equal-weight finite-sample treated SATT also equals zero pointwise.",
+        "derivation": "Pointwise post-period treatment-response cancellation gives ATT=SATT=0. Independent rational Simpson integration verifies treated-population normalization, separately from generator arithmetic.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[paper_table4_p4_r2_with_declared_n_extension].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "Baseline follows published Table 4 (100 treated/400 controls); author v3 default is 100/1000 and is not claimed as the baseline.",
+    "External n counts units; other n follow the explicitly documented deterministic approximately 1:4 allocation and are sample-size extensions.",
+    "Seven observed columns in a unit-wide representation; Python local RNG preserves the specified distributions, not MATLAB random-stream identity. No estimator or Table 4 performance replication."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "generator.py",
+    "truth_reference": "truth.py",
+    "source_archive": "did-abadie-lhour-2021-nonlinear-null-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/did-abadie-lhour-2021-nonlinear-null-v1.py",
+    "exported_generator_sha256": "bf669797ab146d6e201360cbeb685761190a7c5e73cf217b28657f8b7c9361a2"
+  },
+  "evidence": [
+    {
+      "file": "collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "12ed713f0ef5464720af0223e5b3d34990ed3f244f0525ab5eaf2a093f130fdf",
+    "collection_sha256": "5972dc7371017d8134ff511f6ab7134938c44418931a4bddee941ee40bc95ea4",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/did-abadie-lhour-2021-nonlinear-null-v1.zip",
+    "submitted_zip_sha256": "12ed713f0ef5464720af0223e5b3d34990ed3f244f0525ab5eaf2a093f130fdf",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "No explicit latent-variable metadata or reliably identifiable latent declarations; absence from this list does not prove that no latent variables exist."
+  ],
+  "source_suggested_domain": "did_sc",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

@@ -1,0 +1,1796 @@
+{
+  "schema_version": "0.1",
+  "record_id": "did-shi-2026-poisson-proxy-logrr-v1",
+  "kind": "synthetic_dgp",
+  "domain": "did_sc",
+  "english_display": {},
+  "paper": {
+    "citation": "Shi, X., Li, K. Q., Yu, M., Miao, W., Kuchibhotla, A. K., Hu, M., and Tchetgen Tchetgen, E. (2026). Theory for Identification and Inference with Synthetic Controls: A Proximal Causal Inference Framework. Journal of the American Statistical Association, advance online publication. DOI:10.1080/01621459.2026.2639734",
+    "title": "Theory for Identification and Inference with Synthetic Controls: A Proximal Causal Inference Framework",
+    "doi": "10.1080/01621459.2026.2639734",
+    "source_url": "https://doi.org/10.1080/01621459.2026.2639734",
+    "source_file_evidence": [],
+    "venue": "Journal of the American Statistical Association",
+    "year": 2026,
+    "source_version": "Formal2026 J.8/S.25,Figshare31627658.v1; conditional product-Poisson/iid-time joint-law adaptation from2023 code commit1973d7c8fc2ecd2a94b73292b58a594361db0542; printed ratio/log-ratio conflict preserved.",
+    "source_locator": "Formal supplement J.8, PDF49-51, Eq S.25 and Fig S.8 (Figshare31627658.v1); main Section4 loading formula at r1; 2023 code commit1973d7c8fc2ecd2a94b73292b58a594361db0542, Simulation/myfunctions_NonlinearSetting.R lines26-44,116-130"
+  },
+  "mechanism": {
+    "name": "Truncated-normal-factor Poisson donor-and-proxy panel",
+    "title_en": null,
+    "family_id": "shi-2026-poisson-common-factor-donor-proxy",
+    "generation_equations": [
+      {
+        "label": "factor",
+        "expression": "lambda_t iid TN(0.5,0.1^2;(0,1)); t=1,...,200"
+      },
+      {
+        "label": "conditional_marginals",
+        "expression": "Y_t|lambda_t ~ Pois(exp(lambda_t-2*1(t>100))); W_1t,W_2t|lambda_t ~ Pois(lambda_t/(e-1))"
+      },
+      {
+        "label": "joint_law_adaptation",
+        "expression": "Given lambda_1:200, all 600 observed draws are mutually independent; factors independent across periods."
+      },
+      {
+        "label": "estimand",
+        "expression": "log(E[Y_t(1)]/E[Y_t(0)])=-2"
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "G",
+        "role": "treatment_group_indicator",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "P",
+        "role": "supplemental_proxy_design_indicator",
+        "dtype": "binary",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre001",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre002",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre003",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre004",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre005",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre006",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre007",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre008",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre009",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre010",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre011",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre012",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre013",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre014",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre015",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre016",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre017",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre018",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre019",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre020",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre021",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre022",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre023",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre024",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre025",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre026",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre027",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre028",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre029",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre030",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre031",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre032",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre033",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre034",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre035",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre036",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre037",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre038",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre039",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre040",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre041",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre042",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre043",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre044",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre045",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre046",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre047",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre048",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre049",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre050",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre051",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre052",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre053",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre054",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre055",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre056",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre057",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre058",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre059",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre060",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre061",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre062",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre063",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre064",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre065",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre066",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre067",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre068",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre069",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre070",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre071",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre072",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre073",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre074",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre075",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre076",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre077",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre078",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre079",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre080",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre081",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre082",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre083",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre084",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre085",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre086",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre087",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre088",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre089",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre090",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre091",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre092",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre093",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre094",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre095",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre096",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre097",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre098",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre099",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_pre100",
+        "role": "observed_pre_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post001",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post002",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post003",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post004",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post005",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post006",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post007",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post008",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post009",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post010",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post011",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post012",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post013",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post014",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post015",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post016",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post017",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post018",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post019",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post020",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post021",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post022",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post023",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post024",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post025",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post026",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post027",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post028",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post029",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post030",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post031",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post032",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post033",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post034",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post035",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post036",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post037",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post038",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post039",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post040",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post041",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post042",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post043",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post044",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post045",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post046",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post047",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post048",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post049",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post050",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post051",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post052",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post053",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post054",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post055",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post056",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post057",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post058",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post059",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post060",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post061",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post062",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post063",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post064",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post065",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post066",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post067",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post068",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post069",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post070",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post071",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post072",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post073",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post074",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post075",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post076",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post077",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post078",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post079",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post080",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post081",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post082",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post083",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post084",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post085",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post086",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post087",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post088",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post089",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post090",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post091",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post092",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post093",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post094",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post095",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post096",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post097",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post098",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post099",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y_post100",
+        "role": "observed_post_period_count",
+        "dtype": "integer",
+        "min": "0",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [
+      {
+        "name": "lambda_t",
+        "role": "latent_candidate",
+        "evidence": {
+          "file": "collection.json",
+          "equation_index": 0,
+          "expression": "lambda_t iid TN(0.5,0.1^2"
+        },
+        "provenance": "inferred_from_stochastic_declaration"
+      },
+      {
+        "name": "W_1t",
+        "role": "latent_candidate",
+        "evidence": {
+          "file": "collection.json",
+          "equation_index": 1,
+          "expression": "W_1t,W_2t|lambda_t ~ Pois(lambda_t/(e-1))"
+        },
+        "provenance": "inferred_from_stochastic_declaration"
+      },
+      {
+        "name": "W_2t",
+        "role": "latent_candidate",
+        "evidence": {
+          "file": "collection.json",
+          "equation_index": 1,
+          "expression": "W_1t,W_2t|lambda_t ~ Pois(lambda_t/(e-1))"
+        },
+        "provenance": "inferred_from_stochastic_declaration"
+      }
+    ],
+    "latent_variables_status": "candidates_from_equations_need_review",
+    "sampling": {
+      "unit": "One fixed three-unit panel experiment; n=3 means treated, donor, supplemental proxy unit rows; columns are 100 pre and100 post counts.",
+      "dependence": "Shared lambda_t induces positive contemporaneous unconditional cross-unit covariance. Given the entire factor path, all observed Poisson draws are independent. Factor paths are iid across times. No independent-row assumption."
+    },
+    "assumptions": [
+      "Consistency with deterministic treated-row treatment beginning after period100 and no interference on controls.",
+      "The untreated treated-unit mean is exp(lambda); its post treatment mean is exp(lambda-2), while controls remain Poisson(lambda/(e-1)).",
+      "Common iid truncated-normal factor and conditional product-Poisson sampling across all units and times are the explicitly authorized joint-law adaptation.",
+      "Both control roles are observed and have identical loading1; proxy identities are fixed. Identification by a particular estimator is not established by this generator."
+    ],
+    "properties": {
+      "dimension": 0,
+      "effective_dimension": 0,
+      "high_dimensional": false,
+      "interactions": false,
+      "nonlinear": true,
+      "notes": "No baseline measured covariates (zeta0). G and P are observed fixed design indicators; counts are repeated outcomes. Internal unobserved lambda is not counted as a covariate dimension or emitted. Nonlinearity is exp(lambda-2X) in treated mean and Poisson mixed distribution."
+    }
+  },
+  "estimand": {
+    "name": "log_RR_pop",
+    "definition": "For the treated unit at any post period, log(E[Y_t(1)]/E[Y_t(0)]) over the truncated-normal factor and Poisson population; equals -2. This is neither the impossible printed negative rate ratio nor an additive ATT nor finite-sample SATT.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "baseline",
+      "parameters": {
+        "r": 1,
+        "zeta": 0.0,
+        "T_pre": 100,
+        "T_post": 100,
+        "beta": -2.0,
+        "factor_mean": 0.5,
+        "factor_sd": 0.1,
+        "factor_lower": 0.0,
+        "factor_upper": 1.0,
+        "mu_treated": 1.0,
+        "mu_donor": 1.0,
+        "mu_proxy": 1.0
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": -2.0,
+        "expression": "For the treated unit at any post period, log(E[Y_t(1)]/E[Y_t(0)]) over the truncated-normal factor and Poisson population; equals -2. This is neither the impossible printed negative rate ratio nor an additive ATT nor finite-sample SATT.",
+        "derivation": "Exact factor-moment cancellation in log(exp(-2) M(1)/M(1)); independent Simpson integration verifies both positive population means and null-path check.",
+        "evidence": [
+          {
+            "file": "checks/report.json",
+            "location": "execution.scenario_results[baseline].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "Explicitly authorized target choice: scalar log population rate ratio -2 implied by S.25, while preserving the formal printed beta=E[Y(1)]/E[Y(0)]=-2 contradiction; no claim of author correction.",
+    "Formal r1, zeta0, Tpre=Tpost100 baseline with truncated N(.5,.1^2) factors and mu0=mu1=mu2=1. No old U01 factor, old 50-period branch, or covariate term.",
+    "Explicit cross-version joint-law adaptation: iid factor paths and conditionally independent product-Poisson draws across unit and time from the fixed 2023 author code; formal J.8 itself specifies only the Poisson marginals and does not explicitly complete this joint law.",
+    "Fixed 3-row wide observed panel, G treated and P supplemental-proxy design indicators; n=3 only. No unit resampling or enlargement. P is a design role, not a measured zeta covariate.",
+    "Independent Python implementation using local NumPy RNG; no estimator replication and no bitwise replication of R RNG."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "generator.py",
+    "truth_reference": "truth.py",
+    "source_archive": "did-shi-2026-poisson-proxy-logrr-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/did-shi-2026-poisson-proxy-logrr-v1.py",
+    "exported_generator_sha256": "7355fe746967efa3f5515270096f38402754994d2b72d42995f326247e5da85f"
+  },
+  "evidence": [
+    {
+      "file": "collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "dfdeecac2dea05aadb91108e7efe8ef598a20088cfc7699d9f0084420b37a61a",
+    "collection_sha256": "9b2ed5646b035791c4082ece0c79388968db5558f1f40693a66d5141fe890937",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "unknown",
+    "submission_file": "incoming/did-shi-2026-poisson-proxy-logrr-v1.zip",
+    "submitted_zip_sha256": "dfdeecac2dea05aadb91108e7efe8ef598a20088cfc7699d9f0084420b37a61a",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [
+    "Latent-variable candidates inferred from source equations; confirm their roles and completeness against the original paper or generator."
+  ],
+  "source_suggested_domain": "did_sc",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}
