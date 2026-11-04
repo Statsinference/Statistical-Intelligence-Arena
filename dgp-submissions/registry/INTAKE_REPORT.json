@@ -1,9 +1,40 @@
 {
-  "status": "success",
-  "zip_count": 118,
+  "status": "partial_success_needs_attention",
+  "zip_count": 123,
   "indexed_dgp_count": 169,
-  "failure_count": 0,
+  "failure_count": 5,
   "stale_record_ids": [],
-  "failures": [],
+  "failures": [
+    {
+      "source": "incoming/did-qin-zhang-2008-bounded-panel-v1.zip",
+      "member": "collection.json",
+      "error_type": "ValueError",
+      "message": "Missing generating equations in collection.json under"
+    },
+    {
+      "source": "incoming/did-ye-2024-iid-common-trend-v1.zip",
+      "member": "collection.json",
+      "error_type": "ValueError",
+      "message": "Missing generating equations in collection.json under"
+    },
+    {
+      "source": "incoming/did-zhou-2026-mixture-mean-v1.zip",
+      "member": "collection.json",
+      "error_type": "ValueError",
+      "message": "Missing generating equations in collection.json under"
+    },
+    {
+      "source": "incoming/did-zhou-2026-network-weight-v1.zip",
+      "member": "collection.json",
+      "error_type": "ValueError",
+      "message": "Missing generating equations in collection.json under"
+    },
+    {
+      "source": "incoming/did-zhou-2026-truncated-mean-v1.zip",
+      "member": "collection.json",
+      "error_type": "ValueError",
+      "message": "Missing generating equations in collection.json under"
+    }
+  ],
   "scientific_validation": "not_performed"
 }

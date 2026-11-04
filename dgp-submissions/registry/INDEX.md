@@ -1,6 +1,6 @@
 # StatsArena — DGP Registry
 
-**Input processing:** 0 failure(s), 0 last-valid record(s) retained. [Submission report](INTAKE_REPORT.md).
+**Input processing:** 5 failure(s), 0 last-valid record(s) retained. [Submission report](INTAKE_REPORT.md).
 
 > **Draft view:** all automatically extracted records still need human scientific review.
 
@@ -205,3 +205,8 @@ Each paper is listed **once per area**. Generators are source files from the sub
 - CONFLICT: DGP ID iv-ye-2024-genius-heteroskedastic-v1 differs across archives; kept both as review drafts (second record: iv-ye-2024-genius-heteroskedastic-v1-conflict-8dd1770580).
 - Equivalent DGP ate-nie-wager-2021-a-v1 in incoming/contributions.zip is already registered from incoming/ate-nie-wager-2021-a-v1.zip; merged duplicate source reference.
 - Equivalent DGP cate-athey-tibshirani-wager-2019-confounded-v1 in incoming/contributions.zip is already registered from incoming/cate-athey-tibshirani-wager-2019-confounded-v1.zip; merged duplicate source reference.
+- INPUT REJECTED: incoming/did-qin-zhang-2008-bounded-panel-v1.zip: Missing generating equations in collection.json under
+- INPUT REJECTED: incoming/did-ye-2024-iid-common-trend-v1.zip: Missing generating equations in collection.json under
+- INPUT REJECTED: incoming/did-zhou-2026-mixture-mean-v1.zip: Missing generating equations in collection.json under
+- INPUT REJECTED: incoming/did-zhou-2026-network-weight-v1.zip: Missing generating equations in collection.json under
+- INPUT REJECTED: incoming/did-zhou-2026-truncated-mean-v1.zip: Missing generating equations in collection.json under
