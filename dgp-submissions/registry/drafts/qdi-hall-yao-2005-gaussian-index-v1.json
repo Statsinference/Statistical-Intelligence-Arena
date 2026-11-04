@@ -1,0 +1,202 @@
+{
+  "schema_version": "0.1",
+  "record_id": "qdi-hall-yao-2005-gaussian-index-v1",
+  "kind": "synthetic_dgp",
+  "domain": "quantile",
+  "english_display": {
+    "locator": "Section 4, Example 1; PDF page 10 = journal page 1413; unnumbered model immediately below Example 1. Independence specified in preceding paragraph.",
+    "equations": [
+      {
+        "latex": "X_{ij},\\varepsilon_i\\overset{\\mathrm{ind}}{\\sim}\\mathcal N(0,1),\\quad j=1,\\ldots,4"
+      },
+      {
+        "latex": "Y_i=\\frac{X_{i1}+2X_{i2}+3X_{i4}}{\\sqrt{14}}+\\varepsilon_i"
+      },
+      {
+        "latex": "Q_Y(0.9)=\\sqrt 2\\,\\Phi^{-1}(0.9)"
+      }
+    ],
+    "assumptions": [
+      "Independent, identically distributed fully observed rows from the stated synthetic population.",
+      "All noise variables are independent of observed covariates; coordinate dependence is exactly as stated in equations and implementation conventions.",
+      "Quantiles use the left generalized inverse inf{y:F(y)>=tau}; the selected continuous law has positive density at the registered quantile."
+    ],
+    "estimand": "Marginal population quantile Q_Y(tau)=inf{y:P(Y<=y)>=tau}, tau=0.9; X is integrated over its N(0,I4) population, not fixed at zero."
+  },
+  "paper": {
+    "citation": "Hall, P. and Yao, Q. (2005). Approximating conditional distribution functions using dimension reduction. The Annals of Statistics 33(3), 1404-1421. DOI: 10.1214/009053604000001282.",
+    "title": "Approximating conditional distribution functions using dimension reduction",
+    "doi": "10.1214/009053604000001282",
+    "source_url": "https://doi.org/10.1214/009053604000001282",
+    "source_file_evidence": [],
+    "venue": "The Annals of Statistics",
+    "year": 2005,
+    "source_version": "Published journal PDF, 18 pages, journal pagination 1404-1421",
+    "source_locator": "Section 4, Example 1; PDF page 10 = journal page 1413; unnumbered model immediately below Example 1. Independence specified in preceding paragraph."
+  },
+  "mechanism": {
+    "name": "Marginal quantile in the Hall-Yao Gaussian single-index mechanism",
+    "title_en": null,
+    "family_id": "hall-yao-2005-gaussian-index",
+    "generation_equations": [
+      {
+        "label": "E1",
+        "expression": "X_ij and epsilon_i independently N(0,1); j=1,...,4",
+        "latex": "X_{ij},\\varepsilon_i\\overset{\\mathrm{ind}}{\\sim}\\mathcal N(0,1),\\quad j=1,\\ldots,4"
+      },
+      {
+        "label": "E2",
+        "expression": "Y_i=(X_i1+2X_i2+3X_i4)/sqrt(14)+epsilon_i",
+        "latex": "Y_i=\\frac{X_{i1}+2X_{i2}+3X_{i4}}{\\sqrt{14}}+\\varepsilon_i"
+      },
+      {
+        "label": "E3",
+        "expression": "Q_Y(0.9)=sqrt(2)*Phi^{-1}(0.9)",
+        "latex": "Q_Y(0.9)=\\sqrt 2\\,\\Phi^{-1}(0.9)"
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "X1",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X2",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X3",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "X4",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [],
+    "latent_variables_status": "explicit_structured_metadata",
+    "sampling": {
+      "unit": "One fully observed independent row (X,Y)",
+      "dependence": "IID rows; coordinate and noise independence as recorded in equations and source adaptations."
+    },
+    "assumptions": [
+      "Independent, identically distributed fully observed rows from the stated synthetic population.",
+      "All noise variables are independent of observed covariates; coordinate dependence is exactly as stated in equations and implementation conventions.",
+      "Quantiles use the left generalized inverse inf{y:F(y)>=tau}; the selected continuous law has positive density at the registered quantile."
+    ],
+    "properties": {
+      "dimension": 4,
+      "effective_dimension": 3,
+      "high_dimensional": false,
+      "interactions": false,
+      "nonlinear": false,
+      "heteroskedastic": false,
+      "notes": "Four observed covariates; X3 has coefficient zero. Effective dimension 3 counts active coordinates, while the sufficient index has dimension 1. No products or nonlinear covariate terms."
+    }
+  },
+  "estimand": {
+    "name": "Q_Y(0.9)",
+    "definition": "Marginal population quantile Q_Y(tau)=inf{y:P(Y<=y)>=tau}, tau=0.9; X is integrated over its N(0,I4) population, not fixed at zero.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "source_law_fixed_query",
+      "parameters": {
+        "tau": 0.9,
+        "beta": [
+          0.2672612419124244,
+          0.5345224838248488,
+          0,
+          0.8017837257372732
+        ],
+        "noise_sd": 1.0,
+        "source_n": [
+          200,
+          400
+        ]
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 1.8123876048736471,
+        "expression": "Marginal population quantile Q_Y(tau)=inf{y:P(Y<=y)>=tau}, tau=0.9; X is integrated over its N(0,I4) population, not fixed at zero.",
+        "derivation": "Analytic functional of the specified law; deterministic CDF inversion for t3 and normal mixture; independent density quadrature in verify.py.",
+        "evidence": [
+          {
+            "file": "qdi-hall-yao-2005-gaussian-index-v1/checks/report.json",
+            "location": "execution.scenario_results[source_law_fixed_query].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "The original paper studies conditional distribution approximation and index estimation. This contribution keeps its data law and defines a marginal 0.9 quantile by integrating over X. The reported truth is newly derived here, not a number reported in the source.",
+    "Independent Python/NumPy implementation from mathematical formulas; no author code is redistributed. PCG64(seed) replaces unspecified/source software random-number generation. Sample size is the generate n argument; source_n only records the published sample sizes. No fitting, bootstrap, confidence-band coverage experiment or PFN training is included."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "qdi-hall-yao-2005-gaussian-index-v1/generator.py",
+    "truth_reference": "qdi-hall-yao-2005-gaussian-index-v1/truth.py",
+    "source_archive": "qdi-hall-yao-2005-gaussian-index-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/qdi-hall-yao-2005-gaussian-index-v1.py",
+    "exported_generator_sha256": "98e7ce4c3f9764a36ae4200a3aec79fdf36374f0400c0d1ad0e11a60d1520c37"
+  },
+  "evidence": [
+    {
+      "file": "qdi-hall-yao-2005-gaussian-index-v1/collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "qdi-hall-yao-2005-gaussian-index-v1/config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "qdi-hall-yao-2005-gaussian-index-v1/source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "da3300dce428dcfac803f32365b26f9c038da82a9d5ba8e71f5b8a1991985d73",
+    "collection_sha256": "b76e157bd90346772f0292a82001bec06477cdaaba7b4f34b7c21098eaeef1b3",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "awaiting_user_and_scientific_review",
+    "submission_file": "incoming/qdi-hall-yao-2005-gaussian-index-v1.zip",
+    "submitted_zip_sha256": "da3300dce428dcfac803f32365b26f9c038da82a9d5ba8e71f5b8a1991985d73",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [],
+  "source_suggested_domain": "quantile_distribution",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

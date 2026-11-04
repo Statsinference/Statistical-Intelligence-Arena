@@ -1,0 +1,182 @@
+{
+  "schema_version": "0.1",
+  "record_id": "qdi-bondell-reich-wang-2010-sine-scale-v2",
+  "kind": "synthetic_dgp",
+  "domain": "quantile",
+  "english_display": {
+    "locator": "Section 4.2, Example 5; PDF page 9 = journal page 833; unnumbered Y=f(X)+g(X)*epsilon model and immediately following example.",
+    "equations": [
+      {
+        "latex": "X_i\\sim U(0,1),\\quad\\varepsilon_i\\sim\\mathcal N(0,1),\\quad X_i\\perp\\varepsilon_i",
+        "notes": "The displayed marginals are source-supported; the independence/product-sampling part is a declared implementation convention. See source_recheck.json."
+      },
+      {
+        "latex": "Y_i=3X_i+\\{0.5+2X_i+\\sin(2\\pi X_i-0.5)\\}\\varepsilon_i"
+      },
+      {
+        "latex": "Q_\\tau(x)=m(x)+s(x)\\Phi^{-1}(\\tau)"
+      }
+    ],
+    "assumptions": [
+      "Independent, identically distributed fully observed rows from the stated synthetic population.",
+      "All noise variables are independent of observed covariates; coordinate dependence is exactly as stated in equations and implementation conventions.",
+      "Quantiles use the left generalized inverse inf{y:F(y)>=tau}; the selected continuous law has positive density at the registered quantile."
+    ],
+    "estimand": "Conditional 0.9 quantile at X=0.5 in source Example 5."
+  },
+  "paper": {
+    "citation": "Bondell, H. D., Reich, B. J. and Wang, H. (2010). Noncrossing quantile regression curve estimation. Biometrika 97(4), 825-838. DOI: 10.1093/biomet/asq048.",
+    "title": "Noncrossing quantile regression curve estimation",
+    "doi": "10.1093/biomet/asq048",
+    "source_url": "https://doi.org/10.1093/biomet/asq048",
+    "source_file_evidence": [],
+    "venue": "Biometrika",
+    "year": 2010,
+    "source_version": "Published journal PDF, 14 pages, journal pagination 825-838",
+    "source_locator": "Section 4.2, Example 5; PDF page 9 = journal page 833; unnumbered Y=f(X)+g(X)*epsilon model and immediately following example."
+  },
+  "mechanism": {
+    "name": "Conditional quantile in the Bondell-Reich-Wang sine-scale mechanism",
+    "title_en": null,
+    "family_id": "bondell-reich-wang-2010-sine-scale",
+    "generation_equations": [
+      {
+        "label": "E1",
+        "expression": "X_i ~ U(0,1); epsilon_i ~ N(0,1), independent",
+        "latex": "X_i\\sim U(0,1),\\quad\\varepsilon_i\\sim\\mathcal N(0,1),\\quad X_i\\perp\\varepsilon_i",
+        "notes": "The displayed marginals are source-supported; the independence/product-sampling part is a declared implementation convention. See source_recheck.json."
+      },
+      {
+        "label": "E2",
+        "expression": "Y=3*X+(0.5+2*X+sin(2*pi*X-0.5))*epsilon",
+        "latex": "Y_i=3X_i+\\{0.5+2X_i+\\sin(2\\pi X_i-0.5)\\}\\varepsilon_i"
+      },
+      {
+        "label": "E3",
+        "expression": "Q(tau|x)=m(x)+s(x)*Phi^{-1}(tau)",
+        "latex": "Q_\\tau(x)=m(x)+s(x)\\Phi^{-1}(\\tau)"
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "X1",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [],
+    "latent_variables_status": "explicit_structured_metadata",
+    "sampling": {
+      "unit": "One fully observed independent row (X,Y)",
+      "dependence": "IID rows; coordinate and noise independence as recorded in equations and source adaptations."
+    },
+    "assumptions": [
+      "Independent, identically distributed fully observed rows from the stated synthetic population.",
+      "All noise variables are independent of observed covariates; coordinate dependence is exactly as stated in equations and implementation conventions.",
+      "Quantiles use the left generalized inverse inf{y:F(y)>=tau}; the selected continuous law has positive density at the registered quantile."
+    ],
+    "properties": {
+      "dimension": 1,
+      "effective_dimension": 1,
+      "high_dimensional": false,
+      "interactions": false,
+      "nonlinear": true,
+      "heteroskedastic": true,
+      "notes": "One active covariate; nonlinear scale; no cross-coordinate interactions. Same source but structurally distinct location versus scale effects; seeds and quantile levels do not create new families."
+    }
+  },
+  "estimand": {
+    "name": "Q_{0.9}(0.5)",
+    "definition": "Conditional 0.9 quantile at X=0.5 in source Example 5.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "source_law_fixed_query",
+      "parameters": {
+        "tau": 0.9,
+        "x_query": [
+          0.5
+        ],
+        "intercept": 0.5,
+        "slope": 2.0,
+        "frequency": 6.283185307179586,
+        "phase": -0.5,
+        "source_n": [
+          100
+        ]
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 4.036735897877181,
+        "expression": "Conditional 0.9 quantile at X=0.5 in source Example 5.",
+        "derivation": "Analytic functional of the specified law; deterministic CDF inversion for t3 and normal mixture; independent density quadrature in verify.py.",
+        "evidence": [
+          {
+            "file": "qdi-bondell-reich-wang-2010-sine-scale-v2/checks/report.json",
+            "location": "execution.scenario_results[source_law_fixed_query].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "Fixed x=0.5 and tau=0.9 select one scalar query from source curves; the data-generating coefficients are retained.",
+    "The source calls g a variance function but multiplies epsilon by g. This implementation follows the displayed equation: g is the conditional standard deviation and Var(Y|X)=g^2. Independence of X and epsilon and iid rows are explicit implementation conventions.",
+    "Independent Python/NumPy implementation from mathematical formulas; no author code is redistributed. PCG64(seed) replaces unspecified/source software random-number generation. Sample size is the generate n argument; source_n only records the published sample sizes. No fitting, bootstrap, confidence-band coverage experiment or PFN training is included.",
+    "Clarified that generation constants are specified jointly in the displayed equations and config.json; not every fixed source constant is exposed as a configurable parameter.",
+    "Source recheck did not turn the disclosed independence completion into a source fact. Marginal laws and equations match the read source, while the implementation product law still needs a maintainer decision before claiming a fully source-verified joint DGP."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "qdi-bondell-reich-wang-2010-sine-scale-v2/generator.py",
+    "truth_reference": "qdi-bondell-reich-wang-2010-sine-scale-v2/truth.py",
+    "source_archive": "qdi-8-mechanisms-submission-v2.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/qdi-bondell-reich-wang-2010-sine-scale-v2.py",
+    "exported_generator_sha256": "c1fb1e7efe02171d94b2d5d5fdb80880b0cb3f9f1120a15fa22d3d9838d60e9e"
+  },
+  "evidence": [
+    {
+      "file": "qdi-bondell-reich-wang-2010-sine-scale-v2/collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "qdi-bondell-reich-wang-2010-sine-scale-v2/config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "qdi-bondell-reich-wang-2010-sine-scale-v2/source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "91de454b5bc16cd34de91671832fcd062432a6c7bf046b754b449f150a14421f",
+    "collection_sha256": "e16f202d35ff858d075d8936bc8c2abe39aafa5fe6fa0a11aa52dda0bafff215",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "source_equations_rechecked_joint_law_review_pending",
+    "submission_file": "incoming/qdi-8-mechanisms-submission-v2.zip",
+    "submitted_zip_sha256": "91de454b5bc16cd34de91671832fcd062432a6c7bf046b754b449f150a14421f",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [],
+  "source_suggested_domain": "quantile_distribution",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

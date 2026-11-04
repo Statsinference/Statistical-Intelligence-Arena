@@ -1,0 +1,179 @@
+{
+  "schema_version": "0.1",
+  "record_id": "qdi-dette-volgushev-2008-exponential-scale-v1",
+  "kind": "synthetic_dgp",
+  "domain": "quantile",
+  "english_display": {
+    "locator": "Read version: discussion paper dated 2007-05-08, Section 4.2, equation (4.5), model 4; PDF page 13 including EconStor cover = printed preprint page 12. The later journal pagination 609-627 is NOT the locator for this read version.",
+    "equations": [
+      {
+        "latex": "X_i\\sim U(0,5),\\quad E_i\\sim\\operatorname{Exp}(\\mathrm{rate}=1),\\quad X_i\\perp E_i"
+      },
+      {
+        "latex": "Y_i=2+X_i+e^{-X_i}\\{E_i-\\log(2.6)\\}"
+      },
+      {
+        "latex": "Q_\\tau(x)=2+x+e^{-x}\\{-\\log(1-\\tau)-\\log(2.6)\\}"
+      }
+    ],
+    "assumptions": [
+      "Independent, identically distributed fully observed rows from the stated synthetic population.",
+      "All noise variables are independent of observed covariates; coordinate dependence is exactly as stated in equations and implementation conventions.",
+      "Quantiles use the left generalized inverse inf{y:F(y)>=tau}; the selected continuous law has positive density at the registered quantile."
+    ],
+    "estimand": "Conditional 0.9 quantile at X=2, according to the explicitly dated preprint model 4."
+  },
+  "paper": {
+    "citation": "Dette, H. and Volgushev, S. (2008). Non-crossing non-parametric estimates of quantile curves. Journal of the Royal Statistical Society Series B 70(3), 609-627. DOI: 10.1111/j.1467-9868.2008.00651.x.",
+    "title": "Non-crossing non-parametric estimates of quantile curves",
+    "doi": "10.1111/j.1467-9868.2008.00651.x",
+    "source_url": "https://doi.org/10.1111/j.1467-9868.2008.00651.x",
+    "source_file_evidence": [],
+    "venue": "Journal of the Royal Statistical Society Series B",
+    "year": 2008,
+    "source_version": "Discussion paper dated 2007-05-08, EconStor handle 10419/25003, 23 PDF pages including repository cover; not the 2008 typeset version",
+    "source_locator": "Read version: discussion paper dated 2007-05-08, Section 4.2, equation (4.5), model 4; PDF page 13 including EconStor cover = printed preprint page 12. The later journal pagination 609-627 is NOT the locator for this read version."
+  },
+  "mechanism": {
+    "name": "Conditional quantile in the Dette-Volgushev exponentially scaled exponential-error mechanism",
+    "title_en": null,
+    "family_id": "dette-volgushev-2008-exponential-scale",
+    "generation_equations": [
+      {
+        "label": "E1",
+        "expression": "X ~ U(0,5); E ~ Exp(rate=1), independent",
+        "latex": "X_i\\sim U(0,5),\\quad E_i\\sim\\operatorname{Exp}(\\mathrm{rate}=1),\\quad X_i\\perp E_i"
+      },
+      {
+        "label": "E2",
+        "expression": "Y=2+X+exp(-X)*(E-log(2.6))",
+        "latex": "Y_i=2+X_i+e^{-X_i}\\{E_i-\\log(2.6)\\}"
+      },
+      {
+        "label": "E3",
+        "expression": "Q(tau|x)=2+x+exp(-x)*(-log(1-tau)-log(2.6))",
+        "latex": "Q_\\tau(x)=2+x+e^{-x}\\{-\\log(1-\\tau)-\\log(2.6)\\}"
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "X1",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "0",
+        "max": "5",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [],
+    "latent_variables_status": "explicit_structured_metadata",
+    "sampling": {
+      "unit": "One fully observed independent row (X,Y)",
+      "dependence": "IID rows; coordinate and noise independence as recorded in equations and source adaptations."
+    },
+    "assumptions": [
+      "Independent, identically distributed fully observed rows from the stated synthetic population.",
+      "All noise variables are independent of observed covariates; coordinate dependence is exactly as stated in equations and implementation conventions.",
+      "Quantiles use the left generalized inverse inf{y:F(y)>=tau}; the selected continuous law has positive density at the registered quantile."
+    ],
+    "properties": {
+      "dimension": 1,
+      "effective_dimension": 1,
+      "high_dimensional": false,
+      "interactions": false,
+      "nonlinear": true,
+      "heteroskedastic": true,
+      "notes": "One active covariate; nonlinear scale exp(-X), asymmetric exponential noise, lower-bounded conditional response. This is distinct from Gaussian sine location/scale models."
+    }
+  },
+  "estimand": {
+    "name": "Q_{0.9}(2)",
+    "definition": "Conditional 0.9 quantile at X=2, according to the explicitly dated preprint model 4.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "source_law_fixed_query",
+      "parameters": {
+        "tau": 0.9,
+        "x_query": [
+          2.0
+        ],
+        "intercept": 2.0,
+        "slope": 1.0,
+        "exp_rate": 1.0,
+        "center_log_argument": 2.6,
+        "source_n": [
+          100
+        ]
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 4.182306593688138,
+        "expression": "Conditional 0.9 quantile at X=2, according to the explicitly dated preprint model 4.",
+        "derivation": "Analytic functional of the specified law; deterministic CDF inversion for t3 and normal mixture; independent density quadrature in verify.py.",
+        "evidence": [
+          {
+            "file": "qdi-dette-volgushev-2008-exponential-scale-v1/checks/report.json",
+            "location": "execution.scenario_results[source_law_fixed_query].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "The mechanism is transcribed from the dated 2007-05-08 preprint associated with the 2008 JRSS-B publication. The preprint attributes this model to Yu and Jones (1998). This lineage is recorded to prevent duplicate counting across papers.",
+    "The 2008 typeset simulation formulas have not been compared line by line; no equality of all preprint and final-version formulas is asserted. Published bibliographic metadata and the actual read-version locator are kept separate.",
+    "Fixed x=2 and tau=0.9 define a scalar query. Independent X and E and iid rows are explicit implementation conventions. The offset is exactly log(2.6), not log(2).",
+    "Independent Python/NumPy implementation from mathematical formulas; no author code is redistributed. PCG64(seed) replaces unspecified/source software random-number generation. Sample size is the generate n argument; source_n only records the published sample sizes. No fitting, bootstrap, confidence-band coverage experiment or PFN training is included."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "qdi-dette-volgushev-2008-exponential-scale-v1/generator.py",
+    "truth_reference": "qdi-dette-volgushev-2008-exponential-scale-v1/truth.py",
+    "source_archive": "qdi-dette-volgushev-2008-exponential-scale-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/qdi-dette-volgushev-2008-exponential-scale-v1.py",
+    "exported_generator_sha256": "062b12e0736de89e3942f4597b7ff8a964a64268cc74a34f4d4e469568d55a73"
+  },
+  "evidence": [
+    {
+      "file": "qdi-dette-volgushev-2008-exponential-scale-v1/collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "qdi-dette-volgushev-2008-exponential-scale-v1/config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "qdi-dette-volgushev-2008-exponential-scale-v1/source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "d00332d71fbeb8038ea921d8d3c19ebc50d89f8ed06327420ac550296e259276",
+    "collection_sha256": "5ee5d3f56aa83fbd88fbdbd56588c6756cd1b3699509bac04476d3837cf01917",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "awaiting_user_and_scientific_review",
+    "submission_file": "incoming/qdi-dette-volgushev-2008-exponential-scale-v1.zip",
+    "submitted_zip_sha256": "d00332d71fbeb8038ea921d8d3c19ebc50d89f8ed06327420ac550296e259276",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [],
+  "source_suggested_domain": "quantile_distribution",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

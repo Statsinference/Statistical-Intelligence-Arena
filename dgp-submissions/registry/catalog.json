@@ -1,8 +1,8 @@
 {
   "status": "draft_needs_review",
-  "paper_count": 104,
-  "mechanism_count": 153,
-  "scenario_count": 348,
+  "paper_count": 108,
+  "mechanism_count": 169,
+  "scenario_count": 368,
   "domains": {
     "ate": 22,
     "cate": 12,
@@ -11,7 +11,7 @@
     "proximal": 15,
     "did_sc": 11,
     "nonparametric_regression": 20,
-    "quantile": 11,
+    "quantile": 27,
     "semi_supervised": 16,
     "missing_data": 8
   },
@@ -3939,6 +3939,331 @@
       "status": "needs_scientific_review"
     },
     {
+      "record_id": "qdi-bondell-reich-wang-2010-linear-scale-v2",
+      "domain": "quantile",
+      "paper": "Bondell, H. D., Reich, B. J. and Wang, H. (2010). Noncrossing quantile regression curve estimation. Biometrika 97(4), 825-838. DOI: 10.1093/biomet/asq048.",
+      "mechanism": "Conditional quantile in the Bondell-Reich-Wang linear location-scale mechanism",
+      "paper_title": "Noncrossing quantile regression curve estimation",
+      "venue_abbreviation": "Biometrika",
+      "keywords": [
+        "Linearity",
+        "Heteroskedasticity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Linearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": false,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "Heteroskedasticity",
+          "source": "mechanism.properties.heteroskedastic",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/qdi-bondell-reich-wang-2010-linear-scale-v2.py",
+      "latent_variables": [],
+      "truth_by_scenario": "source_law_fixed_query: Q_{0.9}(x_query) = 4.537861878653521",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "qdi-bondell-reich-wang-2010-sine-location-v2",
+      "domain": "quantile",
+      "paper": "Bondell, H. D., Reich, B. J. and Wang, H. (2010). Noncrossing quantile regression curve estimation. Biometrika 97(4), 825-838. DOI: 10.1093/biomet/asq048.",
+      "mechanism": "Conditional quantile in the Bondell-Reich-Wang sine-location mechanism",
+      "paper_title": "Noncrossing quantile regression curve estimation",
+      "venue_abbreviation": "Biometrika",
+      "keywords": [
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/qdi-bondell-reich-wang-2010-sine-location-v2.py",
+      "latent_variables": [],
+      "truth_by_scenario": "source_law_fixed_query: Q_{0.9}(0.5) = 3.260977104148804",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "qdi-bondell-reich-wang-2010-sine-scale-v2",
+      "domain": "quantile",
+      "paper": "Bondell, H. D., Reich, B. J. and Wang, H. (2010). Noncrossing quantile regression curve estimation. Biometrika 97(4), 825-838. DOI: 10.1093/biomet/asq048.",
+      "mechanism": "Conditional quantile in the Bondell-Reich-Wang sine-scale mechanism",
+      "paper_title": "Noncrossing quantile regression curve estimation",
+      "venue_abbreviation": "Biometrika",
+      "keywords": [
+        "Nonlinearity",
+        "Heteroskedasticity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "Heteroskedasticity",
+          "source": "mechanism.properties.heteroskedastic",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/qdi-bondell-reich-wang-2010-sine-scale-v2.py",
+      "latent_variables": [],
+      "truth_by_scenario": "source_law_fixed_query: Q_{0.9}(0.5) = 4.036735897877181",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "qdi-dette-volgushev-2008-exponential-scale-v2",
+      "domain": "quantile",
+      "paper": "Dette, H. and Volgushev, S. (2008). Non-crossing non-parametric estimates of quantile curves. Journal of the Royal Statistical Society Series B 70(3), 609-627. DOI: 10.1111/j.1467-9868.2008.00651.x.",
+      "mechanism": "Conditional quantile in the Dette-Volgushev exponentially scaled exponential-error mechanism",
+      "paper_title": "Non-crossing non-parametric estimates of quantile curves",
+      "venue_abbreviation": "JRSSB",
+      "keywords": [
+        "Nonlinearity",
+        "Heteroskedasticity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "Heteroskedasticity",
+          "source": "mechanism.properties.heteroskedastic",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/qdi-dette-volgushev-2008-exponential-scale-v2.py",
+      "latent_variables": [],
+      "truth_by_scenario": "source_law_fixed_query: Q_{0.9}(2) = 4.182306593688138",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "qdi-hall-yao-2005-additive-sine-v2",
+      "domain": "quantile",
+      "paper": "Hall, P. and Yao, Q. (2005). Approximating conditional distribution functions using dimension reduction. The Annals of Statistics 33(3), 1404-1421. DOI: 10.1214/009053604000001282.",
+      "mechanism": "Conditional CDF in the Hall-Yao additive sine mechanism",
+      "paper_title": "Approximating conditional distribution functions using dimension reduction",
+      "venue_abbreviation": "AoS",
+      "keywords": [
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/qdi-hall-yao-2005-additive-sine-v2.py",
+      "latent_variables": [],
+      "truth_by_scenario": "source_law_fixed_query: F_{Y\\|X}(0.5\\|x_query) = 0.4822778463878529",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "qdi-hall-yao-2005-gaussian-index-v2",
+      "domain": "quantile",
+      "paper": "Hall, P. and Yao, Q. (2005). Approximating conditional distribution functions using dimension reduction. The Annals of Statistics 33(3), 1404-1421. DOI: 10.1214/009053604000001282.",
+      "mechanism": "Marginal quantile in the Hall-Yao Gaussian single-index mechanism",
+      "paper_title": "Approximating conditional distribution functions using dimension reduction",
+      "venue_abbreviation": "AoS",
+      "keywords": [
+        "Linearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Linearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": false,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/qdi-hall-yao-2005-gaussian-index-v2.py",
+      "latent_variables": [],
+      "truth_by_scenario": "source_law_fixed_query: Q_Y(0.9) = 1.8123876048736471",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "qdi-li-liu-zhu-2007-exponential-surface-v2",
+      "domain": "quantile",
+      "paper": "Li, Y., Liu, Y. and Zhu, J. (2007). Quantile Regression in Reproducing Kernel Hilbert Spaces. Journal of the American Statistical Association 102(477), 255-268. DOI: 10.1198/016214506000000979.",
+      "mechanism": "Conditional quantiles on the Li-Liu-Zhu exponential surface with non-Gaussian noise scenarios",
+      "paper_title": "Quantile Regression in Reproducing Kernel Hilbert Spaces",
+      "venue_abbreviation": "JASA",
+      "keywords": [
+        "Interactions",
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Interactions",
+          "source": "mechanism.properties.interactions",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/qdi-li-liu-zhu-2007-exponential-surface-v2.py",
+      "latent_variables": [],
+      "truth_by_scenario": "source_normal: Q_{0.1}(0.5,0.5) = 5.787542073631004; source_t3: Q_{0.1}(0.5,0.5) = 5.431349285479395; source_normal_mixture: Q_{0.1}(0.5,0.5) = 5.582372494783503",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "qdi-li-liu-zhu-2007-sinc-v2",
+      "domain": "quantile",
+      "paper": "Li, Y., Liu, Y. and Zhu, J. (2007). Quantile Regression in Reproducing Kernel Hilbert Spaces. Journal of the American Statistical Association 102(477), 255-268. DOI: 10.1198/016214506000000979.",
+      "mechanism": "Conditional quantile in the Li-Liu-Zhu sinc demonstration mechanism",
+      "paper_title": "Quantile Regression in Reproducing Kernel Hilbert Spaces",
+      "venue_abbreviation": "JASA",
+      "keywords": [
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/qdi-li-liu-zhu-2007-sinc-v2.py",
+      "latent_variables": [],
+      "truth_by_scenario": "source_law_fixed_query: Q_{0.9}(0.5) = 0.8929300854765015",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "qdi-bondell-reich-wang-2010-linear-scale-v1",
+      "domain": "quantile",
+      "paper": "Bondell, H. D., Reich, B. J. and Wang, H. (2010). Noncrossing quantile regression curve estimation. Biometrika 97(4), 825-838. DOI: 10.1093/biomet/asq048.",
+      "mechanism": "Conditional quantile in the Bondell-Reich-Wang linear location-scale mechanism",
+      "paper_title": "Noncrossing quantile regression curve estimation",
+      "venue_abbreviation": "Biometrika",
+      "keywords": [
+        "Linearity",
+        "Heteroskedasticity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Linearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": false,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "Heteroskedasticity",
+          "source": "mechanism.properties.heteroskedastic",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/qdi-bondell-reich-wang-2010-linear-scale-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "source_law_fixed_query: Q_{0.9}(x_query) = 4.537861878653521",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "qdi-bondell-reich-wang-2010-sine-location-v1",
+      "domain": "quantile",
+      "paper": "Bondell, H. D., Reich, B. J. and Wang, H. (2010). Noncrossing quantile regression curve estimation. Biometrika 97(4), 825-838. DOI: 10.1093/biomet/asq048.",
+      "mechanism": "Conditional quantile in the Bondell-Reich-Wang sine-location mechanism",
+      "paper_title": "Noncrossing quantile regression curve estimation",
+      "venue_abbreviation": "Biometrika",
+      "keywords": [
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/qdi-bondell-reich-wang-2010-sine-location-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "source_law_fixed_query: Q_{0.9}(0.5) = 3.260977104148804",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "qdi-bondell-reich-wang-2010-sine-scale-v1",
+      "domain": "quantile",
+      "paper": "Bondell, H. D., Reich, B. J. and Wang, H. (2010). Noncrossing quantile regression curve estimation. Biometrika 97(4), 825-838. DOI: 10.1093/biomet/asq048.",
+      "mechanism": "Conditional quantile in the Bondell-Reich-Wang sine-scale mechanism",
+      "paper_title": "Noncrossing quantile regression curve estimation",
+      "venue_abbreviation": "Biometrika",
+      "keywords": [
+        "Nonlinearity",
+        "Heteroskedasticity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "Heteroskedasticity",
+          "source": "mechanism.properties.heteroskedastic",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/qdi-bondell-reich-wang-2010-sine-scale-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "source_law_fixed_query: Q_{0.9}(0.5) = 4.036735897877181",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "qdi-dette-volgushev-2008-exponential-scale-v1",
+      "domain": "quantile",
+      "paper": "Dette, H. and Volgushev, S. (2008). Non-crossing non-parametric estimates of quantile curves. Journal of the Royal Statistical Society Series B 70(3), 609-627. DOI: 10.1111/j.1467-9868.2008.00651.x.",
+      "mechanism": "Conditional quantile in the Dette-Volgushev exponentially scaled exponential-error mechanism",
+      "paper_title": "Non-crossing non-parametric estimates of quantile curves",
+      "venue_abbreviation": "JRSSB",
+      "keywords": [
+        "Nonlinearity",
+        "Heteroskedasticity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "Heteroskedasticity",
+          "source": "mechanism.properties.heteroskedastic",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/qdi-dette-volgushev-2008-exponential-scale-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "source_law_fixed_query: Q_{0.9}(2) = 4.182306593688138",
+      "status": "needs_scientific_review"
+    },
+    {
       "record_id": "qdi-fong-yiu-2026-cubic-quantile-v1",
       "domain": "quantile",
       "paper": "Fong, Edwin and Yiu, Andrew (2026). Bayesian quantile estimation and regression with martingale posteriors. Journal of the Royal Statistical Society Series B: Statistical Methodology, 88(4), 1130-1159. doi:10.1093/jrsssb/qkaf080. Reference preprint: arXiv:2406.03358v1 (5 June 2024). First published online 16 December 2025; issue assignment September 2026. These are distinct dates.",
@@ -3989,6 +4314,52 @@
       "status": "needs_scientific_review"
     },
     {
+      "record_id": "qdi-hall-yao-2005-additive-sine-v1",
+      "domain": "quantile",
+      "paper": "Hall, P. and Yao, Q. (2005). Approximating conditional distribution functions using dimension reduction. The Annals of Statistics 33(3), 1404-1421. DOI: 10.1214/009053604000001282.",
+      "mechanism": "Conditional CDF in the Hall-Yao additive sine mechanism",
+      "paper_title": "Approximating conditional distribution functions using dimension reduction",
+      "venue_abbreviation": "AoS",
+      "keywords": [
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/qdi-hall-yao-2005-additive-sine-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "source_law_fixed_query: F_{Y\\|X}(0.5\\|x_query) = 0.4822778463878529",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "qdi-hall-yao-2005-gaussian-index-v1",
+      "domain": "quantile",
+      "paper": "Hall, P. and Yao, Q. (2005). Approximating conditional distribution functions using dimension reduction. The Annals of Statistics 33(3), 1404-1421. DOI: 10.1214/009053604000001282.",
+      "mechanism": "Marginal quantile in the Hall-Yao Gaussian single-index mechanism",
+      "paper_title": "Approximating conditional distribution functions using dimension reduction",
+      "venue_abbreviation": "AoS",
+      "keywords": [
+        "Linearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Linearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": false,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/qdi-hall-yao-2005-gaussian-index-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "source_law_fixed_query: Q_Y(0.9) = 1.8123876048736471",
+      "status": "needs_scientific_review"
+    },
+    {
       "record_id": "qdi-henzi-2021-gamma-shift-v1",
       "domain": "quantile",
       "paper": "Henzi, A., Ziegel, J. F., and Gneiting, T. (2021). Isotonic distributional regression. Journal of the Royal Statistical Society: Series B (Statistical Methodology), 83(5), 963–993. DOI: 10.1111/rssb.12450.",
@@ -4034,6 +4405,59 @@
       "generator_file": "generators/qdi-henzi-2021-poisson-clipped-rate-v1.py",
       "latent_variables": [],
       "truth_by_scenario": "original_poisson_qdi: theta = F_{Y\\|X=5}(3) = 0.2650259152973617",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "qdi-li-liu-zhu-2007-exponential-surface-v1",
+      "domain": "quantile",
+      "paper": "Li, Y., Liu, Y. and Zhu, J. (2007). Quantile Regression in Reproducing Kernel Hilbert Spaces. Journal of the American Statistical Association 102(477), 255-268. DOI: 10.1198/016214506000000979.",
+      "mechanism": "Conditional quantiles on the Li-Liu-Zhu exponential surface with non-Gaussian noise scenarios",
+      "paper_title": "Quantile Regression in Reproducing Kernel Hilbert Spaces",
+      "venue_abbreviation": "JASA",
+      "keywords": [
+        "Interactions",
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Interactions",
+          "source": "mechanism.properties.interactions",
+          "value": true,
+          "method": "explicit_boolean"
+        },
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/qdi-li-liu-zhu-2007-exponential-surface-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "source_normal: Q_{0.1}(0.5,0.5) = 5.787542073631004; source_t3: Q_{0.1}(0.5,0.5) = 5.431349285479395; source_normal_mixture: Q_{0.1}(0.5,0.5) = 5.582372494783503",
+      "status": "needs_scientific_review"
+    },
+    {
+      "record_id": "qdi-li-liu-zhu-2007-sinc-v1",
+      "domain": "quantile",
+      "paper": "Li, Y., Liu, Y. and Zhu, J. (2007). Quantile Regression in Reproducing Kernel Hilbert Spaces. Journal of the American Statistical Association 102(477), 255-268. DOI: 10.1198/016214506000000979.",
+      "mechanism": "Conditional quantile in the Li-Liu-Zhu sinc demonstration mechanism",
+      "paper_title": "Quantile Regression in Reproducing Kernel Hilbert Spaces",
+      "venue_abbreviation": "JASA",
+      "keywords": [
+        "Nonlinearity"
+      ],
+      "keyword_evidence": [
+        {
+          "label": "Nonlinearity",
+          "source": "mechanism.properties.nonlinear",
+          "value": true,
+          "method": "explicit_boolean"
+        }
+      ],
+      "generator_file": "generators/qdi-li-liu-zhu-2007-sinc-v1.py",
+      "latent_variables": [],
+      "truth_by_scenario": "source_law_fixed_query: Q_{0.9}(0.5) = 0.8929300854765015",
       "status": "needs_scientific_review"
     },
     {
@@ -4402,8 +4826,8 @@
   ],
   "intake": {
     "status": "success",
-    "zip_count": 109,
-    "indexed_dgp_count": 153,
+    "zip_count": 118,
+    "indexed_dgp_count": 169,
     "failure_count": 0,
     "stale_record_ids": [],
     "scientific_validation": "not_performed"

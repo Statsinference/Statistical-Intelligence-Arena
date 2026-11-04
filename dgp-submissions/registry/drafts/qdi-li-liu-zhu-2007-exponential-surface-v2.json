@@ -1,0 +1,264 @@
+{
+  "schema_version": "0.1",
+  "record_id": "qdi-li-liu-zhu-2007-exponential-surface-v2",
+  "kind": "synthetic_dgp",
+  "domain": "quantile",
+  "english_display": {
+    "locator": "Section 5.1, equation (40) and following error-distribution paragraph; PDF page 8 = journal page 262. Section 5.2 on PDF page 9 = journal page 263 reuses this law.",
+    "equations": [
+      {
+        "latex": "X_{i1},X_{i2}\\overset{\\mathrm{iid}}{\\sim}U(0,1),\\quad\\varepsilon_i\\perp X_i",
+        "notes": "The displayed marginals are source-supported; the independence/product-sampling part is a declared implementation convention. See source_recheck.json."
+      },
+      {
+        "latex": "m(x)=\\frac{40e^{8\\{(x_1-0.5)^2+(x_2-0.5)^2\\}}}{e^{8\\{(x_1-0.2)^2+(x_2-0.7)^2\\}}+e^{8\\{(x_1-0.7)^2+(x_2-0.2)^2\\}}}"
+      },
+      {
+        "latex": "Y_i=m(X_i)+\\varepsilon_i,\\quad\\varepsilon_i\\sim\\mathcal N(0,1)\\;\\text{or}\\;t_3\\;\\text{or}\\;0.1\\mathcal N(0,25)+0.9\\mathcal N(0,1)"
+      },
+      {
+        "latex": "Q_\\tau(x)=m(x)+F_\\varepsilon^{-1}(\\tau)"
+      }
+    ],
+    "assumptions": [
+      "Independent, identically distributed fully observed rows from the stated synthetic population.",
+      "All noise variables are independent of observed covariates; coordinate dependence is exactly as stated in equations and implementation conventions.",
+      "Quantiles use the left generalized inverse inf{y:F(y)>=tau}; the selected continuous law has positive density at the registered quantile."
+    ],
+    "estimand": "Conditional 0.1 quantile at X=(0.5,0.5); normal, t3, and specified normal-mixture errors are scenarios within ONE mechanism family."
+  },
+  "paper": {
+    "citation": "Li, Y., Liu, Y. and Zhu, J. (2007). Quantile Regression in Reproducing Kernel Hilbert Spaces. Journal of the American Statistical Association 102(477), 255-268. DOI: 10.1198/016214506000000979.",
+    "title": "Quantile Regression in Reproducing Kernel Hilbert Spaces",
+    "doi": "10.1198/016214506000000979",
+    "source_url": "https://doi.org/10.1198/016214506000000979",
+    "source_file_evidence": [],
+    "venue": "Journal of the American Statistical Association",
+    "year": 2007,
+    "source_version": "Author-hosted published journal PDF, 14 pages, journal pagination 255-268",
+    "source_locator": "Section 5.1, equation (40) and following error-distribution paragraph; PDF page 8 = journal page 262. Section 5.2 on PDF page 9 = journal page 263 reuses this law."
+  },
+  "mechanism": {
+    "name": "Conditional quantiles on the Li-Liu-Zhu exponential surface with non-Gaussian noise scenarios",
+    "title_en": null,
+    "family_id": "li-liu-zhu-2007-exponential-surface",
+    "generation_equations": [
+      {
+        "label": "E1",
+        "expression": "X1,X2 independently U(0,1); noise independent of X",
+        "latex": "X_{i1},X_{i2}\\overset{\\mathrm{iid}}{\\sim}U(0,1),\\quad\\varepsilon_i\\perp X_i",
+        "notes": "The displayed marginals are source-supported; the independence/product-sampling part is a declared implementation convention. See source_recheck.json."
+      },
+      {
+        "label": "E2",
+        "expression": "m(x)=40*exp(8*((x1-.5)^2+(x2-.5)^2))/(exp(8*((x1-.2)^2+(x2-.7)^2))+exp(8*((x1-.7)^2+(x2-.2)^2)))",
+        "latex": "m(x)=\\frac{40e^{8\\{(x_1-0.5)^2+(x_2-0.5)^2\\}}}{e^{8\\{(x_1-0.2)^2+(x_2-0.7)^2\\}}+e^{8\\{(x_1-0.7)^2+(x_2-0.2)^2\\}}}"
+      },
+      {
+        "label": "E3",
+        "expression": "Y=m(X)+epsilon; epsilon ~ N(0,1), t3, or 0.1*N(0,25)+0.9*N(0,1)",
+        "latex": "Y_i=m(X_i)+\\varepsilon_i,\\quad\\varepsilon_i\\sim\\mathcal N(0,1)\\;\\text{or}\\;t_3\\;\\text{or}\\;0.1\\mathcal N(0,25)+0.9\\mathcal N(0,1)"
+      },
+      {
+        "label": "E4",
+        "expression": "Q(tau|x)=m(x)+F_epsilon^{-1}(tau)",
+        "latex": "Q_\\tau(x)=m(x)+F_\\varepsilon^{-1}(\\tau)"
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "X1",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "X2",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "0",
+        "max": "1",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [],
+    "latent_variables_status": "explicit_structured_metadata",
+    "sampling": {
+      "unit": "One fully observed independent row (X,Y)",
+      "dependence": "IID rows; coordinate and noise independence as recorded in equations and source adaptations."
+    },
+    "assumptions": [
+      "Independent, identically distributed fully observed rows from the stated synthetic population.",
+      "All noise variables are independent of observed covariates; coordinate dependence is exactly as stated in equations and implementation conventions.",
+      "Quantiles use the left generalized inverse inf{y:F(y)>=tau}; the selected continuous law has positive density at the registered quantile."
+    ],
+    "properties": {
+      "dimension": 2,
+      "effective_dimension": 2,
+      "high_dimensional": false,
+      "interactions": true,
+      "nonlinear": true,
+      "heteroskedastic": false,
+      "notes": "Two active covariates and a nonadditive response surface. Cancelling common squares gives 40/[exp(8*(.6*x1-.4*x2+.03))+exp(8*(-.4*x1+.6*x2+.03))], which has cross-coordinate curvature; this is the stated meaning of interactions, not an explicit polynomial product."
+    }
+  },
+  "estimand": {
+    "name": "Q_{0.1}(0.5,0.5)",
+    "definition": "Conditional 0.1 quantile at X=(0.5,0.5); normal, t3, and specified normal-mixture errors are scenarios within ONE mechanism family.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "source_normal",
+      "parameters": {
+        "tau": 0.1,
+        "x_query": [
+          0.5,
+          0.5
+        ],
+        "error": "normal",
+        "surface_multiplier": 40.0,
+        "surface_rate": 8.0,
+        "source_n": [
+          50,
+          100,
+          200,
+          400
+        ]
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 5.787542073631004,
+        "expression": "Conditional 0.1 quantile at X=(0.5,0.5); normal, t3, and specified normal-mixture errors are scenarios within ONE mechanism family.",
+        "derivation": "Analytic functional of the specified law; deterministic CDF inversion for t3 and normal mixture; independent density quadrature in verify.py.",
+        "evidence": [
+          {
+            "file": "qdi-li-liu-zhu-2007-exponential-surface-v2/checks/report.json",
+            "location": "execution.scenario_results[source_normal].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "source_t3",
+      "parameters": {
+        "tau": 0.1,
+        "x_query": [
+          0.5,
+          0.5
+        ],
+        "error": "t3",
+        "surface_multiplier": 40.0,
+        "surface_rate": 8.0,
+        "source_n": [
+          50,
+          100,
+          200,
+          400
+        ]
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 5.431349285479395,
+        "expression": "Conditional 0.1 quantile at X=(0.5,0.5); normal, t3, and specified normal-mixture errors are scenarios within ONE mechanism family.",
+        "derivation": "Analytic functional of the specified law; deterministic CDF inversion for t3 and normal mixture; independent density quadrature in verify.py.",
+        "evidence": [
+          {
+            "file": "qdi-li-liu-zhu-2007-exponential-surface-v2/checks/report.json",
+            "location": "execution.scenario_results[source_t3].truth"
+          }
+        ]
+      }
+    },
+    {
+      "id": "source_normal_mixture",
+      "parameters": {
+        "tau": 0.1,
+        "x_query": [
+          0.5,
+          0.5
+        ],
+        "error": "normal_mixture",
+        "surface_multiplier": 40.0,
+        "surface_rate": 8.0,
+        "source_n": [
+          50,
+          100,
+          200,
+          400
+        ]
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 5.582372494783503,
+        "expression": "Conditional 0.1 quantile at X=(0.5,0.5); normal, t3, and specified normal-mixture errors are scenarios within ONE mechanism family.",
+        "derivation": "Analytic functional of the specified law; deterministic CDF inversion for t3 and normal mixture; independent density quadrature in verify.py.",
+        "evidence": [
+          {
+            "file": "qdi-li-liu-zhu-2007-exponential-surface-v2/checks/report.json",
+            "location": "execution.scenario_results[source_normal_mixture].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "Fixed x=(0.5,0.5) and tau=0.1 select a scalar query. Normal, unscaled Student t3 and the stated normal mixture are three source noise scenarios, not three different families.",
+    "The unspecified scale of the source double-exponential error is not guessed; that fourth noise case is excluded. Independent X1,X2, noise and rows are explicit implementation conventions because the paragraph states marginal distributions only.",
+    "The computationally equivalent log-sum-exp form avoids unnecessary exponential overflow; no negative signs are inserted in the positive exponents in equation (40).",
+    "Independent Python/NumPy implementation from mathematical formulas; no author code is redistributed. PCG64(seed) replaces unspecified/source software random-number generation. Sample size is the generate n argument; source_n only records the published sample sizes. No fitting, bootstrap, confidence-band coverage experiment or PFN training is included.",
+    "Clarified that generation constants are specified jointly in the displayed equations and config.json; not every fixed source constant is exposed as a configurable parameter.",
+    "Source recheck did not turn the disclosed independence completion into a source fact. Marginal laws and equations match the read source, while the implementation product law still needs a maintainer decision before claiming a fully source-verified joint DGP."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "qdi-li-liu-zhu-2007-exponential-surface-v2/generator.py",
+    "truth_reference": "qdi-li-liu-zhu-2007-exponential-surface-v2/truth.py",
+    "source_archive": "qdi-8-mechanisms-submission-v2.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/qdi-li-liu-zhu-2007-exponential-surface-v2.py",
+    "exported_generator_sha256": "1b959997da7eba75862ddaea0212e6c445fe23efcd43dadb787b533433094a89"
+  },
+  "evidence": [
+    {
+      "file": "qdi-li-liu-zhu-2007-exponential-surface-v2/collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "qdi-li-liu-zhu-2007-exponential-surface-v2/config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "qdi-li-liu-zhu-2007-exponential-surface-v2/source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "91de454b5bc16cd34de91671832fcd062432a6c7bf046b754b449f150a14421f",
+    "collection_sha256": "87756f11e881c23aaed91e3859921fe815f0ca406195f93cb2b6d9f0d53f64a4",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "source_equations_rechecked_joint_law_review_pending",
+    "submission_file": "incoming/qdi-8-mechanisms-submission-v2.zip",
+    "submitted_zip_sha256": "91de454b5bc16cd34de91671832fcd062432a6c7bf046b754b449f150a14421f",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [],
+  "source_suggested_domain": "quantile_distribution",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

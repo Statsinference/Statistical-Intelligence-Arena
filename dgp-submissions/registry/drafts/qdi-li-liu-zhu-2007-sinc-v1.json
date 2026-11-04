@@ -1,0 +1,175 @@
+{
+  "schema_version": "0.1",
+  "record_id": "qdi-li-liu-zhu-2007-sinc-v1",
+  "kind": "synthetic_dgp",
+  "domain": "quantile",
+  "english_display": {
+    "locator": "Section 1, illustrative solution-path example; PDF page 2 = journal page 256; unnumbered sinc model in left column, six training observations.",
+    "equations": [
+      {
+        "latex": "X_i\\sim U(-2,2),\\quad\\varepsilon_i\\sim\\mathcal N(0,0.2^2),\\quad X_i\\perp\\varepsilon_i"
+      },
+      {
+        "latex": "Y_i=\\frac{\\sin(\\pi X_i)}{\\pi X_i}+\\varepsilon_i,\\quad \\operatorname{sinc}(0)=1"
+      },
+      {
+        "latex": "Q_\\tau(x)=\\operatorname{sinc}(x)+0.2\\Phi^{-1}(\\tau)"
+      }
+    ],
+    "assumptions": [
+      "Independent, identically distributed fully observed rows from the stated synthetic population.",
+      "All noise variables are independent of observed covariates; coordinate dependence is exactly as stated in equations and implementation conventions.",
+      "Quantiles use the left generalized inverse inf{y:F(y)>=tau}; the selected continuous law has positive density at the registered quantile."
+    ],
+    "estimand": "Conditional 0.9 quantile at X=0.5, using the sinc data law of the Section 1 demonstration."
+  },
+  "paper": {
+    "citation": "Li, Y., Liu, Y. and Zhu, J. (2007). Quantile Regression in Reproducing Kernel Hilbert Spaces. Journal of the American Statistical Association 102(477), 255-268. DOI: 10.1198/016214506000000979.",
+    "title": "Quantile Regression in Reproducing Kernel Hilbert Spaces",
+    "doi": "10.1198/016214506000000979",
+    "source_url": "https://doi.org/10.1198/016214506000000979",
+    "source_file_evidence": [],
+    "venue": "Journal of the American Statistical Association",
+    "year": 2007,
+    "source_version": "Author-hosted published journal PDF, 14 pages, journal pagination 255-268",
+    "source_locator": "Section 1, illustrative solution-path example; PDF page 2 = journal page 256; unnumbered sinc model in left column, six training observations."
+  },
+  "mechanism": {
+    "name": "Conditional quantile in the Li-Liu-Zhu sinc demonstration mechanism",
+    "title_en": null,
+    "family_id": "li-liu-zhu-2007-sinc",
+    "generation_equations": [
+      {
+        "label": "E1",
+        "expression": "X ~ U(-2,2); epsilon ~ N(0,0.2^2), independent",
+        "latex": "X_i\\sim U(-2,2),\\quad\\varepsilon_i\\sim\\mathcal N(0,0.2^2),\\quad X_i\\perp\\varepsilon_i"
+      },
+      {
+        "label": "E2",
+        "expression": "Y=sin(pi*X)/(pi*X)+epsilon; sinc(0)=1",
+        "latex": "Y_i=\\frac{\\sin(\\pi X_i)}{\\pi X_i}+\\varepsilon_i,\\quad \\operatorname{sinc}(0)=1"
+      },
+      {
+        "label": "E3",
+        "expression": "Q(tau|x)=sinc(x)+0.2*Phi^{-1}(tau)",
+        "latex": "Q_\\tau(x)=\\operatorname{sinc}(x)+0.2\\Phi^{-1}(\\tau)"
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "X1",
+        "role": "covariate",
+        "dtype": "float",
+        "min": "-2",
+        "max": "2",
+        "observed": "true"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "float",
+        "min": "",
+        "max": "",
+        "observed": "true"
+      }
+    ],
+    "latent_variables": [],
+    "latent_variables_status": "explicit_structured_metadata",
+    "sampling": {
+      "unit": "One fully observed independent row (X,Y)",
+      "dependence": "IID rows; coordinate and noise independence as recorded in equations and source adaptations."
+    },
+    "assumptions": [
+      "Independent, identically distributed fully observed rows from the stated synthetic population.",
+      "All noise variables are independent of observed covariates; coordinate dependence is exactly as stated in equations and implementation conventions.",
+      "Quantiles use the left generalized inverse inf{y:F(y)>=tau}; the selected continuous law has positive density at the registered quantile."
+    ],
+    "properties": {
+      "dimension": 1,
+      "effective_dimension": 1,
+      "high_dimensional": false,
+      "interactions": false,
+      "nonlinear": true,
+      "heteroskedastic": false,
+      "notes": "One active covariate; sinc is nonlinear and has a removable singularity at zero. numpy.sinc uses sin(pi*x)/(pi*x), exactly the normalized convention in the paper."
+    }
+  },
+  "estimand": {
+    "name": "Q_{0.9}(0.5)",
+    "definition": "Conditional 0.9 quantile at X=0.5, using the sinc data law of the Section 1 demonstration.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "source_law_fixed_query",
+      "parameters": {
+        "tau": 0.9,
+        "x_query": [
+          0.5
+        ],
+        "noise_sd": 0.2,
+        "source_n": [
+          6
+        ]
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.8929300854765015,
+        "expression": "Conditional 0.9 quantile at X=0.5, using the sinc data law of the Section 1 demonstration.",
+        "derivation": "Analytic functional of the specified law; deterministic CDF inversion for t3 and normal mixture; independent density quadrature in verify.py.",
+        "evidence": [
+          {
+            "file": "qdi-li-liu-zhu-2007-sinc-v1/checks/report.json",
+            "location": "execution.scenario_results[source_law_fixed_query].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "The source uses n=6 to illustrate a solution path. generate accepts arbitrary n for collection checks; source_n=6 is retained as metadata. This is not the Section 5 main experiment.",
+    "A fixed conditional 0.9 quantile at x=0.5 is registered; independent covariate/noise draws and iid rows are explicit implementation conventions.",
+    "Independent Python/NumPy implementation from mathematical formulas; no author code is redistributed. PCG64(seed) replaces unspecified/source software random-number generation. Sample size is the generate n argument; source_n only records the published sample sizes. No fitting, bootstrap, confidence-band coverage experiment or PFN training is included."
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "qdi-li-liu-zhu-2007-sinc-v1/generator.py",
+    "truth_reference": "qdi-li-liu-zhu-2007-sinc-v1/truth.py",
+    "source_archive": "qdi-li-liu-zhu-2007-sinc-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/qdi-li-liu-zhu-2007-sinc-v1.py",
+    "exported_generator_sha256": "2073727c80b607bf5d6517cffee6697a2a3a353dd6ce192e7afd911c6f81956d"
+  },
+  "evidence": [
+    {
+      "file": "qdi-li-liu-zhu-2007-sinc-v1/collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "qdi-li-liu-zhu-2007-sinc-v1/config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "qdi-li-liu-zhu-2007-sinc-v1/source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "b43ce933d3930ef01f3ff105222786495ac5565d926a66185e99899becb5e3d7",
+    "collection_sha256": "e21934cc78a7b9894c9274c949744a3c786869c221a96b19a39a94265b0fb75f",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "awaiting_user_and_scientific_review",
+    "submission_file": "incoming/qdi-li-liu-zhu-2007-sinc-v1.zip",
+    "submitted_zip_sha256": "b43ce933d3930ef01f3ff105222786495ac5565d926a66185e99899becb5e3d7",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [],
+  "source_suggested_domain": "quantile_distribution",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}
