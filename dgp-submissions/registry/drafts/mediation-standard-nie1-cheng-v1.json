@@ -1,0 +1,220 @@
+{
+  "schema_version": "0.1",
+  "record_id": "mediation-standard-nie1-cheng-v1",
+  "kind": "synthetic_dgp",
+  "domain": "mediation",
+  "english_display": {},
+  "paper": {
+    "citation": "Cheng, C. and Li, F. (2025). Identification and multiply robust estimation in causal mediation analysis across principal strata. Journal of the Royal Statistical Society Series B: Statistical Methodology 88(1), 1-22. DOI: 10.1093/jrsssb/qkaf037.",
+    "title": "Identification and multiply robust estimation in causal mediation analysis across principal strata",
+    "doi": "10.1093/jrsssb/qkaf037",
+    "source_url": "https://doi.org/10.1093/jrsssb/qkaf037",
+    "source_file_evidence": [],
+    "venue": "Journal of the Royal Statistical Society Series B: Statistical Methodology",
+    "year": 2025,
+    "source_version": "NIE1 standard 1.0.0; original registry commit 8182caf7185845a31a2122e032811bb2254d6342",
+    "source_locator": "Section 5 'A simulation study', arXiv:2304.10025v4 PDF page 23: the displayed data-generating process for (X, Z, D, M, Y). ITT-NIE and ITT-NDE are defined on PDF page 23 just above that display (ratio scale shown there; the paper states it primarily works on the mean-difference scale).; adaptation: bundled SCIENTIFIC_SPEC.md and nie_standard_v1/generators.py::_draw"
+  },
+  "mechanism": {
+    "name": "Standard NIE1 adaptation: cheng",
+    "title_en": null,
+    "family_id": "standard-nie1-cheng",
+    "generation_equations": [
+      {
+        "label": "target",
+        "expression": "NIE1 = E[Y(1,M(1))-Y(1,M(0))]",
+        "latex": "\\psi=\\mathbb{E}[Y(1,M(1))-Y(1,M(0))]"
+      },
+      {
+        "label": "adapted structural equations",
+        "expression": "x = c[\"covariate_sd\"]*r.standard_normal((n, 4))\na = r.binomial(1, expit(x@c[\"treatment_coefficients\"]))\nm = r.binomial(1, expit(c[\"mediator_intercept\"]+c[\"mediator_treatment_coefficient\"]*a+x@c[\"mediator_coefficients\"]))[:, None]\ny = c[\"outcome_intercept\"]+c[\"outcome_treatment_coefficient\"]*a+c[\"outcome_mediator_coefficient\"]*m[:, 0]+x@c[\"outcome_coefficients\"]+c[\"outcome_noise_sd\"]*r.standard_normal(n)\nreturn x,a,m,y,[\"binary\"],[\"continuous\"]*4,\"continuous\""
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "X1",
+        "role": "baseline_covariate",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Pretreatment baseline coordinate"
+      },
+      {
+        "name": "X2",
+        "role": "baseline_covariate",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Pretreatment baseline coordinate"
+      },
+      {
+        "name": "X3",
+        "role": "baseline_covariate",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Pretreatment baseline coordinate"
+      },
+      {
+        "name": "X4",
+        "role": "baseline_covariate",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Pretreatment baseline coordinate"
+      },
+      {
+        "name": "A",
+        "role": "treatment",
+        "dtype": "binary",
+        "observed": "true",
+        "description": "Treatment level 0 or 1; fixed contrast"
+      },
+      {
+        "name": "M1",
+        "role": "mediator",
+        "dtype": "binary",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Observed outcome; not an oracle target"
+      }
+    ],
+    "latent_variables": [],
+    "latent_variables_status": "explicit_structured_metadata",
+    "sampling": "IID observations at a fixed structural configuration; separate mechanism and observation seeds.",
+    "assumptions": [
+      "Independent exogenous structural errors and iid units conditional on fixed configuration.",
+      "No treatment-induced mediator-outcome confounder remains in the adapted SEM.",
+      "Causal identification additionally requires consistency, exchangeability/cross-world conditions and treatment/mediator support; treatment randomization alone is insufficient."
+    ],
+    "properties": {
+      "complete_data": true,
+      "treatment_type": "binary",
+      "treatment_levels": [
+        0,
+        1
+      ],
+      "mediator_types": [
+        "binary"
+      ],
+      "mediator_dimension_native": 1,
+      "outcome_type": "continuous",
+      "high_dimensional": false,
+      "interference": false,
+      "adapted_NIE_standard_version": "1.0.0"
+    }
+  },
+  "estimand": {
+    "name": "NIE",
+    "definition": "NIE = E[Y(1,M(1))-Y(1,M(0))] in the adapted fixed-SEM superpopulation, jointly intervening on the complete mediator vector.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "native",
+      "parameters": {
+        "covariate_dimension": 4,
+        "covariate_sd": 1.0,
+        "treatment_coefficients": [
+          -1.0,
+          0.5,
+          -0.25,
+          -0.1
+        ],
+        "event_intercept": -1.0,
+        "event_treatment_coefficient": 2.0,
+        "event_coefficients": [
+          1.0,
+          -0.8,
+          0.6,
+          -1.0
+        ],
+        "mediator_intercept": -1.8,
+        "mediator_treatment_coefficient": 2.0,
+        "mediator_event_coefficient": 0.0,
+        "mediator_coefficients": [
+          1.0,
+          -0.5,
+          0.9,
+          -1.0
+        ],
+        "outcome_intercept": 210.0,
+        "outcome_treatment_coefficient": 1.5,
+        "outcome_event_coefficient": 0.0,
+        "outcome_mediator_coefficient": 1.0,
+        "outcome_coefficients": [
+          27.4,
+          13.7,
+          13.7,
+          13.7
+        ],
+        "outcome_noise_sd": 1.0,
+        "quadrature_orders": [
+          80,
+          160
+        ],
+        "target": "ITT_NDE"
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 0.30114731040193965,
+        "expression": "NIE = E[Y(1,M(1))-Y(1,M(0))] in the adapted fixed-SEM superpopulation, jointly intervening on the complete mediator vector.",
+        "derivation": "gauss_hermite_80: One-dimensional Gaussian quadrature of the logistic-normal mediator probability contrast, multiplied by the outcome mediator coefficient.",
+        "evidence": [
+          {
+            "file": "mediation-standard-nie1-cheng-v1/checks/report.json",
+            "location": "execution.scenario_results[native].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "Set mediator_event_coefficient and outcome_event_coefficient to zero and remove D structurally; map source Z to A. The former principal-stratum/direct-effect target is not reused.",
+    "New complete-data superpopulation NIE1 target; original records/estimands are retained separately.",
+    "Standalone canonical generator core SHA256 443e04663970594a8ec2932dc0ee9718c10cc501314d133686dfd0e9acf1baa8"
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "mediation-standard-nie1-cheng-v1/generator.py",
+    "truth_reference": null,
+    "source_archive": "mediation-standard-nie1-complete-data-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/mediation-standard-nie1-cheng-v1.py",
+    "exported_generator_sha256": "2263ad30a590d8cf9db9e6c5335e4e486fe68e94440c424dde24a99aeba9d82b"
+  },
+  "evidence": [
+    {
+      "file": "mediation-standard-nie1-cheng-v1/collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "mediation-standard-nie1-cheng-v1/config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "mediation-standard-nie1-cheng-v1/source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "31d8ed00889bfbf19cc9540d0074701e2beaa5e04fb69e9b5b11179bb020dfb2",
+    "collection_sha256": "f7886675d50edd0f07f4426833aabf1bf012b5e49a80150e3f4ec3e19d08e00b",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "implementation_checked_adaptation; original paper review status remains inherited, not newly certified",
+    "submission_file": "incoming/mediation-standard-nie1-complete-data-v1.zip",
+    "submitted_zip_sha256": "31d8ed00889bfbf19cc9540d0074701e2beaa5e04fb69e9b5b11179bb020dfb2",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [],
+  "source_suggested_domain": "mediation",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

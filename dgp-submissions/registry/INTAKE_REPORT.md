@@ -2,7 +2,7 @@
 
 **Status:** partial_success_needs_attention
 
-123 ZIP(s); 169 indexed DGP(s); 5 processing failure(s).
+124 ZIP(s); 183 indexed DGP(s); 5 processing failure(s).
 
 A failed ZIP or DGP does not block unrelated valid submissions. Processing success is not scientific approval.
 

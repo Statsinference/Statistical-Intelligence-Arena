@@ -1,0 +1,179 @@
+{
+  "schema_version": "0.1",
+  "record_id": "mediation-standard-nie1-zuo-v1",
+  "kind": "synthetic_dgp",
+  "domain": "mediation",
+  "english_display": {},
+  "paper": {
+    "citation": "Zuo, S., Ghosh, D., Ding, P. and Yang, F. (2025). Mediation Analysis with the Mediator and Outcome Missing Not at Random. Journal of the American Statistical Association 120(550), 794–804. DOI: 10.1080/01621459.2024.2359132.",
+    "title": "Mediation Analysis with the Mediator and Outcome Missing Not at Random",
+    "doi": "10.1080/01621459.2024.2359132",
+    "source_url": "https://doi.org/10.1080/01621459.2024.2359132",
+    "source_file_evidence": [],
+    "venue": "Journal of the American Statistical Association",
+    "year": 2025,
+    "source_version": "NIE1 standard 1.0.0; original registry commit 8182caf7185845a31a2122e032811bb2254d6342",
+    "source_locator": "Published paper §5.1, Setting C and Assumption III; numeric coefficients in author arXiv:2212.05577v3 supplemental Table S1, PDF p.72 (zero-index 71), lines 3984–4006.; adaptation: bundled SCIENTIFIC_SPEC.md and nie_standard_v1/generators.py::_draw"
+  },
+  "mechanism": {
+    "name": "Standard NIE1 adaptation: zuo",
+    "title_en": null,
+    "family_id": "standard-nie1-zuo",
+    "generation_equations": [
+      {
+        "label": "target",
+        "expression": "NIE1 = E[Y(1,M(1))-Y(1,M(0))]",
+        "latex": "\\psi=\\mathbb{E}[Y(1,M(1))-Y(1,M(0))]"
+      },
+      {
+        "label": "adapted structural equations",
+        "expression": "x=c[\"x_mean\"]+c[\"x_sd\"]*r.standard_normal((n,1))\na=r.binomial(1,c[\"p_t\"],n)\nm=(c[\"alpha_0\"]+c[\"alpha_t\"]*a+c[\"alpha_x\"]*x[:,0]+c[\"m_sd\"]*r.standard_normal(n))[:,None]\ny=c[\"beta_0\"]+c[\"beta_t\"]*a+(c[\"beta_m\"]+c[\"beta_mt\"]*a)*m[:,0]+c[\"beta_x\"]*x[:,0]+c[\"y_sd\"]*r.standard_normal(n)\nreturn x,a,m,y,[\"continuous\"],[\"continuous\"],\"continuous\""
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "X1",
+        "role": "baseline_covariate",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Pretreatment baseline coordinate"
+      },
+      {
+        "name": "A",
+        "role": "treatment",
+        "dtype": "binary",
+        "observed": "true",
+        "description": "Treatment level 0 or 1; fixed contrast"
+      },
+      {
+        "name": "M1",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Observed outcome; not an oracle target"
+      }
+    ],
+    "latent_variables": [],
+    "latent_variables_status": "explicit_structured_metadata",
+    "sampling": "IID observations at a fixed structural configuration; separate mechanism and observation seeds.",
+    "assumptions": [
+      "Independent exogenous structural errors and iid units conditional on fixed configuration.",
+      "No treatment-induced mediator-outcome confounder remains in the adapted SEM.",
+      "Causal identification additionally requires consistency, exchangeability/cross-world conditions and treatment/mediator support; treatment randomization alone is insufficient."
+    ],
+    "properties": {
+      "complete_data": true,
+      "treatment_type": "binary",
+      "treatment_levels": [
+        0,
+        1
+      ],
+      "mediator_types": [
+        "continuous"
+      ],
+      "mediator_dimension_native": 1,
+      "outcome_type": "continuous",
+      "high_dimensional": false,
+      "interference": false,
+      "adapted_NIE_standard_version": "1.0.0"
+    }
+  },
+  "estimand": {
+    "name": "NIE",
+    "definition": "NIE = E[Y(1,M(1))-Y(1,M(0))] in the adapted fixed-SEM superpopulation, jointly intervening on the complete mediator vector.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "native",
+      "parameters": {
+        "x_mean": 0.0,
+        "x_sd": 1.0,
+        "p_t": 0.5,
+        "alpha_0": 0.0,
+        "alpha_t": 1.0,
+        "alpha_x": 1.0,
+        "m_sd": 1.0,
+        "beta_0": 0.0,
+        "beta_m": 1.0,
+        "beta_t": 1.0,
+        "beta_mt": 1.0,
+        "beta_x": 1.0,
+        "y_sd": 1.0,
+        "lambda_0": 1.4,
+        "lambda_m": 1.0,
+        "lambda_t": 1.0,
+        "lambda_x": 1.0,
+        "gamma_0": 1.8,
+        "gamma_y": 1.0,
+        "gamma_t": 1.0,
+        "gamma_x": 1.0
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 2.0,
+        "expression": "NIE = E[Y(1,M(1))-Y(1,M(0))] in the adapted fixed-SEM superpopulation, jointly intervening on the complete mediator vector.",
+        "derivation": "analytic: alpha_t * (beta_m + beta_mt)",
+        "evidence": [
+          {
+            "file": "mediation-standard-nie1-zuo-v1/checks/report.json",
+            "location": "execution.scenario_results[native].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "Export complete M and Y before MNAR masks; omit missingness indicators. Preserve the full-data A-M interaction and natural NIE1.",
+    "New complete-data superpopulation NIE1 target; original records/estimands are retained separately.",
+    "Standalone canonical generator core SHA256 443e04663970594a8ec2932dc0ee9718c10cc501314d133686dfd0e9acf1baa8"
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "mediation-standard-nie1-zuo-v1/generator.py",
+    "truth_reference": null,
+    "source_archive": "mediation-standard-nie1-complete-data-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/mediation-standard-nie1-zuo-v1.py",
+    "exported_generator_sha256": "2fcd0c79a6d33a844ab32a57126d27a6d66732fdacb01d29b6bce4217faf356b"
+  },
+  "evidence": [
+    {
+      "file": "mediation-standard-nie1-zuo-v1/collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "mediation-standard-nie1-zuo-v1/config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "mediation-standard-nie1-zuo-v1/source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "31d8ed00889bfbf19cc9540d0074701e2beaa5e04fb69e9b5b11179bb020dfb2",
+    "collection_sha256": "aa39b88208a02c68a9919bd73c73894cf308956a1135fbab01d546e67ad6c041",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "implementation_checked_adaptation; original paper review status remains inherited, not newly certified",
+    "submission_file": "incoming/mediation-standard-nie1-complete-data-v1.zip",
+    "submitted_zip_sha256": "31d8ed00889bfbf19cc9540d0074701e2beaa5e04fb69e9b5b11179bb020dfb2",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [],
+  "source_suggested_domain": "mediation",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

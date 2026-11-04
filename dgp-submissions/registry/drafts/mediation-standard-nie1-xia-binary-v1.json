@@ -1,0 +1,179 @@
+{
+  "schema_version": "0.1",
+  "record_id": "mediation-standard-nie1-xia-binary-v1",
+  "kind": "synthetic_dgp",
+  "domain": "mediation",
+  "english_display": {},
+  "paper": {
+    "citation": "Xia, F. and Chan, K. C. G. (2023). Identification, Semiparametric Efficiency, and Quadruply Robust Estimation in Mediation Analysis with Treatment-Induced Confounding. Journal of the American Statistical Association 118(542), 1272–1281. DOI: 10.1080/01621459.2021.1990765.",
+    "title": "Identification, Semiparametric Efficiency, and Quadruply Robust Estimation in Mediation Analysis with Treatment-Induced Confounding",
+    "doi": "10.1080/01621459.2021.1990765",
+    "source_url": "https://doi.org/10.1080/01621459.2021.1990765",
+    "source_file_evidence": [],
+    "venue": "Journal of the American Statistical Association",
+    "year": 2023,
+    "source_version": "NIE1 standard 1.0.0; original registry commit 8182caf7185845a31a2122e032811bb2254d6342",
+    "source_locator": "Author accepted manuscript §4.1, “Binary C and M”, PDF p.17; https://par.nsf.gov/servlets/purl/10300663.; adaptation: bundled SCIENTIFIC_SPEC.md and nie_standard_v1/generators.py::_draw"
+  },
+  "mechanism": {
+    "name": "Standard NIE1 adaptation: xia binary",
+    "title_en": null,
+    "family_id": "standard-nie1-xia-binary",
+    "generation_equations": [
+      {
+        "label": "target",
+        "expression": "NIE1 = E[Y(1,M(1))-Y(1,M(0))]",
+        "latex": "\\psi=\\mathbb{E}[Y(1,M(1))-Y(1,M(0))]"
+      },
+      {
+        "label": "adapted structural equations",
+        "expression": "x=c[\"x_sd\"]*r.standard_normal((n,1))\na=r.binomial(1,expit(c[\"a_logit_intercept\"]+c[\"a_logit_x\"]*x[:,0]))\nif s==\"xia_binary\": m=r.binomial(1,expit(c[\"m_logit_intercept\"]+c[\"m_logit_a\"]*a+c[\"m_logit_x\"]*x[:,0]))[:,None]\n        else: m=(c[\"m_intercept\"]+c[\"m_a\"]*a+c[\"m_x\"]*x[:,0]+c[\"m_sd\"]*r.standard_normal(n))[:,None]\ny=c[\"y_intercept\"]+c[\"y_a\"]*a+(c[\"y_m\"]+c[\"y_am\"]*a)*m[:,0]+c[\"y_x\"]*x[:,0]+c[\"y_sd\"]*r.standard_normal(n)\nreturn x,a,m,y,[\"binary\" if s==\"xia_binary\" else \"continuous\"],[\"continuous\"],\"continuous\""
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "X1",
+        "role": "baseline_covariate",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Pretreatment baseline coordinate"
+      },
+      {
+        "name": "A",
+        "role": "treatment",
+        "dtype": "binary",
+        "observed": "true",
+        "description": "Treatment level 0 or 1; fixed contrast"
+      },
+      {
+        "name": "M1",
+        "role": "mediator",
+        "dtype": "binary",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Observed outcome; not an oracle target"
+      }
+    ],
+    "latent_variables": [],
+    "latent_variables_status": "explicit_structured_metadata",
+    "sampling": "IID observations at a fixed structural configuration; separate mechanism and observation seeds.",
+    "assumptions": [
+      "Independent exogenous structural errors and iid units conditional on fixed configuration.",
+      "No treatment-induced mediator-outcome confounder remains in the adapted SEM.",
+      "Causal identification additionally requires consistency, exchangeability/cross-world conditions and treatment/mediator support; treatment randomization alone is insufficient."
+    ],
+    "properties": {
+      "complete_data": true,
+      "treatment_type": "binary",
+      "treatment_levels": [
+        0,
+        1
+      ],
+      "mediator_types": [
+        "binary"
+      ],
+      "mediator_dimension_native": 1,
+      "outcome_type": "continuous",
+      "high_dimensional": false,
+      "interference": false,
+      "adapted_NIE_standard_version": "1.0.0"
+    }
+  },
+  "estimand": {
+    "name": "NIE",
+    "definition": "NIE = E[Y(1,M(1))-Y(1,M(0))] in the adapted fixed-SEM superpopulation, jointly intervening on the complete mediator vector.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "native",
+      "parameters": {
+        "x_sd": 1.0,
+        "a_logit_intercept": -0.2,
+        "a_logit_x": 0.3,
+        "m_logit_intercept": -0.3,
+        "m_logit_a": -0.2,
+        "m_logit_x": 0.5,
+        "c_logit_intercept": -0.2,
+        "c_logit_a": -0.1,
+        "c_logit_x": 0.3,
+        "copula_log_or_intercept": 1.0,
+        "copula_log_or_a": -2.0,
+        "copula_log_or_x": 3.0,
+        "y_intercept": 1.0,
+        "y_a": 3.0,
+        "y_m": 6.0,
+        "y_c": 0.0,
+        "y_x": 6.0,
+        "y_ac": 0.0,
+        "y_am": 2.0,
+        "y_sd": 4.0,
+        "source_n": 1500
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": -0.36488213957756865,
+        "expression": "NIE = E[Y(1,M(1))-Y(1,M(0))] in the adapted fixed-SEM superpopulation, jointly intervening on the complete mediator vector.",
+        "derivation": "gauss_hermite_80: 80-node Gaussian quadrature of the mediator probability contrast times (y_m+y_am).",
+        "evidence": [
+          {
+            "file": "mediation-standard-nie1-xia-binary-v1/checks/report.json",
+            "location": "execution.scenario_results[native].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "Remove C and its effects in Y structurally: y_c=y_ac=0. Preserve the original marginal M law and A-M interaction. Recompute NIE1 rather than reuse source NDE truth.",
+    "New complete-data superpopulation NIE1 target; original records/estimands are retained separately.",
+    "Standalone canonical generator core SHA256 443e04663970594a8ec2932dc0ee9718c10cc501314d133686dfd0e9acf1baa8"
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "mediation-standard-nie1-xia-binary-v1/generator.py",
+    "truth_reference": null,
+    "source_archive": "mediation-standard-nie1-complete-data-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/mediation-standard-nie1-xia-binary-v1.py",
+    "exported_generator_sha256": "19bbefedaafa6afecb85a4b57811fa13e70f808bf4201d0267de613fc00d325c"
+  },
+  "evidence": [
+    {
+      "file": "mediation-standard-nie1-xia-binary-v1/collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "mediation-standard-nie1-xia-binary-v1/config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "mediation-standard-nie1-xia-binary-v1/source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "31d8ed00889bfbf19cc9540d0074701e2beaa5e04fb69e9b5b11179bb020dfb2",
+    "collection_sha256": "6b243c85f3f851bd449f6ac077f1ab226002a755dacf280ead8080baf257b493",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "implementation_checked_adaptation; original paper review status remains inherited, not newly certified",
+    "submission_file": "incoming/mediation-standard-nie1-complete-data-v1.zip",
+    "submitted_zip_sha256": "31d8ed00889bfbf19cc9540d0074701e2beaa5e04fb69e9b5b11179bb020dfb2",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [],
+  "source_suggested_domain": "mediation",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}

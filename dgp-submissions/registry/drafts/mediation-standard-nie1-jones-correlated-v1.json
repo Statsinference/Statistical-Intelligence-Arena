@@ -1,0 +1,965 @@
+{
+  "schema_version": "0.1",
+  "record_id": "mediation-standard-nie1-jones-correlated-v1",
+  "kind": "synthetic_dgp",
+  "domain": "mediation",
+  "english_display": {},
+  "paper": {
+    "citation": "Jones, J., Ertefaie, A. and Strawderman, R. L. (2025). Causal mediation analysis: selection with asymptotically valid inference. Journal of the Royal Statistical Society: Series B 87(3), 678–700. DOI: 10.1093/jrsssb/qkae109.",
+    "title": "Causal mediation analysis: selection with asymptotically valid inference",
+    "doi": "10.1093/jrsssb/qkae109",
+    "source_url": "https://doi.org/10.1093/jrsssb/qkae109",
+    "source_file_evidence": [],
+    "venue": "Journal of the Royal Statistical Society: Series B",
+    "year": 2025,
+    "source_version": "NIE1 standard 1.0.0; original registry commit 8182caf7185845a31a2122e032811bb2254d6342",
+    "source_locator": "Final article §5, Simulation B; compared with author code mediation-new-sims/R/sim_conf.R, function do_sim_paths, lines 84–117, commit 7617776b1a6415a185e18d336a5709c4d38f0555. Paper prose is followed where the two differ.; adaptation: bundled SCIENTIFIC_SPEC.md and nie_standard_v1/generators.py::_draw"
+  },
+  "mechanism": {
+    "name": "Standard NIE1 adaptation: jones correlated",
+    "title_en": null,
+    "family_id": "standard-nie1-jones-correlated",
+    "generation_equations": [
+      {
+        "label": "target",
+        "expression": "NIE1 = E[Y(1,M(1))-Y(1,M(0))]",
+        "latex": "\\psi=\\mathbb{E}[Y(1,M(1))-Y(1,M(0))]"
+      },
+      {
+        "label": "adapted structural equations",
+        "expression": "q=int(c[\"p\"])\nwithin=float(c[\"rho_within\"])\nbridge=float(c[\"rho_bridge\"])\nif not 0<=bridge<=within<1: raise ValueError(\"Need 0 <= bridge <= within < 1\")\na=r.binomial(1,c[\"p_treatment\"],n)\nm=np.sqrt(1-within)*r.standard_normal((n,q))+np.sqrt(bridge)*r.standard_normal((n,1))\ngroup=r.standard_normal((n,2))\nm[:,:2]+=np.sqrt(within-bridge)*group[:,0,None]\nm[:,2:]+=np.sqrt(within-bridge)*group[:,1,None]\nai=np.asarray(c[\"a_to_m_indices\"])-1\nbi=np.asarray(c[\"m_to_y_indices\"])-1\nif np.any(ai<0) or np.any(ai>=q) or np.any(bi<0) or np.any(bi>=q): raise ValueError(\"Index outside mediator vector\")\nm[:,ai]+=c[\"a_to_m_coefficient\"]*a[:,None]\ny=c[\"direct_effect\"]*a+c[\"m_to_y_coefficient\"]*m[:,bi].sum(1)+c[\"outcome_error_sd\"]*r.standard_normal(n)\nreturn np.empty((n,0)),a,m,y,[\"continuous\"]*q,[],\"continuous\""
+      }
+    ],
+    "observed_variables": [
+      {
+        "name": "A",
+        "role": "treatment",
+        "dtype": "binary",
+        "observed": "true",
+        "description": "Treatment level 0 or 1; fixed contrast"
+      },
+      {
+        "name": "M1",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M2",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M3",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M4",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M5",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M6",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M7",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M8",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M9",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M10",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M11",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M12",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M13",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M14",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M15",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M16",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M17",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M18",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M19",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M20",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M21",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M22",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M23",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M24",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M25",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M26",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M27",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M28",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M29",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M30",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M31",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M32",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M33",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M34",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M35",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M36",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M37",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M38",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M39",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M40",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M41",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M42",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M43",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M44",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M45",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M46",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M47",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M48",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M49",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M50",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M51",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M52",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M53",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M54",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M55",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M56",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M57",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M58",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M59",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M60",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M61",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M62",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M63",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M64",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M65",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M66",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M67",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M68",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M69",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M70",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M71",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M72",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M73",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M74",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M75",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M76",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M77",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M78",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M79",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M80",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M81",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M82",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M83",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M84",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M85",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M86",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M87",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M88",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M89",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M90",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M91",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M92",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M93",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M94",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M95",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M96",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M97",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M98",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M99",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "M100",
+        "role": "mediator",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Jointly intervened mediator coordinate"
+      },
+      {
+        "name": "Y",
+        "role": "outcome",
+        "dtype": "continuous",
+        "observed": "true",
+        "description": "Observed outcome; not an oracle target"
+      }
+    ],
+    "latent_variables": [],
+    "latent_variables_status": "explicit_structured_metadata",
+    "sampling": "IID observations at a fixed structural configuration; separate mechanism and observation seeds.",
+    "assumptions": [
+      "Independent exogenous structural errors and iid units conditional on fixed configuration.",
+      "No treatment-induced mediator-outcome confounder remains in the adapted SEM.",
+      "Causal identification additionally requires consistency, exchangeability/cross-world conditions and treatment/mediator support; treatment randomization alone is insufficient."
+    ],
+    "properties": {
+      "complete_data": true,
+      "treatment_type": "binary",
+      "treatment_levels": [
+        0,
+        1
+      ],
+      "mediator_types": [
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous",
+        "continuous"
+      ],
+      "mediator_dimension_native": 100,
+      "outcome_type": "continuous",
+      "high_dimensional": true,
+      "interference": false,
+      "adapted_NIE_standard_version": "1.0.0"
+    }
+  },
+  "estimand": {
+    "name": "NIE",
+    "definition": "NIE = E[Y(1,M(1))-Y(1,M(0))] in the adapted fixed-SEM superpopulation, jointly intervening on the complete mediator vector.",
+    "population": null
+  },
+  "scenarios": [
+    {
+      "id": "native",
+      "parameters": {
+        "p": 100,
+        "rho_within": 0.5,
+        "rho_bridge": 0.25,
+        "p_treatment": 0.5,
+        "a_to_m_indices": [
+          1,
+          2,
+          3
+        ],
+        "m_to_y_indices": [
+          1,
+          2,
+          4,
+          5,
+          6
+        ],
+        "a_to_m_coefficient": 1.0,
+        "m_to_y_coefficient": 1.0,
+        "direct_effect": 2.0,
+        "mediator_error_sd": 1.0,
+        "outcome_error_sd": 1.0,
+        "source_n": 200
+      },
+      "truth": {
+        "status": "reported_numeric",
+        "value": 2.0,
+        "expression": "NIE = E[Y(1,M(1))-Y(1,M(0))] in the adapted fixed-SEM superpopulation, jointly intervening on the complete mediator vector.",
+        "derivation": "analytic: Number of shared active A-M and M-Y indices times a_to_m_coefficient * m_to_y_coefficient.",
+        "evidence": [
+          {
+            "file": "mediation-standard-nie1-jones-correlated-v1/checks/report.json",
+            "location": "execution.scenario_results[native].truth"
+          }
+        ]
+      }
+    }
+  ],
+  "source_relation": "adapted_from_source",
+  "adaptations": [
+    "Retain randomized A, vector mediator and unit-diagonal two-block Gaussian error covariance. Factor sampling is distributionally equivalent for 0<=rho_bridge<=rho_within<1. The source code does not use mediator_error_sd, and neither does this adaptation.",
+    "New complete-data superpopulation NIE1 target; original records/estimands are retained separately.",
+    "Standalone canonical generator core SHA256 443e04663970594a8ec2932dc0ee9718c10cc501314d133686dfd0e9acf1baa8"
+  ],
+  "implementation": {
+    "generator_available": true,
+    "generator_reference": "mediation-standard-nie1-jones-correlated-v1/generator.py",
+    "truth_reference": null,
+    "source_archive": "mediation-standard-nie1-complete-data-v1.zip",
+    "code_check_reported_pass": true,
+    "scientific_acceptance": false,
+    "exported_generator_path": "generators/mediation-standard-nie1-jones-correlated-v1.py",
+    "exported_generator_sha256": "15a0c821cdb1c0cac595e14a7e6ddb16ec94a4ff11d7016c88f821fa45df4b83"
+  },
+  "evidence": [
+    {
+      "file": "mediation-standard-nie1-jones-correlated-v1/collection.json",
+      "location": "source, equations, estimand, truth"
+    },
+    {
+      "file": "mediation-standard-nie1-jones-correlated-v1/config.json",
+      "location": "scenarios"
+    },
+    {
+      "file": "mediation-standard-nie1-jones-correlated-v1/source_audit.json",
+      "location": "source review"
+    }
+  ],
+  "provenance": {
+    "mode": "structured_zip",
+    "archive_sha256": "31d8ed00889bfbf19cc9540d0074701e2beaa5e04fb69e9b5b11179bb020dfb2",
+    "collection_sha256": "de6ad7454dc419f7f2b09432ec6115a4bcbd9d0b758f0a59bce79799ca455642",
+    "provided_source_pdf_verified": false,
+    "source_review_status": "implementation_checked_adaptation; original paper review status remains inherited, not newly certified",
+    "submission_file": "incoming/mediation-standard-nie1-complete-data-v1.zip",
+    "submitted_zip_sha256": "31d8ed00889bfbf19cc9540d0074701e2beaa5e04fb69e9b5b11179bb020dfb2",
+    "reviewed_original_paper": false,
+    "submitted_by": "github_file_upload"
+  },
+  "review_status": "needs_scientific_review",
+  "warnings": [],
+  "source_suggested_domain": "mediation",
+  "classification_status": "zip_metadata_unverified",
+  "suggested_secondary_domains": []
+}
