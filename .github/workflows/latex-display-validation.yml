@@ -1,0 +1,57 @@
+name: LaTeX display validation (isolated)
+on:
+  push:
+    branches: [fix/latex-display-fidelity]
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install regression test dependency
+        run: python -m pip install pytest==8.4.2
+      - name: Existing and new regressions on frozen fixtures
+        working-directory: dgp-submissions
+        run: python integration/run_regressions.py
+      - name: Verify live scientific data and non-equation sections are unchanged
+        working-directory: dgp-submissions
+        run: |
+          python - <<'PY'
+          import hashlib, json, tempfile
+          from pathlib import Path
+          from tools.dgp_registry.github_intake import ingest
+          protected = [p for root in ('incoming', 'registry/drafts', 'registry/generators') for p in Path(root).glob('*') if p.is_file() and (root != 'registry/drafts' or p.suffix == '.json')]
+          before = {p: hashlib.sha256(p.read_bytes()).hexdigest() for p in protected}
+          with tempfile.TemporaryDirectory() as folder:
+              out = Path(folder) / 'registry'
+              result = ingest(Path('incoming'), out)
+              assert result['failure_count'] == 0, result
+              checked = 0
+              pages = 0
+              for p in Path('registry').rglob('*'):
+                  if not p.is_file():
+                      continue
+                  rel = p.relative_to('registry')
+                  q = out / rel
+                  if p.suffix == '.json' or str(rel).startswith(('generators/', 'by-domain/')):
+                      assert q.exists() and p.read_bytes() == q.read_bytes(), str(rel)
+                      checked += 1
+                  if str(rel).startswith('drafts/') and p.suffix == '.md':
+                      old, new = p.read_text(), q.read_text()
+                      assert old.split('**Equations / distributions (LaTeX rendering)**', 1)[0] == new.split('**Equations / distributions (LaTeX rendering)**', 1)[0], str(rel)
+                      assert old.split('## Parameter scenarios, estimands and truth', 1)[1] == new.split('## Parameter scenarios, estimands and truth', 1)[1], str(rel)
+                      pages += 1
+              assert all(hashlib.sha256(p.read_bytes()).hexdigest() == digest for p, digest in before.items())
+              print(json.dumps({'ingest': result, 'protected_source_files_unchanged': len(before), 'regenerated_scientific_files_unchanged': checked, 'non_equation_page_sections_unchanged': pages}, indent=2))
+          PY
+      - name: Integration and live corpus presentation tests
+        working-directory: dgp-submissions
+        run: python -m pytest tests/test_integration.py tests/test_math_fidelity.py -q
