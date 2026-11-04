@@ -34,48 +34,66 @@ F_k0, eta_ks, F_ks
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**stationary common factors**
+
 $$
 k=1,2
 $$
 
-F_k0 iid N(0,1)
+$$
+F_{k0}\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1)
+$$
 
 $$
-F_ks=0.5\cdot F_k,s-1+eta_ks for s=1,\ldots ,21, eta_ks\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,0.75), independent across k,s and of the initial states. Omit only s=0
+F_{ks}=0.5\cdot F_{k},s-1+\eta_{ks} \text{ for } s=1,\ldots ,21, \eta_{ks}\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,0.75)
+$$
+
+independent across k,s and of the initial states
+
+$$
+\mathrm{Omit} \text{ only } s=0
 $$
 
 no extra burn-in.
 
+**unit loadings and noise**
+
 $$
-N=11,J=10
+\mathrm{N}=11,J=10
 $$
 
 $$
-\mu_0=\mu_1=\ldots =\mu_5=(1,0)
+\mu_{0}=\mu_{1}=\ldots =\mu_{5}=(1,0)
 $$
 
 $$
-\mu_6=\ldots =\mu_10=(0,1)
+\mu_{6}=\ldots =\mu_{10}=(0,1)
 $$
 
 $$
-\varepsilon_is\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1), independent of both factor paths.
+\varepsilon_{is}\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1)
+$$
+
+independent of both factor paths
+
+**observed outcomes and treatment**
+
+$$
+Y_{is}=\mu_{i}^{T} F_{s}+\varepsilon_{is}+1\{i=0,s=21\}\cdot \mathrm{post}_{\mathrm{effect}}
 $$
 
 $$
-Y_is=\mu_i^T F_s+\varepsilon_is+1\{i=0,s=21\}\cdot post_effect
+\mathrm{post}_{\mathrm{effect}}=0. G_{0}=1,G_{1}:10=0
 $$
 
 $$
-post_effect=0. G_0=1,G_1:10=0
+s=1,\ldots ,20 \mathrm{pre} \text{ and } s=21 \mathrm{post}. n \mathrm{must} \mathrm{equal11}.
 $$
 
-$$
-s=1,\ldots ,20 pre and s=21 post. n must equal11.
-$$
+**causal target**
 
 $$
-\tau_01=Y_0,21(1)-Y_0,21(0)=post_effect=0 with common exogenous draws held fixed
+\tau_{01}=Y_{0},21(1)-Y_{0},21(0)=\mathrm{post}_{\mathrm{effect}}=0 \text{ with } \mathrm{common} \mathrm{exogenous} \mathrm{draws} \mathrm{held} \text{ fixed }
 $$
 
 single-treated SATT and its design expectation are zero.

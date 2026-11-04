@@ -34,68 +34,88 @@ F_1t, F_2t, eta_dt, xi_t
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**factors and stationary residuals**
+
 $$
 t=1,\ldots ,21
 $$
 
-F_1t,F_2t iid N(0,1), independent across factors and times. epsilon_d0,u_0 iid N(0,1)
-
 $$
-\varepsilon_dt=0.6\cdot \varepsilon_d,t-1+eta_dt
+F_{1t},F_{2t}\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1)
 $$
 
+independent across factors and times. epsilon_d0,u_0 iid N(0,1)
+
 $$
-u_t=0.6\cdot u_t-1+\xi_t
+\varepsilon_{\mathrm{dt}}=0.6\cdot \varepsilon_{d,t-1}+\eta_{\mathrm{dt}}
 $$
 
 $$
-eta_dt,\xi_t\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,0.64). Initial states and innovations mutually independent and independent of factors.
+u_{t}=0.6\cdot u_{t}-1+\xi_{t}
 $$
+
+$$
+\eta_{\mathrm{dt}},\xi_{t}\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,0.64)
+$$
+
+Initial states and innovations mutually independent and
+
+independent of factors
+
+**donor observations**
 
 $$
 J=20
 $$
 
 $$
-reindex donors d=1,\ldots ,20 (source j=d+1)
+\mathrm{reindex} \mathrm{donors} d=1,\ldots ,20 (\text{ source } j=d+1)
 $$
 
 $$
-a_d=b_d=d/20. Y_dt=a_d+F_1t+b_d\cdot F_2t+\varepsilon_dt.
+\text{ a }_{d}=b_{d}=d/20. Y_{\mathrm{dt}}=\text{ a }_{d}+F_{1t}+b_{d}\cdot F_{2t}+\varepsilon_{\mathrm{dt}}.
+$$
+
+**source weight scenarios**
+
+$$
+W_{1}: w_{d}=1/20 (\mathrm{default})
 $$
 
 $$
-W_{1}: w_d=1/20 (default)
+W_{2}: w_{1}=w_{2}=w_{3}=1/3, \mathrm{others0}
 $$
 
 $$
-W_{2}: w_1=w_2=w_3=1/3, others0
+W_{3}: w_{d}=-1/20
 $$
 
 $$
-W_{3}: w_d=-1/20
+W_{4}: w_{1}=1,w_{2}=-1,\mathrm{others0}
 $$
 
-$$
-W_{4}: w_1=1,w_2=-1,others0. These are four scenarios of one family.
-$$
+These are four scenarios of one family.
+
+**treated observation**
+
+Source notation retained without guessing:
+
+<pre>Y_0t(0)=sum_(d=1)^20 w_d*Y_dt+u_t, using actual donor outcomes including donor errors</pre>
 
 $$
-Y_0t(0)=sum_(d=1)^{20} w_d\cdot Y_dt+u_t, using actual donor outcomes including donor errors
-$$
-
-$$
-Y_0t=Y_0t(0)+1\{t=21\}\cdot \theta_T, \theta_T=0. G_0=1,donors G=0
+Y_{0t}=Y_{0t}(0)+1\{t=21\}\cdot \theta_{T}, \theta_{T}=0. G_{0}=1,\mathrm{donors} G=0
 $$
 
 20pre+1post
 
 $$
-n=21 only.
+n=21 \text{ only }.
 $$
 
+**causal target**
+
 $$
-Y_0,21(1)-Y_0,21(0)=\theta_T=0 for every realization
+Y_{0},21(1)-Y_{0},21(0)=\theta_{T}=0 \text{ for } \mathrm{every} \mathrm{realization}
 $$
 
 design expectation and single-treated finite SATT are zero for every weight scenario.

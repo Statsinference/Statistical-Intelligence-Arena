@@ -34,48 +34,74 @@ Not explicitly identified (review required)
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**Equation 1**
+
 $$
-A <- \varepsilon_A
+A <- \varepsilon_{A}
+$$
+
+**Equation 2**
+
+$$
+C <- \varepsilon_{C}
+$$
+
+**Equation 3**
+
+$$
+L_{1} <- \varepsilon_{\mathrm{L1}}
+$$
+
+**Equation 4**
+
+$$
+B <- (-0.78408214029946133)\cdot C + \varepsilon_{B}
+$$
+
+**Equation 5**
+
+$$
+D <- (0.2011394215552596)\cdot A + (0.40685244250001207)\cdot L_{1} + (0.60072810314434222)\cdot B + \varepsilon_{D}
+$$
+
+**Equation 6**
+
+$$
+L_{2} <- \varepsilon_{\mathrm{L2}}
+$$
+
+**Equation 7**
+
+$$
+X <- (1.4038923130557954)\cdot L_{1} + (-1.0690158213970873)\cdot B + (-1.8992312433635747)\cdot L_{2} + \varepsilon_{X}
+$$
+
+**Equation 8**
+
+$$
+M <- (0.35800137127747389)\cdot X + \varepsilon_{M}
+$$
+
+**Equation 9**
+
+$$
+Y <- (-0.79585700972545459)\cdot C + (-0.71641682995974743)\cdot L_{2} + (-0.52749259051598618)\cdot X + (1.4218960031282049)\cdot M + \varepsilon_{Y}
+$$
+
+**Equation 10**
+
+$$
+\mathrm{Gaussian} \mathrm{scenario}: \text{ independent } \varepsilon_{v} \sim \mathcal{N}(0,\text{ variance }_{v})
 $$
 
 $$
-C <- \varepsilon_C
+\mathrm{uniform} \mathrm{scenario}: \text{ independent } \varepsilon_{v} \sim \mathrm{Uniform}(-\sqrt{3 \text{ variance }_{v}},\sqrt{3 \text{ variance }_{v}}).
 $$
 
-L1 &lt;- epsilon_L1
+**Equation 11**
 
 $$
-B <- (-0.78408214029946133)\cdot C + \varepsilon_B
-$$
-
-$$
-D <- (0.2011394215552596)\cdot A + (0.40685244250001207)\cdot L_{1} + (0.60072810314434222)\cdot B + \varepsilon_D
-$$
-
-L2 &lt;- epsilon_L2
-
-$$
-X <- (1.4038923130557954)\cdot L_{1} + (-1.0690158213970873)\cdot B + (-1.8992312433635747)\cdot L_{2} + \varepsilon_X
-$$
-
-$$
-M <- (0.35800137127747389)\cdot X + \varepsilon_M
-$$
-
-$$
-Y <- (-0.79585700972545459)\cdot C + (-0.71641682995974743)\cdot L_{2} + (-0.52749259051598618)\cdot X + (1.4218960031282049)\cdot M + \varepsilon_Y
-$$
-
-$$
-Gaussian scenario: independent \varepsilon_v \sim \mathcal{N}(0,variance_v)
-$$
-
-$$
-uniform scenario: independent \varepsilon_v \sim \mathrm{Uniform}(-sqrt(3 variance_v),sqrt(3 variance_v)).
-$$
-
-$$
-\tau_YX = coefficient[Y,X] + coefficient[M,X]\cdot coefficient[Y,M].
+\tau_{YX} = \mathrm{coefficient}[Y,X] + \mathrm{coefficient}[M,X]\cdot \mathrm{coefficient}[Y,M].
 $$
 
 <details>

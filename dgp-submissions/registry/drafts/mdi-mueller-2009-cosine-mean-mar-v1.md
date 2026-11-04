@@ -34,6 +34,8 @@ Not explicitly identified (review required)
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**Full data and observation**
+
 $$
 X\sim \mathrm{Uniform}(-1,1)
 $$
@@ -52,9 +54,13 @@ $$
 R\mid X=x\sim \mathrm{Bernoulli}(\mathrm{expit}(x)).
 $$
 
+**Observed encoding**
+
 $$
-Y_observed=Y if R=1, else finite zero placeholder.
+Y_{\mathrm{observed}}=Y \text{ if } R=1, \mathrm{else} \mathrm{finite} \mathrm{zero} \text{ placeholder }.
 $$
+
+**Target**
 
 $$
 \theta=\mathbb{E}(Y)=0.454648713412841

@@ -34,49 +34,69 @@ Z_i
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**Observed covariate construction**
+
 $$
-X_i = C_i + Z_i, with C_i in \{0, \delta\}
+X_{i} = C_{i} + Z_{i}, \text{ with } C_{i} \in \{0, \delta\}
 $$
 
 $$
-Z_i \sim Normal_p(0, I_p). The paper’s outcome equation uses (C_i+Z_i)^T \beta.
+Z_{i} \sim \mathcal{N}_{p}(0, I_{p})
+$$
+
+The paper’s outcome equation uses (C_i+Z_i)^T beta.
+
+**Treatment marginal and cluster assignment as stated in source**
+
+$$
+W_{i} \sim \mathrm{Bernoulli}(0.5)
 $$
 
 $$
-W_i \sim \mathrm{Bernoulli}(0.5)
+P(C_{i}=0 | W_{i}=0)=0.8 \text{ and } P(C_{i}=0 | W_{i}=1)=0.2.
+$$
+
+**Equivalent implementation factorization**
+
+$$
+P(C_{i}=0)=0.5
 $$
 
 $$
-P(C_i=0 | W_i=0)=0.8 and P(C_i=0 | W_i=1)=0.2.
+P(W_{i}=1 \mid  C_{i}=0)=0.2
 $$
 
 $$
-P(C_i=0)=0.5
+P(W_{i}=1 \mid  C_{i}=\delta)=0.8
+$$
+
+This reproduces the source joint law by Bayes’ rule.
+
+**Outcome/noise**
+
+$$
+Y_{i} = X_{i}^{T} \beta+ W_{i} + \varepsilon_{i}
 $$
 
 $$
-P(W_i=1 \mid  C_i=0)=0.2
+\varepsilon_{i} \sim \mathcal{N}(0,1). Z_{i} \sim \mathcal{N}_{p}(0,I_{p}), \text{ with } \text{ iid } \mathrm{standard}-\mathrm{normal} \text{ coordinates }
 $$
 
-$$
-P(W_i=1 \mid  C_i=\delta)=0.8. This reproduces the source joint law by Bayes’ rule.
-$$
+Independent errors and independent rows are implementation assumptions to be confirmed against the source wording.
+
+**Between-cluster vector, dense**
 
 $$
-Y_i = X_i^T \beta + W_i + \varepsilon_i
+\delta= (4 / \sqrt{n}) \cdot  1_{p}.
 $$
 
-$$
-\varepsilon_i \sim \mathcal{N}(0,1). Z_i \sim Normal_p(0,I_p), with iid standard-normal coordinates. Independent errors and independent rows are implementation assumptions to be confirmed against the source wording.
-$$
+**Between-cluster vector, sparse**
 
 $$
-\delta = (4 / sqrt(n)) \cdot  1_p.
+\delta_{j} = (40 / \sqrt{n}) \cdot  1\{j = 1 \bmod  10\}, \text{ for } j=1,\ldots ,p.
 $$
 
-$$
-\delta_j = (40 / sqrt(n)) \cdot  1\{j = 1 mod 10\}, for j=1,\ldots ,p.
-$$
+**Beta profiles**
 
 Dense: beta proportional to (1, 1/sqrt(2), ..., 1/sqrt(p))
 
@@ -84,16 +104,20 @@ harmonic: beta proportional to (1/10, 1/11, ..., 1/(p+9))
 
 moderately sparse: (10 repeated 10 times, 1 repeated 90 times, then 0)
 
+very sparse: (1 repeated 10 times, then 0)
+
 $$
-very sparse: (1 repeated 10 times, then 0). Each vector is rescaled to ||\beta||_2=2.
+\mathrm{Each} \text{ vector } \text{ is } \mathrm{rescaled} \text{ to } ||\beta||_{2}=2.
+$$
+
+**Estimand and truth**
+
+$$
+Y_{i}(w)=X_{i}^{T} \beta+ w + \varepsilon_{i}, w \in \{0,1\}
 $$
 
 $$
-Y_i(w)=X_i^T \beta + w + \varepsilon_i, w in \{0,1\}
-$$
-
-$$
-ATE=\mathbb{E}[Y_i(1)-Y_i(0)]=1.
+\mathrm{ATE}=\mathbb{E}[Y_{i}(1)-Y_{i}(0)]=1.
 $$
 
 <details>

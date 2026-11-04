@@ -34,30 +34,40 @@ lambda_t, W_1t, W_2t
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**factor**
+
 $$
-\lambda_t iid TN(0.5,0.1^{2};(0,1))
+\lambda_{t} \text{ iid } TN(0.5,0.1^{2};(0,1))
 $$
 
 $$
 t=1,\ldots ,200
 $$
 
+**conditional_marginals**
+
 $$
-Y_t\mid \lambda_t \sim Pois(\exp(\lambda_t-2\cdot 1(t>100)))
+Y_{t}\mid \lambda_{t} \sim \mathrm{Pois}(\exp(\lambda_{t}-2\cdot 1(t>100)))
 $$
 
 $$
-W_1t,W_2t\mid \lambda_t \sim Pois(\lambda_t/(e-1))
+W_{1t},W_{2t}\mid \lambda_{t} \sim \mathrm{Pois}(\lambda_{t}/(e-1))
 $$
+
+**joint_law_adaptation**
 
 Given lambda_1:200, all 600 observed draws are
 
 mutually independent
 
-factors independent across periods.
+factors
+
+independent across periods
+
+**estimand**
 
 $$
-\log(\mathbb{E}[Y_t(1)]/\mathbb{E}[Y_t(0)])=-2
+\log(\mathbb{E}[Y_{t}(1)]/\mathbb{E}[Y_{t}(0)])=-2
 $$
 
 <details>

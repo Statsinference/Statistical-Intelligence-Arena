@@ -34,48 +34,64 @@ Not explicitly identified (review required)
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**Baseline continuous confounder**
+
 $$
-X_{1} \sim \mathcal{N}(mean=1, variance=1)
+X_{1} \sim \mathcal{N}(\text{ mean }=1, \text{ variance }=1)
 $$
+
+**Baseline binary confounder**
 
 $$
 X_{2} \sim \mathrm{Bernoulli}(0.5)
 $$
 
+**Potential outcome under control**
+
 $$
 Y(0) = 0.5 + 2\cdot X_{1} + X_{2} + \varepsilon(0), \varepsilon(0) \sim \mathcal{N}(0,1)
 $$
 
+**Potential outcome under treatment**
+
 $$
 Y(1) = 3\cdot X_{1} + 2\cdot X_{2} + \varepsilon(1), \varepsilon(1) \sim \mathcal{N}(0,1)
 $$
+
+**Treatment assignment**
 
 $$
 A \mid  X_{1},X_{2} \sim \mathrm{Bernoulli}(\pi)
 $$
 
 $$
-logit(\pi) = 1.25 - 0.5\cdot X_{1} - 0.5\cdot X_{2}
+\mathrm{logit}(\pi) = 1.25 - 0.5\cdot X_{1} - 0.5\cdot X_{2}
 $$
+
+**Missingness indicator**
 
 $$
 R_{1} \mid  X_{1},X_{2},A \sim \mathrm{Bernoulli}(p)
 $$
 
 $$
-logit(p) = -2 + 2\cdot X_{1} + A\cdot (1.5 + X_{2})
+\mathrm{logit}(p) = -2 + 2\cdot X_{1} + A\cdot (1.5 + X_{2})
 $$
 
 $$
-R_{1}=1 means X_{1} observed
+R_{1}=1 \mathrm{means} X_{1} \text{ observed }
 $$
+
+**Observed outcome**
 
 $$
 Y = A\cdot Y(1) + (1-A)\cdot Y(0)
 $$
 
+**Target truth**
+
 $$
-ATE=\mathbb{E}[Y(1)-Y(0)]=-0.5 + 1\cdot \mathbb{E}[X_{1}] + 1\cdot \mathbb{E}[X_{2}] = -0.5+1+0.5=1
+\mathrm{ATE}=\mathbb{E}[Y(1)-Y(0)]=-0.5 + 1\cdot \mathbb{E}[X_{1}] + 1\cdot \mathbb{E}[X_{2}] = -0.5+1+0.5=1
 $$
 
 <details>

@@ -34,24 +34,30 @@ U_i
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**Source sampling law**
+
 $$
-Y_1,\ldots ,Y_n iid \sim P\cdot , Q\cdot (u)=4(u-0.4)^{3}+0.2u, 0<u<1
+Y_{1},\ldots ,Y_{n} \text{ iid } \sim P^{\ast}, Q^{\ast}(u)=4(u-0.4)^{3}+0.2u, 0<u<1
 $$
 
 n in {50,500}.
 
+**Equivalent inverse-transform construction**
+
 $$
-U_i iid \sim \mathrm{Uniform}(0,1)
+U_{i}\overset{\mathrm{iid}}{\sim} \mathrm{Uniform}(0,1)
 $$
 
 $$
-Y_i=4(U_i-0.4)^{3}+0.2U_i. No added noise
+Y_{i}=4(U_{i}-0.4)^{3}+0.2U_{i}. \mathrm{No} \text{ added } \text{ noise }
 $$
 
 only Y is observed.
 
+**Derived monotonicity and support**
+
 $$
-Q'(u)=12(u-0.4)^{2}+0.2>=0.2
+Q'(u)=12(u-0.4)^{2}+0.2\geq 0.2
 $$
 
 $$
@@ -59,15 +65,19 @@ Q(0)=-0.256
 $$
 
 $$
-Q(1)=1.064 (continuous endpoint extensions).
+Q(1)=1.064 (\text{ continuous } \text{ endpoint } \text{ extensions }).
 $$
 
-$$
-\theta=inf\{y:F_Y(y)>=0.9\}=Q\cdot (0.9)=17/25=0.68.
-$$
+**Adapted scalar target**
 
 $$
-Q\cdot (u)=4u^{3}-4.8u^{2}+2.12u-0.256
+\theta=\inf\{y:F_{Y}(y)\geq 0.9\}=Q^{\ast}(0.9)=17/25=0.68.
+$$
+
+**Independent verification route**
+
+$$
+Q^{\ast}(u)=4u^{3}-4.8u^{2}+2.12u-0.256
 $$
 
 F_Y(y) is the unique inverse root in [0,1] on the support, with 0/1 outside.

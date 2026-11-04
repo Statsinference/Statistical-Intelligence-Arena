@@ -39,25 +39,29 @@ Z\sim \mathrm{Uniform}(\{1,2,3\})
 $$
 
 $$
-\varepsilon\sim \mathcal{N}(0,1) independently
+\varepsilon\sim \mathcal{N}(0,1) \text{ independently }
 $$
 
 $$
-Y=\mu_Z+\varepsilon, with (\mu_{1},\mu_{2},\mu_{3})=(-2,0,4).
+Y=\mu_{Z}+\varepsilon, \text{ with } (\mu_{1},\mu_{2},\mu_{3})=(-2,0,4).
 $$
 
 $$
-The source assumes an observed fixed surrogate prediction Y_hat=Z. Export it as X_{1} with role auxiliary_prediction, on both labeled and unlabeled rows.
+\mathrm{The} \text{ source } \mathrm{assumes} \text{ an } \text{ observed } \text{ fixed } \mathrm{surrogate} \mathrm{prediction} Y_{\mathrm{hat}}=Z
 $$
 
-Two independent samples from the same population: source_n_labeled rows with observed Y and source_n_unlabeled rows with observed X only. R=1 in the first labeled block
+Export it as X1 with role auxiliary_prediction, on both labeled and unlabeled rows.
+
+Source notation retained without guessing:
+
+<pre>Two independent samples from the same population: source_n_labeled rows with observed Y and source_n_unlabeled rows with observed X only. R=1 in the first labeled block</pre>
 
 $$
-Y_obs=Y there. R=0 in the remaining block
+Y_{\mathrm{obs}}=Y \text{ there }. R=0 \in \text{ the } \mathrm{remaining} \mathrm{block}
 $$
 
 $$
-Y_obs=0 is a placeholder.
+Y_{\mathrm{obs}}=0 \text{ is } \text{ a } \text{ placeholder }.
 $$
 
 <details>

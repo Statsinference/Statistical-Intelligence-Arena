@@ -36,52 +36,76 @@ Not explicitly identified (review required)
 
 **Original source equations (verbatim):** [Open raw scientific record (JSON)](./did-ye-2024-bracketing-v1.json).
 
-$$
-$(p_a,p_b,p_{trt})=(0.2,0.5,0.3),\quad \sum_g n_g=n$
-$$
+**Fixed group design: a=0, b=1, trt=2; n=1000 in source**
 
 $$
-$n_g=\lfloor np_g\rfloor+r_g,\quad r_g\in\{0,1\},\quad \sum_g r_g=n-\sum_g\lfloor np_g\rfloor$
+(p_a,p_b,p_{trt})=(0.2,0.5,0.3),\quad \sum_g n_g=n
 $$
 
-$$
-$\mu_a^{I}=(10,11,9,8)$
-$$
+**Group allocation; largest fractional remainders receive the remaining units**
 
 $$
-$\mu_b^{I}=(4,5,3,2)$
+n_g=\lfloor np_g\rfloor+r_g,\quad r_g\in\{0,1\},\quad \sum_g r_g=n-\sum_g\lfloor np_g\rfloor
 $$
 
-$$
-$\mu_{trt}^{I}=(3,4,2,1)$
-$$
+**Case I untreated means in group a**
 
 $$
-$\mu_a^{II}=(10,11,10,11)$
+\mu_a^{I}=(10,11,9,8)
 $$
 
-$$
-$\mu_b^{II}=(4,6,2,3)$
-$$
+**Case I untreated means in group b**
 
 $$
-$\mu_{trt}^{II}=(3,4,0,1)$
+\mu_b^{I}=(4,5,3,2)
 $$
 
-$$
-$(\theta_1,\theta_2,\theta_3,\theta_4)=(0,2,3,1)$
-$$
+**Case I untreated means in treated group**
 
 $$
-$\epsilon_{it}\sim N(0,1),\quad i=1,\ldots,n,\quad t=1,2,3,4$
+\mu_{trt}^{I}=(3,4,2,1)
 $$
 
-$$
-$Y_{it}=\mu_{G_i,t}+\mathbf{1}\{G_i=trt\}\theta_t+\epsilon_{it}$
-$$
+**Case II untreated means in group a**
 
 $$
-$ATT_4=E[Y_{i4}(1)-Y_{i4}(0)\mid G_i=trt]=\theta_4=1$
+\mu_a^{II}=(10,11,10,11)
+$$
+
+**Case II untreated means in group b**
+
+$$
+\mu_b^{II}=(4,6,2,3)
+$$
+
+**Case II untreated means in treated group**
+
+$$
+\mu_{trt}^{II}=(3,4,0,1)
+$$
+
+**Additive effects; no anticipation in period 1**
+
+$$
+(\theta_1,\theta_2,\theta_3,\theta_4)=(0,2,3,1)
+$$
+
+**Independent errors across all individuals and periods**
+
+$$
+\epsilon_{it}\sim N(0,1),\quad i=1,\ldots,n,\quad t=1,2,3,4
+$$
+
+**Observed outcome; effect added to treated group only**
+
+$$
+Y_{it}=\mu_{G_i,t}+\mathbf{1}\{G_i=trt\}\theta_t+\epsilon_{it}
+$$
+
+**Fixed estimand**
+
+$$
+ATT_4=E[Y_{i4}(1)-Y_{i4}(0)\mid G_i=trt]=\theta_4=1
 $$
 
 

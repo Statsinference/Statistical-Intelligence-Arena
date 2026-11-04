@@ -34,28 +34,38 @@ Not explicitly identified (review required)
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**Covariates**
+
 $$
-X_1,\ldots ,X_10 independent \mathrm{Poisson}(10)
+X_{1},\ldots ,X_{10} \text{ independent } \mathrm{Poisson}(10)
+$$
+
+**Response**
+
+$$
+X_{j}\overset{\mathrm{iid}}{\sim} \mathrm{Poisson}(10)
 $$
 
 $$
-X_j iid \sim \mathrm{Poisson}(10)
+Y \mid  X \sim \mathrm{Poisson}(10 X_{1})
+$$
+
+**Sampling and observed data**
+
+Independent units and independent outcome noise
+
+$$
+\mathrm{Two} \text{ iid } \mathrm{samples} \text{ from } \text{ the } \mathrm{same} \text{ population }
+$$
+
+fixed group sizes, R indicates observed Y
+
+$$
+\mathrm{Export} X,R,Y_{\mathrm{obs}} \text{ where } Y_{\mathrm{obs}}=Y \text{ when } R=1 \text{ and } 0 \text{ otherwise }
 $$
 
 $$
-Y \mid  X \sim \mathrm{Poisson}(10 X_1)
-$$
-
-$$
-Independent units and independent outcome noise. Two iid samples from the same population
-$$
-
-$$
-fixed group sizes, R indicates observed Y. Export X,R,Y_obs where Y_obs=Y when R=1 and 0 otherwise
-$$
-
-$$
-n_total=nL+nU.
+n_{\mathrm{total}}=\mathrm{nL}+\mathrm{nU}.
 $$
 
 <details>

@@ -34,57 +34,73 @@ phi_gamma_j
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
-$$
-Z_j independently \sim Binomial(2,0.5), j=1,\ldots ,100.
-$$
+**Equation 1**
 
 $$
-phi_\gamma_j,phi_\delta_j independently drawn once \sim \mathcal{N}(0,1)
+Z_{j} \text{ independently } \sim \mathrm{Binomial}(2,0.5), j=1,\ldots ,100.
 $$
 
-$$
-\gamma_j=phi_\gamma_j\cdot sqrt(h_{2}/(1.5\cdot m))
-$$
+**Equation 2**
+
+Source notation retained without guessing:
+
+<pre>phi_gamma_j,phi_delta_j independently drawn once ~ N(0,1)</pre>
+
+Source notation retained without guessing:
+
+<pre>gamma_j=phi_gamma_j*sqrt(h2/(1.5*m))</pre>
+
+Source notation retained without guessing:
+
+<pre>delta_j=phi_delta_j*kappa*sqrt(h2/(1.5*m))</pre>
 
 $$
-\delta_j=phi_\delta_j\cdot kappa\cdot sqrt(h_{2}/(1.5\cdot m))
+h_{2}=0.2,\kappa=1.
 $$
 
-$$
-h_{2}=0.2,kappa=1.
-$$
+**Equation 3**
 
 $$
 U\sim \mathcal{N}(0,0.6\cdot (1-h_{2}))
 $$
 
 $$
-\varepsilon_A,\varepsilon_Y independently \sim \mathcal{N}(0,0.4\cdot (1-h_{2}))
+\varepsilon_{A},\varepsilon_{Y} \text{ independently } \sim \mathcal{N}(0,0.4\cdot (1-h_{2}))
 $$
-
-
 
 independent of Z and each other
 
+**Equation 4**
+
 $$
-A=sum_j \gamma_j Z_j + U + (1+sum_j \delta_j Z_j)\cdot \varepsilon_A.
+A=\sum_{j} \gamma_{j} Z_{j} + U + (1+\sum_{j} \delta_{j} Z_{j})\cdot \varepsilon_{A}.
+$$
+
+**Equation 5**
+
+$$
+Y=0.4\cdot A+\sum_{j} \alpha_{j} Z_{j}+U+\varepsilon_{Y}.
+$$
+
+**Equation 6**
+
+$$
+S_{1}:\alpha_{j}=0
 $$
 
 $$
-Y=0.4\cdot A+sum_j \alpha_j Z_j+U+\varepsilon_Y.
+S_{2}:\alpha_{j}\sim \mathcal{N}(\sqrt{\mathrm{tau0}_{\mathrm{squared}}},\mathrm{tau0}_{\mathrm{squared}}) \text{ where } \mathrm{tau0}_{\mathrm{squared}}=h_{2}/(1.5\cdot m)
 $$
 
 $$
-S_{1}:\alpha_j=0
+S_{3}:\alpha_{j}=\gamma_{j}/2.
 $$
 
-S2:alpha_j~N(sqrt(tau0_squared),tau0_squared) where tau0_squared=h2/(1.5*m)
+**Equation 7**
 
-$$
-S_{3}:\alpha_j=\gamma_j/2.
-$$
+Settings S1/S2/S3 counts are 100/0/0,60/20/20,10/90/0,10/0/90
 
-Settings S1/S2/S3 counts are 100/0/0,60/20/20,10/90/0,10/0/90. Frozen realized coefficients are explicit in config.json.
+Frozen realized coefficients are explicit in config.json.
 
 <details>
 <summary>Original source equations (verbatim)</summary>

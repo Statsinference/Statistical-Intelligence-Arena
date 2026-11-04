@@ -34,24 +34,46 @@ Not explicitly identified (review required)
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
-X1_i iid Uniform(0,1). Source main simulation, Section 5.2.
-
-X2_i iid Uniform(0,1)
-
-independent of X1. Independent rows and independent within-row coordinates
+**1. First covariate**
 
 $$
-\varepsilon_i\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1), independent of X_{1},X_{2}. Main simulation error sd=1
+\mathrm{X1}_{i}\overset{\mathrm{iid}}{\sim} \mathrm{Uniform}(0,1)
+$$
+
+Source main simulation, Section 5.2.
+
+**2. Second covariate**
+
+$$
+\mathrm{X2}_{i}\overset{\mathrm{iid}}{\sim} \mathrm{Uniform}(0,1)
+$$
+
+independent of X1
+
+Independent rows and independent within-row coordinates.
+
+**3. Innovation**
+
+$$
+\varepsilon_{i}\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1)
+$$
+
+independent of X1,X2
+
+$$
+\mathrm{Main} \mathrm{simulation} \mathrm{error} \mathrm{sd}=1
 $$
 
 not the separate Section 3.5 small-example noise.
+
+**4. Mean surface**
 
 $$
 f_{1}=(X_{1}+X_{2})^{2}
 $$
 
 $$
-f_{2}=sqrt(X_{1}+X_{2})
+f_{2}=\sqrt{X_{1}+X_{2}}
 $$
 
 $$
@@ -63,14 +85,22 @@ f_{4}=\exp(X_{1}+X_{2})
 $$
 
 $$
-f_{5}=\exp(X_{1}\cdot X_{2}). Deterministic source functions
+f_{5}=\exp(X_{1}\cdot X_{2})
 $$
+
+Deterministic source functions
 
 the radical in f2 covers the whole sum.
 
-Y_i=f_k(X1_i,X2_i)+epsilon_i
+**5. Observed response**
 
-return X1,X2,Y. No latent surface or oracle column. One selected surface per scenario.
+$$
+Y_{i}=f_{k}(\mathrm{X1}_{i},\mathrm{X2}_{i})+\varepsilon_{i}
+$$
+
+return X1,X2,Y. No latent surface or oracle column
+
+One selected surface per scenario.
 
 <details>
 <summary>Original source equations (verbatim)</summary>

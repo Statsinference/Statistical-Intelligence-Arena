@@ -34,36 +34,46 @@ Not explicitly identified (review required)
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**Covariate**
+
 $$
-X_i \sim Uniform[0,1] independently
+X_{i} \sim \mathrm{Uniform}[0,1] \text{ independently }
+$$
+
+**Step regression function**
+
+$$
+p_{s}(x) = (\lfloor k\cdot x\rfloor + 1\{x \neq 1\}) / k, k = 15 - 10\cdot s, s \in \{0.1, 0.2, \ldots , 1.0\}, k \in \{14, 13, \ldots , 5\}
+$$
+
+**Special values**
+
+$$
+p_{s}(0) = 1/k
 $$
 
 $$
-p_s(x) = (\mathrm{floor}(k\cdot x) + 1\{x != 1\}) / k, k = 15 - 10\cdot s, s in \{0.1, 0.2, \ldots , 1.0\}, k in \{14, 13, \ldots , 5\}
+p_{s}(j/k) = (j+1)/k \text{ for } j=0,\ldots ,k-1
 $$
 
 $$
-p_s(0) = 1/k
+p_{s}(1) = 1
+$$
+
+**Binary outcome**
+
+$$
+Y_{i} \mid  X_{i}=x \sim \mathrm{Bernoulli}(p_{s}(x)) \text{ independently }
+$$
+
+**NRI scalar target (default)**
+
+$$
+m_{s}(0.5) = \mathbb{E}[Y \mid  X=0.5] = p_{s}(0.5) = (\lfloor k\cdot 0.5\rfloor+1)/k
 $$
 
 $$
-p_s(j/k) = (j+1)/k for j=0,\ldots ,k-1
-$$
-
-$$
-p_s(1) = 1
-$$
-
-$$
-Y_i \mid  X_i=x \sim \mathrm{Bernoulli}(p_s(x)) independently
-$$
-
-$$
-m_s(0.5) = \mathbb{E}[Y \mid  X=0.5] = p_s(0.5) = (\mathrm{floor}(k\cdot 0.5)+1)/k
-$$
-
-$$
-for s=0.5, k=10: \mathrm{floor}(5.0)=5, value=6/10=0.6
+\text{ for } s=0.5, k=10: \lfloor 5.0\rfloor=5, \mathrm{value}=6/10=0.6
 $$
 
 <details>

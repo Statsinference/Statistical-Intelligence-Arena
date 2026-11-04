@@ -34,28 +34,38 @@ Xj
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**X1-X5**
+
 $$
-Xj \sim \mathcal{N}(0,1) independently, j = 1..5
+\mathrm{Xj} \sim \mathcal{N}(0,1) \text{ independently }, j = 1..5
 $$
+
+**Treatment**
 
 $$
 e(X) = 1/2
 $$
 
+**Baseline**
+
 $$
-b(X) = max\{X_{1} + X_{2}, X_{3}, 0\} + max\{X_{4} + X_{5}, 0\}
+b(X) = \max\{X_{1} + X_{2}, X_{3}, 0\} + \max\{X_{4} + X_{5}, 0\}
 $$
+
+**Heterogeneity**
 
 $$
 \tau(X) = X_{1} + \log(1 + \exp(X_{2}))
 $$
 
+**Outcome**
+
 $$
-Y = b(X) + A \tau(X) + \sigma eps, eps \sim \mathcal{N}(0,1)
+Y = b(X) + A \tau(X) + \sigma\varepsilon, \varepsilon\sim \mathcal{N}(0,1)
 $$
 
 $$
-\sigma = 1
+\sigma= 1
 $$
 
 <details>

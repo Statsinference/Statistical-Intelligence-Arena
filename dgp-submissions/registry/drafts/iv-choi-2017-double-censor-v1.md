@@ -34,13 +34,19 @@ U, delta, C_Y, C_D
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**Covariates and errors**
+
 $$
-V_{1},V_{2},W_{1},W_{2},U\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1) conditional on [-2,2]
+V_{1},V_{2},W_{1},W_{2},U\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1) \mathrm{conditional} \text{ on } [-2,2]
 $$
 
 $$
-\varepsilon,\delta\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1), independent of all covariates.
+\varepsilon,\delta\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1)
 $$
+
+independent of all covariates
+
+**Latent exposure and outcome**
 
 $$
 D=1+V_{1}+V_{2}+W_{1}+W_{2}+U+\delta
@@ -52,33 +58,39 @@ $$
 
 all source Eq12/13 parameters1.
 
+**Independent censoring**
+
 $$
-C_Y\sim \mathrm{Uniform}(0,13.249945942133955)
+C_{Y}\sim \mathrm{Uniform}(0,13.249945942133955)
 $$
 
 $$
-C_D\sim \mathrm{Uniform}(-7,2.629814945797971)
+C_{D}\sim \mathrm{Uniform}(-7,2.629814945797971)
 $$
 
+independent of all other variables and each other
 
+Endpoints numerically calibrated to20% population censoring as an explicit adaptation.
 
-independent of all other variables and each other. Endpoints numerically calibrated to20% population censoring as an explicit adaptation
-
-$$
-D_observed=\max(D,C_D)
-$$
+**Observed values**
 
 $$
-D_exact=I(D>=C_D)
+D_{\mathrm{observed}}=\max(D,C_{D})
 $$
 
 $$
-Y_observed=\min(Y,C_Y)
+D_{\mathrm{exact}}=I(D\geq C_{D})
 $$
 
 $$
-Y_event=I(Y<=C_Y). Return V_{1},V_{2},W_{1},W_{2},D_observed,D_exact,Y_observed,Y_event only.
+Y_{\mathrm{observed}}=\min(Y,C_{Y})
 $$
+
+$$
+Y_{\mathrm{event}}=I(Y\leq C_{Y})
+$$
+
+Return V1,V2,W1,W2,D_observed,D_exact,Y_observed,Y_event only.
 
 <details>
 <summary>Original source equations (verbatim)</summary>

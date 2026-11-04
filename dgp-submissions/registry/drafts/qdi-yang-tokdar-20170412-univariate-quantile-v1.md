@@ -34,17 +34,23 @@ U
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**Published Section 5.1 predictor, PDF p.8 / JASA p.1113, unnumbered**
+
 $$
 X \sim \mathrm{Uniform}(-1,1)
 $$
 
+**Published Section 5.1 conditional quantile, PDF p.8 / JASA p.1113, unnumbered**
+
 $$
-Q_Y(\tau\mid X=x) = 3\cdot (\tau-1/2)\cdot \log(1/[\tau\cdot (1-\tau)]) + 4\cdot (\tau-1/2)^{2}\cdot \log(1/[\tau\cdot (1-\tau)])\cdot x
+Q_{Y}(\tau\mid X=x) = 3\cdot (\tau-1/2)\cdot \log(1/[\tau\cdot (1-\tau)]) + 4\cdot (\tau-1/2)^{2}\cdot \log(1/[\tau\cdot (1-\tau)])\cdot x
 $$
 
 $$
 0<\tau<1
 $$
+
+**Derived sampling representation, not an added noise law**
 
 $$
 U \sim \mathrm{Uniform}(0,1)
@@ -53,17 +59,19 @@ $$
 independent of X
 
 $$
-Y=Q_Y(U\mid X)
+Y=Q_{Y}(U\mid X)
 $$
 
 $$
-iid pairs across rows
+\text{ iid } \mathrm{pairs} \text{ across } \text{ rows }
 $$
 
 only X,Y observed/exported
 
+**Collection target adaptation**
+
 $$
-\theta=Q_Y(0.9\mid X=0.5)=(38/25)\cdot \log(100/9)
+\theta=Q_{Y}(0.9\mid X=0.5)=(38/25)\cdot \log(100/9)
 $$
 
 <details>

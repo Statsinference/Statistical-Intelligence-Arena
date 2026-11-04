@@ -36,40 +36,54 @@ Not explicitly identified (review required)
 
 **Original source equations (verbatim):** [Open raw scientific record (JSON)](./iv-hoshino-2024-ring-network-v1.json).
 
+**DGP equation 1**
+
 $$
-N=500, i=0,\ldots ,499
+\mathrm{N}=500, i=0,\ldots ,499
 $$
 
 $$
-N_\{i\}=\{i±1,\ldots ,i±L\} mod 500
+\mathcal{N}_{i}=\{i\pm 1,\ldots ,i\pm L\} \bmod  500
 $$
 
 $$
 L\in \{2,3\}.
 $$
 
-$$
-Z_\{i\} iid \sim \mathrm{Bernoulli}(0.4).
-$$
+**DGP equation 2**
 
 $$
-DGP1: D_\{i\}=1\{\gamma_\{0i\}+Z_\{i\}+\Sigma_\{j\in N_{i}\}Z_\{j\} \geq 0\}
+Z_{i}\overset{\mathrm{iid}}{\sim} \mathrm{Bernoulli}(0.4).
 $$
 
-$$
-Y_\{i\}=\beta_\{0i\}+\beta_\{1i\}D_\{i\}.
-$$
+**DGP equation 3**
 
 $$
-DGP2: D_\{i\}=1\{\gamma_\{0i\}+Z_\{i\} \geq 0\}
+\mathrm{DGP1}: D_{i}=1\{\gamma_{0i}+Z_{i}+\sum_{j\in \mathrm{N}_{i}}Z_{j} \geq 0\}
 $$
 
-$$
-Y_\{i\}=\beta_\{0i\}+\beta_\{1i\}D_\{i\}+\beta_\{2i\}\Sigma_\{j\in N_{i}\}D_\{j\}.
-$$
+**DGP equation 4**
 
 $$
-\theta=\Sigma_\{i\}\beta_\{1i\}w_\{i\} / \Sigma_\{i\}w_\{i\}.
+Y_{i}=\beta_{0i}+\beta_{1i}D_{i}.
+$$
+
+**DGP equation 5**
+
+$$
+\mathrm{DGP2}: D_{i}=1\{\gamma_{0i}+Z_{i} \geq 0\}
+$$
+
+**DGP equation 6**
+
+$$
+Y_{i}=\beta_{0i}+\beta_{1i}D_{i}+\beta_{2i}\sum_{j\in \mathrm{N}_{i}}D_{j}.
+$$
+
+**DGP equation 7**
+
+$$
+\theta=\sum_{i}\beta_{1i}w_{i} / \sum_{i}w_{i}.
 $$
 
 

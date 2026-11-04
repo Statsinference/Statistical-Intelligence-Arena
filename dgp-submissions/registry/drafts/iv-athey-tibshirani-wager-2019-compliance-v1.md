@@ -39,7 +39,7 @@ X \sim \mathcal{N}(0,I_{10})
 $$
 
 $$
-\varepsilon \sim \mathcal{N}(0,1)
+\varepsilon\sim \mathcal{N}(0,1)
 $$
 
 $$
@@ -49,7 +49,7 @@ $$
 mutually independent
 
 $$
-Q\mid \varepsilon \sim \mathrm{Bernoulli}(\mathrm{expit}(\omega\varepsilon))
+Q\mid \varepsilon\sim \mathrm{Bernoulli}(\mathrm{expit}(\omega\varepsilon))
 $$
 
 $$
@@ -85,7 +85,7 @@ k \in \{2,4\}
 $$
 
 $$
-\omega \in \{0,1\}
+\omega\in \{0,1\}
 $$
 
 $$

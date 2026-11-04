@@ -34,8 +34,10 @@ B, e
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**Common covariate law, Section 4.2 p.1114**
+
 $$
-X \sim chi-square(df=2)
+X \sim \chi-\mathrm{square}(\mathrm{df}=2)
 $$
 
 $$
@@ -46,48 +48,58 @@ X, Z, e
 
 mutually independent
 
-$$
-Y=X+Z+e
-$$
-
-$$
-e\sim \mathcal{N}(mean=0, variance=4).
-$$
+**Model 1, p.1114**
 
 $$
 Y=X+Z+e
 $$
 
 $$
-\log(e)\sim \mathcal{N}(mean=0, variance=1)
+e\sim \mathcal{N}(\text{ mean }=0, \text{ variance }=4).
+$$
+
+**Model 2, p.1114**
+
+$$
+Y=X+Z+e
+$$
+
+$$
+\log(e)\sim \mathcal{N}(\text{ mean }=0, \text{ variance }=1)
 $$
 
 e is not centered.
+
+**Model 3, p.1114**
 
 $$
 Y=X+Z+(1+X/2)e
 $$
 
 $$
-e\sim \mathcal{N}(mean=0, variance=4).
+e\sim \mathcal{N}(\text{ mean }=0, \text{ variance }=4).
 $$
+
+**Model 4, p.1114**
 
 $$
 Y=X+Z+(1+X/2)e
 $$
 
 $$
-\log(e)\sim \mathcal{N}(mean=0, variance=1)
+\log(e)\sim \mathcal{N}(\text{ mean }=0, \text{ variance }=1)
 $$
 
 e is not centered.
 
+**Derived target adaptation**
+
 $$
-\theta_m=2+s_m(2)q_e(0.95), with s_1=s_2=1, s_3(x)=s_4(x)=1+x/2
+\theta_{m}=2+s_{m}(2)q_{e}(0.95), \text{ with } s_{1}=s_{2}=1, s_{3}(x)=s_{4}(x)=1+x/2
 $$
 
 $$
-q_normal(\tau)=2 Phi^\{-1\}(\tau), q_lognormal(\tau)=\exp(Phi^\{-1\}(\tau)).
+q_{\mathrm{normal}}(\tau)=2 \Phi^{-1}(\tau), q_{\mathrm{lognormal}}(\tau)=\exp(\Phi^{-1}(\tau)).
 $$
 
 <details>

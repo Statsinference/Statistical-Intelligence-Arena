@@ -34,28 +34,38 @@ Not explicitly identified (review required)
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**Covariate**
+
 $$
-X_i \sim Uniform[0,1] independently
+X_{i} \sim \mathrm{Uniform}[0,1] \text{ independently }
+$$
+
+**S-shaped regression function (source form)**
+
+$$
+p_{s}(x) = [1 + ((1-x)/x)^{1+s}]^{-1}, s \in \{0,0.1,\ldots ,1\}, 0<x<1
 $$
 
 $$
-p_s(x) = [1 + ((1-x)/x)^(1+s)]^(-1), s in \{0,0.1,\ldots ,1\}, 0<x<1
+p_{s}(0)=0 \text{ and } p_{s}(1)=1 \text{ by } \mathrm{limits}
 $$
 
-$$
-p_s(0)=0 and p_s(1)=1 by limits
-$$
+**S-shaped regression function (endpoint-safe equivalent)**
 
 $$
-p_s(x) = x^(1+s) / (x^(1+s) + (1-x)^(1+s)), with endpoint values 0 and 1
+p_{s}(x) = x^{1+s} / (x^{1+s} + (1-x)^{1+s}), \text{ with } \text{ endpoint } \mathrm{values} 0 \text{ and } 1
 $$
 
-$$
-Y_i \mid  X_i=x \sim \mathrm{Bernoulli}(p_s(x)) independently
-$$
+**Binary outcome**
 
 $$
-m_s(0.5) = \mathbb{E}[Y \mid  X=0.5] = p_s(0.5) = 0.5 for every declared s
+Y_{i} \mid  X_{i}=x \sim \mathrm{Bernoulli}(p_{s}(x)) \text{ independently }
+$$
+
+**NRI scalar target**
+
+$$
+m_{s}(0.5) = \mathbb{E}[Y \mid  X=0.5] = p_{s}(0.5) = 0.5 \text{ for } \mathrm{every} \mathrm{declared} s
 $$
 
 <details>

@@ -36,36 +36,46 @@ U
 
 **Original source equations (verbatim):** [Open raw scientific record (JSON)](./iv-ye-2024-genius-heteroskedastic-v1.json).
 
+**DGP equation 1**
+
 $$
-m=100, Z_\{j\} iid \sim Binomial(2,0.5)
+m=100, Z_{j}\overset{\mathrm{iid}}{\sim} \mathrm{Binomial}(2,0.5)
 $$
 
 $$
-U\sim \mathcal{N}(0,0.48), \varepsilon_\{A\},\varepsilon_\{Y\} iid \sim \mathcal{N}(0,0.32).
+U\sim \mathcal{N}(0,0.48), \varepsilon_{A},\varepsilon_{Y}\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,0.32).
+$$
+
+**DGP equation 2**
+
+$$
+A=\sum_{j}\gamma_{j}Z_{j}+U+(1+\sum_{j}\delta_{j}Z_{j})\varepsilon_{A}
+$$
+
+**DGP equation 3**
+
+$$
+Y=0.4A+\sum_{j}\alpha_{j}Z_{j}+U+\varepsilon_{Y}.
+$$
+
+**DGP equation 4**
+
+$$
+h^{2}=0.2, \kappa=1, s^{2}=h^{2}/(1.5m)
 $$
 
 $$
-A=\Sigma_\{j\}\gamma_\{j\}Z_\{j\}+U+(1+\Sigma_\{j\}\delta_\{j\}Z_\{j\})\varepsilon_\{A\}
+\gamma_{j}=s\phi_{\gamma j}, \delta_{j}=\kappa s\phi_{\delta j}.
+$$
+
+**DGP equation 5**
+
+$$
+\phi_{\gamma j},\phi_{\delta j}\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1)
 $$
 
 $$
-Y=0.4A+\Sigma_\{j\}\alpha_\{j\}Z_\{j\}+U+\varepsilon_\{Y\}.
-$$
-
-$$
-h^\{2\}=0.2, \kappa=1, s^\{2\}=h^\{2\}/(1.5m)
-$$
-
-$$
-\gamma_\{j\}=s\phi_\{\gamma_{j}\}, \delta_\{j\}=\kappa_{s}\phi_\{\delta_{j}\}.
-$$
-
-$$
-\phi_\{\gamma_{j}\},\phi_\{\delta_{j}\} iid \sim \mathcal{N}(0,1)
-$$
-
-$$
-\alpha_\{j\}=0, or \alpha_\{j\}\sim \mathcal{N}(s,s^\{2\}), or \alpha_\{j\}=\gamma_\{j\}/2.
+\alpha_{j}=0, \text{ or } \alpha_{j}\sim \mathcal{N}(s,s^{2}), \text{ or } \alpha_{j}=\gamma_{j}/2.
 $$
 
 

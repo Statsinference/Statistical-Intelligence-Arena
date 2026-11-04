@@ -34,30 +34,42 @@ epsilon
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
-$$
-X \sim N_3(0,I)
-$$
-
-independent standard Gaussian coordinates. Paper notation p includes intercept: input dimension is p-1.
+**Covariates**
 
 $$
-Y = X_1 X_2 + 0.5 (X_3 + 0.5)^{2} + \varepsilon
+X \sim \mathcal{N}_{3}(0,I)
 $$
 
-$$
-\varepsilon \sim \mathcal{N}(0,0.25)
-$$
+independent standard Gaussian coordinates
+
+Paper notation p includes intercept: input dimension is p-1.
+
+**Response**
 
 $$
-Independent units and independent outcome noise. Two iid samples from the same population
+Y = X_{1} X_{2} + 0.5 (X_{3} + 0.5)^{2} + \varepsilon
 $$
 
 $$
-fixed group sizes, R indicates observed Y. Export X,R,Y_obs where Y_obs=Y when R=1 and 0 otherwise
+\varepsilon\sim \mathcal{N}(0,0.25)
+$$
+
+**Sampling and observed data**
+
+Independent units and independent outcome noise
+
+$$
+\mathrm{Two} \text{ iid } \mathrm{samples} \text{ from } \text{ the } \mathrm{same} \text{ population }
+$$
+
+fixed group sizes, R indicates observed Y
+
+$$
+\mathrm{Export} X,R,Y_{\mathrm{obs}} \text{ where } Y_{\mathrm{obs}}=Y \text{ when } R=1 \text{ and } 0 \text{ otherwise }
 $$
 
 $$
-n_total=nL+nU.
+n_{\mathrm{total}}=\mathrm{nL}+\mathrm{nU}.
 $$
 
 <details>

@@ -34,36 +34,68 @@ Not explicitly identified (review required)
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
-For each row i=1..n, independently draw Z_i1,Z_i2,Z_i3 iid Uniform(0,1). Three independent source uniforms
+**1. Continuous design**
+
+$$
+\mathrm{For} \text{ each } \mathrm{row} i=1..n, \text{ independently } \mathrm{draw} Z_{i1},Z_{i2},Z_{i3}\overset{\mathrm{iid}}{\sim} \mathrm{Uniform}(0,1)
+$$
+
+Three independent source uniforms
 
 no truncation of the resulting index.
 
-$$
-Set X_i=0 for odd i, X_i=1 for even i (1-based row index). Deterministic source design
-$$
+**2. Fixed binary design**
+
+Source notation retained without guessing:
+
+<pre>Set X_i=0 for odd i, X_i=1 for even i (1-based row index)</pre>
+
+Deterministic source design
+
+Source notation retained without guessing:
+
+<pre>no Bernoulli random draw, no added index column, no new noise.</pre>
+
+**3. Single index**
 
 $$
-no Bernoulli random draw, no added index column, no new noise.
+t_{i}=(Z_{i1}+Z_{i2}+Z_{i3})/\sqrt{3}, \text{ with } 0\leq t_{i}\leq \sqrt{3}
 $$
 
-t_i=(Z_i1+Z_i2+Z_i3)/sqrt(3), with 0&lt;=t_i&lt;=sqrt(3). Weights 1/sqrt(3), stored as their finite JSON approximations
+Weights 1/sqrt(3), stored as their finite JSON approximations
 
 0.5774 is only a four-decimal display.
 
-$$
-m_i=\sin(\pi\cdot (t_i-0.3912)/(1.3409-0.3912))+0.3\cdot X_i. Deterministic
-$$
-
-a,b are phase/scale constants, not truncation limits. Sine can be negative outside [a,b].
+**4. Mean function**
 
 $$
-\varepsilon_i\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1), independent of all design uniforms. Source multiplier 0.1 gives noise sd=0.1 and variance=0.01
+m_{i}=\sin(\pi\cdot (t_{i}-0.3912)/(1.3409-0.3912))+0.3\cdot X_{i}
+$$
+
+Deterministic
+
+a,b are phase/scale constants, not truncation limits
+
+Sine can be negative outside [a,b].
+
+**5. Innovation**
+
+$$
+\varepsilon_{i}\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1)
+$$
+
+independent of all design uniforms
+
+$$
+\mathrm{Source} \mathrm{multiplier} 0.1 \mathrm{gives} \text{ noise } \mathrm{sd}=0.1 \text{ and } \text{ variance }=0.01
 $$
 
 it is applied once.
 
+**6. Response and export**
+
 $$
-Y_i=m_i+0.1\cdot \varepsilon_i
+Y_{i}=m_{i}+0.1\cdot \varepsilon_{i}
 $$
 
 export Z1,Z2,Z3,X,Y in row order. No index t, noiseless mean or noise column is returned.

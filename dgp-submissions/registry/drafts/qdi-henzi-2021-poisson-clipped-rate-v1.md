@@ -34,36 +34,48 @@ Not explicitly identified (review required)
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**Source covariate: published Section 4, PDF p.17 / journal p.979, unnumbered paragraph before (23)**
+
 $$
-X_i iid \sim \mathrm{Uniform}(0,10)
+X_{i}\overset{\mathrm{iid}}{\sim} \mathrm{Uniform}(0,10)
+$$
+
+**Source conditional intensity: published equation (26), PDF p.19 / journal p.981**
+
+$$
+\lambda(x)=\min(\max(x,1),6) = 1 \text{ if } 0<x\leq 1
 $$
 
 $$
-\lambda(x)=\min(\max(x,1),6) = 1 if 0<x<=1
+x \text{ if } 1<x<6
 $$
 
 $$
-x if 1<x<6
+6 \text{ if } 6\leq x<10
 $$
 
-$$
-6 if 6<=x<10
-$$
+**Source count: published equation (26), PDF p.19 / journal p.981; Y4 renamed Y**
 
 $$
-Y_i \mid  X_i=x \sim \mathrm{Poisson}(\lambda(x)), independently across i
+Y_{i} \mid  X_{i}=x \sim \mathrm{Poisson}(\lambda(x))
 $$
 
-$$
-P(Y_i=k\mid X_i=x)=\exp(-\lambda(x))\cdot \lambda(x)^k/k!, k=0,1,\ldots
-$$
+independently across i
 
 $$
-\theta=P(Y<=3\mid X=5)=\exp(-5)\cdot (1+5+25/2+125/6)=(118/3)\cdot \exp(-5)
+P(Y_{i}=k\mid X_{i}=x)=\exp(-\lambda(x))\cdot \lambda(x)^{k}/k!, k=0,1,\ldots
 $$
 
+**Adapted scalar target**
+
 $$
-\theta=Integral_5^infinity t^{3}\cdot \exp(-t)/6 dt (Gamma/Erlang survival)
+\theta=P(Y\leq 3\mid X=5)=\exp(-5)\cdot (1+5+25/2+125/6)=(118/3)\cdot \exp(-5)
+$$
+
+**Independent verification identity**
+
+$$
+\theta=\int_{5}^{\infty} t^{3}\cdot \exp(-t)/6 \mathrm{dt} (\Gamma/\mathrm{Erlang} \mathrm{survival})
 $$
 
 <details>

@@ -34,28 +34,38 @@ Xj
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**X1-X6**
+
 $$
-Xj \sim \mathrm{Uniform}(0,1) independently, j = 1..6
+\mathrm{Xj} \sim \mathrm{Uniform}(0,1) \text{ independently }, j = 1..6
 $$
+
+**Treatment**
 
 $$
 P(A=1\mid X) = 0.5
 $$
 
+**Baseline**
+
 $$
 m(X) = 0
 $$
 
+**Heterogeneity**
+
 $$
-\tau(X) = (4/q) sum_\{j=1..q\} [1/(1+\exp(-12 (Xj - 1/2))) - 1/2]
+\tau(X) = (4/q) \sum_{j=1..q} [1/(1+\exp(-12 (\mathrm{Xj} - 1/2))) - 1/2]
 $$
 
 $$
 q = 4
 $$
 
+**Outcome**
+
 $$
-Y = m(X) + A \tau(X) + eps, eps \sim \mathcal{N}(0,1)
+Y = m(X) + A \tau(X) + \varepsilon, \varepsilon\sim \mathcal{N}(0,1)
 $$
 
 <details>

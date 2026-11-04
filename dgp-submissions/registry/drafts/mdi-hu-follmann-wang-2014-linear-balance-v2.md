@@ -34,11 +34,17 @@ Not explicitly identified (review required)
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**Covariates**
+
 X1,...,X10 mutually independent N(0,1)
 
+**Full outcome**
+
 $$
-Y=3X_{1}+5X_{2}+\varepsilon, \varepsilon independent \mathcal{N}(0,1)
+Y=3X_{1}+5X_{2}+\varepsilon, \varepsilon\text{ independent } \mathcal{N}(0,1)
 $$
+
+**Observation**
 
 $$
 R\mid X\sim \mathrm{Bernoulli}(\mathrm{expit}(X_{1}))
@@ -48,11 +54,15 @@ R
 
 independent of Y given X
 
+**Observed encoding**
+
 $$
-Y_observed=Y if R=1
+Y_{\mathrm{observed}}=Y \text{ if } R=1
 $$
 
 otherwise finite placeholder 0
+
+**Target**
 
 $$
 \theta=\mathbb{E}(Y)=0

@@ -34,24 +34,34 @@ Not explicitly identified (review required)
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
-$$
-W_{1}\sim Bern(0.6), W_{2}|W_{1}\sim Bern(0.3), W_{3}|W_{1},W_{2}\sim Bern(0.2+(W_{1}+W_{2})/3)
-$$
+**W**
 
 $$
-A\mid W\sim Bern(\mathrm{expit}(0.25 sum(W)+3W_{1}W_{2}-2))
+W_{1}\sim \mathrm{Bern}(0.6), W_{2}|W_{1}\sim \mathrm{Bern}(0.3), W_{3}|W_{1},W_{2}\sim \mathrm{Bern}(0.2+(W_{1}+W_{2})/3)
 $$
 
-$$
-Z\mid A,W\sim Bern(\mathrm{expit}(sum(W)/3-A-AW3-0.25))
-$$
+**A**
 
 $$
-M\mid Z,A,W\sim Bern(\mathrm{expit}(W_{1}+W_{2}+A-Z+AZ-0.3AW2))
+A\mid W\sim \mathrm{Bern}(\mathrm{expit}(0.25 \sum(W)+3W_{1}W_{2}-2))
 $$
 
+**Z**
+
 $$
-Y\mid M,Z,A,W\sim Bern(\mathrm{expit}((A-Z+M-AZ)/(sum(W)+1)))
+Z\mid A,W\sim \mathrm{Bern}(\mathrm{expit}(\sum(W)/3-A-\mathrm{AW3}-0.25))
+$$
+
+**M**
+
+$$
+M\mid Z,A,W\sim \mathrm{Bern}(\mathrm{expit}(W_{1}+W_{2}+A-Z+AZ-0.3\mathrm{AW2}))
+$$
+
+**Y**
+
+$$
+Y\mid M,Z,A,W\sim \mathrm{Bern}(\mathrm{expit}((A-Z+M-AZ)/(\sum(W)+1)))
 $$
 
 <details>

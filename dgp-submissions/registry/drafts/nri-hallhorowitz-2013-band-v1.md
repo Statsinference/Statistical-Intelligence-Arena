@@ -34,40 +34,56 @@ Not explicitly identified (review required)
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**1. Observed design**
+
 $$
-X_i\overset{\mathrm{iid}}{\sim} \mathrm{Uniform}(-1,1). Source support -1..1
+X_{i}\overset{\mathrm{iid}}{\sim} \mathrm{Uniform}(-1,1)
 $$
+
+Source support -1..1
 
 one scalar covariate per row.
 
+**2. Mean function**
+
 $$
-g_{1}(x)=x+5\cdot \exp(-50\cdot x^{2})/sqrt(2\cdot \pi)
+g_{1}(x)=x+5\cdot \exp(-50\cdot x^{2})/\sqrt{2\cdot \pi}
 $$
 
 $$
-g_{2}(x)=\sin(3\cdot \pi\cdot x/2)/(1+18\cdot x^{2}\cdot (sgn(x)+1))
+g_{2}(x)=\sin(3\cdot \pi\cdot x/2)/(1+18\cdot x^{2}\cdot (\mathrm{sgn}(x)+1))
 $$
 
 $$
-g_{3}(x)=\sin(\pi\cdot x/2)/(1+2\cdot x^{2}\cdot (sgn(x)+1)). Deterministic
+g_{3}(x)=\sin(\pi\cdot x/2)/(1+2\cdot x^{2}\cdot (\mathrm{sgn}(x)+1))
 $$
 
-$$
-sgn(x)=-1/0/1 for x<0/=0/>0. All coefficients are from the source unnumbered functions.
-$$
+Deterministic
 
 $$
-\varepsilon_i\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,\sigma^{2}), independent of X
+\mathrm{sgn}(x)=-1/0/1 \text{ for } x<0/=0/>0
 $$
 
+All coefficients are from the source unnumbered functions.
+
+**3. Regression error**
+
 $$
-registered pairs are (g_{1},\sigma=1),(g_{2},0.5),(g_{3},0.2). \sigma is a standard deviation, not a variance
+\varepsilon_{i}\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,\sigma^{2})
 $$
+
+independent of X
+
+Source notation retained without guessing:
+
+<pre>registered pairs are (g1,sigma=1),(g2,0.5),(g3,0.2). sigma is a standard deviation, not a variance</pre>
 
 the source has a full 3-by-3 design.
 
+**4. Observed response**
+
 $$
-Y_i=g_j(X_i)+\varepsilon_i
+Y_{i}=g_{j}(X_{i})+\varepsilon_{i}
 $$
 
 return X,Y. No extra noise, latent mean or oracle column.

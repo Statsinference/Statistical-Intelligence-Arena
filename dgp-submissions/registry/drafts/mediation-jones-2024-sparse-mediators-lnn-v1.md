@@ -34,40 +34,60 @@ Not explicitly identified (review required)
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
-$$
-X_l \sim \mathcal{N}(0, 1/4) independently, l = 1, 2, 3
-$$
-
-mu_D0(X) = expit{0.8 (X1 + X2)}
+**Baseline confounders**
 
 $$
-psi_M(X) = X_{1}^{2} + X_{2} - X_{3}
+X_{l} \sim \mathcal{N}(0, 1/4) \text{ independently }, l = 1, 2, 3
+$$
+
+**Treatment propensity (scenario LNN)**
+
+$$
+\mu_{\mathrm{D0}}(X) = \mathrm{expit}\{0.8 (X_{1} + X_{2})\}
+$$
+
+**Mediator confounding (scenario LNN)**
+
+$$
+\psi_{M}(X) = X_{1}^{2} + X_{2} - X_{3}
+$$
+
+**Outcome confounding (scenario LNN)**
+
+$$
+\psi_{Y}(X) = 2 (X_{1} - 0.5)^{2} + X_{2} + 2 X_{3}
+$$
+
+**Treatment**
+
+$$
+D \mid  X \sim \mathrm{Bernoulli}(\mu_{\mathrm{D0}}(X))
+$$
+
+**Mediator vector**
+
+$$
+M = \alpha_{0} D + \psi_{M}(X) 1_{p} + \eta, \eta_{j} \sim \mathcal{N}(0, 1) \text{ independently }, p = 10, \alpha_{0} = (1, 2, 2, 0, \ldots , 0)
+$$
+
+**Outcome**
+
+$$
+Y = \gamma_{0} D + \beta_{0}' M + \psi_{Y}(X) + \varepsilon, \varepsilon\sim \mathcal{N}(0, 1)
 $$
 
 $$
-psi_Y(X) = 2 (X_{1} - 0.5)^{2} + X_{2} + 2 X_{3}
+\gamma_{0} = 2, \beta_{0} = (0.8, 0.4, 0.4, 0, \ldots , 0)
 $$
 
-D | X ~ Bernoulli(mu_D0(X))
+**Source identities (Proposition 2.1)**
 
 $$
-M = \alpha_0 D + psi_M(X) 1_p + eta, eta_j \sim \mathcal{N}(0, 1) independently, p = 10, \alpha_0 = (1, 2, 2, 0, \ldots , 0)
-$$
-
-$$
-Y = \gamma_0 D + \beta_0' M + psi_Y(X) + \varepsilon, \varepsilon \sim \mathcal{N}(0, 1)
+\mathrm{NDE} = \gamma_{0} = 2
 $$
 
 $$
-\gamma_0 = 2, \beta_0 = (0.8, 0.4, 0.4, 0, \ldots , 0)
-$$
-
-$$
-NDE = \gamma_0 = 2
-$$
-
-$$
-NIE = \alpha_0 . \beta_0 = 2.4
+\mathrm{NIE} = \alpha_{0} . \beta_{0} = 2.4
 $$
 
 <details>

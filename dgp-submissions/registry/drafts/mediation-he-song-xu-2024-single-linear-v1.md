@@ -34,8 +34,10 @@ Not explicitly identified (review required)
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**Baseline**
+
 $$
-A\sim Bern(0.5)
+A\sim \mathrm{Bern}(0.5)
 $$
 
 $$
@@ -43,15 +45,19 @@ X_{1}\sim \mathcal{N}(0,1)
 $$
 
 $$
-X_{2}\sim Bern(0.5), independently
+X_{2}\sim \mathrm{Bern}(0.5), \text{ independently }
 $$
 
-$$
-M=\alpha_S A+1+X_{1}+X_{2}+\varepsilon_M, \varepsilon_M\sim \mathcal{N}(0,0.5^{2})
-$$
+**Mediator**
 
 $$
-Y=\beta_M M+1+X_{1}+X_{2}+A+\varepsilon_Y, \varepsilon_Y\sim \mathcal{N}(0,0.5^{2})
+M=\alpha_{S} A+1+X_{1}+X_{2}+\varepsilon_{M}, \varepsilon_{M}\sim \mathcal{N}(0,0.5^{2})
+$$
+
+**Outcome**
+
+$$
+Y=\beta_{M} M+1+X_{1}+X_{2}+A+\varepsilon_{Y}, \varepsilon_{Y}\sim \mathcal{N}(0,0.5^{2})
 $$
 
 independent of epsilon_M

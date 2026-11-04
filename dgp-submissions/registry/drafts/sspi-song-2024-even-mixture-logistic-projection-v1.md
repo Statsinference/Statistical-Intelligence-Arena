@@ -37,25 +37,31 @@ G
 B is equiprobable on {-1,+1}
 
 $$
-G\sim N_4(0,Sigma)
+G\sim \mathcal{N}_{4}(0,\Sigma)
 $$
 
 $$
-Sigma_jk=0.8^abs(j-k), independently. X=B\cdot 1+G.
+\Sigma_{jk}=0.8^{\lvert j-k\rvert}, \text{ independently }. X=B\cdot 1+G.
 $$
 
 $$
-Y\mid X\sim \mathrm{Bernoulli}(\mathrm{expit}(sum_\{j=1\}^{4} [0.9\cdot X_j^{4}\cdot \sin(X_j)^{6}-2\cdot X_j^{2}+2.2])). Conditional draws are independent across rows.
+Y\mid X\sim \mathrm{Bernoulli}(\mathrm{expit}(\sum_{j=1}^{4} [0.9\cdot X_{j}^{4}\cdot \sin(X_{j})^{6}-2\cdot X_{j}^{2}+2.2]))
 $$
 
-Two independent samples from the same population: source_n_labeled rows with observed Y and source_n_unlabeled rows with observed X only. R=1 in the first labeled block
+Conditional draws are
+
+independent across rows
+
+Source notation retained without guessing:
+
+<pre>Two independent samples from the same population: source_n_labeled rows with observed Y and source_n_unlabeled rows with observed X only. R=1 in the first labeled block</pre>
 
 $$
-Y_obs=Y there. R=0 in the remaining block
+Y_{\mathrm{obs}}=Y \text{ there }. R=0 \in \text{ the } \mathrm{remaining} \mathrm{block}
 $$
 
 $$
-Y_obs=0 is a placeholder.
+Y_{\mathrm{obs}}=0 \text{ is } \text{ a } \text{ placeholder }.
 $$
 
 <details>

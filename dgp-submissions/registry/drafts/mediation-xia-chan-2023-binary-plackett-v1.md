@@ -34,40 +34,52 @@ Not explicitly identified (review required)
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**X,A**
+
 $$
 X\sim \mathcal{N}(0,1)
 $$
 
 $$
-A\mid X\sim Bern(\mathrm{expit}(-0.2+0.3X))
+A\mid X\sim \mathrm{Bern}(\mathrm{expit}(-0.2+0.3X))
 $$
 
-$$
-M\mid A,X\sim Bern(\mathrm{expit}(-0.3-0.2A+0.5X))
-$$
+**Marginal M**
 
 $$
-C\mid A,X\sim Bern(\mathrm{expit}(-0.2-0.1A+0.3X))
+M\mid A,X\sim \mathrm{Bern}(\mathrm{expit}(-0.3-0.2A+0.5X))
 $$
+
+**Marginal C**
+
+$$
+C\mid A,X\sim \mathrm{Bern}(\mathrm{expit}(-0.2-0.1A+0.3X))
+$$
+
+**Copula**
 
 $$
 OR(M,C\mid A,X)=\exp(1-2A+3X)
 $$
 
 $$
-joint p_{11} solves p_{11}(1-pM-pC+p_{11})/[(pM-p_{11})(pC-p_{11})]=OR
+\mathrm{joint} p_{11} \mathrm{solves} p_{11}(1-\mathrm{pM}-\mathrm{pC}+p_{11})/[(\mathrm{pM}-p_{11})(\mathrm{pC}-p_{11})]=OR
+$$
+
+**Outcome**
+
+$$
+Y=1+3A+6M+3C+6X+4AC+2AM+\varepsilon_{Y}
 $$
 
 $$
-Y=1+3A+6M+3C+6X+4AC+2AM+\varepsilon_Y
+\varepsilon_{Y}\sim \mathcal{N}(0,16)
 $$
 
-$$
-\varepsilon_Y\sim \mathcal{N}(0,16)
-$$
+**Target**
 
 $$
-NDE=E_X[3+3\{pC(1,X)-pC(0,X)\}+4pC(1,X)+2pM(0,X)]
+\mathrm{NDE}=E_{X}[3+3\{\mathrm{pC}(1,X)-\mathrm{pC}(0,X)\}+4\mathrm{pC}(1,X)+2\mathrm{pM}(0,X)]
 $$
 
 <details>

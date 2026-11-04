@@ -34,28 +34,40 @@ Not explicitly identified (review required)
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**Baseline covariate**
+
 $$
 C_{0} \sim \mathrm{Uniform}(0, 2)
 $$
 
-$$
-A \mid  C_{0} \sim \mathrm{Bernoulli}(1 - \{1 + \exp(0.9 + 0.3 C_{0})\}^\{-1\}) = \mathrm{Bernoulli}(\mathrm{expit}(0.9 + 0.3 C_{0}))
-$$
+**Exposure**
 
 $$
-C_{1} = (0.8, 0.6, -0.3)^T + (1, 0.1, 0.2)^T C_{0} + (0.5, -0.4, 0.5)^T A + (-0.1, 0.8, -0.2)^T C_{0} A + \mathcal{N}(0, I_3)
+A \mid  C_{0} \sim \mathrm{Bernoulli}(1 - \{1 + \exp(0.9 + 0.3 C_{0})\}^{-1}) = \mathrm{Bernoulli}(\mathrm{expit}(0.9 + 0.3 C_{0}))
 $$
+
+**Treatment-induced confounder vector**
+
+$$
+C_{1} = (0.8, 0.6, -0.3)^{T} + (1, 0.1, 0.2)^{T} C_{0} + (0.5, -0.4, 0.5)^{T} A + (-0.1, 0.8, -0.2)^{T} C_{0} A + \mathcal{N}(0, I_{3})
+$$
+
+**Mediator**
 
 $$
 M = -0.5 - 0.2 C_{0} + 0.3 A + [-0.2, 0.1, 0.5] C_{1} + [0.4, 0, 0] A C_{1} + \mathcal{N}(0, 1)
 $$
 
+**Outcome**
+
 $$
 Y = 0.2 + 0.2 C_{0} + 0.6 A + [1, 0.7, 0.3] C_{1} - 0.9 M - 0.8 A M + \mathcal{N}(0, 1)
 $$
 
+**Identification formula (source equation (1))**
+
 $$
-\beta_0 = int int int \mathbb{E}(Y|m, c_{1}, a', c_{0}) dF(m|c_{1}, a, c_{0}) dF(c_{1}|a', c_{0}) dF(c_{0})
+\beta_{0} = \mathrm{int} \mathrm{int} \mathrm{int} \mathbb{E}(Y|m, c_{1}, \text{ a }', c_{0}) \mathrm{dF}(m|c_{1}, \text{ a }, c_{0}) \mathrm{dF}(c_{1}|\text{ a }', c_{0}) \mathrm{dF}(c_{0})
 $$
 
 <details>

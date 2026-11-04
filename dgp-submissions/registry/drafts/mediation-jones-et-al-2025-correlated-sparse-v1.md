@@ -34,42 +34,52 @@ E
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**Treatment**
+
 $$
 A\sim \mathrm{Bernoulli}(0.5)
 $$
 
+**Errors**
+
 $$
-E\sim N_100(0,Sigma)
+E\sim \mathcal{N}_{100}(0,\Sigma)
 $$
 
 $$
-Sigma_ii=1
+\Sigma_{ii}=1
 $$
 
 $$
-Sigma_12=0.5
+\Sigma_{12}=0.5
 $$
 
 $$
-Sigma_ij=0.5 for i,j>=3,i!=j
+\Sigma_{ij}=0.5 \text{ for } i,j\geq 3,i\neq j
 $$
 
 $$
-Sigma_ij=0.25 for i in \{1,2\},j in \{3,\ldots ,100\}
+\Sigma_{ij}=0.25 \text{ for } i \in \{1,2\},j \in \{3,\ldots ,100\}
 $$
 
-$$
-M_j=\alpha_j A+E_j, \alpha_j=1 for j=1,2,3 and 0 otherwise
-$$
+**Mediator**
 
 $$
-Y=2A+M_{1}+M_{2}+M_{4}+M_{5}+M_{6}+\varepsilon_Y, \varepsilon_Y\sim \mathcal{N}(0,1)
+M_{j}=\alpha_{j} A+E_{j}, \alpha_{j}=1 \text{ for } j=1,2,3 \text{ and } 0 \text{ otherwise }
+$$
+
+**Outcome**
+
+$$
+Y=2A+M_{1}+M_{2}+M_{4}+M_{5}+M_{6}+\varepsilon_{Y}, \varepsilon_{Y}\sim \mathcal{N}(0,1)
 $$
 
 independent of (A,E)
 
+**Target**
+
 $$
-NIE_1=sum_j \alpha_j \beta_j=2
+\mathrm{NIE}_{1}=\sum_{j} \alpha_{j} \beta_{j}=2
 $$
 
 <details>

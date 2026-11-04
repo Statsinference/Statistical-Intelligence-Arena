@@ -34,67 +34,85 @@ eta_i
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**Source pre-ANM (4)**
+
 $$
-Y=g(WX+eta)+\beta^T X
+Y=g(WX+\eta)+\beta^{T} X
 $$
 
 $$
-collected simulation specializes to d=k=1,W=1,\beta=0, so Y=g_s(X+eta).
+\mathrm{collected} \mathrm{simulation} \mathrm{specializes} \text{ to } d=k=1,W=1,\beta=0, \mathrm{so} Y=g_{s}(X+\eta).
 $$
+
+**Independent noise and rows**
 
 eta_i
 
 independent of X_i
 
 $$
-(X_i,eta_i) iid across i
+(X_{i},\eta_{i}) \text{ iid } \text{ across } i
 $$
 
 $$
-eta_i\sim \mathcal{N}(0,\sigma_s^{2})
+\eta_{i}\sim \mathcal{N}(0,\sigma_{s}^{2})
 $$
 
 $$
-\sigma_cubic=1.1, all others=1.
+\sigma_{\mathrm{cubic}}=1.1, \text{ all } \mathrm{others}=1.
+$$
+
+**Covariate laws**
+
+$$
+X_{i}\sim \mathrm{Unif}[-2,2] \text{ for } \mathrm{softplus},\mathrm{cubic}
 $$
 
 $$
-X_i\sim Unif[-2,2] for softplus,cubic
+X_{i}\sim \mathrm{Unif}[0,2] \text{ for } \mathrm{square},\log.
+$$
+
+**Softplus**
+
+$$
+g_{\mathrm{softplus}}(u)=\ln(1+\exp(u)).
+$$
+
+**Square**
+
+$$
+g_{\mathrm{square}}(u)=\max(u,0)^{2}/2.
+$$
+
+**Cubic**
+
+$$
+g_{\mathrm{cubic}}(u)=u^{3}/3.
+$$
+
+**Log, literal table**
+
+$$
+g_{\log}(u)=(u-2)/3+\ln(3) \text{ if } u\leq 2
 $$
 
 $$
-X_i\sim Unif[0,2] for square,\log.
+\ln(u) \text{ if } u>2
 $$
 
-$$
-g_softplus(u)=ln(1+\exp(u)).
-$$
-
-$$
-g_square(u)=\max(u,0)^{2}/2.
-$$
-
-$$
-g_cubic(u)=u^{3}/3.
-$$
-
-$$
-g_log(u)=(u-2)/3+ln(3) if u<=2
-$$
-
-$$
-ln(u) if u>2. Literal official supplementary Table C.1, explicitly selected by user
-$$
+Literal official supplementary Table C.1, explicitly selected by user
 
 inspected author fixed-snapshot simulator.py line 30 differs.
 
-$$
-q_s=inf\{y:P_eta(g_s(0.5+eta)<=y)>=0.5\}
-$$
+**Scalar QDI target**
 
 $$
-(q_softplus,q_square,q_cubic,q_log)=(ln(1+\exp(0.5)),1/8,1/24,ln(3)-1/2).
+q_{s}=\inf\{y:P_{\eta}(g_{s}(0.5+\eta)\leq y)\geq 0.5\}
 $$
+
+Source notation retained without guessing:
+
+<pre>(q_softplus,q_square,q_cubic,q_log)=(ln(1+exp(0.5)),1/8,1/24,ln(3)-1/2).</pre>
 
 <details>
 <summary>Original source equations (verbatim)</summary>

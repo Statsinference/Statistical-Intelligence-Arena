@@ -34,53 +34,67 @@ X, U, eta, v
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**Raw covariates**
+
 $$
 X \sim \mathcal{N}(0,I_{4})
 $$
 
 $$
-Z_j=(Ztilde_j-\mathbb{E}[Ztilde_j])/sd(Ztilde_j)
+Z_{j}=(\mathrm{Ztilde}_{j}-\mathbb{E}[\mathrm{Ztilde}_{j}])/\mathrm{sd}(\mathrm{Ztilde}_{j})
 $$
 
+**Transformations**
+
 $$
-Ztilde=(\exp(X_{1}/2),10+X_{2}/(1+\exp(X_{1})),(0.6+X_{1}\cdot X_{3}/25)^{3},(20+X_{2}+X_{4})^{2})
+\mathrm{Ztilde}=(\exp(X_{1}/2),10+X_{2}/(1+\exp(X_{1})),(0.6+X_{1}\cdot X_{3}/25)^{3},(20+X_{2}+X_{4})^{2})
 $$
+
+**Prognosis**
 
 $$
 f(Z)=210+27.4\cdot Z_{1}+13.7\cdot (Z_{2}+Z_{3}+Z_{4})
 $$
+
+**Group assignment**
 
 $$
 g(Z)=0.75\cdot (-Z_{1}+0.5\cdot Z_{2}-0.25\cdot Z_{3}-0.1\cdot Z_{4})
 $$
 
 $$
-D=1\{U<=sigmoid(g(Z))\}
+D=1\{U\leq \mathrm{sigmoid}(g(Z))\}
 $$
 
 $$
 U\sim U(0,1)
 $$
 
+**Latent fixed effect**
+
 $$
-v=D\cdot f(Z)+eta
+v=D\cdot f(Z)+\eta
 $$
 
 $$
-eta\sim \mathcal{N}(0,1)
+\eta\sim \mathcal{N}(0,1)
+$$
+
+**Panel outcomes**
+
+$$
+Y_{\mathrm{pre}}=f(Z)+v+\varepsilon_{0}
 $$
 
 $$
-Y_pre=f(Z)+v+\varepsilon_{0}
+Y_{1}(d)=2\cdot f(Z)+v+\varepsilon_{1}(d)
 $$
 
 $$
-Y_1(d)=2\cdot f(Z)+v+\varepsilon_{1}(d)
+Y_{\mathrm{post}}=Y_{1}(D)
 $$
 
-$$
-Y_post=Y_1(D)
-$$
+**Innovations**
 
 eta,epsilon0,epsilon1(0),epsilon1(1) are independent N(0,1)
 

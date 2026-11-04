@@ -34,48 +34,74 @@ Not explicitly identified (review required)
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**1. First covariate**
+
 $$
-X_{1}\sim \mathcal{N}(0,1) conditional on -1<=X_{1}<=1, using rejection resampling. Source design j=1
+X_{1}\sim \mathcal{N}(0,1) \mathrm{conditional} \text{ on } -1\leq X_{1}\leq 1, \mathrm{using} \mathrm{rejection} \mathrm{resampling}
 $$
 
 $$
-pre-truncation mean=0, sd=1.
+\mathrm{Source} \mathrm{design} j=1
 $$
 
 $$
-X_{2}\sim \mathcal{N}(0,1) conditional on -1<=X_{2}<=1, independently of X_{1}. Source j=1 correlation=0
+\mathrm{pre}-\mathrm{truncation} \text{ mean }=0, \mathrm{sd}=1.
+$$
+
+**2. Second covariate**
+
+$$
+X_{2}\sim \mathcal{N}(0,1) \mathrm{conditional} \text{ on } -1\leq X_{2}\leq 1
+$$
+
+independently of X1
+
+$$
+\mathrm{Source} j=1 \mathrm{correlation}=0
 $$
 
 $$
-the correlated j=2 design is not generated.
+\text{ the } \mathrm{correlated} j=2 \mathrm{design} \text{ is } \text{ not } \mathrm{generated}.
 $$
 
+**3. Predictor**
+
 $$
-eta=\sin(\pi\cdot X_{1})+0.5\cdot (X_{2}+\sin(\pi\cdot X_{2})). Deterministic source predictor
+\eta=\sin(\pi\cdot X_{1})+0.5\cdot (X_{2}+\sin(\pi\cdot X_{2}))
 $$
+
+Deterministic source predictor
 
 no extra noise.
 
+**4. Response mean**
+
 $$
-m=1/(1+\exp(-eta)) for Bernoulli
+m=1/(1+\exp(-\eta)) \text{ for } \mathrm{Bernoulli}
 $$
 
 $$
-m=\exp(eta) for Poisson. Stable logistic evaluation
+m=\exp(\eta) \text{ for } \mathrm{Poisson}
 $$
+
+Stable logistic evaluation
 
 finite eta on [-1,1]^2.
 
+**5. Observed response**
+
 $$
-Y\mid X\sim \mathrm{Bernoulli}(m) or \mathrm{Poisson}(m)
+Y\mid X\sim \mathrm{Bernoulli}(m) \text{ or } \mathrm{Poisson}(m)
 $$
 
 $$
-Bernoulli inversion or Knuth product sampler
+\mathrm{Bernoulli} \mathrm{inversion} \text{ or } \mathrm{Knuth} \mathrm{product} \mathrm{sampler}
 $$
 
+return X1,X2,Y
+
 $$
-return X_{1},X_{2},Y. Conditional variance=m\cdot (1-m) or m, respectively
+\mathrm{Conditional} \text{ variance }=m\cdot (1-m) \text{ or } m, \text{ respectively }
 $$
 
 no independent additive error is used.

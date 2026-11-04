@@ -36,40 +36,56 @@ U
 
 **Original source equations (verbatim):** [Open raw scientific record (JSON)](./iv-li-2026-aux-population-v1.json).
 
-$$
-V_\{k\} iid \sim \mathcal{N}(0,1), v_\{k\}=\mathrm{expit}(2V_\{k\}-1), k=1,\ldots ,4.
-$$
+**DGP equation 1**
 
 $$
-\rho^\{2\}=0.75+1.5v_\{1\}+1.5v_\{2\}-0.3v_\{3\}-0.3v_\{4\}
+V_{k}\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1), v_{k}=\mathrm{expit}(2V_{k}-1), k=1,\ldots ,4.
+$$
+
+**DGP equation 2**
+
+$$
+\rho^{2}=0.75+1.5v_{1}+1.5v_{2}-0.3v_{3}-0.3v_{4}
 $$
 
 $$
 U\mid V \sim \mathrm{Uniform}(-\rho,\rho).
 $$
 
-$$
-p_\{R\}=\mathrm{expit}(0.8+3v_\{1\}-2v_\{2\}-v_\{3\}-v_\{4\}), R\mid V \sim \mathrm{Bernoulli}(p_\{R\}).
-$$
+**DGP equation 3**
 
 $$
-Z\mid V,R=1 \sim Bernoulli[\mathrm{expit}(-0.5-v_\{1\}+1.5v_\{2\}+2v_\{3\}-v_\{4\})].
+p_{R}=\mathrm{expit}(0.8+3v_{1}-2v_{2}-v_{3}-v_{4}), R\mid V \sim \mathrm{Bernoulli}(p_{R}).
 $$
 
-$$
-a_\{1\}=\mathrm{expit}(1.3-2.4Z), a_\{0\}=\mathrm{expit}(v_\{1\}-v_\{2\}+0.8v_\{3\}-0.6v_\{4\}).
-$$
+**DGP equation 4**
 
 $$
-X\mid V,U,R,Z \sim Bernoulli[Ra_\{1\}+(1-R)a_\{0\}+0.1U].
+Z\mid V,R=1 \sim \mathrm{Bernoulli}[\mathrm{expit}(-0.5-v_{1}+1.5v_{2}+2v_{3}-v_{4})].
 $$
 
-$$
-Y=(2-R+2v_\{1\}-v_\{2\}+v_\{3\}-0.5v_\{4\})(1+X)+U+\varepsilon, \varepsilon\sim \mathcal{N}(0,0.5^\{2\}).
-$$
+**DGP equation 5**
 
 $$
-\tau=\mathbb{E}[(1-p_\{R\})(2+2v_\{1\}-v_\{2\}+v_\{3\}-0.5v_\{4\})] / \mathbb{E}[1-p_\{R\}].
+\text{ a }_{1}=\mathrm{expit}(1.3-2.4Z), \text{ a }_{0}=\mathrm{expit}(v_{1}-v_{2}+0.8v_{3}-0.6v_{4}).
+$$
+
+**DGP equation 6**
+
+$$
+X\mid V,U,R,Z \sim \mathrm{Bernoulli}[\mathrm{Ra}_{1}+(1-R)\text{ a }_{0}+0.1U].
+$$
+
+**DGP equation 7**
+
+$$
+Y=(2-R+2v_{1}-v_{2}+v_{3}-0.5v_{4})(1+X)+U+\varepsilon, \varepsilon\sim \mathcal{N}(0,0.5^{2}).
+$$
+
+**DGP equation 8**
+
+$$
+\tau=\mathbb{E}[(1-p_{R})(2+2v_{1}-v_{2}+v_{3}-0.5v_{4})] / \mathbb{E}[1-p_{R}].
 $$
 
 

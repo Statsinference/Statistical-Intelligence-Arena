@@ -35,29 +35,33 @@ eta
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
 $$
-X\sim N_4(0,Sigma)
+X\sim \mathcal{N}_{4}(0,\Sigma)
 $$
 
 $$
-Sigma_jk=0.5^abs(j-k)
+\Sigma_{jk}=0.5^{\lvert j-k\rvert}
 $$
 
 $$
-eta\sim \mathcal{N}(0,1) independently.
+\eta\sim \mathcal{N}(0,1) \text{ independently }.
 $$
 
 $$
-Y=(1/4)\cdot sum_\{j=1\}^{4} [\exp(X_j+2\cdot \cos(X_j)-0.3\cdot eta)+0.1\cdot \exp(X_j+\sin(X_j))+2.5\cdot X_j^{3}]+eta. The same eta appears in every term within a row.
+Y=(1/4)\cdot \sum_{j=1}^{4} [\exp(X_{j}+2\cdot \cos(X_{j})-0.3\cdot \eta)+0.1\cdot \exp(X_{j}+\sin(X_{j}))+2.5\cdot X_{j}^{3}]+\eta
 $$
 
-Two independent samples from the same population: source_n_labeled rows with observed Y and source_n_unlabeled rows with observed X only. R=1 in the first labeled block
+The same eta appears in every term within a row.
+
+Source notation retained without guessing:
+
+<pre>Two independent samples from the same population: source_n_labeled rows with observed Y and source_n_unlabeled rows with observed X only. R=1 in the first labeled block</pre>
 
 $$
-Y_obs=Y there. R=0 in the remaining block
+Y_{\mathrm{obs}}=Y \text{ there }. R=0 \in \text{ the } \mathrm{remaining} \mathrm{block}
 $$
 
 $$
-Y_obs=0 is a placeholder.
+Y_{\mathrm{obs}}=0 \text{ is } \text{ a } \text{ placeholder }.
 $$
 
 <details>

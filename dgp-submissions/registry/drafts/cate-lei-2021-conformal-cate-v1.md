@@ -34,36 +34,48 @@ Not explicitly identified (review required)
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
-$$
-Xj = Phi(X'_j), X' equicorrelated Gaussian with \rho = 0, so Xj \sim \mathrm{Uniform}(0,1) independently, j = 1..10
-$$
+**X1-X10**
 
 $$
-e(X) = (1/4) \{ 1 + F_\{2,4\}(X_{1}) \}, F_\{2,4\} the Beta(2,4) cdf
+\mathrm{Xj} = \Phi(X'_{j}), X' \mathrm{equicorrelated} \mathrm{Gaussian} \text{ with } \rho= 0, \mathrm{so} \mathrm{Xj} \sim \mathrm{Uniform}(0,1) \text{ independently }, j = 1..10
 $$
+
+**Treatment**
+
+$$
+e(X) = (1/4) \{1 + F_{2,4}(X_{1})\}, F_{2,4} \text{ the } \mathrm{Beta}(2,4) \mathrm{cdf}
+$$
+
+**Control outcome**
 
 $$
 Y(0) = 0
 $$
+
+**Treated outcome**
 
 $$
 \mathbb{E}[Y(1)\mid X] = f(X_{1}) f(X_{2}), f(u) = 2 / (1 + \exp(-12 (u - 1/2)))
 $$
 
 $$
-Y(1) = \mathbb{E}[Y(1)\mid X] + \sigma eps
+Y(1) = \mathbb{E}[Y(1)\mid X] + \sigma\varepsilon
 $$
+
+**Heterogeneity**
 
 $$
 \tau(X) = f(X_{1}) f(X_{2})
 $$
+
+**Observed**
 
 $$
 Y = A Y(1) + (1-A) Y(0)
 $$
 
 $$
-\sigma = 1
+\sigma= 1
 $$
 
 <details>

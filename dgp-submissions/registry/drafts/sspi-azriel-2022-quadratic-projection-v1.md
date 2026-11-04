@@ -35,21 +35,23 @@ Not explicitly identified (review required)
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
 $$
-X\sim \mathcal{N}(0,1) and \varepsilon\sim \mathcal{N}(0,1) independently.
+X\sim \mathcal{N}(0,1) \text{ and } \varepsilon\sim \mathcal{N}(0,1) \text{ independently }.
 $$
 
 $$
 Y=0.5\cdot X^{2}+X+\varepsilon.
 $$
 
-Two independent samples from the same population: source_n_labeled rows with observed Y and source_n_unlabeled rows with observed X only. R=1 in the first labeled block
+Source notation retained without guessing:
+
+<pre>Two independent samples from the same population: source_n_labeled rows with observed Y and source_n_unlabeled rows with observed X only. R=1 in the first labeled block</pre>
 
 $$
-Y_obs=Y there. R=0 in the remaining block
+Y_{\mathrm{obs}}=Y \text{ there }. R=0 \in \text{ the } \mathrm{remaining} \mathrm{block}
 $$
 
 $$
-Y_obs=0 is a placeholder.
+Y_{\mathrm{obs}}=0 \text{ is } \text{ a } \text{ placeholder }.
 $$
 
 <details>

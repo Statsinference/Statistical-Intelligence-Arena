@@ -34,21 +34,27 @@ Z1, epsilon
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**Covariates**
+
 $$
-Z\sim N_500(0,Sigma)
+Z\sim \mathcal{N}_{500}(0,\Sigma)
 $$
 
 $$
-Sigma_jk=0.3^|j-k|
+\Sigma_{jk}=0.3^{\lvert j-k\rvert}
 $$
 
 $$
-X_{1}=abs(Z_{1})
+X_{1}=\lvert Z_{1}\rvert
 $$
 
 $$
-Xj=Zj for j>1. Exact stationary AR recursion generates Z.
+\mathrm{Xj}=\mathrm{Zj} \text{ for } j>1
 $$
+
+Exact stationary AR recursion generates Z.
+
+**Response**
 
 $$
 Y = 0.6 (X_{1}+X_{2})^{2} + 0.4 X_{4}^{3} - X_{5} + 2 X_{6} + \varepsilon
@@ -60,13 +66,17 @@ $$
 
 independent of Z and all other units
 
-$$
-Independent iid labeled and unlabeled samples from the same complete-data population
-$$
+**Sampling**
+
+Source notation retained without guessing:
+
+<pre>Independent iid labeled and unlabeled samples from the same complete-data population</pre>
 
 $$
-nL=200,nU=1000 reference. Export X_{1}..X_{500},R,Y_obs.
+\mathrm{nL}=200,\mathrm{nU}=1000 \mathrm{reference}
 $$
+
+Export X1..X500,R,Y_obs.
 
 <details>
 <summary>Original source equations (verbatim)</summary>

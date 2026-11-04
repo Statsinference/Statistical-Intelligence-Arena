@@ -34,88 +34,116 @@ p
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**Covariates**
+
 $$
-X_i \sim Normal_p(0,Sigma)
+X_{i} \sim \mathcal{N}_{p}(0,\Sigma)
 $$
 
 $$
-Sigma_ij=\rho^|i-j|
+\Sigma_{ij}=\rho^{\lvert i-j\rvert}
 $$
 
- rho in {0.5,0.9}
+rho in {0.5,0.9}
 
 $$
 p=2000.
 $$
 
-X_i1=Z_i1
+**Equivalent Gaussian recursion used in implementation**
 
 $$
-X_ij=\rho\cdot X_i,j-1 + sqrt(1-\rho^{2})\cdot Z_ij for j=2,\ldots ,p, where innovations Z_ij are\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1). This is distributionally equivalent to the source covariance, not the same random draw sequence.
-$$
-
-$$
-k_j = (23\cdot (j-1)) mod p. Construct raw profile b_\{k_j\} according to one of the four source profiles, then \beta_Y=raw/sqrt(sum_j raw_j^{2}), so ||\beta_Y||_2=1.
+X_{i1}=Z_{i1}
 $$
 
 $$
-raw_j = 1/sqrt(1+k_j)
+X_{ij}=\rho\cdot X_{i,j-1} + \sqrt{1-\rho^{2}}\cdot Z_{ij} \text{ for } j=2,\ldots ,p, \text{ where } \mathrm{innovations} Z_{ij} \mathrm{are}\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1)
+$$
+
+This is distributionally equivalent to the source covariance, not the same random draw sequence.
+
+**Index permutation**
+
+$$
+k_{j} = (23\cdot (j-1)) \bmod  p
+$$
+
+Source notation retained without guessing:
+
+<pre>Construct raw profile b_{k_j} according to one of the four source profiles, then beta_Y=raw/sqrt(sum_j raw_j^2), so ||beta_Y||_2=1.</pre>
+
+**Dense outcome profile**
+
+$$
+\mathrm{raw}_{j} = 1/\sqrt{1+k_{j}}
 $$
 
 $$
-k_j=(23\cdot (j-1)) mod p.
+k_{j}=(23\cdot (j-1)) \bmod  p.
+$$
+
+**Harmonic outcome profile**
+
+$$
+\mathrm{raw}_{j} = 1/(10+k_{j})
 $$
 
 $$
-raw_j = 1/(10+k_j)
+k_{j}=(23\cdot (j-1)) \bmod  p.
+$$
+
+**Moderately sparse outcome profile**
+
+$$
+\mathrm{raw}_{j}=10 \text{ if } k_{j}<10
 $$
 
 $$
-k_j=(23\cdot (j-1)) mod p.
+\mathrm{raw}_{j}=1 \text{ if } 10\leq k_{j}<100
 $$
 
 $$
-raw_j=10 if k_j<10
+\mathrm{raw}_{j}=0 \text{ if } k_{j}\geq 100
 $$
 
 $$
-raw_j=1 if 10<=k_j<100
+k_{j}=(23\cdot (j-1)) \bmod  p.
+$$
+
+**Very sparse outcome profile**
+
+$$
+\mathrm{raw}_{j}=1 \text{ if } k_{j}<10, \text{ otherwise } 0
 $$
 
 $$
-raw_j=0 if k_j>=100
+k_{j}=(23\cdot (j-1)) \bmod  p.
+$$
+
+**Treatment assignment**
+
+$$
+W_{i} \mid  X_{i} \sim \mathrm{Bernoulli}(\mathrm{expit}(\sum_{j=1}^{100} X_{ij}/40))
 $$
 
 $$
-k_j=(23\cdot (j-1)) mod p.
+\mathrm{equivalently} P(W_{i}=1\mid X_{i})=1/[1+\exp(-\sum_{j=1}^{100} X_{ij}/40)].
+$$
+
+**Observed outcome**
+
+$$
+Y_{i} = X_{i}^{T} \beta_{Y} + 0.5 W_{i} + \varepsilon_{i}, \varepsilon_{i} \sim \mathcal{N}(0,1), \text{ independent } \mathrm{under} \text{ the } \mathrm{implementation} \mathrm{convention}.
+$$
+
+**Target / potential outcomes**
+
+$$
+Y_{i}(w)=X_{i}^{T} \beta_{Y} + 0.5w + \varepsilon_{i}, w \in \{0,1\}
 $$
 
 $$
-raw_j=1 if k_j<10, otherwise 0
-$$
-
-$$
-k_j=(23\cdot (j-1)) mod p.
-$$
-
-$$
-W_i \mid  X_i \sim \mathrm{Bernoulli}(\mathrm{expit}(sum_\{j=1\}^\{100\} X_ij/40))
-$$
-
-$$
-equivalently P(W_i=1\mid X_i)=1/[1+\exp(-sum_\{j=1\}^\{100\} X_ij/40)].
-$$
-
-$$
-Y_i = X_i^T \beta_Y + 0.5 W_i + \varepsilon_i, \varepsilon_i \sim \mathcal{N}(0,1), independent under the implementation convention.
-$$
-
-$$
-Y_i(w)=X_i^T \beta_Y + 0.5w + \varepsilon_i, w in \{0,1\}
-$$
-
-$$
-ATE=\mathbb{E}[Y_i(1)-Y_i(0)]=0.5.
+\mathrm{ATE}=\mathbb{E}[Y_{i}(1)-Y_{i}(0)]=0.5.
 $$
 
 <details>

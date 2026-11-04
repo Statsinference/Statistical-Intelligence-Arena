@@ -34,70 +34,94 @@ Z_ik, B_i, U_i
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**Source-to-observation mapping**
+
 $$
 A=(1,3,5,7,9,11,13,15,17,19)
 $$
 
 $$
-W_ik=X_original,i,A[k]. The remaining 990 zero-coefficient coordinates are marginalized out.
+W_{ik}=X_{\mathrm{original},i},A[k]
+$$
+
+The remaining 990 zero-coefficient coordinates are marginalized out.
+
+**Marginal covariates**
+
+$$
+W_{i} \sim \mathcal{N}_{10}(0,\Sigma_{AA})
 $$
 
 $$
-W_i \sim N_10(0,Sigma_AA)
-$$
-
-$$
-(Sigma_AA)_jk=0.7^abs(Aj-Ak)=0.49^abs(j-k)
+(\Sigma_{AA})_{jk}=0.7^{\lvert \mathrm{Aj}-\mathrm{Ak}\rvert}=0.49^{\lvert j-k\rvert}
 $$
 
 independent rows.
 
-$$
-Z_ik\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1)
-$$
-
-W_i1=Z_i1
+**Sampling factorization**
 
 $$
-W_ik=0.49\cdot W_i,k-1+sqrt(1-0.49^{2})\cdot Z_ik, k=2,\ldots ,10.
+Z_{ik}\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1)
 $$
+
+$$
+W_{i1}=Z_{i1}
+$$
+
+$$
+W_{ik}=0.49\cdot W_{i,k-1}+\sqrt{1-0.49^{2}}\cdot Z_{ik}, k=2,\ldots ,10.
+$$
+
+**Coefficients**
 
 $$
 b=(1.8,1.6,1.4,1.2,1,-1,-1.2,-1.4,-1.6,-1.8)
 $$
 
 $$
-intercept=0. W_k is the original coordinate 2k-1.
+\mathrm{intercept}=0. W_{k} \text{ is } \text{ the } \mathrm{original} \mathrm{coordinate} 2k-1.
+$$
+
+**Noise**
+
+$$
+B_{i} \sim \mathrm{Bernoulli}(0.7)
 $$
 
 $$
-B_i \sim \mathrm{Bernoulli}(0.7)
-$$
-
-$$
-U_i \sim \mathcal{N}(0,1)
+U_{i} \sim \mathcal{N}(0,1)
 $$
 
 independent of W and across rows
 
 $$
-\varepsilon_i=[B_i+5\cdot (1-B_i)]\cdot U_i \sim 0.7\cdot \mathcal{N}(0,1)+0.3\cdot \mathcal{N}(0,25). Normal second parameter is variance.
+\varepsilon_{i}=[B_{i}+5\cdot (1-B_{i})]\cdot U_{i} \sim 0.7\cdot \mathcal{N}(0,1)+0.3\cdot \mathcal{N}(0,25)
 $$
 
 $$
-Y_i=sum_(k=1)^{10} b_k W_ik+\varepsilon_i. This is the marginal (X_A,Y) law of the parent independent-noise model. No clipping, standardization or quantile recentering.
+\mathrm{Normal} \mathrm{second} \mathrm{parameter} \text{ is } \text{ variance }.
+$$
+
+**Response**
+
+$$
+Y_{i}=\sum_{k=1}^{10} b_{k} W_{ik}+\varepsilon_{i}
+$$
+
+This is the marginal (X_A,Y) law of the parent independent-noise model. No clipping, standardization or quantile recentering.
+
+**Fixed scalar query**
+
+$$
+w_{0}=e_{1} \in R^{10}
 $$
 
 $$
-w_{0}=e_{1} in R^{10}
+\theta_{\tau}=1.8+q_{\tau}
 $$
 
 $$
-\theta_\tau=1.8+q_\tau
-$$
-
-$$
-0.7\cdot Phi(q_\tau)+0.3\cdot Phi(q_\tau/5)=\tau, \tau in \{0.5,0.9\}.
+0.7\cdot \Phi(q_{\tau})+0.3\cdot \Phi(q_{\tau}/5)=\tau, \tau\in \{0.5,0.9\}.
 $$
 
 <details>

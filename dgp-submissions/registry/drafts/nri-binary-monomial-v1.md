@@ -34,20 +34,28 @@ Not explicitly identified (review required)
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
-$$
-X_i \sim Uniform[0,1] independently
-$$
+**Covariate**
 
 $$
-p_s(x) = x^(1-s), s in \{0,0.1,\ldots ,1\}\\{1\}
+X_{i} \sim \mathrm{Uniform}[0,1] \text{ independently }
 $$
 
-$$
-Y_i \mid  X_i=x \sim \mathrm{Bernoulli}(p_s(x)) independently
-$$
+**Monomial regression function**
 
 $$
-m_s(0.5) = \mathbb{E}[Y \mid  X=0.5] = p_s(0.5) = 0.5^(1-s)
+p_{s}(x) = x^{1-s}, s \in \{0,0.1,\ldots ,1\}\setminus \{1\}
+$$
+
+**Binary outcome**
+
+$$
+Y_{i} \mid  X_{i}=x \sim \mathrm{Bernoulli}(p_{s}(x)) \text{ independently }
+$$
+
+**NRI scalar target**
+
+$$
+m_{s}(0.5) = \mathbb{E}[Y \mid  X=0.5] = p_{s}(0.5) = 0.5^{1-s}
 $$
 
 <details>

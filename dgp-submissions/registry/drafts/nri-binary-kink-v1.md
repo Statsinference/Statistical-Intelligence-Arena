@@ -34,36 +34,48 @@ Not explicitly identified (review required)
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**Knot location**
+
 $$
-a_s = 0.2 + 0.8s, s in \{0,0.1,\ldots ,1\}
+\text{ a }_{s} = 0.2 + 0.8s, s \in \{0,0.1,\ldots ,1\}
+$$
+
+**Left linear segment for s&lt;1**
+
+$$
+p_{s}(x) = 0.2 x / \text{ a }_{s} \text{ for } 0\leq x\leq \text{ a }_{s}
+$$
+
+**Right linear segment for s&lt;1**
+
+$$
+p_{s}(x) = 0.2 + 0.8 (x-\text{ a }_{s})/(1-\text{ a }_{s}) \text{ for } \text{ a }_{s}<x\leq 1
+$$
+
+**Degenerate s=1 convention**
+
+$$
+\text{ a }_{1}=1
 $$
 
 $$
-p_s(x) = 0.2 x / a_s for 0<=x<=a_s
+p_{1}(x)=0.2x \text{ for } 0\leq x<1 \text{ and } p_{1}(1)=1 \text{ by } \mathrm{library} \mathrm{convention}
+$$
+
+**Covariate and outcome**
+
+$$
+X_{i}\sim \mathrm{Uniform}[0,1] \text{ independently }
 $$
 
 $$
-p_s(x) = 0.2 + 0.8 (x-a_s)/(1-a_s) for a_s<x<=1
+Y_{i}\mid X_{i}=x\sim \mathrm{Bernoulli}(p_{s}(x)) \text{ independently }
 $$
 
-$$
-a_1=1
-$$
+**NRI scalar target**
 
 $$
-p_1(x)=0.2x for 0<=x<1 and p_1(1)=1 by library convention
-$$
-
-$$
-X_i\sim Uniform[0,1] independently
-$$
-
-$$
-Y_i\mid X_i=x\sim \mathrm{Bernoulli}(p_s(x)) independently
-$$
-
-$$
-m_s(0.5)=\mathbb{E}[Y\mid X=0.5]=p_s(0.5)
+m_{s}(0.5)=\mathbb{E}[Y\mid X=0.5]=p_{s}(0.5)
 $$
 
 <details>

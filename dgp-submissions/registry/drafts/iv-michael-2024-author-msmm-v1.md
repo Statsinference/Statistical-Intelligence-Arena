@@ -36,40 +36,54 @@ Not explicitly identified (review required)
 
 **Original source equations (verbatim):** [Open raw scientific record (JSON)](./iv-michael-2024-author-msmm-v1.json).
 
+**DGP equation 1**
+
 $$
 T=3
 $$
 
 $$
-U_\{t\} iid \sim \mathcal{N}(0,1)
+U_{t}\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1)
 $$
 
 $$
-m_\{1\}=1, m_\{t\}=A_\{t-1\} (t\geq 2).
+m_{1}=1, m_{t}=A_{t-1} (t\geq 2).
 $$
 
-$$
-L_\{t\}=m_\{t\}+U_\{t\}, \delta_\{t\}=\Phi(0.96+0.46L_\{t\}).
-$$
+**DGP equation 2**
 
 $$
-Z_\{t\}\mid L_\{t\} \sim Bernoulli[\mathrm{expit}(0.53-0.10L_\{t\})].
+L_{t}=m_{t}+U_{t}, \delta_{t}=\Phi(0.96+0.46L_{t}).
 $$
 
-$$
-p_\{t\}=\Phi(-0.16+0.11L_\{t\}+0.26U_\{t\})(1-\delta_\{t\})+Z_\{t\}\delta_\{t\}
-$$
+**DGP equation 3**
 
 $$
-A_\{t\}\mid L_\{t\},U_\{t\},Z_\{t\} \sim \mathrm{Bernoulli}(p_\{t\}).
+Z_{t}\mid L_{t} \sim \mathrm{Bernoulli}[\mathrm{expit}(0.53-0.10L_{t})].
 $$
 
-$$
-Y=\Sigma_\{t=1\}^\{3\}U_\{t\}/√3+\Sigma_\{t=1\}^\{3\}(L_\{t\}-m_\{t\})/√3+\Sigma_\{t=1\}^\{3\}\beta_\{t\}A_\{t\}+\varepsilon
-$$
+**DGP equation 4**
 
 $$
-\beta_\{1\}=\beta_\{2\}=\beta_\{3\}=1
+p_{t}=\Phi(-0.16+0.11L_{t}+0.26U_{t})(1-\delta_{t})+Z_{t}\delta_{t}
+$$
+
+**DGP equation 5**
+
+$$
+A_{t}\mid L_{t},U_{t},Z_{t} \sim \mathrm{Bernoulli}(p_{t}).
+$$
+
+**DGP equation 6**
+
+$$
+Y=\sum_{t=1}^{3}U_{t}/\sqrt{3}+\sum_{t=1}^{3}(L_{t}-m_{t})/\sqrt{3}+\sum_{t=1}^{3}\beta_{t}A_{t}+\varepsilon
+$$
+
+**DGP equation 7**
+
+$$
+\beta_{1}=\beta_{2}=\beta_{3}=1
 $$
 
 $$

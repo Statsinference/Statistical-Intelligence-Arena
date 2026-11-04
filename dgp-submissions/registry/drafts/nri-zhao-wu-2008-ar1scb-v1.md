@@ -34,32 +34,50 @@ Not explicitly identified (review required)
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
-$$
-Set Y_{0}=0 and burn_in=1000 before collecting the n regression pairs. Implementation choices
-$$
+**1. Initialization**
+
+Source notation retained without guessing:
+
+<pre>Set Y0=0 and burn_in=1000 before collecting the n regression pairs</pre>
+
+Implementation choices
 
 not source-specified initialization or burn-in parameters.
 
-$$
-\varepsilon_t\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1), independent of the past
-$$
-
-draw sequentially during recursion. Source standard-normal innovations
+**2. Innovation sequence**
 
 $$
-noise multiplier s=0.4.
+\varepsilon_{t}\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1)
 $$
 
-$$
-Y_t=0.9\cdot \sin(Y_(t-1))+0.4\cdot \varepsilon_t for burn_in+n updates. Compute source nonlinear mean before adding each independent innovation.
-$$
+independent of the past
+
+draw sequentially during recursion
+
+Source standard-normal innovations
 
 $$
-Return (X_i,Y_i)=(Y_(burn_in+i-1),Y_(burn_in+i)), i=1..n. Deterministic export in time order
+\text{ noise } \mathrm{multiplier} s=0.4.
 $$
 
+**3. Recursion**
+
 $$
-X_(i+1)=Y_i exactly
+Y_{t}=0.9\cdot \sin(Y_{t-1})+0.4\cdot \varepsilon_{t} \text{ for } \mathrm{burn}_{in}+n \mathrm{updates}
+$$
+
+Compute source nonlinear mean before adding each independent innovation.
+
+**4. Observation pairs**
+
+$$
+\mathrm{Return} (X_{i},Y_{i})=(Y_{\mathrm{burn}_{in}+i-1},Y_{\mathrm{burn}_{in}+i}), i=1..n
+$$
+
+Deterministic export in time order
+
+$$
+X_{i+1}=Y_{i} \mathrm{exactly}
 $$
 
 no innovation column.

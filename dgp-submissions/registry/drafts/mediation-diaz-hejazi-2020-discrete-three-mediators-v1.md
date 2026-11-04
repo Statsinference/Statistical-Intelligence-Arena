@@ -34,35 +34,47 @@ Not explicitly identified (review required)
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**Baseline**
+
 $$
-W_{1}\sim Bern(0.50)
+W_{1}\sim \mathrm{Bern}(0.50)
 $$
 
 $$
-W_{2}\sim Bern(0.65)
+W_{2}\sim \mathrm{Bern}(0.65)
 $$
 
 $$
-W_{3}\sim Bern(0.35)
+W_{3}\sim \mathrm{Bern}(0.35)
 $$
 
 mutually independent
 
-$$
-A\mid W\sim Bern((W_{1}+W_{2}+W_{3})/4 + 0.1)
-$$
+**Treatment**
 
 $$
-Z_{1}\mid A,W\sim Bern(1-\mathrm{expit}((A+W_{1})/(A+W_{1}+0.5)))
+A\mid W\sim \mathrm{Bern}((W_{1}+W_{2}+W_{3})/4 + 0.1)
 $$
 
-$$
-Z_{2}\mid A,W\sim Bern(\mathrm{expit}((A-1+W_{2})/(W_{3}+3)))
-$$
+**Mediator Z1**
 
 $$
-Z_{3}\mid A,W\sim Bern(\mathrm{expit}((A-1+2W_{1}-1)/(2W_{1}+0.5)))
+Z_{1}\mid A,W\sim \mathrm{Bern}(1-\mathrm{expit}((A+W_{1})/(A+W_{1}+0.5)))
 $$
+
+**Mediator Z2**
+
+$$
+Z_{2}\mid A,W\sim \mathrm{Bern}(\mathrm{expit}((A-1+W_{2})/(W_{3}+3)))
+$$
+
+**Mediator Z3**
+
+$$
+Z_{3}\mid A,W\sim \mathrm{Bern}(\mathrm{expit}((A-1+2W_{1}-1)/(2W_{1}+0.5)))
+$$
+
+**Outcome**
 
 $$
 Y=Z_{1}+Z_{2}-Z_{3}+A-0.1(W_{1}+W_{2}+W_{3})^{2}+\varepsilon, \varepsilon\sim \mathcal{N}(0,0.25)

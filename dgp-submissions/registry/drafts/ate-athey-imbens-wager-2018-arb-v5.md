@@ -34,46 +34,62 @@ theta_i
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**Covariates**
+
 $$
-X_i \sim Normal_p(0,I_p)
+X_{i} \sim \mathcal{N}_{p}(0,I_{p})
 $$
 
 $$
-p=1600 in the selected Table 5 setting
+p=1600 \in \text{ the } \mathrm{selected} \mathrm{Table} 5 \mathrm{setting}
 $$
 
 all coordinates are independent standard normal.
 
-theta_i = log(1 + exp(-2 - 2 X_i1)) / 0.915
+**Latent treatment intensity**
+
+$$
+\theta_{i} = \log(1 + \exp(-2 - 2 X_{i1})) / 0.915
+$$
 
 implement with stable softplus logaddexp. theta_i is latent and is not returned as an observed column.
 
+**Treatment assignment**
+
 $$
-W_i \mid  X_i \sim \mathrm{Bernoulli}(1 - \exp(-\theta_i))
+W_{i} \mid  X_{i} \sim \mathrm{Bernoulli}(1 - \exp(-\theta_{i}))
 $$
 
 $$
-equivalently P(W_i=1\mid X_i)= -expm1(-\theta_i) for stable numeric evaluation. This is the source's misspecified-setting mechanism, not an assumed logistic regression.
+\mathrm{equivalently} P(W_{i}=1\mid X_{i})= -\mathrm{expm1}(-\theta_{i}) \text{ for } \mathrm{stable} \mathrm{numeric} \mathrm{evaluation}
+$$
+
+This is the source&#x27;s misspecified-setting mechanism, not an assumed logistic regression.
+
+**Observed outcome**
+
+$$
+Y_{i} = \sum_{j=1}^{10} X_{ij} + \theta_{i} (2 W_{i} - 1)/2 + \varepsilon_{i}
 $$
 
 $$
-Y_i = sum_\{j=1\}^\{10\} X_ij + \theta_i (2 W_i - 1)/2 + \varepsilon_i
+\varepsilon_{i} \sim \mathcal{N}(0,1)
+$$
+
+Cross-independence of epsilon is an implementation assumption pending review.
+
+**Potential outcomes / ATE**
+
+$$
+Y_{i}(w)=\sum_{j=1}^{10} X_{ij} + \theta_{i}(2w-1)/2 + \varepsilon_{i}, w \in \{0,1\}
 $$
 
 $$
-\varepsilon_i \sim \mathcal{N}(0,1). Cross-independence of \varepsilon is an implementation assumption pending review.
+Y_{i}(1)-Y_{i}(0)=\theta_{i}
 $$
 
 $$
-Y_i(w)=sum_\{j=1\}^\{10\} X_ij + \theta_i(2w-1)/2 + \varepsilon_i, w in \{0,1\}
-$$
-
-$$
-Y_i(1)-Y_i(0)=\theta_i
-$$
-
-$$
-ATE=\mathbb{E}[\theta(X_{1})]\approx 0.389416787118157.
+\mathrm{ATE}=\mathbb{E}[\theta(X_{1})]\approx 0.389416787118157.
 $$
 
 <details>

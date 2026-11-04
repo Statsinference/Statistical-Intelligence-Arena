@@ -34,8 +34,10 @@ epsilon, U,Z_j
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**Covariates**
+
 $$
-X \sim N_1000(0,C)
+X \sim \mathcal{N}_{1000}(0,C)
 $$
 
 $$
@@ -43,15 +45,17 @@ p=1001
 $$
 
 $$
-diag(C)=1-1/(2p), offdiag(C)=1/(2p). X_j=sqrt(1-1/p) Z_j + sqrt(1/(2p)) U, all Z_j,U\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1).
+\mathrm{diag}(C)=1-1/(2p), \mathrm{offdiag}(C)=1/(2p). X_{j}=\sqrt{1-1/p} Z_{j} + \sqrt{1/(2p)} U, \text{ all } Z_{j},U\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1).
+$$
+
+**Response**
+
+$$
+Y = \sum_{j=1}^{1000} 0.7^{j-1} \sin(X_{j}) + \varepsilon
 $$
 
 $$
-Y = sum_\{j=1\}^\{1000\} 0.7^(j-1) \sin(X_j) + \varepsilon
-$$
-
-$$
-\varepsilon \sim \mathcal{N}(0,0.25)
+\varepsilon\sim \mathcal{N}(0,0.25)
 $$
 
 $$
@@ -59,23 +63,29 @@ p=1001
 $$
 
 $$
-C_jj=1-1/(2p)
+C_{jj}=1-1/(2p)
 $$
 
 $$
-C_jk=1/(2p) (j!=k)
+C_{jk}=1/(2p) (j\neq k)
+$$
+
+**Sampling and observed data**
+
+Independent units and independent outcome noise
+
+$$
+\mathrm{Two} \text{ iid } \mathrm{samples} \text{ from } \text{ the } \mathrm{same} \text{ population }
+$$
+
+fixed group sizes, R indicates observed Y
+
+$$
+\mathrm{Export} X,R,Y_{\mathrm{obs}} \text{ where } Y_{\mathrm{obs}}=Y \text{ when } R=1 \text{ and } 0 \text{ otherwise }
 $$
 
 $$
-Independent units and independent outcome noise. Two iid samples from the same population
-$$
-
-$$
-fixed group sizes, R indicates observed Y. Export X,R,Y_obs where Y_obs=Y when R=1 and 0 otherwise
-$$
-
-$$
-n_total=nL+nU.
+n_{\mathrm{total}}=\mathrm{nL}+\mathrm{nU}.
 $$
 
 <details>

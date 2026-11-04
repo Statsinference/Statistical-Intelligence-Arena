@@ -36,53 +36,65 @@ Not explicitly identified (review required)
 
 **Original source equations (verbatim):** [Open raw scientific record (JSON)](./proximal-ying-2023-03-30-longitudinal-v1.json).
 
-English equation transcription pending
+定义 $`\sigma(t)=1/(1+\exp(-t))`$，所有下述高斯误差分别独立服从 $`\mathcal{N}(0,0.5^{2})`$。每个个体生成以下变量：
 
-see the original record (JSON).
+1. $`X_{0} \sim \mathcal{N}(-0.35,0.5^{2})`$；$`U_{0} \sim \mathcal{N}(0.35,0.5^{2})`$；两者独立。
 
-English equation transcription pending
-
-see the original record (JSON).
+**Step 2**
 
 $$
-2. `A_{0} \mid  X_{0},U_{0} \sim \mathrm{Bernoulli}(\sigma(-0.5 + 0.35X_{0} - 0.35U_{0}))`
+A_{0} \mid  X_{0},U_{0} \sim \mathrm{Bernoulli}(\sigma(-0.5 + 0.35X_{0} - 0.35U_{0}))
 $$
 
-$$
-3. `Z_{0} = 0.2 + 0.5A_{0} + 0.5X_{0} + 0.75U_{0} + \varepsilon Z_{0}`
-$$
+**Step 3**
 
 $$
-4. `W_{0} = 0.2 + 0.5X_{0} - 0.95U_{0} + \varepsilon W_{0}`
+Z_{0} = 0.2 + 0.5A_{0} + 0.5X_{0} + 0.75U_{0} + \varepsilon_{Z0}
 $$
 
-$$
-5. `X_{1} = 0.2 + 0.7A_{0} + 0.7X_{0} + \varepsilon X_{1}`
-$$
+**Step 4**
 
 $$
-6. `U_{1} = 0.2 + 0.7A_{0} + 0.7U_{0} + \varepsilon U_{1}`
+W_{0} = 0.2 + 0.5X_{0} - 0.95U_{0} + \varepsilon_{W0}
 $$
 
-$$
-7. `A_{1} \mid  A_{0},X_{0},X_{1},U_{0},U_{1} \sim \mathrm{Bernoulli}(\sigma(-0.5 + 0.5A_{0} + 0.35(X_{0}+X_{1}) + 0.35(U_{0}+U_{1})))`
-$$
+**Step 5**
 
 $$
-8. `Z_{1} = 0.2 + 0.5(A_{0}+A_{1}) + 0.5(X_{0}+X_{1}) - 0.75(U_{0}+U_{1}) + \varepsilon Z_{1}`
+X_{1} = 0.2 + 0.7A_{0} + 0.7X_{0} + \varepsilon_{X1}
 $$
 
-$$
-9. `W_{1} = 0.35 + 0.45(X_{0}+X_{1}) - 0.85(U_{0}+U_{1}) + \varepsilon W_{1}`
-$$
+**Step 6**
 
 $$
-10. `Y = -1.3 + A_{1} + 1.14A_{0} + 0.5X_{1} - 0.7U_{1} + 0.2X_{0} - 0.7U_{0} + \varepsilon Y`
+U_{1} = 0.2 + 0.7A_{0} + 0.7U_{0} + \varepsilon_{U1}
 $$
 
-English equation transcription pending
+**Step 7**
 
-see the original record (JSON).
+$$
+A_{1} \mid  A_{0},X_{0},X_{1},U_{0},U_{1} \sim \mathrm{Bernoulli}(\sigma(-0.5 + 0.5A_{0} + 0.35(X_{0}+X_{1}) + 0.35(U_{0}+U_{1})))
+$$
+
+**Step 8**
+
+$$
+Z_{1} = 0.2 + 0.5(A_{0}+A_{1}) + 0.5(X_{0}+X_{1}) - 0.75(U_{0}+U_{1}) + \varepsilon_{Z1}
+$$
+
+**Step 9**
+
+$$
+W_{1} = 0.35 + 0.45(X_{0}+X_{1}) - 0.85(U_{0}+U_{1}) + \varepsilon_{W1}
+$$
+
+**Step 10**
+
+$$
+Y = -1.3 + A_{1} + 1.14A_{0} + 0.5X_{1} - 0.7U_{1} + 0.2X_{0} - 0.7U_{0} + \varepsilon_{Y}
+$$
+
+除 <code>X0,U0</code> 的独立起始抽样外，时间节点所用结构误差也分别独立抽取。每名个体对应一行宽表，观测列为 <code>X0,A0,Z0,W0,X1,A1,Z1,W1,Y</code>；<code>U0,U1</code> 为内部潜在混杂。个体间独立，两个时点的观测在个体内按转移方程关联。
 
 
 ## Parameter scenarios, estimands and truth

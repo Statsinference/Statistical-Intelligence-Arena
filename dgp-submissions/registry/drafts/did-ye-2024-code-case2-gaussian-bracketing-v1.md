@@ -34,28 +34,32 @@ Not explicitly identified (review required)
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**observed**
+
 $$
-Y_gtj\sim \mathcal{N}(\mu_gt+I(g=trt)att_t,1), independent all cells
+Y_{\mathrm{gtj}}\sim \mathcal{N}(\mu_{\mathrm{gt}}+I(g=\mathrm{trt})\mathrm{att}_{t},1), \text{ independent } \text{ all } \mathrm{cells}
 $$
 
 $$
-\mu_trt=(3,4,0,1)
+\mu_{trt}=(3,4,0,1)
 $$
 
 $$
-\mu_a=(10,11,10,11)
+\mu_{a}=(10,11,10,11)
 $$
 
 $$
-\mu_b=(4,6,2,3)
+\mu_{b}=(4,6,2,3)
 $$
 
 $$
-att=(0,2,3,1)
+\mathrm{att}=(0,2,3,1)
 $$
 
+**truth**
+
 $$
-Population ATT4=1
+\mathrm{Population} \mathrm{ATT4}=1
 $$
 
 finite-sample cross-world coupling unspecified

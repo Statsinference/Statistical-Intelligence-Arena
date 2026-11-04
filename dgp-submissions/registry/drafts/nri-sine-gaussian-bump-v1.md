@@ -34,29 +34,41 @@ Not explicitly identified (review required)
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**DGP structure**
+
 $$
-Y = m(X) + eps,  X \sim U[-1,1]
+Y = m(X) + \varepsilon,  X \sim U[-1,1]
 $$
 
 $$
-eps \sim \mathcal{N}(0,1)  independently of X
+\varepsilon\sim \mathcal{N}(0,1)
 $$
+
+independently of X
+
+**Model 1 (sine plus Gaussian bump)**
 
 $$
 m(x) = \sin(4x) + 2\cdot \exp(-64\cdot x^{2})
 $$
 
-$$
-m(x_{0}) = \mathbb{E}[Y \mid  X = x_{0}]  at  x_{0} in \{-2/3,-1/3,0,1/3,2/3\}
-$$
+**Estimand (fixed query point)**
 
 $$
-m(0) = \sin(0) + 2\cdot \exp(0) = 0 + 2 = 2  (exact)
+m(x_{0}) = \mathbb{E}[Y \mid  X = x_{0}]  \text{ at }  x_{0} \in \{-2/3,-1/3,0,1/3,2/3\}
 $$
 
+**Truth at x0=0**
+
 $$
-m(x) + m(-x) = 4\cdot \exp(-64\cdot x^{2})  (\sin cancels as odd; bump doubles as even)
+m(0) = \sin(0) + 2\cdot \exp(0) = 0 + 2 = 2  (\mathrm{exact})
 $$
+
+**Even-part identity**
+
+Source notation retained without guessing:
+
+<pre>m(x) + m(-x) = 4*exp(-64*x^2)  (sin cancels as odd; bump doubles as even)</pre>
 
 <details>
 <summary>Original source equations (verbatim)</summary>

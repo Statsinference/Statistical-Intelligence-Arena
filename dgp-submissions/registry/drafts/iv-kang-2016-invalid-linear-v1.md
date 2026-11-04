@@ -43,7 +43,7 @@ Z
 independent of (ξ,ε)
 
 $$
-(\xi,\varepsilon) joint normal: mean 0, variances 1, correlation \rho=0.8.
+(\xi,\varepsilon) \mathrm{joint} \mathrm{normal}: \text{ mean } 0, \mathrm{variances} 1, \mathrm{correlation} \rho=0.8.
 $$
 
 $$

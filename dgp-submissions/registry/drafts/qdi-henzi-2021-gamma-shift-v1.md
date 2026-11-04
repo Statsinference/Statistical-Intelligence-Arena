@@ -34,28 +34,38 @@ G_i
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**Formal Section 4, PDF p.17 / journal p.979, unnumbered paragraph before (23)**
+
 $$
-X_i\overset{\mathrm{iid}}{\sim} \mathrm{Uniform}(0,10)
+X_{i}\overset{\mathrm{iid}}{\sim} \mathrm{Uniform}(0,10)
+$$
+
+**(23) Smooth Gamma; formal PDF p.17 / journal p.979**
+
+$$
+G_{i} \mid  X_{i}=x \sim \Gamma(\text{ shape }=\sqrt{x}, \text{ scale }=\min(\max(x,1),6))
 $$
 
 $$
-G_i \mid  X_i=x \sim Gamma(shape=sqrt(x), scale=\min(\max(x,1),6))
+Y_{i}=G_{i}
 $$
 
-$$
-Y_i=G_i
-$$
+**(24) Discontinuous Gamma; formal PDF p.17 / journal p.979**
 
 $$
-Y_i=G_i+10\cdot 1\{X_i>=5\}
+Y_{i}=G_{i}+10\cdot 1\{X_{i}\geq 5\}
 $$
 
-$$
-Y_i=G_i-2\cdot 1\{X_i>=7\}
-$$
+**(25) Non-isotonic Gamma; formal PDF p.19 / journal p.981**
 
 $$
-\theta_s=P(Y_i<=10 \mid  X_i=5.5)
+Y_{i}=G_{i}-2\cdot 1\{X_{i}\geq 7\}
+$$
+
+**Adapted QDI target**
+
+$$
+\theta_{s}=P(Y_{i}\leq 10 \mid  X_{i}=5.5)
 $$
 
 <details>

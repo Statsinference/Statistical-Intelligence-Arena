@@ -34,52 +34,80 @@ Z_s
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**1. Scalar stream**
+
 $$
-Z_s\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1) conditional on -2.5<=Z_s<=2.5, s=0..n+29-1
+Z_{s}\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1) \mathrm{conditional} \text{ on } -2.5\leq Z_{s}\leq 2.5, s=0..n+29-1
 $$
 
 rejection sampling
 
 $$
-sd=1 before truncation. One scalar truncated-normal stream
+\mathrm{sd}=1 \mathrm{before} \mathrm{truncation}
+$$
+
+One scalar truncated-normal stream
+
+$$
+\text{ source } d=30, \mathrm{bound}=2.5.
+$$
+
+**2. Lag window**
+
+$$
+X_{t}=(Z_{t+29},Z_{t+28},\ldots ,Z_{t}), t=0..n-1
+$$
+
+X1 is the most recent lag
+
+Deterministic window
+
+no new noise
+
+Adjacent rows share 29 stream values.
+
+**3. Mean and scale**
+
+$$
+m(X)=\sum_{\text{ a }=1}^{30} \sin(\pi\cdot X_{a}/2.5)
 $$
 
 $$
-source d=30, bound=2.5.
+L=\text{ mean }(\lvert X_{a}\rvert)
 $$
 
 $$
-X_t=(Z_(t+29),Z_(t+28),\ldots ,Z_t), t=0..n-1
+\sigma(X)=0.1\cdot (\sqrt{30}/2)\cdot (5-\exp(L))/(5+\exp(L))
 $$
 
-X1 is the most recent lag. Deterministic window
+Deterministic
 
-no new noise. Adjacent rows share 29 stream values.
+signed source multiplier retained
 
-$$
-m(X)=sum_(a=1)^{30} \sin(\pi\cdot X_a/2.5)
-$$
+Divisor 2 is outside the radical.
 
-$$
-L=mean(abs(X_a))
-$$
+**4. Innovation**
 
 $$
-\sigma(X)=0.1\cdot (sqrt(30)/2)\cdot (5-\exp(L))/(5+\exp(L)). Deterministic
+\varepsilon_{t}\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1)
 $$
 
-signed source multiplier retained. Divisor 2 is outside the radical.
+independent of the scalar stream and other innovations
 
 $$
-\varepsilon_t\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1), independent of the scalar stream and other innovations. Noise sd=1 before multiplication by \sigma(X).
+\mathrm{Noise} \mathrm{sd}=1 \mathrm{before} \mathrm{multiplication} \text{ by } \sigma(X).
 $$
 
-$$
-Y_t=m(X_t)+\sigma(X_t)\cdot \varepsilon_t
-$$
+**5. Outcome and columns**
 
 $$
-return X_{1}..X_{30},Y in chronological window order. Conditional variance=\sigma(X_t)^{2}
+Y_{t}=m(X_{t})+\sigma(X_{t})\cdot \varepsilon_{t}
+$$
+
+return X1..X30,Y in chronological window order
+
+$$
+\mathrm{Conditional} \text{ variance }=\sigma(X_{t})^{2}
 $$
 
 no latent/noiseless column is exported.

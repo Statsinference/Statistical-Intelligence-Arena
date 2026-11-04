@@ -34,48 +34,60 @@ Not explicitly identified (review required)
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**DGP structure**
+
 $$
-Y = m(X) + eps,  X \sim U[-1,1]
+Y = m(X) + \varepsilon,  X \sim U[-1,1]
 $$
 
 $$
-eps \sim \mathcal{N}(0,1)  homoscedastic, independently of X
+\varepsilon\sim \mathcal{N}(0,1)  \mathrm{homoscedastic}
 $$
+
+independently of X
+
+**Model 3 (two Gaussian peaks)**
 
 $$
 m(x) = 0.3\cdot \exp(-4\cdot (2x+1)^{2}) + 0.7\cdot \exp(-16\cdot (2x-1)^{2})
 $$
 
+**Peak locations**
+
 $$
-left peak at x=-1/2 (amplitude 0.3)
+\mathrm{left} \mathrm{peak} \text{ at } x=-1/2 (\mathrm{amplitude} 0.3)
 $$
 
 $$
-right peak at x=1/2 (amplitude 0.7)
+\mathrm{right} \mathrm{peak} \text{ at } x=1/2 (\mathrm{amplitude} 0.7)
+$$
+
+**Estimand (fixed query point)**
+
+$$
+m(x_{0}) = \mathbb{E}[Y \mid  X = x_{0}]  \text{ at }  x_{0} \in \{-2/3,-1/3,0,1/3,2/3\}
+$$
+
+**Five-point analytic forms**
+
+$$
+m_{3}(-2/3)=0.3\cdot e^{-4/9}+0.7\cdot e^{-784/9}
 $$
 
 $$
-m(x_{0}) = \mathbb{E}[Y \mid  X = x_{0}]  at  x_{0} in \{-2/3,-1/3,0,1/3,2/3\}
+m_{3}(-1/3)=0.3\cdot e^{-4/9}+0.7\cdot e^{-400/9}
 $$
 
 $$
-m_{3}(-2/3)=0.3\cdot e^(-4/9)+0.7\cdot e^(-784/9)
+m_{3}(0)=0.3\cdot e^{-4}+0.7\cdot e^{-16}
 $$
 
 $$
-m_{3}(-1/3)=0.3\cdot e^(-4/9)+0.7\cdot e^(-400/9)
+m_{3}(1/3)=0.3\cdot e^{-100/9}+0.7\cdot e^{-16/9}
 $$
 
 $$
-m_{3}(0)=0.3\cdot e^(-4)+0.7\cdot e^(-16)
-$$
-
-$$
-m_{3}(1/3)=0.3\cdot e^(-100/9)+0.7\cdot e^(-16/9)
-$$
-
-$$
-m_{3}(2/3)=0.3\cdot e^(-196/9)+0.7\cdot e^(-16/9)
+m_{3}(2/3)=0.3\cdot e^{-196/9}+0.7\cdot e^{-16/9}
 $$
 
 <details>

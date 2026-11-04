@@ -34,25 +34,35 @@ Not explicitly identified (review required)
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**Covariate**
+
 $$
 X \sim \mathrm{Uniform}(-2.5,2.5)
 $$
 
+**Full outcome**
+
 $$
-Y\mid X=x \sim \mathcal{N}(1+2x+3x^{2}, 4x^{2}+2), with second argument variance
+Y\mid X=x \sim \mathcal{N}(1+2x+3x^{2}, 4x^{2}+2), \text{ with } \mathrm{second} \mathrm{argument} \text{ variance }
 $$
+
+**Observation**
 
 $$
 R\mid X=x \sim \mathrm{Bernoulli}(1/[1+\exp(0.8+0.5x-0.3x^{2})])
 $$
 
 $$
-R=1 means observed
+R=1 \mathrm{means} \text{ observed }
 $$
 
+**Observed encoding**
+
 $$
-Y_observed=Y when R=1 and 0 placeholder when R=0
+Y_{\mathrm{observed}}=Y \text{ when } R=1 \text{ and } 0 \text{ placeholder } \text{ when } R=0
 $$
+
+**Target**
 
 $$
 \theta=\mathbb{E}(Y)=7.25

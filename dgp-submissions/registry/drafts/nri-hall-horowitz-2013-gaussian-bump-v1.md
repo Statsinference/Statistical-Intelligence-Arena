@@ -34,25 +34,33 @@ Not explicitly identified (review required)
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
-$$
-X_i iid Uniform[-1,1].
-$$
+**Design**
 
 $$
-\varepsilon_i\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,\sigma^{2}), \sigma in \{1,0.5,0.2\}
+X_{i} \text{ iid } \mathrm{Uniform}[-1,1].
 $$
 
+**Errors**
 
+$$
+\varepsilon_{i}\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,\sigma^{2}), \sigma\in \{1,0.5,0.2\}
+$$
 
 independent of X_i in the implementation
 
-$$
-g_{1}(x)=x+5\cdot phi(10\cdot x)=x+5/sqrt(2\cdot \pi)\cdot \exp(-50\cdot x^{2}). phi is the standard normal density, without an extra factor 10.
-$$
+**Source g1**
+
+Source notation retained without guessing:
+
+<pre>g1(x)=x+5*phi(10*x)=x+5/sqrt(2*pi)*exp(-50*x^2). phi is the standard normal density, without an extra factor 10.</pre>
+
+**Response**
 
 $$
-Y_i=g_{1}(X_i)+\varepsilon_i.
+Y_{i}=g_{1}(X_{i})+\varepsilon_{i}.
 $$
+
+**Target**
 
 $$
 \theta(x_{0})=\mathbb{E}[Y\mid X=x_{0}]=g_{1}(x_{0})

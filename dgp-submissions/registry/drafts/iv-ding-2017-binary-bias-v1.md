@@ -39,19 +39,19 @@ Z \sim \mathrm{Bernoulli}(0.5)
 $$
 
 $$
-U \sim \mathrm{Bernoulli}(0.5), V_A,V_Y\overset{\mathrm{iid}}{\sim} \mathrm{Uniform}(0,1)
+U \sim \mathrm{Bernoulli}(0.5), V_{A},V_{Y}\overset{\mathrm{iid}}{\sim} \mathrm{Uniform}(0,1)
 $$
 
 all four independent.
 
 $$
-p[z,u]=P(A=1|Z=z,U=u), r[a,u]=P(Y=1|A=a,U=u)
+p[z,u]=P(A=1|Z=z,U=u), r[\text{ a },u]=P(Y=1|A=\text{ a },U=u)
 $$
 
 fixed values from source Table 1.
 
 $$
-A(z)=1\{V_A<p[z,U]\}
+A(z)=1\{V_{A}<p[z,U]\}
 $$
 
 $$
@@ -59,7 +59,7 @@ A=A(Z)
 $$
 
 $$
-Y(a)=1\{V_Y<r[a,U]\}
+Y(\text{ a })=1\{V_{Y}<r[\text{ a },U]\}
 $$
 
 $$
@@ -71,11 +71,11 @@ q=(0.5,0.5), \delta[u]=p[1,u]-p[0,u], \tau[u]=r[1,u]-r[0,u].
 $$
 
 $$
-LATE=sum_u q[u]\cdot \delta[u]\cdot \tau[u] / sum_u q[u]\cdot \delta[u].
+\mathrm{LATE}=\sum_{u} q[u]\cdot \delta[u]\cdot \tau[u] / \sum_{u} q[u]\cdot \delta[u].
 $$
 
 $$
-Source population ATE=sum_u q[u]\cdot \tau[u]
+\mathrm{Source} \text{ population } \mathrm{ATE}=\sum_{u} q[u]\cdot \tau[u]
 $$
 
 it is an audit quantity, not the registered IV target.

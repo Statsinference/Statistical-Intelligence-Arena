@@ -34,28 +34,38 @@ Not explicitly identified (review required)
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**Covariates and noise**
+
 $$
 (L_{1},L_{2},L_{3},L_{4},\varepsilon) \sim \mathcal{N}(0,I_{5})
 $$
 
+**Full outcome**
+
 $$
 Y=210+27.4L_{1}+13.7(L_{2}+L_{3}+L_{4})+\varepsilon
 $$
+
+**Observation**
 
 $$
 A\mid L\sim \mathrm{Bernoulli}(\mathrm{expit}(-L_{1}+0.5L_{2}-0.25L_{3}-0.1L_{4}))
 $$
 
 $$
-A=1 means Y observed
+A=1 \mathrm{means} Y \text{ observed }
 $$
 
-$$
-Y_observed=Y if A=1, otherwise finite zero placeholder
-$$
+**Observed encoding**
 
 $$
-\beta_0=\mathbb{E}(Y)=210
+Y_{\mathrm{observed}}=Y \text{ if } A=1, \text{ otherwise } \mathrm{finite} \mathrm{zero} \text{ placeholder }
+$$
+
+**Target**
+
+$$
+\beta_{0}=\mathbb{E}(Y)=210
 $$
 
 <details>

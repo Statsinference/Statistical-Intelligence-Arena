@@ -36,45 +36,53 @@ Not explicitly identified (review required)
 
 **Original source equations (verbatim):** [Open raw scientific record (JSON)](./proximal-li-2023-07-10-continuous-tnd-v1.json).
 
-English equation transcription pending
+取 $`\sigma(t)=1/(1+\exp(-t))`$。对来源总体独立个体依次生成：
 
-see the original record (JSON).
+1. $`U \sim \mathrm{Uniform}(0,1)`$，$`X \sim \mathrm{Uniform}(0,1)`$；两者独立。
 
-English equation transcription pending
-
-see the original record (JSON).
+**Step 2**
 
 $$
-2. `A \mid  U,X \sim \mathrm{Bernoulli}(\sigma(-1 + U + 0.25X))`
+A \mid  U,X \sim \mathrm{Bernoulli}(\sigma(-1 + U + 0.25X))
+$$
+
+**Step 3**
+
+$$
+Z = 0.25A + 0.25X + 5U + \varepsilon_{Z}
+$$
+
+**Step 4**
+
+$$
+W = 0.25X + 2U + \varepsilon_{W}
+$$
+
+**Step 5**
+
+$$
+Y \mid  A,U,X \sim \mathrm{Bernoulli}(\exp(\eta_{0} + \beta A - 2U - 0.25X - 0.75UX))
 $$
 
 $$
-3. `Z = 0.25A + 0.25X + 5U + \varepsilon Z`
+\eta_{0}=\ln(0.01)
 $$
 
-$$
-4. `W = 0.25X + 2U + \varepsilon W`
-$$
+**Step 6**
 
 $$
-5. `Y \mid  A,U,X \sim \mathrm{Bernoulli}(\exp(\eta_{0} + \beta A - 2U - 0.25X - 0.75UX))`，`\eta_{0}=ln(0.01)`
+D \mid  U,X \sim \mathrm{Bernoulli}(\exp(-4.605 + 0.25X - 0.2U))
 $$
 
-$$
-6. `D \mid  U,X \sim \mathrm{Bernoulli}(\exp(-4.605 + 0.25X - 0.2U))`
-$$
+**Step 7**
 
 $$
-7. `S \mid  Y,D,U,X \sim \mathrm{Bernoulli}(\max(Y,D) \times  \sigma(-1.4 + 0.5X + 2U + UX))`
+S \mid  Y,D,U,X \sim \mathrm{Bernoulli}(\max(Y,D) \times  \sigma(-1.4 + 0.5X + 2U + UX))
 $$
 
-English equation transcription pending
+$`\varepsilon_{Z}`$ 与 $`\varepsilon_{W}`$ 为独立 $`\mathcal{N}(0,0.25^{2})`$，并独立于 <code>U,X</code> 及二元节点的随机数。最终只返回 $`S=1`$ 个体的观测列 <code>X,A,Z,W,Y</code>；内部变量为 <code>U,D,S</code>。连续协变量 <code>X</code> 的边界是 <code>[0,1]</code>；连续代理与正态噪声无固定数值截断。
 
-see the original record (JSON).
-
-English equation transcription pending
-
-see the original record (JSON).
+四个场景均固定 $`\eta_{0}=\log(0.01)`$，只改变处理效应 $`\beta\in \{\log(0.2), \log(0.5), \log(0.7), 0\}`$。
 
 
 ## Parameter scenarios, estimands and truth

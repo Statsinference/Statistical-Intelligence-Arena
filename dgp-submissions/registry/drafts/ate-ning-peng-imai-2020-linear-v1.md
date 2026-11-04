@@ -34,42 +34,72 @@ Not explicitly identified (review required)
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
-$$
-X_i \sim Normal_d(0,Sigma)
-$$
+**Covariates**
 
 $$
-Sigma_jk = \rho^|j-k|, \rho=1/2
+X_{i} \sim \mathcal{N}_{d}(0,\Sigma)
 $$
 
 $$
-i=1,\ldots ,n independently.
+\Sigma_{jk} = \rho^{\lvert j-k\rvert}, \rho=1/2
 $$
 
 $$
-A_i \mid  X_i \sim \mathrm{Bernoulli}(e_i)
+i=1,\ldots ,n \text{ independently }.
 $$
 
- e_i = 1 - 1/{1 + exp(-X_i1 + X_i2/2 - X_i3/4 - X_i4/10 - X_i5/10 + X_i6/10)} = expit(eta_i)
-
-eta_i=-X_i1+X_i2/2-X_i3/4-X_i4/10-X_i5/10+X_i6/10.
-
-Y_i(1)=2+0.137(X_i5+X_i6+X_i7+X_i8)+epsilon_i1.
-
-Y_i(0)=1+0.291(X_i5+X_i6+X_i7+X_i8+X_i9+X_i10)+epsilon_i0.
-
-epsilon_i1 and epsilon_i0 are independent standard Normal(0,1) variables, as stated in Section 5. Their independence from X is not explicit in that sentence
-
-implementation generates them independently of X and treatment, pending scientific confirmation.
+**Treatment**
 
 $$
-Y_i=A_i Y_i(1)+(1-A_i)Y_i(0). Only X_1,\ldots ,X_d,A,Y are returned
+A_{i} \mid  X_{i} \sim \mathrm{Bernoulli}(e_{i})
 $$
+
+$$
+e_{i} = 1 - 1/\{1 + \exp(-X_{i1} + X_{i2}/2 - X_{i3}/4 - X_{i4}/10 - X_{i5}/10 + X_{i6}/10)\} = \mathrm{expit}(\eta_{i})
+$$
+
+$$
+\eta_{i}=-X_{i1}+X_{i2}/2-X_{i3}/4-X_{i4}/10-X_{i5}/10+X_{i6}/10.
+$$
+
+**Treated potential outcome**
+
+$$
+Y_{i}(1)=2+0.137(X_{i5}+X_{i6}+X_{i7}+X_{i8})+\varepsilon_{i1}.
+$$
+
+**Control potential outcome**
+
+$$
+Y_{i}(0)=1+0.291(X_{i5}+X_{i6}+X_{i7}+X_{i8}+X_{i9}+X_{i10})+\varepsilon_{i0}.
+$$
+
+**Errors**
+
+Source notation retained without guessing:
+
+<pre>epsilon_i1 and epsilon_i0 are independent standard Normal(0,1) variables, as stated in Section 5</pre>
+
+Their independence from X is not explicit in that sentence
+
+implementation generates them
+
+independently of X and treatment, pending scientific confirmation
+
+**Observed outcome**
+
+$$
+Y_{i}=A_{i} Y_{i}(1)+(1-A_{i})Y_{i}(0)
+$$
+
+Only X_1,...,X_d,A,Y are returned
 
 potential outcomes are not observed columns.
 
+**Population estimand**
+
 $$
-ATE=\mathbb{E}[Y(1)-Y(0)]=2-1+0.137 \mathbb{E}[X_{5}+X_{6}+X_{7}+X_{8}]-0.291 \mathbb{E}[X_{5}+\ldots +X_{10}]+\mathbb{E}[\varepsilon_{1}-\varepsilon_{0}]=1.
+\mathrm{ATE}=\mathbb{E}[Y(1)-Y(0)]=2-1+0.137 \mathbb{E}[X_{5}+X_{6}+X_{7}+X_{8}]-0.291 \mathbb{E}[X_{5}+\ldots +X_{10}]+\mathbb{E}[\varepsilon_{1}-\varepsilon_{0}]=1.
 $$
 
 <details>

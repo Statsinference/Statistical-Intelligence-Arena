@@ -35,7 +35,7 @@ Not explicitly identified (review required)
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
 $$
-X_j\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1), j=1,\ldots ,50
+X_{j}\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1), j=1,\ldots ,50
 $$
 
 $$
@@ -45,17 +45,23 @@ $$
 independent of X
 
 $$
-Y=3\cdot \cos(X_1+X_2+X_3)+\varepsilon. Source p=51 includes an intercept.
-$$
-
-Two independent samples from the same population: source_n_labeled rows with observed Y and source_n_unlabeled rows with observed X only. R=1 in the first labeled block
-
-$$
-Y_obs=Y there. R=0 in the remaining block
+Y=3\cdot \cos(X_{1}+X_{2}+X_{3})+\varepsilon
 $$
 
 $$
-Y_obs=0 is a placeholder.
+\mathrm{Source} p=51 \mathrm{includes} \text{ an } \mathrm{intercept}.
+$$
+
+Source notation retained without guessing:
+
+<pre>Two independent samples from the same population: source_n_labeled rows with observed Y and source_n_unlabeled rows with observed X only. R=1 in the first labeled block</pre>
+
+$$
+Y_{\mathrm{obs}}=Y \text{ there }. R=0 \in \text{ the } \mathrm{remaining} \mathrm{block}
+$$
+
+$$
+Y_{\mathrm{obs}}=0 \text{ is } \text{ a } \text{ placeholder }.
 $$
 
 <details>

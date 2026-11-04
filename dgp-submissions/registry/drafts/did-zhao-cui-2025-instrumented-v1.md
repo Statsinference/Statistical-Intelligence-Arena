@@ -36,48 +36,72 @@ Not explicitly identified (review required)
 
 **Original source equations (verbatim):** [Open raw scientific record (JSON)](./did-zhao-cui-2025-instrumented-v1.json).
 
-$X_{1i}\sim N(0,1),\quad X_{2i}\sim N(0,1)$
+**Independent baseline covariates**
+
+X_{1i}\sim N(0,1),\quad X_{2i}\sim N(0,1)
+
+**Independent instrument and sampled period**
 
 $$
-$Z_i\sim \mathrm{Bernoulli}(0.5),\quad T_i\sim \mathrm{Bernoulli}(0.5)$
+Z_i\sim \mathrm{Bernoulli}(0.5),\quad T_i\sim \mathrm{Bernoulli}(0.5)
 $$
 
-$$
-$f_U(u)=\frac{1}{2\pi\cosh(u/2)},\quad E[U_{ti}]=0,\quad \mathrm{Var}(U_{ti})=\pi^2$
-$$
+**Independent U0 and U1, also independent of X,Z,T; bridge phi=0.5**
 
 $$
-$V_{ti}\sim\mathrm{Uniform}(0,1),\quad U_{ti}=2\log\tan(\pi V_{ti}/2)$
+f_U(u)=\frac{1}{2\pi\cosh(u/2)},\quad E[U_{ti}]=0,\quad \mathrm{Var}(U_{ti})=\pi^2
 $$
 
-$$
-$A_{0i}\mid X_i,Z_i,U_{0i}\sim\mathrm{Bernoulli}\left(\frac{1}{1+\exp[-(2-7Z_i+0.2U_{0i}+2X_{1i})]}\right)$
-$$
+**Bridge inverse-CDF sampler; t=0,1**
 
 $$
-$A_{1i}\mid X_i,Z_i,U_{1i}\sim\mathrm{Bernoulli}\left(\frac{1}{1+\exp[-(-1.5+5Z_i-0.15U_{1i}+1.5X_{2i})]}\right)$
+V_{ti}\sim\mathrm{Uniform}(0,1),\quad U_{ti}=2\log\tan(\pi V_{ti}/2)
 $$
 
-$$
-$h(X_i)=1.5X_\{1i\}+2X_\{2i\}-0.5$
-$$
-
-$\epsilon_{0i}\sim N(0,1),\quad\epsilon_{1i}\sim N(0,1)$
+**Treatment in period 0, with independent Bernoulli randomization**
 
 $$
-$Y_{0i}=200+10[A_{0i}h(X_i)+0.5U_{0i}+2Z_i+1.5X_{1i}+2X_{2i}]+\epsilon_{0i}$
+A_{0i}\mid X_i,Z_i,U_{0i}\sim\mathrm{Bernoulli}\left(\frac{1}{1+\exp[-(2-7Z_i+0.2U_{0i}+2X_{1i})]}\right)
 $$
 
-$$
-$Y_{1i}=240+10[A_{1i}h(X_i)+0.5U_{1i}+2Z_i+2X_{1i}+1.5X_{2i}]+\epsilon_{1i}$
-$$
+**Treatment in period 1, with independent Bernoulli randomization**
 
 $$
-$A_i=(1-T_i)A_{0i}+T_iA_{1i},\quad Y_i=(1-T_i)Y_{0i}+T_iY_{1i}$
+A_{1i}\mid X_i,Z_i,U_{1i}\sim\mathrm{Bernoulli}\left(\frac{1}{1+\exp[-(-1.5+5Z_i-0.15U_{1i}+1.5X_{2i})]}\right)
 $$
 
+**Treatment-effect modifier**
+
 $$
-$ATE=\mathbb{E}[10h(X_i)]=-5$
+h(X_{i})=1.5X_{1i}+2X_{2i}-0.5
+$$
+
+**Independent outcome errors, independent of all other random draws**
+
+\epsilon_{0i}\sim N(0,1),\quad\epsilon_{1i}\sim N(0,1)
+
+**Period-0 outcome**
+
+$$
+Y_{0i}=200+10[A_{0i}h(X_i)+0.5U_{0i}+2Z_i+1.5X_{1i}+2X_{2i}]+\epsilon_{0i}
+$$
+
+**Period-1 outcome**
+
+$$
+Y_{1i}=240+10[A_{1i}h(X_i)+0.5U_{1i}+2Z_i+2X_{1i}+1.5X_{2i}]+\epsilon_{1i}
+$$
+
+**Observed repeated-cross-section treatment and outcome**
+
+$$
+A_i=(1-T_i)A_{0i}+T_iA_{1i},\quad Y_i=(1-T_i)Y_{0i}+T_iY_{1i}
+$$
+
+**Adapted scalar estimand: population ATE, not ATT or policy value**
+
+$$
+\mathrm{ATE}=\mathbb{E}[10h(X_{i})]=-5
 $$
 
 

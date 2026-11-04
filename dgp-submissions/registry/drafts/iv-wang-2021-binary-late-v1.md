@@ -36,52 +36,70 @@ Not explicitly identified (review required)
 
 **Original source equations (verbatim):** [Open raw scientific record (JSON)](./iv-wang-2021-binary-late-v1.json).
 
+**DGP equation 1**
+
 $$
 x\sim \mathrm{Uniform}(-1,1)
 $$
 
 $$
-\delta=tanh(-x)
+\delta=\tanh(-x)
 $$
 
 $$
 r=\exp(-0.4+x).
 $$
 
+**DGP equation 2**
+
 $$
-\phi_\{j\}=\mathrm{expit}(-0.4+0.8x), j=1,\ldots ,4
+\phi_{j}=\mathrm{expit}(-0.4+0.8x), j=1,\ldots ,4
 $$
 
 $$
-Z\mid x\sim Bernoulli[\mathrm{expit}(0.1-x)].
+Z\mid x\sim \mathrm{Bernoulli}[\mathrm{expit}(0.1-x)].
+$$
+
+**DGP equation 3**
+
+$$
+c=\phi_{1}
 $$
 
 $$
-\begin{aligned}
-c &= \phi_\{1\} \\
-a &= (1-c)\phi_\{2\} \\
-n &= (1-c)(1-\phi_\{2\}).
-\end{aligned}
+\text{ a }=(1-c)\phi_{2}
 $$
 
 $$
-q_\{0\}=2r(1-\delta) / [r(2-\delta)+\delta+√\{\delta^\{2\}(r-1)^\{2\}+4r\}], q_\{1\}=q_\{0\}+\delta.
+n=(1-c)(1-\phi_{2}).
+$$
+
+**DGP equation 4**
+
+$$
+q_{0}=2r(1-\delta) / [r(2-\delta)+\delta+\sqrt{\delta^{2}(r-1)^{2}+4r}], q_{1}=q_{0}+\delta.
+$$
+
+**DGP equation 5**
+
+$$
+p_{0}=(n(1-\phi_{3})+c(1-q_{0}), n\phi_{3}+\mathrm{cq}_{0}, \text{ a }(1-\phi_{4}), \text{ a }\phi_{4})
+$$
+
+**DGP equation 6**
+
+$$
+p_{1}=(n(1-\phi_{3}), n\phi_{3}, \text{ a }(1-\phi_{4})+c(1-q_{1}), \text{ a }\phi_{4}+\mathrm{cq}_{1}).
+$$
+
+**DGP equation 7**
+
+$$
+(D,Y)\mid x,Z=z \sim \mathrm{Categorical}(p_{z})
 $$
 
 $$
-p_\{0\}=(n(1-\phi_\{3\})+c(1-q_\{0\}), n\phi_\{3\}+cq_\{0\}, a(1-\phi_\{4\}), a\phi_\{4\})
-$$
-
-$$
-p_\{1\}=(n(1-\phi_\{3\}), n\phi_\{3\}, a(1-\phi_\{4\})+c(1-q_\{1\}), a\phi_\{4\}+cq_\{1\}).
-$$
-
-$$
-(D,Y)\mid x,Z=z \sim Categorical(p_\{z\})
-$$
-
-$$
-cells=(00,01,10,11).
+\mathrm{cells}=(00,01,10,11).
 $$
 
 

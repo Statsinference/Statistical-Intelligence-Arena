@@ -34,33 +34,49 @@ eta_i
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**Instrument distribution**
+
 $$
 Z_i\sim\mathcal{N}_{21}(0,\Sigma_Z),\qquad (\Sigma_Z)_{jk}=0.8(0.3)^{|j-k|},\quad j,k=1,\ldots,21.
 $$
+
+**Joint structural error distribution**
 
 $$
 \begin{pmatrix}\varepsilon_i\\\eta_i\end{pmatrix}\sim\mathcal{N}_2\!\left(\begin{pmatrix}0\\0\end{pmatrix},\begin{pmatrix}1&0.6\\0.6&1\end{pmatrix}\right).
 $$
 
+**Sampling independence**
+
 $$
 Z_i\perp\!\!\!\perp(\varepsilon_i,\eta_i),\qquad (Z_i,\varepsilon_i,\eta_i)\overset{\mathrm{iid}}{\sim}P,\quad i=1,\ldots,n.
 $$
+
+**Common fixed parameters**
 
 $$
 p=21,\qquad\beta=1,\qquad\alpha=(0\mathbf{1}_{9}^{\top},0.4\mathbf{1}_{6}^{\top},0.2\mathbf{1}_{6}^{\top})^{\top}.
 $$
 
+**Default code_case_2 first-stage coefficients**
+
 $$
 \gamma_{\mathrm{code\_case\_2}}=0.15\mathbf{1}_{21}.
 $$
+
+**Alternative code_case_1 first-stage coefficients**
 
 $$
 \gamma_{\mathrm{code\_case\_1}}=0.4\mathbf{1}_{21}.
 $$
 
+**Endogenous continuous treatment**
+
 $$
 D_i=Z_i^{\top}\gamma+\eta_i.
 $$
+
+**Continuous outcome**
 
 $$
 Y_i=\beta D_i+Z_i^{\top}\alpha+\varepsilon_i.

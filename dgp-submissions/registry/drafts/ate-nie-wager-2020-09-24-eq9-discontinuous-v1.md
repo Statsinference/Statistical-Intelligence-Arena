@@ -35,7 +35,7 @@ Not explicitly identified (review required)
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
 $$
-X\sim N_10(0,I)
+X\sim \mathcal{N}_{10}(0,I)
 $$
 
 independent coordinates and individuals.
@@ -55,11 +55,11 @@ $$
 $$
 
 $$
-Y\mid X,A\sim \mathcal{N}(b(X)+(A-0.5)\cdot \tau(X),\sigma\cdot \cdot 2)
+Y\mid X,A\sim \mathcal{N}(b(X)+(A-0.5)\cdot \tau(X),\sigma^{2})
 $$
 
 $$
-\sigma=1, selected from Figure 2 noise levels.
+\sigma=1, \mathrm{selected} \text{ from } \mathrm{Figure} 2 \text{ noise } \mathrm{levels}.
 $$
 
 <details>

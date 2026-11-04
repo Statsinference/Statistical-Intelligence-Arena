@@ -49,14 +49,16 @@ B\sim \mathrm{Bernoulli}(0.05)
 $$
 
 $$
-\varepsilon\sim \mathcal{N}(0,0.1\cdot \cdot 2)
+\varepsilon\sim \mathcal{N}(0,0.1^{2})
 $$
 
 independent of X,A and each other
 
 $$
-Y=2\cdot A\cdot B+\varepsilon. Source W is treatment A here
+Y=2\cdot A\cdot B+\varepsilon
 $$
+
+Source W is treatment A here
 
 source A_i is the latent response indicator B, not a baseline covariate.
 

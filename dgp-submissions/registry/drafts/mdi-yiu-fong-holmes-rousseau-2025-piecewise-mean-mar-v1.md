@@ -34,17 +34,36 @@ Not explicitly identified (review required)
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**Full data and observation**
+
 $$
-X\sim Uniform[-1,1]
+X\sim \mathrm{Uniform}[-1,1]
 $$
 
 $$
-m(x)=(x+2)^{2}/2 on [-1,-0.5), x/2+0.875 on [-0.5,0), -5(x-0.2)^{2}+1.075 on [0,0.5), x+0.125 on [0.5,1]; Y|X=x\sim \mathcal{N}(m(x), [0.2-0.1cos(2\pi x)]^{2}); R|X=x\sim \mathrm{Bernoulli}(0.5+0.4sign(x)).
+m(x)=\begin{cases}
+(x+2)^{2}/2 & x\in [-1,-0.5) \\
+x/2+0.875 & x\in [-0.5,0) \\
+-5(x-0.2)^{2}+1.075 & x\in [0,0.5) \\
+x+0.125 & x\in [0.5,1]
+\end{cases}
 $$
 
 $$
-Y_observed=Y if R=1, else finite zero placeholder.
+Y\mid X=x\sim \mathcal{N}(m(x), [0.2-0.1\cos(2\pi x)]^{2})
 $$
+
+$$
+R\mid X=x\sim \mathrm{Bernoulli}(0.5+0.4\mathrm{sign}(x)).
+$$
+
+**Observed encoding**
+
+$$
+Y_{\mathrm{observed}}=Y \text{ if } R=1, \mathrm{else} \mathrm{finite} \mathrm{zero} \text{ placeholder }.
+$$
+
+**Target**
 
 $$
 \theta=\mathbb{E}(Y)=0.84375

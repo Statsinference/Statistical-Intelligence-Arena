@@ -34,9 +34,13 @@ Not explicitly identified (review required)
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**Features**
+
 $$
-X_j\overset{\mathrm{iid}}{\sim} \mathrm{Uniform}(-1,1), j=1,\ldots ,40
+X_{j}\overset{\mathrm{iid}}{\sim} \mathrm{Uniform}(-1,1), j=1,\ldots ,40
 $$
+
+**Noise**
 
 $$
 \varepsilon\sim \mathcal{N}(0,1)
@@ -44,12 +48,16 @@ $$
 
 independent of all X_j
 
+**Observed response**
+
 $$
 Y=(1+I(X_{1}>0))\cdot \varepsilon
 $$
 
+**Conditional quantile**
+
 $$
-Q_q(Y\mid X=x)=(1+I(x_{1}>0))\cdot Phi_inverse(q)
+Q_{q}(Y\mid X=x)=(1+I(x_{1}>0))\cdot \Phi_{\mathrm{inverse}}(q)
 $$
 
 <details>

@@ -35,7 +35,7 @@ Not explicitly identified (review required)
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
 $$
-X \sim N_d(0,Sigma), Sigma[j,k]=\rho\cdot \cdot abs(j-k)
+X \sim \mathcal{N}_{d}(0,\Sigma), \Sigma[j,k]=\rho^{\lvert j-k\rvert}
 $$
 
 $$
@@ -63,8 +63,10 @@ Y(0)=1+0.291\cdot (X_{5}+X_{6}+X_{7}+X_{8}+X_{9}+X_{10})+\varepsilon_{0}.
 $$
 
 $$
-\varepsilon_{0},\varepsilon_{1}\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1), independent of X and treatment randomization
+\varepsilon_{0},\varepsilon_{1}\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1)
 $$
+
+independent of X and treatment randomization
 
 $$
 Y=A\cdot Y(1)+(1-A)\cdot Y(0).

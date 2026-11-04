@@ -34,25 +34,37 @@ Not explicitly identified (review required)
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**DGP structure**
+
 $$
-Y = m(X) + eps,  X \sim U[-1,1]
+Y = m(X) + \varepsilon,  X \sim U[-1,1]
 $$
 
 $$
-eps \sim \mathcal{N}(0,1)  independently of X
+\varepsilon\sim \mathcal{N}(0,1)
 $$
 
-$$
-m(x) = \sin(3\cdot \pi\cdot x/2) / (1 + 18\cdot x^{2}\cdot (sgn(x)+1))
-$$
+independently of X
+
+**Model 5 (g2 of Hall-Horowitz)**
 
 $$
-m(x) = \sin(\pi\cdot x/2) / (1 + 2\cdot x^{2}\cdot (sgn(x)+1))
+m(x) = \sin(3\cdot \pi\cdot x/2) / (1 + 18\cdot x^{2}\cdot (\mathrm{sgn}(x)+1))
 $$
 
+**Model 6 (g3 = g2(x/3))**
+
 $$
-m(x_{0}) = \mathbb{E}[Y \mid  X = x_{0}]  at  x_{0} in \{-2/3,-1/3,0,1/3,2/3\}
+m(x) = \sin(\pi\cdot x/2) / (1 + 2\cdot x^{2}\cdot (\mathrm{sgn}(x)+1))
 $$
+
+**Estimand (fixed query point)**
+
+$$
+m(x_{0}) = \mathbb{E}[Y \mid  X = x_{0}]  \text{ at }  x_{0} \in \{-2/3,-1/3,0,1/3,2/3\}
+$$
+
+**M5 five-point truth**
 
 $$
 m_{5}(-2/3)=0, m_{5}(-1/3)=-1, m_{5}(0)=0, m_{5}(1/3)=0.2, m_{5}(2/3)=0

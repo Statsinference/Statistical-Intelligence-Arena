@@ -34,77 +34,121 @@ e_i
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
-$$
-For each cluster draw \xi_i\sim \mathcal{N}(0,1) and source candidate size \mathrm{floor}(2\cdot abs(\xi_i)+6)
-$$
+**1. Cluster size and row budget**
+
+Source notation retained without guessing:
+
+<pre>For each cluster draw xi_i~N(0,1) and source candidate size floor(2*abs(xi_i)+6)</pre>
+
+apply the declared fixed-n terminal-budget rule
 
 $$
-apply the declared fixed-n terminal-budget rule. Source base=6, scale=2
+\mathrm{Source} \mathrm{base}=6, \text{ scale }=2
 $$
 
-$$
-when remaining<12, the terminal cluster takes the remaining rows. Other oversized draws also absorb the remaining budget.
-$$
+Source notation retained without guessing:
+
+<pre>when remaining&lt;12, the terminal cluster takes the remaining rows</pre>
+
+Other oversized draws also absorb the remaining budget.
+
+**2. Cluster covariates**
 
 $$
-Z_i\sim \mathcal{N}(0,I_2), one two-vector shared by all rows of cluster i. Mean zero, each sd=1, independent components and independent cluster draws.
+Z_{i}\sim \mathcal{N}(0,I_{2}), \mathrm{one} \mathrm{two}-\text{ vector } \mathrm{shared} \text{ by } \text{ all } \text{ rows } \text{ of } \mathrm{cluster} i
 $$
 
+Source notation retained without guessing:
+
+<pre>Mean zero, each sd=1, independent components and independent cluster draws.</pre>
+
+**3. Random coefficients**
+
 $$
-e_i\sim \mathcal{N}(0,0.25\cdot I_3), shared within cluster and
+e_{i}\sim \mathcal{N}(0,0.25\cdot I_{3}), \mathrm{shared} \mathrm{within} \mathrm{cluster} \text{ and }
 $$
 
-independent of Z_i. Each random-effect sd=0.5
+independent of Z_i
+
+$$
+\mathrm{Each} \mathrm{random}-\mathrm{effect} \mathrm{sd}=0.5
+$$
 
 not observed/exported.
 
+**4. Individual index**
+
 $$
-U_ij\sim \mathrm{Uniform}(0,1), newly drawn for each individual.
+U_{ij}\sim \mathrm{Uniform}(0,1), \mathrm{newly} \text{ drawn } \text{ for } \text{ each } \mathrm{individual}
 $$
 
 Independent of cluster variables and other individual draws
 
+**5. Individual covariates**
+
 $$
-X_ij\sim \mathcal{N}(0,I_3), newly drawn for each individual. Each sd=1
+X_{ij}\sim \mathcal{N}(0,I_{3}), \mathrm{newly} \text{ drawn } \text{ for } \text{ each } \mathrm{individual}
+$$
+
+$$
+\mathrm{Each} \mathrm{sd}=1
 $$
 
 independent coordinates and
 
 independent of U,Z,e
 
+**6. Coefficient functions**
+
 $$
 \beta_{0}(u)=\sin(2\cdot \pi\cdot u)
 $$
 
 $$
-\beta(u)=ones(2)\cdot \sin(2\cdot \pi\cdot u)
+\beta(u)=\mathrm{ones}(2)\cdot \sin(2\cdot \pi\cdot u)
 $$
 
 $$
-\alpha_{0}(u)=ones(3)\cdot \sin(2\cdot \pi\cdot u)
+\alpha_{0}(u)=\mathrm{ones}(3)\cdot \sin(2\cdot \pi\cdot u)
 $$
 
 $$
-\alpha_{1}(u)=ones(3)\cdot \cos(2\cdot \pi\cdot u)
+\alpha_{1}(u)=\mathrm{ones}(3)\cdot \cos(2\cdot \pi\cdot u)
 $$
 
 $$
-\alpha_{2}(u)=ones(3)\cdot \sin(\pi\cdot u)
+\alpha_{2}(u)=\mathrm{ones}(3)\cdot \sin(\pi\cdot u)
 $$
 
-a_i(u)=alpha0(u)+alpha1(u)*Z_i1+alpha2(u)*Z_i2+e_i. Deterministic functions of current u and shared Z/e. Follow the source simulation paragraph including beta0.
-
 $$
-\varepsilon_ij\sim \mathcal{N}(0,0.5^{2})
+\text{ a }_{i}(u)=\alpha_{0}(u)+\alpha_{1}(u)\cdot Z_{i1}+\alpha_{2}(u)\cdot Z_{i2}+e_{i}
 $$
 
-independent of all previous variables and errors. Measurement-error sd=0.5
+Deterministic functions of current u and shared Z/e
+
+Follow the source simulation paragraph including beta0.
+
+**7. Measurement error**
 
 $$
-Y_ij=\beta_{0}(U_ij)+X_ij^T\cdot a_i(U_ij)+Z_i^T\cdot \beta(U_ij)+\varepsilon_ij
+\varepsilon_{ij}\sim \mathcal{N}(0,0.5^{2})
 $$
 
-return cluster,U,X1,X2,X3,Z1,Z2,Y. Independent cluster-level Z/e draws induce shared within-cluster effects
+independent of all previous variables and errors
+
+$$
+\mathrm{Measurement}-\mathrm{error} \mathrm{sd}=0.5.
+$$
+
+**8. Outcome and observed columns**
+
+$$
+Y_{ij}=\beta_{0}(U_{ij})+X_{ij}^{T}\cdot \text{ a }_{i}(U_{ij})+Z_{i}^{T}\cdot \beta(U_{ij})+\varepsilon_{ij}
+$$
+
+return cluster,U,X1,X2,X3,Z1,Z2,Y
+
+Independent cluster-level Z/e draws induce shared within-cluster effects
 
 sizes are coupled by the n-row budget.
 

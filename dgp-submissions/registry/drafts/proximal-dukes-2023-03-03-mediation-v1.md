@@ -36,41 +36,49 @@ Not explicitly identified (review required)
 
 **Original source equations (verbatim):** [Open raw scientific record (JSON)](./proximal-dukes-2023-03-03-mediation-v1.json).
 
-English equation transcription pending
+设 $`T=X_{1}+X_{2}`$，$`\sigma(t)=1/(1+\exp(-t))`$。个体按以下条件方程抽样：
 
-see the original record (JSON).
+**Step 1**
 
 $$
-1. `(X_{1},X_{2},U)^T \sim Normal_3((0.25,0.25,0)^T, \begin{bmatrix}
+(X_{1},X_{2},U)^{T} \sim \mathcal{N}_{3}((0.25,0.25,0)^{T}, \begin{bmatrix}
 0.25 & 0 & 0.05 \\
 0 & 0.25 & 0.05 \\
 0.05 & 0.05 & 1
-\end{bmatrix})`
+\end{bmatrix})
 $$
 
-$$
-2. `A \mid  T,U \sim \mathrm{Bernoulli}(\sigma(-0.5T - 0.4U))`
-$$
+**Step 2**
 
 $$
-3. `Z = 0.2 - 0.52A + 0.2T - U + \varepsilon Z`
+A \mid  T,U \sim \mathrm{Bernoulli}(\sigma(-0.5T - 0.4U))
 $$
 
-$$
-4. `W = 0.3 + 0.2T - 0.6U + \varepsilon W`
-$$
+**Step 3**
 
 $$
-5. `M = -0.3A - 0.5T + 0.4U + \varepsilon M`
+Z = 0.2 - 0.52A + 0.2T - U + \varepsilon_{Z}
 $$
 
+**Step 4**
+
 $$
-6. `Y = 2 + 2A + M + 2W - T - U + \varepsilon Y`
+W = 0.3 + 0.2T - 0.6U + \varepsilon_{W}
 $$
 
-English equation transcription pending
+**Step 5**
 
-see the original record (JSON).
+$$
+M = -0.3A - 0.5T + 0.4U + \varepsilon_{M}
+$$
+
+**Step 6**
+
+$$
+Y = 2 + 2A + M + 2W - T - U + \varepsilon_{Y}
+$$
+
+<code>εZ,εW,εM</code> 分别服从 $`\mathcal{N}(0,1)`$；$`\varepsilon_{Y} \sim \mathcal{N}(0,2^{2})`$。生成器保留基线三元高斯的协方差，并对基线抽样以外的外生噪声分别独立生成。所有个体独立，个体内变量由上述结构方程关联。观测列为 <code>X1,X2,A,Z,W,M,Y</code>；<code>U</code> 为未观测混杂变量。
 
 
 ## Parameter scenarios, estimands and truth

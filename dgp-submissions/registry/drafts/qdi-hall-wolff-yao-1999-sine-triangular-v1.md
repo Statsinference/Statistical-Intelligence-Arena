@@ -34,12 +34,14 @@ U_i4
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**Source law and sampling (Example 1, unnumbered)**
+
 $$
-X_i iid \sim f_T
+X_{i} \text{ iid } \sim f_{T}
 $$
 
 $$
-\varepsilon_i iid \sim f_T
+\varepsilon_{i} \text{ iid } \sim f_{T}
 $$
 
 {X_i}
@@ -47,16 +49,28 @@ $$
 independent of {epsilon_i}
 
 $$
-f_T(u)=(1-|u|)1\{-1<=u<=1\}.
+f_{T}(u)=(1-|u|)1\{-1\leq u\leq 1\}.
+$$
+
+**Source response (Example 1, unnumbered)**
+
+$$
+Y_{i} = 2\cdot \sin(3.1416\cdot X_{i}) + \varepsilon_{i}.
+$$
+
+**Equivalent-law RNG implementation (derived)**
+
+$$
+\mathrm{For} \text{ independent } U_{i1},\ldots ,U_{i4} \sim \mathrm{Uniform}(0,1): X_{i}=U_{i1}-U_{i2}
 $$
 
 $$
-Y_i = 2\cdot \sin(3.1416\cdot X_i) + \varepsilon_i.
+\varepsilon_{i}=U_{i3}-U_{i4}
 $$
 
-For independent U_i1,...,U_i4 ~ Uniform(0,1): X_i=U_i1-U_i2
+Only X_i,Y_i are exported.
 
-epsilon_i=U_i3-U_i4. Only X_i,Y_i are exported.
+**Conditional CDF (derived)**
 
 $$
 F(y\mid x)=G(z)
@@ -67,23 +81,25 @@ z=y-2\cdot \sin(3.1416\cdot x)
 $$
 
 $$
-G(z)=0 for z<=-1
+G(z)=0 \text{ for } z\leq -1
 $$
 
 $$
-(1+z)^{2}/2 for -1<z<=0
+(1+z)^{2}/2 \text{ for } -1<z\leq 0
 $$
 
 $$
-1-(1-z)^{2}/2 for 0<z<1
+1-(1-z)^{2}/2 \text{ for } 0<z<1
 $$
 
 $$
-1 for z>=1.
+1 \text{ for } z\geq 1.
 $$
 
+**Scalar target adaptation (derived)**
+
 $$
-\theta=F(1\mid 0.1)=1-2\cdot \sin(0.31416)^{2}=0.8090161307517588 (binary64 evaluation).
+\theta=F(1\mid 0.1)=1-2\cdot \sin(0.31416)^{2}=0.8090161307517588 (\mathrm{binary64} \mathrm{evaluation}).
 $$
 
 <details>

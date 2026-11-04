@@ -34,17 +34,25 @@ Not explicitly identified (review required)
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**Shared covariate construction**
+
 $$
-For each row i and j=1,\ldots ,600: W_ij,U_i are mutually iid Uniform[0,1]
+\mathrm{For} \text{ each } \mathrm{row} i \text{ and } j=1,\ldots ,600: W_{ij},U_{i} \mathrm{are} \text{ mutually } \text{ iid } \mathrm{Uniform}[0,1]
 $$
 
 $$
-X_ij=(W_ij+0.3 U_i)/1.3.
+X_{ij}=(W_{ij}+0.3 U_{i})/1.3.
 $$
 
+**Sparse additive response**
+
 $$
-Y_i=sum_\{j=1\}^{4} f_j(X_ij)+\varepsilon_i, \varepsilon_i\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1.5^{2}), independent of the covariates.
+Y_{i}=\sum_{j=1}^{4} f_{j}(X_{ij})+\varepsilon_{i}, \varepsilon_{i}\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1.5^{2})
 $$
+
+independent of the covariates
+
+**Active functions**
 
 $$
 f_{1}(t)=6[0.1 \sin(2 \pi t)+0.2 \cos(2 \pi t)+0.3 \sin^{2}(2 \pi t)+0.4 \cos^{3}(2 \pi t)+0.5 \sin^{3}(2 \pi t)]
@@ -63,11 +71,13 @@ f_{4}(t)=4 \sin(2 \pi t)/(2-\sin(2 \pi t))
 $$
 
 $$
-f_j=0 for j=5,\ldots ,600.
+f_{j}=0 \text{ for } j=5,\ldots ,600.
 $$
 
+**Library estimand**
+
 $$
-m(x\cdot )=\mathbb{E}[Y\mid X=x\cdot ]=sum_\{j=1\}^{4} f_j(0.5), x\cdot =(0.5,\ldots ,0.5), with truth -1.1.
+m(x^{\ast})=\mathbb{E}[Y\mid X=x^{\ast}]=\sum_{j=1}^{4} f_{j}(0.5), x^{\ast}=(0.5,\ldots ,0.5), \text{ with } \mathrm{truth} -1.1.
 $$
 
 <details>

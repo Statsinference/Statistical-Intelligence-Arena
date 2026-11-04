@@ -34,32 +34,36 @@ Ti
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**adoption**
+
 $$
 X\sim U[-10,10]
 $$
 
 $$
-Ti\mid Xi\sim Exp(\exp(1+.5Xi))
+\mathrm{Ti}\mid \Xi\sim \mathrm{Exp}(\exp(1+.5\Xi))
 $$
 
 $$
-H=max10000 sample15%quantiles
+H=\mathrm{max10000} \mathrm{sample15}\%\mathrm{quantiles}
 $$
 
 $$
-condition minTi<H
+\mathrm{condition} \mathrm{minTi}<H
+$$
+
+**outcome**
+
+$$
+\mathrm{Yij}=.2 \mathrm{Yi},j-1+.5\Xi+.5\sqrt{j}+\mathrm{epsij}
 $$
 
 $$
-Yij=.2 Yi,j-1+.5Xi+.5sqrt(j)+epsij
+\mathrm{Yi0}=0
 $$
 
 $$
-Yi0=0
-$$
-
-$$
-eps\sim \mathcal{N}(0,.15^{2})
+\varepsilon\sim \mathcal{N}(0,.15^{2})
 $$
 
 tau0

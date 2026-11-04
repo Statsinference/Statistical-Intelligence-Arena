@@ -36,27 +36,37 @@ e, v
 
 **Original source equations (verbatim):** [Open raw scientific record (JSON)](./iv-guo-2018-author-linear-v1.json).
 
+**DGP equation 1**
+
 $$
-Z_\{j\} iid \sim \mathcal{N}(0,1), j=1,\ldots ,10
+Z_{j}\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1), j=1,\ldots ,10
 $$
 
 $$
-e,v iid \sim \mathcal{N}(0,1)
+e,v\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1)
 $$
 
 Z ⟂ (e,v).
 
-$$
-\varepsilon_\{D\}=e,   \varepsilon_\{Y\}=0.8e+√(1-0.8^\{2\})v.
-$$
+**DGP equation 2**
 
 $$
-D=0.5+\Sigma_\{j=1\}^\{10\} \gamma_\{j\}Z_\{j\}+\varepsilon_\{D\}
+\varepsilon_{D}=e,   \varepsilon_{Y}=0.8e+\sqrt{1-0.8^{2}}v.
 $$
 
+**DGP equation 3**
+
 $$
-Y=-0.5+\beta D+\Sigma_\{j=1\}^\{10\} \pi_\{j\}Z_\{j\}+\varepsilon_\{Y\}
+D=0.5+\sum_{j=1}^{10} \gamma_{j}Z_{j}+\varepsilon_{D}
 $$
+
+**DGP equation 4**
+
+$$
+Y=-0.5+\beta D+\sum_{j=1}^{10} \pi_{j}Z_{j}+\varepsilon_{Y}
+$$
+
+**DGP equation 5**
 
 $$
 \beta=1,   \gamma=(1,\ldots ,1)

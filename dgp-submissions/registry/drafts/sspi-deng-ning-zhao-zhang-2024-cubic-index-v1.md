@@ -34,24 +34,30 @@ Z1, epsilon
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**Covariates**
+
 $$
-Z\sim N_500(0,Sigma)
+Z\sim \mathcal{N}_{500}(0,\Sigma)
 $$
 
 $$
-Sigma_jk=0.3^|j-k|
+\Sigma_{jk}=0.3^{\lvert j-k\rvert}
 $$
 
 $$
-X_{1}=abs(Z_{1})
+X_{1}=\lvert Z_{1}\rvert
 $$
 
 $$
-Xj=Zj for j>1. Exact stationary AR recursion generates Z.
+\mathrm{Xj}=\mathrm{Zj} \text{ for } j>1
 $$
 
+Exact stationary AR recursion generates Z.
+
+**Response**
+
 $$
-Y = 0.5 X_{1}^{2} + 0.8 X_{3}^{3} - (X_{4}-2)^{2} + 2 (X_{5}+1)^{2} + 2 X_{6} + 2 sum_(k in S_{1}) Xk + 0.05 (sum_(k in S_{2}) Xk)^{3} + \varepsilon
+Y = 0.5 X_{1}^{2} + 0.8 X_{3}^{3} - (X_{4}-2)^{2} + 2 (X_{5}+1)^{2} + 2 X_{6} + 2 \sum_{k \in S_{1}} \mathrm{Xk} + 0.05 (\sum_{k \in S_{2}} \mathrm{Xk})^{3} + \varepsilon
 $$
 
 $$
@@ -60,18 +66,24 @@ $$
 
 independent of Z and all other units
 
-$$
-Independent iid labeled and unlabeled samples from the same complete-data population
-$$
+**Sampling**
+
+Source notation retained without guessing:
+
+<pre>Independent iid labeled and unlabeled samples from the same complete-data population</pre>
 
 $$
-nL=200,nU=1000 reference. Export X_{1}..X_{500},R,Y_obs.
+\mathrm{nL}=200,\mathrm{nU}=1000 \mathrm{reference}
 $$
+
+Export X1..X500,R,Y_obs.
+
+**Explicit adaptation: fixed supports**
 
 $$
 \begin{aligned}
 S_{1} &= \{11,12,13,14,15\} \\
-S_{2} &= \{21,22,23,24,25\}, one-based indices, fixed for all calls.
+S_{2} &= \{21,22,23,24,25\}, \mathrm{one}-\mathrm{based} \mathrm{indices}, \text{ fixed } \text{ for } \text{ all } \mathrm{calls}.
 \end{aligned}
 $$
 

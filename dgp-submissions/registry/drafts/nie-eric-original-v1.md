@@ -34,32 +34,44 @@ Not explicitly identified (review required)
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**Baseline X1**
+
 $$
 X_{1} \sim \mathrm{Bernoulli}(0.4)
 $$
+
+**Baseline X2**
 
 $$
 X_{2} \mid  X_{1} \sim \mathrm{Bernoulli}(0.3 + 0.4 X_{1})
 $$
 
+**Baseline X3**
+
 $$
 X_{3} \mid  X_{1},X_{2} \sim \mathcal{N}(-0.024 - 0.4 X_{1} + 0.4 X_{2}, 1)
 $$
 
-$$
-logit P(A=1\mid X) = 0.4 + X_{1} - X_{2} + 0.1 X_{3} - 1.5 X_{1} X_{3}
-$$
+**Treatment**
 
 $$
-logit P(M=1\mid A,X) = 0.5 - X_{1} + 0.5 X_{2} - 0.9 X_{3} - 1.5 X_{1} X_{3} + A
+\mathrm{logit} P(A=1\mid X) = 0.4 + X_{1} - X_{2} + 0.1 X_{3} - 1.5 X_{1} X_{3}
 $$
+
+**Mediator**
+
+$$
+\mathrm{logit} P(M=1\mid A,X) = 0.5 - X_{1} + 0.5 X_{2} - 0.9 X_{3} - 1.5 X_{1} X_{3} + A
+$$
+
+**Outcome**
 
 $$
 Y = 1 + 0.2 X_{1} + 0.3 X_{2} + 1.4 X_{3} - 2.5 A - 3.5 M + 5 A M + \varepsilon
 $$
 
 $$
-\varepsilon \sim \mathcal{N}(0,1)
+\varepsilon\sim \mathcal{N}(0,1)
 $$
 
 <details>

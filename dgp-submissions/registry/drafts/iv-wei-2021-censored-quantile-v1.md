@@ -36,13 +36,19 @@ u
 
 **Original source equations (verbatim):** [Open raw scientific record (JSON)](./iv-wei-2021-censored-quantile-v1.json).
 
-$$
-X_\{1\}\sim \mathrm{Uniform}(0,1), X_\{2\}\sim \mathrm{Bernoulli}(0.5), (p_\{CO\},p_\{AT\},p_\{NT\})=(2/3,1/6,1/6).
-$$
+**DGP equation 1**
 
 $$
-\varepsilon_\{V\}\sim \mathcal{N}(0,0.5^\{2\}), V\mid X,\varepsilon_\{V\}\sim Bernoulli[\mathrm{expit}(0.1X_\{2\}+X_\{1\}^\{2\}+X_\{1\}X_\{2\}+\varepsilon_\{V\})].
+X_{1}\sim \mathrm{Uniform}(0,1), X_{2}\sim \mathrm{Bernoulli}(0.5), (p_{CO},p_{AT},p_{NT})=(2/3,1/6,1/6).
 $$
+
+**DGP equation 2**
+
+$$
+\varepsilon_{V}\sim \mathcal{N}(0,0.5^{2}), V\mid X,\varepsilon_{V}\sim \mathrm{Bernoulli}[\mathrm{expit}(0.1X_{2}+X_{1}^{2}+X_{1}X_{2}+\varepsilon_{V})].
+$$
+
+**DGP equation 3**
 
 $$
 D=V (CO)
@@ -60,21 +66,29 @@ $$
 u\sim \mathrm{Uniform}(0,1).
 $$
 
-$$
-G, CO: \log T=-0.2X_\{1\}-0.3X_\{2\}+0.5D+\log\{-\log(1-u)\}.
-$$
+**DGP equation 4**
 
 $$
-H, CO: \log T=-0.2X_\{1\}-0.3X_\{2\}+\log u+0.5exp(0.3u)D.
+G, CO: \log T=-0.2X_{1}-0.3X_{2}+0.5D+\log\{-\log(1-u)\}.
 $$
 
+**DGP equation 5**
+
 $$
-Non-CO: \log T=-0.1X_\{1\}-0.2X_\{2\}+0.2D+\varepsilon, \varepsilon\sim \mathcal{N}(0,0.5^\{2\}).
+H, CO: \log T=-0.2X_{1}-0.3X_{2}+\log u+0.5\exp(0.3u)D.
 $$
+
+**DGP equation 6**
+
+$$
+\mathrm{Non}-CO: \log T=-0.1X_{1}-0.2X_{2}+0.2D+\varepsilon, \varepsilon\sim \mathcal{N}(0,0.5^{2}).
+$$
+
+**DGP equation 7**
 
 $$
 \begin{aligned}
-C &= \mathrm{Uniform}(0,b)+X_\{2\} \\
+C &= \mathrm{Uniform}(0,b)+X_{2} \\
 b &= 2.2 (G), 1.4 (H) \\
 W &= \min(T,C) \\
 E &= 1\{T\leq C\}.

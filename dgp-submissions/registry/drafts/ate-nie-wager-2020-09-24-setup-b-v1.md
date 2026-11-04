@@ -35,7 +35,7 @@ Not explicitly identified (review required)
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
 $$
-X\sim N_d(0,I)
+X\sim \mathcal{N}_{d}(0,I)
 $$
 
 coordinates independent.

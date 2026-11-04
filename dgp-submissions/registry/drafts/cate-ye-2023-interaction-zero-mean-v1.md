@@ -34,28 +34,38 @@ Not explicitly identified (review required)
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**U, W**
+
+Source notation retained without guessing:
+
+<pre>U, W ~ Normal(0,1) independently (standardised surrogate for the trial&#x27;s empirical distribution)</pre>
+
+**Treatment**
+
 $$
-U, W \sim \mathcal{N}(0,1) independently (standardised surrogate for the trial's empirical distribution)
+P(A=1) = 0.5 (\mathrm{simple} \mathrm{randomisation}, \mathrm{two} \mathrm{arms} \text{ at } 1:1)
+$$
+
+**Potential responses**
+
+$$
+Y(1) = \varepsilon, Y(2) = Y(1) + \zeta(U - \mathrm{muU})
 $$
 
 $$
-P(A=1) = 0.5 (simple randomisation, two arms at 1:1)
+\zeta= 1, \mathrm{muU} = 0
 $$
 
-$$
-Y(1) = eps, Y(2) = Y(1) + \zeta (U - muU)
-$$
+**Heterogeneity**
 
 $$
-\zeta = 1, muU = 0
+\tau(U) = \zeta(U - \mathrm{muU}) = U, \text{ with } \mathbb{E}[\tau(U)] = 0
 $$
 
-$$
-\tau(U) = \zeta (U - muU) = U, with \mathbb{E}[\tau(U)] = 0
-$$
+**Observed**
 
 $$
-Y = A Y(2) + (1-A) Y(1) = eps + A \tau(U)
+Y = A Y(2) + (1-A) Y(1) = \varepsilon+ A \tau(U)
 $$
 
 <details>

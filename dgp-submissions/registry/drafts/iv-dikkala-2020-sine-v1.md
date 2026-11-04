@@ -34,6 +34,8 @@ U, delta, zeta
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**1**
+
 $$
 Z\sim \mathcal{N}(0,\mathrm{SD}=2)
 $$
@@ -48,9 +50,13 @@ $$
 
 mutually independent
 
+**2**
+
 $$
 P=0.6\cdot Z+0.4\cdot U+\delta
 $$
+
+**3**
 
 $$
 Y=\sin(P)+U+\zeta

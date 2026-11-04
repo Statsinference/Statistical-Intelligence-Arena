@@ -34,48 +34,62 @@ Not explicitly identified (review required)
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**Covariate**
+
 $$
-X_i \sim Uniform[0,1] independently
+X_{i} \sim \mathrm{Uniform}[0,1] \text{ independently }
+$$
+
+**Wave regression function (factored)**
+
+$$
+p_{s}(x) = 0.5 - (2s-1)(x-0.5) + 8s(x-0.5)^{3}, s \in \{0,0.1,\ldots ,1\}
+$$
+
+**Wave regression function (expanded)**
+
+$$
+p_{s}(x) = 8s\cdot x^{3} - 12s\cdot x^{2} + (4s+1)\cdot x
+$$
+
+**Special values**
+
+$$
+p_{s}(0)=0
 $$
 
 $$
-p_s(x) = 0.5 - (2s-1)(x-0.5) + 8s(x-0.5)^{3}, s in \{0,0.1,\ldots ,1\}
+p_{s}(0.5)=0.5 \text{ for } \text{ all } s
 $$
 
 $$
-p_s(x) = 8s\cdot x^{3} - 12s\cdot x^{2} + (4s+1)\cdot x
+p_{s}(1)=1
 $$
 
 $$
-p_s(0)=0
+s=0 \mathrm{reduces} \text{ to } p(x)=x (\mathrm{excluded} \text{ as } \mathrm{duplicate})
+$$
+
+**Monotonicity boundary**
+
+$$
+p_{s}'(x) = -(2s-1) + 24s(x-0.5)^{2}
 $$
 
 $$
-p_s(0.5)=0.5 for all s
+\mathrm{monotone} \text{ on } [0,1] \mathrm{iff} s\leq 0.5
 $$
 
-$$
-p_s(1)=1
-$$
+**Binary outcome**
 
 $$
-s=0 reduces to p(x)=x (excluded as duplicate)
+Y_{i} \mid  X_{i}=x \sim \mathrm{Bernoulli}(p_{s}(x)) \text{ independently }
 $$
 
-$$
-p_s'(x) = -(2s-1) + 24s(x-0.5)^{2}
-$$
+**NRI scalar target (default)**
 
 $$
-monotone on [0,1] iff s<=0.5
-$$
-
-$$
-Y_i \mid  X_i=x \sim \mathrm{Bernoulli}(p_s(x)) independently
-$$
-
-$$
-m_s(0.5) = \mathbb{E}[Y \mid  X=0.5] = p_s(0.5) = 0.5 for all s
+m_{s}(0.5) = \mathbb{E}[Y \mid  X=0.5] = p_{s}(0.5) = 0.5 \text{ for } \text{ all } s
 $$
 
 <details>

@@ -34,30 +34,40 @@ Z_it
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
-$$
-Z_it=a_i+\mathrm{floor}((t-1)/4)+2\cdot ((t-1)mod4)+eps_it-80q_ct
-$$
-
-a_i iidU(10,60),eps iidN(0,25)
+**latent**
 
 $$
-Y_it=\max(Z_it,0),t_{1}..55
+Z_{it}=\text{ a }_{i}+\lfloor (t-1)/4\rfloor+2\cdot ((t-1)\mathrm{mod4})+\varepsilon_{it}-80q_{\mathrm{ct}}
+$$
+
+$$
+\text{ a }_{i} \mathrm{iidU}(10,60),\varepsilon\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,25)
+$$
+
+**observed**
+
+$$
+Y_{it}=\max(Z_{it},0),t_{1}..55
 $$
 
 q from source inclusive floor/ceil renewal algorithm across99 periods
 
+**assignment**
+
 one selected per10-unit group
 
 $$
-p_i=(1+mean(Y_i,20:45))/sum_group(1+mean(Y_j,20:45))
+p_{i}=(1+\text{ mean }(Y_{i},20:45))/\sum_{\mathrm{group}}(1+\text{ mean }(Y_{j},20:45))
+$$
+
+**truth**
+
+$$
+\mathrm{Eff}=(0,0,0)
 $$
 
 $$
-Eff=(0,0,0)
-$$
-
-$$
-ATT=SATT=0
+\mathrm{ATT}=SATT=0
 $$
 
 <details>

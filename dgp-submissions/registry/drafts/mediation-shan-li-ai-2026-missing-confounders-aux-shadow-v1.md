@@ -34,32 +34,42 @@ Not explicitly identified (review required)
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**covariates**
+
 $$
-X_{1} = Phi(eps1)
+X_{1} = \Phi(\varepsilon_{1})
 $$
 
 $$
-X_{2} = Phi(eps2) (both \mathrm{Uniform}(0,1))
+X_{2} = \Phi(\varepsilon_{2}) (\mathrm{both} \mathrm{Uniform}(0,1))
 $$
 
 $$
 X_{3} \sim \mathrm{Bernoulli}(0.5)
 $$
 
+**treatment**
+
 $$
 T \sim \mathrm{Bernoulli}(\mathrm{expit}(0.1 + X_{1}^{2} - X_{2} + 0.2 X_{3}))
 $$
 
-$$
-M = -1 + T - T X_{1}^{2} + 4 X_{1}^{2} - \sin(X_{2}) + X_{3} + eps3
-$$
+**mediator**
 
 $$
-Y = -1 + T + 3 T M - 1.5 M + T X_{1} + 5 \sin(X_{1}) - 2 X_{2}^{2} + X_{3} + eps4
+M = -1 + T - T X_{1}^{2} + 4 X_{1}^{2} - \sin(X_{2}) + X_{3} + \varepsilon_{3}
 $$
 
+**outcome**
+
 $$
-(R_{1},R_{2}) \sim Multinomial(p_{11}, p_{10}, p_{01}, p_{00})
+Y = -1 + T + 3 T M - 1.5 M + T X_{1} + 5 \sin(X_{1}) - 2 X_{2}^{2} + X_{3} + \varepsilon_{4}
+$$
+
+**missingness patterns**
+
+$$
+(R_{1},R_{2}) \sim \mathrm{Multinomial}(p_{11}, p_{10}, p_{01}, p_{00})
 $$
 
 $$
@@ -70,8 +80,10 @@ $$
 p_{10} = p_{01} = p_{00} = 1/(\exp(U) + 3)
 $$
 
+**mediation functional**
+
 $$
-\theta = \mathbb{E}[Y(1, M(0))] = 3.192275262794844
+\theta= \mathbb{E}[Y(1, M(0))] = 3.192275262794844
 $$
 
 <details>

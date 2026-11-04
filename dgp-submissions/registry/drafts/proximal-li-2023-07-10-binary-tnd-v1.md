@@ -36,45 +36,49 @@ Not explicitly identified (review required)
 
 **Original source equations (verbatim):** [Open raw scientific record (JSON)](./proximal-li-2023-07-10-binary-tnd-v1.json).
 
-English equation transcription pending
+以来源总体中的独立个体为单位，令 <code>U</code> 表示未观测二元混杂，<code>D</code> 表示其他疾病指示，<code>S</code> 为纳入检验阴性样本的指示。各二元节点按顺序使用独立的均匀随机数生成：
 
-see the original record (JSON).
-
-$$
-1. `U \sim \mathrm{Bernoulli}(0.5)`
-$$
+**Step 1**
 
 $$
-2. `Z \mid  U \sim \mathrm{Bernoulli}(0.2 + 0.4U)`
+U \sim \mathrm{Bernoulli}(0.5)
 $$
 
-$$
-3. `A \mid  U \sim \mathrm{Bernoulli}(0.2 + 0.4U)`
-$$
-
-English equation transcription pending
-
-see the original record (JSON).
+**Step 2**
 
 $$
-5. `W \mid  U \sim \mathrm{Bernoulli}(0.02 - 0.01U)`
+Z \mid  U \sim \mathrm{Bernoulli}(0.2 + 0.4U)
 $$
 
-$$
-6. `D \mid  U \sim \mathrm{Bernoulli}(0.02 - 0.015U)`
-$$
+**Step 3**
 
 $$
-7. `S \mid  Y,D,W,U \sim \mathrm{Bernoulli}(\max(Y,D,W) \times  (0.1 + 0.4U))`
+A \mid  U \sim \mathrm{Bernoulli}(0.2 + 0.4U)
 $$
 
-English equation transcription pending
+4. $`Y \mid  A,U \sim \mathrm{Bernoulli}(\exp(\eta_{0} + \beta A - 0.693U))`$，其中 $`\eta_{0}=\ln(0.01)`$。
 
-see the original record (JSON).
+**Step 5**
 
-English equation transcription pending
+$$
+W \mid  U \sim \mathrm{Bernoulli}(0.02 - 0.01U)
+$$
 
-see the original record (JSON).
+**Step 6**
+
+$$
+D \mid  U \sim \mathrm{Bernoulli}(0.02 - 0.015U)
+$$
+
+**Step 7**
+
+$$
+S \mid  Y,D,W,U \sim \mathrm{Bernoulli}(\max(Y,D,W) \times  (0.1 + 0.4U))
+$$
+
+只保留 $`S=1`$ 的记录，观察列为 <code>A,Z,W,Y</code>；内部变量为 <code>U,D,S</code>，不写入模型输入数据表。二元节点的支持集均为 <code>{0,1}</code>。分配概率及疾病风险通过方程计算，生成器不裁剪概率。
+
+四个场景均固定 $`\eta_{0}=\log(0.01)`$，只改变处理效应 $`\beta\in \{\log(0.2), \log(0.5), \log(0.7), 0\}`$。
 
 
 ## Parameter scenarios, estimands and truth

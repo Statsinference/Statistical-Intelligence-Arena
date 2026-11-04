@@ -34,13 +34,19 @@ Not explicitly identified (review required)
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**Covariates**
+
 $$
-X_j\overset{\mathrm{iid}}{\sim} \mathrm{Uniform}(0,1), j=1,\ldots ,6
+X_{j}\overset{\mathrm{iid}}{\sim} \mathrm{Uniform}(0,1), j=1,\ldots ,6
 $$
+
+**Baseline**
 
 $$
 b(X)=\sin(\pi\cdot X_{1}\cdot X_{2})+2\cdot (X_{3}-0.5)^{2}+X_{4}+0.5\cdot X_{5}
 $$
+
+**Treatment**
 
 $$
 e(X)=\max(0.1,\min(\sin(\pi\cdot X_{1}\cdot X_{2}),0.9))
@@ -50,9 +56,13 @@ $$
 A\mid X\sim \mathrm{Bernoulli}(e(X))
 $$
 
+**Conditional effect**
+
 $$
 \tau(X)=(X_{1}+X_{2})/2
 $$
+
+**Outcome**
 
 $$
 Y=b(X)+(A-0.5)\cdot \tau(X)+\varepsilon

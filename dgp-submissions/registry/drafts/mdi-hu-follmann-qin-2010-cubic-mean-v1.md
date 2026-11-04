@@ -34,13 +34,19 @@ Not explicitly identified (review required)
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**Covariates**
+
 $$
-X_{1},X_{2} independently \sim \mathcal{N}(0,1)
+X_{1},X_{2} \text{ independently } \sim \mathcal{N}(0,1)
 $$
+
+**Full outcome**
 
 $$
 Y\mid X \sim \mathcal{N}((X_{1}+X_{2})^{3},1)
 $$
+
+**Observation**
 
 $$
 R\mid X \sim \mathrm{Bernoulli}(\pi(X)), \pi(X)=1-1/[1+\exp(1-3X_{1}+2X_{2}^{2})]=\mathrm{expit}(1-3X_{1}+2X_{2}^{2})
@@ -50,9 +56,13 @@ R
 
 independent of Y given X
 
+**Observed encoding**
+
 $$
-Y_observed=Y if R=1, otherwise 0 placeholder
+Y_{\mathrm{observed}}=Y \text{ if } R=1, \text{ otherwise } 0 \text{ placeholder }
 $$
+
+**Target**
 
 $$
 \theta=\mathbb{E}(Y)=\mathbb{E}[(X_{1}+X_{2})^{3}]=0

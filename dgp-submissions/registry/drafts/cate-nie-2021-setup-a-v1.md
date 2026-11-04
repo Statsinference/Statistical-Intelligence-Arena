@@ -34,28 +34,38 @@ Xj
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
-$$
-Xj \sim \mathrm{Uniform}(0,1) independently, j = 1..5
-$$
+**X1-X5**
 
 $$
-e(X) = trim_\{0.1\}\{ \sin(\pi X_{1} X_{2}) \}, trim_eta(u) = max\{eta, \min(u, 1-eta)\}
+\mathrm{Xj} \sim \mathrm{Uniform}(0,1) \text{ independently }, j = 1..5
 $$
+
+**Treatment**
+
+$$
+e(X) = \mathrm{trim}_{0.1}\{\sin(\pi X_{1} X_{2})\}, \mathrm{trim}_{\eta}(u) = \max\{\eta, \min(u, 1-\eta)\}
+$$
+
+**Baseline**
 
 $$
 b(X) = \sin(\pi X_{1} X_{2}) + 2 (X_{3} - 1/2)^{2} + X_{4} + 0.5 X_{5}
 $$
 
+**Heterogeneity**
+
 $$
 \tau(X) = (X_{1} + X_{2}) / 2
 $$
 
+**Outcome**
+
 $$
-Y = b(X) + A \tau(X) + \sigma eps, eps \sim \mathcal{N}(0,1)
+Y = b(X) + A \tau(X) + \sigma\varepsilon, \varepsilon\sim \mathcal{N}(0,1)
 $$
 
 $$
-\sigma = 1
+\sigma= 1
 $$
 
 <details>

@@ -34,15 +34,19 @@ e_d0, e_d1, e0, K11, K00
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**Covariates and instrument**
+
 $$
-X\sim N_p(0,Sigma)
+X\sim \mathcal{N}_{p}(0,\Sigma)
 $$
 
 $$
-Sigma_jk=1\cdot 0.5^|j-k|
+\Sigma_{jk}=1\cdot 0.5^{\lvert j-k\rvert}
 $$
 
-gamma1_j=gamma2_j=j^-2
+$$
+\mathrm{gamma1}_{j}=\mathrm{gamma2}_{j}=j^{-2}
+$$
 
 $$
 Z\mid X\sim \mathrm{Bernoulli}(\mathrm{expit}(X'\gamma_{1}))
@@ -52,26 +56,36 @@ $$
 p=200.
 $$
 
-e_d0,e_d1 iid N(0,1)
-
-D0=I(X&#x27;gamma2-1+e_d0&gt;=0)
-
-D1*=I(X&#x27;gamma2+1+e_d1&gt;=0)
+**Potential treatment**
 
 $$
-D_{1}=\max(D_{1}\cdot ,D_{0})
+e_{\mathrm{d0}},e_{\mathrm{d1}}\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1)
+$$
+
+$$
+D_{0}=I(X'\gamma_{2}-1+e_{\mathrm{d0}}\geq 0)
+$$
+
+$$
+D_{1}^{\ast}=I(X'\gamma_{2}+1+e_{\mathrm{d1}}\geq 0)
+$$
+
+$$
+D_{1}=\max(D_{1}^{\ast},D_{0})
 $$
 
 $$
 D=Z D_{1}+(1-Z)D_{0}.
 $$
 
+**Potential outcomes**
+
 $$
 e_{0}\sim \mathcal{N}(0,1)
 $$
 
 $$
-\beta_j=2\cdot j^-2
+\beta_{j}=2\cdot j^{-2}
 $$
 
 $$
@@ -98,12 +112,14 @@ $$
 Y=D Y_{1}+(1-D)Y_{0}.
 $$
 
+**Source scenarios**
+
 lambda11 in {0.5,0.75,1,1.25}
 
 no interactions
 
 $$
-source \alpha_{0}=1.
+\text{ source } \alpha_{0}=1.
 $$
 
 <details>

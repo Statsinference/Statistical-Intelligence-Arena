@@ -34,39 +34,51 @@ E_M, E_C
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**X,A**
+
 $$
 X\sim \mathcal{N}(0,1)
 $$
 
 $$
-A\mid X\sim Bern(\mathrm{expit}(-0.4+0.6X))
+A\mid X\sim \mathrm{Bern}(\mathrm{expit}(-0.4+0.6X))
 $$
 
+**Copula**
+
 $$
-(E_M,E_C)\sim N_2(0,\begin{bmatrix}
+(E_{M},E_{C})\sim \mathcal{N}_{2}(0,\begin{bmatrix}
 1 & 0.2 \\
 0.2 & 1
 \end{bmatrix})
 $$
 
+**Mediator**
+
 $$
-M=3+2A+4X+5E_M
+M=3+2A+4X+5E_{M}
+$$
+
+**Confounder**
+
+$$
+C=1+2A+2X+4E_{C}
+$$
+
+**Outcome**
+
+$$
+Y=1+2A+2M+3C+5X+4AC+2AM+\varepsilon_{Y}
 $$
 
 $$
-C=1+2A+2X+4E_C
+\varepsilon_{Y}\sim \mathcal{N}(0,16)
 $$
 
-$$
-Y=1+2A+2M+3C+5X+4AC+2AM+\varepsilon_Y
-$$
+**Target**
 
 $$
-\varepsilon_Y\sim \mathcal{N}(0,16)
-$$
-
-$$
-NDE=2+3(2)+4E[C(1)]+2E[M(0)]=26
+\mathrm{NDE}=2+3(2)+4\mathbb{E}[C(1)]+2\mathbb{E}[M(0)]=26
 $$
 
 <details>

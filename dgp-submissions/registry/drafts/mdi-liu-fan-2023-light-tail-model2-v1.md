@@ -34,8 +34,10 @@ eta
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**Propensity score coordinate**
+
 $$
-P=\pi(X) generated directly: Pr(P<=u)=u^(\gamma-1), u in [0,1]
+P=\pi(X) \mathrm{generated} \mathrm{directly}: \mathrm{Pr}(P\leq u)=u^{\gamma-1}, u \in [0,1]
 $$
 
 $$
@@ -44,31 +46,39 @@ $$
 
 equivalently Beta(1.5,1)
 
+**Full outcome**
+
 $$
-eta\sim chi-square(4)
+\eta\sim \chi-\mathrm{square}(4)
 $$
 
 independent of P
 
 $$
-Y=1-P+c\cdot (eta-4)/sqrt(8)
+Y=1-P+c\cdot (\eta-4)/\sqrt{8}
 $$
 
 $$
-c=1 (Model 2)
+c=1 (\mathrm{Model} 2)
 $$
+
+**Observation**
 
 $$
 D\mid P\sim \mathrm{Bernoulli}(P)
 $$
 
 $$
-D=1 means Y observed
+D=1 \mathrm{means} Y \text{ observed }
 $$
 
+**Observed encoding**
+
 $$
-Y_observed=Y when D=1 and 0 placeholder when D=0
+Y_{\mathrm{observed}}=Y \text{ when } D=1 \text{ and } 0 \text{ placeholder } \text{ when } D=0
 $$
+
+**Target**
 
 $$
 \theta=\mathbb{E}(Y)=1/\gamma=0.4

@@ -34,15 +34,21 @@ Not explicitly identified (review required)
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**Baseline covariate W1**
+
 $$
 W_{1} \sim \mathrm{Uniform}(-2, 2)
 $$
+
+**Baseline covariate W2**
 
 $$
 W_{2} \sim \mathrm{Bernoulli}(1/2)
 $$
 
 independent of W1
+
+**Treatment assignment**
 
 $$
 A \mid  W=(w_{1},w_{2}) \sim \mathrm{Bernoulli}(g_{0}(w_{1},w_{2}))
@@ -52,12 +58,14 @@ $$
 g_{0}(w_{1},w_{2})=\mathrm{expit}(-w_{1} + 2\cdot w_{1}\cdot w_{2})
 $$
 
+**Binary outcome**
+
 $$
-Y \mid  A=a,W=w \sim \mathrm{Bernoulli}(Qbar0(a,w))
+Y \mid  A=\text{ a },W=w \sim \mathrm{Bernoulli}(\mathrm{Qbar0}(\text{ a },w))
 $$
 
 $$
-Qbar0(a,w)=\mathrm{expit}(0.2\cdot a - w_{1} + 2\cdot w_{1}\cdot w_{2})
+\mathrm{Qbar0}(\text{ a },w)=\mathrm{expit}(0.2\cdot \text{ a } - w_{1} + 2\cdot w_{1}\cdot w_{2})
 $$
 
 <details>

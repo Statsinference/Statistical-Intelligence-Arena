@@ -35,11 +35,11 @@ Not explicitly identified (review required)
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
 $$
-X \sim Uniform[-1,1]
+X \sim \mathrm{Uniform}[-1,1]
 $$
 
 $$
-\varepsilon \sim \mathcal{N}(0,1), X
+\varepsilon\sim \mathcal{N}(0,1), X
 $$
 
 independent of epsilon in the declared implementation
@@ -49,19 +49,19 @@ Y=m(X)+\varepsilon
 $$
 
 $$
-m(x)=\sin(3\cdot \pi\cdot x/2)/(1+18\cdot x^{2}\cdot (sgn(x)+1))
+m(x)=\sin(3\cdot \pi\cdot x/2)/(1+18\cdot x^{2}\cdot (\mathrm{sgn}(x)+1))
 $$
 
 $$
-sgn(0)=0.
+\mathrm{sgn}(0)=0.
 $$
 
 $$
-Equivalently, m(x)=\sin(3\cdot \pi\cdot x/2) for x<=0
+\mathrm{Equivalently}, m(x)=\sin(3\cdot \pi\cdot x/2) \text{ for } x\leq 0
 $$
 
 $$
-m(x)=\sin(3\cdot \pi\cdot x/2)/(1+36\cdot x^{2}) for x>0.
+m(x)=\sin(3\cdot \pi\cdot x/2)/(1+36\cdot x^{2}) \text{ for } x>0.
 $$
 
 $$
@@ -70,7 +70,9 @@ $$
 
 x0 in {-2/3,-1/3,0,1/3,2/3}.
 
-Ordered exact source-query truths: 0,-1,0,1/5,0. These are analytically derived here, not reported estimator results.
+Ordered exact source-query truths: 0,-1,0,1/5,0
+
+These are analytically derived here, not reported estimator results.
 
 <details>
 <summary>Original source equations (verbatim)</summary>

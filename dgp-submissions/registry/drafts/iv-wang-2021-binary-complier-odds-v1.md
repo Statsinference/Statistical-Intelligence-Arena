@@ -34,6 +34,8 @@ Not explicitly identified (review required)
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**Covariate and instrument**
+
 $$
 X\sim \mathrm{Uniform}(-1,1)
 $$
@@ -41,6 +43,8 @@ $$
 $$
 Z\mid X=x\sim \mathrm{Bernoulli}(\mathrm{expit}(0.1-x)).
 $$
+
+**Principal strata**
 
 $$
 q=\mathrm{expit}(-0.4+0.8\cdot x)
@@ -59,11 +63,13 @@ P(NT\mid x)=(1-q)^{2}
 $$
 
 $$
-D=Z on CO, D=1 on AT, D=0 on NT.
+D=Z \text{ on } CO, D=1 \text{ on } AT, D=0 \text{ on } NT.
 $$
 
+**Complier outcome probabilities**
+
 $$
-\delta=tanh(-x)
+\delta=\tanh(-x)
 $$
 
 $$
@@ -80,8 +86,10 @@ $$
 
 f0 in [max(0,-delta),min(1,1-delta)].
 
+**Observed outcome**
+
 $$
-Y\mid CO,D,x\sim \mathrm{Bernoulli}(fD)
+Y\mid CO,D,x\sim \mathrm{Bernoulli}(\mathrm{fD})
 $$
 
 $$
@@ -89,8 +97,10 @@ Y\mid AT,x\sim \mathrm{Bernoulli}(q)
 $$
 
 $$
-Y\mid NT,x\sim \mathrm{Bernoulli}(q). Only X,Z,D,Y are returned.
+Y\mid NT,x\sim \mathrm{Bernoulli}(q)
 $$
+
+Only X,Z,D,Y are returned.
 
 <details>
 <summary>Original source equations (verbatim)</summary>

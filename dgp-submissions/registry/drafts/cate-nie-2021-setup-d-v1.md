@@ -34,36 +34,48 @@ Xj
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**X1-X5**
+
 $$
-Xj \sim \mathcal{N}(0,1) independently, j = 1..5
+\mathrm{Xj} \sim \mathcal{N}(0,1) \text{ independently }, j = 1..5
 $$
+
+**Treatment**
 
 $$
 e(X) = 1 / (1 + \exp(-X_{1}) + \exp(-X_{2}))
 $$
 
+**Baseline**
+
 $$
-b(X) = (max\{X_{1}+X_{2}+X_{3}, 0\} + max\{X_{4}+X_{5}, 0\}) / 2
+b(X) = (\max\{X_{1}+X_{2}+X_{3}, 0\} + \max\{X_{4}+X_{5}, 0\}) / 2
+$$
+
+**Heterogeneity**
+
+$$
+\tau(X) = \max\{X_{1}+X_{2}+X_{3}, 0\} - \max\{X_{4}+X_{5}, 0\}
+$$
+
+**Outcome**
+
+$$
+Y = b(X) + (A - 1/2) \tau(X) + \sigma\varepsilon, \varepsilon\sim \mathcal{N}(0,1)
 $$
 
 $$
-\tau(X) = max\{X_{1}+X_{2}+X_{3}, 0\} - max\{X_{4}+X_{5}, 0\}
+\sigma= 1
+$$
+
+**Arm surfaces**
+
+$$
+\mu_{0}(X) = b(X) - \tau(X)/2 = \max\{X_{4}+X_{5}, 0\}
 $$
 
 $$
-Y = b(X) + (A - 1/2) \tau(X) + \sigma eps, eps \sim \mathcal{N}(0,1)
-$$
-
-$$
-\sigma = 1
-$$
-
-$$
-\mu_{0}(X) = b(X) - \tau(X)/2 = max\{X_{4}+X_{5}, 0\}
-$$
-
-$$
-\mu_{1}(X) = b(X) + \tau(X)/2 = max\{X_{1}+X_{2}+X_{3}, 0\}
+\mu_{1}(X) = b(X) + \tau(X)/2 = \max\{X_{1}+X_{2}+X_{3}, 0\}
 $$
 
 <details>

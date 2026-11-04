@@ -34,36 +34,48 @@ Not explicitly identified (review required)
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**X,T**
+
 $$
 X\sim \mathcal{N}(0,1)
 $$
 
 $$
-T\sim Bern(0.5), independent
+T\sim \mathrm{Bern}(0.5), \text{ independent }
 $$
+
+**M**
 
 $$
 M\mid T,X\sim \mathcal{N}(T+X,1)
 $$
 
+**Y**
+
 $$
 Y\mid M,T,X\sim \mathcal{N}(M+T+MT+X,1)
 $$
 
+**R_M**
+
 $$
-R_M\mid M,T,X\sim Bern(\mathrm{expit}(1.4+M+T+X))
+R_{M}\mid M,T,X\sim \mathrm{Bern}(\mathrm{expit}(1.4+M+T+X))
+$$
+
+**R_Y**
+
+$$
+R_{Y}\mid Y,T,X\sim \mathrm{Bern}(\mathrm{expit}(1.8+Y+T+X))
+$$
+
+**Observed export**
+
+$$
+M_{\mathrm{obs0}}=R_{M}\cdot M
 $$
 
 $$
-R_Y\mid Y,T,X\sim Bern(\mathrm{expit}(1.8+Y+T+X))
-$$
-
-$$
-M_obs0=R_M\cdot M
-$$
-
-$$
-Y_obs0=R_Y\cdot Y
+Y_{\mathrm{obs0}}=R_{Y}\cdot Y
 $$
 
 include R_M,R_Y to distinguish missing from genuine zero

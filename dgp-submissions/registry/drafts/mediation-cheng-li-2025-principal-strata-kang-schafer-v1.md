@@ -34,24 +34,34 @@ Not explicitly identified (review required)
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
-$$
-X = (X_{1}, X_{2}, X_{3}, X_{4}) \sim \mathcal{N}(0_\{4x_{1}\}, I_\{4x_{4}\})
-$$
+**Baseline covariates**
 
 $$
-Z \mid  X \sim \mathrm{Bernoulli}(\mathrm{expit}([-1, 0.5, -0.25, -0.1]^T X))
+X = (X_{1}, X_{2}, X_{3}, X_{4}) \sim \mathcal{N}(0_{4\times 1}, I_{4\times 4})
 $$
 
-$$
-D \mid  Z, X \sim \mathrm{Bernoulli}(\mathrm{expit}(-1 + 2 Z + [1, -0.8, 0.6, -1]^T X))
-$$
+**Randomized treatment**
 
 $$
-M \mid  D, Z, X \sim \mathrm{Bernoulli}(\mathrm{expit}(-1.8 + 2 Z + 1.5 D + [1, -0.5, 0.9, -1]^T X))
+Z \mid  X \sim \mathrm{Bernoulli}(\mathrm{expit}([-1, 0.5, -0.25, -0.1]^{T} X))
 $$
 
+**Post-treatment event**
+
 $$
-Y \mid  M, D, Z, X \sim \mathcal{N}(210 + 1.5 Z - D + M + [27.4, 13.7, 13.7, 13.7]^T X, 1)
+D \mid  Z, X \sim \mathrm{Bernoulli}(\mathrm{expit}(-1 + 2 Z + [1, -0.8, 0.6, -1]^{T} X))
+$$
+
+**Mediator**
+
+$$
+M \mid  D, Z, X \sim \mathrm{Bernoulli}(\mathrm{expit}(-1.8 + 2 Z + 1.5 D + [1, -0.5, 0.9, -1]^{T} X))
+$$
+
+**Outcome**
+
+$$
+Y \mid  M, D, Z, X \sim \mathcal{N}(210 + 1.5 Z - D + M + [27.4, 13.7, 13.7, 13.7]^{T} X, 1)
 $$
 
 <details>

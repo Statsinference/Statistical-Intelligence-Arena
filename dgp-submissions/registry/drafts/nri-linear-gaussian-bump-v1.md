@@ -34,32 +34,46 @@ Not explicitly identified (review required)
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**DGP structure**
+
 $$
-Y = m(X) + eps,  X \sim U[-1,1]
+Y = m(X) + \varepsilon,  X \sim U[-1,1]
 $$
 
 $$
-eps \sim \mathcal{N}(0,1)  independently of X
+\varepsilon\sim \mathcal{N}(0,1)
 $$
+
+independently of X
+
+**Model 2 (linear + Gaussian bump)**
 
 $$
 m(x) = 2x + 2\cdot \exp(-64\cdot x^{2})
 $$
 
-$$
-m(x) = x + 5\cdot phi(10x),  phi(z) = \exp(-z^{2}/2)/sqrt(2\cdot \pi)
-$$
+**Model 4 (linear + scaled Gaussian density)**
 
 $$
-m(x_{0}) = \mathbb{E}[Y \mid  X = x_{0}]  at  x_{0} = 0
+m(x) = x + 5\cdot \phi(10x),  \phi(z) = \exp(-z^{2}/2)/\sqrt{2\cdot \pi}
 $$
+
+**Estimand (fixed query point)**
+
+$$
+m(x_{0}) = \mathbb{E}[Y \mid  X = x_{0}]  \text{ at }  x_{0} = 0
+$$
+
+**Truth Model 2**
 
 $$
 m(0) = 2\cdot 0 + 2\cdot \exp(0) = 2
 $$
 
+**Truth Model 4**
+
 $$
-m(0) = 0 + 5\cdot phi(0) = 5/sqrt(2\cdot \pi) approx 1.994711
+m(0) = 0 + 5\cdot \phi(0) = 5/\sqrt{2\cdot \pi} \approx 1.994711
 $$
 
 <details>

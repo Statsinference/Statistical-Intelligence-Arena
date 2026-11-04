@@ -34,35 +34,55 @@ Not explicitly identified (review required)
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**1. Observed design**
+
 $$
-Z_i\overset{\mathrm{iid}}{\sim} \mathrm{Uniform}(0,1). Source interval [0,1].
+Z_{i}\overset{\mathrm{iid}}{\sim} \mathrm{Uniform}(0,1)
+$$
+
+Source interval [0,1].
+
+**2. Regression function**
+
+$$
+B_{\text{ a },b}(z)=\Gamma(\text{ a }+b)/(\Gamma(\text{ a })\cdot \Gamma(b))\cdot z^{\text{ a }-1}\cdot (1-z)^{b-1}
 $$
 
 $$
-B_(a,b)(z)=Gamma(a+b)/(Gamma(a)\cdot Gamma(b))\cdot z^(a-1)\cdot (1-z)^(b-1)
+g_{0}(z)=0.6\cdot B_{30,17}(z)+0.4\cdot B_{3,11}(z)
 $$
 
-$$
-g_{0}(z)=0.6\cdot B_(30,17)(z)+0.4\cdot B_(3,11)(z). Deterministic source Beta densities
-$$
+Deterministic source Beta densities
 
 all declared shapes exceed 1, so both endpoint limits are 0.
 
+**3. Gaussian error**
+
 $$
-\varepsilon_i\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,0.05^{2}), independent of Z. Noise sd=0.05
+\varepsilon_{i}\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,0.05^{2})
+$$
+
+independent of Z
+
+$$
+\mathrm{Noise} \mathrm{sd}=0.05
 $$
 
 $$
-variance=0.0025.
+\text{ variance }=0.0025.
 $$
 
-$$
-Y_i=g_{0}(Z_i)+\varepsilon_i
-$$
+**4. Observed response**
 
 $$
-return Z,Y. No additional noise or oracle column. Both z_{0}=.5 and .64 are contribution query choices.
+Y_{i}=g_{0}(Z_{i})+\varepsilon_{i}
 $$
+
+return Z,Y. No additional noise or oracle column
+
+Source notation retained without guessing:
+
+<pre>Both z0=.5 and .64 are contribution query choices.</pre>
 
 <details>
 <summary>Original source equations (verbatim)</summary>

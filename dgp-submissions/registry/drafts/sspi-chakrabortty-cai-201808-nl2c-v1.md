@@ -34,11 +34,17 @@ epsilon
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**Covariates**
+
 $$
-Coordinates independent \mathcal{N}(0,1) conditional on -5 <= X_j <= 5
+\mathrm{Coordinates} \text{ independent } \mathcal{N}(0,1) \mathrm{conditional} \text{ on } -5 \leq X_{j} \leq 5
 $$
 
-implemented by rejection, not clipping. This makes the source restriction explicit.
+implemented by rejection, not clipping
+
+This makes the source restriction explicit.
+
+**Coefficient vectors**
 
 $$
 p=10
@@ -57,27 +63,35 @@ $$
 $$
 
 $$
-omega=(1,0,1,0,1,0,1,0,1,0).
+\omega=(1,0,1,0,1,0,1,0,1,0).
+$$
+
+**Response**
+
+$$
+Y = (X^{T} b)(1 + X^{T} \delta) + \varepsilon
 $$
 
 $$
-Y = (X^T b)(1 + X^T \delta) + \varepsilon
+\varepsilon\sim \mathcal{N}(0,1)
+$$
+
+**Sampling and observed data**
+
+Independent units and independent outcome noise
+
+$$
+\mathrm{Two} \text{ iid } \mathrm{samples} \text{ from } \text{ the } \mathrm{same} \text{ population }
+$$
+
+fixed group sizes, R indicates observed Y
+
+$$
+\mathrm{Export} X,R,Y_{\mathrm{obs}} \text{ where } Y_{\mathrm{obs}}=Y \text{ when } R=1 \text{ and } 0 \text{ otherwise }
 $$
 
 $$
-\varepsilon \sim \mathcal{N}(0,1)
-$$
-
-$$
-Independent units and independent outcome noise. Two iid samples from the same population
-$$
-
-$$
-fixed group sizes, R indicates observed Y. Export X,R,Y_obs where Y_obs=Y when R=1 and 0 otherwise
-$$
-
-$$
-n_total=nL+nU.
+n_{\mathrm{total}}=\mathrm{nL}+\mathrm{nU}.
 $$
 
 <details>

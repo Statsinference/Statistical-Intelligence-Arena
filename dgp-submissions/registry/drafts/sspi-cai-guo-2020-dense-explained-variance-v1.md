@@ -35,33 +35,35 @@ Not explicitly identified (review required)
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
 $$
-X\sim N_800(0,Sigma)
+X\sim \mathcal{N}_{800}(0,\Sigma)
 $$
 
 $$
-Sigma_ij=0.5^abs(i-j)
+\Sigma_{ij}=0.5^{\lvert i-j\rvert}
 $$
 
 $$
-\varepsilon\sim \mathcal{N}(0,1) independently.
+\varepsilon\sim \mathcal{N}(0,1) \text{ independently }.
 $$
 
 $$
-\beta_j=1.5\cdot 0.8^j for j=1,\ldots ,800
+\beta_{j}=1.5\cdot 0.8^{j} \text{ for } j=1,\ldots ,800
 $$
 
 $$
-Y=sum_j \beta_j\cdot X_j+\varepsilon.
+Y=\sum_{j} \beta_{j}\cdot X_{j}+\varepsilon.
 $$
 
-Two independent samples from the same population: source_n_labeled rows with observed Y and source_n_unlabeled rows with observed X only. R=1 in the first labeled block
+Source notation retained without guessing:
+
+<pre>Two independent samples from the same population: source_n_labeled rows with observed Y and source_n_unlabeled rows with observed X only. R=1 in the first labeled block</pre>
 
 $$
-Y_obs=Y there. R=0 in the remaining block
+Y_{\mathrm{obs}}=Y \text{ there }. R=0 \in \text{ the } \mathrm{remaining} \mathrm{block}
 $$
 
 $$
-Y_obs=0 is a placeholder.
+Y_{\mathrm{obs}}=0 \text{ is } \text{ a } \text{ placeholder }.
 $$
 
 <details>

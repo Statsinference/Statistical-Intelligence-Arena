@@ -34,9 +34,13 @@ Not explicitly identified (review required)
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**Covariates**
+
 $$
-X_j\overset{\mathrm{iid}}{\sim} \mathrm{Uniform}(0,1), j=1,\ldots ,5
+X_{j}\overset{\mathrm{iid}}{\sim} \mathrm{Uniform}(0,1), j=1,\ldots ,5
 $$
+
+**Treatment assignment**
 
 $$
 e(X)=[1+20\cdot X_{1}\cdot (1-X_{1})^{3}]/4
@@ -46,13 +50,19 @@ $$
 A\mid X\sim \mathrm{Bernoulli}(e(X))
 $$
 
+**Centered baseline**
+
 $$
 m(X)=2\cdot X_{1}-1
 $$
 
+**Conditional effect**
+
 $$
 \tau(X)=0
 $$
+
+**Outcome**
 
 $$
 Y=m(X)+(A-0.5)\cdot \tau(X)+\varepsilon

@@ -34,86 +34,118 @@ c_k, K_i, Z_i
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**Latent many-cluster centres**
+
 $$
-For k=1,\ldots ,20, c_k \sim Normal_p(0, I_p)
+\mathrm{For} k=1,\ldots ,20, c_{k} \sim \mathcal{N}_{p}(0, I_{p})
+$$
+
+Source notation retained without guessing:
+
+<pre>centre vectors are mutually independent. p=4000 in the Table 2 reference setting.</pre>
+
+**Individual centre assignment**
+
+$$
+K_{i} \sim \mathrm{Uniform}\{1,\ldots ,20\}
 $$
 
 $$
-centre vectors are mutually independent. p=4000 in the Table 2 reference setting.
+C_{i}=c_{K_{i}}
+$$
+
+Cluster labels are drawn
+
+independently across individuals conditional on the centre set
+
+**Treatment assignment**
+
+$$
+W_{i} \mid  K_{i}=k \sim \mathrm{Bernoulli}(\eta) \text{ for } k=1,\ldots ,10
 $$
 
 $$
-K_i \sim Uniform\{1,\ldots ,20\}
-$$
-
-$$
-C_i=c_\{K_i\}. Cluster labels are drawn independently across individuals conditional on the centre set.
-$$
-
-$$
-W_i \mid  K_i=k \sim \mathrm{Bernoulli}(eta) for k=1,\ldots ,10
-$$
-
-$$
-W_i \mid  K_i=k \sim \mathrm{Bernoulli}(1-eta) for k=11,\ldots ,20
+W_{i} \mid  K_{i}=k \sim \mathrm{Bernoulli}(1-\eta) \text{ for } k=11,\ldots ,20
 $$
 
 eta in {0.1,0.25}.
 
+**Covariate noise and observed covariates**
+
 $$
-Z_i \sim Normal_p(0,I_p)
+Z_{i} \sim \mathcal{N}_{p}(0,I_{p})
 $$
 
 $$
-X_i=C_i+Z_i. The source writes Z_i\sim \mathcal{N}(0,I_p)
+X_{i}=C_{i}+Z_{i}
+$$
+
+$$
+\mathrm{The} \text{ source } \mathrm{writes} Z_{i}\sim \mathcal{N}(0,I_{p})
 $$
 
 explicit cross-individual and cross-variable independence conventions used in the implementation are disclosed in adaptations.
 
+**Outcome noise**
+
 $$
-\varepsilon_i \sim \mathcal{N}(0,1), so variance=1. Cross-independence from Z, centres and W is an implementation convention not fully enumerated by the source paragraph.
+\varepsilon_{i} \sim \mathcal{N}(0,1), \mathrm{so} \text{ variance }=1
+$$
+
+Cross-independence from Z, centres and W is an implementation convention not fully enumerated by the source paragraph.
+
+**Observed outcome**
+
+$$
+Y_{i} = X_{i}^{T} \beta+ W_{i} + \varepsilon_{i}, \mathrm{corresponding} \text{ to } \text{ the } \text{ source } \mathrm{notation} Y_{i}=(C_{i}+Z_{i}) \beta+ W_{i} + \varepsilon_{i}.
+$$
+
+**Dense beta profile**
+
+$$
+\mathrm{Raw} \beta_{j} \mathrm{proportional} \text{ to } j^{-1/2}, j=1,\ldots ,p
 $$
 
 $$
-Y_i = X_i^T \beta + W_i + \varepsilon_i, corresponding to the source notation Y_i=(C_i+Z_i) \beta + W_i + \varepsilon_i.
+\mathrm{rescale} \text{ to } ||\beta||_{2}=3.
 $$
 
-$$
-Raw \beta_j proportional to j^(-1/2), j=1,\ldots ,p
-$$
+**Harmonic beta profile**
 
 $$
-rescale to ||\beta||_2=3.
-$$
-
-$$
-Raw \beta_j proportional to 1/(j+9), j=1,\ldots ,p
+\mathrm{Raw} \beta_{j} \mathrm{proportional} \text{ to } 1/(j+9), j=1,\ldots ,p
 $$
 
 equivalently (1/10,1/11,...,1/(p+9))
 
 $$
-rescale to ||\beta||_2=3.
+\mathrm{rescale} \text{ to } ||\beta||_{2}=3.
 $$
 
-$$
-Raw \beta=(10 repeated 10 times, 1 repeated 90 times, 0 repeated p-100 times)
-$$
+**Moderately sparse beta profile**
+
+Source notation retained without guessing:
+
+<pre>Raw beta=(10 repeated 10 times, 1 repeated 90 times, 0 repeated p-100 times)</pre>
 
 $$
-rescale to ||\beta||_2=3.
+\mathrm{rescale} \text{ to } ||\beta||_{2}=3.
 $$
 
-$$
-Raw \beta=(1 repeated 10 times, 0 repeated p-10 times)
-$$
+**Very sparse beta profile**
+
+Source notation retained without guessing:
+
+<pre>Raw beta=(1 repeated 10 times, 0 repeated p-10 times)</pre>
 
 $$
-rescale to ||\beta||_2=3.
+\mathrm{rescale} \text{ to } ||\beta||_{2}=3.
 $$
 
+**Potential outcomes and true target**
+
 $$
-Structural interpretation for w in \{0,1\}: Y_i(w)=X_i^T \beta+w+\varepsilon_i, so ATE=\mathbb{E}[Y(1)-Y(0)]=1.
+\mathrm{Structural} \mathrm{interpretation} \text{ for } w \in \{0,1\}: Y_{i}(w)=X_{i}^{T} \beta+w+\varepsilon_{i}, \mathrm{so} \mathrm{ATE}=\mathbb{E}[Y(1)-Y(0)]=1.
 $$
 
 <details>

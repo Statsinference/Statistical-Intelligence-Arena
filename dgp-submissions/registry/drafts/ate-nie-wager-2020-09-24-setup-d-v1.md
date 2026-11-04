@@ -35,7 +35,7 @@ Not explicitly identified (review required)
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
 $$
-X\sim N_d(0,I)
+X\sim \mathcal{N}_{d}(0,I)
 $$
 
 coordinates independent.
@@ -69,7 +69,7 @@ Y=b(X)+(A-0.5)\cdot \tau(X)+\varepsilon, \varepsilon\sim \mathcal{N}(0,1)
 $$
 
 $$
-equivalently \mathbb{E}[Y|X,A=1]=u and \mathbb{E}[Y|X,A=0]=v.
+\mathrm{equivalently} \mathbb{E}[Y|X,A=1]=u \text{ and } \mathbb{E}[Y|X,A=0]=v.
 $$
 
 <details>

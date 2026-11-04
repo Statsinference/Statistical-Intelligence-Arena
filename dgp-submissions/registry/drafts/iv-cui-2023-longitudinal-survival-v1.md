@@ -34,17 +34,21 @@ Not explicitly identified (review required)
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**Exogenous draws**
+
 $$
-T_{00}\sim Exponential(rate=1)
+T_{00}\sim \mathrm{Exponential}(\text{ rate }=1)
 $$
 
 $$
-independent \varepsilon_{1},\ldots ,\varepsilon_{4}\sim \mathcal{N}(0,0.5^{2})
+\text{ independent } \varepsilon_{1},\ldots ,\varepsilon_{4}\sim \mathcal{N}(0,0.5^{2})
 $$
 
 $$
-independent Ctilde\sim \mathrm{Uniform}(0,4).
+\text{ independent } \mathrm{Ctilde}\sim \mathrm{Uniform}(0,4).
 $$
+
+**Baseline confounding**
 
 $$
 \begin{aligned}
@@ -53,17 +57,23 @@ U_{0} &= 1.5\cdot T_{00}+\varepsilon_{2}.
 \end{aligned}
 $$
 
+**Baseline instrument**
+
 $$
-Z_{0}\mid L_{0}\sim \mathrm{Bernoulli}(Phi(-0.5+0.2\cdot L_{0})).
+Z_{0}\mid L_{0}\sim \mathrm{Bernoulli}(\Phi(-0.5+0.2\cdot L_{0})).
+$$
+
+**Baseline treatment**
+
+$$
+\Delta_{0}=\Phi(0.2\cdot L_{0})
 $$
 
 $$
-Delta0=Phi(0.2\cdot L_{0})
+A_{0}\mid L_{0},U_{0},Z_{0}\sim \mathrm{Bernoulli}(\Phi(0.2\cdot L_{0}-0.8\cdot U_{0})\cdot (1-\Delta_{0})+Z_{0}\cdot \Delta_{0}).
 $$
 
-$$
-A_{0}\mid L_{0},U_{0},Z_{0}\sim \mathrm{Bernoulli}(Phi(0.2\cdot L_{0}-0.8\cdot U_{0})\cdot (1-Delta0)+Z_{0}\cdot Delta0).
-$$
+**Second-visit confounding**
 
 $$
 \begin{aligned}
@@ -72,36 +82,48 @@ U_{1} &= 0.5\cdot L_{0}-U_{0}+A_{0}+T_{00}+\varepsilon_{4}.
 \end{aligned}
 $$
 
+**Second instrument**
+
 $$
-Z_{1}\mid L_{1},A_{0},Z_{0}\sim \mathrm{Bernoulli}(Phi(-1+0.2\cdot L_{1}+0.2\cdot A_{0}+0.2\cdot Z_{0})).
+Z_{1}\mid L_{1},A_{0},Z_{0}\sim \mathrm{Bernoulli}(\Phi(-1+0.2\cdot L_{1}+0.2\cdot A_{0}+0.2\cdot Z_{0})).
+$$
+
+**Second treatment**
+
+$$
+\Delta_{1}=\Phi(0.2\cdot L_{1})
 $$
 
 $$
-Delta1=Phi(0.2\cdot L_{1})
+A_{1}\mid L_{1},U_{1},Z_{1}\sim \mathrm{Bernoulli}(\Phi(0.2\cdot L_{1}-0.8\cdot U_{1})\cdot (1-\Delta_{1})+Z_{1}\cdot \Delta_{1}).
+$$
+
+**Causal failure time**
+
+$$
+T_{00}=\mathrm{int}_{0}^{T} \exp(\psi\cdot \text{ a }(s))\mathrm{ds} \text{ with } \text{ a }(s)=A_{0} \text{ for } s\leq 1 \text{ and } A_{1} \text{ for } s>1
 $$
 
 $$
-A_{1}\mid L_{1},U_{1},Z_{1}\sim \mathrm{Bernoulli}(Phi(0.2\cdot L_{1}-0.8\cdot U_{1})\cdot (1-Delta1)+Z_{1}\cdot Delta1).
+\psi=-1 \mathrm{or0}
 $$
 
 $$
-T_{00}=int_0^T \exp(psi\cdot a(s))ds with a(s)=A_{0} for s<=1 and A_{1} for s>1
+\mathrm{Let} q_{0}=\exp(\psi\cdot A_{0})
 $$
 
 $$
-psi=-1 or0. Let q_{0}=\exp(psi\cdot A_{0})
+q_{1}=\exp(\psi\cdot A_{1}). T=T_{00}/q_{0} \text{ if } T_{00}\leq q_{0}
 $$
 
 $$
-q_{1}=\exp(psi\cdot A_{1}). T=T_{00}/q_{0} if T_{00}<=q_{0}
+T=1+(T_{00}-q_{0})/q_{1} \text{ otherwise }.
 $$
 
-$$
-T=1+(T_{00}-q_{0})/q_{1} otherwise.
-$$
+**Censoring**
 
 $$
-C=\min(Ctilde,2)
+C=\min(\mathrm{Ctilde},2)
 $$
 
 $$
@@ -109,21 +131,31 @@ Y=\min(T,C)
 $$
 
 $$
-event=I(T<=C).
+\mathrm{event}=I(T\leq C).
 $$
 
-$$
-R_{1}=I(Y>=1)
-$$
-
-output second-visit L1,Z1,A1 multiplied by R1, together with R1. Never output T00,U0,U1,T,C or errors.
+**Observed representation**
 
 $$
-For fixed treatment regime a, \lambda_Ta(t)=\exp(psi\cdot a(t))
+R_{1}=I(Y\geq 1)
 $$
 
+output second-visit L1,Z1,A1 multiplied by R1, together with R1
+
+Never output T00,U0,U1,T,C or errors.
+
+**Population target**
+
 $$
-psi=\log(hazard under a(t)=1 / hazard under a(t)=0), at a common time away from1. Baseline hazard=1.
+\mathrm{For} \text{ fixed } \mathrm{treatment} \mathrm{regime} \text{ a }, \lambda_{\mathrm{Ta}}(t)=\exp(\psi\cdot \text{ a }(t))
+$$
+
+Source notation retained without guessing:
+
+<pre>psi=log(hazard under a(t)=1 / hazard under a(t)=0), at a common time away from1</pre>
+
+$$
+\mathrm{Baseline} \mathrm{hazard}=1.
 $$
 
 <details>

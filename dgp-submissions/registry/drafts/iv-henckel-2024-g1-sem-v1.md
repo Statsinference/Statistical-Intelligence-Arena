@@ -36,32 +36,44 @@ Not explicitly identified (review required)
 
 **Original source equations (verbatim):** [Open raw scientific record (JSON)](./iv-henckel-2024-g1-sem-v1.json).
 
+**DGP equation 1**
+
 $$
 \begin{aligned}
-A &= \varepsilon_\{A\} \\
-C &= \varepsilon_\{C\} \\
-B &= b_\{CB\}C+\varepsilon_\{B\}
+A &= \varepsilon_{A} \\
+C &= \varepsilon_{C} \\
+B &= b_{CB}C+\varepsilon_{B}
 \end{aligned}
 $$
 
-$$
-D=b_\{AD\}A+b_\{BD\}B+b_\{HD\}H_\{DX\}+\varepsilon_\{D\}
-$$
+**DGP equation 2**
 
 $$
-X=b_\{BX\}B+b_\{HX\}H_\{DX\}+b_\{GX\}H_\{XY\}+\varepsilon_\{X\}
+D=b_{AD}A+b_{BD}B+b_{HD}H_{DX}+\varepsilon_{D}
 $$
 
-$$
-M=b_\{XM\}X+\varepsilon_\{M\}
-$$
+**DGP equation 3**
 
 $$
-Y=b_\{XY\}X+b_\{MY\}M+b_\{CY\}C+b_\{GY\}H_\{XY\}+\varepsilon_\{Y\}.
+X=b_{BX}B+b_{HX}H_{DX}+b_{GX}H_{XY}+\varepsilon_{X}
 $$
 
+**DGP equation 4**
+
 $$
-\varepsilon_\{k\} \sim \mathcal{N}(0,v_\{k\})  or  \mathrm{Uniform}(-√(3v_\{k\}),√(3v_\{k\})).
+M=b_{XM}X+\varepsilon_{M}
+$$
+
+**DGP equation 5**
+
+$$
+Y=b_{XY}X+b_{MY}M+b_{CY}C+b_{GY}H_{XY}+\varepsilon_{Y}.
+$$
+
+**DGP equation 6**
+
+$$
+\varepsilon_{k} \sim \mathcal{N}(0,v_{k})  \text{ or }  \mathrm{Uniform}(-\sqrt{3v_{k}},\sqrt{3v_{k}}).
 $$
 
 

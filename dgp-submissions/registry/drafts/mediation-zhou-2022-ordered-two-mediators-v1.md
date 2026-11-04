@@ -34,44 +34,74 @@ U1, U2, U3, UXY
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
-$$
-(U_{1},U_{2},U_{3},UXY) \sim \mathcal{N}(0, I_4)
-$$
+**Latent errors**
 
 $$
-Xj \sim \mathcal{N}((U_{1},U_{2},U_{3},UXY) \beta_Xj, 1), j = 1,2,3,4
+(U_{1},U_{2},U_{3},UXY) \sim \mathcal{N}(0, I_{4})
+$$
+
+**Baseline covariates**
+
+$$
+\mathrm{Xj} \sim \mathcal{N}((U_{1},U_{2},U_{3},UXY) \beta_{\mathrm{Xj}}, 1), j = 1,2,3,4
+$$
+
+**Treatment**
+
+$$
+A \sim \mathrm{Bernoulli}(\mathrm{logit}^{-1}[(1,X_{1},X_{2},X_{3},X_{4}) \beta_{A}])
+$$
+
+**First mediator**
+
+$$
+M_{1} \sim \mathcal{N}((1,X_{1},X_{2},X_{3},X_{4},A) \beta_{\mathrm{M1}}, 1)
+$$
+
+**Second mediator**
+
+$$
+M_{2} \sim \mathcal{N}((1,X_{1},X_{2},X_{3},X_{4},A,M_{1}) \beta_{\mathrm{M2}}, 1)
+$$
+
+**Outcome**
+
+$$
+Y \sim \mathcal{N}((1,UXY,X_{1},X_{2},X_{3},X_{4},A,M_{1},M_{2}) \beta_{Y}, 1)
+$$
+
+**Coefficients (Supplementary Material F)**
+
+$$
+\beta_{\mathrm{X1}}=(0.77,-0.86,0.35,0.88)
 $$
 
 $$
-A \sim \mathrm{Bernoulli}(logit^\{-1\}[(1,X_{1},X_{2},X_{3},X_{4}) \beta_A])
+\beta_{\mathrm{X2}}=(-0.99,-0.72,-0.1,0.54)
 $$
 
-M1 ~ N((1,X1,X2,X3,X4,A) beta_M1, 1)
-
-M2 ~ N((1,X1,X2,X3,X4,A,M1) beta_M2, 1)
-
 $$
-Y \sim \mathcal{N}((1,UXY,X_{1},X_{2},X_{3},X_{4},A,M_{1},M_{2}) \beta_Y, 1)
+\beta_{\mathrm{X3}}=(-0.74,0.1,0.91,0.46)
 $$
 
-beta_X1=(0.77,-0.86,0.35,0.88)
-
-beta_X2=(-0.99,-0.72,-0.1,0.54)
-
-beta_X3=(-0.74,0.1,0.91,0.46)
-
-beta_X4=(-0.21,-0.43,-0.21,-0.7)
-
 $$
-\beta_A=(-0.36,-0.08,-0.06,0.4,-0.14)
+\beta_{\mathrm{X4}}=(-0.21,-0.43,-0.21,-0.7)
 $$
 
-beta_M1=(0,0.3,0.42,0.48,0.28,0.41)
-
-beta_M2=(0.04,0.2,0.09,0.12,0.39,0.34,0.24)
+$$
+\beta_{A}=(-0.36,-0.08,-0.06,0.4,-0.14)
+$$
 
 $$
-\beta_Y=(-0.27,-0.1,0.25,0.2,-0.08,0.78,0.76,-0.4,0.96)
+\beta_{\mathrm{M1}}=(0,0.3,0.42,0.48,0.28,0.41)
+$$
+
+$$
+\beta_{\mathrm{M2}}=(0.04,0.2,0.09,0.12,0.39,0.34,0.24)
+$$
+
+$$
+\beta_{Y}=(-0.27,-0.1,0.25,0.2,-0.08,0.78,0.76,-0.4,0.96)
 $$
 
 <details>

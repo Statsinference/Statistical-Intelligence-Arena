@@ -34,36 +34,48 @@ V, W
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**1**
+
 $$
 T\sim \mathrm{Uniform}(0,10)
 $$
 
 $$
-S\sim DiscreteUniform(\{1,\ldots ,7\})
+S\sim \mathrm{DiscreteUniform}(\{1,\ldots ,7\})
 $$
 
 $$
-Z,V,W\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1), mutually independent
+Z,V,W\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1)
 $$
 
-$$
-psi(T)=2\cdot ((T-5)^{4}/600+\exp(-4\cdot (T-5)^{2})+T/10-2)
-$$
+mutually independent
+
+**2**
 
 $$
-P=25+(Z+3)\cdot psi(T)+V
+\psi(T)=2\cdot ((T-5)^{4}/600+\exp(-4\cdot (T-5)^{2})+T/10-2)
 $$
 
+**3**
+
 $$
-e=\rho\cdot V+sqrt(1-\rho^{2})\cdot W
+P=25+(Z+3)\cdot \psi(T)+V
+$$
+
+**4**
+
+$$
+e=\rho\cdot V+\sqrt{1-\rho^{2}}\cdot W
 $$
 
 $$
 \rho=0.8
 $$
 
+**5**
+
 $$
-Y=100+(10+P)\cdot S\cdot psi(T)-2\cdot P+e
+Y=100+(10+P)\cdot S\cdot \psi(T)-2\cdot P+e
 $$
 
 <details>

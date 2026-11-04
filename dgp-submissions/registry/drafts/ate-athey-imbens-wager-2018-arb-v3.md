@@ -34,52 +34,80 @@ theta_i
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**Covariates**
+
 $$
-X_i \sim Normal_p(0,Sigma)
+X_{i} \sim \mathcal{N}_{p}(0,\Sigma)
 $$
 
 $$
-Sigma_jk=\rho^|j-k|
+\Sigma_{jk}=\rho^{\lvert j-k\rvert}
 $$
 
 $$
-Table 3 uses \rho=0.5, p=2000.
+\mathrm{Table} 3 \mathrm{uses} \rho=0.5, p=2000.
 $$
 
-theta_i = X_i^T beta_W + epsilon_i1.
+**Latent first-stage index**
 
 $$
-W_i \mid  \theta_i \sim \mathrm{Bernoulli}(1/(1+\exp(\theta_i))) = \mathrm{Bernoulli}(\mathrm{expit}(-\theta_i)).
+\theta_{i} = X_{i}^{T} \beta_{W} + \varepsilon_{i1}.
 $$
 
-Y_i = X_i^T beta_Y + 0.5 W_i + epsilon_i2.
+**Treatment assignment**
 
 $$
-\beta_Y,j proportional to 1/j^{2} for j=1,\ldots ,p
+W_{i} \mid  \theta_{i} \sim \mathrm{Bernoulli}(1/(1+\exp(\theta_{i}))) = \mathrm{Bernoulli}(\mathrm{expit}(-\theta_{i})).
+$$
+
+**Outcome**
+
+$$
+Y_{i} = X_{i}^{T} \beta_{Y} + 0.5 W_{i} + \varepsilon_{i2}.
+$$
+
+**Structure coefficient profile**
+
+$$
+\beta_{Y,j} \mathrm{proportional} \text{ to } 1/j^{2} \text{ for } j=1,\ldots ,p
 $$
 
 Table 3 varies ||beta_Y||_2 in {1,4}.
 
-$$
-\beta_W,j proportional to 1/j^{2} for j=1,\ldots ,p
-$$
-
-Table 3 varies ||beta_W||_2 in {1,4}. All coordinates are technically nonzero.
+**Very-sparse-labeled propensity profile**
 
 $$
-\beta_W,j proportional to 1/sqrt(j) for j=1,\ldots ,p
+\beta_{W,j} \mathrm{proportional} \text{ to } 1/j^{2} \text{ for } j=1,\ldots ,p
+$$
+
+Table 3 varies ||beta_W||_2 in {1,4}
+
+All coordinates are technically nonzero.
+
+**Dense propensity profile**
+
+$$
+\beta_{W,j} \mathrm{proportional} \text{ to } 1/\sqrt{j} \text{ for } j=1,\ldots ,p
 $$
 
 Table 3 varies ||beta_W||_2 in {1,4}.
 
+**Noise**
+
 epsilon_i1 and epsilon_i2 are independent standard Gaussian errors
 
-implementation samples N(0,1) independently from X and across individuals as an explicit convention.
+implementation samples N(0,1)
 
-Y_i(w)=X_i^T beta_Y+0.5 w+epsilon_i2
+independently from X and across individuals as an explicit convention
+
+**Estimand**
 
 $$
-ATE=\mathbb{E}[Y_i(1)-Y_i(0)]=0.5.
+Y_{i}(w)=X_{i}^{T} \beta_{Y}+0.5 w+\varepsilon_{i2}
+$$
+
+$$
+\mathrm{ATE}=\mathbb{E}[Y_{i}(1)-Y_{i}(0)]=0.5.
 $$
 
 <details>

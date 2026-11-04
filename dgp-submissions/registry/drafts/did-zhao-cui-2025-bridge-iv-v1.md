@@ -34,6 +34,8 @@ U0, U1, e0, e1
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**baseline repeated cross-section**
+
 $$
 X_{1},X_{2}\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1)
 $$
@@ -43,10 +45,16 @@ Z,T\overset{\mathrm{iid}}{\sim} \mathrm{Bernoulli}(0.5)
 $$
 
 $$
-U_{0},U_{1} iid bridge(phi=0.5), density f(u)=1/[2\cdot \pi\cdot cosh(u/2)]. Baseline/exogenous draws independent across rows and variables. U=2\cdot \log(tan(\pi\cdot V/2)), V \mathrm{Uniform}(0,1)
+U_{0},U_{1} \text{ iid } \mathrm{bridge}(\phi=0.5), \mathrm{density} f(u)=1/[2\cdot \pi\cdot \cosh(u/2)]
 $$
 
+Baseline/exogenous draws
+
+independent across rows and variables. U=2*log(tan(pi*V/2)), V Uniform(0,1)
+
 exact machine endpoint0 is redrawn.
+
+**treatment propensities**
 
 $$
 p_{0}=\mathrm{expit}(2-7Z+0.2U_{0}+2X_{1})
@@ -61,8 +69,10 @@ A_{0}\sim \mathrm{Bernoulli}(p_{0})
 $$
 
 $$
-A_{1}\sim \mathrm{Bernoulli}(p_{1}), conditionally independent.
+A_{1}\sim \mathrm{Bernoulli}(p_{1}), \text{ conditionally } \text{ independent }.
 $$
+
+**period outcomes**
 
 $$
 s(X)=1.5X_{1}+2X_{2}-0.5
@@ -77,8 +87,12 @@ Y_{1}=240+10\cdot [A_{1}\cdot s(X)+0.5U_{1}+2Z+2X_{1}+1.5X_{2}]+e_{1}
 $$
 
 $$
-e_{0},e_{1}\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1), independent of all other primitive draws.
+e_{0},e_{1}\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1)
 $$
+
+independent of all other primitive draws
+
+**observation and sample-size interface**
 
 $$
 A=(1-T)\cdot A_{0}+T\cdot A_{1}
@@ -91,20 +105,24 @@ $$
 return X1,X2,Z,T,A,Y only. n is total individuals
 
 $$
-paper baseline n=5000 independently tested
+\mathrm{paper} \mathrm{baseline} n=5000 \text{ independently } \mathrm{tested}
+$$
+
+Source notation retained without guessing:
+
+<pre>official n=32 smoke is a sample-size extension due to unmodified tool cap2048, not an official n5000 pass.</pre>
+
+**population causal target**
+
+$$
+\tau_{t}(x)=\mathbb{E}[Y_{t}(1)-Y_{t}(0)\mid X=x]=10\cdot s(x)
 $$
 
 $$
-official n=32 smoke is a sample-size extension due to unmodified tool cap2048, not an official n_{5000} pass.
+\mathrm{ATE}=\mathbb{E}[\tau_{t}(X)]=-5
 $$
 
-$$
-\tau_t(x)=\mathbb{E}[Y_t(1)-Y_t(0)\mid X=x]=10\cdot s(x)
-$$
-
-$$
-ATE=\mathbb{E}[\tau_t(X)]=-5. This is not ATT, finite-sample SATT, PCD or a policy-performance estimand.
-$$
+This is not ATT, finite-sample SATT, PCD or a policy-performance estimand.
 
 <details>
 <summary>Original source equations (verbatim)</summary>

@@ -34,40 +34,50 @@ Not explicitly identified (review required)
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**Fixed finite-population potential-outcome cells**
+
 $$
-N_{11}=#\{i:Y_i(1)=1,Y_i(0)=1\}
+\mathrm{N}_{11}=\#\{i:Y_{i}(1)=1,Y_{i}(0)=1\}
 $$
 
 $$
-N_{10}=#\{i:Y_i(1)=1,Y_i(0)=0\}
+\mathrm{N}_{10}=\#\{i:Y_{i}(1)=1,Y_{i}(0)=0\}
 $$
 
 $$
-N_{01}=#\{i:Y_i(1)=0,Y_i(0)=1\}
+\mathrm{N}_{01}=\#\{i:Y_{i}(1)=0,Y_{i}(0)=1\}
 $$
 
 $$
-N_{00}=#\{i:Y_i(1)=0,Y_i(0)=0\}
+\mathrm{N}_{00}=\#\{i:Y_{i}(1)=0,Y_{i}(0)=0\}
 $$
 
 $$
-N=N_{11}+N_{10}+N_{01}+N_{00}=200.
+\mathrm{N}=\mathrm{N}_{11}+\mathrm{N}_{10}+\mathrm{N}_{01}+\mathrm{N}_{00}=200.
+$$
+
+**Complete randomization (user-approved allocation adaptation)**
+
+$$
+\mathrm{N}_{1}=\mathrm{N}_{0}=100
 $$
 
 $$
-N_{1}=N_{0}=100
+P(A=\text{ a })=1/\mathrm{binom}(\mathrm{N},\mathrm{N}_{1}) \text{ for } \mathrm{every} \mathrm{assignment} \text{ vector } \text{ a } \text{ with } \sum_{i} \text{ a }_{i}=\mathrm{N}_{1}.
 $$
 
-$$
-P(A=a)=1/binom(N,N_{1}) for every assignment vector a with sum_i a_i=N_{1}.
-$$
+**Observed outcome**
 
 $$
-Y_i=A_i Y_i(1)+(1-A_i)Y_i(0). Only (A_i,Y_i) are returned.
+Y_{i}=A_{i} Y_{i}(1)+(1-A_{i})Y_{i}(0)
 $$
 
+Only (A_i,Y_i) are returned.
+
+**Finite-population ATE**
+
 $$
-\tau=N^\{-1\} sum_i[Y_i(1)-Y_i(0)]=(N_{10}-N_{01})/N.
+\tau=\mathrm{N}^{-1} \sum_{i}[Y_{i}(1)-Y_{i}(0)]=(\mathrm{N}_{10}-\mathrm{N}_{01})/\mathrm{N}.
 $$
 
 <details>

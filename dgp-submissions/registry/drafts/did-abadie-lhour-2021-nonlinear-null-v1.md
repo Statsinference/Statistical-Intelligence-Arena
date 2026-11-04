@@ -34,10 +34,12 @@ Not explicitly identified (review required)
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**fixed strata and sample-size interface**
+
 n is units
 
 $$
-n_{1}=\min(n-1,\max(1,\mathrm{floor}(n/5+0.5)))
+n_{1}=\min(n-1,\max(1,\lfloor n/5+0.5\rfloor))
 $$
 
 $$
@@ -45,27 +47,37 @@ n_{0}=n-n_{1}
 $$
 
 $$
-baseline n=500 gives n_{1}=100,n_{0}=400. Other n are sample_size_extension_not_paper_table4. G_i=1 for first n_{1} units and 0 otherwise.
+\mathrm{baseline} n=500 \mathrm{gives} n_{1}=100,n_{0}=400
+$$
+
+Source notation retained without guessing:
+
+<pre>Other n are sample_size_extension_not_paper_table4. G_i=1 for first n1 units and 0 otherwise.</pre>
+
+**covariates**
+
+$$
+p=4,r=2,\text{ a }=0.1,b=0.9,h=0.1
 $$
 
 $$
-p=4,r=2,a=0.1,b=0.9,h=0.1
+X_{ij}\mid G_{i}=1\overset{\mathrm{iid}}{\sim} \mathrm{Uniform}(\text{ a },b)
 $$
 
 $$
-X_ij\mid G_i=1\overset{\mathrm{iid}}{\sim} \mathrm{Uniform}(a,b)
+X_{ij}\mid G_{i}=0=\sqrt{U_{ij}}, U_{ij}\overset{\mathrm{iid}}{\sim} \mathrm{Uniform}(0,1)
+$$
+
+Independent across units and covariate coordinates
+
+**population normalization**
+
+$$
+v=\sqrt{p\cdot \mathrm{Var}(X^{r}\mid G=1)}
 $$
 
 $$
-X_ij\mid G_i=0=sqrt(U_ij), U_ij\overset{\mathrm{iid}}{\sim} \mathrm{Uniform}(0,1). Independent across units and covariate coordinates.
-$$
-
-$$
-v=sqrt(p\cdot Var(X^r\mid G=1))
-$$
-
-$$
-\mathbb{E}[X^k\mid G=1]=(b^(k+1)-a^(k+1))/((k+1)\cdot (b-a))
+\mathbb{E}[X^{k}\mid G=1]=(b^{k+1}-\text{ a }^{k+1})/((k+1)\cdot (b-\text{ a }))
 $$
 
 $$
@@ -73,32 +85,42 @@ v^{2}=6256/28125
 $$
 
 $$
-\mu_i=sum_(j=1)^{4} X_ij^{2}/v.
+\mu_{i}=\sum_{j=1}^{4} X_{ij}^{2}/v.
+$$
+
+**observed two-period outcomes**
+
+Source notation retained without guessing:
+
+<pre>Y_pre_i=mu_i+epsilon_pre_i</pre>
+
+Source notation retained without guessing:
+
+<pre>Y_post_i=mu_i+epsilon_post_i</pre>
+
+$$
+\text{ all } \mathrm{period}/\mathrm{unit} \mathrm{errors}\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1)
+$$
+
+independent of X
+
+$$
+\mathrm{The} \mathrm{same} X \text{ is } \mathrm{shared} \text{ across } \mathrm{periods}. A_{\mathrm{pre}}=0,A_{\mathrm{post}}=G
 $$
 
 $$
-Y_pre_i=\mu_i+\varepsilon_pre_i
+\mathrm{treatment}_{\mathrm{effect}}=0.
 $$
 
-$$
-Y_post_i=\mu_i+\varepsilon_post_i
-$$
+**causal target**
 
 $$
-all period/unit errors\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1), independent of X. The same X is shared across periods. A_pre=0,A_post=G
+\mathrm{ATT}_{\mathrm{post}}=\mathbb{E}[Y_{2}(1)-Y_{2}(0)\mid G=1]=0
 $$
 
-$$
-treatment_effect=0.
-$$
+Source notation retained without guessing:
 
-$$
-ATT_post=\mathbb{E}[Y_2(1)-Y_2(0)\mid G=1]=0
-$$
-
-$$
-holding the same post error fixed across intervention states gives finite-sample SATT=0.
-$$
+<pre>holding the same post error fixed across intervention states gives finite-sample SATT=0.</pre>
 
 <details>
 <summary>Original source equations (verbatim)</summary>

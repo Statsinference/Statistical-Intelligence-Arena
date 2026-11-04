@@ -34,28 +34,38 @@ Xj
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+**X1-X3**
+
 $$
-Xj \sim \mathcal{N}(0,1) independently, j = 1..3
+\mathrm{Xj} \sim \mathcal{N}(0,1) \text{ independently }, j = 1..3
 $$
+
+**Treatment**
 
 $$
 e(X) = 1 / (1 + \exp(X_{2} + X_{3}))
 $$
 
+**Baseline**
+
 $$
 b(X) = 2 \log(1 + \exp(X_{1} + X_{2} + X_{3}))
 $$
+
+**Heterogeneity**
 
 $$
 \tau(X) = 1
 $$
 
+**Outcome**
+
 $$
-Y = b(X) + A \tau(X) + \sigma eps, eps \sim \mathcal{N}(0,1)
+Y = b(X) + A \tau(X) + \sigma\varepsilon, \varepsilon\sim \mathcal{N}(0,1)
 $$
 
 $$
-\sigma = 1
+\sigma= 1
 $$
 
 <details>

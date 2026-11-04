@@ -36,44 +36,42 @@ Not explicitly identified (review required)
 
 **Original source equations (verbatim):** [Open raw scientific record (JSON)](./proximal-cui-2023-04-18-gaussian-v2.json).
 
-English equation transcription pending
+设 $`X=(X_{1},X_{2})`$，$`\sigma(t)=1/(1+\exp(-t))`$。对每个个体依次生成：
 
-see the original record (JSON).
+**Step 1**
 
 $$
-1. `X \sim Normal_2((0.25,0.25), \begin{bmatrix}
+X \sim \mathcal{N}_{2}((0.25,0.25), \begin{bmatrix}
 0.0625 & 0 \\
 0 & 0.0625
-\end{bmatrix})`
+\end{bmatrix})
 $$
 
-$$
-2. `A \mid  X \sim \mathrm{Bernoulli}(\sigma(-0.125 X_{1} - 0.125 X_{2}))`
-$$
-
-English equation transcription pending
-
-see the original record (JSON).
+**Step 2**
 
 $$
-`\mu(A,X) = (0.25,0.25,0.25)^T + A(0.25,0.125,0.25)^T + (0.25 X_{1} + 0.25 X_{2})(1,1,1)^T`
+A \mid  X \sim \mathrm{Bernoulli}(\sigma(-0.125 X_{1} - 0.125 X_{2}))
 $$
 
-English equation transcription pending
-
-see the original record (JSON).
-
-English equation transcription pending
-
-see the original record (JSON).
+3. $`V=(Z,W,U)^{T} \mid  A,X \sim \mathcal{N}_{3}(\mu(A,X),\Sigma)`$，其中
 
 $$
-`Y = 2 + 2A + 0.25(X_{1}+X_{2}) + (4-2)g(U,X) + 2W + \varepsilon Y`
+\mu(A,X) = (0.25,0.25,0.25)^{T} + A(0.25,0.125,0.25)^{T} + (0.25 X_{1} + 0.25 X_{2})(1,1,1)^{T}
 $$
 
-English equation transcription pending
+$`\Sigma= \begin{bmatrix}
+1 & 0.25 & 0.5 \\
+0.25 & 1 & 0.5 \\
+0.5 & 0.5 & 1
+\end{bmatrix}`$；行列顺序为 <code>(Z,W,U)</code>。
 
-see the original record (JSON).
+4. 定义 $`g(U,X) = 0.25 + 0.25(X_{1}+X_{2}) + 0.5[U - 0.25 - 0.25(X_{1}+X_{2})]`$，取 $`\varepsilon_{Y} \sim \mathcal{N}(0,0.25^{2})`$ 且独立于前述高斯抽样误差，令
+
+$$
+Y = 2 + 2A + 0.25(X_{1}+X_{2}) + (4-2)g(U,X) + 2W + \varepsilon_{Y}
+$$
+
+等价的结果公式为 $`Y = 2.25 + 2A + 0.5(X_{1}+X_{2}) + U + 2W + \varepsilon_{Y}`$。以上条件分布及系数对应 <code>config.json</code> 的 <code>original</code> 场景。抽样单位为独立个体，个体内 <code>(Z,W,U)</code> 按给定条件协方差联合生成。
 
 
 ## Parameter scenarios, estimands and truth

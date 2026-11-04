@@ -34,38 +34,48 @@ G1, G2
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
+Source notation retained without guessing:
+
+<pre>(V,U) has the bivariate standard Cauchy law restricted to V&gt;0,U&gt;0, with scale matrix I_2 (source s=0).</pre>
+
 $$
-(V,U) has the bivariate standard Cauchy law restricted to V>0,U>0, with scale matrix I_2 (source s=0).
+\mathrm{Equivalent} \text{ independent }-\mathrm{normal} \mathrm{construction}: G_{0},G_{1},G_{2}\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1)
 $$
 
 $$
-Equivalent independent-normal construction: G_{0},G_{1},G_{2}\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1)
+V=\lvert G_{1}\rvert/\lvert G_{0}\rvert
 $$
 
 $$
-V=abs(G_{1})/abs(G_{0})
+U=\lvert G_{2}\rvert/\lvert G_{0}\rvert.
 $$
 
 $$
-U=abs(G_{2})/abs(G_{0}).
+F_{0}(v)=2\cdot \mathrm{atan}(v)/\pi\text{ for } v\geq 0
 $$
 
 $$
-F_0(v)=2\cdot atan(v)/\pi for v>=0. Outcome Y=-\log(1-F_0(V))
+\mathrm{Outcome} Y=-\log(1-F_{0}(V))
 $$
 
 $$
-observed covariate X_{1}=U. Source \gamma=0 in equation (16).
-$$
-
-Two independent samples from the same population: source_n_labeled rows with observed Y and source_n_unlabeled rows with observed X only. R=1 in the first labeled block
-
-$$
-Y_obs=Y there. R=0 in the remaining block
+\text{ observed } \mathrm{covariate} X_{1}=U
 $$
 
 $$
-Y_obs=0 is a placeholder.
+\mathrm{Source} \gamma=0 \in \mathrm{equation} (16).
+$$
+
+Source notation retained without guessing:
+
+<pre>Two independent samples from the same population: source_n_labeled rows with observed Y and source_n_unlabeled rows with observed X only. R=1 in the first labeled block</pre>
+
+$$
+Y_{\mathrm{obs}}=Y \text{ there }. R=0 \in \text{ the } \mathrm{remaining} \mathrm{block}
+$$
+
+$$
+Y_{\mathrm{obs}}=0 \text{ is } \text{ a } \text{ placeholder }.
 $$
 
 <details>

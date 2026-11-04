@@ -35,10 +35,10 @@ Not explicitly identified (review required)
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
 $$
-X\sim N_20(0,Sigma), Sigma[j,k]=0.5\cdot \cdot abs(j-k)
+X\sim \mathcal{N}_{20}(0,\Sigma), \Sigma[j,k]=0.5^{\lvert j-k\rvert}
 $$
 
-independent individuals.
+independent individuals
 
 $$
 p(X)=\mathrm{expit}((X_{1}+X_{2})\cdot (X_{3}+1)/2)
@@ -49,12 +49,14 @@ A\mid X\sim \mathrm{Bernoulli}(p).
 $$
 
 $$
-Y=A+X_{1}\cdot \cdot 2+X_{2}\cdot \cdot 2+\varepsilon
+Y=A+X_{1}^{2}+X_{2}^{2}+\varepsilon
 $$
 
 $$
-\varepsilon\sim \mathcal{N}(0,1), independent across individuals and of X/assignment randomness.
+\varepsilon\sim \mathcal{N}(0,1)
 $$
+
+independent across individuals and of X/assignment randomness
 
 <details>
 <summary>Original source equations (verbatim)</summary>
