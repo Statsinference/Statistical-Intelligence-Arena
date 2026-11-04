@@ -52,7 +52,8 @@ def detail(rec):
         '> Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.', '']
     if translated:
         lines.extend(['**Original source equations (verbatim):** [Open raw scientific record (JSON)](./'+source_rec['record_id']+'.json).', ''])
-    lines.extend(equation_markdown(mech.get('generation_equations') or [], include_source=not translated))
+    lines.extend(equation_markdown(mech.get('generation_equations') or [], include_source=not translated,
+                                  source_entries=(source_rec.get('mechanism') or {}).get('generation_equations') or []))
     lines.extend(['','## Parameter scenarios, estimands and truth','',
                   '| Scenario | Estimand | Definition | True value | Evidence status |',
                   '|---|---|---|---|---|'])
