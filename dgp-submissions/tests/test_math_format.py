@@ -118,7 +118,7 @@ class MathRenderingTests(unittest.TestCase):
         rendered = '\n'.join(equation_markdown(eqs))
         blocks = rendered.split(chr(36)*2)[1::2]
         math = '\n'.join(blocks)
-        self.assertIn(r'\beta A_t', math)
+        self.assertIn(r'\beta A_{t}', math)
         self.assertNotIn(r'\beta_{A}_t', math)
         self.assertIn(r'\mathrm{Poisson}', math)
         self.assertIn(r'20\cdot X_{1}\cdot (1-X_{1})^{3}', math)
