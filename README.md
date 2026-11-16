@@ -9,8 +9,8 @@
 </p>
 
 <p align="center">
-  <a href="./site/leaderboard-demo.html" title="View and download the interactive leaderboard demo">
-    <img src="docs/assets/badge-leaderboard.svg" alt="Leaderboard Demo" height="36" />
+  <a href="https://statsinference.github.io/" title="Open the StatsArena leaderboard website">
+    <img src="docs/assets/badge-leaderboard.svg" alt="Leaderboard" height="36" />
   </a>
   <a href="#getting-started-for-students" title="Student onboarding steps">
     <img src="docs/assets/badge-start.svg" alt="Getting Started for Students" height="36" />
@@ -22,9 +22,9 @@
 
 <p align="center">
   <sub>
-    <strong>Leaderboard Demo:</strong>
-    Interactive mock-up with simulated data, not real evaluations.
-    Download the HTML file from GitHub and open it locally in your browser.
+    <strong>Leaderboard:</strong>
+    Open the public StatsArena website directly in your browser.
+    Results will be published by domain; no illustrative scores are displayed.
   </sub>
 </p>
 
@@ -52,13 +52,13 @@ Our goal is to move beyond point-estimation accuracy alone. For each specified c
 
 The planned workflow is **register a scientifically justified DGP → independently verify its true target → define a task-specific training distribution → implement and compare methods → evaluate CIs on independent repeated datasets at fixed DGP settings**.
 
-This repository is intended **first for collaborating students and researchers building the initial task families**. Public benchmark releases, external submissions and a leaderboard are later milestones, not current services.
+This repository is intended **first for collaborating students and researchers building the initial task families**. Public benchmark releases and external evaluation submissions remain later milestones. The public leaderboard website is available; result tables are awaiting the first release.
 
-### Leaderboard interface preview
+### Leaderboard
 
-The **[Leaderboard Demo](https://statsarena.github.io/)** button above leads to a **real, interactive GitHub Pages website** once the team publishes the separate `StatsArena/statsarena.github.io` repository (see [short setup guide](docs/LEADERBOARD_DEMO.md)). The benchmark development repository can remain private. Clicking an `.html` file directly on GitHub would display source code rather than run the page.
+The **[Leaderboard](https://statsinference.github.io/)** button above opens the public StatsArena website directly. No HTML download or GitHub login is needed to view the website. Website code is maintained separately in [`Statsinference/statsinference.github.io`](https://github.com/Statsinference/statsinference.github.io), while this research repository remains private.
 
-**Important:** Every rank, score, coverage number, cost and trend in the HTML template is **simulated**; no benchmark model evaluations have been run. The demo's example task tabs are for interface exploration, **not** the authoritative six-family taxonomy. Do not publish hidden evaluation configurations or unreviewed results. **Until Pages is enabled, the demo URL will not be live.**
+The website has independent leaderboards for ten research domains, with ID/OOD views and **Bias, Variance, RMSE, Length, Coverage, and Time**. Results are awaiting the first release; no simulated scores are presented as evaluations. The legacy `site/leaderboard-demo.html` is retained only as an archived interface prototype and is no longer the leaderboard entry point.
 
 ## Getting started for students
 
