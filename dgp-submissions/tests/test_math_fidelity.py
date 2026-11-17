@@ -110,8 +110,9 @@ def test_missing_english_transcription_does_not_delete_math_or_source_notes():
     md='\n'.join(equation_markdown(display,source_entries=original))
     assert r'U \sim \mathrm{Uniform}(0,1)' in md
     assert r'X \sim \mathrm{Uniform}(0,1)' in md
-    assert '两者独立' in md
-    assert 'transcription pending' not in md
+    assert '两者独立' in md  # verbatim original source remains available
+    assert 'transcription pending' in md  # untranslated context is disclosed
+    assert 'original scientific record (JSON)' in md
     assert original==before
 
 
