@@ -93,7 +93,7 @@ The newly introduced error terms are mutually independent N(0,0.5²).
 <td rowspan="1">Longitudinal treatment regime mean contrast</td>
 <td rowspan="1">
 
-$`\mathbb{E}[Y(1,1)-Y(0,0)]`$
+$`\mathbb{E}[Y^{(1,1)}-Y^{(0,0)}]`$
 
 </td>
 <td>1.9999999999999998</td>

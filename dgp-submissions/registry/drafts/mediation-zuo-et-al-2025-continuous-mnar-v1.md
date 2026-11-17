@@ -105,7 +105,7 @@ M_obs0=R_M*M; Y_obs0=R_Y*Y; include R_M,R_Y to distinguish missing from genuine 
 <td rowspan="1">NIE</td>
 <td rowspan="1">
 
-$`\mathbb{E}\!\left[Y\{1,M(1)\}-Y\{1,M(0)\}\right]`$
+$`\mathbb{E}\!\left[Y^{(1,M^{(1)})}-Y^{(1,M^{(0)})}\right]`$
 
 </td>
 <td>2.0</td>

@@ -147,7 +147,7 @@ $`\theta_{011}-\theta_{001}`$
 
 **Definition notes**
 
-- All scenarios: $`\theta_{a_1a_2a_3}=\mathbb{E}[Y\{a_3,M_1(a_1),M_2(a_2,M_1(a_1))\}]`$ This is the cumulative path-specific effect through the second mediator.
+- All scenarios: $`\theta_{a_1a_2a_3}=\mathbb{E}[Y^{(a_3,M_1^{(a_1)},M_2^{(a_2,M_1^{(a_1)})})}]`$ This is the cumulative path-specific effect through the second mediator.
 
 <details>
 <summary>Submitted estimand definitions</summary>

@@ -95,7 +95,7 @@ beta_0 = int int int E(Y|m, c1, a&#x27;, c0) dF(m|c1, a, c0) dF(c1|a&#x27;, c0) 
 <td rowspan="1">Path-specific effect</td>
 <td rowspan="1">
 
-$`\mathbb{E}\!\left[Y\{M(1,C_1(0)),C_1(0),0\}-Y(0)\right]`$
+$`\mathbb{E}\!\left[Y^{(M^{(1,C_1^{(0)})},C_1^{(0)},0)}-Y^{(0)}\right]`$
 
 </td>
 <td>-0.9180000000000001</td>

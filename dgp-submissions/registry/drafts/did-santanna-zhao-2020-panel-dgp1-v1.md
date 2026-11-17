@@ -94,11 +94,11 @@ Y_{\mathrm{pre}}=f(Z)+v+\varepsilon_{0}
 ```
 
 ```math
-Y_{1}(d)=2\cdot f(Z)+v+\varepsilon_{1}(d)
+Y_{1}^{(d)}=2\cdot f(Z)+v+\varepsilon_{1}(d)
 ```
 
 ```math
-Y_{\mathrm{post}}=Y_{1}(D)
+Y_{\mathrm{post}}=Y_{1}^{(D)}
 ```
 
 **Innovations**
@@ -133,7 +133,7 @@ eta,epsilon0,epsilon1(0),epsilon1(1) are independent N(0,1), independent of X,U
 <td rowspan="1">ATT</td>
 <td rowspan="1">
 
-$`\mathbb{E}[Y_1(1)-Y_1(0)\mid D=1]`$
+$`\mathbb{E}[Y_1^{(1)}-Y_1^{(0)}\mid D=1]`$
 
 </td>
 <td>0.0</td>

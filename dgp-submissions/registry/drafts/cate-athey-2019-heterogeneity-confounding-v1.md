@@ -95,7 +95,7 @@ Y = m(X) + A tau(X) + eps, eps ~ Normal(0,1)
 <td rowspan="1">CATE ⚠ review</td>
 <td rowspan="1">
 
-$`\mathbb{E}[Y(1)-Y(0)\mid X=x_0]`$
+$`\mathbb{E}[Y^{(1)}-Y^{(0)}\mid X=x_0]`$
 
 </td>
 <td>2.25</td>

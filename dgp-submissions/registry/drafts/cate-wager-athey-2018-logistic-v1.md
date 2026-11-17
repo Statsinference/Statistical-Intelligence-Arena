@@ -105,7 +105,7 @@ Y=m(X)+(A-0.5)*tau(X)+epsilon; epsilon~Normal(0,1), independent of X and assignm
 <td rowspan="1">CATE</td>
 <td rowspan="1">
 
-$`\mathbb{E}[Y(1)-Y(0)\mid X=x_\star]`$
+$`\mathbb{E}[Y^{(1)}-Y^{(0)}\mid X=x_\star]`$
 
 </td>
 <td>2.25</td>

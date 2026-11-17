@@ -96,7 +96,7 @@ h^{2}=0.2, \kappa=1, s^{2}=h^{2}/(1.5m)
 <td rowspan="4">Population unit-change structural mean effect ⚠ review</td>
 <td rowspan="4">
 
-$`\mathbb{E}[Y(a+1)-Y(a)]`$
+$`\mathbb{E}[Y^{(a+1)}-Y^{(a)}]`$
 
 </td>
 <td>0.4</td>

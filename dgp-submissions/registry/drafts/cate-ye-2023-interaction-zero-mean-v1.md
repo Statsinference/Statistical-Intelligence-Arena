@@ -49,7 +49,7 @@ P(A=1) = 0.5 (\mathrm{simple} \mathrm{randomisation}, \mathrm{two} \mathrm{arms}
 **Potential responses**
 
 ```math
-Y(1) = \varepsilon, Y(2) = Y(1) + \zeta(U - \mathrm{muU})
+Y^{(1)} = \varepsilon, Y^{(2)} = Y^{(1)} + \zeta(U - \mathrm{muU})
 ```
 
 ```math
@@ -65,7 +65,7 @@ Y(1) = \varepsilon, Y(2) = Y(1) + \zeta(U - \mathrm{muU})
 **Observed**
 
 ```math
-Y = A Y(2) + (1-A) Y(1) = \varepsilon+ A \tau(U)
+Y = A Y^{(2)} + (1-A) Y^{(1)} = \varepsilon+ A \tau(U)
 ```
 
 <details>
@@ -92,7 +92,7 @@ Y = A Y(2) + (1-A) Y(1) = eps + A tau(U)
 <td rowspan="1">CATE</td>
 <td rowspan="1">
 
-$`\mathbb{E}[Y(2)-Y(1)\mid U=u_0]`$
+$`\mathbb{E}[Y^{(2)}-Y^{(1)}\mid U=u_0]`$
 
 </td>
 <td>0.5</td>

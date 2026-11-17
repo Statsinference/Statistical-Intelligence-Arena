@@ -51,19 +51,19 @@ p[z,u]=P(A=1|Z=z,U=u), r[\text{ a },u]=P(Y=1|A=\text{ a },U=u)
 fixed values from source Table 1.
 
 ```math
-A(z)=1\{V_{A}<p[z,U]\}
+A^{(z)}=1\{V_{A}<p[z,U]\}
 ```
 
 ```math
-A=A(Z)
+A=A^{(Z)}
 ```
 
 ```math
-Y(\text{ a })=1\{V_{Y}<r[\text{ a },U]\}
+Y^{(a)}=1\{V_{Y}<r[\text{ a },U]\}
 ```
 
 ```math
-Y=Y(A).
+Y=Y^{(A)}.
 ```
 
 ```math
@@ -105,7 +105,7 @@ Source population ATE=sum_u q[u]*tau[u]; it is an audit quantity, not the regist
 <td rowspan="3">LATE</td>
 <td rowspan="3">
 
-$`\mathbb{E}[Y(1)-Y(0)\mid A(1)\gt A(0)]`$
+$`\mathbb{E}[Y^{(1)}-Y^{(0)}\mid A^{(1)}\gt A^{(0)}]`$
 
 </td>
 <td>0.05545454545454545</td>

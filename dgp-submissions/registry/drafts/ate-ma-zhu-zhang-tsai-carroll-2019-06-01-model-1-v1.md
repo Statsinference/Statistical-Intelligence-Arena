@@ -87,7 +87,7 @@ Y=A+X1**2+X2**2+epsilon; epsilon~N(0,1), independent across individuals and of X
 <td rowspan="1">ATE</td>
 <td rowspan="1">
 
-$`\mathbb{E}[Y(1)-Y(0)]`$
+$`\mathbb{E}[Y^{(1)}-Y^{(0)}]`$
 
 </td>
 <td>1.0</td>

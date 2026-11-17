@@ -112,7 +112,7 @@ Y_{it}=\mu_{G_i,t}+\mathbf{1}\{G_i=trt\}\theta_t+\epsilon_{it}
 **Fixed estimand**
 
 ```math
-ATT_4=E[Y_{i4}(1)-Y_{i4}(0)\mid G_i=trt]=\theta_4=1
+ATT_4=E[Y_{i4}^{(1)}-Y_{i4}^{(0)}\mid G_i=trt]=\theta_4=1
 ```
 
 
@@ -126,7 +126,7 @@ ATT_4=E[Y_{i4}(1)-Y_{i4}(0)\mid G_i=trt]=\theta_4=1
 <td rowspan="2">ATT</td>
 <td rowspan="2">
 
-$`\mathbb{E}[Y_4(1)-Y_4(0)\mid G=\mathrm{trt}]`$
+$`\mathbb{E}[Y_4^{(1)}-Y_4^{(0)}\mid G=\mathrm{trt}]`$
 
 </td>
 <td>1.0</td>

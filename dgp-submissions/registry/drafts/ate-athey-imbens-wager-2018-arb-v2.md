@@ -152,7 +152,7 @@ Source notation retained without guessing:
 **Potential outcomes and true target**
 
 ```math
-\mathrm{Structural} \mathrm{interpretation} \text{ for } w \in \{0,1\}: Y_{i}(w)=X_{i}^{T} \beta+w+\varepsilon_{i}, \mathrm{so} \mathrm{ATE}=\mathbb{E}[Y(1)-Y(0)]=1.
+\mathrm{Structural} \mathrm{interpretation} \text{ for } w \in \{0,1\}: Y_{i}^{(w)}=X_{i}^{T} \beta+w+\varepsilon_{i}, \mathrm{so} \mathrm{ATE}=\mathbb{E}[Y^{(1)}-Y^{(0)}]=1.
 ```
 
 <details>
@@ -185,7 +185,7 @@ Structural interpretation for w in {0,1}: Y_i(w)=X_i^T beta+w+epsilon_i, so ATE=
 <td rowspan="8">ATE</td>
 <td rowspan="8">
 
-$`\mathbb{E}[Y(1)-Y(0)]`$
+$`\mathbb{E}[Y^{(1)}-Y^{(0)}]`$
 
 </td>
 <td>1.0</td>

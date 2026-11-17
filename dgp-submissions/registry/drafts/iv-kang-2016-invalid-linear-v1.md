@@ -88,7 +88,7 @@ Y=1+Z₁+Z₂+Z₃+βD+ε; β=1.
 <td rowspan="1">Population unit-change structural mean effect</td>
 <td rowspan="1">
 
-$`\mathbb{E}[Y(d+1)-Y(d)]`$
+$`\mathbb{E}[Y^{(d+1)}-Y^{(d)}]`$
 
 </td>
 <td>1.0</td>

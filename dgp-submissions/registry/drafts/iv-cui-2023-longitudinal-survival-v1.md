@@ -188,7 +188,7 @@ For fixed treatment regime a, lambda_Ta(t)=exp(psi*a(t)); psi=log(hazard under a
 <td rowspan="2">Marginal structural log hazard ratio</td>
 <td rowspan="2">
 
-$`\psi=\log\{\lambda_{T^{\bar a}}(t)/\lambda_0(t)\},\quad a(t)=1`$
+$`\psi=\log\{\lambda_{T^{(\bar a)}}(t)/\lambda_0(t)\},\quad a(t)=1`$
 
 </td>
 <td>-1.0</td>

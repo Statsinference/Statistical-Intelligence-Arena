@@ -99,7 +99,7 @@ Y = 1 + 0.2 X1 + 0.3 X2 + 1.4 X3 - 2.5 A - 3.5 M + 5 A M + epsilon; epsilon ~ No
 <td rowspan="1">NIE</td>
 <td rowspan="1">
 
-$`\mathbb{E}\!\left[Y\{1,M(1)\}-Y\{1,M(0)\}\right]`$
+$`\mathbb{E}\!\left[Y^{(1,M^{(1)})}-Y^{(1,M^{(0)})}\right]`$
 
 </td>
 <td>0.2366199012683949</td>

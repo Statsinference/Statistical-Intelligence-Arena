@@ -102,7 +102,7 @@ Y=100+(10+P)*S*psi(T)-2*P+e
 <td rowspan="1">Population structural mean price contrast</td>
 <td rowspan="1">
 
-$`\mathbb{E}[Y(21)-Y(20)]`$
+$`\mathbb{E}[Y^{(21)}-Y^{(20)}]`$
 
 </td>
 <td>-11.624351792971128</td>

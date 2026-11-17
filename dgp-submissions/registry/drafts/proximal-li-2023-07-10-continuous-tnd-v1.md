@@ -137,7 +137,7 @@ English equation transcription pending; consult the linked original scientific r
 <td rowspan="4">Causal log mean ratio</td>
 <td rowspan="4">
 
-$`\log\{\mathbb{E}[Y(1)]/\mathbb{E}[Y(0)]\}`$
+$`\log\{\mathbb{E}[Y^{(1)}]/\mathbb{E}[Y^{(0)}]\}`$
 
 </td>
 <td>-1.6094379124341003</td>

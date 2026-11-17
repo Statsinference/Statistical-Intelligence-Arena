@@ -110,11 +110,11 @@ independently from X and across individuals as an explicit convention
 **Estimand**
 
 ```math
-Y_{i}(w)=X_{i}^{T} \beta_{Y}+0.5 w+\varepsilon_{i2}
+Y_{i}^{(w)}=X_{i}^{T} \beta_{Y}+0.5 w+\varepsilon_{i2}
 ```
 
 ```math
-\mathrm{ATE}=\mathbb{E}[Y_{i}(1)-Y_{i}(0)]=0.5.
+\mathrm{ATE}=\mathbb{E}[Y_{i}^{(1)}-Y_{i}^{(0)}]=0.5.
 ```
 
 <details>
@@ -145,7 +145,7 @@ Y_i(w)=X_i^T beta_Y+0.5 w+epsilon_i2; ATE=E[Y_i(1)-Y_i(0)]=0.5.
 <td rowspan="8">ATE</td>
 <td rowspan="8">
 
-$`\mathbb{E}[Y(1)-Y(0)]`$
+$`\mathbb{E}[Y^{(1)}-Y^{(0)}]`$
 
 </td>
 <td>0.5</td>

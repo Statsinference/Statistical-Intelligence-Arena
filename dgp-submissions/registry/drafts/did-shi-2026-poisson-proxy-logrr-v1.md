@@ -67,7 +67,7 @@ independent across periods
 **estimand**
 
 ```math
-\log(\mathbb{E}[Y_{t}(1)]/\mathbb{E}[Y_{t}(0)])=-2
+\log(\mathbb{E}[Y_{t}^{(1)}]/\mathbb{E}[Y_{t}^{(0)}])=-2
 ```
 
 <details>
@@ -93,7 +93,7 @@ log(E[Y_t(1)]/E[Y_t(0)])=-2
 <td rowspan="1">Treated-unit population log mean ratio</td>
 <td rowspan="1">
 
-$`\log\{\mathbb{E}[Y_t(1)]/\mathbb{E}[Y_t(0)]\}`$
+$`\log\{\mathbb{E}[Y_t^{(1)}]/\mathbb{E}[Y_t^{(0)}]\}`$
 
 </td>
 <td>-2.0</td>

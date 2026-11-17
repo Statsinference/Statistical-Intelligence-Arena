@@ -96,7 +96,7 @@ tau(X)=X1+log(1+exp(X2)); Y=b(X)+(A-0.5)*tau(X)+epsilon; epsilon~N(0,1).
 <td rowspan="1">ATE</td>
 <td rowspan="1">
 
-$`\mathbb{E}[Y(1)-Y(0)]`$
+$`\mathbb{E}[Y^{(1)}-Y^{(0)}]`$
 
 </td>
 <td>0.8060591833474399</td>

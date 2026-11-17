@@ -105,7 +105,7 @@ p_{1}=(n(1-\phi_{3}),\ n\phi_{3},\ a(1-\phi_{4})+c(1-q_{1}),\ a\phi_{4}+c q_{1})
 <td rowspan="1">Conditional LATE curve transformed-slope parameter</td>
 <td rowspan="1">
 
-$`\alpha_1=\frac{d}{dx}\operatorname{atanh}\{\delta_L(x)\},\quad \delta_L(x)=\mathbb{E}[Y(1)-Y(0)\mid D(1)\gt D(0),X=x]`$
+$`\alpha_1=\frac{d}{dx}\operatorname{atanh}\{\delta_L(x)\},\quad \delta_L(x)=\mathbb{E}[Y^{(1)}-Y^{(0)}\mid D^{(1)}\gt D^{(0)},X=x]`$
 
 </td>
 <td>-1.0</td>

@@ -106,7 +106,7 @@ Y=(2-R+2v_{1}-v_{2}+v_{3}-0.5v_{4})(1+X)+U+\varepsilon, \varepsilon\sim \mathcal
 <td rowspan="1">ATE</td>
 <td rowspan="1">
 
-$`\mathbb{E}[Y(1)-Y(0)\mid R=0]`$
+$`\mathbb{E}[Y^{(1)}-Y^{(0)}\mid R=0]`$
 
 </td>
 <td>2.224373475244555</td>

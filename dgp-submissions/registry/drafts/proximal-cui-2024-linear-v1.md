@@ -87,7 +87,7 @@ h(W,A,X)=2+2A+4W+0.25s
 <td rowspan="1">ATE</td>
 <td rowspan="1">
 
-$`\mathbb{E}[Y(1)-Y(0)]`$
+$`\mathbb{E}[Y^{(1)}-Y^{(0)}]`$
 
 </td>
 <td>2.0</td>

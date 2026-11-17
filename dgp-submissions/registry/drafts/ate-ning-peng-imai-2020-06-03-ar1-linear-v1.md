@@ -62,11 +62,11 @@ A\mid X\sim \mathrm{Bernoulli}(p).
 ```
 
 ```math
-Y(1)=2+0.137\cdot (X_{5}+X_{6}+X_{7}+X_{8})+\varepsilon_{1}
+Y^{(1)}=2+0.137\cdot (X_{5}+X_{6}+X_{7}+X_{8})+\varepsilon_{1}
 ```
 
 ```math
-Y(0)=1+0.291\cdot (X_{5}+X_{6}+X_{7}+X_{8}+X_{9}+X_{10})+\varepsilon_{0}.
+Y^{(0)}=1+0.291\cdot (X_{5}+X_{6}+X_{7}+X_{8}+X_{9}+X_{10})+\varepsilon_{0}.
 ```
 
 ```math
@@ -76,7 +76,7 @@ Y(0)=1+0.291\cdot (X_{5}+X_{6}+X_{7}+X_{8}+X_{9}+X_{10})+\varepsilon_{0}.
 independent of X and treatment randomization
 
 ```math
-Y=A\cdot Y(1)+(1-A)\cdot Y(0).
+Y=A\cdot Y^{(1)}+(1-A)\cdot Y^{(0)}.
 ```
 
 <details>
@@ -102,7 +102,7 @@ epsilon0,epsilon1 iid N(0,1), independent of X and treatment randomization; Y=A*
 <td rowspan="1">ATE</td>
 <td rowspan="1">
 
-$`\mathbb{E}[Y(1)-Y(0)]`$
+$`\mathbb{E}[Y^{(1)}-Y^{(0)}]`$
 
 </td>
 <td>1.0</td>

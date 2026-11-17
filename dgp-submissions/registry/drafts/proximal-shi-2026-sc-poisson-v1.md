@@ -71,7 +71,7 @@ All source loadings equal one in this configuration.
 <td rowspan="1">Causal log mean ratio</td>
 <td rowspan="1">
 
-$`\log\{\mathbb{E}[Y_t(1)]/\mathbb{E}[Y_t(0)]\}`$
+$`\log\{\mathbb{E}[Y_t^{(1)}]/\mathbb{E}[Y_t^{(0)}]\}`$
 
 </td>
 <td>-2.0</td>

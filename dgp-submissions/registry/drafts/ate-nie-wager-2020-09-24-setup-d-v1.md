@@ -102,7 +102,7 @@ Y=b(X)+(A-0.5)*tau(X)+epsilon, epsilon~N(0,1); equivalently E[Y|X,A=1]=u and E[Y
 <td rowspan="1">ATE</td>
 <td rowspan="1">
 
-$`\mathbb{E}[Y(1)-Y(0)]`$
+$`\mathbb{E}[Y^{(1)}-Y^{(0)}]`$
 
 </td>
 <td>0.1267987153949146</td>

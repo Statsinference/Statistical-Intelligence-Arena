@@ -94,7 +94,7 @@ Y=b(X)+(A-0.5)*tau(X)+epsilon; epsilon~N(0,1).
 <td rowspan="1">ATE</td>
 <td rowspan="1">
 
-$`\mathbb{E}[Y(1)-Y(0)]`$
+$`\mathbb{E}[Y^{(1)}-Y^{(0)}]`$
 
 </td>
 <td>1.0</td>

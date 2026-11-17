@@ -37,7 +37,7 @@ Not explicitly identified (review required)
 **target**
 
 ```math
-\psi=\mathbb{E}[Y(1,M(1))-Y(1,M(0))]
+\psi=\mathbb{E}[Y^{(1,M^{(1)})}-Y^{(1,M^{(0)})}]
 ```
 
 **adapted structural equations**
@@ -75,7 +75,7 @@ return x,a,m,y,[&quot;continuous&quot;],[&quot;continuous&quot;],&quot;continuou
 <td rowspan="1">NIE</td>
 <td rowspan="1">
 
-$`\mathbb{E}\!\left[Y\{1,M(1)\}-Y\{1,M(0)\}\right]`$
+$`\mathbb{E}\!\left[Y^{(1,M^{(1)})}-Y^{(1,M^{(0)})}\right]`$
 
 </td>
 <td>-0.51</td>

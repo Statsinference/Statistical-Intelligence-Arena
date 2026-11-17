@@ -70,17 +70,17 @@ A\mid X\sim \mathrm{Bernoulli}(p).
 ```
 
 ```math
-Y(1)=1+Z_{1}+\varepsilon_{1}
+Y^{(1)}=1+Z_{1}+\varepsilon_{1}
 ```
 
 ```math
-Y(0)=Z_{2}+\varepsilon_{0}
+Y^{(0)}=Z_{2}+\varepsilon_{0}
 ```
 
 epsilon0,epsilon1 as defined in the same paragraph, N(0,1/10) independently
 
 ```math
-Y=A\cdot Y(1)+(1-A)\cdot Y(0).
+Y=A\cdot Y^{(1)}+(1-A)\cdot Y^{(0)}.
 ```
 
 <details>
@@ -106,7 +106,7 @@ Y(1)=1+Z1+epsilon1; Y(0)=Z2+epsilon0; epsilon0,epsilon1 as defined in the same p
 <td rowspan="1">ATE</td>
 <td rowspan="1">
 
-$`\mathbb{E}[Y(1)-Y(0)]`$
+$`\mathbb{E}[Y^{(1)}-Y^{(0)}]`$
 
 </td>
 <td>1.0</td>

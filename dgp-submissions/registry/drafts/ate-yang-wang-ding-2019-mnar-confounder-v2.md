@@ -76,11 +76,11 @@ X_{6}\mid X_{5}\sim \mathrm{Bernoulli}(p_{6}), \mathrm{logit}(p_{6})=-X_{5}.
 **Potential outcomes**
 
 ```math
-Y(0)=(1,X^{T}) \beta_{0}+\varepsilon_{0}
+Y^{(0)}=(1,X^{T}) \beta_{0}+\varepsilon_{0}
 ```
 
 ```math
-Y(1)=(1,X^{T}) \beta_{1}+\varepsilon_{1}
+Y^{(1)}=(1,X^{T}) \beta_{1}+\varepsilon_{1}
 ```
 
 ```math
@@ -130,13 +130,13 @@ this interpretation is necessary for a multinomial probability vector and requir
 **Observed outcome**
 
 ```math
-Y=A\cdot Y(1)+(1-A)\cdot Y(0).
+Y=A\cdot Y^{(1)}+(1-A)\cdot Y^{(0)}.
 ```
 
 **Equation-implied ATE**
 
 ```math
-\mathrm{ATE}=\mathbb{E}[Y(1)-Y(0)]=1.5-2\mathbb{E}[X_{1}]+2\mathbb{E}[X_{2}]-2\mathbb{E}[X_{3}]+2\mathbb{E}[X_{4}]-2\mathbb{E}[X_{5}]-2\mathbb{E}[X_{6}] = -2.5-2\mathbb{E}[X_{6}] \mathrm{under} \text{ the } \mathrm{declared} \mathrm{factorization}
+\mathrm{ATE}=\mathbb{E}[Y^{(1)}-Y^{(0)}]=1.5-2\mathbb{E}[X_{1}]+2\mathbb{E}[X_{2}]-2\mathbb{E}[X_{3}]+2\mathbb{E}[X_{4}]-2\mathbb{E}[X_{5}]-2\mathbb{E}[X_{6}] = -2.5-2\mathbb{E}[X_{6}] \mathrm{under} \text{ the } \mathrm{declared} \mathrm{factorization}
 ```
 
 Source notation retained without guessing:
@@ -171,7 +171,7 @@ ATE=E[Y(1)-Y(0)]=1.5-2E[X1]+2E[X2]-2E[X3]+2E[X4]-2E[X5]-2E[X6] = -2.5-2E[X6] und
 <td rowspan="1">ATE</td>
 <td rowspan="1">
 
-$`\mathbb{E}[Y(1)-Y(0)]`$
+$`\mathbb{E}[Y^{(1)}-Y^{(0)}]`$
 
 </td>
 <td>-2.9835508151480576</td>

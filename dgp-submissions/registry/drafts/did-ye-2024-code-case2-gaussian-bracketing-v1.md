@@ -85,7 +85,7 @@ Population ATT4=1; finite-sample cross-world coupling unspecified
 <td rowspan="1">ATT</td>
 <td rowspan="1">
 
-$`\mathbb{E}[Y_4(1)-Y_4(0)\mid G=\mathrm{trt}]`$
+$`\mathbb{E}[Y_4^{(1)}-Y_4^{(0)}\mid G=\mathrm{trt}]`$
 
 </td>
 <td>1.0</td>

@@ -72,13 +72,13 @@ e_{i} = 1 - 1/\{1 + \exp(-X_{i1} + X_{i2}/2 - X_{i3}/4 - X_{i4}/10 - X_{i5}/10 +
 **Treated potential outcome**
 
 ```math
-Y_{i}(1)=2+0.137(X_{i5}+X_{i6}+X_{i7}+X_{i8})+\varepsilon_{i1}.
+Y_{i}^{(1)}=2+0.137(X_{i5}+X_{i6}+X_{i7}+X_{i8})+\varepsilon_{i1}.
 ```
 
 **Control potential outcome**
 
 ```math
-Y_{i}(0)=1+0.291(X_{i5}+X_{i6}+X_{i7}+X_{i8}+X_{i9}+X_{i10})+\varepsilon_{i0}.
+Y_{i}^{(0)}=1+0.291(X_{i5}+X_{i6}+X_{i7}+X_{i8}+X_{i9}+X_{i10})+\varepsilon_{i0}.
 ```
 
 **Errors**
@@ -96,7 +96,7 @@ independently of X and treatment, pending scientific confirmation
 **Observed outcome**
 
 ```math
-Y_{i}=A_{i} Y_{i}(1)+(1-A_{i})Y_{i}(0)
+Y_{i}=A_{i} Y_{i}^{(1)}+(1-A_{i})Y_{i}^{(0)}
 ```
 
 Only X_1,...,X_d,A,Y are returned
@@ -106,7 +106,7 @@ potential outcomes are not observed columns.
 **Population estimand**
 
 ```math
-\mathrm{ATE}=\mathbb{E}[Y(1)-Y(0)]=2-1+0.137 \mathbb{E}[X_{5}+X_{6}+X_{7}+X_{8}]-0.291 \mathbb{E}[X_{5}+\ldots +X_{10}]+\mathbb{E}[\varepsilon_{1}-\varepsilon_{0}]=1.
+\mathrm{ATE}=\mathbb{E}[Y^{(1)}-Y^{(0)}]=2-1+0.137 \mathbb{E}[X_{5}+X_{6}+X_{7}+X_{8}]-0.291 \mathbb{E}[X_{5}+\ldots +X_{10}]+\mathbb{E}[\varepsilon_{1}-\varepsilon_{0}]=1.
 ```
 
 <details>
@@ -135,7 +135,7 @@ ATE=E[Y(1)-Y(0)]=2-1+0.137 E[X5+X6+X7+X8]-0.291 E[X5+...+X10]+E[epsilon1-epsilon
 <td rowspan="1">ATE</td>
 <td rowspan="1">
 
-$`\mathbb{E}[Y(1)-Y(0)]`$
+$`\mathbb{E}[Y^{(1)}-Y^{(0)}]`$
 
 </td>
 <td>1.0</td>

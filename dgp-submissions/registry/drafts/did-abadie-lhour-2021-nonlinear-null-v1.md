@@ -122,7 +122,7 @@ independent of X
 **causal target**
 
 ```math
-\mathrm{ATT}_{\mathrm{post}}=\mathbb{E}[Y_{2}(1)-Y_{2}(0)\mid G=1]=0
+\mathrm{ATT}_{\mathrm{post}}=\mathbb{E}[Y_{2}^{(1)}-Y_{2}^{(0)}\mid G=1]=0
 ```
 
 Source notation retained without guessing:
@@ -153,7 +153,7 @@ ATT_post=E[Y_2(1)-Y_2(0)|G=1]=0; holding the same post error fixed across interv
 <td rowspan="1">ATT</td>
 <td rowspan="1">
 
-$`\mathbb{E}[Y_2(1)-Y_2(0)\mid G=1]`$
+$`\mathbb{E}[Y_2^{(1)}-Y_2^{(0)}\mid G=1]`$
 
 </td>
 <td>0.0</td>

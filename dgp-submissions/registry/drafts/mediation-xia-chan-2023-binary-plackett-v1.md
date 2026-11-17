@@ -107,7 +107,7 @@ NDE=E_X[3+3{pC(1,X)-pC(0,X)}+4pC(1,X)+2pM(0,X)]
 <td rowspan="1">NDE</td>
 <td rowspan="1">
 
-$`\mathbb{E}\!\left[Y\{1,M(0)\}-Y\{0,M(0)\}\right]`$
+$`\mathbb{E}\!\left[Y^{(1,M^{(0)})}-Y^{(0,M^{(0)})}\right]`$
 
 </td>
 <td>5.4954757582156875</td>

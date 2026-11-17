@@ -116,7 +116,7 @@ Y_i = beta*D_i + Z_i^T alpha + epsilon_i. Only Z1,...,Z21,D,Y are observed outpu
 <td rowspan="2">Population unit-change structural mean effect</td>
 <td rowspan="2">
 
-$`\mathbb{E}[Y(d+1)-Y(d)]`$
+$`\mathbb{E}[Y^{(d+1)}-Y^{(d)}]`$
 
 </td>
 <td>1.0</td>

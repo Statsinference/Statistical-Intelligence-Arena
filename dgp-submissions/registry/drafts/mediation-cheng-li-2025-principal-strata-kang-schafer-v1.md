@@ -95,7 +95,7 @@ Y | M, D, Z, X ~ N(210 + 1.5 Z - D + M + [27.4, 13.7, 13.7, 13.7]^T X, 1)
 <td rowspan="1">NDE</td>
 <td rowspan="1">
 
-$`\mathbb{E}\!\left[Y\{1,M(0)\}-Y\{0,M(0)\}\right]`$
+$`\mathbb{E}\!\left[Y^{(1,M^{(0)})}-Y^{(0,M^{(0)})}\right]`$
 
 </td>
 <td>1.180857104770165</td>

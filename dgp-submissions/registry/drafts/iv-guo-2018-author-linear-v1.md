@@ -94,7 +94,7 @@ Y=-0.5+\beta D+\sum_{j=1}^{10} \pi_{j}Z_{j}+\varepsilon_{Y}
 <td rowspan="1">Population unit-change structural mean effect</td>
 <td rowspan="1">
 
-$`\mathbb{E}[Y(d+1)-Y(d)]`$
+$`\mathbb{E}[Y^{(d+1)}-Y^{(d)}]`$
 
 </td>
 <td>1.0</td>

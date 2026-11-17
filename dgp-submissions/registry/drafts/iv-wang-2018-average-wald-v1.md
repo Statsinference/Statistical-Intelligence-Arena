@@ -127,19 +127,19 @@ Source notation retained without guessing:
 independent of X,U. Z=1{V_Z&lt;expit(gamma^T X)}, D(z)=1{V_D&lt;rD+z deltaD}
 
 ```math
-g_{a}=\mathrm{rY}-t\cdot \mathrm{rD}+\text{ a }\cdot t, Y(\text{ a })=1\{V_{Y}<g_{a}\}
+g_{a}=\mathrm{rY}-t\cdot \mathrm{rD}+\text{ a }\cdot t, Y^{(a)}=1\{V_{Y}<g_{a}\}
 ```
 
 ```math
-\mathrm{Observe} D=D(Z)
+\mathrm{Observe} D=D^{(Z)}
 ```
 
 ```math
-Y=Y(D)
+Y=Y^{(D)}
 ```
 
 ```math
-\mathrm{Then} \mathbb{E}[Y|Z,X,U]=g_{0}+P(D=1|Z,X,U)\cdot (g_{1}-g_{0})=\mathrm{rY}+Z \mathrm{deltaD}\cdot t. \mathbb{E}[Y(1)-Y(0)|X,U]=t.
+\mathrm{Then} \mathbb{E}[Y|Z,X,U]=g_{0}+P(D=1|Z,X,U)\cdot (g_{1}-g_{0})=\mathrm{rY}+Z \mathrm{deltaD}\cdot t. \mathbb{E}[Y^{(1)}-Y^{(0)}|X,U]=t.
 ```
 
 **Population target**
@@ -177,7 +177,7 @@ Delta_W=integral_{-1}^{-0.5} tanh(0.1+0.5x) dx + integral_{0.5}^{1} tanh(0.1+0.5
 <td rowspan="1">ATE</td>
 <td rowspan="1">
 
-$`\mathbb{E}[Y(1)-Y(0)]`$
+$`\mathbb{E}[Y^{(1)}-Y^{(0)}]`$
 
 </td>
 <td>0.08670199394664552</td>

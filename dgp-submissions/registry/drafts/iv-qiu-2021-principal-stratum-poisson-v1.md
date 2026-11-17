@@ -152,7 +152,7 @@ lambda11 in {0.5,0.75,1,1.25}; no interactions; source alpha0=1.
 <td rowspan="4">LATE</td>
 <td rowspan="4">
 
-$`\mathbb{E}[Y(1)-Y(0)\mid D(1)\gt D(0)]`$
+$`\mathbb{E}[Y^{(1)}-Y^{(0)}\mid D^{(1)}\gt D^{(0)}]`$
 
 </td>
 <td>1.0</td>

@@ -84,7 +84,7 @@ Y=beta_M M+1+X1+X2+A+epsilon_Y, epsilon_Y~N(0,0.5^2), independent of epsilon_M
 <td rowspan="4">NIE</td>
 <td rowspan="4">
 
-$`\mathbb{E}\!\left[Y\{1,M(1)\}-Y\{1,M(0)\}\right]`$
+$`\mathbb{E}\!\left[Y^{(1,M^{(1)})}-Y^{(1,M^{(0)})}\right]`$
 
 </td>
 <td>0.04000000000000001</td>

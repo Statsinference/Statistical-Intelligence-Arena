@@ -88,7 +88,7 @@ Y&=2+0.25s+8m_W+2(W-m_W)\\
 <td rowspan="2">ATE</td>
 <td rowspan="2">
 
-$`\mathbb{E}[Y(1)-Y(0)]`$
+$`\mathbb{E}[Y^{(1)}-Y^{(0)}]`$
 
 </td>
 <td>0.10888711551018415</td>

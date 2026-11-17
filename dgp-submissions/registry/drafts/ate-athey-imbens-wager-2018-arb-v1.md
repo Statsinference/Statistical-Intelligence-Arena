@@ -120,11 +120,11 @@ very sparse: (1 repeated 10 times, then 0)
 **Estimand and truth**
 
 ```math
-Y_{i}(w)=X_{i}^{T} \beta+ w + \varepsilon_{i}, w \in \{0,1\}
+Y_{i}^{(w)}=X_{i}^{T} \beta+ w + \varepsilon_{i}, w \in \{0,1\}
 ```
 
 ```math
-\mathrm{ATE}=\mathbb{E}[Y_{i}(1)-Y_{i}(0)]=1.
+\mathrm{ATE}=\mathbb{E}[Y_{i}^{(1)}-Y_{i}^{(0)}]=1.
 ```
 
 <details>
@@ -154,7 +154,7 @@ Y_i(w)=X_i^T beta + w + epsilon_i, w in {0,1}; ATE=E[Y_i(1)-Y_i(0)]=1.
 <td rowspan="8">ATE</td>
 <td rowspan="8">
 
-$`\mathbb{E}[Y(1)-Y(0)]`$
+$`\mathbb{E}[Y^{(1)}-Y^{(0)}]`$
 
 </td>
 <td>1.0</td>

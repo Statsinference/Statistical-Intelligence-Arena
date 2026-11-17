@@ -128,7 +128,7 @@ tau_01=Y_0,21(1)-Y_0,21(0)=post_effect=0 with common exogenous draws held fixed;
 <td rowspan="1">Treated-unit treatment effect</td>
 <td rowspan="1">
 
-$`Y_{0,1}(1)-Y_{0,1}(0)`$
+$`Y_{0,1}^{(1)}-Y_{0,1}^{(0)}`$
 
 </td>
 <td>0.0</td>

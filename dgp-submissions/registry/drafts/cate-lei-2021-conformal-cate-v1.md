@@ -56,17 +56,17 @@ e(X) = (1/4) \{1 + F_{2,4}(X_{1})\}, F_{2,4} \text{ the } \mathrm{Beta}(2,4) \ma
 **Control outcome**
 
 ```math
-Y(0) = 0
+Y^{(0)} = 0
 ```
 
 **Treated outcome**
 
 ```math
-\mathbb{E}[Y(1)\mid X] = f(X_{1}) f(X_{2}), f(u) = 2 / (1 + \exp(-12 (u - 1/2)))
+\mathbb{E}[Y^{(1)}\mid X] = f(X_{1}) f(X_{2}), f(u) = 2 / (1 + \exp(-12 (u - 1/2)))
 ```
 
 ```math
-Y(1) = \mathbb{E}[Y(1)\mid X] + \sigma\varepsilon
+Y^{(1)} = \mathbb{E}[Y^{(1)}\mid X] + \sigma\varepsilon
 ```
 
 **Heterogeneity**
@@ -78,7 +78,7 @@ Y(1) = \mathbb{E}[Y(1)\mid X] + \sigma\varepsilon
 **Observed**
 
 ```math
-Y = A Y(1) + (1-A) Y(0)
+Y = A Y^{(1)} + (1-A) Y^{(0)}
 ```
 
 ```math
@@ -110,7 +110,7 @@ Y = A Y(1) + (1-A) Y(0), sigma = 1
 <td rowspan="1">CATE</td>
 <td rowspan="1">
 
-$`\mathbb{E}[Y(1)-Y(0)\mid X=x_0]`$
+$`\mathbb{E}[Y^{(1)}-Y^{(0)}\mid X=x_0]`$
 
 </td>
 <td>1.0</td>

@@ -115,7 +115,7 @@ A_i=(1-T_i)A_{0i}+T_iA_{1i},\quad Y_i=(1-T_i)Y_{0i}+T_iY_{1i}
 <td rowspan="1">ATE</td>
 <td rowspan="1">
 
-$`\mathbb{E}[Y_t(1)-Y_t(0)],\quad t\in\{0,1\}`$
+$`\mathbb{E}[Y_t^{(1)}-Y_t^{(0)}],\quad t\in\{0,1\}`$
 
 </td>
 <td>-5.0</td>

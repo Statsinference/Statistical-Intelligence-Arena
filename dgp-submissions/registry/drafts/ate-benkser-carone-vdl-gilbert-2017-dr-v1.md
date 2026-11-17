@@ -91,7 +91,7 @@ Y | A=a,W=w ~ Bernoulli(Qbar0(a,w)); Qbar0(a,w)=expit(0.2*a - w1 + 2*w1*w2)
 <td rowspan="1">ATE</td>
 <td rowspan="1">
 
-$`\mathbb{E}[Y(1)-Y(0)]`$
+$`\mathbb{E}[Y^{(1)}-Y^{(0)}]`$
 
 </td>
 <td>0.03802642731065545</td>

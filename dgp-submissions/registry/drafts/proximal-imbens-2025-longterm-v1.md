@@ -96,7 +96,7 @@ Coefficient directions are sampled from Uniform(0,1) and vector/column norms sca
 <td rowspan="1">Subpopulation average treatment effect</td>
 <td rowspan="1">
 
-$`\mathbb{E}[Y(1)-Y(0)\mid G=0]`$
+$`\mathbb{E}[Y^{(1)}-Y^{(0)}\mid G=0]`$
 
 </td>
 <td>0.8797723708687131</td>

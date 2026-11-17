@@ -88,11 +88,11 @@ Cross-independence of epsilon is an implementation assumption pending review.
 **Potential outcomes / ATE**
 
 ```math
-Y_{i}(w)=\sum_{j=1}^{10} X_{ij} + \theta_{i}(2w-1)/2 + \varepsilon_{i}, w \in \{0,1\}
+Y_{i}^{(w)}=\sum_{j=1}^{10} X_{ij} + \theta_{i}(2w-1)/2 + \varepsilon_{i}, w \in \{0,1\}
 ```
 
 ```math
-Y_{i}(1)-Y_{i}(0)=\theta_{i}
+Y_{i}^{(1)}-Y_{i}^{(0)}=\theta_{i}
 ```
 
 ```math
@@ -123,7 +123,7 @@ Y_i(w)=sum_{j=1}^{10} X_ij + theta_i(2w-1)/2 + epsilon_i, w in {0,1}; Y_i(1)-Y_i
 <td rowspan="1">ATE</td>
 <td rowspan="1">
 
-$`\mathbb{E}[Y(1)-Y(0)]`$
+$`\mathbb{E}[Y^{(1)}-Y^{(0)}]`$
 
 </td>
 <td>0.38941678711815697</td>

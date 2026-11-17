@@ -129,7 +129,7 @@ U0,U1
 <td rowspan="1">Marginal structural mean model slope</td>
 <td rowspan="1">
 
-$`\beta_1=\mathbb{E}[Y(1,0)-Y(0,0)]`$
+$`\beta_1=\mathbb{E}[Y^{(1,0)}-Y^{(0,0)}]`$
 
 </td>
 <td>1.0</td>

@@ -92,7 +92,7 @@ Y|X,A~N(b(X)+(A-0.5)*tau(X),sigma**2), sigma=1, selected from Figure 2 noise lev
 <td rowspan="1">ATE</td>
 <td rowspan="1">
 
-$`\mathbb{E}[Y(1)-Y(0)]`$
+$`\mathbb{E}[Y^{(1)}-Y^{(0)}]`$
 
 </td>
 <td>0.5</td>

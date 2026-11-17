@@ -110,7 +110,7 @@ Source notation retained without guessing:
 <pre>Y_0t(0)=sum_(d=1)^20 w_d*Y_dt+u_t, using actual donor outcomes including donor errors</pre>
 
 ```math
-Y_{0t}=Y_{0t}(0)+1\{t=21\}\cdot \theta_{T}, \theta_{T}=0. G_{0}=1,\mathrm{donors} G=0
+Y_{0t}=Y_{0t}^{(0)}+1\{t=21\}\cdot \theta_{T}, \theta_{T}=0. G_{0}=1,\mathrm{donors} G=0
 ```
 
 20pre+1post
@@ -151,7 +151,7 @@ Y_0,21(1)-Y_0,21(0)=theta_T=0 for every realization; design expectation and sing
 <td rowspan="4">Treated-unit treatment effect</td>
 <td rowspan="4">
 
-$`Y_{1,T}(1)-Y_{1,T}(0),\quad T=T_0+1=21`$
+$`Y_{1,T}^{(1)}-Y_{1,T}^{(0)},\quad T=T_0+1=21`$
 
 </td>
 <td>0.0</td>

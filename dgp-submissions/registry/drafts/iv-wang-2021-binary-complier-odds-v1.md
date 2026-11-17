@@ -125,7 +125,7 @@ Y|CO,D,x~Bernoulli(fD); Y|AT,x~Bernoulli(q); Y|NT,x~Bernoulli(q). Only X,Z,D,Y a
 <td rowspan="1">Conditional LATE curve transformed-slope parameter</td>
 <td rowspan="1">
 
-$`\alpha_1=\frac{d}{dx}\operatorname{atanh}\{\delta_L(x)\},\quad \delta_L(x)=\mathbb{E}[Y(1)-Y(0)\mid D(1)\gt D(0),X=x]`$
+$`\alpha_1=\frac{d}{dx}\operatorname{atanh}\{\delta_L(x)\},\quad \delta_L(x)=\mathbb{E}[Y^{(1)}-Y^{(0)}\mid D^{(1)}\gt D^{(0)},X=x]`$
 
 </td>
 <td>-1.0</td>

@@ -105,7 +105,7 @@ Y=Z1+Z2-Z3+A-0.1(W1+W2+W3)^2+epsilon, epsilon~N(0,0.25)
 <td rowspan="1">NIE</td>
 <td rowspan="1">
 
-$`\mathbb{E}\!\left[Y\{1,Z(1)\}-Y\{1,Z(0)\}\right]`$
+$`\mathbb{E}\!\left[Y^{(1,Z^{(1)})}-Y^{(1,Z^{(0)})}\right]`$
 
 </td>
 <td>-0.11950701713951144</td>

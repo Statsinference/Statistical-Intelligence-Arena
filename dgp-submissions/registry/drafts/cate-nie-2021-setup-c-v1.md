@@ -92,7 +92,7 @@ Y = b(X) + A tau(X) + sigma eps, eps ~ Normal(0,1), sigma = 1
 <td rowspan="1">CATE</td>
 <td rowspan="1">
 
-$`\mathbb{E}[Y(1)-Y(0)\mid X=x_0]`$
+$`\mathbb{E}[Y^{(1)}-Y^{(0)}\mid X=x_0]`$
 
 </td>
 <td>1.0</td>

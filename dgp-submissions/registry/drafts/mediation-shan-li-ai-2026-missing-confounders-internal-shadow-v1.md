@@ -83,7 +83,7 @@ p_{10} = p_{01} = p_{00} = 1/(\exp(U) + 3)
 **mediation functional**
 
 ```math
-\theta= \mathbb{E}[Y(1, M(0))] = 3.192275262794844
+\theta= \mathbb{E}[Y^{(1, M^{(0)})}] = 3.192275262794844
 ```
 
 <details>
@@ -111,7 +111,7 @@ theta = E[Y(1, M(0))] = 3.192275262794844
 <td rowspan="1">Cross-world mediation functional</td>
 <td rowspan="1">
 
-$`\mathbb{E}\!\left[Y\{1,M(0)\}\right]`$
+$`\mathbb{E}\!\left[Y^{(1,M^{(0)})}\right]`$
 
 </td>
 <td>3.192275262794844</td>

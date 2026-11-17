@@ -84,7 +84,7 @@ The errors are also independent of baseline variables and treatment randomizatio
 <td rowspan="1">NDE</td>
 <td rowspan="1">
 
-$`\mathbb{E}[Y(1,M(0))-Y(0,M(0))]`$
+$`\mathbb{E}[Y^{(1,M^{(0)})}-Y^{(0,M^{(0)})}]`$
 
 </td>
 <td>2.0</td>

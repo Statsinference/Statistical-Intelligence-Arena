@@ -115,7 +115,7 @@ Source notation retained without guessing:
 **population causal target**
 
 ```math
-\tau_{t}(x)=\mathbb{E}[Y_{t}(1)-Y_{t}(0)\mid X=x]=10\cdot s(x)
+\tau_{t}(x)=\mathbb{E}[Y_{t}^{(1)}-Y_{t}^{(0)}\mid X=x]=10\cdot s(x)
 ```
 
 ```math
@@ -148,7 +148,7 @@ tau_t(x)=E[Y_t(1)-Y_t(0)|X=x]=10*s(x); ATE=E[tau_t(X)]=-5. This is not ATT, fini
 <td rowspan="1">ATE</td>
 <td rowspan="1">
 
-$`\mathbb{E}[Y_t(1)-Y_t(0)],\quad t\in\{0,1\}`$
+$`\mathbb{E}[Y_t^{(1)}-Y_t^{(0)}],\quad t\in\{0,1\}`$
 
 </td>
 <td>-5.0</td>

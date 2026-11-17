@@ -91,7 +91,7 @@ Y&=2+X_1^2+X_2^2+4m_W+2(W-m_W)\\
 <td rowspan="1">ATE</td>
 <td rowspan="1">
 
-$`\mathbb{E}[Y(1)-Y(0)]`$
+$`\mathbb{E}[Y^{(1)}-Y^{(0)}]`$
 
 </td>
 <td>0.019533193713670016</td>

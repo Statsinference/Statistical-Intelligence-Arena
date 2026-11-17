@@ -88,7 +88,7 @@ Y|M,Z,A,W~Bern(expit((A-Z+M-AZ)/(sum(W)+1)))
 <td rowspan="1">IIE</td>
 <td rowspan="1">
 
-$`\mathbb{E}\!\left[Y(1,G_1)-Y(1,G_0)\right]`$
+$`\mathbb{E}\!\left[Y^{(1,G_1)}-Y^{(1,G_0)}\right]`$
 
 </td>
 <td>0.03026875404999696</td>

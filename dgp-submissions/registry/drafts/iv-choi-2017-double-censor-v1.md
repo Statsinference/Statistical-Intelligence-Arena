@@ -115,7 +115,7 @@ D_observed=max(D,C_D); D_exact=I(D&gt;=C_D); Y_observed=min(Y,C_Y); Y_event=I(Y&
 <td rowspan="1">Unit-change structural mean effect on log-time scale</td>
 <td rowspan="1">
 
-$`\mathbb{E}[Y(d+1)-Y(d)]`$
+$`\mathbb{E}[Y^{(d+1)}-Y^{(d)}]`$
 
 </td>
 <td>1.0</td>

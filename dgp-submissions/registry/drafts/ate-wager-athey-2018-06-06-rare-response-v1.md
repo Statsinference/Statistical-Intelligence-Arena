@@ -91,7 +91,7 @@ Y=2*A*B+epsilon. Source W is treatment A here; source A_i is the latent response
 <td rowspan="1">ATE</td>
 <td rowspan="1">
 
-$`\mathbb{E}[Y(1)-Y(0)]`$
+$`\mathbb{E}[Y^{(1)}-Y^{(0)}]`$
 
 </td>
 <td>0.1</td>

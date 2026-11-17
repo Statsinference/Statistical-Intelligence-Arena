@@ -78,7 +78,7 @@ Y=1+2A+2M+3C+5X+4AC+2AM+\varepsilon_{Y}
 **Target**
 
 ```math
-\mathrm{NDE}=2+3(2)+4\mathbb{E}[C(1)]+2\mathbb{E}[M(0)]=26
+\mathrm{NDE}=2+3(2)+4\mathbb{E}[C^{(1)}]+2\mathbb{E}[M^{(0)}]=26
 ```
 
 <details>
@@ -106,7 +106,7 @@ NDE=2+3(2)+4E[C(1)]+2E[M(0)]=26
 <td rowspan="1">NDE</td>
 <td rowspan="1">
 
-$`\mathbb{E}\!\left[Y\{1,M(0)\}-Y\{0,M(0)\}\right]`$
+$`\mathbb{E}\!\left[Y^{(1,M^{(0)})}-Y^{(0,M^{(0)})}\right]`$
 
 </td>
 <td>26.0</td>

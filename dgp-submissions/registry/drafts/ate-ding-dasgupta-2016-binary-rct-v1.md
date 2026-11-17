@@ -37,19 +37,19 @@ Not explicitly identified (review required)
 **Fixed finite-population potential-outcome cells**
 
 ```math
-\mathrm{N}_{11}=\#\{i:Y_{i}(1)=1,Y_{i}(0)=1\}
+\mathrm{N}_{11}=\#\{i:Y_{i}^{(1)}=1,Y_{i}^{(0)}=1\}
 ```
 
 ```math
-\mathrm{N}_{10}=\#\{i:Y_{i}(1)=1,Y_{i}(0)=0\}
+\mathrm{N}_{10}=\#\{i:Y_{i}^{(1)}=1,Y_{i}^{(0)}=0\}
 ```
 
 ```math
-\mathrm{N}_{01}=\#\{i:Y_{i}(1)=0,Y_{i}(0)=1\}
+\mathrm{N}_{01}=\#\{i:Y_{i}^{(1)}=0,Y_{i}^{(0)}=1\}
 ```
 
 ```math
-\mathrm{N}_{00}=\#\{i:Y_{i}(1)=0,Y_{i}(0)=0\}
+\mathrm{N}_{00}=\#\{i:Y_{i}^{(1)}=0,Y_{i}^{(0)}=0\}
 ```
 
 ```math
@@ -69,7 +69,7 @@ P(A=\text{ a })=1/\mathrm{binom}(\mathrm{N},\mathrm{N}_{1}) \text{ for } \mathrm
 **Observed outcome**
 
 ```math
-Y_{i}=A_{i} Y_{i}(1)+(1-A_{i})Y_{i}(0)
+Y_{i}=A_{i} Y_{i}^{(1)}+(1-A_{i})Y_{i}^{(0)}
 ```
 
 Only (A_i,Y_i) are returned.
@@ -77,7 +77,7 @@ Only (A_i,Y_i) are returned.
 **Finite-population ATE**
 
 ```math
-\tau=\mathrm{N}^{-1} \sum_{i}[Y_{i}(1)-Y_{i}(0)]=(\mathrm{N}_{10}-\mathrm{N}_{01})/\mathrm{N}.
+\tau=\mathrm{N}^{-1} \sum_{i}[Y_{i}^{(1)}-Y_{i}^{(0)}]=(\mathrm{N}_{10}-\mathrm{N}_{01})/\mathrm{N}.
 ```
 
 <details>
@@ -103,7 +103,7 @@ tau=N^{-1} sum_i[Y_i(1)-Y_i(0)]=(N10-N01)/N.
 <td rowspan="12">ATE</td>
 <td rowspan="12">
 
-$`\frac{1}{N}\sum_{i=1}^{N}\{Y_i(1)-Y_i(0)\}`$
+$`\frac{1}{N}\sum_{i=1}^{N}\{Y_i^{(1)}-Y_i^{(0)}\}`$
 
 </td>
 <td>0.0</td>

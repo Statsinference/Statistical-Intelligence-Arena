@@ -124,7 +124,7 @@ NDE = gamma_0 = 2; NIE = alpha_0 . beta_0 = 2.4
 <td rowspan="1">NIE</td>
 <td rowspan="1">
 
-$`\mathbb{E}\!\left[Y\{1,M(1)\}-Y\{1,M(0)\}\right]`$
+$`\mathbb{E}\!\left[Y^{(1,M^{(1)})}-Y^{(1,M^{(0)})}\right]`$
 
 </td>
 <td>2.4000000000000004</td>

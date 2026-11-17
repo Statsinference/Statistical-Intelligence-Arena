@@ -110,7 +110,7 @@ mu0(X) = b(X) - tau(X)/2 = max{X4+X5, 0};  mu1(X) = b(X) + tau(X)/2 = max{X1+X2+
 <td rowspan="1">CATE</td>
 <td rowspan="1">
 
-$`\mathbb{E}[Y(1)-Y(0)\mid X=x_0]`$
+$`\mathbb{E}[Y^{(1)}-Y^{(0)}\mid X=x_0]`$
 
 </td>
 <td>1.5</td>

@@ -49,7 +49,7 @@ P(A=1) = 0.5 (\mathrm{simple} \mathrm{randomisation}, \mathrm{two} \mathrm{arms}
 **Potential responses**
 
 ```math
-Y(1) = \varepsilon, Y(2) = -1.3 + Y(1) - 0.5(U - \mathrm{muU}) - 0.01(U^{2} - \mathrm{muU2}) + 0.3(W - \mathrm{muW})
+Y^{(1)} = \varepsilon, Y^{(2)} = -1.3 + Y^{(1)} - 0.5(U - \mathrm{muU}) - 0.01(U^{2} - \mathrm{muU2}) + 0.3(W - \mathrm{muW})
 ```
 
 **Heterogeneity**
@@ -88,7 +88,7 @@ Y = eps + A tau(U, W)
 <td rowspan="1">CATE</td>
 <td rowspan="1">
 
-$`\mathbb{E}[Y(2)-Y(1)\mid U=u_0,W=w_0]`$
+$`\mathbb{E}[Y^{(2)}-Y^{(1)}\mid U=u_0,W=w_0]`$
 
 </td>
 <td>-1.3925</td>
