@@ -25,7 +25,7 @@ def test_research_area_catalog_from_one_zip(tmp_path):
     text=(tmp_path/'registry/by-domain/ate.md').read_text()
     assert 'Minimal ATE' in text and 'ATE' in text
     assert 'Target (submitted name)' in text and 'Scenarios' in text
-    assert '| 1 | Needs review |' in text
+    assert '| 1 | Needs scientific review |' in text
     detail=(tmp_path/'registry/drafts/example-ate-1.md').read_text(encoding='utf-8')
     assert '| original |' in detail and '| 2.0 |' in detail
     assert (tmp_path/'registry/drafts/example-ate-1.json').exists()
