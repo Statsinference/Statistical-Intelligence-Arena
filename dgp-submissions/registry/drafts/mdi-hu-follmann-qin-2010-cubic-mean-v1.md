@@ -36,21 +36,21 @@ Not explicitly identified (review required)
 
 **Covariates**
 
-$$
+```math
 X_{1},X_{2} \text{ independently } \sim \mathcal{N}(0,1)
-$$
+```
 
 **Full outcome**
 
-$$
+```math
 Y\mid X \sim \mathcal{N}((X_{1}+X_{2})^{3},1)
-$$
+```
 
 **Observation**
 
-$$
+```math
 R\mid X \sim \mathrm{Bernoulli}(\pi(X)), \pi(X)=1-1/[1+\exp(1-3X_{1}+2X_{2}^{2})]=\mathrm{expit}(1-3X_{1}+2X_{2}^{2})
-$$
+```
 
 R
 
@@ -58,15 +58,15 @@ independent of Y given X
 
 **Observed encoding**
 
-$$
+```math
 Y_{\mathrm{observed}}=Y \text{ if } R=1, \text{ otherwise } 0 \text{ placeholder }
-$$
+```
 
 **Target**
 
-$$
+```math
 \theta=\mathbb{E}(Y)=\mathbb{E}[(X_{1}+X_{2})^{3}]=0
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -84,9 +84,9 @@ theta=E(Y)=E[(X1+X2)^3]=0
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| original | Full-data population outcome mean | Marginal full-data response mean in the iid superpopulation, before outcome masking. | 0.0 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| original | Full-data population outcome mean | Marginal full-data response mean in the iid superpopulation, before outcome masking. | 0.0 |
 
 **Original submitted target notation:** theta = E(Y)
 

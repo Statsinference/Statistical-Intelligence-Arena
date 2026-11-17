@@ -43,47 +43,47 @@ Xj
 
 **X1-X5**
 
-$$
+```math
 \mathrm{Xj} \sim \mathcal{N}(0,1) \text{ independently }, j = 1..5
-$$
+```
 
 **Treatment**
 
-$$
+```math
 e(X) = 1 / (1 + \exp(-X_{1}) + \exp(-X_{2}))
-$$
+```
 
 **Baseline**
 
-$$
+```math
 b(X) = (\max\{X_{1}+X_{2}+X_{3}, 0\} + \max\{X_{4}+X_{5}, 0\}) / 2
-$$
+```
 
 **Heterogeneity**
 
-$$
+```math
 \tau(X) = \max\{X_{1}+X_{2}+X_{3}, 0\} - \max\{X_{4}+X_{5}, 0\}
-$$
+```
 
 **Outcome**
 
-$$
+```math
 Y = b(X) + (A - 1/2) \tau(X) + \sigma\varepsilon, \varepsilon\sim \mathcal{N}(0,1)
-$$
+```
 
-$$
+```math
 \sigma= 1
-$$
+```
 
 **Arm surfaces**
 
-$$
+```math
 \mu_{0}(X) = b(X) - \tau(X)/2 = \max\{X_{4}+X_{5}, 0\}
-$$
+```
 
-$$
+```math
 \mu_{1}(X) = b(X) + \tau(X)/2 = \max\{X_{1}+X_{2}+X_{3}, 0\}
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -102,9 +102,9 @@ mu0(X) = b(X) - tau(X)/2 = max{X4+X5, 0};  mu1(X) = b(X) + tau(X)/2 = max{X1+X2+
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| original | CATE | Conditional average treatment effect at the declared query points; a difference of two rectified sums supported on disjoint coordinate blocks. | 1.5 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| original | CATE | Conditional average treatment effect at the declared query points; a difference of two rectified sums supported on disjoint coordinate blocks. | 1.5 |
 
 **Original submitted target notation:** tau(x0) = E[Y(1) - Y(0) \| X = x0]
 

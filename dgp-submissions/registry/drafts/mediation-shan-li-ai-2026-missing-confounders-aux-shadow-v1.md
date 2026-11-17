@@ -36,55 +36,55 @@ Not explicitly identified (review required)
 
 **covariates**
 
-$$
+```math
 X_{1} = \Phi(\varepsilon_{1})
-$$
+```
 
-$$
+```math
 X_{2} = \Phi(\varepsilon_{2}) (\mathrm{both} \mathrm{Uniform}(0,1))
-$$
+```
 
-$$
+```math
 X_{3} \sim \mathrm{Bernoulli}(0.5)
-$$
+```
 
 **treatment**
 
-$$
+```math
 T \sim \mathrm{Bernoulli}(\mathrm{expit}(0.1 + X_{1}^{2} - X_{2} + 0.2 X_{3}))
-$$
+```
 
 **mediator**
 
-$$
+```math
 M = -1 + T - T X_{1}^{2} + 4 X_{1}^{2} - \sin(X_{2}) + X_{3} + \varepsilon_{3}
-$$
+```
 
 **outcome**
 
-$$
+```math
 Y = -1 + T + 3 T M - 1.5 M + T X_{1} + 5 \sin(X_{1}) - 2 X_{2}^{2} + X_{3} + \varepsilon_{4}
-$$
+```
 
 **missingness patterns**
 
-$$
+```math
 (R_{1},R_{2}) \sim \mathrm{Multinomial}(p_{11}, p_{10}, p_{01}, p_{00})
-$$
+```
 
-$$
+```math
 p_{11} = 1/(1 + 3 \exp(-U))
-$$
+```
 
-$$
+```math
 p_{10} = p_{01} = p_{00} = 1/(\exp(U) + 3)
-$$
+```
 
 **mediation functional**
 
-$$
+```math
 \theta= \mathbb{E}[Y(1, M(0))] = 3.192275262794844
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -103,9 +103,9 @@ theta = E[Y(1, M(0))] = 3.192275262794844
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| dgp1_auxiliary_shadow | Cross-world mediation functional | Mediation functional: the mean potential outcome when treatment is set to 1 while the mediator is set to the value it would have taken under treatment 0, theta = E[Y(1, M(0))]. The source calls this the fundamental quantity and derives the natural indirect effect xi(1) = E[Y(1,M(1))] - theta, the natural direct effect zeta(0) = theta - E[Y(0,M(0))] and the total effect tau = xi(1) + zeta(0) from it. theta is a cross-world mean and is NOT an indirect effect, NOT a direct effect and NOT a total effect. | 3.192275262794844 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| dgp1_auxiliary_shadow | Cross-world mediation functional | Mediation functional: the mean potential outcome when treatment is set to 1 while the mediator is set to the value it would have taken under treatment 0, theta = E[Y(1, M(0))]. The source calls this the fundamental quantity and derives the natural indirect effect xi(1) = E[Y(1,M(1))] - theta, the natural direct effect zeta(0) = theta - E[Y(0,M(0))] and the total effect tau = xi(1) + zeta(0) from it. theta is a cross-world mean and is NOT an indirect effect, NOT a direct effect and NOT a total effect. | 3.192275262794844 |
 
 **Original submitted target notation:** MF theta = E[Y(1, M(0))]
 

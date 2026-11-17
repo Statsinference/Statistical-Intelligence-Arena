@@ -38,30 +38,30 @@ Not explicitly identified (review required)
 
 **E1**
 
-$$
+```math
 X_i\sim U(0,5),\quad E_i\sim\mathrm{Exp}(\mathrm{rate}=1),\quad X_i\perp E_i
-$$
+```
 
 The displayed marginals are source-supported; the independence/product-sampling part is a declared implementation convention. See source_recheck.json.
 
 **E2**
 
-$$
+```math
 Y_i=2+X_i+e^{-X_i}\{E_i-\log(2.6)\}
-$$
+```
 
 **E3**
 
-$$
+```math
 Q_\tau(x)=2+x+e^{-x}\{-\log(1-\tau)-\log(2.6)\}
-$$
+```
 
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| source_law_fixed_query | Conditional quantile | Conditional 0.9 quantile at X=2, according to the explicitly dated preprint model 4. | 4.182306593688138 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| source_law_fixed_query | Conditional quantile | Conditional 0.9 quantile at X=2, according to the explicitly dated preprint model 4. | 4.182306593688138 |
 
 **Original submitted target notation:** Q_{0.9}(2)
 

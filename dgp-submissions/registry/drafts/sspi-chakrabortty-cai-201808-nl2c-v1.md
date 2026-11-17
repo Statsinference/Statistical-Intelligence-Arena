@@ -43,9 +43,9 @@ epsilon
 
 **Covariates**
 
-$$
+```math
 \mathrm{Coordinates} \text{ independent } \mathcal{N}(0,1) \mathrm{conditional} \text{ on } -5 \leq X_{j} \leq 5
-$$
+```
 
 implemented by rejection, not clipping
 
@@ -53,53 +53,53 @@ This makes the source restriction explicit.
 
 **Coefficient vectors**
 
-$$
+```math
 p=10
-$$
+```
 
-$$
+```math
 b_{1}=(1,1,1,1,1,0,0,0,0,0)
-$$
+```
 
-$$
+```math
 b_{2}=(1,1,1,1,1,1,1,1,1,1)
-$$
+```
 
-$$
+```math
 \delta=(0,0,0,0,0,1,1,1,1,1)
-$$
+```
 
-$$
+```math
 \omega=(1,0,1,0,1,0,1,0,1,0).
-$$
+```
 
 **Response**
 
-$$
+```math
 Y = (X^{T} b)(1 + X^{T} \delta) + \varepsilon
-$$
+```
 
-$$
+```math
 \varepsilon\sim \mathcal{N}(0,1)
-$$
+```
 
 **Sampling and observed data**
 
 Independent units and independent outcome noise
 
-$$
+```math
 \mathrm{Two} \text{ iid } \mathrm{samples} \text{ from } \text{ the } \mathrm{same} \text{ population }
-$$
+```
 
 fixed group sizes, R indicates observed Y
 
-$$
+```math
 \mathrm{Export} X,R,Y_{\mathrm{obs}} \text{ where } Y_{\mathrm{obs}}=Y \text{ when } R=1 \text{ and } 0 \text{ otherwise }
-$$
+```
 
-$$
+```math
 n_{\mathrm{total}}=\mathrm{nL}+\mathrm{nU}.
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -116,10 +116,10 @@ Independent units and independent outcome noise. Two iid samples from the same p
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| source_b1_conditional_truncation | Population least-squares projection intercept | Intercept alpha of argmin_(alpha,beta) E[(Y-alpha-X^T beta)^2]; since E[X]=0 and Cov(X) is positive definite, alpha=E[Y]. | 0.0 | reported_numeric |
-| source_b2_conditional_truncation | Population least-squares projection intercept | Intercept alpha of argmin_(alpha,beta) E[(Y-alpha-X^T beta)^2]; since E[X]=0 and Cov(X) is positive definite, alpha=E[Y]. | 4.999925663981647 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| source_b1_conditional_truncation | Population least-squares projection intercept | Intercept alpha of argmin_(alpha,beta) E[(Y-alpha-X^T beta)^2]; since E[X]=0 and Cov(X) is positive definite, alpha=E[Y]. | 0.0 |
+| source_b2_conditional_truncation | Population least-squares projection intercept | Intercept alpha of argmin_(alpha,beta) E[(Y-alpha-X^T beta)^2]; since E[X]=0 and Cov(X) is positive definite, alpha=E[Y]. | 4.999925663981647 |
 
 **Original submitted target notation:** alpha_projection = E[Y]
 

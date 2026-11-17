@@ -41,47 +41,47 @@ Z1,...,Z10
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
-$$
+```math
 Z_{1},\ldots ,Z_{10}\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1).
-$$
+```
 
-$$
+```math
 X_{1}=\exp(Z_{1}/2)
-$$
+```
 
-$$
+```math
 X_{2}=Z_{2}/(1+\exp(Z_{1}))
-$$
+```
 
-$$
+```math
 X_{3}=(Z_{1}\cdot Z_{3}/25+3/5)^{3}
-$$
+```
 
-$$
+```math
 X_{4},\ldots ,X_{10}=Z_{4},\ldots ,Z_{10}.
-$$
+```
 
-$$
+```math
 p(X)=\mathrm{expit}(X_{1}-X_{2}+X_{3})
-$$
+```
 
-$$
+```math
 A\mid X\sim \mathrm{Bernoulli}(p).
-$$
+```
 
-$$
+```math
 Y(1)=1+Z_{1}+\varepsilon_{1}
-$$
+```
 
-$$
+```math
 Y(0)=Z_{2}+\varepsilon_{0}
-$$
+```
 
 epsilon0,epsilon1 as defined in the same paragraph, N(0,1/10) independently
 
-$$
+```math
 Y=A\cdot Y(1)+(1-A)\cdot Y(0).
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -98,9 +98,9 @@ Y(1)=1+Z1+epsilon1; Y(0)=Z2+epsilon0; epsilon0,epsilon1 as defined in the same p
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| original | ATE | E[Y(1)-Y(0)] in the full declared covariate population; treatment 1 versus 0; population, not sample-conditional, target. | 1.0 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| original | ATE | E[Y(1)-Y(0)] in the full declared covariate population; treatment 1 versus 0; population, not sample-conditional, target. | 1.0 |
 
 **Original submitted target notation:** ATE
 

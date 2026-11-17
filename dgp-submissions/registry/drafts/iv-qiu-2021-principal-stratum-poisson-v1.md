@@ -43,81 +43,81 @@ e_d0, e_d1, e0, K11, K00
 
 **Covariates and instrument**
 
-$$
+```math
 X\sim \mathcal{N}_{p}(0,\Sigma)
-$$
+```
 
-$$
+```math
 \Sigma_{jk}=1\cdot 0.5^{\lvert j-k\rvert}
-$$
+```
 
-$$
+```math
 \mathrm{gamma1}_{j}=\mathrm{gamma2}_{j}=j^{-2}
-$$
+```
 
-$$
+```math
 Z\mid X\sim \mathrm{Bernoulli}(\mathrm{expit}(X'\gamma_{1}))
-$$
+```
 
-$$
+```math
 p=200.
-$$
+```
 
 **Potential treatment**
 
-$$
+```math
 e_{\mathrm{d0}},e_{\mathrm{d1}}\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1)
-$$
+```
 
-$$
+```math
 D_{0}=I(X'\gamma_{2}-1+e_{\mathrm{d0}}\geq 0)
-$$
+```
 
-$$
+```math
 D_{1}^{\ast}=I(X'\gamma_{2}+1+e_{\mathrm{d1}}\geq 0)
-$$
+```
 
-$$
+```math
 D_{1}=\max(D_{1}^{\ast},D_{0})
-$$
+```
 
-$$
+```math
 D=Z D_{1}+(1-Z)D_{0}.
-$$
+```
 
 **Potential outcomes**
 
-$$
+```math
 e_{0}\sim \mathcal{N}(0,1)
-$$
+```
 
-$$
+```math
 \beta_{j}=2\cdot j^{-2}
-$$
+```
 
-$$
+```math
 K_{11}\sim \mathrm{Poisson}(\lambda_{11})
-$$
+```
 
-$$
+```math
 K_{00}\sim \mathrm{Poisson}(0.5)
-$$
+```
 
-$$
+```math
 B=X'\beta+e_{0}+K_{11}\cdot I(D_{0}=1)+K_{00}\cdot I(D_{1}=0)
-$$
+```
 
-$$
+```math
 Y_{0}=B
-$$
+```
 
-$$
+```math
 Y_{1}=1+B
-$$
+```
 
-$$
+```math
 Y=D Y_{1}+(1-D)Y_{0}.
-$$
+```
 
 **Source scenarios**
 
@@ -125,9 +125,9 @@ lambda11 in {0.5,0.75,1,1.25}
 
 no interactions
 
-$$
+```math
 \text{ source } \alpha_{0}=1.
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -144,12 +144,12 @@ lambda11 in {0.5,0.75,1,1.25}; no interactions; source alpha0=1.
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| source_lambda11_0p5 | LATE | E[Y(1)-Y(0)\|D(1)&gt;D(0)]=1 in source DGP2 without treatment-covariate interactions. LCSTE(x)=1 for every x; alpha0 is the treatment coefficient directly evaluated in source Section 6. This is an IV complier estimand despite the paper's heterogeneous-effects title. | 1.0 | reported_numeric |
-| source_lambda11_0p75 | LATE | E[Y(1)-Y(0)\|D(1)&gt;D(0)]=1 in source DGP2 without treatment-covariate interactions. LCSTE(x)=1 for every x; alpha0 is the treatment coefficient directly evaluated in source Section 6. This is an IV complier estimand despite the paper's heterogeneous-effects title. | 1.0 | reported_numeric |
-| source_lambda11_1 | LATE | E[Y(1)-Y(0)\|D(1)&gt;D(0)]=1 in source DGP2 without treatment-covariate interactions. LCSTE(x)=1 for every x; alpha0 is the treatment coefficient directly evaluated in source Section 6. This is an IV complier estimand despite the paper's heterogeneous-effects title. | 1.0 | reported_numeric |
-| source_lambda11_1p25 | LATE | E[Y(1)-Y(0)\|D(1)&gt;D(0)]=1 in source DGP2 without treatment-covariate interactions. LCSTE(x)=1 for every x; alpha0 is the treatment coefficient directly evaluated in source Section 6. This is an IV complier estimand despite the paper's heterogeneous-effects title. | 1.0 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| source_lambda11_0p5 | LATE | E[Y(1)-Y(0)\|D(1)&gt;D(0)]=1 in source DGP2 without treatment-covariate interactions. LCSTE(x)=1 for every x; alpha0 is the treatment coefficient directly evaluated in source Section 6. This is an IV complier estimand despite the paper's heterogeneous-effects title. | 1.0 |
+| source_lambda11_0p75 | LATE | E[Y(1)-Y(0)\|D(1)&gt;D(0)]=1 in source DGP2 without treatment-covariate interactions. LCSTE(x)=1 for every x; alpha0 is the treatment coefficient directly evaluated in source Section 6. This is an IV complier estimand despite the paper's heterogeneous-effects title. | 1.0 |
+| source_lambda11_1 | LATE | E[Y(1)-Y(0)\|D(1)&gt;D(0)]=1 in source DGP2 without treatment-covariate interactions. LCSTE(x)=1 for every x; alpha0 is the treatment coefficient directly evaluated in source Section 6. This is an IV complier estimand despite the paper's heterogeneous-effects title. | 1.0 |
+| source_lambda11_1p25 | LATE | E[Y(1)-Y(0)\|D(1)&gt;D(0)]=1 in source DGP2 without treatment-covariate interactions. LCSTE(x)=1 for every x; alpha0 is the treatment coefficient directly evaluated in source Section 6. This is an IV complier estimand despite the paper's heterogeneous-effects title. | 1.0 |
 
 **Original submitted target notation:** alpha0 = LATE
 

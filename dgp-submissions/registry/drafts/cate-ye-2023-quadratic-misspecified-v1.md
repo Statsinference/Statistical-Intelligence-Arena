@@ -42,27 +42,27 @@ Source notation retained without guessing:
 
 **Treatment**
 
-$$
+```math
 P(A=1) = 0.5 (\mathrm{simple} \mathrm{randomisation}, \mathrm{two} \mathrm{arms} \text{ at } 1:1)
-$$
+```
 
 **Potential responses**
 
-$$
+```math
 Y(1) = \varepsilon, Y(2) = -1.3 + Y(1) - 0.5(U - \mathrm{muU}) - 0.01(U^{2} - \mathrm{muU2}) + 0.3(W - \mathrm{muW})
-$$
+```
 
 **Heterogeneity**
 
-$$
+```math
 \tau(U, W) = -1.3 - 0.5 U - 0.01(U^{2} - 1) + 0.3 W
-$$
+```
 
 **Observed**
 
-$$
+```math
 Y = \varepsilon+ A \tau(U, W)
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -80,9 +80,9 @@ Y = eps + A tau(U, W)
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| original | CATE | Conditional average treatment effect at the declared query points for the arm-2 versus arm-1 contrast; affine in U and W with a small negative quadratic term in U, so the surface is curved but close to linear over the bulk of the covariate law. | -1.3925 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| original | CATE | Conditional average treatment effect at the declared query points for the arm-2 versus arm-1 contrast; affine in U and W with a small negative quadratic term in U, so the surface is curved but close to linear over the bulk of the covariate law. | -1.3925 |
 
 **Original submitted target notation:** tau(u0, w0) = E[Y(1) - Y(0) \| U = u0, W = w0]
 

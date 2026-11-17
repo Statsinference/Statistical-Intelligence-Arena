@@ -41,43 +41,43 @@ Not explicitly identified (review required)
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
-$$
+```math
 X \sim \mathcal{N}_{d}(0,\Sigma), \Sigma[j,k]=\rho^{\lvert j-k\rvert}
-$$
+```
 
-$$
+```math
 \rho=0.5.
-$$
+```
 
-$$
+```math
 s=-X_{1}+X_{2}/2-X_{3}/4-X_{4}/10-X_{5}/10+X_{6}/10
-$$
+```
 
-$$
+```math
 p=1-1/(1+\exp(s))=\mathrm{expit}(s)
-$$
+```
 
-$$
+```math
 A\mid X\sim \mathrm{Bernoulli}(p).
-$$
+```
 
-$$
+```math
 Y(1)=2+0.137\cdot (X_{5}+X_{6}+X_{7}+X_{8})+\varepsilon_{1}
-$$
+```
 
-$$
+```math
 Y(0)=1+0.291\cdot (X_{5}+X_{6}+X_{7}+X_{8}+X_{9}+X_{10})+\varepsilon_{0}.
-$$
+```
 
-$$
+```math
 \varepsilon_{0},\varepsilon_{1}\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1)
-$$
+```
 
 independent of X and treatment randomization
 
-$$
+```math
 Y=A\cdot Y(1)+(1-A)\cdot Y(0).
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -94,9 +94,9 @@ epsilon0,epsilon1 iid N(0,1), independent of X and treatment randomization; Y=A*
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| original | ATE | E[Y(1)-Y(0)] in the full declared covariate population; treatment 1 versus 0; population, not sample-conditional, target. | 1.0 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| original | ATE | E[Y(1)-Y(0)] in the full declared covariate population; treatment 1 versus 0; population, not sample-conditional, target. | 1.0 |
 
 **Original submitted target notation:** ATE
 

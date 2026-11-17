@@ -36,37 +36,37 @@ U, delta, C_Y, C_D
 
 **Covariates and errors**
 
-$$
+```math
 V_{1},V_{2},W_{1},W_{2},U\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1) \mathrm{conditional} \text{ on } [-2,2]
-$$
+```
 
-$$
+```math
 \varepsilon,\delta\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1)
-$$
+```
 
 independent of all covariates
 
 **Latent exposure and outcome**
 
-$$
+```math
 D=1+V_{1}+V_{2}+W_{1}+W_{2}+U+\delta
-$$
+```
 
-$$
+```math
 Y=1+D+W_{1}+W_{2}+U+\varepsilon
-$$
+```
 
 all source Eq12/13 parameters1.
 
 **Independent censoring**
 
-$$
+```math
 C_{Y}\sim \mathrm{Uniform}(0,13.249945942133955)
-$$
+```
 
-$$
+```math
 C_{D}\sim \mathrm{Uniform}(-7,2.629814945797971)
-$$
+```
 
 independent of all other variables and each other
 
@@ -74,21 +74,21 @@ Endpoints numerically calibrated to20% population censoring as an explicit adapt
 
 **Observed values**
 
-$$
+```math
 D_{\mathrm{observed}}=\max(D,C_{D})
-$$
+```
 
-$$
+```math
 D_{\mathrm{exact}}=I(D\geq C_{D})
-$$
+```
 
-$$
+```math
 Y_{\mathrm{observed}}=\min(Y,C_{Y})
-$$
+```
 
-$$
+```math
 Y_{\mathrm{event}}=I(Y\leq C_{Y})
-$$
+```
 
 Return V1,V2,W1,W2,D_observed,D_exact,Y_observed,Y_event only.
 
@@ -107,9 +107,9 @@ D_observed=max(D,C_D); D_exact=I(D&gt;=C_D); Y_observed=min(Y,C_Y); Y_event=I(Y&
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| source_case1b_calibrated | Unit-change structural mean effect on log-time scale | Structural coefficient1 of the true, possibly unobserved continuous exposure D in Y(d)=1+d+W1+W2+U+epsilon. Thus E[Y(d+1)-Y(d)]=1 on source linear/log-time outcome scale, not effect on exp(Y) survival time or complier LATE. | 1.0 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| source_case1b_calibrated | Unit-change structural mean effect on log-time scale | Structural coefficient1 of the true, possibly unobserved continuous exposure D in Y(d)=1+d+W1+W2+U+epsilon. Thus E[Y(d+1)-Y(d)]=1 on source linear/log-time outcome scale, not effect on exp(Y) survival time or complier LATE. | 1.0 |
 
 **Original submitted target notation:** alpha_YZ
 

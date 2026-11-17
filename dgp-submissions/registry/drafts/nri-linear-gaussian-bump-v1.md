@@ -36,45 +36,45 @@ Not explicitly identified (review required)
 
 **DGP structure**
 
-$$
+```math
 Y = m(X) + \varepsilon,  X \sim U[-1,1]
-$$
+```
 
-$$
+```math
 \varepsilon\sim \mathcal{N}(0,1)
-$$
+```
 
 independently of X
 
 **Model 2 (linear + Gaussian bump)**
 
-$$
+```math
 m(x) = 2x + 2\cdot \exp(-64\cdot x^{2})
-$$
+```
 
 **Model 4 (linear + scaled Gaussian density)**
 
-$$
+```math
 m(x) = x + 5\cdot \phi(10x),  \phi(z) = \exp(-z^{2}/2)/\sqrt{2\cdot \pi}
-$$
+```
 
 **Estimand (fixed query point)**
 
-$$
+```math
 m(x_{0}) = \mathbb{E}[Y \mid  X = x_{0}]  \text{ at }  x_{0} = 0
-$$
+```
 
 **Truth Model 2**
 
-$$
+```math
 m(0) = 2\cdot 0 + 2\cdot \exp(0) = 2
-$$
+```
 
 **Truth Model 4**
 
-$$
+```math
 m(0) = 0 + 5\cdot \phi(0) = 5/\sqrt{2\cdot \pi} \approx 1.994711
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -93,10 +93,10 @@ m(0) = 0 + 5*phi(0) = 5/sqrt(2*pi) approx 1.994711
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| model2 | Pointwise conditional mean | Conditional mean of Y given X = x0 at the fixed query point x0 = 0, in the superpopulation defined by the DGP Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1). Models 2 and 4 from supplement S.II.7 are collected as two scenarios of the same mechanism family; both are linear-plus-Gaussian-bump regression functions. | 2.0 | reported_numeric |
-| model4 | Pointwise conditional mean | Conditional mean of Y given X = x0 at the fixed query point x0 = 0, in the superpopulation defined by the DGP Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1). Models 2 and 4 from supplement S.II.7 are collected as two scenarios of the same mechanism family; both are linear-plus-Gaussian-bump regression functions. | 1.9947114020071635 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| model2 | Pointwise conditional mean | Conditional mean of Y given X = x0 at the fixed query point x0 = 0, in the superpopulation defined by the DGP Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1). Models 2 and 4 from supplement S.II.7 are collected as two scenarios of the same mechanism family; both are linear-plus-Gaussian-bump regression functions. | 2.0 |
+| model4 | Pointwise conditional mean | Conditional mean of Y given X = x0 at the fixed query point x0 = 0, in the superpopulation defined by the DGP Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1). Models 2 and 4 from supplement S.II.7 are collected as two scenarios of the same mechanism family; both are linear-plus-Gaussian-bump regression functions. | 1.9947114020071635 |
 
 **Original submitted target notation:** m(x0) = E[Y \| X = x0]
 

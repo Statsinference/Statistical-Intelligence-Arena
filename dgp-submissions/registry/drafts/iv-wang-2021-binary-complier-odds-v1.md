@@ -36,69 +36,69 @@ Not explicitly identified (review required)
 
 **Covariate and instrument**
 
-$$
+```math
 X\sim \mathrm{Uniform}(-1,1)
-$$
+```
 
-$$
+```math
 Z\mid X=x\sim \mathrm{Bernoulli}(\mathrm{expit}(0.1-x)).
-$$
+```
 
 **Principal strata**
 
-$$
+```math
 q=\mathrm{expit}(-0.4+0.8\cdot x)
-$$
+```
 
-$$
+```math
 P(CO\mid x)=q
-$$
+```
 
-$$
+```math
 P(AT\mid x)=(1-q)\cdot q
-$$
+```
 
-$$
+```math
 P(NT\mid x)=(1-q)^{2}
-$$
+```
 
-$$
+```math
 D=Z \text{ on } CO, D=1 \text{ on } AT, D=0 \text{ on } NT.
-$$
+```
 
 **Complier outcome probabilities**
 
-$$
+```math
 \delta=\tanh(-x)
-$$
+```
 
-$$
+```math
 OP=\exp(-0.4+x)
-$$
+```
 
-$$
+```math
 f_{1}=f_{0}+\delta
-$$
+```
 
-$$
+```math
 f_{0}\cdot f_{1}/((1-f_{0})\cdot (1-f_{1}))=OP
-$$
+```
 
 f0 in [max(0,-delta),min(1,1-delta)].
 
 **Observed outcome**
 
-$$
+```math
 Y\mid CO,D,x\sim \mathrm{Bernoulli}(\mathrm{fD})
-$$
+```
 
-$$
+```math
 Y\mid AT,x\sim \mathrm{Bernoulli}(q)
-$$
+```
 
-$$
+```math
 Y\mid NT,x\sim \mathrm{Bernoulli}(q)
-$$
+```
 
 Only X,Z,D,Y are returned.
 
@@ -117,9 +117,9 @@ Y|CO,D,x~Bernoulli(fD); Y|AT,x~Bernoulli(q); Y|NT,x~Bernoulli(q). Only X,Z,D,Y a
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| source_additive | Conditional LATE curve transformed-slope parameter | Slope coefficient alpha1 in E[Y(1)-Y(0)\|D(1)&gt;D(0),X=x]=tanh(alpha0+alpha1*x). Target population is the complier stratum conditional on x; scalar alpha1=-1 is explicitly reported in source Table 2. It is a curve coefficient, not marginal LATE or ATE. | -1.0 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| source_additive | Conditional LATE curve transformed-slope parameter | Slope coefficient alpha1 in E[Y(1)-Y(0)\|D(1)&gt;D(0),X=x]=tanh(alpha0+alpha1*x). Target population is the complier stratum conditional on x; scalar alpha1=-1 is explicitly reported in source Table 2. It is a curve coefficient, not marginal LATE or ATE. | -1.0 |
 
 **Original submitted target notation:** alpha1
 

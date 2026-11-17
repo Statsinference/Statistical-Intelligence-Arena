@@ -34,39 +34,39 @@ Not explicitly identified (review required)
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
-$$
+```math
 X \sim \mathrm{Uniform}[-1,1]
-$$
+```
 
-$$
+```math
 \varepsilon\sim \mathcal{N}(0,1), X
-$$
+```
 
 independent of epsilon in the declared implementation
 
-$$
+```math
 Y=m(X)+\varepsilon
-$$
+```
 
-$$
+```math
 m(x)=\sin(3\cdot \pi\cdot x/2)/(1+18\cdot x^{2}\cdot (\mathrm{sgn}(x)+1))
-$$
+```
 
-$$
+```math
 \mathrm{sgn}(0)=0.
-$$
+```
 
-$$
+```math
 \mathrm{Equivalently}, m(x)=\sin(3\cdot \pi\cdot x/2) \text{ for } x\leq 0
-$$
+```
 
-$$
+```math
 m(x)=\sin(3\cdot \pi\cdot x/2)/(1+36\cdot x^{2}) \text{ for } x>0.
-$$
+```
 
-$$
+```math
 \theta(x_{0})=\mathbb{E}[Y\mid X=x_{0}]=m(x_{0})
-$$
+```
 
 x0 in {-2/3,-1/3,0,1/3,2/3}.
 
@@ -90,13 +90,13 @@ Ordered exact source-query truths: 0,-1,0,1/5,0. These are analytically derived 
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| source_x_neg_two_thirds | Pointwise conditional mean | E[Y \| X=x0], the continuous conditional regression mean at the fixed config.query_x; not a prediction quantile, population average, causal contrast or simultaneous band. | -1.2246467991473532e-16 | reported_numeric |
-| source_x_neg_one_third | Pointwise conditional mean | E[Y \| X=x0], the continuous conditional regression mean at the fixed config.query_x; not a prediction quantile, population average, causal contrast or simultaneous band. | -1.0 | reported_numeric |
-| source_x_zero | Pointwise conditional mean | E[Y \| X=x0], the continuous conditional regression mean at the fixed config.query_x; not a prediction quantile, population average, causal contrast or simultaneous band. | 0.0 | reported_numeric |
-| source_x_pos_one_third | Pointwise conditional mean | E[Y \| X=x0], the continuous conditional regression mean at the fixed config.query_x; not a prediction quantile, population average, causal contrast or simultaneous band. | 0.2 | reported_numeric |
-| source_x_pos_two_thirds | Pointwise conditional mean | E[Y \| X=x0], the continuous conditional regression mean at the fixed config.query_x; not a prediction quantile, population average, causal contrast or simultaneous band. | 7.203804700866784e-18 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| source_x_neg_two_thirds | Pointwise conditional mean | E[Y \| X=x0], the continuous conditional regression mean at the fixed config.query_x; not a prediction quantile, population average, causal contrast or simultaneous band. | -1.2246467991473532e-16 |
+| source_x_neg_one_third | Pointwise conditional mean | E[Y \| X=x0], the continuous conditional regression mean at the fixed config.query_x; not a prediction quantile, population average, causal contrast or simultaneous band. | -1.0 |
+| source_x_zero | Pointwise conditional mean | E[Y \| X=x0], the continuous conditional regression mean at the fixed config.query_x; not a prediction quantile, population average, causal contrast or simultaneous band. | 0.0 |
+| source_x_pos_one_third | Pointwise conditional mean | E[Y \| X=x0], the continuous conditional regression mean at the fixed config.query_x; not a prediction quantile, population average, causal contrast or simultaneous band. | 0.2 |
+| source_x_pos_two_thirds | Pointwise conditional mean | E[Y \| X=x0], the continuous conditional regression mean at the fixed config.query_x; not a prediction quantile, population average, causal contrast or simultaneous band. | 7.203804700866784e-18 |
 
 **Original submitted target notation:** m(x0)
 

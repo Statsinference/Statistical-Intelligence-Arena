@@ -41,37 +41,37 @@ Not explicitly identified (review required)
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
-$$
+```math
 X\sim \mathcal{N}_{800}(0,\Sigma)
-$$
+```
 
-$$
+```math
 \Sigma_{ij}=0.5^{\lvert i-j\rvert}
-$$
+```
 
-$$
+```math
 \varepsilon\sim \mathcal{N}(0,1) \text{ independently }.
-$$
+```
 
-$$
+```math
 \beta_{j}=1.5\cdot 0.8^{j} \text{ for } j=1,\ldots ,800
-$$
+```
 
-$$
+```math
 Y=\sum_{j} \beta_{j}\cdot X_{j}+\varepsilon.
-$$
+```
 
 Source notation retained without guessing:
 
 <pre>Two independent samples from the same population: source_n_labeled rows with observed Y and source_n_unlabeled rows with observed X only. R=1 in the first labeled block</pre>
 
-$$
+```math
 Y_{\mathrm{obs}}=Y \text{ there }. R=0 \in \text{ the } \mathrm{remaining} \mathrm{block}
-$$
+```
 
-$$
+```math
 Y_{\mathrm{obs}}=0 \text{ is } \text{ a } \text{ placeholder }.
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -87,9 +87,9 @@ Two independent samples from the same population: source_n_labeled rows with obs
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| original | Population explained variance | Explained population variance Var(E[Y\|X])=beta^T Sigma beta. | 9.333333333333336 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| original | Population explained variance | Explained population variance Var(E[Y\|X])=beta^T Sigma beta. | 9.333333333333336 |
 
 **Original submitted target notation:** beta^T Sigma beta
 

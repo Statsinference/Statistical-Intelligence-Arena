@@ -36,29 +36,29 @@ Not explicitly identified (review required)
 
 **Full data and observation**
 
-$$
+```math
 X\sim \mathcal{N}(0,1)
-$$
+```
 
-$$
+```math
 Y\mid X=x\sim \mathcal{N}(x^{2},1)
-$$
+```
 
-$$
+```math
 R\mid X=x\sim \mathrm{Bernoulli}(\mathrm{expit}(x)).
-$$
+```
 
 **Observed encoding**
 
-$$
+```math
 Y_{\mathrm{observed}}=Y \text{ when } R=1, \text{ and } \mathrm{finite} 0 \text{ placeholder } \text{ when } R=0.
-$$
+```
 
 **Target**
 
-$$
+```math
 \theta=\mathbb{E}(Y)=1
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -74,9 +74,9 @@ theta=E(Y)=1
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| original | Full-data population outcome mean | Full-data superpopulation response mean before outcome masking. | 1.0 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| original | Full-data population outcome mean | Full-data superpopulation response mean before outcome masking. | 1.0 |
 
 **Original submitted target notation:** theta = E(Y)
 

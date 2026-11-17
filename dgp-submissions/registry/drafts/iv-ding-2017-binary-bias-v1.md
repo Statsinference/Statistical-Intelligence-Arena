@@ -34,49 +34,49 @@ U
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
-$$
+```math
 Z \sim \mathrm{Bernoulli}(0.5)
-$$
+```
 
-$$
+```math
 U \sim \mathrm{Bernoulli}(0.5), V_{A},V_{Y}\overset{\mathrm{iid}}{\sim} \mathrm{Uniform}(0,1)
-$$
+```
 
 all four independent.
 
-$$
+```math
 p[z,u]=P(A=1|Z=z,U=u), r[\text{ a },u]=P(Y=1|A=\text{ a },U=u)
-$$
+```
 
 fixed values from source Table 1.
 
-$$
+```math
 A(z)=1\{V_{A}<p[z,U]\}
-$$
+```
 
-$$
+```math
 A=A(Z)
-$$
+```
 
-$$
+```math
 Y(\text{ a })=1\{V_{Y}<r[\text{ a },U]\}
-$$
+```
 
-$$
+```math
 Y=Y(A).
-$$
+```
 
-$$
+```math
 q=(0.5,0.5), \delta[u]=p[1,u]-p[0,u], \tau[u]=r[1,u]-r[0,u].
-$$
+```
 
-$$
+```math
 \mathrm{LATE}=\sum_{u} q[u]\cdot \delta[u]\cdot \tau[u] / \sum_{u} q[u]\cdot \delta[u].
-$$
+```
 
-$$
+```math
 \mathrm{Source} \text{ population } \mathrm{ATE}=\sum_{u} q[u]\cdot \tau[u]
-$$
+```
 
 it is an audit quantity, not the registered IV target.
 
@@ -97,11 +97,11 @@ Source population ATE=sum_u q[u]*tau[u]; it is an audit quantity, not the regist
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| source_table1_case1 | LATE | E[Y(1)-Y(0) \| A(1)&gt;A(0)], treatment intervention 0 to 1 among instrument compliers. | 0.05545454545454545 | reported_numeric |
-| source_table1_case2 | LATE | E[Y(1)-Y(0) \| A(1)&gt;A(0)], treatment intervention 0 to 1 among instrument compliers. | 0.01 | reported_numeric |
-| source_table1_case3 | LATE | E[Y(1)-Y(0) \| A(1)&gt;A(0)], treatment intervention 0 to 1 among instrument compliers. | 0.022500000000000003 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| source_table1_case1 | LATE | E[Y(1)-Y(0) \| A(1)&gt;A(0)], treatment intervention 0 to 1 among instrument compliers. | 0.05545454545454545 |
+| source_table1_case2 | LATE | E[Y(1)-Y(0) \| A(1)&gt;A(0)], treatment intervention 0 to 1 among instrument compliers. | 0.01 |
+| source_table1_case3 | LATE | E[Y(1)-Y(0) \| A(1)&gt;A(0)], treatment intervention 0 to 1 among instrument compliers. | 0.022500000000000003 |
 
 **Original submitted target notation:** LATE
 

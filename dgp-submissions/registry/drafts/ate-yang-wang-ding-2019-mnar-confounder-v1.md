@@ -36,63 +36,63 @@ Not explicitly identified (review required)
 
 **Baseline continuous confounder**
 
-$$
+```math
 X_{1} \sim \mathcal{N}(\text{ mean }=1, \text{ variance }=1)
-$$
+```
 
 **Baseline binary confounder**
 
-$$
+```math
 X_{2} \sim \mathrm{Bernoulli}(0.5)
-$$
+```
 
 **Potential outcome under control**
 
-$$
+```math
 Y(0) = 0.5 + 2\cdot X_{1} + X_{2} + \varepsilon(0), \varepsilon(0) \sim \mathcal{N}(0,1)
-$$
+```
 
 **Potential outcome under treatment**
 
-$$
+```math
 Y(1) = 3\cdot X_{1} + 2\cdot X_{2} + \varepsilon(1), \varepsilon(1) \sim \mathcal{N}(0,1)
-$$
+```
 
 **Treatment assignment**
 
-$$
+```math
 A \mid  X_{1},X_{2} \sim \mathrm{Bernoulli}(\pi)
-$$
+```
 
-$$
+```math
 \mathrm{logit}(\pi) = 1.25 - 0.5\cdot X_{1} - 0.5\cdot X_{2}
-$$
+```
 
 **Missingness indicator**
 
-$$
+```math
 R_{1} \mid  X_{1},X_{2},A \sim \mathrm{Bernoulli}(p)
-$$
+```
 
-$$
+```math
 \mathrm{logit}(p) = -2 + 2\cdot X_{1} + A\cdot (1.5 + X_{2})
-$$
+```
 
-$$
+```math
 R_{1}=1 \mathrm{means} X_{1} \text{ observed }
-$$
+```
 
 **Observed outcome**
 
-$$
+```math
 Y = A\cdot Y(1) + (1-A)\cdot Y(0)
-$$
+```
 
 **Target truth**
 
-$$
+```math
 \mathrm{ATE}=\mathbb{E}[Y(1)-Y(0)]=-0.5 + 1\cdot \mathbb{E}[X_{1}] + 1\cdot \mathbb{E}[X_{2}] = -0.5+1+0.5=1
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -113,9 +113,9 @@ ATE=E[Y(1)-Y(0)]=-0.5 + 1*E[X1] + 1*E[X2] = -0.5+1+0.5=1
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| paper_section_5_2 | ATE | Population average effect of intervening to set treatment A from 0 (control) to 1 (active), averaged over the full pre-treatment covariate distribution before missingness: E[Y(1)-Y(0)]. | 1.0 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| paper_section_5_2 | ATE | Population average effect of intervening to set treatment A from 0 (control) to 1 (active), averaged over the full pre-treatment covariate distribution before missingness: E[Y(1)-Y(0)]. | 1.0 |
 
 **Original submitted target notation:** ATE = E[Y(1)-Y(0)]
 

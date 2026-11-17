@@ -43,9 +43,9 @@ phi_gamma_j
 
 **Equation 1**
 
-$$
+```math
 Z_{j} \text{ independently } \sim \mathrm{Binomial}(2,0.5), j=1,\ldots ,100.
-$$
+```
 
 **Equation 2**
 
@@ -61,47 +61,47 @@ Source notation retained without guessing:
 
 <pre>delta_j=phi_delta_j*kappa*sqrt(h2/(1.5*m))</pre>
 
-$$
+```math
 h_{2}=0.2,\kappa=1.
-$$
+```
 
 **Equation 3**
 
-$$
+```math
 U\sim \mathcal{N}(0,0.6\cdot (1-h_{2}))
-$$
+```
 
-$$
+```math
 \varepsilon_{A},\varepsilon_{Y} \text{ independently } \sim \mathcal{N}(0,0.4\cdot (1-h_{2}))
-$$
+```
 
 independent of Z and each other
 
 **Equation 4**
 
-$$
+```math
 A=\sum_{j} \gamma_{j} Z_{j} + U + (1+\sum_{j} \delta_{j} Z_{j})\cdot \varepsilon_{A}.
-$$
+```
 
 **Equation 5**
 
-$$
+```math
 Y=0.4\cdot A+\sum_{j} \alpha_{j} Z_{j}+U+\varepsilon_{Y}.
-$$
+```
 
 **Equation 6**
 
-$$
+```math
 S_{1}:\alpha_{j}=0
-$$
+```
 
-$$
+```math
 S_{2}:\alpha_{j}\sim \mathcal{N}(\sqrt{\mathrm{tau0}_{\mathrm{squared}}},\mathrm{tau0}_{\mathrm{squared}}) \text{ where } \mathrm{tau0}_{\mathrm{squared}}=h_{2}/(1.5\cdot m)
-$$
+```
 
-$$
+```math
 S_{3}:\alpha_{j}=\gamma_{j}/2.
-$$
+```
 
 **Equation 7**
 
@@ -127,12 +127,12 @@ Settings S1/S2/S3 counts are 100/0/0,60/20/20,10/90/0,10/0/90. Frozen realized c
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| setting1_valid | Population unit-change structural mean effect ⚠ review | Population constant causal slope dE[Y\|do(A=a)]/da=0.4, equivalently unit contrast E[Y\|do(A=1)]-E[Y\|do(A=0)], in the frozen SNP coefficient population. | 0.4 | reported_numeric |
-| setting2_mixed40 | Population unit-change structural mean effect ⚠ review | Population constant causal slope dE[Y\|do(A=a)]/da=0.4, equivalently unit contrast E[Y\|do(A=1)]-E[Y\|do(A=0)], in the frozen SNP coefficient population. | 0.4 | reported_numeric |
-| setting3_inside90 | Population unit-change structural mean effect ⚠ review | Population constant causal slope dE[Y\|do(A=a)]/da=0.4, equivalently unit contrast E[Y\|do(A=1)]-E[Y\|do(A=0)], in the frozen SNP coefficient population. | 0.4 | reported_numeric |
-| setting4_correlated90 | Population unit-change structural mean effect ⚠ review | Population constant causal slope dE[Y\|do(A=a)]/da=0.4, equivalently unit contrast E[Y\|do(A=1)]-E[Y\|do(A=0)], in the frozen SNP coefficient population. | 0.4 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| setting1_valid | Population unit-change structural mean effect ⚠ review | Population constant causal slope dE[Y\|do(A=a)]/da=0.4, equivalently unit contrast E[Y\|do(A=1)]-E[Y\|do(A=0)], in the frozen SNP coefficient population. | 0.4 |
+| setting2_mixed40 | Population unit-change structural mean effect ⚠ review | Population constant causal slope dE[Y\|do(A=a)]/da=0.4, equivalently unit contrast E[Y\|do(A=1)]-E[Y\|do(A=0)], in the frozen SNP coefficient population. | 0.4 |
+| setting3_inside90 | Population unit-change structural mean effect ⚠ review | Population constant causal slope dE[Y\|do(A=a)]/da=0.4, equivalently unit contrast E[Y\|do(A=1)]-E[Y\|do(A=0)], in the frozen SNP coefficient population. | 0.4 |
+| setting4_correlated90 | Population unit-change structural mean effect ⚠ review | Population constant causal slope dE[Y\|do(A=a)]/da=0.4, equivalently unit contrast E[Y\|do(A=1)]-E[Y\|do(A=0)], in the frozen SNP coefficient population. | 0.4 |
 
 **Original submitted target notation:** beta
 

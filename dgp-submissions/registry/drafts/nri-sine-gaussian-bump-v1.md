@@ -36,33 +36,33 @@ Not explicitly identified (review required)
 
 **DGP structure**
 
-$$
+```math
 Y = m(X) + \varepsilon,  X \sim U[-1,1]
-$$
+```
 
-$$
+```math
 \varepsilon\sim \mathcal{N}(0,1)
-$$
+```
 
 independently of X
 
 **Model 1 (sine plus Gaussian bump)**
 
-$$
+```math
 m(x) = \sin(4x) + 2\cdot \exp(-64\cdot x^{2})
-$$
+```
 
 **Estimand (fixed query point)**
 
-$$
+```math
 m(x_{0}) = \mathbb{E}[Y \mid  X = x_{0}]  \text{ at }  x_{0} \in \{-2/3,-1/3,0,1/3,2/3\}
-$$
+```
 
 **Truth at x0=0**
 
-$$
+```math
 m(0) = \sin(0) + 2\cdot \exp(0) = 0 + 2 = 2  (\mathrm{exact})
-$$
+```
 
 **Even-part identity**
 
@@ -86,13 +86,13 @@ m(x) + m(-x) = 4*exp(-64*x^2)  (sin cancels as odd; bump doubles as even)
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| m1_x0_neg2o3 | Pointwise conditional mean | Conditional mean of Y given X = x0 at a fixed query point x0 from the grid {-2/3,-1/3,0,1/3,2/3}, in the superpopulation defined by Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1). Model 1: m(x)=sin(4x)+2*exp(-64*x^2), a sine oscillation plus a sharp Gaussian bump centered at x=0. Each query point is a separate pointwise inference target; the five points are not a simultaneous confidence band. | -0.4572726266349253 | reported_numeric |
-| m1_x0_neg1o3 | Pointwise conditional mean | Conditional mean of Y given X = x0 at a fixed query point x0 from the grid {-2/3,-1/3,0,1/3,2/3}, in the superpopulation defined by Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1). Model 1: m(x)=sin(4x)+2*exp(-64*x^2), a sine oscillation plus a sharp Gaussian bump centered at x=0. Each query point is a separate pointwise inference target; the five points are not a simultaneous confidence band. | -0.9703059256931684 | reported_numeric |
-| m1_x0_0 | Pointwise conditional mean | Conditional mean of Y given X = x0 at a fixed query point x0 from the grid {-2/3,-1/3,0,1/3,2/3}, in the superpopulation defined by Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1). Model 1: m(x)=sin(4x)+2*exp(-64*x^2), a sine oscillation plus a sharp Gaussian bump centered at x=0. Each query point is a separate pointwise inference target; the five points are not a simultaneous confidence band. | 2.0 | reported_numeric |
-| m1_x0_1o3 | Pointwise conditional mean | Conditional mean of Y given X = x0 at a fixed query point x0 from the grid {-2/3,-1/3,0,1/3,2/3}, in the superpopulation defined by Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1). Model 1: m(x)=sin(4x)+2*exp(-64*x^2), a sine oscillation plus a sharp Gaussian bump centered at x=0. Each query point is a separate pointwise inference target; the five points are not a simultaneous confidence band. | 0.973569877033457 | reported_numeric |
-| m1_x0_2o3 | Pointwise conditional mean | Conditional mean of Y given X = x0 at a fixed query point x0 from the grid {-2/3,-1/3,0,1/3,2/3}, in the superpopulation defined by Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1). Model 1: m(x)=sin(4x)+2*exp(-64*x^2), a sine oscillation plus a sharp Gaussian bump centered at x=0. Each query point is a separate pointwise inference target; the five points are not a simultaneous confidence band. | 0.45727262663669865 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| m1_x0_neg2o3 | Pointwise conditional mean | Conditional mean of Y given X = x0 at a fixed query point x0 from the grid {-2/3,-1/3,0,1/3,2/3}, in the superpopulation defined by Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1). Model 1: m(x)=sin(4x)+2*exp(-64*x^2), a sine oscillation plus a sharp Gaussian bump centered at x=0. Each query point is a separate pointwise inference target; the five points are not a simultaneous confidence band. | -0.4572726266349253 |
+| m1_x0_neg1o3 | Pointwise conditional mean | Conditional mean of Y given X = x0 at a fixed query point x0 from the grid {-2/3,-1/3,0,1/3,2/3}, in the superpopulation defined by Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1). Model 1: m(x)=sin(4x)+2*exp(-64*x^2), a sine oscillation plus a sharp Gaussian bump centered at x=0. Each query point is a separate pointwise inference target; the five points are not a simultaneous confidence band. | -0.9703059256931684 |
+| m1_x0_0 | Pointwise conditional mean | Conditional mean of Y given X = x0 at a fixed query point x0 from the grid {-2/3,-1/3,0,1/3,2/3}, in the superpopulation defined by Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1). Model 1: m(x)=sin(4x)+2*exp(-64*x^2), a sine oscillation plus a sharp Gaussian bump centered at x=0. Each query point is a separate pointwise inference target; the five points are not a simultaneous confidence band. | 2.0 |
+| m1_x0_1o3 | Pointwise conditional mean | Conditional mean of Y given X = x0 at a fixed query point x0 from the grid {-2/3,-1/3,0,1/3,2/3}, in the superpopulation defined by Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1). Model 1: m(x)=sin(4x)+2*exp(-64*x^2), a sine oscillation plus a sharp Gaussian bump centered at x=0. Each query point is a separate pointwise inference target; the five points are not a simultaneous confidence band. | 0.973569877033457 |
+| m1_x0_2o3 | Pointwise conditional mean | Conditional mean of Y given X = x0 at a fixed query point x0 from the grid {-2/3,-1/3,0,1/3,2/3}, in the superpopulation defined by Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1). Model 1: m(x)=sin(4x)+2*exp(-64*x^2), a sine oscillation plus a sharp Gaussian bump centered at x=0. Each query point is a separate pointwise inference target; the five points are not a simultaneous confidence band. | 0.45727262663669865 |
 
 **Original submitted target notation:** m(x0) = E[Y \| X = x0]
 

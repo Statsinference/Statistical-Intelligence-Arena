@@ -36,17 +36,17 @@ U0, U1, e0, e1
 
 **baseline repeated cross-section**
 
-$$
+```math
 X_{1},X_{2}\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1)
-$$
+```
 
-$$
+```math
 Z,T\overset{\mathrm{iid}}{\sim} \mathrm{Bernoulli}(0.5)
-$$
+```
 
-$$
+```math
 U_{0},U_{1} \text{ iid } \mathrm{bridge}(\phi=0.5), \mathrm{density} f(u)=1/[2\cdot \pi\cdot \cosh(u/2)]
-$$
+```
 
 Baseline/exogenous draws
 
@@ -56,57 +56,57 @@ exact machine endpoint0 is redrawn.
 
 **treatment propensities**
 
-$$
+```math
 p_{0}=\mathrm{expit}(2-7Z+0.2U_{0}+2X_{1})
-$$
+```
 
-$$
+```math
 p_{1}=\mathrm{expit}(-1.5+5Z-0.15U_{1}+1.5X_{2})
-$$
+```
 
-$$
+```math
 A_{0}\sim \mathrm{Bernoulli}(p_{0})
-$$
+```
 
-$$
+```math
 A_{1}\sim \mathrm{Bernoulli}(p_{1}), \text{ conditionally } \text{ independent }.
-$$
+```
 
 **period outcomes**
 
-$$
+```math
 s(X)=1.5X_{1}+2X_{2}-0.5
-$$
+```
 
-$$
+```math
 Y_{0}=200+10\cdot [A_{0}\cdot s(X)+0.5U_{0}+2Z+1.5X_{1}+2X_{2}]+e_{0}
-$$
+```
 
-$$
+```math
 Y_{1}=240+10\cdot [A_{1}\cdot s(X)+0.5U_{1}+2Z+2X_{1}+1.5X_{2}]+e_{1}
-$$
+```
 
-$$
+```math
 e_{0},e_{1}\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1)
-$$
+```
 
 independent of all other primitive draws
 
 **observation and sample-size interface**
 
-$$
+```math
 A=(1-T)\cdot A_{0}+T\cdot A_{1}
-$$
+```
 
-$$
+```math
 Y=(1-T)\cdot Y_{0}+T\cdot Y_{1}
-$$
+```
 
 return X1,X2,Z,T,A,Y only. n is total individuals
 
-$$
+```math
 \mathrm{paper} \mathrm{baseline} n=5000 \text{ independently } \mathrm{tested}
-$$
+```
 
 Source notation retained without guessing:
 
@@ -114,13 +114,13 @@ Source notation retained without guessing:
 
 **population causal target**
 
-$$
+```math
 \tau_{t}(x)=\mathbb{E}[Y_{t}(1)-Y_{t}(0)\mid X=x]=10\cdot s(x)
-$$
+```
 
-$$
+```math
 \mathrm{ATE}=\mathbb{E}[\tau_{t}(X)]=-5
-$$
+```
 
 This is not ATT, finite-sample SATT, PCD or a policy-performance estimand.
 
@@ -140,9 +140,9 @@ tau_t(x)=E[Y_t(1)-Y_t(0)|X=x]=10*s(x); ATE=E[tau_t(X)]=-5. This is not ATT, fini
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| section6_main | ATE | Population average causal effect E[Y_t(1)-Y_t(0)]=E[10(1.5X1+2X2-0.5)]=-5 for either t=0 or1, over X~N(0,I2), and original natural Z,U. Not ATT, a finite-sample SATT, optimal-policy value or PCD. | -5.0 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| section6_main | ATE | Population average causal effect E[Y_t(1)-Y_t(0)]=E[10(1.5X1+2X2-0.5)]=-5 for either t=0 or1, over X~N(0,I2), and original natural Z,U. Not ATT, a finite-sample SATT, optimal-policy value or PCD. | -5.0 |
 
 **Original submitted target notation:** ATE
 

@@ -43,59 +43,59 @@ Not explicitly identified (review required)
 
 **Baseline confounders**
 
-$$
+```math
 X_{l} \sim \mathcal{N}(0, 1/4) \text{ independently }, l = 1, 2, 3
-$$
+```
 
 **Treatment propensity (scenario NNN)**
 
-$$
+```math
 \mu_{\mathrm{D0}}(X) = \mathrm{expit}\{0.8 (X_{1} X_{2} + X_{2})\}
-$$
+```
 
 **Mediator confounding (scenario NNN)**
 
-$$
+```math
 \psi_{M}(X) = X_{1}^{2} + X_{2} - X_{3}
-$$
+```
 
 **Outcome confounding (scenario NNN)**
 
-$$
+```math
 \psi_{Y}(X) = 2 (X_{1} - 0.5)^{2} + X_{2} + 2 X_{3}
-$$
+```
 
 **Treatment**
 
-$$
+```math
 D \mid  X \sim \mathrm{Bernoulli}(\mu_{\mathrm{D0}}(X))
-$$
+```
 
 **Mediator vector**
 
-$$
+```math
 M = \alpha_{0} D + \psi_{M}(X) 1_{p} + \eta, \eta_{j} \sim \mathcal{N}(0, 1) \text{ independently }, p = 10, \alpha_{0} = (1, 2, 2, 0, \ldots , 0)
-$$
+```
 
 **Outcome**
 
-$$
+```math
 Y = \gamma_{0} D + \beta_{0}' M + \psi_{Y}(X) + \varepsilon, \varepsilon\sim \mathcal{N}(0, 1)
-$$
+```
 
-$$
+```math
 \gamma_{0} = 2, \beta_{0} = (0.8, 0.4, 0.4, 0, \ldots , 0)
-$$
+```
 
 **Source identities (Proposition 2.1)**
 
-$$
+```math
 \mathrm{NDE} = \gamma_{0} = 2
-$$
+```
 
-$$
+```math
 \mathrm{NIE} = \alpha_{0} . \beta_{0} = 2.4
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -116,9 +116,9 @@ NDE = gamma_0 = 2; NIE = alpha_0 . beta_0 = 2.4
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| NNN | NIE | Natural indirect effect through the sparse mediator set: NIE = E[Y(1, M(1))] - E[Y(1, M(0))]. Under the source's additive structural model (its equation (1)) and its Proposition 2.1 this equals the inner product alpha_0 . beta_0 of the treatment-to-mediator and mediator-to-outcome coefficient vectors. The companion natural direct effect equals gamma_0. This is NOT a total effect and NOT a single-mediator indirect effect; ten candidate mediators are generated and only the first three are true mediators. | 2.4000000000000004 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| NNN | NIE | Natural indirect effect through the sparse mediator set: NIE = E[Y(1, M(1))] - E[Y(1, M(0))]. Under the source's additive structural model (its equation (1)) and its Proposition 2.1 this equals the inner product alpha_0 . beta_0 of the treatment-to-mediator and mediator-to-outcome coefficient vectors. The companion natural direct effect equals gamma_0. This is NOT a total effect and NOT a single-mediator indirect effect; ten candidate mediators are generated and only the first three are true mediators. | 2.4000000000000004 |
 
 **Original submitted target notation:** NIE = alpha_0 . beta_0
 

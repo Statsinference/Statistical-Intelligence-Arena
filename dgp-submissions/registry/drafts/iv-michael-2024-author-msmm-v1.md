@@ -38,64 +38,64 @@ Not explicitly identified (review required)
 
 **DGP equation 1**
 
-$$
+```math
 T=3
-$$
+```
 
-$$
+```math
 U_{t}\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1)
-$$
+```
 
-$$
+```math
 m_{1}=1, m_{t}=A_{t-1} (t\geq 2).
-$$
+```
 
 **DGP equation 2**
 
-$$
+```math
 L_{t}=m_{t}+U_{t}, \delta_{t}=\Phi(0.96+0.46L_{t}).
-$$
+```
 
 **DGP equation 3**
 
-$$
+```math
 Z_{t}\mid L_{t} \sim \mathrm{Bernoulli}[\mathrm{expit}(0.53-0.10L_{t})].
-$$
+```
 
 **DGP equation 4**
 
-$$
+```math
 p_{t}=\Phi(-0.16+0.11L_{t}+0.26U_{t})(1-\delta_{t})+Z_{t}\delta_{t}
-$$
+```
 
 **DGP equation 5**
 
-$$
+```math
 A_{t}\mid L_{t},U_{t},Z_{t} \sim \mathrm{Bernoulli}(p_{t}).
-$$
+```
 
 **DGP equation 6**
 
-$$
+```math
 Y=\sum_{t=1}^{3}U_{t}/\sqrt{3}+\sum_{t=1}^{3}(L_{t}-m_{t})/\sqrt{3}+\sum_{t=1}^{3}\beta_{t}A_{t}+\varepsilon
-$$
+```
 
 **DGP equation 7**
 
-$$
+```math
 \beta_{1}=\beta_{2}=\beta_{3}=1
-$$
+```
 
-$$
+```math
 \varepsilon\sim \mathcal{N}(0,1).
-$$
+```
 
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| author_T3 | Final-period marginal structural mean effect | English description not yet supplied; consult the original scientific record (JSON). | 1.0 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| author_T3 | Final-period marginal structural mean effect | English description not yet supplied; consult the original scientific record (JSON). | 1.0 |
 
 **Original submitted target notation:** beta_T
 

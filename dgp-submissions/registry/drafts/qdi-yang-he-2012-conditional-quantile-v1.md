@@ -36,13 +36,13 @@ B, e
 
 **Common covariate law, Section 4.2 p.1114**
 
-$$
+```math
 X \sim \chi-\mathrm{square}(\mathrm{df}=2)
-$$
+```
 
-$$
+```math
 Z = 2B, B \sim \mathrm{Bernoulli}(0.5)
-$$
+```
 
 X, Z, e
 
@@ -50,57 +50,57 @@ mutually independent
 
 **Model 1, p.1114**
 
-$$
+```math
 Y=X+Z+e
-$$
+```
 
-$$
+```math
 e\sim \mathcal{N}(\text{ mean }=0, \text{ variance }=4).
-$$
+```
 
 **Model 2, p.1114**
 
-$$
+```math
 Y=X+Z+e
-$$
+```
 
-$$
+```math
 \log(e)\sim \mathcal{N}(\text{ mean }=0, \text{ variance }=1)
-$$
+```
 
 e is not centered.
 
 **Model 3, p.1114**
 
-$$
+```math
 Y=X+Z+(1+X/2)e
-$$
+```
 
-$$
+```math
 e\sim \mathcal{N}(\text{ mean }=0, \text{ variance }=4).
-$$
+```
 
 **Model 4, p.1114**
 
-$$
+```math
 Y=X+Z+(1+X/2)e
-$$
+```
 
-$$
+```math
 \log(e)\sim \mathcal{N}(\text{ mean }=0, \text{ variance }=1)
-$$
+```
 
 e is not centered.
 
 **Derived target adaptation**
 
-$$
+```math
 \theta_{m}=2+s_{m}(2)q_{e}(0.95), \text{ with } s_{1}=s_{2}=1, s_{3}(x)=s_{4}(x)=1+x/2
-$$
+```
 
-$$
+```math
 q_{\mathrm{normal}}(\tau)=2 \Phi^{-1}(\tau), q_{\mathrm{lognormal}}(\tau)=\exp(\Phi^{-1}(\tau)).
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -119,12 +119,12 @@ theta_m=2+s_m(2)q_e(0.95), with s_1=s_2=1, s_3(x)=s_4(x)=1+x/2; q_normal(tau)=2 
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| model1_normal_homoscedastic | Conditional quantile | inf{y: F_m(y\|X=2,Z=0)&gt;=0.95} in the model-specific synthetic superpopulation. Conditional, pointwise scalar; not a marginal quantile, regression slope, posterior quantile, sample-mean adjusted intercept or simultaneous band. | 5.289707253902943 | reported_numeric |
-| model2_lognormal_homoscedastic | Conditional quantile | inf{y: F_m(y\|X=2,Z=0)&gt;=0.95} in the model-specific synthetic superpopulation. Conditional, pointwise scalar; not a marginal quantile, regression slope, posterior quantile, sample-mean adjusted intercept or simultaneous band. | 7.18025160223301 | reported_numeric |
-| model3_normal_heteroscedastic | Conditional quantile | inf{y: F_m(y\|X=2,Z=0)&gt;=0.95} in the model-specific synthetic superpopulation. Conditional, pointwise scalar; not a marginal quantile, regression slope, posterior quantile, sample-mean adjusted intercept or simultaneous band. | 8.579414507805886 | reported_numeric |
-| model4_lognormal_heteroscedastic | Conditional quantile | inf{y: F_m(y\|X=2,Z=0)&gt;=0.95} in the model-specific synthetic superpopulation. Conditional, pointwise scalar; not a marginal quantile, regression slope, posterior quantile, sample-mean adjusted intercept or simultaneous band. | 12.36050320446602 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| model1_normal_homoscedastic | Conditional quantile | inf{y: F_m(y\|X=2,Z=0)&gt;=0.95} in the model-specific synthetic superpopulation. Conditional, pointwise scalar; not a marginal quantile, regression slope, posterior quantile, sample-mean adjusted intercept or simultaneous band. | 5.289707253902943 |
+| model2_lognormal_homoscedastic | Conditional quantile | inf{y: F_m(y\|X=2,Z=0)&gt;=0.95} in the model-specific synthetic superpopulation. Conditional, pointwise scalar; not a marginal quantile, regression slope, posterior quantile, sample-mean adjusted intercept or simultaneous band. | 7.18025160223301 |
+| model3_normal_heteroscedastic | Conditional quantile | inf{y: F_m(y\|X=2,Z=0)&gt;=0.95} in the model-specific synthetic superpopulation. Conditional, pointwise scalar; not a marginal quantile, regression slope, posterior quantile, sample-mean adjusted intercept or simultaneous band. | 8.579414507805886 |
+| model4_lognormal_heteroscedastic | Conditional quantile | inf{y: F_m(y\|X=2,Z=0)&gt;=0.95} in the model-specific synthetic superpopulation. Conditional, pointwise scalar; not a marginal quantile, regression slope, posterior quantile, sample-mean adjusted intercept or simultaneous band. | 12.36050320446602 |
 
 **Original submitted target notation:** theta_m = Q_0.95(Y \| X=2,Z=0), m=1,2,3,4
 

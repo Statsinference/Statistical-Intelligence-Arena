@@ -43,57 +43,57 @@ epsilon, U,Z_j
 
 **Covariates**
 
-$$
+```math
 X \sim \mathcal{N}_{1000}(0,C)
-$$
+```
 
-$$
+```math
 p=1001
-$$
+```
 
-$$
+```math
 \mathrm{diag}(C)=1-1/(2p), \mathrm{offdiag}(C)=1/(2p). X_{j}=\sqrt{1-1/p} Z_{j} + \sqrt{1/(2p)} U, \text{ all } Z_{j},U\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1).
-$$
+```
 
 **Response**
 
-$$
+```math
 Y = \sum_{j=1}^{1000} 0.7^{j-1} \sin(X_{j}) + \varepsilon
-$$
+```
 
-$$
+```math
 \varepsilon\sim \mathcal{N}(0,0.25)
-$$
+```
 
-$$
+```math
 p=1001
-$$
+```
 
-$$
+```math
 C_{jj}=1-1/(2p)
-$$
+```
 
-$$
+```math
 C_{jk}=1/(2p) (j\neq k)
-$$
+```
 
 **Sampling and observed data**
 
 Independent units and independent outcome noise
 
-$$
+```math
 \mathrm{Two} \text{ iid } \mathrm{samples} \text{ from } \text{ the } \mathrm{same} \text{ population }
-$$
+```
 
 fixed group sizes, R indicates observed Y
 
-$$
+```math
 \mathrm{Export} X,R,Y_{\mathrm{obs}} \text{ where } Y_{\mathrm{obs}}=Y \text{ when } R=1 \text{ and } 0 \text{ otherwise }
-$$
+```
 
-$$
+```math
 n_{\mathrm{total}}=\mathrm{nL}+\mathrm{nU}.
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -109,9 +109,9 @@ Independent units and independent outcome noise. Two iid samples from the same p
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| source_fixed | Population outcome mean | Superpopulation mean theta=E[Y] under the declared fixed mechanism, shared by labeled and unlabeled samples. | 0.0 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| source_fixed | Population outcome mean | Superpopulation mean theta=E[Y] under the declared fixed mechanism, shared by labeled and unlabeled samples. | 0.0 |
 
 **Original submitted target notation:** theta = E[Y]
 

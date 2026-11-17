@@ -38,45 +38,45 @@ Source notation retained without guessing:
 
 <pre>(V,U) has the bivariate standard Cauchy law restricted to V&gt;0,U&gt;0, with scale matrix I_2 (source s=0).</pre>
 
-$$
+```math
 \mathrm{Equivalent} \text{ independent }-\mathrm{normal} \mathrm{construction}: G_{0},G_{1},G_{2}\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1)
-$$
+```
 
-$$
+```math
 V=\lvert G_{1}\rvert/\lvert G_{0}\rvert
-$$
+```
 
-$$
+```math
 U=\lvert G_{2}\rvert/\lvert G_{0}\rvert.
-$$
+```
 
-$$
+```math
 F_{0}(v)=2\cdot \mathrm{atan}(v)/\pi\text{ for } v\geq 0
-$$
+```
 
-$$
+```math
 \mathrm{Outcome} Y=-\log(1-F_{0}(V))
-$$
+```
 
-$$
+```math
 \text{ observed } \mathrm{covariate} X_{1}=U
-$$
+```
 
-$$
+```math
 \mathrm{Source} \gamma=0 \in \mathrm{equation} (16).
-$$
+```
 
 Source notation retained without guessing:
 
 <pre>Two independent samples from the same population: source_n_labeled rows with observed Y and source_n_unlabeled rows with observed X only. R=1 in the first labeled block</pre>
 
-$$
+```math
 Y_{\mathrm{obs}}=Y \text{ there }. R=0 \in \text{ the } \mathrm{remaining} \mathrm{block}
-$$
+```
 
-$$
+```math
 Y_{\mathrm{obs}}=0 \text{ is } \text{ a } \text{ placeholder }.
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -93,9 +93,9 @@ Two independent samples from the same population: source_n_labeled rows with obs
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| original | Marginal population quantile | Marginal quantile inf{y:Pr(Y&lt;=y)&gt;=0.998} in the common population; tail probability is fixed at 0.002. | 6.214608098422191 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| original | Marginal population quantile | Marginal quantile inf{y:Pr(Y&lt;=y)&gt;=0.998} in the common population; tail probability is fixed at 0.002. | 6.214608098422191 |
 
 **Original submitted target notation:** Q_Y(0.998)
 

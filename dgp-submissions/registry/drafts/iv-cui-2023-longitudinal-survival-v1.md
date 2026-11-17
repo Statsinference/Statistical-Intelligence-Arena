@@ -36,109 +36,109 @@ Not explicitly identified (review required)
 
 **Exogenous draws**
 
-$$
+```math
 T_{00}\sim \mathrm{Exponential}(\text{ rate }=1)
-$$
+```
 
-$$
+```math
 \text{ independent } \varepsilon_{1},\ldots ,\varepsilon_{4}\sim \mathcal{N}(0,0.5^{2})
-$$
+```
 
-$$
+```math
 \text{ independent } \mathrm{Ctilde}\sim \mathrm{Uniform}(0,4).
-$$
+```
 
 **Baseline confounding**
 
-$$
+```math
 \begin{aligned}
 L_{0} &= 1.5\cdot T_{00}+\varepsilon_{1} \\
 U_{0} &= 1.5\cdot T_{00}+\varepsilon_{2}.
 \end{aligned}
-$$
+```
 
 **Baseline instrument**
 
-$$
+```math
 Z_{0}\mid L_{0}\sim \mathrm{Bernoulli}(\Phi(-0.5+0.2\cdot L_{0})).
-$$
+```
 
 **Baseline treatment**
 
-$$
+```math
 \Delta_{0}=\Phi(0.2\cdot L_{0})
-$$
+```
 
-$$
+```math
 A_{0}\mid L_{0},U_{0},Z_{0}\sim \mathrm{Bernoulli}(\Phi(0.2\cdot L_{0}-0.8\cdot U_{0})\cdot (1-\Delta_{0})+Z_{0}\cdot \Delta_{0}).
-$$
+```
 
 **Second-visit confounding**
 
-$$
+```math
 \begin{aligned}
 L_{1} &= L_{0}-U_{0}+1.5\cdot A_{0}+T_{00}+\varepsilon_{3} \\
 U_{1} &= 0.5\cdot L_{0}-U_{0}+A_{0}+T_{00}+\varepsilon_{4}.
 \end{aligned}
-$$
+```
 
 **Second instrument**
 
-$$
+```math
 Z_{1}\mid L_{1},A_{0},Z_{0}\sim \mathrm{Bernoulli}(\Phi(-1+0.2\cdot L_{1}+0.2\cdot A_{0}+0.2\cdot Z_{0})).
-$$
+```
 
 **Second treatment**
 
-$$
+```math
 \Delta_{1}=\Phi(0.2\cdot L_{1})
-$$
+```
 
-$$
+```math
 A_{1}\mid L_{1},U_{1},Z_{1}\sim \mathrm{Bernoulli}(\Phi(0.2\cdot L_{1}-0.8\cdot U_{1})\cdot (1-\Delta_{1})+Z_{1}\cdot \Delta_{1}).
-$$
+```
 
 **Causal failure time**
 
-$$
+```math
 T_{00}=\mathrm{int}_{0}^{T} \exp(\psi\cdot \text{ a }(s))\mathrm{ds} \text{ with } \text{ a }(s)=A_{0} \text{ for } s\leq 1 \text{ and } A_{1} \text{ for } s>1
-$$
+```
 
-$$
+```math
 \psi=-1 \mathrm{or0}
-$$
+```
 
-$$
+```math
 \mathrm{Let} q_{0}=\exp(\psi\cdot A_{0})
-$$
+```
 
-$$
+```math
 q_{1}=\exp(\psi\cdot A_{1}). T=T_{00}/q_{0} \text{ if } T_{00}\leq q_{0}
-$$
+```
 
-$$
+```math
 T=1+(T_{00}-q_{0})/q_{1} \text{ otherwise }.
-$$
+```
 
 **Censoring**
 
-$$
+```math
 C=\min(\mathrm{Ctilde},2)
-$$
+```
 
-$$
+```math
 Y=\min(T,C)
-$$
+```
 
-$$
+```math
 \mathrm{event}=I(T\leq C).
-$$
+```
 
 **Observed representation**
 
-$$
+```math
 R_{1}=I(Y\geq 1)
-$$
+```
 
 output second-visit L1,Z1,A1 multiplied by R1, together with R1
 
@@ -146,17 +146,17 @@ Never output T00,U0,U1,T,C or errors.
 
 **Population target**
 
-$$
+```math
 \mathrm{For} \text{ fixed } \mathrm{treatment} \mathrm{regime} \text{ a }, \lambda_{\mathrm{Ta}}(t)=\exp(\psi\cdot \text{ a }(t))
-$$
+```
 
 Source notation retained without guessing:
 
 <pre>psi=log(hazard under a(t)=1 / hazard under a(t)=0), at a common time away from1</pre>
 
-$$
+```math
 \mathrm{Baseline} \mathrm{hazard}=1.
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -180,10 +180,10 @@ For fixed treatment regime a, lambda_Ta(t)=exp(psi*a(t)); psi=log(hazard under a
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| source_effect_minus1 | Marginal structural log hazard ratio | Population marginal structural Cox log hazard ratio for the current binary treatment under fixed two-visit intervention regimes: lambda_Ta(t)=lambda0(t)*exp(psi*a(t)), lambda0(t)=1. Compare treatment1 versus0 at the same time t away from the visit1 switch. Target is psi=-1 or0, not a survival probability difference or LATE. | -1.0 | reported_numeric |
-| source_null | Marginal structural log hazard ratio | Population marginal structural Cox log hazard ratio for the current binary treatment under fixed two-visit intervention regimes: lambda_Ta(t)=lambda0(t)*exp(psi*a(t)), lambda0(t)=1. Compare treatment1 versus0 at the same time t away from the visit1 switch. Target is psi=-1 or0, not a survival probability difference or LATE. | 0.0 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| source_effect_minus1 | Marginal structural log hazard ratio | Population marginal structural Cox log hazard ratio for the current binary treatment under fixed two-visit intervention regimes: lambda_Ta(t)=lambda0(t)*exp(psi*a(t)), lambda0(t)=1. Compare treatment1 versus0 at the same time t away from the visit1 switch. Target is psi=-1 or0, not a survival probability difference or LATE. | -1.0 |
+| source_null | Marginal structural log hazard ratio | Population marginal structural Cox log hazard ratio for the current binary treatment under fixed two-visit intervention regimes: lambda_Ta(t)=lambda0(t)*exp(psi*a(t)), lambda0(t)=1. Compare treatment1 versus0 at the same time t away from the visit1 switch. Target is psi=-1 or0, not a survival probability difference or LATE. | 0.0 |
 
 **Original submitted target notation:** psi
 

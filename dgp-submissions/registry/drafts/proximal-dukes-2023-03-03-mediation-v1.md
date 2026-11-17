@@ -38,65 +38,65 @@ Not explicitly identified (review required)
 
 English equation transcription pending; consult the linked original scientific record (JSON) for the complete source and context.
 
-$$
+```math
 T=X_{1}+X_{2}
-$$
+```
 
-$$
+```math
 \sigma(t)=1/(1+\exp(-t))
-$$
+```
 
 **Step 1**
 
-$$
+```math
 (X_{1},X_{2},U)^{T} \sim \mathcal{N}_{3}((0.25,0.25,0)^{T}, \begin{bmatrix}
 0.25 & 0 & 0.05 \\
 0 & 0.25 & 0.05 \\
 0.05 & 0.05 & 1
 \end{bmatrix})
-$$
+```
 
 **Step 2**
 
-$$
+```math
 A \mid  T,U \sim \mathrm{Bernoulli}(\sigma(-0.5T - 0.4U))
-$$
+```
 
 **Step 3**
 
-$$
+```math
 Z = 0.2 - 0.52A + 0.2T - U + \varepsilon_{Z}
-$$
+```
 
 **Step 4**
 
-$$
+```math
 W = 0.3 + 0.2T - 0.6U + \varepsilon_{W}
-$$
+```
 
 **Step 5**
 
-$$
+```math
 M = -0.3A - 0.5T + 0.4U + \varepsilon_{M}
-$$
+```
 
 **Step 6**
 
-$$
+```math
 Y = 2 + 2A + M + 2W - T - U + \varepsilon_{Y}
-$$
+```
 
 English equation transcription pending; consult the linked original scientific record (JSON) for the complete source and context.
 
 εZ,εW,εM
 
-$$
+```math
 \mathcal{N}(0,1)
-$$
+```
 
-$$
+```math
 \varepsilon_{Y} \sim \mathcal{N}(0,2^{2})
-$$
+```
 
 X1,X2,A,Z,W,M,Y
 
@@ -105,9 +105,9 @@ U
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| original | NDE | E[Y(1,M(0))-Y(0,M(0))] in the source population; NIE and total effect are auxiliary only. | 2.0 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| original | NDE | E[Y(1,M(0))-Y(0,M(0))] in the source population; NIE and total effect are auxiliary only. | 2.0 |
 
 **Original submitted target notation:** NDE
 

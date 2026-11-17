@@ -43,49 +43,49 @@ Not explicitly identified (review required)
 
 **Shared covariate construction**
 
-$$
+```math
 \mathrm{For} \text{ each } \mathrm{row} i \text{ and } j=1,\ldots ,600: W_{ij},U_{i} \mathrm{are} \text{ mutually } \text{ iid } \mathrm{Uniform}[0,1]
-$$
+```
 
-$$
+```math
 X_{ij}=(W_{ij}+0.3 U_{i})/1.3.
-$$
+```
 
 **Sparse additive response**
 
-$$
+```math
 Y_{i}=\sum_{j=1}^{4} f_{j}(X_{ij})+\varepsilon_{i}, \varepsilon_{i}\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1.5^{2})
-$$
+```
 
 independent of the covariates
 
 **Active functions**
 
-$$
+```math
 f_{1}(t)=6[0.1 \sin(2 \pi t)+0.2 \cos(2 \pi t)+0.3 \sin^{2}(2 \pi t)+0.4 \cos^{3}(2 \pi t)+0.5 \sin^{3}(2 \pi t)]
-$$
+```
 
-$$
+```math
 f_{2}(t)=3(2t-1)^{2}
-$$
+```
 
-$$
+```math
 f_{3}(t)=5t
-$$
+```
 
-$$
+```math
 f_{4}(t)=4 \sin(2 \pi t)/(2-\sin(2 \pi t))
-$$
+```
 
-$$
+```math
 f_{j}=0 \text{ for } j=5,\ldots ,600.
-$$
+```
 
 **Library estimand**
 
-$$
+```math
 m(x^{\ast})=\mathbb{E}[Y\mid X=x^{\ast}]=\sum_{j=1}^{4} f_{j}(0.5), x^{\ast}=(0.5,\ldots ,0.5), \text{ with } \mathrm{truth} -1.1.
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -102,9 +102,9 @@ m(x*)=E[Y|X=x*]=sum_{j=1}^4 f_j(0.5), x*=(0.5,...,0.5), with truth -1.1.
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| original | Pointwise conditional mean | Noncausal pointwise conditional mean under the declared sparse-additive DGP, evaluated at the fixed query x*=(0.5,...,0.5). Since E[epsilon\|X]=0, m(x*) equals the sum of the four active component functions at the query; inactive coordinates contribute zero. This is a library adaptation and is not the paper's simultaneous confidence-band target. | -1.1000000000000003 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| original | Pointwise conditional mean | Noncausal pointwise conditional mean under the declared sparse-additive DGP, evaluated at the fixed query x*=(0.5,...,0.5). Since E[epsilon\|X]=0, m(x*) equals the sum of the four active component functions at the query; inactive coordinates contribute zero. This is a library adaptation and is not the paper's simultaneous confidence-band target. | -1.1000000000000003 |
 
 **Original submitted target notation:** m(x*) = E[Y \| X=x*] = sum_{j=1}^4 f_j(0.5), x*=(0.5,...,0.5) in R^600
 

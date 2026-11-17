@@ -36,31 +36,31 @@ U, delta, zeta
 
 **1**
 
-$$
+```math
 Z\sim \mathcal{N}(0,\mathrm{SD}=2)
-$$
+```
 
-$$
+```math
 U\sim \mathcal{N}(0,\mathrm{SD}=2)
-$$
+```
 
-$$
+```math
 \delta,\zeta\sim \mathcal{N}(0,\mathrm{SD}=0.1)
-$$
+```
 
 mutually independent
 
 **2**
 
-$$
+```math
 P=0.6\cdot Z+0.4\cdot U+\delta
-$$
+```
 
 **3**
 
-$$
+```math
 Y=\sin(P)+U+\zeta
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -76,9 +76,9 @@ Y=sin(P)+U+zeta
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| code_scale_alpha06_raw | Structural outcome contrast for specified interventions | Structural outcome contrast for interventions P=.5 versus P=0, retaining the marginal centered latent confounder and outcome noise. This is not E[Y\|P=.5]-E[Y\|P=0]. | 0.479425538604203 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| code_scale_alpha06_raw | Structural outcome contrast for specified interventions | Structural outcome contrast for interventions P=.5 versus P=0, retaining the marginal centered latent confounder and outcome noise. This is not E[Y\|P=.5]-E[Y\|P=0]. | 0.479425538604203 |
 
 **Original submitted target notation:** theta_IV = h0(0.5)-h0(0)
 

@@ -43,33 +43,33 @@ Xj
 
 **X1-X5**
 
-$$
+```math
 \mathrm{Xj} \sim \mathrm{Uniform}(0,1) \text{ independently }, j = 1..5
-$$
+```
 
 **Treatment**
 
-$$
+```math
 P(A=1\mid X) = 0.25 \cdot  (1 + 20 X_{1} (1-X_{1})^{3})
-$$
+```
 
 **Baseline**
 
-$$
+```math
 m(X) = 2 X_{1} - 1
-$$
+```
 
 **Heterogeneity**
 
-$$
+```math
 \tau(X) = 0
-$$
+```
 
 **Outcome**
 
-$$
+```math
 Y = m(X) + A \tau(X) + \varepsilon, \varepsilon\sim \mathcal{N}(0,1)
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -87,9 +87,9 @@ Y = m(X) + A tau(X) + eps, eps ~ Normal(0,1)
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| original | CATE | Conditional average treatment effect at the declared query point; in this design it is identically zero for every x, which makes it a null-effect control for bias and interval coverage under confounding. | 0.0 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| original | CATE | Conditional average treatment effect at the declared query point; in this design it is identically zero for every x, which makes it a null-effect control for bias and interval coverage under confounding. | 0.0 |
 
 **Original submitted target notation:** tau(x0) = E[Y(1) - Y(0) \| X = x0]
 

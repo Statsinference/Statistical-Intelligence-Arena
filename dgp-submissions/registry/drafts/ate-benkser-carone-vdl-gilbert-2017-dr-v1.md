@@ -36,37 +36,37 @@ Not explicitly identified (review required)
 
 **Baseline covariate W1**
 
-$$
+```math
 W_{1} \sim \mathrm{Uniform}(-2, 2)
-$$
+```
 
 **Baseline covariate W2**
 
-$$
+```math
 W_{2} \sim \mathrm{Bernoulli}(1/2)
-$$
+```
 
 independent of W1
 
 **Treatment assignment**
 
-$$
+```math
 A \mid  W=(w_{1},w_{2}) \sim \mathrm{Bernoulli}(g_{0}(w_{1},w_{2}))
-$$
+```
 
-$$
+```math
 g_{0}(w_{1},w_{2})=\mathrm{expit}(-w_{1} + 2\cdot w_{1}\cdot w_{2})
-$$
+```
 
 **Binary outcome**
 
-$$
+```math
 Y \mid  A=\text{ a },W=w \sim \mathrm{Bernoulli}(\mathrm{Qbar0}(\text{ a },w))
-$$
+```
 
-$$
+```math
 \mathrm{Qbar0}(\text{ a },w)=\mathrm{expit}(0.2\cdot \text{ a } - w_{1} + 2\cdot w_{1}\cdot w_{2})
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -83,9 +83,9 @@ Y | A=a,W=w ~ Bernoulli(Qbar0(a,w)); Qbar0(a,w)=expit(0.2*a - w1 + 2*w1*w2)
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| section51_original | ATE | Population risk difference under interventions setting A=1 versus A=0, averaged over the source covariate distribution W=(W1,W2). | 0.03802642731065545 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| section51_original | ATE | Population risk difference under interventions setting A=1 versus A=0, averaged over the source covariate distribution W=(W1,W2). | 0.03802642731065545 |
 
 **Original submitted target notation:** ATE = E[Y(1)-Y(0)]
 

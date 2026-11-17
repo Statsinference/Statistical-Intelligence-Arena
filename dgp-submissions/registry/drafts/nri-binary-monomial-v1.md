@@ -36,27 +36,27 @@ Not explicitly identified (review required)
 
 **Covariate**
 
-$$
+```math
 X_{i} \sim \mathrm{Uniform}[0,1] \text{ independently }
-$$
+```
 
 **Monomial regression function**
 
-$$
+```math
 p_{s}(x) = x^{1-s}, s \in \{0,0.1,\ldots ,1\}\setminus \{1\}
-$$
+```
 
 **Binary outcome**
 
-$$
+```math
 Y_{i} \mid  X_{i}=x \sim \mathrm{Bernoulli}(p_{s}(x)) \text{ independently }
-$$
+```
 
 **NRI scalar target**
 
-$$
+```math
 m_{s}(0.5) = \mathbb{E}[Y \mid  X=0.5] = p_{s}(0.5) = 0.5^{1-s}
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -73,18 +73,18 @@ m_s(0.5) = E[Y | X=0.5] = p_s(0.5) = 0.5^(1-s)
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| s00 | Pointwise conditional mean | Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0,0.1,...,0.9}; with p_s(x)=x^(1-s), the target is p_s(0.5). This is a conditional Bernoulli probability, not an intervention effect or a prediction interval. | 0.5 | reported_numeric |
-| s01 | Pointwise conditional mean | Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0,0.1,...,0.9}; with p_s(x)=x^(1-s), the target is p_s(0.5). This is a conditional Bernoulli probability, not an intervention effect or a prediction interval. | 0.5358867312681466 | reported_numeric |
-| s02 | Pointwise conditional mean | Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0,0.1,...,0.9}; with p_s(x)=x^(1-s), the target is p_s(0.5). This is a conditional Bernoulli probability, not an intervention effect or a prediction interval. | 0.5743491774985174 | reported_numeric |
-| s03 | Pointwise conditional mean | Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0,0.1,...,0.9}; with p_s(x)=x^(1-s), the target is p_s(0.5). This is a conditional Bernoulli probability, not an intervention effect or a prediction interval. | 0.6155722066724582 | reported_numeric |
-| s04 | Pointwise conditional mean | Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0,0.1,...,0.9}; with p_s(x)=x^(1-s), the target is p_s(0.5). This is a conditional Bernoulli probability, not an intervention effect or a prediction interval. | 0.6597539553864471 | reported_numeric |
-| s05 | Pointwise conditional mean | Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0,0.1,...,0.9}; with p_s(x)=x^(1-s), the target is p_s(0.5). This is a conditional Bernoulli probability, not an intervention effect or a prediction interval. | 0.7071067811865476 | reported_numeric |
-| s06 | Pointwise conditional mean | Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0,0.1,...,0.9}; with p_s(x)=x^(1-s), the target is p_s(0.5). This is a conditional Bernoulli probability, not an intervention effect or a prediction interval. | 0.757858283255199 | reported_numeric |
-| s07 | Pointwise conditional mean | Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0,0.1,...,0.9}; with p_s(x)=x^(1-s), the target is p_s(0.5). This is a conditional Bernoulli probability, not an intervention effect or a prediction interval. | 0.8122523963562355 | reported_numeric |
-| s08 | Pointwise conditional mean | Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0,0.1,...,0.9}; with p_s(x)=x^(1-s), the target is p_s(0.5). This is a conditional Bernoulli probability, not an intervention effect or a prediction interval. | 0.8705505632961241 | reported_numeric |
-| s09 | Pointwise conditional mean | Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0,0.1,...,0.9}; with p_s(x)=x^(1-s), the target is p_s(0.5). This is a conditional Bernoulli probability, not an intervention effect or a prediction interval. | 0.9330329915368074 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| s00 | Pointwise conditional mean | Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0,0.1,...,0.9}; with p_s(x)=x^(1-s), the target is p_s(0.5). This is a conditional Bernoulli probability, not an intervention effect or a prediction interval. | 0.5 |
+| s01 | Pointwise conditional mean | Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0,0.1,...,0.9}; with p_s(x)=x^(1-s), the target is p_s(0.5). This is a conditional Bernoulli probability, not an intervention effect or a prediction interval. | 0.5358867312681466 |
+| s02 | Pointwise conditional mean | Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0,0.1,...,0.9}; with p_s(x)=x^(1-s), the target is p_s(0.5). This is a conditional Bernoulli probability, not an intervention effect or a prediction interval. | 0.5743491774985174 |
+| s03 | Pointwise conditional mean | Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0,0.1,...,0.9}; with p_s(x)=x^(1-s), the target is p_s(0.5). This is a conditional Bernoulli probability, not an intervention effect or a prediction interval. | 0.6155722066724582 |
+| s04 | Pointwise conditional mean | Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0,0.1,...,0.9}; with p_s(x)=x^(1-s), the target is p_s(0.5). This is a conditional Bernoulli probability, not an intervention effect or a prediction interval. | 0.6597539553864471 |
+| s05 | Pointwise conditional mean | Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0,0.1,...,0.9}; with p_s(x)=x^(1-s), the target is p_s(0.5). This is a conditional Bernoulli probability, not an intervention effect or a prediction interval. | 0.7071067811865476 |
+| s06 | Pointwise conditional mean | Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0,0.1,...,0.9}; with p_s(x)=x^(1-s), the target is p_s(0.5). This is a conditional Bernoulli probability, not an intervention effect or a prediction interval. | 0.757858283255199 |
+| s07 | Pointwise conditional mean | Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0,0.1,...,0.9}; with p_s(x)=x^(1-s), the target is p_s(0.5). This is a conditional Bernoulli probability, not an intervention effect or a prediction interval. | 0.8122523963562355 |
+| s08 | Pointwise conditional mean | Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0,0.1,...,0.9}; with p_s(x)=x^(1-s), the target is p_s(0.5). This is a conditional Bernoulli probability, not an intervention effect or a prediction interval. | 0.8705505632961241 |
+| s09 | Pointwise conditional mean | Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0,0.1,...,0.9}; with p_s(x)=x^(1-s), the target is p_s(0.5). This is a conditional Bernoulli probability, not an intervention effect or a prediction interval. | 0.9330329915368074 |
 
 **Original submitted target notation:** m_s(x*) = E[Y \| X=x*] = p_s(x*)
 

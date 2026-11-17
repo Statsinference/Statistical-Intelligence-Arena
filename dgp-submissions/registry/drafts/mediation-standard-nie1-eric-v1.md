@@ -36,9 +36,9 @@ Not explicitly identified (review required)
 
 **target**
 
-$$
+```math
 \psi=\mathbb{E}[Y(1,M(1))-Y(1,M(0))]
-$$
+```
 
 **adapted structural equations**
 
@@ -77,9 +77,9 @@ return x,a,m,y,[&quot;binary&quot;],[&quot;binary&quot;,&quot;binary&quot;,&quot
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| native | NIE | NIE = E[Y(1,M(1))-Y(1,M(0))] in the adapted fixed-SEM superpopulation, jointly intervening on the complete mediator vector. | 0.23661990123343668 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| native | NIE | NIE = E[Y(1,M(1))-Y(1,M(0))] in the adapted fixed-SEM superpopulation, jointly intervening on the complete mediator vector. | 0.23661990123343668 |
 
 **Original submitted target notation:** NIE
 

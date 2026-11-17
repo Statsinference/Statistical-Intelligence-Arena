@@ -36,71 +36,71 @@ U_i4
 
 **Source law and sampling (Example 1, unnumbered)**
 
-$$
+```math
 X_{i} \text{ iid } \sim f_{T}
-$$
+```
 
-$$
+```math
 \varepsilon_{i} \text{ iid } \sim f_{T}
-$$
+```
 
 {X_i}
 
 independent of {epsilon_i}
 
-$$
+```math
 f_{T}(u)=(1-|u|)1\{-1\leq u\leq 1\}.
-$$
+```
 
 **Source response (Example 1, unnumbered)**
 
-$$
+```math
 Y_{i} = 2\cdot \sin(3.1416\cdot X_{i}) + \varepsilon_{i}.
-$$
+```
 
 **Equivalent-law RNG implementation (derived)**
 
-$$
+```math
 \mathrm{For} \text{ independent } U_{i1},\ldots ,U_{i4} \sim \mathrm{Uniform}(0,1): X_{i}=U_{i1}-U_{i2}
-$$
+```
 
-$$
+```math
 \varepsilon_{i}=U_{i3}-U_{i4}
-$$
+```
 
 Only X_i,Y_i are exported.
 
 **Conditional CDF (derived)**
 
-$$
+```math
 F(y\mid x)=G(z)
-$$
+```
 
-$$
+```math
 z=y-2\cdot \sin(3.1416\cdot x)
-$$
+```
 
-$$
+```math
 G(z)=0 \text{ for } z\leq -1
-$$
+```
 
-$$
+```math
 (1+z)^{2}/2 \text{ for } -1<z\leq 0
-$$
+```
 
-$$
+```math
 1-(1-z)^{2}/2 \text{ for } 0<z<1
-$$
+```
 
-$$
+```math
 1 \text{ for } z\geq 1.
-$$
+```
 
 **Scalar target adaptation (derived)**
 
-$$
+```math
 \theta=F(1\mid 0.1)=1-2\cdot \sin(0.31416)^{2}=0.8090161307517588 (\mathrm{binary64} \mathrm{evaluation}).
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -118,9 +118,9 @@ theta=F(1|0.1)=1-2*sin(0.31416)^2=0.8090161307517588 (binary64 evaluation).
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| original_mechanism_fixed_cdf | Conditional cumulative distribution function | P(Y&lt;=1 \| X=0.1) in the Example 1 superpopulation, using the continuous version F(y\|x)=G(y-2*sin(3.1416*x)) induced by independent triangular noise. Conditional CDF, not a marginal CDF, quantile, conditional mean, causal contrast, or prediction interval. Query x=0.1 and CDF threshold y=1 are fixed in config. | 0.8090161307517588 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| original_mechanism_fixed_cdf | Conditional cumulative distribution function | P(Y&lt;=1 \| X=0.1) in the Example 1 superpopulation, using the continuous version F(y\|x)=G(y-2*sin(3.1416*x)) induced by independent triangular noise. Conditional CDF, not a marginal CDF, quantile, conditional mean, causal contrast, or prediction interval. Query x=0.1 and CDF threshold y=1 are fixed in config. | 0.8090161307517588 |
 
 **Original submitted target notation:** theta = F_{Y\|X=0.1}(1)
 

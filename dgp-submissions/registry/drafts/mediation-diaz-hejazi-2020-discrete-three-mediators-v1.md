@@ -36,49 +36,49 @@ Not explicitly identified (review required)
 
 **Baseline**
 
-$$
+```math
 W_{1}\sim \mathrm{Bern}(0.50)
-$$
+```
 
-$$
+```math
 W_{2}\sim \mathrm{Bern}(0.65)
-$$
+```
 
-$$
+```math
 W_{3}\sim \mathrm{Bern}(0.35)
-$$
+```
 
 mutually independent
 
 **Treatment**
 
-$$
+```math
 A\mid W\sim \mathrm{Bern}((W_{1}+W_{2}+W_{3})/4 + 0.1)
-$$
+```
 
 **Mediator Z1**
 
-$$
+```math
 Z_{1}\mid A,W\sim \mathrm{Bern}(1-\mathrm{expit}((A+W_{1})/(A+W_{1}+0.5)))
-$$
+```
 
 **Mediator Z2**
 
-$$
+```math
 Z_{2}\mid A,W\sim \mathrm{Bern}(\mathrm{expit}((A-1+W_{2})/(W_{3}+3)))
-$$
+```
 
 **Mediator Z3**
 
-$$
+```math
 Z_{3}\mid A,W\sim \mathrm{Bern}(\mathrm{expit}((A-1+2W_{1}-1)/(2W_{1}+0.5)))
-$$
+```
 
 **Outcome**
 
-$$
+```math
 Y=Z_{1}+Z_{2}-Z_{3}+A-0.1(W_{1}+W_{2}+W_{3})^{2}+\varepsilon, \varepsilon\sim \mathcal{N}(0,0.25)
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -97,9 +97,9 @@ Y=Z1+Z2-Z3+A-0.1(W1+W2+W3)^2+epsilon, epsilon~N(0,0.25)
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| journal_section_5 | NIE | E[Y(1,Z(1)) - Y(1,Z(0))] for the original §5 superpopulation, jointly intervening on all three mediators Z=(Z1,Z2,Z3). Treatment is fixed at 1 in both outcome terms. | -0.11950701713951144 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| journal_section_5 | NIE | E[Y(1,Z(1)) - Y(1,Z(0))] for the original §5 superpopulation, jointly intervening on all three mediators Z=(Z1,Z2,Z3). Treatment is fixed at 1 in both outcome terms. | -0.11950701713951144 |
 
 **Original submitted target notation:** NIE_1
 

@@ -45,50 +45,50 @@ e, v
 
 **DGP equation 1**
 
-$$
+```math
 Z_{j}\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1), j=1,\ldots ,10
-$$
+```
 
-$$
+```math
 e,v\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1)
-$$
+```
 
 Z ⟂ (e,v).
 
 **DGP equation 2**
 
-$$
+```math
 \varepsilon_{D}=e,   \varepsilon_{Y}=0.8e+\sqrt{1-0.8^{2}}v.
-$$
+```
 
 **DGP equation 3**
 
-$$
+```math
 D=0.5+\sum_{j=1}^{10} \gamma_{j}Z_{j}+\varepsilon_{D}
-$$
+```
 
 **DGP equation 4**
 
-$$
+```math
 Y=-0.5+\beta D+\sum_{j=1}^{10} \pi_{j}Z_{j}+\varepsilon_{Y}
-$$
+```
 
 **DGP equation 5**
 
-$$
+```math
 \beta=1,   \gamma=(1,\ldots ,1)
-$$
+```
 
-$$
+```math
 \pi=(3,3,3,0,0,0,0,0,0,0).
-$$
+```
 
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| author_lowdim | Population unit-change structural mean effect | English description not yet supplied; consult the original scientific record (JSON). | 1.0 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| author_lowdim | Population unit-change structural mean effect | English description not yet supplied; consult the original scientific record (JSON). | 1.0 |
 
 **Original submitted target notation:** beta
 

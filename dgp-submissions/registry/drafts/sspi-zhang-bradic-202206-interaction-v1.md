@@ -36,9 +36,9 @@ epsilon
 
 **Covariates**
 
-$$
+```math
 X \sim \mathcal{N}_{3}(0,I)
-$$
+```
 
 independent standard Gaussian coordinates
 
@@ -46,31 +46,31 @@ Paper notation p includes intercept: input dimension is p-1.
 
 **Response**
 
-$$
+```math
 Y = X_{1} X_{2} + 0.5 (X_{3} + 0.5)^{2} + \varepsilon
-$$
+```
 
-$$
+```math
 \varepsilon\sim \mathcal{N}(0,0.25)
-$$
+```
 
 **Sampling and observed data**
 
 Independent units and independent outcome noise
 
-$$
+```math
 \mathrm{Two} \text{ iid } \mathrm{samples} \text{ from } \text{ the } \mathrm{same} \text{ population }
-$$
+```
 
 fixed group sizes, R indicates observed Y
 
-$$
+```math
 \mathrm{Export} X,R,Y_{\mathrm{obs}} \text{ where } Y_{\mathrm{obs}}=Y \text{ when } R=1 \text{ and } 0 \text{ otherwise }
-$$
+```
 
-$$
+```math
 n_{\mathrm{total}}=\mathrm{nL}+\mathrm{nU}.
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -86,9 +86,9 @@ Independent units and independent outcome noise. Two iid samples from the same p
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| source_fixed | Population outcome mean | Superpopulation mean theta=E[Y] under the declared fixed mechanism, shared by labeled and unlabeled samples. | 0.625 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| source_fixed | Population outcome mean | Superpopulation mean theta=E[Y] under the declared fixed mechanism, shared by labeled and unlabeled samples. | 0.625 |
 
 **Original submitted target notation:** theta = E[Y]
 

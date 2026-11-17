@@ -36,37 +36,37 @@ G_i
 
 **Formal Section 4, PDF p.17 / journal p.979, unnumbered paragraph before (23)**
 
-$$
+```math
 X_{i}\overset{\mathrm{iid}}{\sim} \mathrm{Uniform}(0,10)
-$$
+```
 
 **(23) Smooth Gamma; formal PDF p.17 / journal p.979**
 
-$$
+```math
 G_{i} \mid  X_{i}=x \sim \Gamma(\text{ shape }=\sqrt{x}, \text{ scale }=\min(\max(x,1),6))
-$$
+```
 
-$$
+```math
 Y_{i}=G_{i}
-$$
+```
 
 **(24) Discontinuous Gamma; formal PDF p.17 / journal p.979**
 
-$$
+```math
 Y_{i}=G_{i}+10\cdot 1\{X_{i}\geq 5\}
-$$
+```
 
 **(25) Non-isotonic Gamma; formal PDF p.19 / journal p.981**
 
-$$
+```math
 Y_{i}=G_{i}-2\cdot 1\{X_{i}\geq 7\}
-$$
+```
 
 **Adapted QDI target**
 
-$$
+```math
 \theta_{s}=P(Y_{i}\leq 10 \mid  X_{i}=5.5)
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -84,11 +84,11 @@ theta_s=P(Y_i&lt;=10 | X_i=5.5)
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| smooth_gamma | Conditional cumulative distribution function | Scalar conditional CDF P(Y_s&lt;=10 \| X=5.5) for each source scenario, using the explicitly specified conditional-law version. Not a marginal CDF, quantile, causal effect, or simultaneous band. | 0.44022759069779993 | reported_numeric |
-| discontinuous_gamma | Conditional cumulative distribution function | Scalar conditional CDF P(Y_s&lt;=10 \| X=5.5) for each source scenario, using the explicitly specified conditional-law version. Not a marginal CDF, quantile, causal effect, or simultaneous band. | 0.0 | reported_numeric |
-| non_isotonic_gamma | Conditional cumulative distribution function | Scalar conditional CDF P(Y_s&lt;=10 \| X=5.5) for each source scenario, using the explicitly specified conditional-law version. Not a marginal CDF, quantile, causal effect, or simultaneous band. | 0.44022759069779993 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| smooth_gamma | Conditional cumulative distribution function | Scalar conditional CDF P(Y_s&lt;=10 \| X=5.5) for each source scenario, using the explicitly specified conditional-law version. Not a marginal CDF, quantile, causal effect, or simultaneous band. | 0.44022759069779993 |
+| discontinuous_gamma | Conditional cumulative distribution function | Scalar conditional CDF P(Y_s&lt;=10 \| X=5.5) for each source scenario, using the explicitly specified conditional-law version. Not a marginal CDF, quantile, causal effect, or simultaneous band. | 0.0 |
+| non_isotonic_gamma | Conditional cumulative distribution function | Scalar conditional CDF P(Y_s&lt;=10 \| X=5.5) for each source scenario, using the explicitly specified conditional-law version. Not a marginal CDF, quantile, causal effect, or simultaneous band. | 0.44022759069779993 |
 
 **Original submitted target notation:** theta_s = F_s(10 \| 5.5)
 

@@ -38,36 +38,36 @@ Not explicitly identified (review required)
 
 **E1**
 
-$$
+```math
 X_{i1},X_{i2}\overset{\mathrm{iid}}{\sim}U(0,1),\quad\varepsilon_i\perp X_i
-$$
+```
 
 **E2**
 
-$$
+```math
 m(x)=\frac{40e^{8\{(x_1-0.5)^2+(x_2-0.5)^2\}}}{e^{8\{(x_1-0.2)^2+(x_2-0.7)^2\}}+e^{8\{(x_1-0.7)^2+(x_2-0.2)^2\}}}
-$$
+```
 
 **E3**
 
-$$
+```math
 Y_i=m(X_i)+\varepsilon_i,\quad\varepsilon_i\sim\mathcal N(0,1)\;\text{or}\;t_3\;\text{or}\;0.1\mathcal N(0,25)+0.9\mathcal N(0,1)
-$$
+```
 
 **E4**
 
-$$
+```math
 Q_\tau(x)=m(x)+F_\varepsilon^{-1}(\tau)
-$$
+```
 
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| source_normal | Conditional quantile | Conditional 0.1 quantile at X=(0.5,0.5); normal, t3, and specified normal-mixture errors are scenarios within ONE mechanism family. | 5.787542073631004 | reported_numeric |
-| source_t3 | Conditional quantile | Conditional 0.1 quantile at X=(0.5,0.5); normal, t3, and specified normal-mixture errors are scenarios within ONE mechanism family. | 5.431349285479395 | reported_numeric |
-| source_normal_mixture | Conditional quantile | Conditional 0.1 quantile at X=(0.5,0.5); normal, t3, and specified normal-mixture errors are scenarios within ONE mechanism family. | 5.582372494783503 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| source_normal | Conditional quantile | Conditional 0.1 quantile at X=(0.5,0.5); normal, t3, and specified normal-mixture errors are scenarios within ONE mechanism family. | 5.787542073631004 |
+| source_t3 | Conditional quantile | Conditional 0.1 quantile at X=(0.5,0.5); normal, t3, and specified normal-mixture errors are scenarios within ONE mechanism family. | 5.431349285479395 |
+| source_normal_mixture | Conditional quantile | Conditional 0.1 quantile at X=(0.5,0.5); normal, t3, and specified normal-mixture errors are scenarios within ONE mechanism family. | 5.582372494783503 |
 
 **Original submitted target notation:** Q_{0.1}(0.5,0.5)
 

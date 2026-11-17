@@ -43,37 +43,37 @@ Xj
 
 **X1-X5**
 
-$$
+```math
 \mathrm{Xj} \sim \mathrm{Uniform}(0,1) \text{ independently }, j = 1..5
-$$
+```
 
 **Treatment**
 
-$$
+```math
 e(X) = \mathrm{trim}_{0.1}\{\sin(\pi X_{1} X_{2})\}, \mathrm{trim}_{\eta}(u) = \max\{\eta, \min(u, 1-\eta)\}
-$$
+```
 
 **Baseline**
 
-$$
+```math
 b(X) = \sin(\pi X_{1} X_{2}) + 2 (X_{3} - 1/2)^{2} + X_{4} + 0.5 X_{5}
-$$
+```
 
 **Heterogeneity**
 
-$$
+```math
 \tau(X) = (X_{1} + X_{2}) / 2
-$$
+```
 
 **Outcome**
 
-$$
+```math
 Y = b(X) + A \tau(X) + \sigma\varepsilon, \varepsilon\sim \mathcal{N}(0,1)
-$$
+```
 
-$$
+```math
 \sigma= 1
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -91,9 +91,9 @@ Y = b(X) + A tau(X) + sigma eps, eps ~ Normal(0,1), sigma = 1
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| original | CATE | Conditional average treatment effect at the declared query points; a simple linear surface in the first two coordinates, embedded in a deliberately difficult nuisance structure. | 0.25 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| original | CATE | Conditional average treatment effect at the declared query points; a simple linear surface in the first two coordinates, embedded in a deliberately difficult nuisance structure. | 0.25 |
 
 **Original submitted target notation:** tau(x0) = E[Y(1) - Y(0) \| X = x0]
 

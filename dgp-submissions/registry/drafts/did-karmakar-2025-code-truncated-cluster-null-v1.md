@@ -36,19 +36,19 @@ Z_it
 
 **latent**
 
-$$
+```math
 Z_{it}=\text{ a }_{i}+\lfloor (t-1)/4\rfloor+2\cdot ((t-1)\mathrm{mod4})+\varepsilon_{it}-80q_{\mathrm{ct}}
-$$
+```
 
-$$
+```math
 \text{ a }_{i} \mathrm{iidU}(10,60),\varepsilon\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,25)
-$$
+```
 
 **observed**
 
-$$
+```math
 Y_{it}=\max(Z_{it},0),t_{1}..55
-$$
+```
 
 q from source inclusive floor/ceil renewal algorithm across99 periods
 
@@ -56,19 +56,19 @@ q from source inclusive floor/ceil renewal algorithm across99 periods
 
 one selected per10-unit group
 
-$$
+```math
 p_{i}=(1+\text{ mean }(Y_{i},20:45))/\sum_{\mathrm{group}}(1+\text{ mean }(Y_{j},20:45))
-$$
+```
 
 **truth**
 
-$$
+```math
 \mathrm{Eff}=(0,0,0)
-$$
+```
 
-$$
+```math
 \mathrm{ATT}=SATT=0
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -85,9 +85,9 @@ Eff=(0,0,0); ATT=SATT=0
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| baseline | ATT | Population average post-period treatment effect conditional on selected treated units; equals finite-panel SATT=0 under sharp null. | 0.0 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| baseline | ATT | Population average post-period treatment effect conditional on selected treated units; equals finite-panel SATT=0 under sharp null. | 0.0 |
 
 **Original submitted target notation:** ATT
 

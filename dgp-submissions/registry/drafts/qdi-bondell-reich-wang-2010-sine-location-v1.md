@@ -38,28 +38,28 @@ Not explicitly identified (review required)
 
 **E1**
 
-$$
+```math
 X_i\sim U(0,1),\quad\varepsilon_i\sim\mathcal N(0,1),\quad X_i\perp\varepsilon_i
-$$
+```
 
 **E2**
 
-$$
+```math
 Y_i=0.5+2X_i+\sin(2\pi X_i-0.5)+\varepsilon_i
-$$
+```
 
 **E3**
 
-$$
+```math
 Q_\tau(x)=m(x)+s(x)\Phi^{-1}(\tau)
-$$
+```
 
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| source_law_fixed_query | Conditional quantile | Conditional 0.9 quantile at X=0.5 in source Example 4. | 3.260977104148804 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| source_law_fixed_query | Conditional quantile | Conditional 0.9 quantile at X=0.5 in source Example 4. | 3.260977104148804 |
 
 **Original submitted target notation:** Q_{0.9}(0.5)
 

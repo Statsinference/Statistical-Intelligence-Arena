@@ -43,41 +43,41 @@ Not explicitly identified (review required)
 
 **Covariates**
 
-$$
+```math
 X_{j}\overset{\mathrm{iid}}{\sim} \mathrm{Uniform}(0,1), j=1,\ldots ,5
-$$
+```
 
 **Treatment assignment**
 
-$$
+```math
 e(X)=[1+20\cdot X_{1}\cdot (1-X_{1})^{3}]/4
-$$
+```
 
-$$
+```math
 A\mid X\sim \mathrm{Bernoulli}(e(X))
-$$
+```
 
 **Centered baseline**
 
-$$
+```math
 m(X)=2\cdot X_{1}-1
-$$
+```
 
 **Conditional effect**
 
-$$
+```math
 \tau(X)=0
-$$
+```
 
 **Outcome**
 
-$$
+```math
 Y=m(X)+(A-0.5)\cdot \tau(X)+\varepsilon
-$$
+```
 
-$$
+```math
 \varepsilon\sim \mathcal{N}(0,1)
-$$
+```
 
 independent of X and assignment uniforms
 
@@ -97,9 +97,9 @@ Y=m(X)+(A-0.5)*tau(X)+epsilon; epsilon~Normal(0,1), independent of X and assignm
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| source_d5_sigma1 | ATE | Superpopulation average effect of A=1 versus A=0, integrating over iid Uniform covariates; not a sample average or observed treated-control mean difference. | 0.0 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| source_d5_sigma1 | ATE | Superpopulation average effect of A=1 versus A=0, integrating over iid Uniform covariates; not a sample average or observed treated-control mean difference. | 0.0 |
 
 **Original submitted target notation:** theta_ATE=E[Y(1)-Y(0)]
 

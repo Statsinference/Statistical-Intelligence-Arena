@@ -36,23 +36,23 @@ U
 
 **Original source equations (verbatim):** [Open raw scientific record (JSON)](./proximal-qi-2024-linear-itr-v1.json).
 
-$$
+```math
 \begin{aligned}
 X_1,X_2&\overset{\mathrm{iid}}{\sim}\mathcal{N}(0.25,0.25^2)\\
 p(X)&=[1+\exp\{0.125(X_1+X_2)\}]^{-1}\\
 A\mid X&\sim\mathrm{Bernoulli}(p(X))
 \end{aligned}
-$$
+```
 
-$$
+```math
 \begin{aligned}
 (Z,W,U)\mid A,X&\sim\mathcal{N}_{3}(m,\Sigma)\\
 m&=(0.25+0.25A+0.25s,\ 0.25+0.125A+0.25s,\ 0.25+0.25A+0.25s)\\
 s&=X_1+X_2
 \end{aligned}
-$$
+```
 
-$$
+```math
 \begin{aligned}
 \Sigma&=\begin{bmatrix}
 1 & 0.25 & 0.5\\
@@ -61,29 +61,29 @@ $$
 \end{bmatrix}\\
 m_W(U,X)&=0.125+0.125s+0.5U
 \end{aligned}
-$$
+```
 
 Covariance matrix: 3 × 3.
 
-$$
+```math
 \begin{aligned}
 Y&=2+0.25s+8m_W+2(W-m_W)\\
 &\quad+A(0.5+3X_1-5X_2+c_4m_W)+\varepsilon\\
 \varepsilon&\sim\mathrm{Uniform}(-1,1)
 \end{aligned}
-$$
+```
 
-$$
+```math
 \mathrm{L1}:\ c_4=0.25,\qquad\mathrm{L2}:\ c_4=0
-$$
+```
 
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| L1 | ATE | ATE = E[0.5 + 3X1 - 5X2 + c4 W]. | 0.10888711551018415 | reported_numeric |
-| L2 | ATE | ATE = E[0.5 + 3X1 - 5X2 + c4 W]. | 0.0 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| L1 | ATE | ATE = E[0.5 + 3X1 - 5X2 + c4 W]. | 0.10888711551018415 |
+| L2 | ATE | ATE = E[0.5 + 3X1 - 5X2 + c4 W]. | 0.0 |
 
 **Original submitted target notation:** ATE
 

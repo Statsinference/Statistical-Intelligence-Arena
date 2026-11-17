@@ -38,63 +38,63 @@ Not explicitly identified (review required)
 
 **DGP equation 1**
 
-$$
+```math
 \mathrm{N}=500, i=0,\ldots ,499
-$$
+```
 
-$$
+```math
 \mathcal{N}_{i}=\{i\pm 1,\ldots ,i\pm L\} \bmod  500
-$$
+```
 
-$$
+```math
 L\in \{2,3\}.
-$$
+```
 
 **DGP equation 2**
 
-$$
+```math
 Z_{i}\overset{\mathrm{iid}}{\sim} \mathrm{Bernoulli}(0.4).
-$$
+```
 
 **DGP equation 3**
 
-$$
+```math
 \mathrm{DGP1}: D_{i}=1\{\gamma_{0i}+Z_{i}+\sum_{j\in \mathrm{N}_{i}}Z_{j} \geq 0\}
-$$
+```
 
 **DGP equation 4**
 
-$$
+```math
 Y_{i}=\beta_{0i}+\beta_{1i}D_{i}.
-$$
+```
 
 **DGP equation 5**
 
-$$
+```math
 \mathrm{DGP2}: D_{i}=1\{\gamma_{0i}+Z_{i} \geq 0\}
-$$
+```
 
 **DGP equation 6**
 
-$$
+```math
 Y_{i}=\beta_{0i}+\beta_{1i}D_{i}+\beta_{2i}\sum_{j\in \mathrm{N}_{i}}D_{j}.
-$$
+```
 
 **DGP equation 7**
 
-$$
+```math
 \theta=\sum_{i}\beta_{1i}w_{i} / \sum_{i}w_{i}.
-$$
+```
 
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| DGP1_L2_new_draw | Unconditional local average direct effect | English description not yet supplied; consult the original scientific record (JSON). | 1.5004749754609084 | reported_numeric |
-| DGP1_L3_new_draw | Unconditional local average direct effect | English description not yet supplied; consult the original scientific record (JSON). | 1.4982310561355603 | reported_numeric |
-| DGP2_L2_new_draw | Unconditional local average direct effect | English description not yet supplied; consult the original scientific record (JSON). | 1.52768116166732 | reported_numeric |
-| DGP2_L3_new_draw | Unconditional local average direct effect | English description not yet supplied; consult the original scientific record (JSON). | 1.52768116166732 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| DGP1_L2_new_draw | Unconditional local average direct effect | English description not yet supplied; consult the original scientific record (JSON). | 1.5004749754609084 |
+| DGP1_L3_new_draw | Unconditional local average direct effect | English description not yet supplied; consult the original scientific record (JSON). | 1.4982310561355603 |
+| DGP2_L2_new_draw | Unconditional local average direct effect | English description not yet supplied; consult the original scientific record (JSON). | 1.52768116166732 |
+| DGP2_L3_new_draw | Unconditional local average direct effect | English description not yet supplied; consult the original scientific record (JSON). | 1.52768116166732 |
 
 **Original submitted target notation:** unconditional_LADE
 

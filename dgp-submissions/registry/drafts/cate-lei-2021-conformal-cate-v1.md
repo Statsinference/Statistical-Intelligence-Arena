@@ -43,47 +43,47 @@ Not explicitly identified (review required)
 
 **X1-X10**
 
-$$
+```math
 \mathrm{Xj} = \Phi(X'_{j}), X' \mathrm{equicorrelated} \mathrm{Gaussian} \text{ with } \rho= 0, \mathrm{so} \mathrm{Xj} \sim \mathrm{Uniform}(0,1) \text{ independently }, j = 1..10
-$$
+```
 
 **Treatment**
 
-$$
+```math
 e(X) = (1/4) \{1 + F_{2,4}(X_{1})\}, F_{2,4} \text{ the } \mathrm{Beta}(2,4) \mathrm{cdf}
-$$
+```
 
 **Control outcome**
 
-$$
+```math
 Y(0) = 0
-$$
+```
 
 **Treated outcome**
 
-$$
+```math
 \mathbb{E}[Y(1)\mid X] = f(X_{1}) f(X_{2}), f(u) = 2 / (1 + \exp(-12 (u - 1/2)))
-$$
+```
 
-$$
+```math
 Y(1) = \mathbb{E}[Y(1)\mid X] + \sigma\varepsilon
-$$
+```
 
 **Heterogeneity**
 
-$$
+```math
 \tau(X) = f(X_{1}) f(X_{2})
-$$
+```
 
 **Observed**
 
-$$
+```math
 Y = A Y(1) + (1-A) Y(0)
-$$
+```
 
-$$
+```math
 \sigma= 1
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -102,9 +102,9 @@ Y = A Y(1) + (1-A) Y(0), sigma = 1
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| original | CATE | Conditional average treatment effect at the declared query points when the control potential outcome is identically zero, so the effect equals the treated conditional mean. | 1.0 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| original | CATE | Conditional average treatment effect at the declared query points when the control potential outcome is identically zero, so the effect equals the treated conditional mean. | 1.0 |
 
 **Original submitted target notation:** tau(x0) = E[Y(1) - Y(0) \| X = x0]
 

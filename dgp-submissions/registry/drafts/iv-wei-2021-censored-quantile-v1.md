@@ -38,70 +38,70 @@ u
 
 **DGP equation 1**
 
-$$
+```math
 X_{1}\sim \mathrm{Uniform}(0,1), X_{2}\sim \mathrm{Bernoulli}(0.5), (p_{CO},p_{AT},p_{NT})=(2/3,1/6,1/6).
-$$
+```
 
 **DGP equation 2**
 
-$$
+```math
 \varepsilon_{V}\sim \mathcal{N}(0,0.5^{2}), V\mid X,\varepsilon_{V}\sim \mathrm{Bernoulli}[\mathrm{expit}(0.1X_{2}+X_{1}^{2}+X_{1}X_{2}+\varepsilon_{V})].
-$$
+```
 
 **DGP equation 3**
 
-$$
+```math
 D=V (CO)
-$$
+```
 
-$$
+```math
 D=1 (AT)
-$$
+```
 
-$$
+```math
 D=0 (NT)
-$$
+```
 
-$$
+```math
 u\sim \mathrm{Uniform}(0,1).
-$$
+```
 
 **DGP equation 4**
 
-$$
+```math
 G, CO: \log T=-0.2X_{1}-0.3X_{2}+0.5D+\log\{-\log(1-u)\}.
-$$
+```
 
 **DGP equation 5**
 
-$$
+```math
 H, CO: \log T=-0.2X_{1}-0.3X_{2}+\log u+0.5\exp(0.3u)D.
-$$
+```
 
 **DGP equation 6**
 
-$$
+```math
 \mathrm{Non}-CO: \log T=-0.1X_{1}-0.2X_{2}+0.2D+\varepsilon, \varepsilon\sim \mathcal{N}(0,0.5^{2}).
-$$
+```
 
 **DGP equation 7**
 
-$$
+```math
 \begin{aligned}
 C &= \mathrm{Uniform}(0,b)+X_{2} \\
 b &= 2.2 (G), 1.4 (H) \\
 W &= \min(T,C) \\
 E &= 1\{T\leq C\}.
 \end{aligned}
-$$
+```
 
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| source_G | Conditional complier median causal effect | English description not yet supplied; consult the original scientific record (JSON). | 0.5 | reported_numeric |
-| source_H | Conditional complier median causal effect | English description not yet supplied; consult the original scientific record (JSON). | 0.5809171213641415 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| source_G | Conditional complier median causal effect | English description not yet supplied; consult the original scientific record (JSON). | 0.5 |
+| source_H | Conditional complier median causal effect | English description not yet supplied; consult the original scientific record (JSON). | 0.5809171213641415 |
 
 **Original submitted target notation:** CQCE(.5)
 

@@ -41,33 +41,33 @@ Not explicitly identified (review required)
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
-$$
+```math
 X\sim \mathcal{N}_{100}(0,I)
-$$
+```
 
-$$
+```math
 \varepsilon\sim \mathcal{N}(0,1) \text{ independently }
-$$
+```
 
-$$
+```math
 s=\lceil 0.1\cdot p\rceil=10.
-$$
+```
 
-$$
+```math
 Y=\sum_{j=1}^{10} X_{j}/\sqrt{10}+0.5\cdot \varepsilon.
-$$
+```
 
 Source notation retained without guessing:
 
 <pre>Two independent samples from the same population: source_n_labeled rows with observed Y and source_n_unlabeled rows with observed X only. R=1 in the first labeled block</pre>
 
-$$
+```math
 Y_{\mathrm{obs}}=Y \text{ there }. R=0 \in \text{ the } \mathrm{remaining} \mathrm{block}
-$$
+```
 
-$$
+```math
 Y_{\mathrm{obs}}=0 \text{ is } \text{ a } \text{ placeholder }.
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -83,9 +83,9 @@ Two independent samples from the same population: source_n_labeled rows with obs
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| original | Marginal population cumulative distribution function | Marginal population CDF Pr(Y&lt;=1), using the semi-supervised observation design. | 0.8144533152386513 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| original | Marginal population cumulative distribution function | Marginal population CDF Pr(Y&lt;=1), using the semi-supervised observation design. | 0.8144533152386513 |
 
 **Original submitted target notation:** F_Y(1)
 

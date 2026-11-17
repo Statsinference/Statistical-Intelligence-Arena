@@ -43,41 +43,41 @@ Not explicitly identified (review required)
 
 **Covariates**
 
-$$
+```math
 X_{j}\overset{\mathrm{iid}}{\sim} \mathrm{Uniform}(0,1), j=1,\ldots ,6
-$$
+```
 
 **Baseline**
 
-$$
+```math
 b(X)=\sin(\pi\cdot X_{1}\cdot X_{2})+2\cdot (X_{3}-0.5)^{2}+X_{4}+0.5\cdot X_{5}
-$$
+```
 
 **Treatment**
 
-$$
+```math
 e(X)=\max(0.1,\min(\sin(\pi\cdot X_{1}\cdot X_{2}),0.9))
-$$
+```
 
-$$
+```math
 A\mid X\sim \mathrm{Bernoulli}(e(X))
-$$
+```
 
 **Conditional effect**
 
-$$
+```math
 \tau(X)=(X_{1}+X_{2})/2
-$$
+```
 
 **Outcome**
 
-$$
+```math
 Y=b(X)+(A-0.5)\cdot \tau(X)+\varepsilon
-$$
+```
 
-$$
+```math
 \varepsilon\sim \mathcal{N}(0,1)
-$$
+```
 
 independent of X and treatment randomization
 
@@ -97,9 +97,9 @@ Y=b(X)+(A-0.5)*tau(X)+epsilon; epsilon~Normal(0,1), independent of X and treatme
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| original_d6_sigma1 | ATE | Superpopulation average effect of A=1 versus A=0, under X~Uniform([0,1]^6). Not the realized-sample average effect, ATT, CATE output, or unadjusted observed group difference. | 0.5 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| original_d6_sigma1 | ATE | Superpopulation average effect of A=1 versus A=0, under X~Uniform([0,1]^6). Not the realized-sample average effect, ATT, CATE output, or unadjusted observed group difference. | 0.5 |
 
 **Original submitted target notation:** theta_ATE = E[Y(1)-Y(0)]
 

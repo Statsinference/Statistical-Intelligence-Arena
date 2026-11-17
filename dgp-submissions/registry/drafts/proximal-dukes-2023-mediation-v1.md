@@ -36,7 +36,7 @@ U
 
 **Original source equations (verbatim):** [Open raw scientific record (JSON)](./proximal-dukes-2023-mediation-v1.json).
 
-$$
+```math
 \begin{aligned}
 (X_1,X_2,U)&\sim\mathcal{N}_{3}((0.25,0.25,0),\Sigma)\\
 \Sigma&=\begin{bmatrix}
@@ -45,40 +45,40 @@ $$
 0.05 & 0.05 & 1
 \end{bmatrix}
 \end{aligned}
-$$
+```
 
 The covariance matrix is 3 × 3, with rows and columns displayed explicitly.
 
-$$
+```math
 A\mid X,U\sim\mathrm{Bernoulli}(\mathrm{expit}[-0.5(X_1+X_2)-0.4U])
-$$
+```
 
-$$
+```math
 \begin{aligned}
 Z&=0.2-0.52A+0.2(X_1+X_2)-U+\varepsilon_{z}\\
 W&=0.3+0.2(X_1+X_2)-0.6U+\varepsilon_{w}
 \end{aligned}
-$$
+```
 
-$$
+```math
 \begin{aligned}
 M&=-0.3A-0.5(X_1+X_2)+0.4U+\varepsilon_{m}\\
 Y&=2+2A+M+2W-X_1-X_2-U+2\varepsilon_{y}
 \end{aligned}
-$$
+```
 
-$$
+```math
 \varepsilon_{z},\varepsilon_{w},\varepsilon_{m},\varepsilon_{y}\overset{\mathrm{ind}}{\sim}\mathcal{N}(0,1)
-$$
+```
 
 The errors are also independent of baseline variables and treatment randomization.
 
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| original | NDE | NDE = E[Y(1,M(0)) - Y(0,M(0))] = 2. | 2.0 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| original | NDE | NDE = E[Y(1,M(0)) - Y(0,M(0))] = 2. | 2.0 |
 
 **Original submitted target notation:** NDE
 

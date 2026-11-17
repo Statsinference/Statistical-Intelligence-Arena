@@ -36,23 +36,23 @@ lambda_t, W_1t, W_2t
 
 **factor**
 
-$$
+```math
 \lambda_{t} \text{ iid } TN(0.5,0.1^{2};(0,1))
-$$
+```
 
-$$
+```math
 t=1,\ldots ,200
-$$
+```
 
 **conditional_marginals**
 
-$$
+```math
 Y_{t}\mid \lambda_{t} \sim \mathrm{Pois}(\exp(\lambda_{t}-2\cdot 1(t>100)))
-$$
+```
 
-$$
+```math
 W_{1t},W_{2t}\mid \lambda_{t} \sim \mathrm{Pois}(\lambda_{t}/(e-1))
-$$
+```
 
 **joint_law_adaptation**
 
@@ -66,9 +66,9 @@ independent across periods
 
 **estimand**
 
-$$
+```math
 \log(\mathbb{E}[Y_{t}(1)]/\mathbb{E}[Y_{t}(0)])=-2
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -85,9 +85,9 @@ log(E[Y_t(1)]/E[Y_t(0)])=-2
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| baseline | Treated-unit population log mean ratio | For the treated unit at any post period, log(E[Y_t(1)]/E[Y_t(0)]) over the truncated-normal factor and Poisson population; equals -2. This is neither the impossible printed negative rate ratio nor an additive ATT nor finite-sample SATT. | -2.0 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| baseline | Treated-unit population log mean ratio | For the treated unit at any post period, log(E[Y_t(1)]/E[Y_t(0)]) over the truncated-normal factor and Poisson population; equals -2. This is neither the impossible printed negative rate ratio nor an additive ATT nor finite-sample SATT. | -2.0 |
 
 **Original submitted target notation:** log_RR_pop
 

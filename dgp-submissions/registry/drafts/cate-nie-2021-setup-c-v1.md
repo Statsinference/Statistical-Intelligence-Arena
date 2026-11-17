@@ -36,37 +36,37 @@ Xj
 
 **X1-X3**
 
-$$
+```math
 \mathrm{Xj} \sim \mathcal{N}(0,1) \text{ independently }, j = 1..3
-$$
+```
 
 **Treatment**
 
-$$
+```math
 e(X) = 1 / (1 + \exp(X_{2} + X_{3}))
-$$
+```
 
 **Baseline**
 
-$$
+```math
 b(X) = 2 \log(1 + \exp(X_{1} + X_{2} + X_{3}))
-$$
+```
 
 **Heterogeneity**
 
-$$
+```math
 \tau(X) = 1
-$$
+```
 
 **Outcome**
 
-$$
+```math
 Y = b(X) + A \tau(X) + \sigma\varepsilon, \varepsilon\sim \mathcal{N}(0,1)
-$$
+```
 
-$$
+```math
 \sigma= 1
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -84,9 +84,9 @@ Y = b(X) + A tau(X) + sigma eps, eps ~ Normal(0,1), sigma = 1
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| original | CATE | Conditional average treatment effect at the declared query points; constant equal to 1 for every x, so the whole difficulty is the strongly confounded nuisance structure. | 1.0 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| original | CATE | Conditional average treatment effect at the declared query points; constant equal to 1 for every x, so the whole difficulty is the strongly confounded nuisance structure. | 1.0 |
 
 **Original submitted target notation:** tau(x0) = E[Y(1) - Y(0) \| X = x0]
 

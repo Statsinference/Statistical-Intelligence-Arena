@@ -43,37 +43,37 @@ Xj
 
 **X1-X6**
 
-$$
+```math
 \mathrm{Xj} \sim \mathrm{Uniform}(0,1) \text{ independently }, j = 1..6
-$$
+```
 
 **Treatment**
 
-$$
+```math
 P(A=1\mid X) = 0.5
-$$
+```
 
 **Baseline**
 
-$$
+```math
 m(X) = 0
-$$
+```
 
 **Heterogeneity**
 
-$$
+```math
 \tau(X) = (4/q) \sum_{j=1..q} [1/(1+\exp(-12 (\mathrm{Xj} - 1/2))) - 1/2]
-$$
+```
 
-$$
+```math
 q = 4
-$$
+```
 
 **Outcome**
 
-$$
+```math
 Y = m(X) + A \tau(X) + \varepsilon, \varepsilon\sim \mathcal{N}(0,1)
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -91,9 +91,9 @@ Y = m(X) + A tau(X) + eps, eps ~ Normal(0,1)
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| original | CATE | Conditional average treatment effect when the signal is spread additively over q = 4 of the 6 coordinates; the estimand at a query point is the sum of four sigmoid contributions minus 2. | 0.9836748576936802 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| original | CATE | Conditional average treatment effect when the signal is spread additively over q = 4 of the 6 coordinates; the estimand at a query point is the sum of four sigmoid contributions minus 2. | 0.9836748576936802 |
 
 **Original submitted target notation:** tau(x0) = E[Y(1) - Y(0) \| X = x0]
 

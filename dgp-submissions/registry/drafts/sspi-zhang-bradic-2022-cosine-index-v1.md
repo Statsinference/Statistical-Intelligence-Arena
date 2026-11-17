@@ -41,35 +41,35 @@ Not explicitly identified (review required)
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
-$$
+```math
 X_{j}\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1), j=1,\ldots ,50
-$$
+```
 
-$$
+```math
 \varepsilon\sim \mathcal{N}(0,0.25)
-$$
+```
 
 independent of X
 
-$$
+```math
 Y=3\cdot \cos(X_{1}+X_{2}+X_{3})+\varepsilon
-$$
+```
 
-$$
+```math
 \mathrm{Source} p=51 \mathrm{includes} \text{ an } \mathrm{intercept}.
-$$
+```
 
 Source notation retained without guessing:
 
 <pre>Two independent samples from the same population: source_n_labeled rows with observed Y and source_n_unlabeled rows with observed X only. R=1 in the first labeled block</pre>
 
-$$
+```math
 Y_{\mathrm{obs}}=Y \text{ there }. R=0 \in \text{ the } \mathrm{remaining} \mathrm{block}
-$$
+```
 
-$$
+```math
 Y_{\mathrm{obs}}=0 \text{ is } \text{ a } \text{ placeholder }.
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -85,9 +85,9 @@ Two independent samples from the same population: source_n_labeled rows with obs
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| original | Population outcome mean | Population mean of Y in the common labeled/unlabeled population. | 0.6693904804452895 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| original | Population outcome mean | Population mean of Y in the common labeled/unlabeled population. | 0.6693904804452895 |
 
 **Original submitted target notation:** E[Y]
 

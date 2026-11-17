@@ -38,70 +38,70 @@ Not explicitly identified (review required)
 
 English equation transcription pending; consult the linked original scientific record (JSON) for the complete source and context.
 
-$$
+```math
 X=(X_{1},X_{2})
-$$
+```
 
-$$
+```math
 \sigma(t)=1/(1+\exp(-t))
-$$
+```
 
 **Step 1**
 
-$$
+```math
 X \sim \mathcal{N}_{2}((0.25,0.25), \begin{bmatrix}
 0.0625 & 0 \\
 0 & 0.0625
 \end{bmatrix})
-$$
+```
 
 **Step 2**
 
-$$
+```math
 A \mid  X \sim \mathrm{Bernoulli}(\sigma(-0.125 X_{1} - 0.125 X_{2}))
-$$
+```
 
 English equation transcription pending; consult the linked original scientific record (JSON) for the complete source and context.
 
-$$
+```math
 V=(Z,W,U)^{T} \mid  A,X \sim \mathcal{N}_{3}(\mu(A,X),\Sigma)
-$$
+```
 
-$$
+```math
 \mu(A,X) = (0.25,0.25,0.25)^{T} + A(0.25,0.125,0.25)^{T} + (0.25 X_{1} + 0.25 X_{2})(1,1,1)^{T}
-$$
+```
 
 English equation transcription pending; consult the linked original scientific record (JSON) for the complete source and context.
 
-$$
+```math
 \Sigma= \begin{bmatrix}
 1 & 0.25 & 0.5 \\
 0.25 & 1 & 0.5 \\
 0.5 & 0.5 & 1
 \end{bmatrix}
-$$
+```
 
 (Z,W,U)
 
 English equation transcription pending; consult the linked original scientific record (JSON) for the complete source and context.
 
-$$
+```math
 g(U,X) = 0.25 + 0.25(X_{1}+X_{2}) + 0.5[U - 0.25 - 0.25(X_{1}+X_{2})]
-$$
+```
 
-$$
+```math
 \varepsilon_{Y} \sim \mathcal{N}(0,0.25^{2})
-$$
+```
 
-$$
+```math
 Y = 2 + 2A + 0.25(X_{1}+X_{2}) + (4-2)g(U,X) + 2W + \varepsilon_{Y}
-$$
+```
 
 English equation transcription pending; consult the linked original scientific record (JSON) for the complete source and context.
 
-$$
+```math
 Y = 2.25 + 2A + 0.5(X_{1}+X_{2}) + U + 2W + \varepsilon_{Y}
-$$
+```
 
 config.json
 
@@ -112,9 +112,9 @@ original
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| original | ATE | E[Y(1)-Y(0)] in the source population, same marginal U,W,X under both interventions. | 2.0 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| original | ATE | E[Y(1)-Y(0)] in the source population, same marginal U,W,X under both interventions. | 2.0 |
 
 **Original submitted target notation:** psi_ATE
 

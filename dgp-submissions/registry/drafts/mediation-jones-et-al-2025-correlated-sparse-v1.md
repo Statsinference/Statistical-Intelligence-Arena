@@ -36,51 +36,51 @@ E
 
 **Treatment**
 
-$$
+```math
 A\sim \mathrm{Bernoulli}(0.5)
-$$
+```
 
 **Errors**
 
-$$
+```math
 E\sim \mathcal{N}_{100}(0,\Sigma)
-$$
+```
 
-$$
+```math
 \Sigma_{ii}=1
-$$
+```
 
-$$
+```math
 \Sigma_{12}=0.5
-$$
+```
 
-$$
+```math
 \Sigma_{ij}=0.5 \text{ for } i,j\geq 3,i\neq j
-$$
+```
 
-$$
+```math
 \Sigma_{ij}=0.25 \text{ for } i \in \{1,2\},j \in \{3,\ldots ,100\}
-$$
+```
 
 **Mediator**
 
-$$
+```math
 M_{j}=\alpha_{j} A+E_{j}, \alpha_{j}=1 \text{ for } j=1,2,3 \text{ and } 0 \text{ otherwise }
-$$
+```
 
 **Outcome**
 
-$$
+```math
 Y=2A+M_{1}+M_{2}+M_{4}+M_{5}+M_{6}+\varepsilon_{Y}, \varepsilon_{Y}\sim \mathcal{N}(0,1)
-$$
+```
 
 independent of (A,E)
 
 **Target**
 
-$$
+```math
 \mathrm{NIE}_{1}=\sum_{j} \alpha_{j} \beta_{j}=2
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -98,9 +98,9 @@ NIE_1=sum_j alpha_j beta_j=2
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| simulation_b_n200_p100_rho05 | NIE | E[Y(1,M(1))-Y(1,M(0))] for the full 100-vector mediator under the additive structural equations. | 2.0 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| simulation_b_n200_p100_rho05 | NIE | E[Y(1,M(1))-Y(1,M(0))] for the full 100-vector mediator under the additive structural equations. | 2.0 |
 
 **Original submitted target notation:** NIE_1
 

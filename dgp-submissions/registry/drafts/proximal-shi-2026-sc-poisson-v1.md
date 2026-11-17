@@ -36,36 +36,36 @@ time, A, Y, W, Z
 
 **Original source equations (verbatim):** [Open raw scientific record (JSON)](./proximal-shi-2026-sc-poisson-v1.json).
 
-$$
+```math
 \begin{aligned}
 \lambda_t&\overset{\mathrm{ind}}{\sim}\mathcal{N}(0.5,0.1^2)\ \text{truncated to }(0,1)\\
 A_t&=\mathbf1\{t>T_0\},\quad T_0=\lfloor T/2\rfloor
 \end{aligned}
-$$
+```
 
-$$
+```math
 \begin{aligned}
 Y_t\mid\lambda_t&\sim\mathrm{Poisson}(\exp\{\lambda_t+\beta A_t\})\\
 W_t,Z_t\mid\lambda_t&\overset{\mathrm{cond.ind.}}{\sim}\mathrm{Poisson}(\lambda_t/(e-1))\\
 \beta&=-2
 \end{aligned}
-$$
+```
 
-$$
+```math
 \begin{aligned}
 r&=1\\
 h(W)&=\exp(W),\qquad E[\exp(W)\mid\lambda]=\exp(\lambda)
 \end{aligned}
-$$
+```
 
 All source loadings equal one in this configuration.
 
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| journal_r1_no_covariates | Causal log mean ratio | Beta = log(E[Y_t(1)] / E[Y_t(0)]) = -2; the mean ratio is exp(-2). | -2.0 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| journal_r1_no_covariates | Causal log mean ratio | Beta = log(E[Y_t(1)] / E[Y_t(0)]) = -2; the mean ratio is exp(-2). | -2.0 |
 
 **Original submitted target notation:** theta
 

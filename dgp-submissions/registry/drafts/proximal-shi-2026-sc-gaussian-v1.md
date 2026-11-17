@@ -43,44 +43,44 @@ time, A, Y, W1, W2, W3, W4, W5, Z1, Z2, Z3, Z4, Z5
 
 **Original source equations (verbatim):** [Open raw scientific record (JSON)](./proximal-shi-2026-sc-gaussian-v1.json).
 
-$$
+```math
 \begin{aligned}
 t&=1,\ldots,T\\
 A_t&=\mathbf1\{t>T_0\},\quad T_0=\lfloor T/2\rfloor\\
 \lambda_{tk}&\overset{\mathrm{ind}}{\sim}\mathcal{N}(0.5,0.5^2),\quad k=1,\ldots,5
 \end{aligned}
-$$
+```
 
-$$
+```math
 \begin{aligned}
 \mu_0&=(1,1,1,1,1)\\
 D&=\mathrm{diag}(3,6,6,6,6)\\
 Y_t&=2A_t+\sum_{k=1}^5\lambda_{tk}+\varepsilon_{0t}
 \end{aligned}
-$$
+```
 
-$$
+```math
 \begin{aligned}
 W_t&=D\lambda_t+\varepsilon_{Wt}\\
 Z_t&=D\lambda_t+\varepsilon_{Zt}
 \end{aligned}
-$$
+```
 
 The errors for all 11 units are independently N(0,1.5²), also independent across time.
 
-$$
+```math
 \begin{aligned}
 h(W)&=W_1/3+(W_2+W_3+W_4+W_5)/6\\
 \alpha^\top D&=\mu_0^\top,\qquad\sum_j\alpha_j=1
 \end{aligned}
-$$
+```
 
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| journal_r5_stationary | Needs review | ETT = E[Y_t(1)-Y_t(0)] = 2, also when averaged over post-treatment periods. | 2.0 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| journal_r5_stationary | Needs review | ETT = E[Y_t(1)-Y_t(0)] = 2, also when averaged over post-treatment periods. | 2.0 |
 
 **Original submitted target notation:** ETT
 

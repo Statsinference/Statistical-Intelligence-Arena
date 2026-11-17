@@ -43,65 +43,65 @@ Z_i
 
 **Observed covariate construction**
 
-$$
+```math
 X_{i} = C_{i} + Z_{i}, \text{ with } C_{i} \in \{0, \delta\}
-$$
+```
 
-$$
+```math
 Z_{i} \sim \mathcal{N}_{p}(0, I_{p})
-$$
+```
 
 The paper’s outcome equation uses (C_i+Z_i)^T beta.
 
 **Treatment marginal and cluster assignment as stated in source**
 
-$$
+```math
 W_{i} \sim \mathrm{Bernoulli}(0.5)
-$$
+```
 
-$$
+```math
 P(C_{i}=0 | W_{i}=0)=0.8 \text{ and } P(C_{i}=0 | W_{i}=1)=0.2.
-$$
+```
 
 **Equivalent implementation factorization**
 
-$$
+```math
 P(C_{i}=0)=0.5
-$$
+```
 
-$$
+```math
 P(W_{i}=1 \mid  C_{i}=0)=0.2
-$$
+```
 
-$$
+```math
 P(W_{i}=1 \mid  C_{i}=\delta)=0.8
-$$
+```
 
 This reproduces the source joint law by Bayes’ rule.
 
 **Outcome/noise**
 
-$$
+```math
 Y_{i} = X_{i}^{T} \beta+ W_{i} + \varepsilon_{i}
-$$
+```
 
-$$
+```math
 \varepsilon_{i} \sim \mathcal{N}(0,1). Z_{i} \sim \mathcal{N}_{p}(0,I_{p}), \text{ with } \text{ iid } \mathrm{standard}-\mathrm{normal} \text{ coordinates }
-$$
+```
 
 Independent errors and independent rows are implementation assumptions to be confirmed against the source wording.
 
 **Between-cluster vector, dense**
 
-$$
+```math
 \delta= (4 / \sqrt{n}) \cdot  1_{p}.
-$$
+```
 
 **Between-cluster vector, sparse**
 
-$$
+```math
 \delta_{j} = (40 / \sqrt{n}) \cdot  1\{j = 1 \bmod  10\}, \text{ for } j=1,\ldots ,p.
-$$
+```
 
 **Beta profiles**
 
@@ -113,19 +113,19 @@ moderately sparse: (10 repeated 10 times, 1 repeated 90 times, then 0)
 
 very sparse: (1 repeated 10 times, then 0)
 
-$$
+```math
 \mathrm{Each} \text{ vector } \text{ is } \mathrm{rescaled} \text{ to } ||\beta||_{2}=2.
-$$
+```
 
 **Estimand and truth**
 
-$$
+```math
 Y_{i}(w)=X_{i}^{T} \beta+ w + \varepsilon_{i}, w \in \{0,1\}
-$$
+```
 
-$$
+```math
 \mathrm{ATE}=\mathbb{E}[Y_{i}(1)-Y_{i}(0)]=1.
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -146,16 +146,16 @@ Y_i(w)=X_i^T beta + w + epsilon_i, w in {0,1}; ATE=E[Y_i(1)-Y_i(0)]=1.
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| delta_dense_dense | ATE | Population average treatment effect E[Y(1)-Y(0)] for an intervention setting W from 0 to 1 while holding each unit’s pretreatment X fixed; the two-cluster linear outcome equation gives Y(w)=X^T beta + w + epsilon and hence ATE=1. | 1.0 | reported_numeric |
-| delta_dense_harmonic | ATE | Population average treatment effect E[Y(1)-Y(0)] for an intervention setting W from 0 to 1 while holding each unit’s pretreatment X fixed; the two-cluster linear outcome equation gives Y(w)=X^T beta + w + epsilon and hence ATE=1. | 1.0 | reported_numeric |
-| delta_dense_moderately_sparse | ATE | Population average treatment effect E[Y(1)-Y(0)] for an intervention setting W from 0 to 1 while holding each unit’s pretreatment X fixed; the two-cluster linear outcome equation gives Y(w)=X^T beta + w + epsilon and hence ATE=1. | 1.0 | reported_numeric |
-| delta_dense_very_sparse | ATE | Population average treatment effect E[Y(1)-Y(0)] for an intervention setting W from 0 to 1 while holding each unit’s pretreatment X fixed; the two-cluster linear outcome equation gives Y(w)=X^T beta + w + epsilon and hence ATE=1. | 1.0 | reported_numeric |
-| delta_sparse_dense | ATE | Population average treatment effect E[Y(1)-Y(0)] for an intervention setting W from 0 to 1 while holding each unit’s pretreatment X fixed; the two-cluster linear outcome equation gives Y(w)=X^T beta + w + epsilon and hence ATE=1. | 1.0 | reported_numeric |
-| delta_sparse_harmonic | ATE | Population average treatment effect E[Y(1)-Y(0)] for an intervention setting W from 0 to 1 while holding each unit’s pretreatment X fixed; the two-cluster linear outcome equation gives Y(w)=X^T beta + w + epsilon and hence ATE=1. | 1.0 | reported_numeric |
-| delta_sparse_moderately_sparse | ATE | Population average treatment effect E[Y(1)-Y(0)] for an intervention setting W from 0 to 1 while holding each unit’s pretreatment X fixed; the two-cluster linear outcome equation gives Y(w)=X^T beta + w + epsilon and hence ATE=1. | 1.0 | reported_numeric |
-| delta_sparse_very_sparse | ATE | Population average treatment effect E[Y(1)-Y(0)] for an intervention setting W from 0 to 1 while holding each unit’s pretreatment X fixed; the two-cluster linear outcome equation gives Y(w)=X^T beta + w + epsilon and hence ATE=1. | 1.0 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| delta_dense_dense | ATE | Population average treatment effect E[Y(1)-Y(0)] for an intervention setting W from 0 to 1 while holding each unit’s pretreatment X fixed; the two-cluster linear outcome equation gives Y(w)=X^T beta + w + epsilon and hence ATE=1. | 1.0 |
+| delta_dense_harmonic | ATE | Population average treatment effect E[Y(1)-Y(0)] for an intervention setting W from 0 to 1 while holding each unit’s pretreatment X fixed; the two-cluster linear outcome equation gives Y(w)=X^T beta + w + epsilon and hence ATE=1. | 1.0 |
+| delta_dense_moderately_sparse | ATE | Population average treatment effect E[Y(1)-Y(0)] for an intervention setting W from 0 to 1 while holding each unit’s pretreatment X fixed; the two-cluster linear outcome equation gives Y(w)=X^T beta + w + epsilon and hence ATE=1. | 1.0 |
+| delta_dense_very_sparse | ATE | Population average treatment effect E[Y(1)-Y(0)] for an intervention setting W from 0 to 1 while holding each unit’s pretreatment X fixed; the two-cluster linear outcome equation gives Y(w)=X^T beta + w + epsilon and hence ATE=1. | 1.0 |
+| delta_sparse_dense | ATE | Population average treatment effect E[Y(1)-Y(0)] for an intervention setting W from 0 to 1 while holding each unit’s pretreatment X fixed; the two-cluster linear outcome equation gives Y(w)=X^T beta + w + epsilon and hence ATE=1. | 1.0 |
+| delta_sparse_harmonic | ATE | Population average treatment effect E[Y(1)-Y(0)] for an intervention setting W from 0 to 1 while holding each unit’s pretreatment X fixed; the two-cluster linear outcome equation gives Y(w)=X^T beta + w + epsilon and hence ATE=1. | 1.0 |
+| delta_sparse_moderately_sparse | ATE | Population average treatment effect E[Y(1)-Y(0)] for an intervention setting W from 0 to 1 while holding each unit’s pretreatment X fixed; the two-cluster linear outcome equation gives Y(w)=X^T beta + w + epsilon and hence ATE=1. | 1.0 |
+| delta_sparse_very_sparse | ATE | Population average treatment effect E[Y(1)-Y(0)] for an intervention setting W from 0 to 1 while holding each unit’s pretreatment X fixed; the two-cluster linear outcome equation gives Y(w)=X^T beta + w + epsilon and hence ATE=1. | 1.0 |
 
 **Original submitted target notation:** ATE
 

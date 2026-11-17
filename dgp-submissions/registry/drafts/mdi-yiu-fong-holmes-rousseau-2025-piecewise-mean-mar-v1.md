@@ -36,38 +36,38 @@ Not explicitly identified (review required)
 
 **Full data and observation**
 
-$$
+```math
 X\sim \mathrm{Uniform}[-1,1]
-$$
+```
 
-$$
+```math
 m(x)=\begin{cases}
 (x+2)^{2}/2 & x\in [-1,-0.5) \\
 x/2+0.875 & x\in [-0.5,0) \\
 -5(x-0.2)^{2}+1.075 & x\in [0,0.5) \\
 x+0.125 & x\in [0.5,1]
 \end{cases}
-$$
+```
 
-$$
+```math
 Y\mid X=x\sim \mathcal{N}(m(x), [0.2-0.1\cos(2\pi x)]^{2})
-$$
+```
 
-$$
+```math
 R\mid X=x\sim \mathrm{Bernoulli}(0.5+0.4\mathrm{sign}(x)).
-$$
+```
 
 **Observed encoding**
 
-$$
+```math
 Y_{\mathrm{observed}}=Y \text{ if } R=1, \mathrm{else} \mathrm{finite} \mathrm{zero} \text{ placeholder }.
-$$
+```
 
 **Target**
 
-$$
+```math
 \theta=\mathbb{E}(Y)=0.84375
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -83,9 +83,9 @@ theta=E(Y)=0.84375
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| original | Full-data population outcome mean | Full-data superpopulation response mean before outcome masking. | 0.84375 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| original | Full-data population outcome mean | Full-data superpopulation response mean before outcome masking. | 0.84375 |
 
 **Original submitted target notation:** theta = E(Y)
 

@@ -41,29 +41,29 @@ Z1, Z2, Z3, Z4, Z5, Z6, Z7, Z8, Z9, Z10, D, Y
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
-$$
+```math
 Z_{j}\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1), j=1,\ldots ,10
-$$
+```
 
 Z
 
 independent of (ξ,ε)
 
-$$
+```math
 (\xi,\varepsilon) \mathrm{joint} \mathrm{normal}: \text{ mean } 0, \mathrm{variances} 1, \mathrm{correlation} \rho=0.8.
-$$
+```
 
-$$
+```math
 D=1+\sum_{j=1}^{10} Z_{j}+\xi.
-$$
+```
 
-$$
+```math
 Y=1+Z_{1}+Z_{2}+Z_{3}+\beta D+\varepsilon
-$$
+```
 
-$$
+```math
 \beta=1.
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -80,9 +80,9 @@ Y=1+Z₁+Z₂+Z₃+βD+ε; β=1.
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| author_readme_fixed | Population unit-change structural mean effect | Constant structural slope beta = E[Y(do(D=d+1))-Y(do(D=d))], with natural Z and errors held under the same intervention law. | 1.0 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| author_readme_fixed | Population unit-change structural mean effect | Constant structural slope beta = E[Y(do(D=d+1))-Y(do(D=d))], with natural Z and errors held under the same intervention law. | 1.0 |
 
 **Original submitted target notation:** beta
 

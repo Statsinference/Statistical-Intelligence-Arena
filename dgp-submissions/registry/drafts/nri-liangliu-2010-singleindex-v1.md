@@ -36,9 +36,9 @@ Not explicitly identified (review required)
 
 **1. Continuous design**
 
-$$
+```math
 \mathrm{For} \text{ each } \mathrm{row} i=1..n, \text{ independently } \mathrm{draw} Z_{i1},Z_{i2},Z_{i3}\overset{\mathrm{iid}}{\sim} \mathrm{Uniform}(0,1)
-$$
+```
 
 Three independent source uniforms
 
@@ -58,9 +58,9 @@ Source notation retained without guessing:
 
 **3. Single index**
 
-$$
+```math
 t_{i}=(Z_{i1}+Z_{i2}+Z_{i3})/\sqrt{3}, \text{ with } 0\leq t_{i}\leq \sqrt{3}
-$$
+```
 
 Weights 1/sqrt(3), stored as their finite JSON approximations
 
@@ -68,9 +68,9 @@ Weights 1/sqrt(3), stored as their finite JSON approximations
 
 **4. Mean function**
 
-$$
+```math
 m_{i}=\sin(\pi\cdot (t_{i}-0.3912)/(1.3409-0.3912))+0.3\cdot X_{i}
-$$
+```
 
 Deterministic
 
@@ -80,23 +80,23 @@ Sine can be negative outside [a,b].
 
 **5. Innovation**
 
-$$
+```math
 \varepsilon_{i}\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1)
-$$
+```
 
 independent of all design uniforms
 
-$$
+```math
 \mathrm{Source} \mathrm{multiplier} 0.1 \mathrm{gives} \text{ noise } \mathrm{sd}=0.1 \text{ and } \text{ variance }=0.01
-$$
+```
 
 it is applied once.
 
 **6. Response and export**
 
-$$
+```math
 Y_{i}=m_{i}+0.1\cdot \varepsilon_{i}
-$$
+```
 
 export Z1,Z2,Z3,X,Y in row order. No index t, noiseless mean or noise column is returned.
 
@@ -117,12 +117,12 @@ Y_i=m_i+0.1*epsilon_i; export Z1,Z2,Z3,X,Y in row order. No index t, noiseless m
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| index-mid-x0 | Pointwise conditional mean | The scalar conditional mean at the scenario's fixed covariate query (z0, x0). The nonparametric component is evaluated at the single-index value t0 = z0'alpha with alpha = (1,1,1)/sqrt(3); the linear component contributes x0*beta. This is a pointwise target, not a curve-level or band target. | 0.9818328784088086 | reported_numeric |
-| index-mid-x1 | Pointwise conditional mean | The scalar conditional mean at the scenario's fixed covariate query (z0, x0). The nonparametric component is evaluated at the single-index value t0 = z0'alpha with alpha = (1,1,1)/sqrt(3); the linear component contributes x0*beta. This is a pointwise target, not a curve-level or band target. | 1.2818328784088087 | reported_numeric |
-| index-low-x0 | Pointwise conditional mean | The scalar conditional mean at the scenario's fixed covariate query (z0, x0). The nonparametric component is evaluated at the single-index value t0 = z0'alpha with alpha = (1,1,1)/sqrt(3); the linear component contributes x0*beta. This is a pointwise target, not a curve-level or band target. | 0.8402560393492512 | reported_numeric |
-| index-high-x1 | Pointwise conditional mean | The scalar conditional mean at the scenario's fixed covariate query (z0, x0). The nonparametric component is evaluated at the single-index value t0 = z0'alpha with alpha = (1,1,1)/sqrt(3); the linear component contributes x0*beta. This is a pointwise target, not a curve-level or band target. | 0.47575809676587577 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| index-mid-x0 | Pointwise conditional mean | The scalar conditional mean at the scenario's fixed covariate query (z0, x0). The nonparametric component is evaluated at the single-index value t0 = z0'alpha with alpha = (1,1,1)/sqrt(3); the linear component contributes x0*beta. This is a pointwise target, not a curve-level or band target. | 0.9818328784088086 |
+| index-mid-x1 | Pointwise conditional mean | The scalar conditional mean at the scenario's fixed covariate query (z0, x0). The nonparametric component is evaluated at the single-index value t0 = z0'alpha with alpha = (1,1,1)/sqrt(3); the linear component contributes x0*beta. This is a pointwise target, not a curve-level or band target. | 1.2818328784088087 |
+| index-low-x0 | Pointwise conditional mean | The scalar conditional mean at the scenario's fixed covariate query (z0, x0). The nonparametric component is evaluated at the single-index value t0 = z0'alpha with alpha = (1,1,1)/sqrt(3); the linear component contributes x0*beta. This is a pointwise target, not a curve-level or band target. | 0.8402560393492512 |
+| index-high-x1 | Pointwise conditional mean | The scalar conditional mean at the scenario's fixed covariate query (z0, x0). The nonparametric component is evaluated at the single-index value t0 = z0'alpha with alpha = (1,1,1)/sqrt(3); the linear component contributes x0*beta. This is a pointwise target, not a curve-level or band target. | 0.47575809676587577 |
 
 **Original submitted target notation:** eta(z0'alpha) + x0*beta = E[Y \| Z = z0, X = x0]
 

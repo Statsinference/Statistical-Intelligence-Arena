@@ -36,21 +36,21 @@ Not explicitly identified (review required)
 
 **1. Observed design**
 
-$$
+```math
 Z_{i}\overset{\mathrm{iid}}{\sim} \mathrm{Uniform}(0,1)
-$$
+```
 
 Source interval [0,1].
 
 **2. Regression function**
 
-$$
+```math
 B_{\text{ a },b}(z)=\Gamma(\text{ a }+b)/(\Gamma(\text{ a })\cdot \Gamma(b))\cdot z^{\text{ a }-1}\cdot (1-z)^{b-1}
-$$
+```
 
-$$
+```math
 g_{0}(z)=0.6\cdot B_{30,17}(z)+0.4\cdot B_{3,11}(z)
-$$
+```
 
 Deterministic source Beta densities
 
@@ -58,25 +58,25 @@ all declared shapes exceed 1, so both endpoint limits are 0.
 
 **3. Gaussian error**
 
-$$
+```math
 \varepsilon_{i}\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,0.05^{2})
-$$
+```
 
 independent of Z
 
-$$
+```math
 \mathrm{Noise} \mathrm{sd}=0.05
-$$
+```
 
-$$
+```math
 \text{ variance }=0.0025.
-$$
+```
 
 **4. Observed response**
 
-$$
+```math
 Y_{i}=g_{0}(Z_{i})+\varepsilon_{i}
-$$
+```
 
 return Z,Y. No additional noise or oracle column
 
@@ -99,10 +99,10 @@ Y_i=g0(Z_i)+epsilon_i; return Z,Y. No additional noise or oracle column. Both z0
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| peak-mode | Pointwise conditional mean | The scalar conditional mean at the scenario's fixed query point z0. This is a pointwise target, not a simultaneous confidence-band target. | 3.406258317314956 | reported_numeric |
-| query-z0-050 | Pointwise conditional mean | The scalar conditional mean at the scenario's fixed query point z0. This is a pointwise target, not a simultaneous confidence-band target. | 0.5910281636814358 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| peak-mode | Pointwise conditional mean | The scalar conditional mean at the scenario's fixed query point z0. This is a pointwise target, not a simultaneous confidence-band target. | 3.406258317314956 |
+| query-z0-050 | Pointwise conditional mean | The scalar conditional mean at the scenario's fixed query point z0. This is a pointwise target, not a simultaneous confidence-band target. | 0.5910281636814358 |
 
 **Original submitted target notation:** g0(z0) = E[Y \| Z = z0]
 

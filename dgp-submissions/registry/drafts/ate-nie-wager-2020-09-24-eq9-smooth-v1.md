@@ -41,33 +41,33 @@ Not explicitly identified (review required)
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
-$$
+```math
 X\sim \mathcal{N}_{10}(0,I)
-$$
+```
 
 independent coordinates and individuals.
 
-$$
+```math
 A\sim \mathrm{Bernoulli}(0.5)
-$$
+```
 
 independent of X
 
-$$
+```math
 b(X)=3/(1+\exp(X_{3}-X_{2}))
-$$
+```
 
-$$
+```math
 \tau(X)=1/(1+\exp(X_{1}-X_{2})).
-$$
+```
 
-$$
+```math
 Y\mid X,A\sim \mathcal{N}(b(X)+(A-0.5)\cdot \tau(X),\sigma^{2})
-$$
+```
 
-$$
+```math
 \sigma=1, \mathrm{selected} \text{ from } \mathrm{Figure} 2 \text{ noise } \mathrm{levels}.
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -84,9 +84,9 @@ Y|X,A~N(b(X)+(A-0.5)*tau(X),sigma**2), sigma=1, selected from Figure 2 noise lev
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| original | ATE | ATE = E[Y(1)-Y(0)] in the full original covariate population; binary treatment 1 versus 0. | 0.5 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| original | ATE | ATE = E[Y(1)-Y(0)] in the full original covariate population; binary treatment 1 versus 0. | 0.5 |
 
 **Original submitted target notation:** ATE
 

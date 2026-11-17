@@ -36,47 +36,47 @@ Not explicitly identified (review required)
 
 **X,T**
 
-$$
+```math
 X\sim \mathcal{N}(0,1)
-$$
+```
 
-$$
+```math
 T\sim \mathrm{Bern}(0.5), \text{ independent }
-$$
+```
 
 **M**
 
-$$
+```math
 M\mid T,X\sim \mathcal{N}(T+X,1)
-$$
+```
 
 **Y**
 
-$$
+```math
 Y\mid M,T,X\sim \mathcal{N}(M+T+MT+X,1)
-$$
+```
 
 **R_M**
 
-$$
+```math
 R_{M}\mid M,T,X\sim \mathrm{Bern}(\mathrm{expit}(1.4+M+T+X))
-$$
+```
 
 **R_Y**
 
-$$
+```math
 R_{Y}\mid Y,T,X\sim \mathrm{Bern}(\mathrm{expit}(1.8+Y+T+X))
-$$
+```
 
 **Observed export**
 
-$$
+```math
 M_{\mathrm{obs0}}=R_{M}\cdot M
-$$
+```
 
-$$
+```math
 Y_{\mathrm{obs0}}=R_{Y}\cdot Y
-$$
+```
 
 include R_M,R_Y to distinguish missing from genuine zero
 
@@ -97,9 +97,9 @@ M_obs0=R_M*M; Y_obs0=R_Y*Y; include R_M,R_Y to distinguish missing from genuine 
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| setting_C_III | NIE | E[Y(1,M(1))-Y(1,M(0))] in the full-data law before MNAR masking. | 2.0 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| setting_C_III | NIE | E[Y(1,M(1))-Y(1,M(0))] in the full-data law before MNAR masking. | 2.0 |
 
 **Original submitted target notation:** NIE_1
 

@@ -43,49 +43,49 @@ theta_i
 
 **Covariates**
 
-$$
+```math
 X_{i} \sim \mathcal{N}_{p}(0,\Sigma)
-$$
+```
 
-$$
+```math
 \Sigma_{jk}=\rho^{\lvert j-k\rvert}
-$$
+```
 
-$$
+```math
 \mathrm{Table} 3 \mathrm{uses} \rho=0.5, p=2000.
-$$
+```
 
 **Latent first-stage index**
 
-$$
+```math
 \theta_{i} = X_{i}^{T} \beta_{W} + \varepsilon_{i1}.
-$$
+```
 
 **Treatment assignment**
 
-$$
+```math
 W_{i} \mid  \theta_{i} \sim \mathrm{Bernoulli}(1/(1+\exp(\theta_{i}))) = \mathrm{Bernoulli}(\mathrm{expit}(-\theta_{i})).
-$$
+```
 
 **Outcome**
 
-$$
+```math
 Y_{i} = X_{i}^{T} \beta_{Y} + 0.5 W_{i} + \varepsilon_{i2}.
-$$
+```
 
 **Structure coefficient profile**
 
-$$
+```math
 \beta_{Y,j} \mathrm{proportional} \text{ to } 1/j^{2} \text{ for } j=1,\ldots ,p
-$$
+```
 
 Table 3 varies ||beta_Y||_2 in {1,4}.
 
 **Very-sparse-labeled propensity profile**
 
-$$
+```math
 \beta_{W,j} \mathrm{proportional} \text{ to } 1/j^{2} \text{ for } j=1,\ldots ,p
-$$
+```
 
 Table 3 varies ||beta_W||_2 in {1,4}
 
@@ -93,9 +93,9 @@ All coordinates are technically nonzero.
 
 **Dense propensity profile**
 
-$$
+```math
 \beta_{W,j} \mathrm{proportional} \text{ to } 1/\sqrt{j} \text{ for } j=1,\ldots ,p
-$$
+```
 
 Table 3 varies ||beta_W||_2 in {1,4}.
 
@@ -109,13 +109,13 @@ independently from X and across individuals as an explicit convention
 
 **Estimand**
 
-$$
+```math
 Y_{i}(w)=X_{i}^{T} \beta_{Y}+0.5 w+\varepsilon_{i2}
-$$
+```
 
-$$
+```math
 \mathrm{ATE}=\mathbb{E}[Y_{i}(1)-Y_{i}(0)]=0.5.
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -137,16 +137,16 @@ Y_i(w)=X_i^T beta_Y+0.5 w+epsilon_i2; ATE=E[Y_i(1)-Y_i(0)]=0.5.
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| prop_very_sparse_bw1_by1 | ATE | E[Y(1)-Y(0)] under interventions setting W=1 versus W=0 in the superpopulation defined by the sparse two-stage DGP; use the same pre-treatment X and epsilon_2 for both potential outcomes. | 0.5 | reported_numeric |
-| prop_very_sparse_bw1_by4 | ATE | E[Y(1)-Y(0)] under interventions setting W=1 versus W=0 in the superpopulation defined by the sparse two-stage DGP; use the same pre-treatment X and epsilon_2 for both potential outcomes. | 0.5 | reported_numeric |
-| prop_very_sparse_bw4_by1 | ATE | E[Y(1)-Y(0)] under interventions setting W=1 versus W=0 in the superpopulation defined by the sparse two-stage DGP; use the same pre-treatment X and epsilon_2 for both potential outcomes. | 0.5 | reported_numeric |
-| prop_very_sparse_bw4_by4 | ATE | E[Y(1)-Y(0)] under interventions setting W=1 versus W=0 in the superpopulation defined by the sparse two-stage DGP; use the same pre-treatment X and epsilon_2 for both potential outcomes. | 0.5 | reported_numeric |
-| prop_dense_bw1_by1 | ATE | E[Y(1)-Y(0)] under interventions setting W=1 versus W=0 in the superpopulation defined by the sparse two-stage DGP; use the same pre-treatment X and epsilon_2 for both potential outcomes. | 0.5 | reported_numeric |
-| prop_dense_bw1_by4 | ATE | E[Y(1)-Y(0)] under interventions setting W=1 versus W=0 in the superpopulation defined by the sparse two-stage DGP; use the same pre-treatment X and epsilon_2 for both potential outcomes. | 0.5 | reported_numeric |
-| prop_dense_bw4_by1 | ATE | E[Y(1)-Y(0)] under interventions setting W=1 versus W=0 in the superpopulation defined by the sparse two-stage DGP; use the same pre-treatment X and epsilon_2 for both potential outcomes. | 0.5 | reported_numeric |
-| prop_dense_bw4_by4 | ATE | E[Y(1)-Y(0)] under interventions setting W=1 versus W=0 in the superpopulation defined by the sparse two-stage DGP; use the same pre-treatment X and epsilon_2 for both potential outcomes. | 0.5 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| prop_very_sparse_bw1_by1 | ATE | E[Y(1)-Y(0)] under interventions setting W=1 versus W=0 in the superpopulation defined by the sparse two-stage DGP; use the same pre-treatment X and epsilon_2 for both potential outcomes. | 0.5 |
+| prop_very_sparse_bw1_by4 | ATE | E[Y(1)-Y(0)] under interventions setting W=1 versus W=0 in the superpopulation defined by the sparse two-stage DGP; use the same pre-treatment X and epsilon_2 for both potential outcomes. | 0.5 |
+| prop_very_sparse_bw4_by1 | ATE | E[Y(1)-Y(0)] under interventions setting W=1 versus W=0 in the superpopulation defined by the sparse two-stage DGP; use the same pre-treatment X and epsilon_2 for both potential outcomes. | 0.5 |
+| prop_very_sparse_bw4_by4 | ATE | E[Y(1)-Y(0)] under interventions setting W=1 versus W=0 in the superpopulation defined by the sparse two-stage DGP; use the same pre-treatment X and epsilon_2 for both potential outcomes. | 0.5 |
+| prop_dense_bw1_by1 | ATE | E[Y(1)-Y(0)] under interventions setting W=1 versus W=0 in the superpopulation defined by the sparse two-stage DGP; use the same pre-treatment X and epsilon_2 for both potential outcomes. | 0.5 |
+| prop_dense_bw1_by4 | ATE | E[Y(1)-Y(0)] under interventions setting W=1 versus W=0 in the superpopulation defined by the sparse two-stage DGP; use the same pre-treatment X and epsilon_2 for both potential outcomes. | 0.5 |
+| prop_dense_bw4_by1 | ATE | E[Y(1)-Y(0)] under interventions setting W=1 versus W=0 in the superpopulation defined by the sparse two-stage DGP; use the same pre-treatment X and epsilon_2 for both potential outcomes. | 0.5 |
+| prop_dense_bw4_by4 | ATE | E[Y(1)-Y(0)] under interventions setting W=1 versus W=0 in the superpopulation defined by the sparse two-stage DGP; use the same pre-treatment X and epsilon_2 for both potential outcomes. | 0.5 |
 
 **Original submitted target notation:** ATE
 

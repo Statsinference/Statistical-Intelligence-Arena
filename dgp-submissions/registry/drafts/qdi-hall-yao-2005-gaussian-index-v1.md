@@ -45,28 +45,28 @@ Not explicitly identified (review required)
 
 **E1**
 
-$$
+```math
 X_{ij},\varepsilon_i\overset{\mathrm{ind}}{\sim}\mathcal N(0,1),\quad j=1,\ldots,4
-$$
+```
 
 **E2**
 
-$$
+```math
 Y_i=\frac{X_{i1}+2X_{i2}+3X_{i4}}{\sqrt{14}}+\varepsilon_i
-$$
+```
 
 **E3**
 
-$$
+```math
 Q_Y(0.9)=\sqrt 2\,\Phi^{-1}(0.9)
-$$
+```
 
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| source_law_fixed_query | Marginal population quantile | Marginal population quantile Q_Y(tau)=inf{y:P(Y&lt;=y)&gt;=tau}, tau=0.9; X is integrated over its N(0,I4) population, not fixed at zero. | 1.8123876048736471 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| source_law_fixed_query | Marginal population quantile | Marginal population quantile Q_Y(tau)=inf{y:P(Y&lt;=y)&gt;=tau}, tau=0.9; X is integrated over its N(0,I4) population, not fixed at zero. | 1.8123876048736471 |
 
 **Original submitted target notation:** Q_Y(0.9)
 

@@ -42,31 +42,31 @@ Source notation retained without guessing:
 
 **Treatment**
 
-$$
+```math
 P(A=1) = 0.5 (\mathrm{simple} \mathrm{randomisation}, \mathrm{two} \mathrm{arms} \text{ at } 1:1)
-$$
+```
 
 **Potential responses**
 
-$$
+```math
 Y(1) = \varepsilon, Y(2) = Y(1) + \zeta(U - \mathrm{muU})
-$$
+```
 
-$$
+```math
 \zeta= 1, \mathrm{muU} = 0
-$$
+```
 
 **Heterogeneity**
 
-$$
+```math
 \tau(U) = \zeta(U - \mathrm{muU}) = U, \text{ with } \mathbb{E}[\tau(U)] = 0
-$$
+```
 
 **Observed**
 
-$$
+```math
 Y = A Y(2) + (1-A) Y(1) = \varepsilon+ A \tau(U)
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -84,9 +84,9 @@ Y = A Y(2) + (1-A) Y(1) = eps + A tau(U)
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| original | CATE | Conditional average treatment effect at the declared query points for the arm-2 versus arm-1 contrast; the surface is linear in U with slope zeta = 1 and has exactly zero mean over the covariate distribution, so there is heterogeneity but no average effect. | 0.5 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| original | CATE | Conditional average treatment effect at the declared query points for the arm-2 versus arm-1 contrast; the surface is linear in U with slope zeta = 1 and has exactly zero mean over the covariate distribution, so there is heterogeneity but no average effect. | 0.5 |
 
 **Original submitted target notation:** tau(u0) = E[Y(1) - Y(0) \| U = u0]
 

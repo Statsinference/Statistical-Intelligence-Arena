@@ -47,15 +47,15 @@ X1,...,X10 mutually independent N(0,1)
 
 **Full outcome**
 
-$$
+```math
 Y=3X_{1}+5X_{2}+\varepsilon, \varepsilon\text{ independent } \mathcal{N}(0,1)
-$$
+```
 
 **Observation**
 
-$$
+```math
 R\mid X\sim \mathrm{Bernoulli}(\mathrm{expit}(X_{1}))
-$$
+```
 
 R
 
@@ -63,17 +63,17 @@ independent of Y given X
 
 **Observed encoding**
 
-$$
+```math
 Y_{\mathrm{observed}}=Y \text{ if } R=1
-$$
+```
 
 otherwise finite placeholder 0
 
 **Target**
 
-$$
+```math
 \theta=\mathbb{E}(Y)=0
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -91,9 +91,9 @@ theta=E(Y)=0
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| original | Full-data population outcome mean | Marginal full-data mean response for the iid superpopulation before Y is masked. | 0.0 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| original | Full-data population outcome mean | Marginal full-data mean response for the iid superpopulation before Y is masked. | 0.0 |
 
 **Original submitted target notation:** theta = E(Y)
 

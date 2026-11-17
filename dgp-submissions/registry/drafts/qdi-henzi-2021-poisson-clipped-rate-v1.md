@@ -36,47 +36,47 @@ Not explicitly identified (review required)
 
 **Source covariate: published Section 4, PDF p.17 / journal p.979, unnumbered paragraph before (23)**
 
-$$
+```math
 X_{i}\overset{\mathrm{iid}}{\sim} \mathrm{Uniform}(0,10)
-$$
+```
 
 **Source conditional intensity: published equation (26), PDF p.19 / journal p.981**
 
-$$
+```math
 \lambda(x)=\min(\max(x,1),6) = 1 \text{ if } 0<x\leq 1
-$$
+```
 
-$$
+```math
 x \text{ if } 1<x<6
-$$
+```
 
-$$
+```math
 6 \text{ if } 6\leq x<10
-$$
+```
 
 **Source count: published equation (26), PDF p.19 / journal p.981; Y4 renamed Y**
 
-$$
+```math
 Y_{i} \mid  X_{i}=x \sim \mathrm{Poisson}(\lambda(x))
-$$
+```
 
 independently across i
 
-$$
+```math
 P(Y_{i}=k\mid X_{i}=x)=\exp(-\lambda(x))\cdot \lambda(x)^{k}/k!, k=0,1,\ldots
-$$
+```
 
 **Adapted scalar target**
 
-$$
+```math
 \theta=P(Y\leq 3\mid X=5)=\exp(-5)\cdot (1+5+25/2+125/6)=(118/3)\cdot \exp(-5)
-$$
+```
 
 **Independent verification identity**
 
-$$
+```math
 \theta=\int_{5}^{\infty} t^{3}\cdot \exp(-t)/6 \mathrm{dt} (\Gamma/\mathrm{Erlang} \mathrm{survival})
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -94,9 +94,9 @@ theta=Integral_5^infinity t^3*exp(-t)/6 dt (Gamma/Erlang survival)
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| original_poisson_qdi | Conditional cumulative distribution function | P(Y&lt;=3 \| X=5) in the source synthetic superpopulation, using its continuous-in-x conditional probability kernel. Inclusive CDF threshold y=3, fixed covariate query x=5, scalar probability in [0,1]. This is conditional, not marginal, and not a quantile or a causal effect. | 0.2650259152973617 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| original_poisson_qdi | Conditional cumulative distribution function | P(Y&lt;=3 \| X=5) in the source synthetic superpopulation, using its continuous-in-x conditional probability kernel. Inclusive CDF threshold y=3, fixed covariate query x=5, scalar probability in [0,1]. This is conditional, not marginal, and not a quantile or a causal effect. | 0.2650259152973617 |
 
 **Original submitted target notation:** theta = F_{Y\|X=5}(3)
 
