@@ -58,10 +58,41 @@ def display_truth_value(truth):
     return 'Not reported' if value is None else value
 
 
+def observed_variables_display(variables):
+    """Compress only explicitly present, ordered contiguous numbered names."""
+    names = [str(v.get('name')) for v in variables
+             if isinstance(v, dict) and v.get('name') not in (None, '')]
+    out = []
+    i = 0
+    while i < len(names):
+        match = re.fullmatch(r'(.+?)([0-9]+)', names[i])
+        end = i + 1
+        if match and (len(match.group(2)) == 1 or not match.group(2).startswith('0')):
+            prefix, number = match.group(1), int(match.group(2))
+            while end < len(names) and names[end] == prefix + str(number + end - i):
+                end += 1
+        if end - i >= 4:
+            out.append(f'{names[i]}–{names[end - 1]} ({end - i} variables)')
+        else:
+            out.extend(names[i:end])
+        i = end
+    return ', '.join(out), names
+
+
+def review_status_display(rec):
+    status = rec.get('review_status')
+    if status == 'duplicate_conflict_needs_review':
+        return 'Duplicate conflict — review required'
+    if status == 'needs_scientific_review' or not status:
+        return 'Needs scientific review'
+    return str(status).replace('_', ' ')
+
+
 def detail(rec):
     source_rec=rec
     rec, translated=english_display(source_rec)
     paper=rec.get('paper') or {}; mech=rec.get('mechanism') or {}
+    observed, observed_names = observed_variables_display(mech.get('observed_variables') or [])
     lines=[f"# {cell(display_title(rec))}",'',
         '> **Unverified extraction — scientific review required.**','',
         f"**Primary area:** {cell(DOMAINS.get(rec.get('domain'),rec.get('domain')))}",'',
@@ -74,12 +105,16 @@ def detail(rec):
         '**Generator source:** ' + generator_link(rec, '../generators/'), '',
         '**Keywords (source-described):** ' + cell(keywords_text(source_rec)), '',
         '**Observed variables**', '',
-        cell(', '.join(str((v or {}).get('name','')) for v in mech.get('observed_variables', []) if isinstance(v,dict))) or '—',
+        cell(observed) or '—',
         '', '**Latent variables**', '',
         cell(', '.join(str((v or {}).get('name','')) for v in mech.get('latent_variables', []) if isinstance(v,dict))) or 'Not explicitly identified (review required)',
         '', '**Latent-variable identification:** ' + cell((mech.get('latent_variables_status') or 'unknown').replace('_',' ')),
         '', '**Equations / distributions (LaTeX rendering)**', '',
         '> Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.', '']
+    if observed != ', '.join(observed_names):
+        lines[lines.index('**Latent variables**'):lines.index('**Latent variables**')] = [
+            '<details>', '<summary>All observed variable names</summary>', '',
+            cell(', '.join(observed_names)), '', '</details>', '']
     if translated:
         lines.extend(['**Original source equations (verbatim):** [Open raw scientific record (JSON)](./'+source_rec['record_id']+'.json).', ''])
     lines.extend(equation_markdown(mech.get('generation_equations') or [], include_source=not translated,
@@ -111,7 +146,13 @@ def detail(rec):
         f"**Mode:** {cell((rec.get('provenance') or {}).get('mode'))}",'',
         f"**Original versus adapted:** {cell(rec.get('source_relation'))}",'',
         f"**Status:** {cell(rec.get('review_status'))}",'',
-        '**Warnings:**',''])
+        '**Adaptations from the source (submitted, unverified):**',''])
+    adaptations = source_rec.get('adaptations') or []
+    if isinstance(adaptations, list) and adaptations:
+        lines.extend('- ' + cell(a) for a in adaptations)
+    else:
+        lines.append('- None described in the submitted metadata; this does not establish exact reproduction.')
+    lines.extend(['', '**Warnings:**', ''])
     lines.extend('- '+cell(w) for w in (rec.get('warnings') or []))
     if not rec.get('warnings'):
         lines.append('- Nothing automatically flagged; this does NOT equal scientific acceptance.')
@@ -148,16 +189,16 @@ def build(records, output_root: Path, notes=()):
               f'**{len(group)} submitted DGP mechanism(s) · draft / unverified.**','',
               '> Target names are submitted labels, not verified classifications. '
               'Open each DGP for scenario definitions and reported values.', '',
-              '| Paper Title | DGP mechanism | Keywords | Target (submitted name) | Scenarios | Review status | Generator.py |',
-              '|---|---|---|---|---:|---|---|']
+              '| Paper Title | DGP mechanism | Keywords | Target (submitted name) | Scenarios | Review status |',
+              '|---|---|---|---|---:|---|']
         summary.extend([f'## {label}', ''])
         if not group:
-            page.append('| — | No DGPs submitted yet | — | — | 0 | — | — |')
+            page.append('| — | No DGPs submitted yet | — | — | 0 | — |')
             summary.append('No submissions in this area yet.\n')
         for rec in sorted(group,key=lambda r:(str((r.get('paper') or {}).get('citation','')),r['record_id'])):
             mech=rec.get('mechanism') or {};paper=rec.get('paper') or {}
             citation=paper.get('citation') or paper.get('doi') or 'Reference pending'
-            one=f"| {cell(paper_title_with_venue(rec))} | [{cell(display_title(rec))}](../drafts/{rec['record_id']}.md) | {cell(keywords_text(rec))} | {concise_target(rec)} | {len(rec.get('scenarios') or [])} | Needs review | {generator_link(rec, '../generators/')} |"
+            one=f"| {cell(paper_title_with_venue(rec))} | [{cell(display_title(rec))}](../drafts/{rec['record_id']}.md) | {cell(keywords_text(rec))} | {concise_target(rec)} | {len(rec.get('scenarios') or [])} | {cell(review_status_display(rec))} |"
             page.append(one)
             summary.append(one)
         summary.append('')
@@ -167,10 +208,10 @@ def build(records, output_root: Path, notes=()):
         title.extend(['', '## Needs classification', '',
                       f"[{len(buckets['unclassified'])} unclassified DGP(s)](by-domain/unclassified.md) require a reviewer."])
         page=['# Needs classification','', '> **Unverified — reviewer must assign a research area.**', '',
-              '| Paper Title | DGP | Keywords | Estimand and truth | Status | Generator.py |','|---|---|---|---|---|---|']
+              '| Paper Title | DGP | Keywords | Estimand and truth | Status |','|---|---|---|---|---|']
         for rec in buckets['unclassified']:
             p=rec.get('paper') or {}; m=rec.get('mechanism') or {}
-            page.append(f"| {cell(paper_title_with_venue(rec))} | [{cell(display_title(rec))}](../drafts/{rec['record_id']}.md) | {cell(keywords_text(rec))} | {truth_pairs(rec)} | Needs classification | {generator_link(rec, '../generators/')} |")
+            page.append(f"| {cell(paper_title_with_venue(rec))} | [{cell(display_title(rec))}](../drafts/{rec['record_id']}.md) | {cell(keywords_text(rec))} | {truth_pairs(rec)} | Needs classification |")
         (by/'unclassified.md').write_text('\n'.join(page)+'\n',encoding='utf-8')
     if notes:
         title+=['','## Extraction notes','']+['- '+cell(n) for n in notes]
@@ -183,6 +224,7 @@ def build(records, output_root: Path, notes=()):
         'mechanism_count':len(records),'scenario_count':nscen,
         'domains':{key:len(buckets.get(key,[])) for key in DOMAINS},
         'records':[{'record_id':r['record_id'],'domain':r.get('domain'),'paper':(r.get('paper') or {}).get('citation'),
+                    'paper_doi':(r.get('paper') or {}).get('doi'),
                     'mechanism':display_title(r),
                     'paper_title':paper_title(r),
                     'venue_abbreviation':venue_abbreviation(r),
