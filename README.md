@@ -37,7 +37,6 @@
 | [Semi-Supervised Inference](dgp-submissions/registry/by-domain/semi_supervised.md) | `▰▰▰▰▰▰▰▰` **16** | — **0** |
 | [Missing Data](dgp-submissions/registry/by-domain/missing_data.md) | `▰▰▰▰` **8** | — **0** |
 
-*DGPs are registered mechanisms (including drafts pending scientific review); Methods are distinct entries in the public Test leaderboard, not new external submissions. Each DGP bar mark represents approximately two mechanisms; each Method bar mark represents one method. Difference-in-Differences includes 6 DiD and 5 Synthetic Control DGPs.*
 
 
 ## Contributing DGPs / Methods
