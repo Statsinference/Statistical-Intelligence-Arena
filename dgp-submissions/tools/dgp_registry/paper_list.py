@@ -31,10 +31,10 @@ def _paper(rec):
     paper = rec.get("paper") or {}
     if isinstance(paper, dict):
         citation = paper.get("citation") or paper.get("doi") or "Reference pending"
-        doi = paper.get("doi") or ""
+        doi = paper.get("doi") or rec.get("paper_doi") or ""
     else:
         citation = str(paper) if paper else "Reference pending"
-        doi = ""
+        doi = rec.get("paper_doi") or ""
     match = _DOI.search(doi) or _DOI.search(citation)
     doi = match.group().rstrip(".,;)").lower() if match else None
     normalized = re.sub(r"\s+", " ", citation.strip()).casefold()
@@ -117,14 +117,15 @@ def _domain_papers(records):
 
 def paper_list_tables(records, *, draft_prefix="drafts/", domain_prefix="by-domain/",
                       generator_prefix="generators/"):
-    """One paper per row in each area, with a source generator per mechanism."""
+    """One paper per row; source generators are linked on detail pages."""
     lines = [
         "## Paper list by research area", "",
-        "Each paper is listed **once per area**. Generators are source files from the"
-        " submitted ZIP, not executed or automatically validated.", "",
+        "Each paper is listed **once per area**. Open a DGP mechanism for its details"
+        " and source generator, if available. Submitted generators are not executed"
+        " or automatically validated.", "",
         "**Keywords** describe each submitted DGP, not the whole paper. Missing tags do not "
         "prove absence; nonlinearity may occur in any part of the mechanism. Numbered entries "
-        "match the DGP mechanisms and generators in the same row.", "",
+        "match the DGP mechanisms in the same row.", "",
     ]
     for domain, label in list(DOMAINS.items()) + [("unclassified", "Needs classification")]:
         group = [rec for rec in records if rec.get("domain") == domain]
@@ -134,11 +135,11 @@ def paper_list_tables(records, *, draft_prefix="drafts/", domain_prefix="by-doma
         lines.extend([
             "### [" + _escape(label) + "](" + domain_prefix + domain + ".md)", "",
             str(len(papers)) + " paper(s) · " + str(len(group)) + " DGP mechanism(s)", "",
-            "| Paper Title | DGPs | DGP Mechanisms | Keywords | Generator.py |",
-            "|---|---:|---|---|---|",
+            "| Paper Title | DGPs | DGP Mechanisms | Keywords |",
+            "|---|---:|---|---|",
         ])
         if not papers:
-            lines.append("| — | 0 | No submissions yet | — | — |")
+            lines.append("| — | 0 | No submissions yet | — |")
         for paper in papers:
             title = _escape(paper["title"])
             if paper["doi"]:
@@ -158,15 +159,8 @@ def paper_list_tables(records, *, draft_prefix="drafts/", domain_prefix="by-doma
                 (str(i + 1) + ": " if n > 1 else "") + _escape(keywords_text(rec))
                 for i, rec in enumerate(mechanisms)
             )
-            generators = "<br/>".join(
-                generator_link(
-                    rec, generator_prefix,
-                    ("generator.py" if n == 1 else str(i + 1) + ": generator.py")
-                )
-                for i, rec in enumerate(mechanisms)
-            )
             lines.append(
-                "| " + title + " | " + str(n) + " | " + links + " | " + keyword_cells + " | " + generators + " |"
+                "| " + title + " | " + str(n) + " | " + links + " | " + keyword_cells + " |"
             )
         lines.append("")
     return lines
