@@ -119,10 +119,31 @@ def test_unknown_family_is_not_guessed_and_all_areas_render(tmp_path):
     case(inc/'unknown.zip','unknown-case-1','novel-unclassified')
     ingest(inc,tmp_path/'registry')
     assert (tmp_path/'registry/by-domain/unclassified.md').exists()
-    assert len(DOMAINS)==10
+    assert len(DOMAINS)==12
     assert to_domain('quantile_regression')=='quantile'
     assert to_domain('nonparametric regression')=='nonparametric_regression'
     assert to_domain('totally-unknown') is None
+
+
+def test_did_and_synthetic_control_have_distinct_backward_compatible_domains(tmp_path):
+    inc=tmp_path/'incoming';inc.mkdir();out=tmp_path/'registry'
+    case(inc/'did.zip','new-did-1','did')
+    case(inc/'sc.zip','new-synthetic-control-1','synthetic_control')
+    case(inc/'legacy.zip','legacy-mixed-design-1','did_sc')
+    result=ingest(inc,out)
+    assert result['mechanisms']==3 and result['failure_count']==0
+    for rid, domain in [('new-did-1','did'),('new-synthetic-control-1','synthetic_control'),
+                        ('legacy-mixed-design-1','did_sc')]:
+        record=json.loads((out/'drafts'/(rid+'.json')).read_text(encoding='utf-8'))
+        assert record['domain']==domain
+        assert rid in (out/'by-domain'/(domain+'.md')).read_text(encoding='utf-8')
+    legacy=json.loads((out/'drafts/legacy-mixed-design-1.json').read_text(encoding='utf-8'))
+    assert legacy['source_suggested_domain']=='did_sc'
+    assert legacy['classification_status']=='needs_manual_classification'
+    assert any('human classification required' in w for w in legacy['warnings'])
+    assert to_domain('DiD / Synthetic Control')=='did_sc'
+    assert to_domain('difference-in-differences')=='did'
+    assert to_domain('synthetic control')=='synthetic_control'
 
 
 def test_bad_display_metadata_is_quarantined(tmp_path):
