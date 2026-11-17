@@ -1,0 +1,29 @@
+name: Verify evidence column removal
+on:
+  push:
+    branches: [codex/test-evidence-column-20261117]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install test tools
+        run: python -m pip install pytest==8.4.2
+      - name: Test detail page behavior
+        working-directory: dgp-submissions
+        run: python -m pytest tests/test_domain_presentation.py -q
+      - name: Run frozen corpus regression
+        working-directory: dgp-submissions
+        run: python integration/run_regressions.py
+      - name: Run complete test suite
+        working-directory: dgp-submissions
+        run: python -m pytest tests -q
