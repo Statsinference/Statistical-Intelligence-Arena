@@ -1,4 +1,4 @@
-name: Markdown API probe
+name: MathJax newline probe
 on:
   push:
     branches: [codex/github-md-probe-20261117]
@@ -8,11 +8,22 @@ jobs:
   probe:
     runs-on: ubuntu-latest
     steps:
-      - name: Probe actual GitHub Markdown API
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-save --ignore-scripts mathjax-full@3.2.2 jsdom@26.1.0
+      - name: Compare Github Markdown API MathJax output
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: TOKEN_PLACEHOLDER
         run: |
           node - <<'JS'
-          const sample='```math\n\\begin{aligned}\nX_1,X_2&\\overset{\\mathrm{iid}}{\\sim}\\mathcal{N}(0.25,0.25^2)\\\\\np(X)&=[1+\\exp\\{0.125(X_1+X_2)\\}]^{-1}\n\\end{aligned}\n```';
-          fetch('https://api.github.com/markdown',{method:'POST',headers:{'Authorization':'Bearer '+process.env.GH_TOKEN,'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28','Content-Type':'application/json'},body:JSON.stringify({text:sample,mode:'gfm',context:'Statsinference/stats-inference-arena'})}).then(async r=>{let s=await r.text();console.log('status',r.status,'html',s);if(!r.ok)process.exitCode=1}).catch(e=>{console.error(e);process.exitCode=1});
+          const {JSDOM}=require('jsdom');const {mathjax}=require('mathjax-full/js/mathjax.js');const {TeX}=require('mathjax-full/js/input/tex.js');const {SVG}=require('mathjax-full/js/output/svg.js');const {liteAdaptor}=require('mathjax-full/js/adaptors/liteAdaptor.js');const {RegisterHTMLHandler}=require('mathjax-full/js/handlers/html.js');const {AllPackages}=require('mathjax-full/js/input/tex/AllPackages.js');
+          const adapter=liteAdaptor();RegisterHTMLHandler(adapter);
+          const tex=new TeX({packages:AllPackages,formatError:(_jax,e)=>{throw e}});const doc=mathjax.document('',{InputJax:tex,OutputJax:new SVG({fontCache:'none'})});
+          const expr=String.raw`\begin{aligned}
+          L_{0} &= 1.5\cdot T_{00}+\varepsilon_{1} \\
+          U_{0} &= 1.5\cdot T_{00}+\varepsilon_{2}.
+          \end{aligned}`;
+          const sample=String.fromCharCode(96).repeat(3)+'math\n'+expr+'\n'+String.fromCharCode(96).repeat(3);
+          fetch('https://api.github.com/markdown',{method:'POST',headers:{Authorization:'Bearer '+process.env.GH_TOKEN,Accept:'application/vnd.github+json','Content-Type':'application/json'},body:JSON.stringify({text:sample,mode:'gfm',context:'Statsinference/stats-inference-arena'})}).then(async r=>{if(!r.ok)throw Error('HTTP '+r.status);let s=await r.text();let got=new JSDOM(s).window.document.querySelector('math-renderer.js-display-math').textContent.trim().slice(2,-2).trim();console.log('source',JSON.stringify(expr));console.log('github',JSON.stringify(got));let a=adapter.outerHTML(doc.convert(expr,{display:true}));let b=adapter.outerHTML(doc.convert(got,{display:true}));console.log('byteEqualMath',expr===got,'identicalSVG',a===b);if(a!==b){let i=0;while(a[i]===b[i]&&i<Math.min(a.length,b.length))i++;console.log('SVG first difference',i,JSON.stringify(a.slice(i-80,i+100)),JSON.stringify(b.slice(i-80,i+100))}}).catch(e=>{console.error(e);process.exitCode=1});
           JS
