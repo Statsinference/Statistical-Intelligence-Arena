@@ -47,6 +47,19 @@ _REVIEWED_SUMS = {
 }
 
 
+# Exact legacy source strings from the binary IV simulation. The source
+# declares c, a, n and q separately; adjacent cq is their product, not one
+# identifier. Exact matching makes this a display repair, not a DGP change.
+_REVIEWED_IV_PRODUCTS = {
+    "c=φ_{1}, a=(1−c)φ_{2}, n=(1−c)(1−φ_{2}).":
+        r"c=\phi_{1},\quad a=(1-c)\phi_{2},\quad n=(1-c)(1-\phi_{2})",
+    "p_{0}=(n(1−φ_{3})+c(1−q_{0}), nφ_{3}+cq_{0}, a(1−φ_{4}), aφ_{4}),":
+        r"p_{0}=(n(1-\phi_{3})+c(1-q_{0}),\ n\phi_{3}+c q_{0},\ a(1-\phi_{4}),\ a\phi_{4})",
+    "p_{1}=(n(1−φ_{3}), nφ_{3}, a(1−φ_{4})+c(1−q_{1}), aφ_{4}+cq_{1}).":
+        r"p_{1}=(n(1-\phi_{3}),\ n\phi_{3},\ a(1-\phi_{4})+c(1-q_{1}),\ a\phi_{4}+c q_{1})",
+}
+
+
 class UncertainNotation(ValueError):
     """The source is not sufficiently explicit for an automatic math rewrite."""
 
@@ -69,12 +82,50 @@ def _unwrap(value):
     return s
 
 
+def _escape_hashes(latex):
+    """Escape literal hashes and cardinality set delimiters, never macros."""
+    if '#' not in latex:
+        return latex
+    if re.search(r'\\(?:def|gdef|edef|xdef|newcommand|renewcommand|providecommand|DeclareMathOperator|verb)\b', latex):
+        return None
+    result, stack, i = [], [], 0
+    while i < len(latex):
+        c = latex[i]
+        if c == '\\':
+            result.append(latex[i:i+2])
+            i += 2
+            continue
+        if c == '#':
+            result.append(r'\#')
+            if latex[i+1:i+2] == '{':
+                result.append(r'\{')
+                stack.append(True)
+                i += 2
+                continue
+        elif c == '{':
+            stack.append(False)
+        elif c == '}':
+            if not stack:
+                return None
+            if stack.pop():
+                result.append(r'\}')
+                i += 1
+                continue
+        result.append(c) if c != '#' else None
+        i += 1
+    return None if stack else ''.join(result)
+
+
 def _safe_latex(latex):
+    # Unescaped hashes cannot be rendered as ordinary math; repair literal
+    # cardinality notation, but leave macro definitions as source text.
+    latex = _escape_hashes(_unwrap(latex))
+    if latex is None:
+        return None
     # Distribution names historically use mathrm in this repository. Do not
     # rewrite starred operators: their limit placement carries meaning.
     return re.sub(r'\\operatorname\{(Bernoulli|Poisson|Uniform|Normal|expit)\}',
-                  lambda m: r'\mathrm{' + m[1] + '}', _unwrap(latex))
-
+                  lambda m: r'\mathrm{' + m[1] + '}', latex)
 
 def _balanced(s):
     depth = 0
@@ -287,7 +338,7 @@ def plain_math_to_latex(source, starred=(), aliases=None):
     if re.search(r'\\[A-Za-z]+',s):
         # An author-supplied TeX expression must not undergo plain-text rewriting.
         latex=_safe_latex(s)
-        return latex if _balanced(latex) and not re.search(r'(?<!\\)\$',latex) and not DIAGNOSTIC_RX.search(latex) else None
+        return latex if latex is not None and _balanced(latex) and not re.search(r'(?<!\\)\$',latex) and not DIAGNOSTIC_RX.search(latex) else None
     piecewise=re.fullmatch(r'([A-Za-z]+)\(([A-Za-z])\)\s*=\s*(.+)',s)
     if piecewise and ' on ' in piecewise[3]:
         pattern=r'(.+?)\s+on\s+([\[(][^,\]\)]*,[^,\]\)]*[\])])'
@@ -314,10 +365,15 @@ def plain_math_to_latex(source, starred=(), aliases=None):
 def formatted_blocks(entry, starred=(), aliases=None):
     if isinstance(entry,dict) and entry.get('latex'):
         latex=_safe_latex(entry['latex'])
-        if _balanced(latex) and '$$' not in latex and '```' not in latex and not re.search(r'(?<!\\)\$',latex):
+        if latex is not None and _balanced(latex) and '$' not in latex and '```' not in latex and not re.search(r'(?<!\\)\$',latex):
             return [('math',latex)]+([('text',str(entry['notes']))] if entry.get('notes') else [])
         return [('source',str(entry['latex']))]
     raw=original_equation(entry).strip()
+    if raw in _REVIEWED_IV_PRODUCTS:
+        blocks = [('math', _REVIEWED_IV_PRODUCTS[raw])]
+        if isinstance(entry, dict) and entry.get('notes'):
+            blocks.append(('text', str(entry['notes'])))
+        return blocks
     if raw in _REVIEWED_SUMS:raw=raw.replace('Σ','∑')
     # Mixed-language descriptions frequently enclose the actual formulas in
     # backticks. Keep every surrounding note; do not discard the whole equation.
