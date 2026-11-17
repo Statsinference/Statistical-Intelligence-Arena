@@ -54,3 +54,22 @@ def test_pending_transcription_without_safe_fragment_discloses_missing_context()
     assert "English equation transcription pending" in rendered
     assert "original scientific record (JSON)" in rendered
     assert "未给出" not in rendered
+
+
+def test_github_fenced_math_preserves_hash_and_literal_set_escapes():
+    # GitHub removes backslash escapes from standalone $$ paragraphs before
+    # rendering; fenced math passes the exact TeX to its math renderer.
+    original = r'\mathrm{N}_{11}=#{i:Y_{i}(1)=1,Y_{i}(0)=1}'
+    expected = r'\mathrm{N}_{11}=\#\{i:Y_{i}(1)=1,Y_{i}(0)=1\}'
+    rendered = '\n'.join(equation_markdown([{'latex': original}], include_source=False))
+    assert rendered == '\x60\x60\x60math\n' + expected + '\n\x60\x60\x60\n'
+    assert '$$' not in rendered
+    assert original == r'\mathrm{N}_{11}=#{i:Y_{i}(1)=1,Y_{i}(0)=1}'
+
+
+def test_markdown_math_does_not_confuse_literal_percent_and_braces():
+    original = r'x=\{1,2\},\;p=5\%'
+    rendered = '\n'.join(equation_markdown([{'latex': original}], include_source=False))
+    assert rendered.startswith('\x60\x60\x60math\n')
+    assert original in rendered
+    assert rendered.endswith('\n\x60\x60\x60\n')
