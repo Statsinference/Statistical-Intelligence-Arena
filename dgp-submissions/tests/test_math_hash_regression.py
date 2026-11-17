@@ -1,5 +1,5 @@
 """Regressions for catalog math rendering without changing source records."""
-from tools.dgp_registry.math_format import formatted_blocks, plain_math_to_latex
+from tools.dgp_registry.math_format import equation_markdown, formatted_blocks, plain_math_to_latex
 
 
 def test_author_latex_cardinality_hash_and_set_are_escaped():
@@ -31,3 +31,26 @@ def test_wang_iv_declared_product_is_not_a_single_identifier():
     assert changed != raw
     # Only the exact reviewed source expression receives the transcription.
     assert formatted_blocks({'expression': changed}) != blocks
+
+
+def test_pending_transcription_keeps_delimited_math_and_points_to_source():
+    original = "设定 `X1~N(0,1)`，后面还有未翻译的上下文。"
+    rendered = "\n".join(equation_markdown(
+        ["English equation transcription pending; see JSON."],
+        include_source=False, source_entries=[original]))
+    assert "English equation transcription pending" in rendered
+    assert "original scientific record (JSON)" in rendered
+    assert r"X_{1}" in rendered
+    assert r"\mathcal{N}" in rendered
+    assert "设定" not in rendered
+    assert original == "设定 `X1~N(0,1)`，后面还有未翻译的上下文。"
+
+
+def test_pending_transcription_without_safe_fragment_discloses_missing_context():
+    original = "未给出英文方程，应核对原文。"
+    rendered = "\n".join(equation_markdown(
+        ["English equation transcription pending; see JSON."],
+        include_source=False, source_entries=[original]))
+    assert "English equation transcription pending" in rendered
+    assert "original scientific record (JSON)" in rendered
+    assert "未给出" not in rendered
