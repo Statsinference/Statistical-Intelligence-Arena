@@ -24,6 +24,21 @@
 
 ## Domains
 
+| Research domain | DGPs | Methods |
+| :--- | :--- | :--- |
+| [Average Treatment Effect](dgp-submissions/registry/by-domain/ate.md) | `▰▰▰▰▰▰▰▰▰▰▰` **22** | `▰▰` **2** |
+| [Conditional Average Treatment Effect](dgp-submissions/registry/by-domain/cate.md) | `▰▰▰▰▰▰` **12** | `▰▰` **2** |
+| [Causal Mediation](dgp-submissions/registry/by-domain/mediation.md) | `▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰` **31** | `▰▰` **2** |
+| [Instrumental Variables](dgp-submissions/registry/by-domain/iv.md) | `▰▰▰▰▰▰▰▰▰▰▰` **21** | `▰▰` **2** |
+| [Proximal Causal Inference](dgp-submissions/registry/by-domain/proximal.md) | `▰▰▰▰▰▰▰▰` **15** | `▰▰` **2** |
+| [Difference-in-Differences](dgp-submissions/registry/by-domain/did_sc.md) | `▰▰▰▰▰▰` **11** | `▰▰` **2** |
+| [Nonparametric Regression](dgp-submissions/registry/by-domain/nonparametric_regression.md) | `▰▰▰▰▰▰▰▰▰▰` **20** | — **0** |
+| [Quantile Inference](dgp-submissions/registry/by-domain/quantile.md) | `▰▰▰▰▰▰▰▰▰▰▰▰▰▰` **27** | — **0** |
+| [Semi-Supervised Inference](dgp-submissions/registry/by-domain/semi_supervised.md) | `▰▰▰▰▰▰▰▰` **16** | — **0** |
+| [Missing Data](dgp-submissions/registry/by-domain/missing_data.md) | `▰▰▰▰` **8** | — **0** |
+
+*DGPs are registered mechanisms (including drafts pending scientific review); Methods are distinct entries in the public Test leaderboard, not new external submissions. Each DGP bar mark represents approximately two mechanisms; each Method bar mark represents one method. Difference-in-Differences includes 6 DiD and 5 Synthetic Control DGPs.*
+
 ## Coverage
 
 ## Contributing DGPs / Methods
