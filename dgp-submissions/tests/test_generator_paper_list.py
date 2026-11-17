@@ -37,8 +37,9 @@ class GeneratorPaperListTests(unittest.TestCase):
             self.assertEqual(exports, len(records),
                              "Existing submission ZIPs should all supply generator.py")
             sample=(out / "by-domain/proximal.md").read_text(encoding="utf-8")
-            self.assertIn("| Generator.py |", sample)
-            self.assertIn("../generators/proximal-dukes-2023-mediation-v1.py", sample)
+            self.assertNotIn("| Generator.py |", sample)
+            detail = (out / "drafts/proximal-dukes-2023-mediation-v1.md").read_text(encoding="utf-8")
+            self.assertIn("../generators/proximal-dukes-2023-mediation-v1.py", detail)
 
     def test_current_paper_titles_are_titles_only(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -55,9 +56,10 @@ class GeneratorPaperListTests(unittest.TestCase):
                 records, draft_prefix="registry/drafts/",
                 generator_prefix="registry/generators/"
             ))
-            self.assertIn("| Paper Title | DGPs | DGP Mechanisms | Keywords | Generator.py |", readme)
+            self.assertIn("| Paper Title | DGPs | DGP Mechanisms | Keywords |", readme)
+            self.assertNotIn("| Generator.py |", readme)
             self.assertIn("[Proximal mediation analysis]", readme)
-            self.assertIn("registry/generators/proximal-dukes-2023-mediation-v1.py", readme)
+            self.assertNotIn("registry/generators/proximal-dukes-2023-mediation-v1.py", readme)
             self.assertNotIn("[Dukes, O.,", readme)
 
     def test_missing_generator_never_creates_fake_link(self):
@@ -82,7 +84,7 @@ class GeneratorPaperListTests(unittest.TestCase):
             self.assertIn("The causal test paper", "\n".join(
                 paper_list_tables([rec], generator_prefix="generators/")))
 
-    def test_grouped_paper_has_generator_for_each_dgp(self):
+    def test_grouped_paper_links_each_dgp_without_generator_column(self):
         records=[
             {"record_id":"demo-1","domain":"iv",
              "paper":{"citation":"A, B (2026). One paper two DGPs. Journal of Examples.",
@@ -98,10 +100,11 @@ class GeneratorPaperListTests(unittest.TestCase):
         txt="\n".join(paper_list_tables(records))
         iv=txt.split("### [IV — Instrumental Variables]")[1].split("### [")[0]
         self.assertEqual(iv.count("One paper two DGPs"),1)
-        self.assertIn("1: generator.py",iv)
-        self.assertIn("2: generator.py",iv)
-        self.assertIn("generators/demo-1.py",iv)
-        self.assertIn("generators/demo-2.py",iv)
+        self.assertIn("drafts/demo-1.md",iv)
+        self.assertIn("drafts/demo-2.md",iv)
+        self.assertNotIn("generator.py",iv)
+        self.assertNotIn("generators/demo-1.py",iv)
+        self.assertNotIn("generators/demo-2.py",iv)
 
 
 if __name__=="__main__":
