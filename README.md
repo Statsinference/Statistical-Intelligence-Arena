@@ -49,14 +49,14 @@
   </thead>
   <tbody>
     <tr>
-      <td width="25%"><a href="mailto:shibo@bu.edu">Shi Bo</a><br><small>Boston University</small></td>
-      <td width="25%"><a href="mailto:jh7453@bu.edu">Jiaming Hu</a><br><small>Boston University</small></td>
-      <td width="25%"><a href="mailto:zhangzhiheng@mail.shufe.edu.cn">Zhiheng Zhang</a><br><small>Shanghai University of Finance and Economics</small></td>
+      <td width="25%"><a href="mailto:shibo@bu.edu">Shi Bo</a><br><small><sub>Boston University</sub></small></td>
+      <td width="25%"><a href="mailto:jh7453@bu.edu">Jiaming Hu</a><br><small><sub>Boston University</sub></small></td>
+      <td width="25%"><a href="mailto:zhangzhiheng@mail.shufe.edu.cn">Zhiheng Zhang</a><br><small><sub>Shanghai University of Finance and Economics</sub></small></td>
       <td width="25%"></td>
     </tr>
     <tr><th colspan="4" align="left">Method Contributors</th></tr>
     <tr>
-      <td>Suo Li</td><td></td><td></td><td></td>
+      <td>Suo Li<br><small><sub>Shanghai University of Finance and Economics</sub></small></td><td></td><td></td><td></td>
     </tr>
     <tr><th colspan="4" align="left">Data Contributors</th></tr>
     <tr><th colspan="4" align="left">Advisors</th></tr>
