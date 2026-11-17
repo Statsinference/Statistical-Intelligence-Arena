@@ -1,4 +1,4 @@
-"""DGP collection areas: six causal categories plus four statistical problems.
+"""DGP collection areas, including a separate legacy mixed-design bucket.
 
 These are catalog categories, not claims that the current benchmark evaluator
 supports every target, dimension, dependence structure, or study design.
@@ -11,7 +11,9 @@ DOMAINS = {
     'mediation': 'Mediation — Direct and Indirect Effects',
     'iv': 'IV — Instrumental Variables',
     'proximal': 'Proximal Causal Inference',
-    'did_sc': 'DiD / Synthetic Control',
+    'did': 'DiD — Difference-in-Differences',
+    'synthetic_control': 'Synthetic Control',
+    'did_sc': 'Legacy DiD / Synthetic Control — classification needed',
     'nonparametric_regression': 'Nonparametric Regression',
     'quantile': 'Quantile Inference',
     'semi_supervised': 'Semi-Supervised Inference',
@@ -19,6 +21,11 @@ DOMAINS = {
 }
 
 _ALIASES = {
+    # Keep historical values in the legacy bucket; do not infer a design.
+    'did_/_synthetic_control': 'did_sc',
+    'difference_in_differences': 'did',
+    'difference_in_difference': 'did',
+    'synthetic_control_method': 'synthetic_control',
     'nri': 'nonparametric_regression',
     'nonparametric': 'nonparametric_regression',
     'nonparametric_regression_inference': 'nonparametric_regression',
