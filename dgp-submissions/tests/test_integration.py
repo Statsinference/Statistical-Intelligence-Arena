@@ -25,7 +25,7 @@ def test_contributing_uses_current_destination_upload():
     assert 'href="dgp-submissions/incoming/"' not in text
     assert "Statsinference/stats-inference-arena/upload/main" not in text
     assert "Statsinference/submission_test/upload" not in text
-    assert "| Paper Title | DGPs | DGP Mechanisms | Keywords |" in text
+    assert "| Paper Title | DGPs | DGP Mechanisms | Estimand | Keywords |" in text
 
 
 def test_every_root_contributing_link_resolves():
