@@ -115,7 +115,10 @@ def detail(rec):
         e=s.get('estimand') or rec.get('estimand') or {}; t=s.get('truth') or {}
         lines.append('| '+ ' | '.join(cell(x) for x in (
             s.get('id'),target_name(source_rec, TARGET_LABELS) if not s.get('estimand') or s.get('estimand') == source_rec.get('estimand') else 'Needs review',e.get('definition'),display_truth_value(t),t.get('status')))+' |')
-    lines.extend(['', '**Original submitted target notation:** ' + cell((source_rec.get('estimand') or {}).get('name')), ''])
+    submitted_target = (source_rec.get('estimand') or {}).get('name')
+    if has_cjk(submitted_target):
+        submitted_target = 'Original-language notation: see the linked scientific record.'
+    lines.extend(['', '**Original submitted target notation:** ' + cell(submitted_target), ''])
     missing_expressions = [(s.get('id'), (s.get('truth') or {}).get('expression'))
                            for s in rec.get('scenarios') or []
                            if (s.get('truth') or {}).get('value') is None
