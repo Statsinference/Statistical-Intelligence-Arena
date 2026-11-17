@@ -57,12 +57,13 @@ class ZipOnlyGateTests(unittest.TestCase):
         return p
 
     def test_all_zip_additions_pass(self):
-        self.add()
-        self.add('dgp-submissions/incoming/two.ZIP')
+        payload = archive()
+        self.add(data=payload)
+        self.add('dgp-submissions/incoming/two.ZIP', data=payload)
         items=gate.validate_diff(self.diff())
         self.assertEqual(len(items),2)
         for item in items:
-            self.assertEqual(gate.zip_blob(self.root,item),archive())
+            self.assertEqual(gate.zip_blob(self.root,item),payload)
 
     def test_zip_replacement_passes(self):
         self.add('dgp-submissions/incoming/old.zip',archive()+b'updated')
