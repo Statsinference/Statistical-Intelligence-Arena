@@ -1,0 +1,98 @@
+name: DGP isolated branch verification
+on:
+  push:
+    branches: [codex/dgp-format-ci-verification-20261117]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install test tools
+        run: |
+          python -m pip install pytest==8.4.2
+          npm install --no-save --ignore-scripts katex@0.16.9
+      - name: Frozen corpus regression
+        id: frozen
+        continue-on-error: true
+        working-directory: dgp-submissions
+        run: python integration/run_regressions.py
+      - name: Complete test suite
+        id: full
+        continue-on-error: true
+        working-directory: dgp-submissions
+        run: python -m pytest tests -q
+      - name: Reindex live ZIPs without executing submitted code
+        id: intake
+        continue-on-error: true
+        working-directory: dgp-submissions
+        run: python -m tools.dgp_registry.github_intake --incoming incoming --output "$RUNNER_TEMP/dgp-registry-ci"
+      - name: Verify generated contribution page synchronization
+        id: sync
+        continue-on-error: true
+        working-directory: dgp-submissions
+        run: |
+          python -m tools.dgp_registry.paper_list --catalog "$RUNNER_TEMP/dgp-registry-ci/catalog.json" --readme README.md
+          python integration/sync_contributing.py
+          python - <<'PY'
+          from pathlib import Path
+          from integration.sync_contributing import render
+          assert Path('../CONTRIBUTING.md').read_text(encoding='utf-8') == render(Path('README.md').read_text(encoding='utf-8'))
+          print('CONTRIBUTING.md agrees with source and sync function')
+          PY
+      - name: Render every regenerated display equation
+        id: math
+        continue-on-error: true
+        run: |
+          python - <<'PY'
+          import json, os, re
+          from pathlib import Path
+          formulas=[]
+          files=list((Path(os.environ["RUNNER_TEMP"]) / "dgp-registry-ci" / "drafts").glob("*.md"))
+          for path in files:
+              source=path.read_text(encoding="utf-8")
+              for m in re.finditer(r'(?m)^\$\$\s*\n([\s\S]*?)^\$\$\s*$',source):
+                  formulas.append({"id":path.stem,"formula":m.group(1)})
+          assert files and formulas, "No generated records or math blocks found"
+          Path(os.environ["RUNNER_TEMP"],"dgp-formulas.json").write_text(json.dumps(formulas),encoding="utf-8")
+          print(f"Collected {len(formulas)} display blocks from {len(files)} records")
+          PY
+          node - <<'JS'
+          const fs = require("fs");
+          const katex = require("katex");
+          const formulas = JSON.parse(fs.readFileSync(process.env.RUNNER_TEMP + "/dgp-formulas.json", "utf8"));
+          const errors = [];
+          for (const item of formulas) {
+            try { katex.renderToString(item.formula, {throwOnError: true, strict: "error", displayMode: true}); }
+            catch (error) { errors.push({id:item.id, formula:item.formula, message:String(error)}); }
+          }
+          console.log(JSON.stringify({checked: formulas.length, errors}, null, 2));
+          if (errors.length) process.exit(1);
+          JS
+      - name: Require all checks
+        if: always()
+        env:
+          FROZEN: ${{ steps.frozen.outcome }}
+          FULL: ${{ steps.full.outcome }}
+          INTAKE: ${{ steps.intake.outcome }}
+          SYNC: ${{ steps.sync.outcome }}
+          MATH: ${{ steps.math.outcome }}
+        run: |
+          python - <<'PY'
+          import os
+          names=['FROZEN','FULL','INTAKE','SYNC','MATH']
+          results={name:os.getenv(name) for name in names}
+          print(results)
+          assert all(result == 'success' for result in results.values()), results
+          PY
