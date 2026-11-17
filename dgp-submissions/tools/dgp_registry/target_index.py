@@ -39,7 +39,7 @@ def classification(record, labels):
     """Return a verified mapping entry, or None if stale or needs review."""
     item = labels.get(record.get('record_id')) or {}
     estimand = record.get('estimand') or {}
-    if (item.get('status') != 'provisional_submitted_definition_only'
+    if (item.get('status') not in ('provisional_submitted_definition_only', 'needs_review')
             or item.get('domain') != record.get('domain')
             or item.get('original_name') != estimand.get('name')
             or item.get('source_definition') != estimand.get('definition')
@@ -49,7 +49,7 @@ def classification(record, labels):
 
 def target_name(record, labels):
     item = classification(record, labels)
-    return item['standard_name'] if item else 'Needs review'
+    return (item['standard_name'] + (' ⚠ review' if item.get('status') == 'needs_review' else '')) if item else 'Needs review'
 
 def _cell(value):
     return str(value or '—').replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;').replace('|', r'\|').replace('\n', ' ')
@@ -87,7 +87,7 @@ def render_target_indexes(records, output_root, labels):
             for rec, item in sorted(group, key=lambda pair: pair[0]['record_id']):
                 rid = rec['record_id']
                 raw = (rec.get('estimand') or {}).get('name')
-                target = item.get('standard_name') if item else 'Needs review'
+                target = target_name(rec, labels)
                 lines.append(f'| {_cell(paper_title_with_venue(rec))} | '
                              f'[{_cell(display_title(rec))}](../drafts/{rid}.md) | '
                              f'{_cell(target)} | {_cell(raw)} |')
