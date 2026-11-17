@@ -18,11 +18,18 @@
 
 **Generator source:** [generator.py](../generators/qdi-hall-yao-2005-gaussian-index-v1.py)
 
-**Keywords (source-described):** Linearity
+**Keywords (source-described):** Not specified
 
 **Observed variables**
 
+X1–X4 (4 variables), Y
+
+<details>
+<summary>All observed variable names</summary>
+
 X1, X2, X3, X4, Y
+
+</details>
 
 **Latent variables**
 
@@ -57,9 +64,12 @@ $$
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| source_law_fixed_query | Q_Y(0.9) | Marginal population quantile Q_Y(tau)=inf{y:P(Y&lt;=y)&gt;=tau}, tau=0.9; X is integrated over its N(0,I4) population, not fixed at zero. | 1.8123876048736471 | reported_numeric |
+| source_law_fixed_query | Marginal population quantile | Marginal population quantile Q_Y(tau)=inf{y:P(Y&lt;=y)&gt;=tau}, tau=0.9; X is integrated over its N(0,I4) population, not fixed at zero. | 1.8123876048736471 | reported_numeric |
+
+**Original submitted target notation:** Q_Y(0.9)
+
 
 ## Identifiability assumptions
 
@@ -76,6 +86,11 @@ $$
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- The original paper studies conditional distribution approximation and index estimation. This contribution keeps its data law and defines a marginal 0.9 quantile by integrating over X. The reported truth is newly derived here, not a number reported in the source.
+- Independent Python/NumPy implementation from mathematical formulas; no author code is redistributed. PCG64(seed) replaces unspecified/source software random-number generation. Sample size is the generate n argument; source_n only records the published sample sizes. No fitting, bootstrap, confidence-band coverage experiment or PFN training is included.
 
 **Warnings:**
 

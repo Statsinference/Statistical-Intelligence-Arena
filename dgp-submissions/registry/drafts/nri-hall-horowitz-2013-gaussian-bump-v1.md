@@ -84,23 +84,26 @@ theta(x0)=E[Y|X=x0]=g1(x0); x0 in {-0.3,-0.15,0,0.15,0.3}.
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| source_sd100_query_neg030 | theta(x0)=g1(x0) | Continuous conditional-mean version E[Y\|X=x0]=x0+5*phi(10*x0) for a fixed query x0. Default x0=0; this is not a marginal mean or a future-response prediction target. | -0.27784075794030993 | reported_numeric |
-| source_sd100_query_neg015 | theta(x0)=g1(x0) | Continuous conditional-mean version E[Y\|X=x0]=x0+5*phi(10*x0) for a fixed query x0. Default x0=0; this is not a marginal mean or a future-response prediction target. | 0.49758797832945867 | reported_numeric |
-| source_sd100_query_zero | theta(x0)=g1(x0) | Continuous conditional-mean version E[Y\|X=x0]=x0+5*phi(10*x0) for a fixed query x0. Default x0=0; this is not a marginal mean or a future-response prediction target. | 1.9947114020071635 | reported_numeric |
-| source_sd100_query_pos015 | theta(x0)=g1(x0) | Continuous conditional-mean version E[Y\|X=x0]=x0+5*phi(10*x0) for a fixed query x0. Default x0=0; this is not a marginal mean or a future-response prediction target. | 0.7975879783294587 | reported_numeric |
-| source_sd100_query_pos030 | theta(x0)=g1(x0) | Continuous conditional-mean version E[Y\|X=x0]=x0+5*phi(10*x0) for a fixed query x0. Default x0=0; this is not a marginal mean or a future-response prediction target. | 0.32215924205969004 | reported_numeric |
-| source_sd050_query_neg030 | theta(x0)=g1(x0) | Continuous conditional-mean version E[Y\|X=x0]=x0+5*phi(10*x0) for a fixed query x0. Default x0=0; this is not a marginal mean or a future-response prediction target. | -0.27784075794030993 | reported_numeric |
-| source_sd050_query_neg015 | theta(x0)=g1(x0) | Continuous conditional-mean version E[Y\|X=x0]=x0+5*phi(10*x0) for a fixed query x0. Default x0=0; this is not a marginal mean or a future-response prediction target. | 0.49758797832945867 | reported_numeric |
-| source_sd050_query_zero | theta(x0)=g1(x0) | Continuous conditional-mean version E[Y\|X=x0]=x0+5*phi(10*x0) for a fixed query x0. Default x0=0; this is not a marginal mean or a future-response prediction target. | 1.9947114020071635 | reported_numeric |
-| source_sd050_query_pos015 | theta(x0)=g1(x0) | Continuous conditional-mean version E[Y\|X=x0]=x0+5*phi(10*x0) for a fixed query x0. Default x0=0; this is not a marginal mean or a future-response prediction target. | 0.7975879783294587 | reported_numeric |
-| source_sd050_query_pos030 | theta(x0)=g1(x0) | Continuous conditional-mean version E[Y\|X=x0]=x0+5*phi(10*x0) for a fixed query x0. Default x0=0; this is not a marginal mean or a future-response prediction target. | 0.32215924205969004 | reported_numeric |
-| source_sd020_query_neg030 | theta(x0)=g1(x0) | Continuous conditional-mean version E[Y\|X=x0]=x0+5*phi(10*x0) for a fixed query x0. Default x0=0; this is not a marginal mean or a future-response prediction target. | -0.27784075794030993 | reported_numeric |
-| source_sd020_query_neg015 | theta(x0)=g1(x0) | Continuous conditional-mean version E[Y\|X=x0]=x0+5*phi(10*x0) for a fixed query x0. Default x0=0; this is not a marginal mean or a future-response prediction target. | 0.49758797832945867 | reported_numeric |
-| source_sd020_query_zero | theta(x0)=g1(x0) | Continuous conditional-mean version E[Y\|X=x0]=x0+5*phi(10*x0) for a fixed query x0. Default x0=0; this is not a marginal mean or a future-response prediction target. | 1.9947114020071635 | reported_numeric |
-| source_sd020_query_pos015 | theta(x0)=g1(x0) | Continuous conditional-mean version E[Y\|X=x0]=x0+5*phi(10*x0) for a fixed query x0. Default x0=0; this is not a marginal mean or a future-response prediction target. | 0.7975879783294587 | reported_numeric |
-| source_sd020_query_pos030 | theta(x0)=g1(x0) | Continuous conditional-mean version E[Y\|X=x0]=x0+5*phi(10*x0) for a fixed query x0. Default x0=0; this is not a marginal mean or a future-response prediction target. | 0.32215924205969004 | reported_numeric |
+| source_sd100_query_neg030 | Pointwise conditional mean | Continuous conditional-mean version E[Y\|X=x0]=x0+5*phi(10*x0) for a fixed query x0. Default x0=0; this is not a marginal mean or a future-response prediction target. | -0.27784075794030993 | reported_numeric |
+| source_sd100_query_neg015 | Pointwise conditional mean | Continuous conditional-mean version E[Y\|X=x0]=x0+5*phi(10*x0) for a fixed query x0. Default x0=0; this is not a marginal mean or a future-response prediction target. | 0.49758797832945867 | reported_numeric |
+| source_sd100_query_zero | Pointwise conditional mean | Continuous conditional-mean version E[Y\|X=x0]=x0+5*phi(10*x0) for a fixed query x0. Default x0=0; this is not a marginal mean or a future-response prediction target. | 1.9947114020071635 | reported_numeric |
+| source_sd100_query_pos015 | Pointwise conditional mean | Continuous conditional-mean version E[Y\|X=x0]=x0+5*phi(10*x0) for a fixed query x0. Default x0=0; this is not a marginal mean or a future-response prediction target. | 0.7975879783294587 | reported_numeric |
+| source_sd100_query_pos030 | Pointwise conditional mean | Continuous conditional-mean version E[Y\|X=x0]=x0+5*phi(10*x0) for a fixed query x0. Default x0=0; this is not a marginal mean or a future-response prediction target. | 0.32215924205969004 | reported_numeric |
+| source_sd050_query_neg030 | Pointwise conditional mean | Continuous conditional-mean version E[Y\|X=x0]=x0+5*phi(10*x0) for a fixed query x0. Default x0=0; this is not a marginal mean or a future-response prediction target. | -0.27784075794030993 | reported_numeric |
+| source_sd050_query_neg015 | Pointwise conditional mean | Continuous conditional-mean version E[Y\|X=x0]=x0+5*phi(10*x0) for a fixed query x0. Default x0=0; this is not a marginal mean or a future-response prediction target. | 0.49758797832945867 | reported_numeric |
+| source_sd050_query_zero | Pointwise conditional mean | Continuous conditional-mean version E[Y\|X=x0]=x0+5*phi(10*x0) for a fixed query x0. Default x0=0; this is not a marginal mean or a future-response prediction target. | 1.9947114020071635 | reported_numeric |
+| source_sd050_query_pos015 | Pointwise conditional mean | Continuous conditional-mean version E[Y\|X=x0]=x0+5*phi(10*x0) for a fixed query x0. Default x0=0; this is not a marginal mean or a future-response prediction target. | 0.7975879783294587 | reported_numeric |
+| source_sd050_query_pos030 | Pointwise conditional mean | Continuous conditional-mean version E[Y\|X=x0]=x0+5*phi(10*x0) for a fixed query x0. Default x0=0; this is not a marginal mean or a future-response prediction target. | 0.32215924205969004 | reported_numeric |
+| source_sd020_query_neg030 | Pointwise conditional mean | Continuous conditional-mean version E[Y\|X=x0]=x0+5*phi(10*x0) for a fixed query x0. Default x0=0; this is not a marginal mean or a future-response prediction target. | -0.27784075794030993 | reported_numeric |
+| source_sd020_query_neg015 | Pointwise conditional mean | Continuous conditional-mean version E[Y\|X=x0]=x0+5*phi(10*x0) for a fixed query x0. Default x0=0; this is not a marginal mean or a future-response prediction target. | 0.49758797832945867 | reported_numeric |
+| source_sd020_query_zero | Pointwise conditional mean | Continuous conditional-mean version E[Y\|X=x0]=x0+5*phi(10*x0) for a fixed query x0. Default x0=0; this is not a marginal mean or a future-response prediction target. | 1.9947114020071635 | reported_numeric |
+| source_sd020_query_pos015 | Pointwise conditional mean | Continuous conditional-mean version E[Y\|X=x0]=x0+5*phi(10*x0) for a fixed query x0. Default x0=0; this is not a marginal mean or a future-response prediction target. | 0.7975879783294587 | reported_numeric |
+| source_sd020_query_pos030 | Pointwise conditional mean | Continuous conditional-mean version E[Y\|X=x0]=x0+5*phi(10*x0) for a fixed query x0. Default x0=0; this is not a marginal mean or a future-response prediction target. | 0.32215924205969004 | reported_numeric |
+
+**Original submitted target notation:** theta(x0)=g1(x0)
+
 
 ## Identifiability assumptions
 
@@ -119,6 +122,14 @@ theta(x0)=E[Y|X=x0]=g1(x0); x0 in {-0.3,-0.15,0,0.15,0.3}.
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Preserve the section 3.1 g1 equation, Uniform[-1,1] design and all three source error standard deviations; implement independent X and epsilon and IID pairs explicitly, consistent with the source model. The paragraph does not state the joint X-epsilon law separately.
+- Represent the source pointwise regression-function target by five scalar queries x=-0.3,-0.15,0,0.15,0.3. These locations are discussed in section 3.2 (electronic reprint p21); this finite query set is a contribution-level selection, not a claimed reconstruction of the full plotting grid.
+- Use Python random.Random (MT19937) with n uniform draws followed by n Gaussian draws. The original RNG, seed and exact draw order are not supplied in the inspected text; source simulation bitstreams are not reproduced.
+- Use n=128, seed=1729 for the guide check. Keep source n=100,200,400 and 1000 replications in metadata; do not reproduce the original estimator/coverage simulations.
+- Collect g1 as one mechanism. Do not repackage g2, already represented by nri-calonico-2018-asymmetric-sine-v1. Record g3 as the source-described truncation/rescaling of g2 and leave that related design uncollected in this one-new-mechanism contribution.
 
 **Warnings:**
 

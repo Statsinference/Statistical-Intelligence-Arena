@@ -16,7 +16,7 @@
 
 **Sampling design:** Unit: independent individual from one of two repeated cross-sections; Dependence: English description not yet supplied; consult the original scientific record (JSON).
 
-**Generator source:** [generator.py](https://github.com/Statsinference/stats-inference-arena/blob/main/dgp-submissions/registry/generators/did-zhao-cui-2025-instrumented-v1.py)
+**Generator source:** [generator.py](../generators/did-zhao-cui-2025-instrumented-v1.py)
 
 **Keywords (source-described):** Interactions · Nonlinearity · Effect heterogeneity
 
@@ -109,7 +109,10 @@ $$
 
 | Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| source_section6_ate_target | ATE | English description not yet supplied; consult the original scientific record (JSON). | -5 | reported_numeric |
+| source_section6_ate_target | ATE | English description not yet supplied; consult the original scientific record (JSON). | -5.0 | reported_numeric |
+
+**Original submitted target notation:** ATE
+
 
 ## Identifiability assumptions
 
@@ -129,6 +132,13 @@ $$
 
 **Status:** needs_scientific_review
 
+**Adaptations from the source (submitted, unverified):**
+
+- English description pending; see [original scientific record](./did-zhao-cui-2025-instrumented-v1.json).
+- English description pending; see [original scientific record](./did-zhao-cui-2025-instrumented-v1.json).
+- English description pending; see [original scientific record](./did-zhao-cui-2025-instrumented-v1.json).
+
 **Warnings:**
 
 - No explicit latent-variable metadata or reliably identifiable latent declarations; absence from this list does not prove that no latent variables exist.
+- Legacy combined DiD / Synthetic Control family: human classification required; not automatically reassigned.

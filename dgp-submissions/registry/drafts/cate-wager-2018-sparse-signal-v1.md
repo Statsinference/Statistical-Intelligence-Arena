@@ -22,7 +22,14 @@
 
 **Observed variables**
 
+X1–X6 (6 variables), A, Y
+
+<details>
+<summary>All observed variable names</summary>
+
 X1, X2, X3, X4, X5, X6, A, Y
+
+</details>
 
 **Latent variables**
 
@@ -84,9 +91,12 @@ Y = m(X) + A tau(X) + eps, eps ~ Normal(0,1)
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| original | tau(x0) = E[Y(1) - Y(0) \| X = x0] | Conditional average treatment effect when the signal is spread additively over q = 4 of the 6 coordinates; the estimand at a query point is the sum of four sigmoid contributions minus 2. | 0.9836748576936802 | reported_numeric |
+| original | CATE | Conditional average treatment effect when the signal is spread additively over q = 4 of the 6 coordinates; the estimand at a query point is the sum of four sigmoid contributions minus 2. | 0.9836748576936802 | reported_numeric |
+
+**Original submitted target notation:** tau(x0) = E[Y(1) - Y(0) \| X = x0]
+
 
 ## Identifiability assumptions
 
@@ -104,6 +114,13 @@ Y = m(X) + A tau(X) + eps, eps ~ Normal(0,1)
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- The source varies q in {2,4,6} and d in {6,12}; this package fixes the (q, d) = (4, 6) cell so that the surface has an exact closed form with 4/q = 1.
+- The source's second experiment (p.20, immediately after Eq. 28) states 'we evaluated the ability of causal forests to adapt to heterogeneity in tau(x), while holding m(x) = 0 and e(x) = 0.5 fixed'; the same values are used here and stated explicitly. Eq. (27) on the same page uses a beta-density propensity with m(x) = 2 X1 - 1 for a different experiment and does not apply to this design.
+- The source writes (W - 0.5) tau(X); this package uses A tau(X) with A in {0,1}. The CATE is unchanged.
+- The source reports Table 5 over 20 replications; no replication experiment is run here.
 
 **Warnings:**
 

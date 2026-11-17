@@ -16,7 +16,7 @@
 
 **Sampling design:** Unit: individual; Dependence: iid individuals; C0, then A, then the three-vector C1, then M, then Y are generated in temporal order within an individual
 
-**Generator source:** [generator.py](https://github.com/Statsinference/stats-inference-arena/blob/main/dgp-submissions/registry/generators/mediation-miles-2019-toxicity-path-specific-v1.py)
+**Generator source:** [generator.py](../generators/mediation-miles-2019-toxicity-path-specific-v1.py)
 
 **Keywords (source-described):** Interactions · Nonlinearity
 
@@ -89,7 +89,10 @@ beta_0 = int int int E(Y|m, c1, a&#x27;, c0) dF(m|c1, a, c0) dF(c1|a&#x27;, c0) 
 
 | Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| original | P_AMY = E(Y[M{a, C1(a')}, C1(a'), a']) - E[Y(a')] | The path-specific effect of A on Y along the path A -&gt; M -&gt; Y, as defined in Section 2 of the source. It is the CONTRAST of two nested counterfactual means: in both arms the treatment-induced confounder vector C1 and the outcome are held at the reference level a' = 0, and only the exposure level fed to the mediator equation moves, from a' = 0 to a = 1. Writing beta_0 = E(Y[M{a, C1(a')}, C1(a'), a']) for the moved arm and E[Y(a')] for the unmoved arm, P_AMY = beta_0 - E[Y(a')]. beta_0 on its own is a counterfactual MEAN, not an effect, and is registered only as a component; the source's Figure 2 plots beta_0, which is why that figure is used as coding evidence rather than as the target. P_AMY is NOT a natural indirect effect, NOT a natural direct effect and NOT a total effect; keeping C1 at a' inside the mediator counterfactual is what distinguishes it from the standard natural effects. | -0.9180000000000001 | reported_numeric |
+| original | Path-specific effect | The path-specific effect of A on Y along the path A -&gt; M -&gt; Y, as defined in Section 2 of the source. It is the CONTRAST of two nested counterfactual means: in both arms the treatment-induced confounder vector C1 and the outcome are held at the reference level a' = 0, and only the exposure level fed to the mediator equation moves, from a' = 0 to a = 1. Writing beta_0 = E(Y[M{a, C1(a')}, C1(a'), a']) for the moved arm and E[Y(a')] for the unmoved arm, P_AMY = beta_0 - E[Y(a')]. beta_0 on its own is a counterfactual MEAN, not an effect, and is registered only as a component; the source's Figure 2 plots beta_0, which is why that figure is used as coding evidence rather than as the target. P_AMY is NOT a natural indirect effect, NOT a natural direct effect and NOT a total effect; keeping C1 at a' inside the mediator counterfactual is what distinguishes it from the standard natural effects. | -0.9180000000000001 | reported_numeric |
+
+**Original submitted target notation:** P_AMY = E(Y[M{a, C1(a')}, C1(a'), a']) - E[Y(a')]
+
 
 ## Identifiability assumptions
 
@@ -109,6 +112,16 @@ beta_0 = int int int E(Y|m, c1, a&#x27;, c0) dF(m|c1, a, c0) dF(c1|a&#x27;, c0) 
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- CORRECTION (2026-11-01): an earlier version of this contribution registered beta_0 = 2.678 as truth.reference_value while titling the contribution a path-specific effect. beta_0 is a nested counterfactual MEAN; the effect the source defines is P_AMY = beta_0 - E[Y(a')] = -0.918. The generating mechanism and the truth code always distinguished the two quantities and both were reported, but the registered scalar was the wrong one of the pair. The registered target is now the effect; beta_0 and E[Y(a')] are carried as components and anchored in verify.py.
+- Version used: arXiv:1710.02011v1 preprint; the published journal version was not accessible to the collector, so section and page locators refer to the preprint PDF. The journal volume, issue and pages recorded in the citation come from the Crossref record for DOI 10.1093/biomet/asz063 and were not read by the collector.
+- The source writes the reference level as a' and the comparison level as a without giving them numerical codes. The registered scenario reads a' = 0 and a = 1. Evidence: the source's Figure 2 y-axis spans 2 to 5 with a dashed line at the true beta_0; the registered mechanism gives beta_0 = 2.678 under a' = 0, a = 1, which falls inside that range, while the opposite reading gives 5.611, which does not. This is the collector's inference and must be confirmed by a reviewer.
+- Truth method: the source prints no numerical value of beta_0. The registered 2.678 is derived analytically by the collector from the displayed coefficients and must be checked by a reviewer.
+- The source compares four estimators under four working-model configurations M_int, M_a, M_b, M_c. Those correctly and incorrectly specified working models, including the probit link, the squared and interacted covariate terms and the omitted A*M term, are estimation devices applied to the same data; none of them is reproduced and none is registered as a separate mechanism.
+- The source generates 1000 datasets of size 5000; no estimator, bootstrap or coverage computation is reproduced here.
+- Sampling is re-implemented with NumPy Generator(PCG64); no attempt is made to match the source software draw-for-draw.
 
 **Warnings:**
 

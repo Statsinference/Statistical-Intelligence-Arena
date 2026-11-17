@@ -118,13 +118,16 @@ Y_i=f_k(X1_i,X2_i)+epsilon_i; return X1,X2,Y. No latent surface or oracle column
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| original-f1 | f_k(x0) = E[Y \| X = x0] | Pointwise conditional mean of Y at the fixed query point x0 = (query_x1, query_x2) = (0.5, 0.5) under the declared Section 5.2 law, for the regression function f_k selected by the scenario. This is a scalar pointwise query, not a simultaneous confidence band and not a coverage probability. | 1.0 | reported_numeric |
-| original-f2 | f_k(x0) = E[Y \| X = x0] | Pointwise conditional mean of Y at the fixed query point x0 = (query_x1, query_x2) = (0.5, 0.5) under the declared Section 5.2 law, for the regression function f_k selected by the scenario. This is a scalar pointwise query, not a simultaneous confidence band and not a coverage probability. | 1.0 | reported_numeric |
-| original-f3 | f_k(x0) = E[Y \| X = x0] | Pointwise conditional mean of Y at the fixed query point x0 = (query_x1, query_x2) = (0.5, 0.5) under the declared Section 5.2 law, for the regression function f_k selected by the scenario. This is a scalar pointwise query, not a simultaneous confidence band and not a coverage probability. | 0.25 | reported_numeric |
-| original-f4 | f_k(x0) = E[Y \| X = x0] | Pointwise conditional mean of Y at the fixed query point x0 = (query_x1, query_x2) = (0.5, 0.5) under the declared Section 5.2 law, for the regression function f_k selected by the scenario. This is a scalar pointwise query, not a simultaneous confidence band and not a coverage probability. | 2.718281828459045 | reported_numeric |
-| original-f5 | f_k(x0) = E[Y \| X = x0] | Pointwise conditional mean of Y at the fixed query point x0 = (query_x1, query_x2) = (0.5, 0.5) under the declared Section 5.2 law, for the regression function f_k selected by the scenario. This is a scalar pointwise query, not a simultaneous confidence band and not a coverage probability. | 1.2840254166877414 | reported_numeric |
+| original-f1 | Pointwise conditional mean | Pointwise conditional mean of Y at the fixed query point x0 = (query_x1, query_x2) = (0.5, 0.5) under the declared Section 5.2 law, for the regression function f_k selected by the scenario. This is a scalar pointwise query, not a simultaneous confidence band and not a coverage probability. | 1.0 | reported_numeric |
+| original-f2 | Pointwise conditional mean | Pointwise conditional mean of Y at the fixed query point x0 = (query_x1, query_x2) = (0.5, 0.5) under the declared Section 5.2 law, for the regression function f_k selected by the scenario. This is a scalar pointwise query, not a simultaneous confidence band and not a coverage probability. | 1.0 | reported_numeric |
+| original-f3 | Pointwise conditional mean | Pointwise conditional mean of Y at the fixed query point x0 = (query_x1, query_x2) = (0.5, 0.5) under the declared Section 5.2 law, for the regression function f_k selected by the scenario. This is a scalar pointwise query, not a simultaneous confidence band and not a coverage probability. | 0.25 | reported_numeric |
+| original-f4 | Pointwise conditional mean | Pointwise conditional mean of Y at the fixed query point x0 = (query_x1, query_x2) = (0.5, 0.5) under the declared Section 5.2 law, for the regression function f_k selected by the scenario. This is a scalar pointwise query, not a simultaneous confidence band and not a coverage probability. | 2.718281828459045 | reported_numeric |
+| original-f5 | Pointwise conditional mean | Pointwise conditional mean of Y at the fixed query point x0 = (query_x1, query_x2) = (0.5, 0.5) under the declared Section 5.2 law, for the regression function f_k selected by the scenario. This is a scalar pointwise query, not a simultaneous confidence band and not a coverage probability. | 1.2840254166877414 | reported_numeric |
+
+**Original submitted target notation:** f_k(x0) = E[Y \| X = x0]
+
 
 ## Identifiability assumptions
 
@@ -145,6 +148,12 @@ Y_i=f_k(X1_i,X2_i)+epsilon_i; return X1,X2,Y. No latent surface or oracle column
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Keep all five Section 5.2 functions as scenarios of one mechanism.
+- Use x0=(0.5,0.5) from the separate Section 3.5 example as a declared transferred query, not as a Section 5.2 setting.
+- Use scalar conditional-mean checks and requested n; do not reproduce posterior computation or confidence-band coverage.
 
 **Warnings:**
 

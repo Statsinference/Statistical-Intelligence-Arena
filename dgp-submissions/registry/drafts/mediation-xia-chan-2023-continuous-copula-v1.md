@@ -16,7 +16,7 @@
 
 **Sampling design:** Unit: individual; Dependence: IID rows; within each row C and M residuals have Gaussian correlation 0.2
 
-**Generator source:** [generator.py](https://github.com/Statsinference/stats-inference-arena/blob/main/dgp-submissions/registry/generators/mediation-xia-chan-2023-continuous-copula-v1.py)
+**Generator source:** [generator.py](../generators/mediation-xia-chan-2023-continuous-copula-v1.py)
 
 **Keywords (source-described):** Interactions · Nonlinearity
 
@@ -100,7 +100,10 @@ NDE=2+3(2)+4E[C(1)]+2E[M(0)]=26
 
 | Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| section_4_1_continuous | NDE | E[Y(1,M(0))-Y(0,M(0))], with the treatment-induced C under its own treatment in each outcome potential. | 26 | reported_numeric |
+| section_4_1_continuous | NDE | E[Y(1,M(0))-Y(0,M(0))], with the treatment-induced C under its own treatment in each outcome potential. | 26.0 | reported_numeric |
+
+**Original submitted target notation:** NDE
+
 
 ## Identifiability assumptions
 
@@ -118,6 +121,13 @@ NDE=2+3(2)+4E[C(1)]+2E[M(0)]=26
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Gaussian copula with normal marginals implemented as correlated standard normal errors; this is mathematically equivalent at each A,X.
+- Use analytic NDE=26 derived from the displayed equations; the accepted manuscript reports 26.01, and the 0.01 discrepancy remains unresolved.
+- n=1500 is source scenario metadata; generator interface permits arbitrary n.
+- Ignore deliberate nuisance-model misspecification, which is an estimation setting and not another DGP.
 
 **Warnings:**
 

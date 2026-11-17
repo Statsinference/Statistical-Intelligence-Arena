@@ -22,7 +22,14 @@
 
 **Observed variables**
 
+X1–X4 (4 variables), R, Y_obs
+
+<details>
+<summary>All observed variable names</summary>
+
 X1, X2, X3, X4, R, Y_obs
+
+</details>
 
 **Latent variables**
 
@@ -78,9 +85,12 @@ Two independent samples from the same population: source_n_labeled rows with obs
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| original | theta_L2[1] | First slope in the population least-squares projection of Y on (1,X1,...,X4). | 2.5194516102296536 | reported_numeric |
+| original | Population least-squares projection slope | First slope in the population least-squares projection of Y on (1,X1,...,X4). | 2.5194516102296536 | reported_numeric |
+
+**Original submitted target notation:** theta_L2[1]
+
 
 ## Identifiability assumptions
 
@@ -97,6 +107,14 @@ Two independent samples from the same population: source_n_labeled rows with obs
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Select S1 with p=4,n=250,N=1000 from Figure 11(b).
+- Return the first slope component through the scalar truth interface; retain the source intercept in the projection definition.
+- Represent independent labeled/unlabeled samples in a single table: all X columns, label indicator R and Y_obs. A zero on an R=0 row is a finite placeholder.
+- The generate argument n counts total rows. Source total yields exact source allocation; other n use nearest-integer ratio allocation with both groups nonempty.
+- Use local PCG64 random streams, with independent covariate and response-noise streams. Each row remains an independent population draw.
 
 **Warnings:**
 

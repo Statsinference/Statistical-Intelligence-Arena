@@ -47,21 +47,24 @@ The displayed marginals are source-supported; the independence/product-sampling 
 **E2**
 
 $$
-Y_i=\frac{\sin(\pi X_i)}{\pi X_i}+\varepsilon_i,\quad \operatorname{sinc}(0)=1
+Y_i=\frac{\sin(\pi X_i)}{\pi X_i}+\varepsilon_i,\quad \mathrm{sinc}(0)=1
 $$
 
 **E3**
 
 $$
-Q_\tau(x)=\operatorname{sinc}(x)+0.2\Phi^{-1}(\tau)
+Q_\tau(x)=\mathrm{sinc}(x)+0.2\Phi^{-1}(\tau)
 $$
 
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| source_law_fixed_query | Q_{0.9}(0.5) | Conditional 0.9 quantile at X=0.5, using the sinc data law of the Section 1 demonstration. | 0.8929300854765015 | reported_numeric |
+| source_law_fixed_query | Conditional quantile | Conditional 0.9 quantile at X=0.5, using the sinc data law of the Section 1 demonstration. | 0.8929300854765015 | reported_numeric |
+
+**Original submitted target notation:** Q_{0.9}(0.5)
+
 
 ## Identifiability assumptions
 
@@ -78,6 +81,14 @@ $$
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- The source uses n=6 to illustrate a solution path. generate accepts arbitrary n for collection checks; source_n=6 is retained as metadata. This is not the Section 5 main experiment.
+- A fixed conditional 0.9 quantile at x=0.5 is registered; independent covariate/noise draws and iid rows are explicit implementation conventions.
+- Independent Python/NumPy implementation from mathematical formulas; no author code is redistributed. PCG64(seed) replaces unspecified/source software random-number generation. Sample size is the generate n argument; source_n only records the published sample sizes. No fitting, bootstrap, confidence-band coverage experiment or PFN training is included.
+- Clarified that generation constants are specified jointly in the displayed equations and config.json; not every fixed source constant is exposed as a configurable parameter.
+- Source recheck did not turn the disclosed independence completion into a source fact. Marginal laws and equations match the read source, while the implementation product law still needs a maintainer decision before claiming a fully source-verified joint DGP.
 
 **Warnings:**
 

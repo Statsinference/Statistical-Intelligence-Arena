@@ -22,7 +22,14 @@
 
 **Observed variables**
 
+X1–X10 (10 variables), A, Y, Z1, Z2, Z3
+
+<details>
+<summary>All observed variable names</summary>
+
 X1, X2, X3, X4, X5, X6, X7, X8, X9, X10, A, Y, Z1, Z2, Z3
+
+</details>
 
 **Latent variables**
 
@@ -91,9 +98,12 @@ Y(1)=1+Z1+epsilon1; Y(0)=Z2+epsilon0; epsilon0,epsilon1 as defined in the same p
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
 | original | ATE | E[Y(1)-Y(0)] in the full declared covariate population; treatment 1 versus 0; population, not sample-conditional, target. | 1.0 | reported_numeric |
+
+**Original submitted target notation:** ATE
+
 
 ## Identifiability assumptions
 
@@ -110,6 +120,12 @@ Y(1)=1+Z1+epsilon1; Y(0)=Z2+epsilon0; epsilon0,epsilon1 as defined in the same p
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Source treatment indicator is named A in the observed output; no scientific change.
+- Independently implemented Python/NumPy sampler; source estimator fitting and large simulation replications are outside this collection task.
+- Setting 2 epsilon definitions are read as inherited from Setting 1 in the same paragraph; this explicitly documented scope reading needs human confirmation.
 
 **Warnings:**
 

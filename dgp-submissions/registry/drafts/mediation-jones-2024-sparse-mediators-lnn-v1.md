@@ -16,13 +16,20 @@
 
 **Sampling design:** Unit: individual; Dependence: iid individuals; X, then D, then the ten-dimensional mediator vector, then Y are generated in temporal order within an individual
 
-**Generator source:** [generator.py](https://github.com/Statsinference/stats-inference-arena/blob/main/dgp-submissions/registry/generators/mediation-jones-2024-sparse-mediators-lnn-v1.py)
+**Generator source:** [generator.py](../generators/mediation-jones-2024-sparse-mediators-lnn-v1.py)
 
 **Keywords (source-described):** Nonlinearity
 
 **Observed variables**
 
+X1, X2, X3, D, M1–M10 (10 variables), Y
+
+<details>
+<summary>All observed variable names</summary>
+
 X1, X2, X3, D, M1, M2, M3, M4, M5, M6, M7, M8, M9, M10, Y
+
+</details>
 
 **Latent variables**
 
@@ -111,7 +118,10 @@ NDE = gamma_0 = 2; NIE = alpha_0 . beta_0 = 2.4
 
 | Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| LNN | NIE = alpha_0 . beta_0 | Natural indirect effect through the sparse mediator set: NIE = E[Y(1, M(1))] - E[Y(1, M(0))]. Under the source's additive structural model (its equation (1)) and its Proposition 2.1 this equals the inner product alpha_0 . beta_0 of the treatment-to-mediator and mediator-to-outcome coefficient vectors. The companion natural direct effect equals gamma_0. This is NOT a total effect and NOT a single-mediator indirect effect; ten candidate mediators are generated and only the first three are true mediators. | 2.4000000000000004 | reported_numeric |
+| LNN | NIE | Natural indirect effect through the sparse mediator set: NIE = E[Y(1, M(1))] - E[Y(1, M(0))]. Under the source's additive structural model (its equation (1)) and its Proposition 2.1 this equals the inner product alpha_0 . beta_0 of the treatment-to-mediator and mediator-to-outcome coefficient vectors. The companion natural direct effect equals gamma_0. This is NOT a total effect and NOT a single-mediator indirect effect; ten candidate mediators are generated and only the first three are true mediators. | 2.4000000000000004 | reported_numeric |
+
+**Original submitted target notation:** NIE = alpha_0 . beta_0
+
 
 ## Identifiability assumptions
 
@@ -132,6 +142,16 @@ NDE = gamma_0 = 2; NIE = alpha_0 . beta_0 = 2.4
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Version used: arXiv:2110.06127v2 preprint; the published journal version was not accessible to the collector, so section and page locators refer to the preprint PDF and journal pages 678-700 were not cross-checked.
+- Only the source's 'Large' parameter setting is registered. The source's 'Small' setting makes alpha_0 and beta_0 depend on the sample size n (contributions of order n^{-1/2}), which is a drifting local parameter sequence rather than a fixed data-generating mechanism, so it is deliberately not registered.
+- SCENARIO SLICING: the source gives a linear and a nonlinear form for each of mu_D0, psi_M and psi_Y and names scenarios by the three-letter triple in that order, mentioning LNN explicitly as an example, which makes eight combinations possible. A change of functional form is a change of mechanism rather than a change of a parameter, so a triple is a contribution rather than a scenario inside one. THREE of the eight are registered, deliberately and not exhaustively, as a reference triple plus its two one-factor neighbours: LNN, the only triple the source names; NNN, which differs from LNN in mu_D0 alone and is the only registered pack carrying the source's X1 * X2 product term; and LNL, which differs from LNN in psi_Y alone. Each registered pair therefore isolates a single nuisance function. The remaining five triples are NOT submitted: they would add relabellings of the same family and inflate the mechanism count without adding a distinct data law. All three share the mechanism_family_id 'jones-2024-robinson-additive-sparse-mediator-selection', so a reviewer who prefers to count the family as a single DGP can collapse them. The source does not state which of the eight combinations it actually ran, and no functional form beyond the two it prints is invented here. This one is LNN.
+- The source sets p = 10 candidate mediators in the main text and reports a p = 60 setting in its Appendix B. Only p = 10 is registered: the p = 60 variant shares the functional forms of the p = 10 LNN pack and differs only in that dimension, so registering it as a separate mechanism would be a parameter sweep rather than a new data law. It is kept out of the submission for that reason.
+- The source also uses cross-fitting with K = 10 folds, a perturbation bootstrap with exponential weights, and five competing estimators. All of that is estimation machinery applied to the same data; none of it is reproduced and none is registered as a separate mechanism.
+- Sampling is re-implemented with NumPy Generator(PCG64); no attempt is made to match the source software draw-for-draw.
+- Citation verified against Crossref for DOI 10.1093/jrsssb/qkae109: the authors are Jeremiah Jones, Ashkan Ertefaie and Robert L. Strawderman (an earlier draft of this contribution wrote the first author's initial as M., which was wrong), published online 2024-11-28 and in print in volume 87(3), pages 678-700, dated 2025-07-14. The print year 2025 is the one cited, matching volume 87(3). The contribution_id slug still carries '2024' from the online-first date and is deliberately left unchanged so earlier identifiers stay stable.
 
 **Warnings:**
 

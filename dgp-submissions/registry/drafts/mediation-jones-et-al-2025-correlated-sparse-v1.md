@@ -16,9 +16,9 @@
 
 **Sampling design:** Unit: individual; Dependence: IID rows; within-row 100-dimensional correlated mediator disturbances
 
-**Generator source:** [generator.py](https://github.com/Statsinference/stats-inference-arena/blob/main/dgp-submissions/registry/generators/mediation-jones-et-al-2025-correlated-sparse-v1.py)
+**Generator source:** [generator.py](../generators/mediation-jones-et-al-2025-correlated-sparse-v1.py)
 
-**Keywords (source-described):** Linearity · High-dimensionality
+**Keywords (source-described):** High-dimensionality
 
 **Observed variables**
 
@@ -100,7 +100,10 @@ NIE_1=sum_j alpha_j beta_j=2
 
 | Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| simulation_b_n200_p100_rho05 | NIE_1 | E[Y(1,M(1))-Y(1,M(0))] for the full 100-vector mediator under the additive structural equations. | 2 | reported_numeric |
+| simulation_b_n200_p100_rho05 | NIE | E[Y(1,M(1))-Y(1,M(0))] for the full 100-vector mediator under the additive structural equations. | 2.0 | reported_numeric |
+
+**Original submitted target notation:** NIE_1
+
 
 ## Identifiability assumptions
 
@@ -118,6 +121,13 @@ NIE_1=sum_j alpha_j beta_j=2
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Implement final article §5 Simulation B index convention: M1,M2 active mediators, M3 exposure-only, M4–M6 outcome-only; the archived author code uses a different ordering.
+- Implement article prose that all nonmediators correlate 0.25 with M1,M2; author code connects only M3–M7 at 0.25. Gaussian noise, unit variance and randomized treatment are corroborated by the code.
+- Report the joint-vector natural indirect effect over all 100 mediators, not the selected-subset effect under the paper’s deliberately correlated-error misspecification.
+- Independent NumPy implementation with different random stream; source n=200 is recorded while generate(n,seed) varies n.
 
 **Warnings:**
 

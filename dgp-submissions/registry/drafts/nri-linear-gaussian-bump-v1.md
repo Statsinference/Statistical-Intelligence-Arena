@@ -93,10 +93,13 @@ m(0) = 0 + 5*phi(0) = 5/sqrt(2*pi) approx 1.994711
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| model2 | m(x0) = E[Y \| X = x0] | Conditional mean of Y given X = x0 at the fixed query point x0 = 0, in the superpopulation defined by the DGP Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1). Models 2 and 4 from supplement S.II.7 are collected as two scenarios of the same mechanism family; both are linear-plus-Gaussian-bump regression functions. | 2.0 | reported_numeric |
-| model4 | m(x0) = E[Y \| X = x0] | Conditional mean of Y given X = x0 at the fixed query point x0 = 0, in the superpopulation defined by the DGP Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1). Models 2 and 4 from supplement S.II.7 are collected as two scenarios of the same mechanism family; both are linear-plus-Gaussian-bump regression functions. | 1.9947114020071635 | reported_numeric |
+| model2 | Pointwise conditional mean | Conditional mean of Y given X = x0 at the fixed query point x0 = 0, in the superpopulation defined by the DGP Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1). Models 2 and 4 from supplement S.II.7 are collected as two scenarios of the same mechanism family; both are linear-plus-Gaussian-bump regression functions. | 2.0 | reported_numeric |
+| model4 | Pointwise conditional mean | Conditional mean of Y given X = x0 at the fixed query point x0 = 0, in the superpopulation defined by the DGP Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1). Models 2 and 4 from supplement S.II.7 are collected as two scenarios of the same mechanism family; both are linear-plus-Gaussian-bump regression functions. | 1.9947114020071635 | reported_numeric |
+
+**Original submitted target notation:** m(x0) = E[Y \| X = x0]
+
 
 ## Identifiability assumptions
 
@@ -115,6 +118,10 @@ m(0) = 0 + 5*phi(0) = 5/sqrt(2*pi) approx 1.994711
 **Original versus adapted:** exact_reproduction
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- None described in the submitted metadata; this does not establish exact reproduction.
 
 **Warnings:**
 

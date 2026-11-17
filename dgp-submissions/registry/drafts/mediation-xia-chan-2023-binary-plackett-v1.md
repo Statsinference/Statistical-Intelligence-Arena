@@ -16,7 +16,7 @@
 
 **Sampling design:** Unit: individual; Dependence: IID rows; within-row binary M and C dependent via Plackett copula
 
-**Generator source:** [generator.py](https://github.com/Statsinference/stats-inference-arena/blob/main/dgp-submissions/registry/generators/mediation-xia-chan-2023-binary-plackett-v1.py)
+**Generator source:** [generator.py](../generators/mediation-xia-chan-2023-binary-plackett-v1.py)
 
 **Keywords (source-described):** Interactions · Nonlinearity
 
@@ -103,6 +103,9 @@ NDE=E_X[3+3{pC(1,X)-pC(0,X)}+4pC(1,X)+2pM(0,X)]
 |---|---|---|---|---|
 | section_4_1_binary | NDE | E[Y(1,M(0))-Y(0,M(0))] under the specified binary copula structural model, with C following the treatment in each outcome potential. | 5.4954757582156875 | reported_numeric |
 
+**Original submitted target notation:** NDE
+
+
 ## Identifiability assumptions
 
 - IID units and positivity
@@ -118,6 +121,13 @@ NDE=E_X[3+3{pC(1,X)-pC(0,X)}+4pC(1,X)+2pM(0,X)]
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Implement Bernoulli Plackett copula by solving the 2x2 cell probability for the exact specified conditional odds ratio.
+- Derive population NDE by one-dimensional normal integration; paper rounds its numeric truth to 5.50.
+- Keep original n=1500 as metadata but use n argument for checker; omit estimation-model misspecification trials.
+- This binary Plackett/Bernoulli structure is a separate DGP family from the same paper’s continuous Gaussian-copula structure.
 
 **Warnings:**
 

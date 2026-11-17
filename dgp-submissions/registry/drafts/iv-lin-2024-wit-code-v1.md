@@ -18,11 +18,18 @@
 
 **Generator source:** [generator.py](../generators/iv-lin-2024-wit-code-v1.py)
 
-**Keywords (source-described):** Linearity
+**Keywords (source-described):** Not specified
 
 **Observed variables**
 
+Z1–Z21 (21 variables), D, Y
+
+<details>
+<summary>All observed variable names</summary>
+
 Z1, Z2, Z3, Z4, Z5, Z6, Z7, Z8, Z9, Z10, Z11, Z12, Z13, Z14, Z15, Z16, Z17, Z18, Z19, Z20, Z21, D, Y
+
+</details>
 
 **Latent variables**
 
@@ -101,10 +108,13 @@ Y_i = beta*D_i + Z_i^T alpha + epsilon_i. Only Z1,...,Z21,D,Y are observed outpu
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| code_case_2 | beta | Homogeneous structural coefficient: E[Y(do(D=d+1))-Y(do(D=d))]=beta for the specified superpopulation; both scenarios beta=1. Not LATE. | 1.0 | reported_numeric |
-| code_case_1 | beta | Homogeneous structural coefficient: E[Y(do(D=d+1))-Y(do(D=d))]=beta for the specified superpopulation; both scenarios beta=1. Not LATE. | 1.0 | reported_numeric |
+| code_case_2 | Population unit-change structural mean effect | Homogeneous structural coefficient: E[Y(do(D=d+1))-Y(do(D=d))]=beta for the specified superpopulation; both scenarios beta=1. Not LATE. | 1.0 | reported_numeric |
+| code_case_1 | Population unit-change structural mean effect | Homogeneous structural coefficient: E[Y(do(D=d+1))-Y(do(D=d))]=beta for the specified superpopulation; both scenarios beta=1. Not LATE. | 1.0 | reported_numeric |
+
+**Original submitted target notation:** beta
+
 
 ## Identifiability assumptions
 
@@ -123,6 +133,14 @@ Y_i = beta*D_i + Z_i^T alpha + epsilon_i. Only Z1,...,Z21,D,Y are observed outpu
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Use pinned author code covariance Sigma_Z[j,k]=0.8*0.3^abs(j-k); publication covariance typesetting unresolved.
+- Use code error variances 1 and 1, correlation 0.6; publication text specifies epsilon SD 0.5 and eta SD 1.
+- Default code_case_2 gamma=0.15; code_case_1 enables commented gamma=0.4. README says Case 1 while active script is Case 2.
+- Independently implement the probability law with NumPy local PCG64/Cholesky; no R/MASS seed-level equivalence claimed.
+- Accept n and seed; omit estimator comparisons, 500 repetitions and overwritten concentration calculations.
 
 **Warnings:**
 

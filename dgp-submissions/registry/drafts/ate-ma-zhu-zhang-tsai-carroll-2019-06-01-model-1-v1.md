@@ -22,7 +22,14 @@
 
 **Observed variables**
 
+X1–X20 (20 variables), A, Y
+
+<details>
+<summary>All observed variable names</summary>
+
 X1, X2, X3, X4, X5, X6, X7, X8, X9, X10, X11, X12, X13, X14, X15, X16, X17, X18, X19, X20, A, Y
+
+</details>
 
 **Latent variables**
 
@@ -72,9 +79,12 @@ Y=A+X1**2+X2**2+epsilon; epsilon~N(0,1), independent across individuals and of X
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
 | original | ATE | ATE = E[Y(1)-Y(0)] in the full original covariate population; binary treatment 1 versus 0. | 1.0 | reported_numeric |
+
+**Original submitted target notation:** ATE
+
 
 ## Identifiability assumptions
 
@@ -91,6 +101,11 @@ Y=A+X1**2+X2**2+epsilon; epsilon~N(0,1), independent across individuals and of X
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Rename source treatment D or W to A; observed conditional law unchanged.
+- Independent Python/NumPy implementation; no source estimator fitting or reported performance tables are reproduced.
 
 **Warnings:**
 

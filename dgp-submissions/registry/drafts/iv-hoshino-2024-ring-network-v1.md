@@ -89,12 +89,15 @@ $$
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| DGP1_L2_new_draw | unconditional_LADE | English description not yet supplied; consult the original scientific record (JSON). | 1.5004749754609084 | reported_numeric |
-| DGP1_L3_new_draw | unconditional_LADE | English description not yet supplied; consult the original scientific record (JSON). | 1.4982310561355603 | reported_numeric |
-| DGP2_L2_new_draw | unconditional_LADE | English description not yet supplied; consult the original scientific record (JSON). | 1.52768116166732 | reported_numeric |
-| DGP2_L3_new_draw | unconditional_LADE | English description not yet supplied; consult the original scientific record (JSON). | 1.52768116166732 | reported_numeric |
+| DGP1_L2_new_draw | Unconditional local average direct effect | English description not yet supplied; consult the original scientific record (JSON). | 1.5004749754609084 | reported_numeric |
+| DGP1_L3_new_draw | Unconditional local average direct effect | English description not yet supplied; consult the original scientific record (JSON). | 1.4982310561355603 | reported_numeric |
+| DGP2_L2_new_draw | Unconditional local average direct effect | English description not yet supplied; consult the original scientific record (JSON). | 1.52768116166732 | reported_numeric |
+| DGP2_L3_new_draw | Unconditional local average direct effect | English description not yet supplied; consult the original scientific record (JSON). | 1.52768116166732 | reported_numeric |
+
+**Original submitted target notation:** unconditional_LADE
+
 
 ## Identifiability assumptions
 
@@ -109,6 +112,13 @@ $$
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Preserve both source network DGPs and L=2/3 as four scenarios in one family, not two new families.
+- Original N=500 retained. One collection row is an entire network; n=128 means128 independent encouragement experiments on the same fixed network, with all node columns observed. This adapter requires a network-aware benchmark.
+- Freeze a new disclosed realization of original coefficient distributions; author frozen vector/seed is unavailable.
+- Use unconditional IEM (constant exposure mapping) and unconditional direct-IV ratio rather than the paper selected t=2/t=1 conditional estimands; derive this target explicitly. No changes to source outcome/treatment mechanisms.
 
 **Warnings:**
 

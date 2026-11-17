@@ -83,9 +83,12 @@ $$
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
 | N1 | ATE | ATE = E[2.3 + \|X1-1\| - \|X2+1\| + g(X)W]. | 0.019533193713670016 | reported_numeric |
+
+**Original submitted target notation:** ATE
+
 
 ## Identifiability assumptions
 
@@ -100,6 +103,10 @@ $$
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- English description pending; see [original scientific record](./proximal-qi-2024-trigonometric-v1.json).
 
 **Warnings:**
 

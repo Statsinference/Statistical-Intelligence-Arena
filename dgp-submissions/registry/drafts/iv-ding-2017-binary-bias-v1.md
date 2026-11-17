@@ -97,11 +97,14 @@ Source population ATE=sum_u q[u]*tau[u]; it is an audit quantity, not the regist
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
 | source_table1_case1 | LATE | E[Y(1)-Y(0) \| A(1)&gt;A(0)], treatment intervention 0 to 1 among instrument compliers. | 0.05545454545454545 | reported_numeric |
 | source_table1_case2 | LATE | E[Y(1)-Y(0) \| A(1)&gt;A(0)], treatment intervention 0 to 1 among instrument compliers. | 0.01 | reported_numeric |
 | source_table1_case3 | LATE | E[Y(1)-Y(0) \| A(1)&gt;A(0)], treatment intervention 0 to 1 among instrument compliers. | 0.022500000000000003 | reported_numeric |
+
+**Original submitted target notation:** LATE
+
 
 ## Identifiability assumptions
 
@@ -122,6 +125,15 @@ Source population ATE=sum_u q[u]*tau[u]; it is an audit quantity, not the regist
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- English description pending; see [original scientific record](./iv-ding-2017-binary-bias-v1.json).
+- English description pending; see [original scientific record](./iv-ding-2017-binary-bias-v1.json).
+- English description pending; see [original scientific record](./iv-ding-2017-binary-bias-v1.json).
+- English description pending; see [original scientific record](./iv-ding-2017-binary-bias-v1.json).
+- English description pending; see [original scientific record](./iv-ding-2017-binary-bias-v1.json).
+- English description pending; see [original scientific record](./iv-ding-2017-binary-bias-v1.json).
 
 **Warnings:**
 

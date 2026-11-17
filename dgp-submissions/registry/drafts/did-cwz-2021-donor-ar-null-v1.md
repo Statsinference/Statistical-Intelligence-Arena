@@ -16,13 +16,20 @@
 
 **Sampling design:** Unit: One joint 21-unit panel with20 pre and1 post periods, returned in unit-wide rows; one fixed treated unit and20 untreated donors.; Dependence: Shared iid Gaussian factors across units, stationary independent AR(1) donor residuals, and extra independent AR(1) u. Total treated residual inherits weighted donor residuals and is not independent of them.
 
-**Generator source:** [generator.py](https://github.com/Statsinference/stats-inference-arena/blob/main/dgp-submissions/registry/generators/did-cwz-2021-donor-ar-null-v1.py)
+**Generator source:** [generator.py](../generators/did-cwz-2021-donor-ar-null-v1.py)
 
-**Keywords (source-described):** Linearity · Panel data
+**Keywords (source-described):** Panel data
 
 **Observed variables**
 
+G, Y_pre_01, Y_pre_02, Y_pre_03, Y_pre_04, Y_pre_05, Y_pre_06, Y_pre_07, Y_pre_08, Y_pre_09, Y_pre_10–Y_pre_20 (11 variables), Y_post_01
+
+<details>
+<summary>All observed variable names</summary>
+
 G, Y_pre_01, Y_pre_02, Y_pre_03, Y_pre_04, Y_pre_05, Y_pre_06, Y_pre_07, Y_pre_08, Y_pre_09, Y_pre_10, Y_pre_11, Y_pre_12, Y_pre_13, Y_pre_14, Y_pre_15, Y_pre_16, Y_pre_17, Y_pre_18, Y_pre_19, Y_pre_20, Y_post_01
+
+</details>
 
 **Latent variables**
 
@@ -138,10 +145,13 @@ Y_0,21(1)-Y_0,21(0)=theta_T=0 for every realization; design expectation and sing
 
 | Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| W1 | tau_T | Y_1,T(1)-Y_1,T(0) at the fixed treated unit and T=T0+1=21. Its design-population expectation and the finite single-treated-unit SATT equal theta_T=0. | 0 | reported_numeric |
-| W2 | tau_T | Y_1,T(1)-Y_1,T(0) at the fixed treated unit and T=T0+1=21. Its design-population expectation and the finite single-treated-unit SATT equal theta_T=0. | 0 | reported_numeric |
-| W3 | tau_T | Y_1,T(1)-Y_1,T(0) at the fixed treated unit and T=T0+1=21. Its design-population expectation and the finite single-treated-unit SATT equal theta_T=0. | 0 | reported_numeric |
-| W4 | tau_T | Y_1,T(1)-Y_1,T(0) at the fixed treated unit and T=T0+1=21. Its design-population expectation and the finite single-treated-unit SATT equal theta_T=0. | 0 | reported_numeric |
+| W1 | Treated-unit treatment effect | Y_1,T(1)-Y_1,T(0) at the fixed treated unit and T=T0+1=21. Its design-population expectation and the finite single-treated-unit SATT equal theta_T=0. | 0.0 | reported_numeric |
+| W2 | Treated-unit treatment effect | Y_1,T(1)-Y_1,T(0) at the fixed treated unit and T=T0+1=21. Its design-population expectation and the finite single-treated-unit SATT equal theta_T=0. | 0.0 | reported_numeric |
+| W3 | Treated-unit treatment effect | Y_1,T(1)-Y_1,T(0) at the fixed treated unit and T=T0+1=21. Its design-population expectation and the finite single-treated-unit SATT equal theta_T=0. | 0.0 | reported_numeric |
+| W4 | Treated-unit treatment effect | Y_1,T(1)-Y_1,T(0) at the fixed treated unit and T=T0+1=21. Its design-population expectation and the finite single-treated-unit SATT equal theta_T=0. | 0.0 | reported_numeric |
+
+**Original submitted target notation:** tau_T
+
 
 ## Identifiability assumptions
 
@@ -159,6 +169,13 @@ Y_0,21(1)-Y_0,21(0)=theta_T=0 for every realization; design expectation and sing
 
 **Status:** needs_scientific_review
 
+**Adaptations from the source (submitted, unverified):**
+
+- Select the published supplemental Table I.2 cell J=20,T0=20,T_post=1,rho_epsilon=rho_u=0.6,theta_T=0. All four official weights are scenarios of one mechanism family; W1 is default.
+- Represent the single jointly generated panel as 21 unit rows and 22 observed columns; n must equal21. No sample-size extensions or latent labels are exported.
+- Use independently written standard-library Python with a local random stream. Preserve source distributions and generation equations, without claiming R bitwise replay or estimator-performance replication.
+
 **Warnings:**
 
 - Latent-variable candidates inferred from source equations; confirm their roles and completeness against the original paper or generator.
+- Legacy combined DiD / Synthetic Control family: human classification required; not automatically reassigned.

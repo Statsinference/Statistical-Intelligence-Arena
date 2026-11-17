@@ -16,13 +16,20 @@
 
 **Sampling design:** Unit: Independent units in fixed treated/control strata; two observations per unit represented by one wide row.; Dependence: Shared four baseline covariates within unit; independent standard-normal period disturbances. Covariates iid within strata and across dimensions; no missingness or attrition.
 
-**Generator source:** [generator.py](https://github.com/Statsinference/stats-inference-arena/blob/main/dgp-submissions/registry/generators/did-abadie-lhour-2021-nonlinear-null-v1.py)
+**Generator source:** [generator.py](../generators/did-abadie-lhour-2021-nonlinear-null-v1.py)
 
 **Keywords (source-described):** Nonlinearity
 
 **Observed variables**
 
+G, X1–X4 (4 variables), Y_pre, Y_post
+
+<details>
+<summary>All observed variable names</summary>
+
 G, X1, X2, X3, X4, Y_pre, Y_post
+
+</details>
 
 **Latent variables**
 
@@ -140,7 +147,10 @@ ATT_post=E[Y_2(1)-Y_2(0)|G=1]=0; holding the same post error fixed across interv
 
 | Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| paper_table4_p4_r2_with_declared_n_extension | ATT_post | E[Y_2(1)-Y_2(0)\|G=1] in the treated covariate population. Equal-weight finite-sample treated SATT also equals zero pointwise. | 0 | reported_numeric |
+| paper_table4_p4_r2_with_declared_n_extension | ATT | E[Y_2(1)-Y_2(0)\|G=1] in the treated covariate population. Equal-weight finite-sample treated SATT also equals zero pointwise. | 0.0 | reported_numeric |
+
+**Original submitted target notation:** ATT_post
+
 
 ## Identifiability assumptions
 
@@ -157,6 +167,13 @@ ATT_post=E[Y_2(1)-Y_2(0)|G=1]=0; holding the same post error fixed across interv
 
 **Status:** needs_scientific_review
 
+**Adaptations from the source (submitted, unverified):**
+
+- Baseline follows published Table 4 (100 treated/400 controls); author v3 default is 100/1000 and is not claimed as the baseline.
+- External n counts units; other n follow the explicitly documented deterministic approximately 1:4 allocation and are sample-size extensions.
+- Seven observed columns in a unit-wide representation; Python local RNG preserves the specified distributions, not MATLAB random-stream identity. No estimator or Table 4 performance replication.
+
 **Warnings:**
 
 - No explicit latent-variable metadata or reliably identifiable latent declarations; absence from this list does not prove that no latent variables exist.
+- Legacy combined DiD / Synthetic Control family: human classification required; not automatically reassigned.

@@ -36,7 +36,15 @@ Not explicitly identified (review required)
 
 **Original source equations (verbatim):** [Open raw scientific record (JSON)](./proximal-dukes-2023-03-03-mediation-v1.json).
 
-设 $`T=X_{1}+X_{2}`$，$`\sigma(t)=1/(1+\exp(-t))`$。个体按以下条件方程抽样：
+English equation transcription pending; consult the linked original scientific record (JSON) for the complete source and context.
+
+$$
+T=X_{1}+X_{2}
+$$
+
+$$
+\sigma(t)=1/(1+\exp(-t))
+$$
 
 **Step 1**
 
@@ -78,14 +86,31 @@ $$
 Y = 2 + 2A + M + 2W - T - U + \varepsilon_{Y}
 $$
 
-<code>εZ,εW,εM</code> 分别服从 $`\mathcal{N}(0,1)`$；$`\varepsilon_{Y} \sim \mathcal{N}(0,2^{2})`$。生成器保留基线三元高斯的协方差，并对基线抽样以外的外生噪声分别独立生成。所有个体独立，个体内变量由上述结构方程关联。观测列为 <code>X1,X2,A,Z,W,M,Y</code>；<code>U</code> 为未观测混杂变量。
+English equation transcription pending; consult the linked original scientific record (JSON) for the complete source and context.
+
+εZ,εW,εM
+
+$$
+\mathcal{N}(0,1)
+$$
+
+$$
+\varepsilon_{Y} \sim \mathcal{N}(0,2^{2})
+$$
+
+X1,X2,A,Z,W,M,Y
+
+U
 
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
 | original | NDE | E[Y(1,M(0))-Y(0,M(0))] in the source population; NIE and total effect are auxiliary only. | 2.0 | reported_numeric |
+
+**Original submitted target notation:** NDE
+
 
 ## Identifiability assumptions
 
@@ -104,6 +129,10 @@ $$
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- English description pending; see [original scientific record](./proximal-dukes-2023-03-03-mediation-v1.json).
 
 **Warnings:**
 

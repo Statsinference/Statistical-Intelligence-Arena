@@ -22,7 +22,14 @@
 
 **Observed variables**
 
+X1–X10 (10 variables), R, Y_obs
+
+<details>
+<summary>All observed variable names</summary>
+
 X1, X2, X3, X4, X5, X6, X7, X8, X9, X10, R, Y_obs
+
+</details>
 
 **Latent variables**
 
@@ -109,10 +116,13 @@ Independent units and independent outcome noise. Two iid samples from the same p
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| source_b1_conditional_truncation | alpha_projection = E[Y] | Intercept alpha of argmin_(alpha,beta) E[(Y-alpha-X^T beta)^2]; since E[X]=0 and Cov(X) is positive definite, alpha=E[Y]. | 0.0 | reported_numeric |
-| source_b2_conditional_truncation | alpha_projection = E[Y] | Intercept alpha of argmin_(alpha,beta) E[(Y-alpha-X^T beta)^2]; since E[X]=0 and Cov(X) is positive definite, alpha=E[Y]. | 4.999925663981647 | reported_numeric |
+| source_b1_conditional_truncation | Population least-squares projection intercept | Intercept alpha of argmin_(alpha,beta) E[(Y-alpha-X^T beta)^2]; since E[X]=0 and Cov(X) is positive definite, alpha=E[Y]. | 0.0 | reported_numeric |
+| source_b2_conditional_truncation | Population least-squares projection intercept | Intercept alpha of argmin_(alpha,beta) E[(Y-alpha-X^T beta)^2]; since E[X]=0 and Cov(X) is positive definite, alpha=E[Y]. | 4.999925663981647 | reported_numeric |
+
+**Original submitted target notation:** alpha_projection = E[Y]
+
 
 ## Identifiability assumptions
 
@@ -129,6 +139,15 @@ Independent units and independent outcome noise. Two iid samples from the same p
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Map the two-sample SS design to one numeric table. API n is total rows, not the paper labeled n; R=1 for labeled rows; Y_obs=0 for R=0 is a sentinel, never a label. Source reference sample sizes are stored separately.
+- For arbitrary CPU test n, labeled_count=max(1,min(n-1,floor(n*nL_ref/(nL_ref+nU_ref)))); first labeled_count rows form the independent labeled sample. At n=nL_ref+nU_ref the source counts are exact.
+- Independent NumPy PCG64 implementation; no author code copied; original estimator tuning, fitted predictions, repeated CI experiments and PFN training are outside this DGP collection.
+- Fix p=10; retain both source coefficient vectors as scenarios, not separate mechanisms.
+- The paper states restriction to [-5,5]^p without specifying clipping versus rejection. We explicitly define independent conditional truncated normals via rejection; this is a declared adaptation requiring reviewer confirmation, not exact author-code reproduction.
+- Select the intercept component of the population least-squares projection with an intercept. Since E[X]=0, this scalar equals E[Y]; the full regression vector is outside the scalar truth interface.
 
 **Warnings:**
 

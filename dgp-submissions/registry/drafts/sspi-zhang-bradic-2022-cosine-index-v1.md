@@ -22,7 +22,14 @@
 
 **Observed variables**
 
+X1–X50 (50 variables), R, Y_obs
+
+<details>
+<summary>All observed variable names</summary>
+
 X1, X2, X3, X4, X5, X6, X7, X8, X9, X10, X11, X12, X13, X14, X15, X16, X17, X18, X19, X20, X21, X22, X23, X24, X25, X26, X27, X28, X29, X30, X31, X32, X33, X34, X35, X36, X37, X38, X39, X40, X41, X42, X43, X44, X45, X46, X47, X48, X49, X50, R, Y_obs
+
+</details>
 
 **Latent variables**
 
@@ -78,9 +85,12 @@ Two independent samples from the same population: source_n_labeled rows with obs
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| original | E[Y] | Population mean of Y in the common labeled/unlabeled population. | 0.6693904804452895 | reported_numeric |
+| original | Population outcome mean | Population mean of Y in the common labeled/unlabeled population. | 0.6693904804452895 | reported_numeric |
+
+**Original submitted target notation:** E[Y]
+
 
 ## Identifiability assumptions
 
@@ -97,6 +107,13 @@ Two independent samples from the same population: source_n_labeled rows with obs
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Select the source n=100, m=1000 setting; map source p=51 to 50 observed covariates.
+- Represent independent labeled/unlabeled samples in a single table: all X columns, label indicator R and Y_obs. A zero on an R=0 row is a finite placeholder.
+- The generate argument n counts total rows. Source total yields exact source allocation; other n use nearest-integer ratio allocation with both groups nonempty.
+- Use local PCG64 random streams, with independent covariate and response-noise streams. Each row remains an independent population draw.
 
 **Warnings:**
 

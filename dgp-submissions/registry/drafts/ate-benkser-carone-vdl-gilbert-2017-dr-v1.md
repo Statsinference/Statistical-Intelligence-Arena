@@ -83,9 +83,12 @@ Y | A=a,W=w ~ Bernoulli(Qbar0(a,w)); Qbar0(a,w)=expit(0.2*a - w1 + 2*w1*w2)
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| section51_original | ATE = E[Y(1)-Y(0)] | Population risk difference under interventions setting A=1 versus A=0, averaged over the source covariate distribution W=(W1,W2). | 0.03802642731065545 | reported_numeric |
+| section51_original | ATE | Population risk difference under interventions setting A=1 versus A=0, averaged over the source covariate distribution W=(W1,W2). | 0.03802642731065545 | reported_numeric |
+
+**Original submitted target notation:** ATE = E[Y(1)-Y(0)]
+
 
 ## Identifiability assumptions
 
@@ -103,6 +106,10 @@ Y | A=a,W=w ~ Bernoulli(Qbar0(a,w)); Qbar0(a,w)=expit(0.2*a - w1 + 2*w1*w2)
 **Original versus adapted:** exact_reproduction
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- None described in the submitted metadata; this does not establish exact reproduction.
 
 **Warnings:**
 

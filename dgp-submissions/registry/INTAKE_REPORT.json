@@ -9,31 +9,31 @@
       "source": "incoming/did-qin-zhang-2008-bounded-panel-v1.zip",
       "member": "collection.json",
       "error_type": "ValueError",
-      "message": "Missing generating equations in collection.json under"
+      "message": "Missing generating equations in collection.json under ./; supply a non-empty equations list."
     },
     {
       "source": "incoming/did-ye-2024-iid-common-trend-v1.zip",
       "member": "collection.json",
       "error_type": "ValueError",
-      "message": "Missing generating equations in collection.json under"
+      "message": "Missing generating equations in collection.json under ./; supply a non-empty equations list."
     },
     {
       "source": "incoming/did-zhou-2026-mixture-mean-v1.zip",
       "member": "collection.json",
       "error_type": "ValueError",
-      "message": "Missing generating equations in collection.json under"
+      "message": "Missing generating equations in collection.json under ./; supply a non-empty equations list."
     },
     {
       "source": "incoming/did-zhou-2026-network-weight-v1.zip",
       "member": "collection.json",
       "error_type": "ValueError",
-      "message": "Missing generating equations in collection.json under"
+      "message": "Missing generating equations in collection.json under ./; supply a non-empty equations list."
     },
     {
       "source": "incoming/did-zhou-2026-truncated-mean-v1.zip",
       "member": "collection.json",
       "error_type": "ValueError",
-      "message": "Missing generating equations in collection.json under"
+      "message": "Missing generating equations in collection.json under ./; supply a non-empty equations list."
     }
   ],
   "scientific_validation": "not_performed"

@@ -16,7 +16,7 @@
 
 **Sampling design:** Unit: Exactly25 unit rows and1000 outcomes; horizon random from10000 calibration panels; Dependence: Shared random horizon and success conditioning induce panel-design dependence; conditional innovations iid normal with unit AR1 recursion.
 
-**Generator source:** [generator.py](https://github.com/Statsinference/stats-inference-arena/blob/main/dgp-submissions/registry/generators/did-shaikh-toulis-2021-conditional-first-adopter-null-v1.py)
+**Generator source:** [generator.py](../generators/did-shaikh-toulis-2021-conditional-first-adopter-null-v1.py)
 
 **Keywords (source-described):** Nonlinearity
 
@@ -83,7 +83,10 @@ Yij=.2 Yi,j-1+.5Xi+.5sqrt(j)+epsij; Yi0=0; eps~N(0,.15^2); tau0
 
 | Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| baseline | ATT_cond | Mean effect on first-adopter post cells in whole-experiment-success conditional population; also realized SATT=0 pathwise | 0 | reported_numeric |
+| baseline | Conditional first-adopter average treatment effect | Mean effect on first-adopter post cells in whole-experiment-success conditional population; also realized SATT=0 pathwise | 0.0 | reported_numeric |
+
+**Original submitted target notation:** ATT_cond
+
 
 ## Identifiability assumptions
 
@@ -99,6 +102,15 @@ Yij=.2 Yi,j-1+.5Xi+.5sqrt(j)+epsij; Yi0=0; eps~N(0,.15^2); tau0
 
 **Status:** needs_scientific_review
 
+**Adaptations from the source (submitted, unverified):**
+
+- Explicit user approval: conditional mechanism adaptation with full population/distribution disclosure.
+- Condition on generation success min(T)&lt;Tmax; reject whole experiment including10000 calibration panels. Original driver shared calibration, this contribution uses fresh calibration per experiment.
+- Author-code parameters beta.5/intercept1/sigma.15/delta.5 and1000-point index-time AR differ from paper; first adopter response only.
+- Conditional Tmax reweighted and X/group dependence altered; not original unconditional reproduction.
+- NumPy local RNG and vectorized calibration preserve mathematical laws, not R bitstream.
+
 **Warnings:**
 
 - Latent-variable candidates inferred from source equations; confirm their roles and completeness against the original paper or generator.
+- Legacy combined DiD / Synthetic Control family: human classification required; not automatically reassigned.

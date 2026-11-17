@@ -117,12 +117,15 @@ Y_i=m_i+0.1*epsilon_i; export Z1,Z2,Z3,X,Y in row order. No index t, noiseless m
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| index-mid-x0 | eta(z0'alpha) + x0*beta = E[Y \| Z = z0, X = x0] | The scalar conditional mean at the scenario's fixed covariate query (z0, x0). The nonparametric component is evaluated at the single-index value t0 = z0'alpha with alpha = (1,1,1)/sqrt(3); the linear component contributes x0*beta. This is a pointwise target, not a curve-level or band target. | 0.9818328784088086 | reported_numeric |
-| index-mid-x1 | eta(z0'alpha) + x0*beta = E[Y \| Z = z0, X = x0] | The scalar conditional mean at the scenario's fixed covariate query (z0, x0). The nonparametric component is evaluated at the single-index value t0 = z0'alpha with alpha = (1,1,1)/sqrt(3); the linear component contributes x0*beta. This is a pointwise target, not a curve-level or band target. | 1.2818328784088087 | reported_numeric |
-| index-low-x0 | eta(z0'alpha) + x0*beta = E[Y \| Z = z0, X = x0] | The scalar conditional mean at the scenario's fixed covariate query (z0, x0). The nonparametric component is evaluated at the single-index value t0 = z0'alpha with alpha = (1,1,1)/sqrt(3); the linear component contributes x0*beta. This is a pointwise target, not a curve-level or band target. | 0.8402560393492512 | reported_numeric |
-| index-high-x1 | eta(z0'alpha) + x0*beta = E[Y \| Z = z0, X = x0] | The scalar conditional mean at the scenario's fixed covariate query (z0, x0). The nonparametric component is evaluated at the single-index value t0 = z0'alpha with alpha = (1,1,1)/sqrt(3); the linear component contributes x0*beta. This is a pointwise target, not a curve-level or band target. | 0.47575809676587577 | reported_numeric |
+| index-mid-x0 | Pointwise conditional mean | The scalar conditional mean at the scenario's fixed covariate query (z0, x0). The nonparametric component is evaluated at the single-index value t0 = z0'alpha with alpha = (1,1,1)/sqrt(3); the linear component contributes x0*beta. This is a pointwise target, not a curve-level or band target. | 0.9818328784088086 | reported_numeric |
+| index-mid-x1 | Pointwise conditional mean | The scalar conditional mean at the scenario's fixed covariate query (z0, x0). The nonparametric component is evaluated at the single-index value t0 = z0'alpha with alpha = (1,1,1)/sqrt(3); the linear component contributes x0*beta. This is a pointwise target, not a curve-level or band target. | 1.2818328784088087 | reported_numeric |
+| index-low-x0 | Pointwise conditional mean | The scalar conditional mean at the scenario's fixed covariate query (z0, x0). The nonparametric component is evaluated at the single-index value t0 = z0'alpha with alpha = (1,1,1)/sqrt(3); the linear component contributes x0*beta. This is a pointwise target, not a curve-level or band target. | 0.8402560393492512 | reported_numeric |
+| index-high-x1 | Pointwise conditional mean | The scalar conditional mean at the scenario's fixed covariate query (z0, x0). The nonparametric component is evaluated at the single-index value t0 = z0'alpha with alpha = (1,1,1)/sqrt(3); the linear component contributes x0*beta. This is a pointwise target, not a curve-level or band target. | 0.47575809676587577 | reported_numeric |
+
+**Original submitted target notation:** eta(z0'alpha) + x0*beta = E[Y \| Z = z0, X = x0]
+
 
 ## Identifiability assumptions
 
@@ -141,6 +144,12 @@ Y_i=m_i+0.1*epsilon_i; export Z1,Z2,Z3,X,Y in row order. No index t, noiseless m
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Retain model (4.2), independent U(0,1) Z coordinates, source 1-based fixed odd/even X=0/1, exact index formula (Z1+Z2+Z3)/sqrt(3), beta=.3, a=.3912, b=1.3409 and error sd=.1. Weights are stored as finite JSON approximations to 1/sqrt(3); .5774 in the source is its four-decimal display.
+- Select four fixed complete queries (Z1,Z2,Z3,X) and target their scalar conditional response means. These queries are contribution choices, not source experiment parameters.
+- Use the requested interface row count rather than only source n=50/100/200. Preserve alternating X in numeric list order; a separate index column is unnecessary. Source 500 estimator repetitions, profile least squares, SCAD and tests are not executed.
 
 **Warnings:**
 

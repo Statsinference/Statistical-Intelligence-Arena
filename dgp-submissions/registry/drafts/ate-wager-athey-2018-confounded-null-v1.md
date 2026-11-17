@@ -22,7 +22,14 @@
 
 **Observed variables**
 
+X1–X5 (5 variables), A, Y
+
+<details>
+<summary>All observed variable names</summary>
+
 X1, X2, X3, X4, X5, A, Y
+
+</details>
 
 **Latent variables**
 
@@ -90,9 +97,12 @@ Y=m(X)+(A-0.5)*tau(X)+epsilon; epsilon~Normal(0,1), independent of X and assignm
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| source_d5_sigma1 | theta_ATE=E[Y(1)-Y(0)] | Superpopulation average effect of A=1 versus A=0, integrating over iid Uniform covariates; not a sample average or observed treated-control mean difference. | 0.0 | reported_numeric |
+| source_d5_sigma1 | ATE | Superpopulation average effect of A=1 versus A=0, integrating over iid Uniform covariates; not a sample average or observed treated-control mean difference. | 0.0 | reported_numeric |
+
+**Original submitted target notation:** theta_ATE=E[Y(1)-Y(0)]
+
 
 ## Identifiability assumptions
 
@@ -111,6 +121,15 @@ Y=m(X)+(A-0.5)*tau(X)+epsilon; epsilon~Normal(0,1), independent of X and assignm
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Preserve the source mechanism with dimension=5, noise variance=1; rename source W as A.
+- Target the superpopulation ATE E[Y(1)-Y(0)]=0 instead of assessing the source CATE estimator. The zero ATE follows from the source tau(x)=0.
+- Use Python/NumPy PCG64, row-major X, independent uniform-threshold assignment and normal noise; distributional reconstruction, not identical R random samples.
+- Use n=128, seed=1729 for a CPU interface check instead of the source estimator study (source n=500). No estimator is fitted.
+- effect_shift=0 is the source mechanism; +/-1 only test nonzero truth sensitivity internally and are not registered source scenarios.
+- The source fixes marginal Gaussian potential-outcome laws but does not require a cross-world coupling. A single independent noise produces the observed law; a shared-error potential-outcome representation is only a mathematical completion, not an asserted original coupling.
 
 **Warnings:**
 

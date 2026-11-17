@@ -18,11 +18,18 @@
 
 **Generator source:** [generator.py](../generators/qdi-tan-wang-zhou-20220201-active10-mixture-v2.py)
 
-**Keywords (source-described):** Linearity
+**Keywords (source-described):** Not specified
 
 **Observed variables**
 
+W1–W10 (10 variables), Y
+
+<details>
+<summary>All observed variable names</summary>
+
 W1, W2, W3, W4, W5, W6, W7, W8, W9, W10, Y
+
+</details>
 
 **Latent variables**
 
@@ -142,10 +149,13 @@ w0=e1 in R^10; theta_tau=1.8+q_tau; 0.7*Phi(q_tau)+0.3*Phi(q_tau/5)=tau, tau in 
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| q50-active10-mixture | theta_tau = Q_tau(Y \| W = e1) | inf{y:F_Y\|W(y\|e1)&gt;=tau}, with W=(X_original,1,X_original,3,...,X_original,19) in R^10 and e1=(1,0,...,0). The default tau is 0.9; a second scenario uses 0.5. theta_tau=1.8+F_epsilon^(-1)(tau). This equals the parent model full-X target because the removed coordinates have zero coefficients and epsilon is independent of the full X. | 1.7999999999997158 | reported_numeric |
-| q90-active10-mixture | theta_tau = Q_tau(Y \| W = e1) | inf{y:F_Y\|W(y\|e1)&gt;=tau}, with W=(X_original,1,X_original,3,...,X_original,19) in R^10 and e1=(1,0,...,0). The default tau is 0.9; a second scenario uses 0.5. theta_tau=1.8+F_epsilon^(-1)(tau). This equals the parent model full-X target because the removed coordinates have zero coefficients and epsilon is independent of the full X. | 4.2114834571051345 | reported_numeric |
+| q50-active10-mixture | Conditional quantile | inf{y:F_Y\|W(y\|e1)&gt;=tau}, with W=(X_original,1,X_original,3,...,X_original,19) in R^10 and e1=(1,0,...,0). The default tau is 0.9; a second scenario uses 0.5. theta_tau=1.8+F_epsilon^(-1)(tau). This equals the parent model full-X target because the removed coordinates have zero coefficients and epsilon is independent of the full X. | 1.7999999999997158 | reported_numeric |
+| q90-active10-mixture | Conditional quantile | inf{y:F_Y\|W(y\|e1)&gt;=tau}, with W=(X_original,1,X_original,3,...,X_original,19) in R^10 and e1=(1,0,...,0). The default tau is 0.9; a second scenario uses 0.5. theta_tau=1.8+F_epsilon^(-1)(tau). This equals the parent model full-X target because the removed coordinates have zero coefficients and epsilon is independent of the full X. | 4.2114834571051345 | reported_numeric |
+
+**Original submitted target notation:** theta_tau = Q_tau(Y \| W = e1)
+
 
 ## Identifiability assumptions
 
@@ -166,6 +176,15 @@ w0=e1 in R^10; theta_tau=1.8+q_tau; 0.7*Phi(q_tau)+0.3*Phi(q_tau/5)=tau, tau in 
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Start from the Section 5 p=1000, rho=0.7 Gaussian-mixture branch. Marginalize out the 990 zero-coefficient covariates and retain the known active coordinates A=(1,3,5,7,9,11,13,15,17,19), reindexed W_k=X_original,A[k]. Thus W has dimension 10 and covariance 0.7^(2*abs(j-k))=0.49^abs(j-k). The original ten coefficients and mixture error law are retained. This is a contributor-derived low-dimensional marginal, not the published p=1000 variable-selection experiment. The active set is supplied by the DGP definition, not estimated from data; the benchmark no longer tests support recovery.
+- Make epsilon independent of the original X (and hence W), and all individuals independent, explicit in the implemented joint law. The Section 5 paragraph states the X and noise marginal laws but does not separately spell out their full joint factorization. This is an explicit modeling completion requiring scientific review, not a verified literal statement from that paragraph.
+- Replace coefficient-estimation/model-selection summaries with Q_tau(Y\|W=e1) for tau=0.5 and 0.9. Under the declared independent-noise model, Y depends only on W, so this conditional law equals the original full-X conditional law at any x with x_A=e1. The scalar targets are contributor-defined, not published simulation results.
+- Follow the numerical-study zero-intercept, random-covariate convention. All ten W coordinates are random; no constant input column is inserted.
+- Sample the 10-dimensional Gaussian marginal directly using feature-index AR(1) correlation 0.49 and a local NumPy PCG64 RNG. This preserves the marginal law, not seed-wise equality with the 1000-dimensional generator.
+- The source experiment uses n=500 and 100 replications. This adaptation uses fixed p=10; its collection check uses n=128 and seed=1729 for both queries with replay. No estimator fitting, PFN training, bootstrap or coverage experiment is run. The low-dimensional label refers to these documented sample sizes; it is not a claim for arbitrary n&lt;=10.
 
 **Warnings:**
 

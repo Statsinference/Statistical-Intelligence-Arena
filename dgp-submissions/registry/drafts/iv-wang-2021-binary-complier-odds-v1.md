@@ -117,9 +117,12 @@ Y|CO,D,x~Bernoulli(fD); Y|AT,x~Bernoulli(q); Y|NT,x~Bernoulli(q). Only X,Z,D,Y a
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| source_additive | alpha1 | Slope coefficient alpha1 in E[Y(1)-Y(0)\|D(1)&gt;D(0),X=x]=tanh(alpha0+alpha1*x). Target population is the complier stratum conditional on x; scalar alpha1=-1 is explicitly reported in source Table 2. It is a curve coefficient, not marginal LATE or ATE. | -1.0 | reported_numeric |
+| source_additive | Conditional LATE curve transformed-slope parameter | Slope coefficient alpha1 in E[Y(1)-Y(0)\|D(1)&gt;D(0),X=x]=tanh(alpha0+alpha1*x). Target population is the complier stratum conditional on x; scalar alpha1=-1 is explicitly reported in source Table 2. It is a curve coefficient, not marginal LATE or ATE. | -1.0 | reported_numeric |
+
+**Original submitted target notation:** alpha1
+
 
 ## Identifiability assumptions
 
@@ -138,6 +141,13 @@ Y|CO,D,x~Bernoulli(fD); Y|AT,x~Bernoulli(q); Y|NT,x~Bernoulli(q). Only X,Z,D,Y a
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Implement additive-LATE branch only, using exactly the source numerical constants; do not count estimator misspecification as different data laws.
+- Expose the source-reported scalar coefficient alpha1=-1 in the conditional LATE tanh(alpha0+alpha1*x), rather than invent a fixed-covariate or averaged target.
+- Independently written NumPy observed-law sampler; numerically solve the odds-product equation by bounded bisection, including OP=1, instead of cancellation-prone closed form. Seed-level author-code equivalence not claimed.
+- Omit fitting, bootstrap, replications and analyst-only misspecified covariates; accept caller n and seed.
 
 **Warnings:**
 

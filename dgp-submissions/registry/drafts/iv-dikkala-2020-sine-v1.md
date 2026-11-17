@@ -76,9 +76,12 @@ Y=sin(P)+U+zeta
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| code_scale_alpha06_raw | theta_IV = h0(0.5)-h0(0) | Structural outcome contrast for interventions P=.5 versus P=0, retaining the marginal centered latent confounder and outcome noise. This is not E[Y\|P=.5]-E[Y\|P=0]. | 0.479425538604203 | reported_numeric |
+| code_scale_alpha06_raw | Structural outcome contrast for specified interventions | Structural outcome contrast for interventions P=.5 versus P=0, retaining the marginal centered latent confounder and outcome noise. This is not E[Y\|P=.5]-E[Y\|P=0]. | 0.479425538604203 | reported_numeric |
+
+**Original submitted target notation:** theta_IV = h0(0.5)-h0(0)
+
 
 ## Identifiability assumptions
 
@@ -96,6 +99,13 @@ Y=sin(P)+U+zeta
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Use the author-code Gaussian-location branch (lines 154-162), one endogenous treatment and one instrument, h0(x)=sin(x), alpha=.6; draw SD(Z)=SD(U)=2 and SD(delta)=SD(zeta)=.1. This resolves the paper Normal second-parameter ambiguity by code, and is not a variance-2 paper-only reproduction.
+- Omit author-code sample-dependent centering/scaling of Y and h0 (lines 89-95,163), retaining raw structural units and an iid population estimand independent of realized sample.
+- Collect scalar structural contrast h0(.5)-h0(0) instead of a full response-surface estimator; no population binary ATE or conditional regression is claimed.
+- Use local PCG64 and n=128, seed=1729 for interface checking, without fitting the original estimators.
 
 **Warnings:**
 

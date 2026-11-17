@@ -113,9 +113,12 @@ ATE=E[Y(1)-Y(0)]=-0.5 + 1*E[X1] + 1*E[X2] = -0.5+1+0.5=1
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| paper_section_5_2 | ATE = E[Y(1)-Y(0)] | Population average effect of intervening to set treatment A from 0 (control) to 1 (active), averaged over the full pre-treatment covariate distribution before missingness: E[Y(1)-Y(0)]. | 1.0 | reported_numeric |
+| paper_section_5_2 | ATE | Population average effect of intervening to set treatment A from 0 (control) to 1 (active), averaged over the full pre-treatment covariate distribution before missingness: E[Y(1)-Y(0)]. | 1.0 | reported_numeric |
+
+**Original submitted target notation:** ATE = E[Y(1)-Y(0)]
+
 
 ## Identifiability assumptions
 
@@ -135,6 +138,13 @@ ATE=E[Y(1)-Y(0)]=-0.5 + 1*E[X1] + 1*E[X2] = -0.5+1+0.5=1
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Section 5.2 specifies the marginal laws X1 ~ Normal(1,1) and X2 ~ Bernoulli(0.5), but does not explicitly state their joint dependence. For the executable candidate, X1 and X2 are generated independently; the paper's approximate 67% response-rate report is consistent with this convention but does not uniquely prove it. Maintainer/scientific confirmation is requested.
+- The paper specifies marginal laws epsilon(0) ~ Normal(0,1) and epsilon(1) ~ Normal(0,1), but Section 5.2 does not state all cross-independence relations. The executable implementation draws the errors independently of each other and X; this extra joint-law convention remains pending scientific confirmation.
+- The collection worker accepts only finite numeric observed columns. To preserve the missingness pattern without NaN/Inf output, the exported X1 column uses 0.0 as a sentinel when R1=0 and exports R1 explicitly; when R1=1, X1 retains its generated value. This is an interface encoding, not an imputation, and must be interpreted jointly with R1.
+- Use analytic ATE truth and CPU smoke checks instead of reproducing the paper's full 2,000-replicate simulation study, 100 imputed datasets, or 500-replicate bootstrap variance calculations.
 
 **Warnings:**
 

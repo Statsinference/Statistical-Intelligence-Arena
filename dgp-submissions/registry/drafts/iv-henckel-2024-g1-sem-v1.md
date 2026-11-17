@@ -18,7 +18,7 @@
 
 **Generator source:** [generator.py](../generators/iv-henckel-2024-g1-sem-v1.py)
 
-**Keywords (source-described):** Linearity
+**Keywords (source-described):** Not specified
 
 **Observed variables**
 
@@ -79,10 +79,13 @@ $$
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| G1_gaussian_new_draw | tau_YX | English description not yet supplied; consult the original scientific record (JSON). | 0.7324265699272281 | reported_numeric |
-| G1_uniform_new_draw | tau_YX | English description not yet supplied; consult the original scientific record (JSON). | 0.7324265699272281 | reported_numeric |
+| G1_gaussian_new_draw | Population total causal effect | English description not yet supplied; consult the original scientific record (JSON). | 0.7324265699272281 | reported_numeric |
+| G1_uniform_new_draw | Population total causal effect | English description not yet supplied; consult the original scientific record (JSON). | 0.7324265699272281 | reported_numeric |
+
+**Original submitted target notation:** tau_YX
+
 
 ## Identifiability assumptions
 
@@ -97,6 +100,11 @@ $$
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Freeze a new realization under source coefficient/variance distributions using seed1618033; original frozen100 SEMs not provided. Both Gaussian/uniform error-law branches retained as scenarios of the same family.
+- Keep original Figure1a mediator M and both bidirected edges via two hidden parents; no forbidden-projection shortcut. New Python RNG, scalar original total-effect target.
 
 **Warnings:**
 

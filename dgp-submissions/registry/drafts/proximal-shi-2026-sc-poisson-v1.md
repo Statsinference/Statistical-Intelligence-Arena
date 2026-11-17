@@ -63,9 +63,12 @@ All source loadings equal one in this configuration.
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| journal_r1_no_covariates | theta | Beta = log(E[Y_t(1)] / E[Y_t(0)]) = -2; the mean ratio is exp(-2). | -2.0 | reported_numeric |
+| journal_r1_no_covariates | Causal log mean ratio | Beta = log(E[Y_t(1)] / E[Y_t(0)]) = -2; the mean ratio is exp(-2). | -2.0 | reported_numeric |
+
+**Original submitted target notation:** theta
+
 
 ## Identifiability assumptions
 
@@ -80,6 +83,10 @@ All source loadings equal one in this configuration.
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- English description pending; see [original scientific record](./proximal-shi-2026-sc-poisson-v1.json).
 
 **Warnings:**
 

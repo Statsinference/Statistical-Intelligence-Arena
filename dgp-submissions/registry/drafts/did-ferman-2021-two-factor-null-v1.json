@@ -348,9 +348,10 @@
   },
   "review_status": "needs_scientific_review",
   "warnings": [
-    "Latent-variable candidates inferred from source equations; confirm their roles and completeness against the original paper or generator."
+    "Latent-variable candidates inferred from source equations; confirm their roles and completeness against the original paper or generator.",
+    "Legacy combined DiD / Synthetic Control family: human classification required; not automatically reassigned."
   ],
   "source_suggested_domain": "did_sc",
-  "classification_status": "zip_metadata_unverified",
+  "classification_status": "needs_manual_classification",
   "suggested_secondary_domains": []
 }

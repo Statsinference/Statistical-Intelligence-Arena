@@ -84,11 +84,14 @@ theta_s=P(Y_i&lt;=10 | X_i=5.5)
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| smooth_gamma | theta_s = F_s(10 \| 5.5) | Scalar conditional CDF P(Y_s&lt;=10 \| X=5.5) for each source scenario, using the explicitly specified conditional-law version. Not a marginal CDF, quantile, causal effect, or simultaneous band. | 0.44022759069779993 | reported_numeric |
-| discontinuous_gamma | theta_s = F_s(10 \| 5.5) | Scalar conditional CDF P(Y_s&lt;=10 \| X=5.5) for each source scenario, using the explicitly specified conditional-law version. Not a marginal CDF, quantile, causal effect, or simultaneous band. | 0.0 | reported_numeric |
-| non_isotonic_gamma | theta_s = F_s(10 \| 5.5) | Scalar conditional CDF P(Y_s&lt;=10 \| X=5.5) for each source scenario, using the explicitly specified conditional-law version. Not a marginal CDF, quantile, causal effect, or simultaneous band. | 0.44022759069779993 | reported_numeric |
+| smooth_gamma | Conditional cumulative distribution function | Scalar conditional CDF P(Y_s&lt;=10 \| X=5.5) for each source scenario, using the explicitly specified conditional-law version. Not a marginal CDF, quantile, causal effect, or simultaneous band. | 0.44022759069779993 | reported_numeric |
+| discontinuous_gamma | Conditional cumulative distribution function | Scalar conditional CDF P(Y_s&lt;=10 \| X=5.5) for each source scenario, using the explicitly specified conditional-law version. Not a marginal CDF, quantile, causal effect, or simultaneous band. | 0.0 | reported_numeric |
+| non_isotonic_gamma | Conditional cumulative distribution function | Scalar conditional CDF P(Y_s&lt;=10 \| X=5.5) for each source scenario, using the explicitly specified conditional-law version. Not a marginal CDF, quantile, causal effect, or simultaneous band. | 0.44022759069779993 | reported_numeric |
+
+**Original submitted target notation:** theta_s = F_s(10 \| 5.5)
+
 
 ## Identifiability assumptions
 
@@ -108,6 +111,13 @@ theta_s=P(Y_i&lt;=10 | X_i=5.5)
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Keep published equations (23)–(25) and their parameters unchanged; rename the selected scenario response to Y. Use the formal unjittered law and &gt;=7 NI threshold; separately document differences from the inspected author R script.
+- Fix the scalar noncausal QDI target P(Y&lt;=10 \| X=5.5), selected by the user; the source evaluates distributional predictions by CRPS/L2, not this scalar numeric truth.
+- Use n=128, seed=1729 local checks instead of the source 500 replicates at n=500/1000/2000/4000 with independent m=5000 test sets. No estimator fitting or coverage evaluation.
+- Use local NumPy RNG and independently written Python rather than reproducing the author R random stream. Redraw exact X=0 finite-RNG endpoint; ideal continuous law gives that endpoint zero mass.
 
 **Warnings:**
 

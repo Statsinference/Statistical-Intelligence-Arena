@@ -22,7 +22,14 @@
 
 **Observed variables**
 
+X1–X10 (10 variables), A, Y
+
+<details>
+<summary>All observed variable names</summary>
+
 X1, X2, X3, X4, X5, X6, X7, X8, X9, X10, A, Y
+
+</details>
 
 **Latent variables**
 
@@ -95,9 +102,12 @@ Y = A Y(1) + (1-A) Y(0), sigma = 1
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| original | tau(x0) = E[Y(1) - Y(0) \| X = x0] | Conditional average treatment effect at the declared query points when the control potential outcome is identically zero, so the effect equals the treated conditional mean. | 1.0 | reported_numeric |
+| original | CATE | Conditional average treatment effect at the declared query points when the control potential outcome is identically zero, so the effect equals the treated conditional mean. | 1.0 | reported_numeric |
+
+**Original submitted target notation:** tau(x0) = E[Y(1) - Y(0) \| X = x0]
+
 
 ## Identifiability assumptions
 
@@ -115,6 +125,13 @@ Y = A Y(1) + (1-A) Y(0), sigma = 1
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- The source uses d = 10 or d = 100 covariates and an equicorrelation rho in {0, 0.9}; this package fixes d = 10 with rho = 0, so the covariates are independent uniforms and X3..X10 are inert.
+- Only the homoscedastic scenario sigma^2 = 1 is used; the source also reports sigma^2(x) = -log(x1).
+- Phi(Z) with Z standard normal is distributed as Uniform(0,1), so the covariates are drawn directly as uniforms; no numerical normal cdf is needed at rho = 0.
+- The source evaluates interval coverage of CATE and ITE; this package only declares the mechanism and its population CATE. No conformal procedure is run.
 
 **Warnings:**
 

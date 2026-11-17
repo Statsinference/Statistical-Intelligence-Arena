@@ -36,7 +36,13 @@ Not explicitly identified (review required)
 
 **Original source equations (verbatim):** [Open raw scientific record (JSON)](./proximal-li-2023-07-10-binary-tnd-v1.json).
 
-以来源总体中的独立个体为单位，令 <code>U</code> 表示未观测二元混杂，<code>D</code> 表示其他疾病指示，<code>S</code> 为纳入检验阴性样本的指示。各二元节点按顺序使用独立的均匀随机数生成：
+English equation transcription pending; consult the linked original scientific record (JSON) for the complete source and context.
+
+U
+
+D
+
+S
 
 **Step 1**
 
@@ -56,7 +62,15 @@ $$
 A \mid  U \sim \mathrm{Bernoulli}(0.2 + 0.4U)
 $$
 
-4. $`Y \mid  A,U \sim \mathrm{Bernoulli}(\exp(\eta_{0} + \beta A - 0.693U))`$，其中 $`\eta_{0}=\ln(0.01)`$。
+English equation transcription pending; consult the linked original scientific record (JSON) for the complete source and context.
+
+$$
+Y \mid  A,U \sim \mathrm{Bernoulli}(\exp(\eta_{0} + \beta A - 0.693U))
+$$
+
+$$
+\eta_{0}=\ln(0.01)
+$$
 
 **Step 5**
 
@@ -76,19 +90,40 @@ $$
 S \mid  Y,D,W,U \sim \mathrm{Bernoulli}(\max(Y,D,W) \times  (0.1 + 0.4U))
 $$
 
-只保留 $`S=1`$ 的记录，观察列为 <code>A,Z,W,Y</code>；内部变量为 <code>U,D,S</code>，不写入模型输入数据表。二元节点的支持集均为 <code>{0,1}</code>。分配概率及疾病风险通过方程计算，生成器不裁剪概率。
+English equation transcription pending; consult the linked original scientific record (JSON) for the complete source and context.
 
-四个场景均固定 $`\eta_{0}=\log(0.01)`$，只改变处理效应 $`\beta\in \{\log(0.2), \log(0.5), \log(0.7), 0\}`$。
+$$
+S=1
+$$
+
+A,Z,W,Y
+
+U,D,S
+
+{0,1}
+
+English equation transcription pending; consult the linked original scientific record (JSON) for the complete source and context.
+
+$$
+\eta_{0}=\log(0.01)
+$$
+
+$$
+\beta\in \{\log(0.2), \log(0.5), \log(0.7), 0\}
+$$
 
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| table-eta001-rr020 | beta_log_RR | log(E[Y(1)]/E[Y(0)]) in the source population before S selection; not selected-sample log odds ratio. | -1.6094379124341003 | reported_numeric |
-| table-eta001-rr050 | beta_log_RR | log(E[Y(1)]/E[Y(0)]) in the source population before S selection; not selected-sample log odds ratio. | -0.6931471805599453 | reported_numeric |
-| table-eta001-rr070 | beta_log_RR | log(E[Y(1)]/E[Y(0)]) in the source population before S selection; not selected-sample log odds ratio. | -0.35667494393873245 | reported_numeric |
-| table-eta001-rr100 | beta_log_RR | log(E[Y(1)]/E[Y(0)]) in the source population before S selection; not selected-sample log odds ratio. | 0.0 | reported_numeric |
+| table-eta001-rr020 | Causal log mean ratio | log(E[Y(1)]/E[Y(0)]) in the source population before S selection; not selected-sample log odds ratio. | -1.6094379124341003 | reported_numeric |
+| table-eta001-rr050 | Causal log mean ratio | log(E[Y(1)]/E[Y(0)]) in the source population before S selection; not selected-sample log odds ratio. | -0.6931471805599453 | reported_numeric |
+| table-eta001-rr070 | Causal log mean ratio | log(E[Y(1)]/E[Y(0)]) in the source population before S selection; not selected-sample log odds ratio. | -0.35667494393873245 | reported_numeric |
+| table-eta001-rr100 | Causal log mean ratio | log(E[Y(1)]/E[Y(0)]) in the source population before S selection; not selected-sample log odds ratio. | 0.0 | reported_numeric |
+
+**Original submitted target notation:** beta_log_RR
+
 
 ## Identifiability assumptions
 
@@ -108,6 +143,12 @@ $$
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- English description pending; see [original scientific record](./proximal-li-2023-07-10-binary-tnd-v1.json).
+- English description pending; see [original scientific record](./proximal-li-2023-07-10-binary-tnd-v1.json).
+- English description pending; see [original scientific record](./proximal-li-2023-07-10-binary-tnd-v1.json).
 
 **Warnings:**
 

@@ -103,11 +103,14 @@ Y_i=g_j(X_i)+epsilon_i; return X,Y. No extra noise, latent mean or oracle column
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| g1-sigma1 | m(x0) = E[Y \| X = x0] = g_j(x0) | The value of the conditional mean function at one fixed interior design point x0 specified per scenario, in the superpopulation defined by the declared regression model with X uniform on [-1,1] and additive N(0, sigma^2) noise. This is a pointwise scalar query, not a simultaneous confidence band and not a coverage claim over any interval. | 1.9947114020071635 | reported_numeric |
-| g2-sigma05 | m(x0) = E[Y \| X = x0] = g_j(x0) | The value of the conditional mean function at one fixed interior design point x0 specified per scenario, in the superpopulation defined by the declared regression model with X uniform on [-1,1] and additive N(0, sigma^2) noise. This is a pointwise scalar query, not a simultaneous confidence band and not a coverage claim over any interval. | 0.23294536334790983 | reported_numeric |
-| g3-sigma02 | m(x0) = E[Y \| X = x0] = g_j(x0) | The value of the conditional mean function at one fixed interior design point x0 specified per scenario, in the superpopulation defined by the declared regression model with X uniform on [-1,1] and additive N(0, sigma^2) noise. This is a pointwise scalar query, not a simultaneous confidence band and not a coverage claim over any interval. | 0.3535533905932738 | reported_numeric |
+| g1-sigma1 | Pointwise conditional mean | The value of the conditional mean function at one fixed interior design point x0 specified per scenario, in the superpopulation defined by the declared regression model with X uniform on [-1,1] and additive N(0, sigma^2) noise. This is a pointwise scalar query, not a simultaneous confidence band and not a coverage claim over any interval. | 1.9947114020071635 | reported_numeric |
+| g2-sigma05 | Pointwise conditional mean | The value of the conditional mean function at one fixed interior design point x0 specified per scenario, in the superpopulation defined by the declared regression model with X uniform on [-1,1] and additive N(0, sigma^2) noise. This is a pointwise scalar query, not a simultaneous confidence band and not a coverage claim over any interval. | 0.23294536334790983 | reported_numeric |
+| g3-sigma02 | Pointwise conditional mean | The value of the conditional mean function at one fixed interior design point x0 specified per scenario, in the superpopulation defined by the declared regression model with X uniform on [-1,1] and additive N(0, sigma^2) noise. This is a pointwise scalar query, not a simultaneous confidence band and not a coverage claim over any interval. | 0.3535533905932738 | reported_numeric |
+
+**Original submitted target notation:** m(x0) = E[Y \| X = x0] = g_j(x0)
+
 
 ## Identifiability assumptions
 
@@ -127,6 +130,12 @@ Y_i=g_j(X_i)+epsilon_i; return X,Y. No extra noise, latent mean or oracle column
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Select three cells of the source's 3-by-3 g_j by sigma design: (g1,1), (g2,0.5), (g3,0.2).
+- Replace the source pointwise confidence-band/coverage study over an interval by the scalar response mean m(x0); add x0=0,.3,.5. The source is not described as a conventional all-points simultaneous-coverage experiment.
+- Use the interface's requested n and CPU checks, without fitting estimators or reproducing coverage.
 
 **Warnings:**
 

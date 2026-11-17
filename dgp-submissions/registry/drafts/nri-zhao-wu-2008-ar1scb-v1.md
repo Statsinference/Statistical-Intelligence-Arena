@@ -97,10 +97,13 @@ Return (X_i,Y_i)=(Y_(burn_in+i-1),Y_(burn_in+i)), i=1..n. Deterministic export i
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| original-s04 | mu(x0) = E[Y_i \| X_i = x0] = 0.9*sin(x0) | Pointwise conditional mean of the Markov regression at a single fixed query point x0 inside the source design interval T = [-1.1,1.1]; a scalar quantity, not a simultaneous confidence band and not a coverage probability. | 0.4314829847437827 | reported_numeric |
-| interior-anchor | mu(x0) = E[Y_i \| X_i = x0] = 0.9*sin(x0) | Pointwise conditional mean of the Markov regression at a single fixed query point x0 inside the source design interval T = [-1.1,1.1]; a scalar quantity, not a simultaneous confidence band and not a coverage probability. | 0.0 | reported_numeric |
+| original-s04 | Pointwise conditional mean | Pointwise conditional mean of the Markov regression at a single fixed query point x0 inside the source design interval T = [-1.1,1.1]; a scalar quantity, not a simultaneous confidence band and not a coverage probability. | 0.4314829847437827 | reported_numeric |
+| interior-anchor | Pointwise conditional mean | Pointwise conditional mean of the Markov regression at a single fixed query point x0 inside the source design interval T = [-1.1,1.1]; a scalar quantity, not a simultaneous confidence band and not a coverage probability. | 0.0 | reported_numeric |
+
+**Original submitted target notation:** mu(x0) = E[Y_i \| X_i = x0] = 0.9*sin(x0)
+
 
 ## Identifiability assumptions
 
@@ -120,6 +123,12 @@ Return (X_i,Y_i)=(Y_(burn_in+i-1),Y_(burn_in+i)), i=1..n. Deterministic export i
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Keep Model 1 only; Model 2 targets conditional variance rather than the selected mean target.
+- Set Y0=0 and burn-in=1000 as explicit implementation choices, not recovered paper parameters.
+- Keep chronological Markov pairs and add fixed query x0=0.5 or 0.0; run CPU pointwise checks instead of the original band experiment.
 
 **Warnings:**
 

@@ -16,9 +16,9 @@
 
 **Sampling design:** Unit: subject trajectory; Dependence: IID subjects; ten temporally dependent observations retained in 50 wide columns per subject
 
-**Generator source:** [generator.py](https://github.com/Statsinference/stats-inference-arena/blob/main/dgp-submissions/registry/generators/mediation-luo-et-al-2025-dynamic-markov-v1.py)
+**Generator source:** [generator.py](../generators/mediation-luo-et-al-2025-dynamic-markov-v1.py)
 
-**Keywords (source-described):** Linearity
+**Keywords (source-described):** Not specified
 
 **Observed variables**
 
@@ -103,7 +103,10 @@ eta_1^(10)= [E sum R_t|do A=1 - E sum R_t|do A=0] - [E sum R_t|do A=1,M_t1=0 - E
 
 | Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| finite_T10_seeded_coefficients | eta_1^(10) | For ten time points, contrast E[sum_t R_t\|do(A_s=1)]-E[sum_t R_t\|do(A_s=0)] and subtract the same contrast with do(M_{s,1}=0) for all s. | -0.02804345470955405 | reported_numeric |
+| finite_T10_seeded_coefficients | Dynamic mediation effect | For ten time points, contrast E[sum_t R_t\|do(A_s=1)]-E[sum_t R_t\|do(A_s=0)] and subtract the same contrast with do(M_{s,1}=0) for all s. | -0.02804345470955405 | reported_numeric |
+
+**Original submitted target notation:** eta_1^(10)
+
 
 ## Identifiability assumptions
 
@@ -122,6 +125,13 @@ eta_1^(10)= [E sum R_t|do A=1 - E sum R_t|do A=0] - [E sum R_t|do A=1,M_t1=0 - E
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Fix one reproducible draw of all time-specific coefficients from the source Uniform(-0.5,0.5) distribution using Python seed 20251031; the paper does not publish its realized coefficient arrays, so numeric truth differs from authors’ run.
+- Use wide per-subject rows (A01,M01_1,...,R10), retaining time dependence within each row; do not flatten panel observations as IID.
+- Compute the paper’s individual mediator-1 effect by exact linear expectation recursion rather than the authors’ 10-million-sample Monte Carlo approximation.
+- Use n input, with source n=100 recorded in config.
 
 **Warnings:**
 

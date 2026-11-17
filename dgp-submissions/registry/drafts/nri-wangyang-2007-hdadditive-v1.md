@@ -22,7 +22,14 @@
 
 **Observed variables**
 
+X1–X30 (30 variables), Y
+
+<details>
+<summary>All observed variable names</summary>
+
 X1, X2, X3, X4, X5, X6, X7, X8, X9, X10, X11, X12, X13, X14, X15, X16, X17, X18, X19, X20, X21, X22, X23, X24, X25, X26, X27, X28, X29, X30, Y
+
+</details>
 
 **Latent variables**
 
@@ -128,10 +135,13 @@ Y_t=m(X_t)+sigma(X_t)*epsilon_t; return X1..X30,Y in chronological window order.
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| original-sigma01 | m(x0) = E[Y \| X = x0] = sum_{alpha=1}^{30} sin(pi * x0_alpha / 2.5) | Scalar conditional mean of Y at a fixed 30-dimensional query point x0 in the superpopulation defined by the fixed Example 6.2 DGP. It is a pointwise regression functional, not a causal effect; the query is a parameter of each scenario and is read from config by truth(config). | 1.0 | reported_numeric |
-| origin-query | m(x0) = E[Y \| X = x0] = sum_{alpha=1}^{30} sin(pi * x0_alpha / 2.5) | Scalar conditional mean of Y at a fixed 30-dimensional query point x0 in the superpopulation defined by the fixed Example 6.2 DGP. It is a pointwise regression functional, not a causal effect; the query is a parameter of each scenario and is read from config by truth(config). | 0.0 | reported_numeric |
+| original-sigma01 | Pointwise conditional mean | Scalar conditional mean of Y at a fixed 30-dimensional query point x0 in the superpopulation defined by the fixed Example 6.2 DGP. It is a pointwise regression functional, not a causal effect; the query is a parameter of each scenario and is read from config by truth(config). | 1.0 | reported_numeric |
+| origin-query | Pointwise conditional mean | Scalar conditional mean of Y at a fixed 30-dimensional query point x0 in the superpopulation defined by the fixed Example 6.2 DGP. It is a pointwise regression functional, not a causal effect; the query is a parameter of each scenario and is read from config by truth(config). | 0.0 | reported_numeric |
+
+**Original submitted target notation:** m(x0) = E[Y \| X = x0] = sum_{alpha=1}^{30} sin(pi * x0_alpha / 2.5)
+
 
 ## Identifiability assumptions
 
@@ -149,6 +159,14 @@ Y_t=m(X_t)+sigma(X_t)*epsilon_t; return X1..X30,Y in chronological window order.
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Read the displayed X_{t-alpha} subscripts consistently across rows as overlapping windows of one iid truncated-normal stream. This is the declared interpretation of the source notation; no claim is made that an author implementation has been recovered.
+- Replace component-estimator comparisons by scalar m(x0)=E[Y\|X=x0]; x0=(1.25,0,...,0) and the zero vector are our choices.
+- Implement truncation by rejection sampling; retain the source's signed noise multiplier without clipping.
+- For the shared-stream interpretation, use exact overlap counts for signal variance of the whole-table mean and conditional noise variance; adjacent length-d blocks are dependent, and no universal n/d effective sample size is assumed.
+- Use interface sample sizes and CPU checks without fitting the source estimators.
 
 **Warnings:**
 

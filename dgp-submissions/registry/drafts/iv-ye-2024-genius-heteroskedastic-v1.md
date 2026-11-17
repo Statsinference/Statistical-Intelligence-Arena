@@ -18,11 +18,18 @@
 
 **Generator source:** [generator.py](../generators/iv-ye-2024-genius-heteroskedastic-v1.py)
 
-**Keywords (source-described):** Interactions · Linearity
+**Keywords (source-described):** Interactions
 
 **Observed variables**
 
+Z1–Z100 (100 variables), A, Y
+
+<details>
+<summary>All observed variable names</summary>
+
 Z1, Z2, Z3, Z4, Z5, Z6, Z7, Z8, Z9, Z10, Z11, Z12, Z13, Z14, Z15, Z16, Z17, Z18, Z19, Z20, Z21, Z22, Z23, Z24, Z25, Z26, Z27, Z28, Z29, Z30, Z31, Z32, Z33, Z34, Z35, Z36, Z37, Z38, Z39, Z40, Z41, Z42, Z43, Z44, Z45, Z46, Z47, Z48, Z49, Z50, Z51, Z52, Z53, Z54, Z55, Z56, Z57, Z58, Z59, Z60, Z61, Z62, Z63, Z64, Z65, Z66, Z67, Z68, Z69, Z70, Z71, Z72, Z73, Z74, Z75, Z76, Z77, Z78, Z79, Z80, Z81, Z82, Z83, Z84, Z85, Z86, Z87, Z88, Z89, Z90, Z91, Z92, Z93, Z94, Z95, Z96, Z97, Z98, Z99, Z100, A, Y
+
+</details>
 
 **Latent variables**
 
@@ -81,12 +88,15 @@ $$
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| setting1_new_draw | β0=.4 | English description not yet supplied; consult the original scientific record (JSON). | 0.4 | reported_numeric |
-| setting2_new_draw | β0=.4 | English description not yet supplied; consult the original scientific record (JSON). | 0.4 | reported_numeric |
-| setting3_new_draw | β0=.4 | English description not yet supplied; consult the original scientific record (JSON). | 0.4 | reported_numeric |
-| setting4_new_draw | β0=.4 | English description not yet supplied; consult the original scientific record (JSON). | 0.4 | reported_numeric |
+| setting1_new_draw | Population unit-change structural mean effect ⚠ review | English description not yet supplied; consult the original scientific record (JSON). | 0.4 | reported_numeric |
+| setting2_new_draw | Population unit-change structural mean effect ⚠ review | English description not yet supplied; consult the original scientific record (JSON). | 0.4 | reported_numeric |
+| setting3_new_draw | Population unit-change structural mean effect ⚠ review | English description not yet supplied; consult the original scientific record (JSON). | 0.4 | reported_numeric |
+| setting4_new_draw | Population unit-change structural mean effect ⚠ review | English description not yet supplied; consult the original scientific record (JSON). | 0.4 | reported_numeric |
+
+**Original submitted target notation:** β0=.4
+
 
 ## Identifiability assumptions
 
@@ -101,6 +111,12 @@ $$
 **Original versus adapted:** adapted_from_source
 
 **Status:** duplicate_conflict_needs_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Original Section6.1 structural equations, noise variances and four SNP-type proportions retained. New, fully recorded one-time coefficient realization uses Python random.Random(104729); author frozen coefficient vectors/seed were not supplied in the read text. This does not reproduce published Monte Carlo tables.
+- SNP type groups use fixed index blocks; SNPs are iid and this is a deterministic labelling of the source proportions. Coefficients fixed across repeated samples, never treated as a new family.
+- All four settings are declared; small CPU samples n=128 are interface checks, not the original n=10000/100000 estimator experiment. No LD/UK-Biobank or covariate supplement scenarios are claimed.
 
 **Warnings:**
 

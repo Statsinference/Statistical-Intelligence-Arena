@@ -16,13 +16,20 @@
 
 **Sampling design:** Unit: One jointly generated panel: 11 units (one treated and ten donors), 20 pre periods and one post, represented by one wide row per unit.; Dependence: Two independent stationary Gaussian AR(1) common factors with rho=.5; five donors share the treated loading and five share the second loading. Unit/time idiosyncratic errors are iid standard normal and independent of factors.
 
-**Generator source:** [generator.py](https://github.com/Statsinference/stats-inference-arena/blob/main/dgp-submissions/registry/generators/did-ferman-2021-two-factor-null-v1.py)
+**Generator source:** [generator.py](../generators/did-ferman-2021-two-factor-null-v1.py)
 
-**Keywords (source-described):** Linearity · Panel data
+**Keywords (source-described):** Panel data
 
 **Observed variables**
 
+G, Y_pre_01, Y_pre_02, Y_pre_03, Y_pre_04, Y_pre_05, Y_pre_06, Y_pre_07, Y_pre_08, Y_pre_09, Y_pre_10–Y_pre_20 (11 variables), Y_post_01
+
+<details>
+<summary>All observed variable names</summary>
+
 G, Y_pre_01, Y_pre_02, Y_pre_03, Y_pre_04, Y_pre_05, Y_pre_06, Y_pre_07, Y_pre_08, Y_pre_09, Y_pre_10, Y_pre_11, Y_pre_12, Y_pre_13, Y_pre_14, Y_pre_15, Y_pre_16, Y_pre_17, Y_pre_18, Y_pre_19, Y_pre_20, Y_post_01
+
+</details>
 
 **Latent variables**
 
@@ -115,7 +122,10 @@ tau_01=Y_0,21(1)-Y_0,21(0)=post_effect=0 with common exogenous draws held fixed;
 
 | Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| table1_j10_t020_null | tau_01 | Specified treated unit i=0, first and only post period t=1: Y_01(1)-Y_01(0). Its design-population mean and single-treated-unit finite SATT both equal zero pointwise. | 0 | reported_numeric |
+| table1_j10_t020_null | Treated-unit treatment effect | Specified treated unit i=0, first and only post period t=1: Y_01(1)-Y_01(0). Its design-population mean and single-treated-unit finite SATT both equal zero pointwise. | 0.0 | reported_numeric |
+
+**Original submitted target notation:** tau_01
+
 
 ## Identifiability assumptions
 
@@ -132,6 +142,13 @@ tau_01=Y_0,21(1)-Y_0,21(0)=post_effect=0 with common exogenous draws held fixed;
 
 **Status:** needs_scientific_review
 
+**Adaptations from the source (submitted, unverified):**
+
+- Preserve source Table1 cell J=10,T0=2J=20,T1=1, zero effect; unit-wide numerical representation and strict n=11 are approved collection-interface adaptations.
+- Independent Python implementation with local random.Random preserves specified distributions and dependence, not R random-stream identity; no estimator-performance replication.
+- Formal publication-linked archive supplies AR recursion and initialization; formal main article full-text version comparison remains incomplete and no unverified journal equation/page locator is claimed.
+
 **Warnings:**
 
 - Latent-variable candidates inferred from source equations; confirm their roles and completeness against the original paper or generator.
+- Legacy combined DiD / Synthetic Control family: human classification required; not automatically reassigned.

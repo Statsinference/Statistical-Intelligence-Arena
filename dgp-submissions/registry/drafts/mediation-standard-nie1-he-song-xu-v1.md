@@ -16,7 +16,7 @@
 
 **Sampling design:** IID observations at a fixed structural configuration; separate mechanism and observation seeds.
 
-**Generator source:** [generator.py](https://github.com/Statsinference/stats-inference-arena/blob/main/dgp-submissions/registry/generators/mediation-standard-nie1-he-song-xu-v1.py)
+**Generator source:** [generator.py](../generators/mediation-standard-nie1-he-song-xu-v1.py)
 
 **Keywords (source-described):** Not specified
 
@@ -71,6 +71,9 @@ return x,a,m,y,[&quot;continuous&quot;],[&quot;continuous&quot;,&quot;binary&quo
 |---|---|---|---|---|
 | native | NIE | NIE = E[Y(1,M(1))-Y(1,M(0))] in the adapted fixed-SEM superpopulation, jointly intervening on the complete mediator vector. | 0.04000000000000001 | reported_numeric |
 
+**Original submitted target notation:** NIE
+
+
 ## Identifiability assumptions
 
 - Independent exogenous structural errors and iid units conditional on fixed configuration.
@@ -86,6 +89,12 @@ return x,a,m,y,[&quot;continuous&quot;],[&quot;continuous&quot;,&quot;binary&quo
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Retain the scalar linear complete-data SEM; expose the source alternatives/nulls through explicit configs or the optional parameter prior.
+- New complete-data superpopulation NIE1 target; original records/estimands are retained separately.
+- Standalone canonical generator core SHA256 443e04663970594a8ec2932dc0ee9718c10cc501314d133686dfd0e9acf1baa8
 
 **Warnings:**
 

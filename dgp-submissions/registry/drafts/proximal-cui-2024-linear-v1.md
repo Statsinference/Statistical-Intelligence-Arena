@@ -79,9 +79,12 @@ $$
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
 | original | ATE | ATE = E[Y(1) - Y(0)] = 2. | 2.0 | reported_numeric |
+
+**Original submitted target notation:** ATE
+
 
 ## Identifiability assumptions
 
@@ -96,6 +99,10 @@ $$
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- English description pending; see [original scientific record](./proximal-cui-2024-linear-v1.json).
 
 **Warnings:**
 

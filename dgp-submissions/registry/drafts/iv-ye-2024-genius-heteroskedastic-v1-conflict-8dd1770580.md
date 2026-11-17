@@ -22,7 +22,14 @@
 
 **Observed variables**
 
+Z1–Z100 (100 variables), A, Y, U
+
+<details>
+<summary>All observed variable names</summary>
+
 Z1, Z2, Z3, Z4, Z5, Z6, Z7, Z8, Z9, Z10, Z11, Z12, Z13, Z14, Z15, Z16, Z17, Z18, Z19, Z20, Z21, Z22, Z23, Z24, Z25, Z26, Z27, Z28, Z29, Z30, Z31, Z32, Z33, Z34, Z35, Z36, Z37, Z38, Z39, Z40, Z41, Z42, Z43, Z44, Z45, Z46, Z47, Z48, Z49, Z50, Z51, Z52, Z53, Z54, Z55, Z56, Z57, Z58, Z59, Z60, Z61, Z62, Z63, Z64, Z65, Z66, Z67, Z68, Z69, Z70, Z71, Z72, Z73, Z74, Z75, Z76, Z77, Z78, Z79, Z80, Z81, Z82, Z83, Z84, Z85, Z86, Z87, Z88, Z89, Z90, Z91, Z92, Z93, Z94, Z95, Z96, Z97, Z98, Z99, Z100, A, Y, U
+
+</details>
 
 **Latent variables**
 
@@ -120,12 +127,15 @@ Settings S1/S2/S3 counts are 100/0/0,60/20/20,10/90/0,10/0/90. Frozen realized c
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| setting1_valid | beta | Population constant causal slope dE[Y\|do(A=a)]/da=0.4, equivalently unit contrast E[Y\|do(A=1)]-E[Y\|do(A=0)], in the frozen SNP coefficient population. | 0.4 | reported_numeric |
-| setting2_mixed40 | beta | Population constant causal slope dE[Y\|do(A=a)]/da=0.4, equivalently unit contrast E[Y\|do(A=1)]-E[Y\|do(A=0)], in the frozen SNP coefficient population. | 0.4 | reported_numeric |
-| setting3_inside90 | beta | Population constant causal slope dE[Y\|do(A=a)]/da=0.4, equivalently unit contrast E[Y\|do(A=1)]-E[Y\|do(A=0)], in the frozen SNP coefficient population. | 0.4 | reported_numeric |
-| setting4_correlated90 | beta | Population constant causal slope dE[Y\|do(A=a)]/da=0.4, equivalently unit contrast E[Y\|do(A=1)]-E[Y\|do(A=0)], in the frozen SNP coefficient population. | 0.4 | reported_numeric |
+| setting1_valid | Population unit-change structural mean effect ⚠ review | Population constant causal slope dE[Y\|do(A=a)]/da=0.4, equivalently unit contrast E[Y\|do(A=1)]-E[Y\|do(A=0)], in the frozen SNP coefficient population. | 0.4 | reported_numeric |
+| setting2_mixed40 | Population unit-change structural mean effect ⚠ review | Population constant causal slope dE[Y\|do(A=a)]/da=0.4, equivalently unit contrast E[Y\|do(A=1)]-E[Y\|do(A=0)], in the frozen SNP coefficient population. | 0.4 | reported_numeric |
+| setting3_inside90 | Population unit-change structural mean effect ⚠ review | Population constant causal slope dE[Y\|do(A=a)]/da=0.4, equivalently unit contrast E[Y\|do(A=1)]-E[Y\|do(A=0)], in the frozen SNP coefficient population. | 0.4 | reported_numeric |
+| setting4_correlated90 | Population unit-change structural mean effect ⚠ review | Population constant causal slope dE[Y\|do(A=a)]/da=0.4, equivalently unit contrast E[Y\|do(A=1)]-E[Y\|do(A=0)], in the frozen SNP coefficient population. | 0.4 | reported_numeric |
+
+**Original submitted target notation:** beta
+
 
 ## Identifiability assumptions
 
@@ -143,6 +153,13 @@ Settings S1/S2/S3 counts are 100/0/0,60/20/20,10/90/0,10/0/90. Frozen realized c
 **Original versus adapted:** adapted_from_source
 
 **Status:** duplicate_conflict_needs_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Freeze paper-prescribed normal gamma/delta nuisance draws using NumPy PCG64 seed 1729 instead of claiming the unrecovered original simulation RNG state.
+- Freeze S2 normal pleiotropy draws too, and assign consecutive SNP blocks of paper-prescribed sizes; paper does not specify original labels or alpha draw persistence.
+- All four published pleiotropy settings share one frozen gamma/delta vector and form scenarios of ONE family.
+- Hook sample size is variable, unlike original n=10000 or 100000. No estimators, CI comparisons or published table replication are claimed.
 
 **Warnings:**
 

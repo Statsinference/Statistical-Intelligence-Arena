@@ -118,9 +118,12 @@ theta=F(1|0.1)=1-2*sin(0.31416)^2=0.8090161307517588 (binary64 evaluation).
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| original_mechanism_fixed_cdf | theta = F_{Y\|X=0.1}(1) | P(Y&lt;=1 \| X=0.1) in the Example 1 superpopulation, using the continuous version F(y\|x)=G(y-2*sin(3.1416*x)) induced by independent triangular noise. Conditional CDF, not a marginal CDF, quantile, conditional mean, causal contrast, or prediction interval. Query x=0.1 and CDF threshold y=1 are fixed in config. | 0.8090161307517588 | reported_numeric |
+| original_mechanism_fixed_cdf | Conditional cumulative distribution function | P(Y&lt;=1 \| X=0.1) in the Example 1 superpopulation, using the continuous version F(y\|x)=G(y-2*sin(3.1416*x)) induced by independent triangular noise. Conditional CDF, not a marginal CDF, quantile, conditional mean, causal contrast, or prediction interval. Query x=0.1 and CDF threshold y=1 are fixed in config. | 0.8090161307517588 | reported_numeric |
+
+**Original submitted target notation:** theta = F_{Y\|X=0.1}(1)
+
 
 ## Identifiability assumptions
 
@@ -139,6 +142,13 @@ theta=F(1|0.1)=1-2*sin(0.31416)^2=0.8090161307517588 (binary64 evaluation).
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Preserve the full Example 1 observed-data mechanism, including the literal frequency 3.1416, two independent iid triangular sequences, amplitude 2, support [-1,1] and unit noise scale.
+- Restrict the paper's conditional distribution estimation task to scalar P(Y&lt;=1\|X=0.1). The paper considers x=0.1, but selecting y=1 as the sole target is this contribution's adaptation; its numerical truth is derived here, not a reported paper result.
+- Use the API's caller-supplied sample size and local seeded Python RNG. The requested n=128, seed=1729 check does not reproduce the paper's 400/200 experiments at n=600 or its MADE, bandwidth, estimator and bootstrap comparisons.
+- Generate triangular variables as differences of independent uniforms; this is an equivalent-law implementation choice, not a claim about the authors' RNG or code.
 
 **Warnings:**
 

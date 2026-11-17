@@ -39,7 +39,7 @@ Not explicitly identified (review required)
 **E1**
 
 $$
-X_i\sim U(0,5),\quad E_i\sim\operatorname{Exp}(\mathrm{rate}=1),\quad X_i\perp E_i
+X_i\sim U(0,5),\quad E_i\sim\mathrm{Exp}(\mathrm{rate}=1),\quad X_i\perp E_i
 $$
 
 The displayed marginals are source-supported; the independence/product-sampling part is a declared implementation convention. See source_recheck.json.
@@ -59,9 +59,12 @@ $$
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| source_law_fixed_query | Q_{0.9}(2) | Conditional 0.9 quantile at X=2, according to the explicitly dated preprint model 4. | 4.182306593688138 | reported_numeric |
+| source_law_fixed_query | Conditional quantile | Conditional 0.9 quantile at X=2, according to the explicitly dated preprint model 4. | 4.182306593688138 | reported_numeric |
+
+**Original submitted target notation:** Q_{0.9}(2)
+
 
 ## Identifiability assumptions
 
@@ -78,6 +81,16 @@ $$
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- The mechanism is transcribed from the dated 2007-05-08 preprint associated with the 2008 JRSS-B publication. The preprint attributes this model to Yu and Jones (1998). This lineage is recorded to prevent duplicate counting across papers.
+- The 2008 typeset simulation formulas have not been compared line by line; no equality of all preprint and final-version formulas is asserted. Published bibliographic metadata and the actual read-version locator are kept separate.
+- Fixed x=2 and tau=0.9 define a scalar query. Independent X and E and iid rows are explicit implementation conventions. The offset is exactly log(2.6), not log(2).
+- Independent Python/NumPy implementation from mathematical formulas; no author code is redistributed. PCG64(seed) replaces unspecified/source software random-number generation. Sample size is the generate n argument; source_n only records the published sample sizes. No fitting, bootstrap, confidence-band coverage experiment or PFN training is included.
+- Corrected unsupported source_n=[100] for model 4 to null. The source n=100 statement belongs to Section 4.1, while this mechanism is selected from Section 4.2. generate n and all data-law parameters/registered truths are unchanged.
+- Clarified that generation constants are specified jointly in the displayed equations and config.json; not every fixed source constant is exposed as a configurable parameter.
+- Source recheck did not turn the disclosed independence completion into a source fact. Marginal laws and equations match the read source, while the implementation product law still needs a maintainer decision before claiming a fully source-verified joint DGP.
 
 **Warnings:**
 

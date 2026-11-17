@@ -84,9 +84,12 @@ Y = b(X) + A tau(X) + sigma eps, eps ~ Normal(0,1), sigma = 1
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| original | tau(x0) = E[Y(1) - Y(0) \| X = x0] | Conditional average treatment effect at the declared query points; constant equal to 1 for every x, so the whole difficulty is the strongly confounded nuisance structure. | 1.0 | reported_numeric |
+| original | CATE | Conditional average treatment effect at the declared query points; constant equal to 1 for every x, so the whole difficulty is the strongly confounded nuisance structure. | 1.0 | reported_numeric |
+
+**Original submitted target notation:** tau(x0) = E[Y(1) - Y(0) \| X = x0]
+
 
 ## Identifiability assumptions
 
@@ -104,6 +107,12 @@ Y = b(X) + A tau(X) + sigma eps, eps ~ Normal(0,1), sigma = 1
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Dimension fixed at d = 3, the smallest dimension for which Setup C is defined; the source varies d in {6, 12}.
+- The source writes Y = b(X) + (W - 0.5) tau(X) + sigma eps; this package uses A in {0,1}. The CATE is unchanged.
+- sigma fixed at 1 (source grid {0.5, 1, 2, 3}).
 
 **Warnings:**
 

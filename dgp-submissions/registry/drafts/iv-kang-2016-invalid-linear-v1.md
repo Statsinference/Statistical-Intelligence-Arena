@@ -18,11 +18,18 @@
 
 **Generator source:** [generator.py](../generators/iv-kang-2016-invalid-linear-v1.py)
 
-**Keywords (source-described):** Linearity
+**Keywords (source-described):** Not specified
 
 **Observed variables**
 
+Z1–Z10 (10 variables), D, Y
+
+<details>
+<summary>All observed variable names</summary>
+
 Z1, Z2, Z3, Z4, Z5, Z6, Z7, Z8, Z9, Z10, D, Y
+
+</details>
 
 **Latent variables**
 
@@ -73,9 +80,12 @@ Y=1+Z₁+Z₂+Z₃+βD+ε; β=1.
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| author_readme_fixed | beta | Constant structural slope beta = E[Y(do(D=d+1))-Y(do(D=d))], with natural Z and errors held under the same intervention law. | 1.0 | reported_numeric |
+| author_readme_fixed | Population unit-change structural mean effect | Constant structural slope beta = E[Y(do(D=d+1))-Y(do(D=d))], with natural Z and errors held under the same intervention law. | 1.0 | reported_numeric |
+
+**Original submitted target notation:** beta
+
 
 ## Identifiability assumptions
 
@@ -95,6 +105,14 @@ Y=1+Z₁+Z₂+Z₃+βD+ε; β=1.
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- English description pending; see [original scientific record](./iv-kang-2016-invalid-linear-v1.json).
+- English description pending; see [original scientific record](./iv-kang-2016-invalid-linear-v1.json).
+- English description pending; see [original scientific record](./iv-kang-2016-invalid-linear-v1.json).
+- English description pending; see [original scientific record](./iv-kang-2016-invalid-linear-v1.json).
+- English description pending; see [original scientific record](./iv-kang-2016-invalid-linear-v1.json).
 
 **Warnings:**
 

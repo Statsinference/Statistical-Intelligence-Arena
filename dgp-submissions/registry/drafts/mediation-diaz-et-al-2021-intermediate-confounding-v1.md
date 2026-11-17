@@ -16,7 +16,7 @@
 
 **Sampling design:** Unit: individual; Dependence: IID units; W3 depends on W1,W2; A-&gt;Z-&gt;M-&gt;Y within each unit
 
-**Generator source:** [generator.py](https://github.com/Statsinference/stats-inference-arena/blob/main/dgp-submissions/registry/generators/mediation-diaz-et-al-2021-intermediate-confounding-v1.py)
+**Generator source:** [generator.py](../generators/mediation-diaz-et-al-2021-intermediate-confounding-v1.py)
 
 **Keywords (source-described):** Interactions · Nonlinearity
 
@@ -82,7 +82,10 @@ Y|M,Z,A,W~Bern(expit((A-Z+M-AZ)/(sum(W)+1)))
 
 | Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| section_5 | IIE_1 | E[Y(1,G1)-Y(1,G0)], where G_a is an independent draw from M(a)\|W, marginalizing the post-treatment Z under treatment a. | 0.03026875404999696 | reported_numeric |
+| section_5 | IIE | E[Y(1,G1)-Y(1,G0)], where G_a is an independent draw from M(a)\|W, marginalizing the post-treatment Z under treatment a. | 0.03026875404999696 | reported_numeric |
+
+**Original submitted target notation:** IIE_1
+
 
 ## Identifiability assumptions
 
@@ -101,6 +104,12 @@ Y|M,Z,A,W~Bern(expit((A-Z+M-AZ)/(sum(W)+1)))
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- The displayed Section 5 generating equations are reproduced. The preprint prints expit(x)=(1+exp(x))^-1, which conflicts with standard expit and its own logistic formulas; implementation uses exp(x)/(1+exp(x)).
+- Target the interventional indirect effect at outcome treatment A=1, with mediator draws G1 and G0 conditional on W; the source studies this class of effects but does not state this derived numeric truth.
+- W2\|W1 has constant Bernoulli(0.3), hence is sampled independently of W1; no nuisance-model misspecification is counted as another DGP.
 
 **Warnings:**
 

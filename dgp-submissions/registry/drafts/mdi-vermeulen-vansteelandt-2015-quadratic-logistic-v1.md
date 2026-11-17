@@ -74,9 +74,12 @@ theta=E(Y)=1
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| original | theta = E(Y) | Full-data superpopulation response mean before outcome masking. | 1.0 | reported_numeric |
+| original | Full-data population outcome mean | Full-data superpopulation response mean before outcome masking. | 1.0 | reported_numeric |
+
+**Original submitted target notation:** theta = E(Y)
+
 
 ## Identifiability assumptions
 
@@ -94,6 +97,11 @@ theta=E(Y)=1
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- One generate call returns one iid sample instead of the paper's 1000 Monte Carlo runs.
+- R=0 uses a finite zero placeholder in the numeric interface; mask it by R.
 
 **Warnings:**
 

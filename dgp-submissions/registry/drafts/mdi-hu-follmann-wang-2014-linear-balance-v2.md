@@ -18,11 +18,18 @@
 
 **Generator source:** [generator.py](../generators/mdi-hu-follmann-wang-2014-linear-balance-v2.py)
 
-**Keywords (source-described):** Linearity
+**Keywords (source-described):** Not specified
 
 **Observed variables**
 
+X1–X10 (10 variables), R, Y_observed
+
+<details>
+<summary>All observed variable names</summary>
+
 X1, X2, X3, X4, X5, X6, X7, X8, X9, X10, R, Y_observed
+
+</details>
 
 **Latent variables**
 
@@ -84,9 +91,12 @@ theta=E(Y)=0
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| original | theta = E(Y) | Marginal full-data mean response for the iid superpopulation before Y is masked. | 0.0 | reported_numeric |
+| original | Full-data population outcome mean | Marginal full-data mean response for the iid superpopulation before Y is masked. | 0.0 | reported_numeric |
+
+**Original submitted target notation:** theta = E(Y)
+
 
 ## Identifiability assumptions
 
@@ -104,6 +114,11 @@ theta=E(Y)=0
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- One generator call produces one iid sample; the paper compares estimators over 200 datasets with n=200 or n=1000.
+- R=0 and finite Y_observed=0 encode missing Y for the numeric-only interface; always mask using R.
 
 **Warnings:**
 

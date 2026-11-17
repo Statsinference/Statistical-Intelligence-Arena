@@ -16,7 +16,7 @@
 
 **Sampling design:** Unit: independent individual; Dependence: i.i.d. across units; no interference, no clustering and no panel structure. Missingness patterns are drawn independently across units given each unit's own covariates, treatment and noises.
 
-**Generator source:** [generator.py](https://github.com/Statsinference/stats-inference-arena/blob/main/dgp-submissions/registry/generators/mediation-shan-li-ai-2026-missing-confounders-aux-shadow-v1.py)
+**Generator source:** [generator.py](../generators/mediation-shan-li-ai-2026-missing-confounders-aux-shadow-v1.py)
 
 **Keywords (source-described):** Interactions · Nonlinearity
 
@@ -105,7 +105,10 @@ theta = E[Y(1, M(0))] = 3.192275262794844
 
 | Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| dgp1_auxiliary_shadow | MF theta = E[Y(1, M(0))] | Mediation functional: the mean potential outcome when treatment is set to 1 while the mediator is set to the value it would have taken under treatment 0, theta = E[Y(1, M(0))]. The source calls this the fundamental quantity and derives the natural indirect effect xi(1) = E[Y(1,M(1))] - theta, the natural direct effect zeta(0) = theta - E[Y(0,M(0))] and the total effect tau = xi(1) + zeta(0) from it. theta is a cross-world mean and is NOT an indirect effect, NOT a direct effect and NOT a total effect. | 3.192275262794844 | reported_numeric |
+| dgp1_auxiliary_shadow | Cross-world mediation functional | Mediation functional: the mean potential outcome when treatment is set to 1 while the mediator is set to the value it would have taken under treatment 0, theta = E[Y(1, M(0))]. The source calls this the fundamental quantity and derives the natural indirect effect xi(1) = E[Y(1,M(1))] - theta, the natural direct effect zeta(0) = theta - E[Y(0,M(0))] and the total effect tau = xi(1) + zeta(0) from it. theta is a cross-world mean and is NOT an indirect effect, NOT a direct effect and NOT a total effect. | 3.192275262794844 | reported_numeric |
+
+**Original submitted target notation:** MF theta = E[Y(1, M(0))]
+
 
 ## Identifiability assumptions
 
@@ -124,6 +127,16 @@ theta = E[Y(1, M(0))] = 3.192275262794844
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Version used: the arXiv:2402.05384 preprint dated 2025-12-16. The publisher's typeset article was not accessible to the collector, so the locator points at the preprint and at the Crossref record for the DOI; the article is online first, so no volume or issue number exists yet and pages are given as 1-12.
+- The source names four estimands (the mediation functional theta, NIE xi(1), NDE zeta(0) and ATE tau) and prints no table of their true values; it draws them as solid lines in its Figure 2. This contribution registers theta, which the source calls the fundamental quantity, and carries the other three through verify.py so the target cannot be confused with them.
+- MECHANISM SLICING: the source gives two missingness mechanisms over one shared full-data law and pairs each with a different shadow-variable strategy. This contribution registers DGP1, where the missingness index carries 0.5 T eps3 and 0.1 eps4 - the noises of M and Y - so M and Y cannot serve as shadow variables and the source constructs two external auxiliary variables Z1, Z2. The sibling contribution mediation-shan-li-ai-2026-missing-confounders-internal-shadow-v1 registers DGP2. The two share the full-data law and therefore the registered value, but differ in the observed-data law: a different missingness mechanism and a different observed column set (10 columns here against 8 there). They carry different mechanism_family_id values for that reason.
+- MISSING-DATA ENCODING: the numeric-table interface requires every declared column to be finite and of equal length, so a partially observed covariate is exported as the pair (Rj, Xj_obs0) with Xj_obs0 = Rj * Xj. The value 0 is a declared transport fill, NOT an imputed datum and NOT an observed zero; Xj is Uniform(0,1) so an observed value is almost surely strictly positive, and the indicator recovers the pattern exactly. The complete covariate values of units with Rj = 0 are never returned.
+- The source's missingness formulas carry a constant 3, which equals the number of incomplete patterns rather than a tunable weight: p11 / p_kl = exp(U) and p11 + 3 p_kl = 1 identically. incomplete_pattern_count is therefore pinned to 3 and the generator refuses any other value.
+- Not reproduced: the source's SIO sieve estimator, its polynomial sieve basis and data-driven sieve dimension selection, and the Oracle, MI and CCA comparison estimators. All of those are estimation machinery applied to the same data and none is registered as a mechanism. The supplementary studies of Appendix G (high-dimensional covariates with debiased machine learning, missing-at-random variants, a trimming comparison) are not registered either; their parameters are not in the main text available to the collector.
+- Sampling is re-implemented with NumPy Generator(PCG64); no attempt is made to match the source software draw for draw. The source runs n = 1000 and n = 2000 with 500 replications, which is recorded in the configuration but not reproduced here.
 
 **Warnings:**
 

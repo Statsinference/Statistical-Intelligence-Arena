@@ -18,7 +18,7 @@
 
 **Generator source:** [generator.py](../generators/qdi-yang-tokdar-2017-triangular-quantile-v1.py)
 
-**Keywords (source-described):** Linearity
+**Keywords (source-described):** Not specified
 
 **Observed variables**
 
@@ -208,9 +208,12 @@ x*=(0,2/3), tau*=19/20; theta=8/9+(13/45)*Phi^-1(19/20).
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| published_triangle_centroid | theta = Q_Y(19/20 \| X=(0,2/3)) | inf{y:F_Y(y\|X=(0,2/3))&gt;=19/20} under the continuous conditional-law version specified by the published Figure 1 law. Exact centroid and quantile level are stored as rational metadata. One pointwise conditional quantile, not a marginal target or simultaneous band. | 1.3640688255637583 | reported_numeric |
+| published_triangle_centroid | Conditional quantile | inf{y:F_Y(y\|X=(0,2/3))&gt;=19/20} under the continuous conditional-law version specified by the published Figure 1 law. Exact centroid and quantile level are stored as rational metadata. One pointwise conditional quantile, not a marginal target or simultaneous band. | 1.3640688255637583 | reported_numeric |
+
+**Original submitted target notation:** theta = Q_Y(19/20 \| X=(0,2/3))
+
 
 ## Identifiability assumptions
 
@@ -230,6 +233,13 @@ x*=(0,2/3), tau*=19/20; theta=8/9+(13/45)*Phi^-1(19/20).
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Use the published Figure 1 caption literally for the joint uniform triangle and response law. Select the centroid query x=(0,2/3), tau=19/20 as an explicitly declared collection target adaptation; the paper does not report this scalar truth.
+- Implement uniform-triangle sampling by reflection on the unit square followed by A+u(B-A)+v(C-A); use one shared standard Gaussian rank in the weighted quantile expression. This is an independently written distribution-equivalent implementation, not claimed author code/random-stream replay.
+- Record original illustration n=1000; local interface check uses n=128 and seed=1729. The verifier also uses 2048 transient diagnostic rows. No estimator/MCMC comparison, bootstrap, PFN training or confidence-band coverage is reproduced.
+- This revision changes source and completeness documentation only; all six implementation/config/schema/dependency files are byte-identical to adopted ZIP a790ce219f314f8c680110df0532207437291efa01fa03d486dc723927aa33b3. No new law, query or scenario.
 
 **Warnings:**
 

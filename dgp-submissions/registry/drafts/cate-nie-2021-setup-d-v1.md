@@ -22,7 +22,14 @@
 
 **Observed variables**
 
+X1–X5 (5 variables), A, Y
+
+<details>
+<summary>All observed variable names</summary>
+
 X1, X2, X3, X4, X5, A, Y
+
+</details>
 
 **Latent variables**
 
@@ -95,9 +102,12 @@ mu0(X) = b(X) - tau(X)/2 = max{X4+X5, 0};  mu1(X) = b(X) + tau(X)/2 = max{X1+X2+
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| original | tau(x0) = E[Y(1) - Y(0) \| X = x0] | Conditional average treatment effect at the declared query points; a difference of two rectified sums supported on disjoint coordinate blocks. | 1.5 | reported_numeric |
+| original | CATE | Conditional average treatment effect at the declared query points; a difference of two rectified sums supported on disjoint coordinate blocks. | 1.5 | reported_numeric |
+
+**Original submitted target notation:** tau(x0) = E[Y(1) - Y(0) \| X = x0]
+
 
 ## Identifiability assumptions
 
@@ -115,6 +125,13 @@ mu0(X) = b(X) - tau(X)/2 = max{X4+X5, 0};  mu1(X) = b(X) + tau(X)/2 = max{X1+X2+
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Dimension fixed at d = 5, the smallest dimension for which Setup D is defined; the source varies d in {6, 12}.
+- The source writes Y = b(X) + (W - 0.5) tau(X) + sigma eps with W in {0,1}; this package keeps that centred form exactly and writes it as Y = b(X) + (A - 1/2) tau(X) + sigma eps with A in {0,1}. The CATE is unchanged by the rewrite.
+- Keeping the centring is essential for this design and is therefore not treated as a cosmetic choice: it is what makes the two arm surfaces disjoint. With it, mu0(X) = b - tau/2 = max{X4+X5,0} and mu1(X) = b + tau/2 = max{X1+X2+X3,0}, so each arm depends on its own coordinate block only. A plain Y = b(X) + A tau(X) would leave both arms carrying b(X) and would destroy the unrelated-arms property that Setup D exists to test.
+- sigma fixed at 1.
 
 **Warnings:**
 

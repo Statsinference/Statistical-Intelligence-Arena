@@ -180,10 +180,13 @@ For fixed treatment regime a, lambda_Ta(t)=exp(psi*a(t)); psi=log(hazard under a
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| source_effect_minus1 | psi | Population marginal structural Cox log hazard ratio for the current binary treatment under fixed two-visit intervention regimes: lambda_Ta(t)=lambda0(t)*exp(psi*a(t)), lambda0(t)=1. Compare treatment1 versus0 at the same time t away from the visit1 switch. Target is psi=-1 or0, not a survival probability difference or LATE. | -1.0 | reported_numeric |
-| source_null | psi | Population marginal structural Cox log hazard ratio for the current binary treatment under fixed two-visit intervention regimes: lambda_Ta(t)=lambda0(t)*exp(psi*a(t)), lambda0(t)=1. Compare treatment1 versus0 at the same time t away from the visit1 switch. Target is psi=-1 or0, not a survival probability difference or LATE. | 0.0 | reported_numeric |
+| source_effect_minus1 | Marginal structural log hazard ratio | Population marginal structural Cox log hazard ratio for the current binary treatment under fixed two-visit intervention regimes: lambda_Ta(t)=lambda0(t)*exp(psi*a(t)), lambda0(t)=1. Compare treatment1 versus0 at the same time t away from the visit1 switch. Target is psi=-1 or0, not a survival probability difference or LATE. | -1.0 | reported_numeric |
+| source_null | Marginal structural log hazard ratio | Population marginal structural Cox log hazard ratio for the current binary treatment under fixed two-visit intervention regimes: lambda_Ta(t)=lambda0(t)*exp(psi*a(t)), lambda0(t)=1. Compare treatment1 versus0 at the same time t away from the visit1 switch. Target is psi=-1 or0, not a survival probability difference or LATE. | 0.0 | reported_numeric |
+
+**Original submitted target notation:** psi
+
 
 ## Identifiability assumptions
 
@@ -203,6 +206,13 @@ For fixed treatment regime a, lambda_Ta(t)=exp(psi*a(t)); psi=log(hazard under a
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Represent one person as a finite numeric wide-table row, retaining visit0 and masking visit1 after failure/censoring before time1 using observed R1 and zero fill. R1 must be used to distinguish unavailable visits from true zeros.
+- Implement the unnumbered accelerated-failure-time integral with its exact piecewise inverse; original psi=-1 and psi=0 settings retained.
+- Use seeded NumPy draws rather than claiming the unrecovered author RNG stream; sample size is a hook parameter rather than original 2000,4000,8000.
+- Independently implement the fully specified main-text mechanism; no author program or supplementary sensitivity scenarios are reproduced.
 
 **Warnings:**
 

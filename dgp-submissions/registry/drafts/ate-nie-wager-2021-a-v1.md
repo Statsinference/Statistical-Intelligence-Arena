@@ -22,7 +22,14 @@
 
 **Observed variables**
 
+X1–X6 (6 variables), A, Y
+
+<details>
+<summary>All observed variable names</summary>
+
 X1, X2, X3, X4, X5, X6, A, Y
+
+</details>
 
 **Latent variables**
 
@@ -90,9 +97,12 @@ Y=b(X)+(A-0.5)*tau(X)+epsilon; epsilon~Normal(0,1), independent of X and treatme
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| original_d6_sigma1 | theta_ATE = E[Y(1)-Y(0)] | Superpopulation average effect of A=1 versus A=0, under X~Uniform([0,1]^6). Not the realized-sample average effect, ATT, CATE output, or unadjusted observed group difference. | 0.5 | reported_numeric |
+| original_d6_sigma1 | ATE | Superpopulation average effect of A=1 versus A=0, under X~Uniform([0,1]^6). Not the realized-sample average effect, ATT, CATE output, or unadjusted observed group difference. | 0.5 | reported_numeric |
+
+**Original submitted target notation:** theta_ATE = E[Y(1)-Y(0)]
+
 
 ## Identifiability assumptions
 
@@ -111,6 +121,14 @@ Y=b(X)+(A-0.5)*tau(X)+epsilon; epsilon~Normal(0,1), independent of X and treatme
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Retain Setup A equations and the d=6, sigma=1 parameter cell; rename source treatment W as A.
+- Collect the scalar population ATE E[Y(1)-Y(0)] instead of the source CATE function. The value 0.5 is derived here, not presented as a paper-reported ATE estimate.
+- Use Python/NumPy PCG64 and row-major X draws with independent uniform-threshold Bernoulli assignment; distributional reconstruction, not identical R random draws.
+- Use n=128, seed=1729 for a CPU interface check instead of the source estimator experiments. No estimator is fitted.
+- effect_scale=1 preserves the original treatment effect; zero and reversed values appear only in verification controls, not as additional registered families or scenarios.
 
 **Warnings:**
 

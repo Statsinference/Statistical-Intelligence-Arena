@@ -16,7 +16,7 @@
 
 **Sampling design:** IID observations at a fixed structural configuration; separate mechanism and observation seeds.
 
-**Generator source:** [generator.py](https://github.com/Statsinference/stats-inference-arena/blob/main/dgp-submissions/registry/generators/mediation-standard-nie1-diaz-intermediate-v1.py)
+**Generator source:** [generator.py](../generators/mediation-standard-nie1-diaz-intermediate-v1.py)
 
 **Keywords (source-described):** Not specified
 
@@ -89,6 +89,9 @@ return x,a,m,y,[&quot;binary&quot;],[&quot;binary&quot;]*3,&quot;binary&quot;
 |---|---|---|---|---|
 | native | NIE | NIE = E[Y(1,M(1))-Y(1,M(0))] in the adapted fixed-SEM superpopulation, jointly intervening on the complete mediator vector. | 0.01686828165920525 | reported_numeric |
 
+**Original submitted target notation:** NIE
+
+
 ## Identifiability assumptions
 
 - Independent exogenous structural errors and iid units conditional on fixed configuration.
@@ -104,6 +107,12 @@ return x,a,m,y,[&quot;binary&quot;],[&quot;binary&quot;]*3,&quot;binary&quot;
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Remove Z structurally: set m_z, m_az, y_z and y_az to zero. Recompute natural NIE1, replacing the source interventional indirect-effect target.
+- New complete-data superpopulation NIE1 target; original records/estimands are retained separately.
+- Standalone canonical generator core SHA256 443e04663970594a8ec2932dc0ee9718c10cc501314d133686dfd0e9acf1baa8
 
 **Warnings:**
 

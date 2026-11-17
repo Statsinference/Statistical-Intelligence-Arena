@@ -22,7 +22,14 @@
 
 **Observed variables**
 
+X1–X4 (4 variables), Y
+
+<details>
+<summary>All observed variable names</summary>
+
 X1, X2, X3, X4, Y
+
+</details>
 
 **Latent variables**
 
@@ -57,9 +64,12 @@ $$
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| source_law_fixed_query | F_{Y\|X}(0.5\|x_query) | Conditional CDF P(Y&lt;=0.5 \| X=(0.5,0.25,-0.5,1)); conditioning is on the full four-dimensional X, not on the fitted index. | 0.4822778463878529 | reported_numeric |
+| source_law_fixed_query | Conditional cumulative distribution function | Conditional CDF P(Y&lt;=0.5 \| X=(0.5,0.25,-0.5,1)); conditioning is on the full four-dimensional X, not on the fitted index. | 0.4822778463878529 | reported_numeric |
+
+**Original submitted target notation:** F_{Y\|X}(0.5\|x_query)
+
 
 ## Identifiability assumptions
 
@@ -76,6 +86,12 @@ $$
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- The full-X conditional CDF at a fixed query is used instead of the source least-squares single-index approximation; source data law is retained.
+- Independent Python/NumPy implementation from mathematical formulas; no author code is redistributed. PCG64(seed) replaces unspecified/source software random-number generation. Sample size is the generate n argument; source_n only records the published sample sizes. No fitting, bootstrap, confidence-band coverage experiment or PFN training is included.
+- Clarified that generation constants are specified jointly in the displayed equations and config.json; not every fixed source constant is exposed as a configurable parameter.
 
 **Warnings:**
 

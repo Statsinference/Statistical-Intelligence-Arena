@@ -22,7 +22,14 @@
 
 **Observed variables**
 
+X1–X10 (10 variables), A, Y
+
+<details>
+<summary>All observed variable names</summary>
+
 X1, X2, X3, X4, X5, X6, X7, X8, X9, X10, A, Y
+
+</details>
 
 **Latent variables**
 
@@ -90,9 +97,12 @@ Y=m(X)+(A-0.5)*tau(X)+epsilon; epsilon~Normal(0,1), independent of X and assignm
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| source_d10_sigma1_fixed_query | tau(x_star)=E[Y(1)-Y(0)\|X=x_star] | Scalar pointwise CATE at x_star=[0.3333333333333333, 0.3333333333333333, 0.25, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5]. Continuous source response functions specify the conditional version at this point. This is not a population ATE or the full CATE vector/function interface. | 2.25 | reported_numeric |
+| source_d10_sigma1_fixed_query | CATE | Scalar pointwise CATE at x_star=[0.3333333333333333, 0.3333333333333333, 0.25, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5]. Continuous source response functions specify the conditional version at this point. This is not a population ATE or the full CATE vector/function interface. | 2.25 | reported_numeric |
+
+**Original submitted target notation:** tau(x_star)=E[Y(1)-Y(0)\|X=x_star]
+
 
 ## Identifiability assumptions
 
@@ -111,6 +121,15 @@ Y=m(X)+(A-0.5)*tau(X)+epsilon; epsilon~Normal(0,1), independent of X and assignm
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Preserve the source mechanism with dimension=10, noise variance=1; rename source W as A.
+- The collection interface requires a scalar. Target tau(x_star) at the fixed query [0.3333333333333333, 0.3333333333333333, 0.25, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5]; retain the full source tau(x) in the generator. This query and its value 2.25 are defined here, not a scalar result reported by the paper.
+- Use Python/NumPy PCG64, row-major X, independent uniform-threshold assignment and normal noise; distributional reconstruction, not identical R random samples.
+- Use n=128, seed=1729 for a CPU interface check instead of the source estimator study (source n=800). No estimator is fitted.
+- effect_scale=1 is the source mechanism; 0 and -1 only serve internal verification controls, not additional contributions.
+- The source fixes marginal Gaussian potential-outcome laws but does not require a cross-world coupling. A single independent noise produces the observed law; a shared-error potential-outcome representation is only a mathematical completion, not an asserted original coupling.
 
 **Warnings:**
 

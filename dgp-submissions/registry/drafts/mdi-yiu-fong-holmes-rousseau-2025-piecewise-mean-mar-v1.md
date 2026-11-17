@@ -83,9 +83,12 @@ theta=E(Y)=0.84375
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| original | theta = E(Y) | Full-data superpopulation response mean before outcome masking. | 0.84375 | reported_numeric |
+| original | Full-data population outcome mean | Full-data superpopulation response mean before outcome masking. | 0.84375 | reported_numeric |
+
+**Original submitted target notation:** theta = E(Y)
+
 
 ## Identifiability assumptions
 
@@ -103,6 +106,13 @@ theta=E(Y)=0.84375
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- One generator call returns one iid sample rather than reproducing paper Monte Carlo estimator comparisons.
+- Unobserved Y is encoded by a finite zero placeholder and must always be masked by R.
+- Source explicitly attributes this DGP to Kennedy (2023), with piecewise regression originally from Györfi et al. (2002); check mechanism-level duplication.
+- The exact numerical E(Y) is derived by integration from the paper-specified DGP; the paper does not state the evaluated number.
 
 **Warnings:**
 

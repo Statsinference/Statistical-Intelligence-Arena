@@ -16,13 +16,20 @@
 
 **Sampling design:** Unit: individual with a two-period panel stored in one wide row; Dependence: iid between individuals; baseline and post-period outcomes within an individual share latent v and covariates
 
-**Generator source:** [generator.py](https://github.com/Statsinference/stats-inference-arena/blob/main/dgp-submissions/registry/generators/did-santanna-zhao-2020-panel-dgp1-v1.py)
+**Generator source:** [generator.py](../generators/did-santanna-zhao-2020-panel-dgp1-v1.py)
 
 **Keywords (source-described):** Interactions · Nonlinearity · Panel data
 
 **Observed variables**
 
+Z1–Z4 (4 variables), D, Y_pre, Y_post
+
+<details>
+<summary>All observed variable names</summary>
+
 Z1, Z2, Z3, Z4, D, Y_pre, Y_post
+
+</details>
 
 **Latent variables**
 
@@ -120,7 +127,10 @@ eta,epsilon0,epsilon1(0),epsilon1(1) are independent N(0,1), independent of X,U
 
 | Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| original_panel_dgp1 | ATT = E[Y_1(1)-Y_1(0) \| D=1] | Population ATT for the treated group at post-period 1. The realized group D and latent v are held fixed across treatment counterfactuals. Original value is zero; this is not the observed post-period group contrast or a sample-average effect. | 0 | reported_numeric |
+| original_panel_dgp1 | ATT | Population ATT for the treated group at post-period 1. The realized group D and latent v are held fixed across treatment counterfactuals. Original value is zero; this is not the observed post-period group contrast or a sample-average effect. | 0.0 | reported_numeric |
+
+**Original submitted target notation:** ATT = E[Y_1(1)-Y_1(0) \| D=1]
+
 
 ## Identifiability assumptions
 
@@ -140,6 +150,15 @@ eta,epsilon0,epsilon1(0),epsilon1(1) are independent N(0,1), independent of X,U
 
 **Status:** needs_scientific_review
 
+**Adaptations from the source (submitted, unverified):**
+
+- Retain the original DGP1 distribution and population ATT=0. Only DGP1 is registered; the paper also presents DGP2-DGP4.
+- Use Python/NumPy PCG64 instead of attempting identical draws from original estimator experiments; n=128 is an interface smoke check, not the original n=1000 experiment.
+- Represent each iid individual as one wide row (Z1-Z4,D,Y_pre,Y_post), preserving shared latent v across periods; raw X and potential outcomes are not released.
+- Compute source population normalization using analytic moments for Ztilde1,3,4 and a 120-node Gauss-Hermite constant for Var(Ztilde2). Do not standardize using the realized sample.
+- Expose att_shift=0 for the original scenario; nonzero shifts are verification controls only, not paper scenarios or extra families.
+
 **Warnings:**
 
 - Latent-variable candidates inferred from source equations; confirm their roles and completeness against the original paper or generator.
+- Legacy combined DiD / Synthetic Control family: human classification required; not automatically reassigned.

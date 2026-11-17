@@ -22,7 +22,14 @@
 
 **Observed variables**
 
+X1–X10 (10 variables), A, Y
+
+<details>
+<summary>All observed variable names</summary>
+
 X1, X2, X3, X4, X5, X6, X7, X8, X9, X10, A, Y
+
+</details>
 
 **Latent variables**
 
@@ -77,9 +84,12 @@ Y|X,A~N(b(X)+(A-0.5)*tau(X),sigma**2), sigma=1, selected from Figure 2 noise lev
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
 | original | ATE | ATE = E[Y(1)-Y(0)] in the full original covariate population; binary treatment 1 versus 0. | 0.25 | reported_numeric |
+
+**Original submitted target notation:** ATE
+
 
 ## Identifiability assumptions
 
@@ -96,6 +106,12 @@ Y|X,A~N(b(X)+(A-0.5)*tau(X),sigma**2), sigma=1, selected from Figure 2 noise lev
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Explicit target adaptation: integrate source conditional effect over the original covariate distribution to obtain population ATE; data-generating equations unchanged.
+- Rename source treatment D or W to A; observed conditional law unchanged.
+- Independent Python/NumPy implementation; no source estimator fitting or reported performance tables are reproduced.
 
 **Warnings:**
 

@@ -18,11 +18,18 @@
 
 **Generator source:** [generator.py](../generators/ate-wager-athey-2018-06-06-rare-response-v1.py)
 
-**Keywords (source-described):** Linearity
+**Keywords (source-described):** Not specified
 
 **Observed variables**
 
+X1–X10 (10 variables), A, Y, B
+
+<details>
+<summary>All observed variable names</summary>
+
 X1, X2, X3, X4, X5, X6, X7, X8, X9, X10, A, Y, B
+
+</details>
 
 **Latent variables**
 
@@ -76,9 +83,12 @@ Y=2*A*B+epsilon. Source W is treatment A here; source A_i is the latent response
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
 | original | ATE | E[Y(1)-Y(0)] in the full declared covariate population; treatment 1 versus 0; population, not sample-conditional, target. | 0.1 | reported_numeric |
+
+**Original submitted target notation:** ATE
+
 
 ## Identifiability assumptions
 
@@ -95,6 +105,13 @@ Y=2*A*B+epsilon. Source W is treatment A here; source A_i is the latent response
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Population ATE uses the constant source conditional mean effect 0.1; source pointwise forest-inference experiment is not reproduced.
+- Source treatment indicator is named A in the observed output; no scientific change.
+- Independently implemented Python/NumPy sampler; source estimator fitting and large simulation replications are outside this collection task.
+- Rename source rare-response A_i to latent B to avoid confusion with treatment; B is not exported.
 
 **Warnings:**
 

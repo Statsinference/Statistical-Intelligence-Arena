@@ -93,9 +93,12 @@ $$
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| author_T3 | beta_T | English description not yet supplied; consult the original scientific record (JSON). | 1.0 | reported_numeric |
+| author_T3 | Final-period marginal structural mean effect | English description not yet supplied; consult the original scientific record (JSON). | 1.0 | reported_numeric |
+
+**Original submitted target notation:** beta_T
+
 
 ## Identifiability assumptions
 
@@ -110,6 +113,11 @@ $$
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Use complete pinned-author DGP; do not combine beta=1 with older preprint Eq41 coefficients.
+- Wide table retains full longitudinal history; report final-time causal coefficient. New local RNG; no R estimator/bootstrap code executed.
 
 **Warnings:**
 

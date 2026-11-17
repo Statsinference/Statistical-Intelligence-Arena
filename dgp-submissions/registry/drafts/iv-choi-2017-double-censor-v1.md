@@ -107,9 +107,12 @@ D_observed=max(D,C_D); D_exact=I(D&gt;=C_D); Y_observed=min(Y,C_Y); Y_event=I(Y&
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| source_case1b_calibrated | alpha_YZ | Structural coefficient1 of the true, possibly unobserved continuous exposure D in Y(d)=1+d+W1+W2+U+epsilon. Thus E[Y(d+1)-Y(d)]=1 on source linear/log-time outcome scale, not effect on exp(Y) survival time or complier LATE. | 1.0 | reported_numeric |
+| source_case1b_calibrated | Unit-change structural mean effect on log-time scale | Structural coefficient1 of the true, possibly unobserved continuous exposure D in Y(d)=1+d+W1+W2+U+epsilon. Thus E[Y(d+1)-Y(d)]=1 on source linear/log-time outcome scale, not effect on exp(Y) survival time or complier LATE. | 1.0 | reported_numeric |
+
+**Original submitted target notation:** alpha_YZ
+
 
 ## Identifiability assumptions
 
@@ -129,6 +132,13 @@ D_observed=max(D,C_D); D_exact=I(D&gt;=C_D); Y_observed=min(Y,C_Y); Y_event=I(Y&
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Select source Case1B with all equation12/13 parameters1, two observed confounders and two instruments, independent standard-Normal errors, independent standard-Normal covariates truncated to [-2,2]. Explicit independent-covariate reading recorded because source prose does not list every pairwise dependence.
+- Source specifies Uniform(0,cy) right censoring and Uniform(-7,cz) left censoring at desired20%, without numeric endpoints. Derive cy=13.249945942133955 and cz=2.629814945797971 by deterministic midpoint-quadrature/FFT population convolution and root solving (8192 bins per four-unit covariate interval); record calibration grid convergence separately.
+- All censoring is applied on the source's linear/log-time scale; no exponentiation, zero truncation, complete-case deletion or uncensored-value leakage.
+- Independent NumPy/SciPy sampling, caller n/seed; omit rank fitting, perturbation resampling and CI coverage.
 
 **Warnings:**
 

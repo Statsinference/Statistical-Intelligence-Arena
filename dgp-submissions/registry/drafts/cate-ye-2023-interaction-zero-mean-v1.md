@@ -18,7 +18,7 @@
 
 **Generator source:** [generator.py](../generators/cate-ye-2023-interaction-zero-mean-v1.py)
 
-**Keywords (source-described):** Interactions · Linearity
+**Keywords (source-described):** Interactions
 
 **Observed variables**
 
@@ -84,9 +84,12 @@ Y = A Y(2) + (1-A) Y(1) = eps + A tau(U)
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| original | tau(u0) = E[Y(1) - Y(0) \| U = u0] | Conditional average treatment effect at the declared query points for the arm-2 versus arm-1 contrast; the surface is linear in U with slope zeta = 1 and has exactly zero mean over the covariate distribution, so there is heterogeneity but no average effect. | 0.5 | reported_numeric |
+| original | CATE | Conditional average treatment effect at the declared query points for the arm-2 versus arm-1 contrast; the surface is linear in U with slope zeta = 1 and has exactly zero mean over the covariate distribution, so there is heterogeneity but no average effect. | 0.5 | reported_numeric |
+
+**Original submitted target notation:** tau(u0) = E[Y(1) - Y(0) \| U = u0]
+
 
 ## Identifiability assumptions
 
@@ -104,6 +107,14 @@ Y = A Y(2) + (1-A) Y(1) = eps + A tau(U)
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Three arms reduced to two: only the arm-2 versus arm-1 contrast is kept, because the registered target family is the binary-treatment CATE. The contrast surface is exactly the increment in equation (20).
+- Y(1) in the source is the observed placebo-arm response of 481 real patients and is not distributed with the paper; this package replaces it with independent N(0,1) noise. The source reports R-squared &lt;= 0.05 for a linear fit of Y(1) on (U,W), so the replacement preserves the near-independence of the baseline response from the covariates; it does change the paper's beta1 = -0.255 to 0 and this is a declared deviation.
+- (U,W) in the source follow the empirical distribution of the same 481 patients; this package uses U, W ~ N(0,1) with muU = muW = 0 and E[U^2] = 1, i.e. the paper's centring constants are set to their standardised values.
+- The source uses allocation 1:2:2 or 1:1:1 over three arms; this package uses simple randomisation with two arms at 1:1, so e = 0.5.
+- The source varies zeta over [-1, 1]; this package fixes zeta = 1 as the single declared scenario.
 
 **Warnings:**
 

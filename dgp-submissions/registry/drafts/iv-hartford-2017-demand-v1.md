@@ -94,9 +94,12 @@ Y=100+(10+P)*S*psi(T)-2*P+e
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| paper_raw_rho08 | theta_IV = E[Y(do(P=21))-Y(do(P=20))] | Population structural mean contrast of a one-unit price intervention, averaging independent T~Uniform(0,10) and S~DiscreteUniform(1,...,7); nuisance latent errors retain their marginal distribution. | -11.624351792971128 | reported_numeric |
+| paper_raw_rho08 | Population structural mean price contrast | Population structural mean contrast of a one-unit price intervention, averaging independent T~Uniform(0,10) and S~DiscreteUniform(1,...,7); nuisance latent errors retain their marginal distribution. | -11.624351792971128 | reported_numeric |
+
+**Original submitted target notation:** theta_IV = E[Y(do(P=21))-Y(do(P=20))]
+
 
 ## Identifiability assumptions
 
@@ -115,6 +118,13 @@ Y=100+(10+P)*S*psi(T)-2*P+e
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Use the main-paper raw-unit equations including the +100 intercept; do not use author-code price/outcome normalization. Author code omits +100 and scales the structural mean before adding error, so this is not an exact code reproduction.
+- Use S uniform on {1,...,7}, independently of T, as specified in author code; store S as a numeric category instead of seven one-hot columns. rho=0.8 is the author-code default.
+- Collect a scalar population structural contrast E[Y(do(P=21))-Y(do(P=20))] instead of fitting the complete response surface. This is a continuous-treatment IV contrast, not a binary ATE or a regression conditional on observed P.
+- Use a local NumPy PCG64 stream and n=128, seed=1729 for interface checking; distributional reconstruction only, with no estimator fitting.
 
 **Warnings:**
 

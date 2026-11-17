@@ -99,10 +99,13 @@ Y_i=g0(Z_i)+epsilon_i; return Z,Y. No additional noise or oracle column. Both z0
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| peak-mode | g0(z0) = E[Y \| Z = z0] | The scalar conditional mean at the scenario's fixed query point z0. This is a pointwise target, not a simultaneous confidence-band target. | 3.406258317314956 | reported_numeric |
-| query-z0-050 | g0(z0) = E[Y \| Z = z0] | The scalar conditional mean at the scenario's fixed query point z0. This is a pointwise target, not a simultaneous confidence-band target. | 0.5910281636814358 | reported_numeric |
+| peak-mode | Pointwise conditional mean | The scalar conditional mean at the scenario's fixed query point z0. This is a pointwise target, not a simultaneous confidence-band target. | 3.406258317314956 | reported_numeric |
+| query-z0-050 | Pointwise conditional mean | The scalar conditional mean at the scenario's fixed query point z0. This is a pointwise target, not a simultaneous confidence-band target. | 0.5910281636814358 | reported_numeric |
+
+**Original submitted target notation:** g0(z0) = E[Y \| Z = z0]
+
 
 ## Identifiability assumptions
 
@@ -120,6 +123,12 @@ Y_i=g0(Z_i)+epsilon_i; return Z,Y. No additional noise or oracle column. Both z0
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Keep the Case (I) Gaussian regression DGP and its Beta mixture unchanged.
+- Replace interval/curve-level inference by scalar g0(z0); both z0=0.5 and z0=0.64 are contribution choices. A 30-point evaluation grid does not establish an original fixed query at 0.5.
+- Use the requested n and CPU checks; do not fit periodic splines or assess coverage.
 
 **Warnings:**
 

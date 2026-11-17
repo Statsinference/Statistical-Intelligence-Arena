@@ -18,7 +18,7 @@
 
 **Generator source:** [generator.py](../generators/qdi-yang-he-2012-conditional-quantile-v1.py)
 
-**Keywords (source-described):** Linearity
+**Keywords (source-described):** Not specified
 
 **Observed variables**
 
@@ -119,12 +119,15 @@ theta_m=2+s_m(2)q_e(0.95), with s_1=s_2=1, s_3(x)=s_4(x)=1+x/2; q_normal(tau)=2 
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| model1_normal_homoscedastic | theta_m = Q_0.95(Y \| X=2,Z=0), m=1,2,3,4 | inf{y: F_m(y\|X=2,Z=0)&gt;=0.95} in the model-specific synthetic superpopulation. Conditional, pointwise scalar; not a marginal quantile, regression slope, posterior quantile, sample-mean adjusted intercept or simultaneous band. | 5.289707253902943 | reported_numeric |
-| model2_lognormal_homoscedastic | theta_m = Q_0.95(Y \| X=2,Z=0), m=1,2,3,4 | inf{y: F_m(y\|X=2,Z=0)&gt;=0.95} in the model-specific synthetic superpopulation. Conditional, pointwise scalar; not a marginal quantile, regression slope, posterior quantile, sample-mean adjusted intercept or simultaneous band. | 7.18025160223301 | reported_numeric |
-| model3_normal_heteroscedastic | theta_m = Q_0.95(Y \| X=2,Z=0), m=1,2,3,4 | inf{y: F_m(y\|X=2,Z=0)&gt;=0.95} in the model-specific synthetic superpopulation. Conditional, pointwise scalar; not a marginal quantile, regression slope, posterior quantile, sample-mean adjusted intercept or simultaneous band. | 8.579414507805886 | reported_numeric |
-| model4_lognormal_heteroscedastic | theta_m = Q_0.95(Y \| X=2,Z=0), m=1,2,3,4 | inf{y: F_m(y\|X=2,Z=0)&gt;=0.95} in the model-specific synthetic superpopulation. Conditional, pointwise scalar; not a marginal quantile, regression slope, posterior quantile, sample-mean adjusted intercept or simultaneous band. | 12.36050320446602 | reported_numeric |
+| model1_normal_homoscedastic | Conditional quantile | inf{y: F_m(y\|X=2,Z=0)&gt;=0.95} in the model-specific synthetic superpopulation. Conditional, pointwise scalar; not a marginal quantile, regression slope, posterior quantile, sample-mean adjusted intercept or simultaneous band. | 5.289707253902943 | reported_numeric |
+| model2_lognormal_homoscedastic | Conditional quantile | inf{y: F_m(y\|X=2,Z=0)&gt;=0.95} in the model-specific synthetic superpopulation. Conditional, pointwise scalar; not a marginal quantile, regression slope, posterior quantile, sample-mean adjusted intercept or simultaneous band. | 7.18025160223301 | reported_numeric |
+| model3_normal_heteroscedastic | Conditional quantile | inf{y: F_m(y\|X=2,Z=0)&gt;=0.95} in the model-specific synthetic superpopulation. Conditional, pointwise scalar; not a marginal quantile, regression slope, posterior quantile, sample-mean adjusted intercept or simultaneous band. | 8.579414507805886 | reported_numeric |
+| model4_lognormal_heteroscedastic | Conditional quantile | inf{y: F_m(y\|X=2,Z=0)&gt;=0.95} in the model-specific synthetic superpopulation. Conditional, pointwise scalar; not a marginal quantile, regression slope, posterior quantile, sample-mean adjusted intercept or simultaneous band. | 12.36050320446602 | reported_numeric |
+
+**Original submitted target notation:** theta_m = Q_0.95(Y \| X=2,Z=0), m=1,2,3,4
+
 
 ## Identifiability assumptions
 
@@ -145,6 +148,13 @@ theta_m=2+s_m(2)q_e(0.95), with s_1=s_2=1, s_3(x)=s_4(x)=1+x/2; q_normal(tau)=2 
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Retain the four published data-generating laws and all their parameters. Treat Models 1-4 as four scenarios in one mechanism family.
+- Select only tau=0.95 from the original joint levels 0.9, 0.925, 0.95 and target a scalar conditional quantile, not the full vector of regression coefficients.
+- Replace the original sample-dependent adjusted intercept at (sample mean X,0) with the fixed query (X,Z)=(2,0), where 2=E[X]. This is a target adaptation, not a reported source-paper truth.
+- Use local Python RNG and CPU smoke n=128, seed=1729; original simulations use n=100 and 500 samples. No claim to replicate the original random stream, estimator MSE, priors or MCMC computations.
 
 **Warnings:**
 

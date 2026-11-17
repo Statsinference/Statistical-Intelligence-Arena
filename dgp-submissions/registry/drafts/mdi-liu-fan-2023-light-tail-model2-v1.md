@@ -18,7 +18,7 @@
 
 **Generator source:** [generator.py](../generators/mdi-liu-fan-2023-light-tail-model2-v1.py)
 
-**Keywords (source-described):** Linearity
+**Keywords (source-described):** Not specified
 
 **Observed variables**
 
@@ -100,9 +100,12 @@ theta=E(Y)=1/gamma=0.4
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| original | theta = E(Y) | Full-data superpopulation response mean before outcome masking. | 0.4 | reported_numeric |
+| original | Full-data population outcome mean | Full-data superpopulation response mean before outcome masking. | 0.4 | reported_numeric |
+
+**Original submitted target notation:** theta = E(Y)
+
 
 ## Identifiability assumptions
 
@@ -120,6 +123,11 @@ theta=E(Y)=1/gamma=0.4
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- One generate call returns one sample rather than all paper Monte Carlo repetitions.
+- A finite zero placeholder encodes missing Y in the numeric-only interface; mask with the observation indicator.
 
 **Warnings:**
 

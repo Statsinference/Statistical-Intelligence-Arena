@@ -36,7 +36,15 @@ Not explicitly identified (review required)
 
 **Original source equations (verbatim):** [Open raw scientific record (JSON)](./proximal-cui-2023-04-18-gaussian-v2.json).
 
-设 $`X=(X_{1},X_{2})`$，$`\sigma(t)=1/(1+\exp(-t))`$。对每个个体依次生成：
+English equation transcription pending; consult the linked original scientific record (JSON) for the complete source and context.
+
+$$
+X=(X_{1},X_{2})
+$$
+
+$$
+\sigma(t)=1/(1+\exp(-t))
+$$
 
 **Step 1**
 
@@ -53,32 +61,63 @@ $$
 A \mid  X \sim \mathrm{Bernoulli}(\sigma(-0.125 X_{1} - 0.125 X_{2}))
 $$
 
-3. $`V=(Z,W,U)^{T} \mid  A,X \sim \mathcal{N}_{3}(\mu(A,X),\Sigma)`$，其中
+English equation transcription pending; consult the linked original scientific record (JSON) for the complete source and context.
+
+$$
+V=(Z,W,U)^{T} \mid  A,X \sim \mathcal{N}_{3}(\mu(A,X),\Sigma)
+$$
 
 $$
 \mu(A,X) = (0.25,0.25,0.25)^{T} + A(0.25,0.125,0.25)^{T} + (0.25 X_{1} + 0.25 X_{2})(1,1,1)^{T}
 $$
 
-$`\Sigma= \begin{bmatrix}
+English equation transcription pending; consult the linked original scientific record (JSON) for the complete source and context.
+
+$$
+\Sigma= \begin{bmatrix}
 1 & 0.25 & 0.5 \\
 0.25 & 1 & 0.5 \\
 0.5 & 0.5 & 1
-\end{bmatrix}`$；行列顺序为 <code>(Z,W,U)</code>。
+\end{bmatrix}
+$$
 
-4. 定义 $`g(U,X) = 0.25 + 0.25(X_{1}+X_{2}) + 0.5[U - 0.25 - 0.25(X_{1}+X_{2})]`$，取 $`\varepsilon_{Y} \sim \mathcal{N}(0,0.25^{2})`$ 且独立于前述高斯抽样误差，令
+(Z,W,U)
+
+English equation transcription pending; consult the linked original scientific record (JSON) for the complete source and context.
+
+$$
+g(U,X) = 0.25 + 0.25(X_{1}+X_{2}) + 0.5[U - 0.25 - 0.25(X_{1}+X_{2})]
+$$
+
+$$
+\varepsilon_{Y} \sim \mathcal{N}(0,0.25^{2})
+$$
 
 $$
 Y = 2 + 2A + 0.25(X_{1}+X_{2}) + (4-2)g(U,X) + 2W + \varepsilon_{Y}
 $$
 
-等价的结果公式为 $`Y = 2.25 + 2A + 0.5(X_{1}+X_{2}) + U + 2W + \varepsilon_{Y}`$。以上条件分布及系数对应 <code>config.json</code> 的 <code>original</code> 场景。抽样单位为独立个体，个体内 <code>(Z,W,U)</code> 按给定条件协方差联合生成。
+English equation transcription pending; consult the linked original scientific record (JSON) for the complete source and context.
+
+$$
+Y = 2.25 + 2A + 0.5(X_{1}+X_{2}) + U + 2W + \varepsilon_{Y}
+$$
+
+config.json
+
+original
+
+(Z,W,U)
 
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| original | psi_ATE | E[Y(1)-Y(0)] in the source population, same marginal U,W,X under both interventions. | 2.0 | reported_numeric |
+| original | ATE | E[Y(1)-Y(0)] in the source population, same marginal U,W,X under both interventions. | 2.0 | reported_numeric |
+
+**Original submitted target notation:** psi_ATE
+
 
 ## Identifiability assumptions
 
@@ -97,6 +136,10 @@ $$
 **Original versus adapted:** exact_reproduction
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- None described in the submitted metadata; this does not establish exact reproduction.
 
 **Warnings:**
 

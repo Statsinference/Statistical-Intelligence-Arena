@@ -16,7 +16,7 @@
 
 **Sampling design:** Unit: individual; Dependence: iid individuals; Z1,Z2,Z3 sampled independently conditional on A,W
 
-**Generator source:** [generator.py](https://github.com/Statsinference/stats-inference-arena/blob/main/dgp-submissions/registry/generators/mediation-diaz-hejazi-2020-discrete-three-mediators-v1.py)
+**Generator source:** [generator.py](../generators/mediation-diaz-hejazi-2020-discrete-three-mediators-v1.py)
 
 **Keywords (source-described):** Nonlinearity
 
@@ -99,7 +99,10 @@ Y=Z1+Z2-Z3+A-0.1(W1+W2+W3)^2+epsilon, epsilon~N(0,0.25)
 
 | Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| journal_section_5 | NIE_1 | E[Y(1,Z(1)) - Y(1,Z(0))] for the original §5 superpopulation, jointly intervening on all three mediators Z=(Z1,Z2,Z3). Treatment is fixed at 1 in both outcome terms. | -0.11950701713951144 | reported_numeric |
+| journal_section_5 | NIE | E[Y(1,Z(1)) - Y(1,Z(0))] for the original §5 superpopulation, jointly intervening on all three mediators Z=(Z1,Z2,Z3). Treatment is fixed at 1 in both outcome terms. | -0.11950701713951144 | reported_numeric |
+
+**Original submitted target notation:** NIE_1
+
 
 ## Identifiability assumptions
 
@@ -119,6 +122,12 @@ Y=Z1+Z2-Z3+A-0.1(W1+W2+W3)^2+epsilon, epsilon~N(0,0.25)
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Use the displayed §5 data-generating equations, not the archived author R generator, whose mediator expressions differ; the discrepancy is documented in source_audit.json.
+- Change the target from the paper's stochastic population-intervention direct effect to NIE = E[Y(1,Z(1)) - Y(1,Z(0))]. This value is derived here and is not a number reported by the paper.
+- Use Python random.Random for IID sampling and a small interface check rather than reproducing the paper's estimation experiments.
 
 **Warnings:**
 

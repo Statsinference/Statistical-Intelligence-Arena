@@ -22,7 +22,14 @@
 
 **Observed variables**
 
+X1–X5 (5 variables), A, Y
+
+<details>
+<summary>All observed variable names</summary>
+
 X1, X2, X3, X4, X5, A, Y
+
+</details>
 
 **Latent variables**
 
@@ -84,9 +91,12 @@ Y = b(X) + A tau(X) + sigma eps, eps ~ Normal(0,1), sigma = 1
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| original | tau(x0) = E[Y(1) - Y(0) \| X = x0] | Conditional average treatment effect at the declared query points; a simple linear surface in the first two coordinates, embedded in a deliberately difficult nuisance structure. | 0.25 | reported_numeric |
+| original | CATE | Conditional average treatment effect at the declared query points; a simple linear surface in the first two coordinates, embedded in a deliberately difficult nuisance structure. | 0.25 | reported_numeric |
+
+**Original submitted target notation:** tau(x0) = E[Y(1) - Y(0) \| X = x0]
+
 
 ## Identifiability assumptions
 
@@ -104,6 +114,13 @@ Y = b(X) + A tau(X) + sigma eps, eps ~ Normal(0,1), sigma = 1
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Dimension fixed at d = 5, the smallest dimension for which the source's baseline is fully defined (it uses X1..X5); the source varies d in {6, 12} for the reported grid.
+- The source writes Y = b(X) + (W - 0.5) tau(X) + sigma eps; this package uses Y = b(X) + A tau(X) + sigma eps with A in {0,1}. The CATE is unchanged; the marginal outcome law differs by the constant 0.5 tau(X).
+- Noise scale is fixed at sigma = 1 (the source also reports sigma in {0.5, 2, 3}); those are scenarios, not implemented here.
+- trim_eta is implemented as np.clip(., 0.1, 0.9), matching trim_0.1 in the source.
 
 **Warnings:**
 

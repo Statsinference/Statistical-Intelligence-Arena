@@ -65,11 +65,14 @@ $$
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| source_normal | Q_{0.1}(0.5,0.5) | Conditional 0.1 quantile at X=(0.5,0.5); normal, t3, and specified normal-mixture errors are scenarios within ONE mechanism family. | 5.787542073631004 | reported_numeric |
-| source_t3 | Q_{0.1}(0.5,0.5) | Conditional 0.1 quantile at X=(0.5,0.5); normal, t3, and specified normal-mixture errors are scenarios within ONE mechanism family. | 5.431349285479395 | reported_numeric |
-| source_normal_mixture | Q_{0.1}(0.5,0.5) | Conditional 0.1 quantile at X=(0.5,0.5); normal, t3, and specified normal-mixture errors are scenarios within ONE mechanism family. | 5.582372494783503 | reported_numeric |
+| source_normal | Conditional quantile | Conditional 0.1 quantile at X=(0.5,0.5); normal, t3, and specified normal-mixture errors are scenarios within ONE mechanism family. | 5.787542073631004 | reported_numeric |
+| source_t3 | Conditional quantile | Conditional 0.1 quantile at X=(0.5,0.5); normal, t3, and specified normal-mixture errors are scenarios within ONE mechanism family. | 5.431349285479395 | reported_numeric |
+| source_normal_mixture | Conditional quantile | Conditional 0.1 quantile at X=(0.5,0.5); normal, t3, and specified normal-mixture errors are scenarios within ONE mechanism family. | 5.582372494783503 | reported_numeric |
+
+**Original submitted target notation:** Q_{0.1}(0.5,0.5)
+
 
 ## Identifiability assumptions
 
@@ -86,6 +89,15 @@ $$
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Fixed x=(0.5,0.5) and tau=0.1 select a scalar query. Normal, unscaled Student t3 and the stated normal mixture are three source noise scenarios, not three different families.
+- The unspecified scale of the source double-exponential error is not guessed; that fourth noise case is excluded. Independent X1,X2, noise and rows are explicit implementation conventions because the paragraph states marginal distributions only.
+- The computationally equivalent log-sum-exp form avoids unnecessary exponential overflow; no negative signs are inserted in the positive exponents in equation (40).
+- Independent Python/NumPy implementation from mathematical formulas; no author code is redistributed. PCG64(seed) replaces unspecified/source software random-number generation. Sample size is the generate n argument; source_n only records the published sample sizes. No fitting, bootstrap, confidence-band coverage experiment or PFN training is included.
+- Clarified that generation constants are specified jointly in the displayed equations and config.json; not every fixed source constant is exposed as a configurable parameter.
+- Source recheck did not turn the disclosed independence completion into a source fact. Marginal laws and equations match the read source, while the implementation product law still needs a maintainer decision before claiming a fully source-verified joint DGP.
 
 **Warnings:**
 

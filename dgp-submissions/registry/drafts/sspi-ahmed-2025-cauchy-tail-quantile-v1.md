@@ -93,9 +93,12 @@ Two independent samples from the same population: source_n_labeled rows with obs
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| original | Q_Y(0.998) | Marginal quantile inf{y:Pr(Y&lt;=y)&gt;=0.998} in the common population; tail probability is fixed at 0.002. | 6.214608098422191 | reported_numeric |
+| original | Marginal population quantile | Marginal quantile inf{y:Pr(Y&lt;=y)&gt;=0.998} in the common population; tail probability is fixed at 0.002. | 6.214608098422191 | reported_numeric |
+
+**Original submitted target notation:** Q_Y(0.998)
+
 
 ## Identifiability assumptions
 
@@ -112,6 +115,15 @@ Two independent samples from the same population: source_n_labeled rows with obs
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Select s=0,gamma=0,n=500,m=1000 and p=1/500 from the source quantile setting.
+- Rename source target X as Y and source auxiliary Y as X1 to match the collection schema.
+- Use the equivalent absolute-normal construction for the s=0 first-quadrant law and evaluate the survival probability with atan2 for tail stability.
+- Represent independent labeled/unlabeled samples in a single table: all X columns, label indicator R and Y_obs. A zero on an R=0 row is a finite placeholder.
+- The generate argument n counts total rows. Source total yields exact source allocation; other n use nearest-integer ratio allocation with both groups nonempty.
+- Use local PCG64 random streams, with independent covariate and response-noise streams. Each row remains an independent population draw.
 
 **Warnings:**
 

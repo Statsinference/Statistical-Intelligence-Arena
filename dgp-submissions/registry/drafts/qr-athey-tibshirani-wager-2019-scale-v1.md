@@ -22,7 +22,14 @@
 
 **Observed variables**
 
+X1–X40 (40 variables), Y
+
+<details>
+<summary>All observed variable names</summary>
+
 X1, X2, X3, X4, X5, X6, X7, X8, X9, X10, X11, X12, X13, X14, X15, X16, X17, X18, X19, X20, X21, X22, X23, X24, X25, X26, X27, X28, X29, X30, X31, X32, X33, X34, X35, X36, X37, X38, X39, X40, Y
+
+</details>
 
 **Latent variables**
 
@@ -75,9 +82,12 @@ Q_q(Y|X=x)=(1+I(x1&gt;0))*Phi_inverse(q)
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| source_p40_q90_positive_query | theta = Q_0.9(Y \| X=x_query) | Conditional 90th percentile of the observed response at x_query=(0.5,0,...,0) in the 40-dimensional covariate support; inf{y:P(Y&lt;=y\|X=x_query)&gt;=0.9}. A conditional quantile regression target, not a quantile treatment effect, population marginal quantile or causal estimand. | 2.5631031310892016 | reported_numeric |
+| source_p40_q90_positive_query | Conditional quantile | Conditional 90th percentile of the observed response at x_query=(0.5,0,...,0) in the 40-dimensional covariate support; inf{y:P(Y&lt;=y\|X=x_query)&gt;=0.9}. A conditional quantile regression target, not a quantile treatment effect, population marginal quantile or causal estimand. | 2.5631031310892016 | reported_numeric |
+
+**Original submitted target notation:** theta = Q_0.9(Y \| X=x_query)
+
 
 ## Identifiability assumptions
 
@@ -95,6 +105,15 @@ Q_q(Y|X=x)=(1+I(x1&gt;0))*Phi_inverse(q)
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Retain the Figure 2 scale-shift conditional Gaussian law and p=40, including 39 irrelevant covariates.
+- Take q=0.9 from the paper quantiles {0.1,0.5,0.9}; choose x_query=(0.5,0,...,0) to expose a scalar conditional quantile through the student truth interface. This fixed point is an adapter choice, not a paper-reported scalar estimate.
+- Use NumPy PCG64 draws; distributional reconstruction, not the original R seed stream.
+- Use n=128 and seed=1729 for interface validation instead of n=2000 estimator experiments. No forest or other estimator is fitted.
+- Register quantile_regression through explicitly documented local family enum extension quantile-regression-family-v1. The unmodified official student package does not support this family; no causal-effect label is substituted.
+- Other quantiles, the zero-shift law and boundary points occur only in verification controls, not additional registered mechanisms.
 
 **Warnings:**
 

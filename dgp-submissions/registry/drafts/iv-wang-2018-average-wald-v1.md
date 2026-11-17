@@ -169,9 +169,12 @@ Delta_W=integral_{-1}^{-0.5} tanh(0.1+0.5x) dx + integral_{0.5}^{1} tanh(0.1+0.5
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
 | source_section5 | ATE | Population causal ATE E[Y(1)-Y(0)] in the explicitly adapted algebraic causal completion = E[tanh(0.1+0.5 X2)] = average conditional Wald ratio. Binary intervention a=1 versus a=0, full iid superpopulation; not a LATE. | 0.08670199394664552 | reported_numeric |
+
+**Original submitted target notation:** ATE
+
 
 ## Identifiability assumptions
 
@@ -190,6 +193,14 @@ Delta_W=integral_{-1}^{-0.5} tanh(0.1+0.5x) dx + integral_{0.5}^{1} tanh(0.1+0.5
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Algebraic causal completion adaptation: rD=p0D+kappa(2U-1), rY=p0Y+kappa(2U-1), t=delta(X); D(z)=1{V_D&lt;rD+z*deltaD}, Y(a)=1{V_Y&lt;rY-t*rD+a*t}, using independent Uniform(0,1) V_D,V_Y. This constructed coupling recovers source conditional Bernoulli marginals, is not an author-specified coupling, and adds no numeric coefficients.
+- Set U independent of X; use independent random innovations across individuals and generation stages. The source gives U marginal Bernoulli(0.5) without an explicit X-U coupling.
+- Target the causal ATE of our explicitly constructed completion, which algebraically equals the source average Wald functional. Causal interpretation is for this adaptation, not a claim that the paper specified this potential-outcome construction.
+- Rationalize Eqs.(6),(7) for numerical stability, including the continuous q=1 limit; coefficients unchanged.
+- Return X2,Z,D,Y only; implicit intercept omitted. Accept arbitrary n and seed instead of the source n=500 and 1000 estimator repetitions. Omit analyst misspecification covariates and estimator comparisons because they do not alter this DGP.
 
 **Warnings:**
 

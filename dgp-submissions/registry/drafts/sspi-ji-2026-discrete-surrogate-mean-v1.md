@@ -78,9 +78,12 @@ Two independent samples from the same population: source_n_labeled rows with obs
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| original | E[Y] | Population mean of Y, aided by the observed discrete prediction. | 0.6666666666666666 | reported_numeric |
+| original | Population outcome mean | Population mean of Y, aided by the observed discrete prediction. | 0.6666666666666666 | reported_numeric |
+
+**Original submitted target notation:** E[Y]
+
 
 ## Identifiability assumptions
 
@@ -97,6 +100,14 @@ Two independent samples from the same population: source_n_labeled rows with obs
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Select mu3=4 from Figure 6; keep source n=1000,N=9000.
+- Name the observed surrogate X1 to match the numeric table interface; its schema role is auxiliary_prediction. The surrogate is part of the specified sampling law and is available before target labels.
+- Represent independent labeled/unlabeled samples in a single table: all X columns, label indicator R and Y_obs. A zero on an R=0 row is a finite placeholder.
+- The generate argument n counts total rows. Source total yields exact source allocation; other n use nearest-integer ratio allocation with both groups nonempty.
+- Use local PCG64 random streams, with independent covariate and response-noise streams. Each row remains an independent population draw.
 
 **Warnings:**
 

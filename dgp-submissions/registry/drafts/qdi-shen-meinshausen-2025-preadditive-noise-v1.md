@@ -133,12 +133,15 @@ q_s=inf{y:P_eta(g_s(0.5+eta)&lt;=y)&gt;=0.5}; (q_softplus,q_square,q_cubic,q_log
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| softplus | q_s(0.5;0.5) | For each scenario s, q_s(0.5;0.5)=inf{y:F_s(y;0.5)&gt;=0.5}, F_s(y;x)=P_eta[g_s(x+eta)&lt;=y], eta~N(0,sigma_s^2). A scalar conditional median at an interior covariate point; not a marginal quantile, causal effect, prediction interval or simultaneous band. | 0.9740769841801067 | reported_numeric |
-| square | q_s(0.5;0.5) | For each scenario s, q_s(0.5;0.5)=inf{y:F_s(y;0.5)&gt;=0.5}, F_s(y;x)=P_eta[g_s(x+eta)&lt;=y], eta~N(0,sigma_s^2). A scalar conditional median at an interior covariate point; not a marginal quantile, causal effect, prediction interval or simultaneous band. | 0.125 | reported_numeric |
-| cubic | q_s(0.5;0.5) | For each scenario s, q_s(0.5;0.5)=inf{y:F_s(y;0.5)&gt;=0.5}, F_s(y;x)=P_eta[g_s(x+eta)&lt;=y], eta~N(0,sigma_s^2). A scalar conditional median at an interior covariate point; not a marginal quantile, causal effect, prediction interval or simultaneous band. | 0.041666666666666664 | reported_numeric |
-| log | q_s(0.5;0.5) | For each scenario s, q_s(0.5;0.5)=inf{y:F_s(y;0.5)&gt;=0.5}, F_s(y;x)=P_eta[g_s(x+eta)&lt;=y], eta~N(0,sigma_s^2). A scalar conditional median at an interior covariate point; not a marginal quantile, causal effect, prediction interval or simultaneous band. | 0.5986122886681097 | reported_numeric |
+| softplus | Conditional quantile | For each scenario s, q_s(0.5;0.5)=inf{y:F_s(y;0.5)&gt;=0.5}, F_s(y;x)=P_eta[g_s(x+eta)&lt;=y], eta~N(0,sigma_s^2). A scalar conditional median at an interior covariate point; not a marginal quantile, causal effect, prediction interval or simultaneous band. | 0.9740769841801067 | reported_numeric |
+| square | Conditional quantile | For each scenario s, q_s(0.5;0.5)=inf{y:F_s(y;0.5)&gt;=0.5}, F_s(y;x)=P_eta[g_s(x+eta)&lt;=y], eta~N(0,sigma_s^2). A scalar conditional median at an interior covariate point; not a marginal quantile, causal effect, prediction interval or simultaneous band. | 0.125 | reported_numeric |
+| cubic | Conditional quantile | For each scenario s, q_s(0.5;0.5)=inf{y:F_s(y;0.5)&gt;=0.5}, F_s(y;x)=P_eta[g_s(x+eta)&lt;=y], eta~N(0,sigma_s^2). A scalar conditional median at an interior covariate point; not a marginal quantile, causal effect, prediction interval or simultaneous band. | 0.041666666666666664 | reported_numeric |
+| log | Conditional quantile | For each scenario s, q_s(0.5;0.5)=inf{y:F_s(y;0.5)&gt;=0.5}, F_s(y;x)=P_eta[g_s(x+eta)&lt;=y], eta~N(0,sigma_s^2). A scalar conditional median at an interior covariate point; not a marginal quantile, causal effect, prediction interval or simultaneous band. | 0.5986122886681097 | reported_numeric |
+
+**Original submitted target notation:** q_s(0.5;0.5)
+
 
 ## Identifiability assumptions
 
@@ -159,6 +162,14 @@ q_s=inf{y:P_eta(g_s(0.5+eta)&lt;=y)&gt;=0.5}; (q_softplus,q_square,q_cubic,q_log
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Preserve all four official supplementary Table C.1 transformations, X distributions and Gaussian laws. Use the simulation model Y=g_s(X+eta), corresponding to the published equation (2) and W=1,beta=0 specialization of equation (4).
+- The current user-authorized target is a single conditional median at interior query_x=0.5,tau=0.5 for each scenario. The query is an Arena scalar adaptation, not a point specified by the paper.
+- Caller-supplied n, with n=128 for smoke checks, replaces source training sizes 50000/100000. No training or full simulation experiment is reproduced.
+- The user explicitly selected the literal official supplementary Log formula: ln(u) for u&gt;2. Keep its downward jump; disclose the mismatch with author fixed snapshot eb6b83b1613458b5b3547e4e44a81da4712ab581, simulator.py line 30, ln(1+u). This choice is not author confirmation of a typo or confirmation of the original experiment code.
+- Use local standard-library RNG and analytic truth with separate CDF inversion, not author PyTorch simulation/evaluation routines. This revision updates provenance only; config and mathematical code remain unchanged from the immediate interior-query baseline. The author simulator defaults are not the Table C.1 scenario settings.
 
 **Warnings:**
 

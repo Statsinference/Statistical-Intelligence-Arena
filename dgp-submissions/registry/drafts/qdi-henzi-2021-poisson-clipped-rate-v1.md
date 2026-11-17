@@ -94,9 +94,12 @@ theta=Integral_5^infinity t^3*exp(-t)/6 dt (Gamma/Erlang survival)
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| original_poisson_qdi | theta = F_{Y\|X=5}(3) | P(Y&lt;=3 \| X=5) in the source synthetic superpopulation, using its continuous-in-x conditional probability kernel. Inclusive CDF threshold y=3, fixed covariate query x=5, scalar probability in [0,1]. This is conditional, not marginal, and not a quantile or a causal effect. | 0.2650259152973617 | reported_numeric |
+| original_poisson_qdi | Conditional cumulative distribution function | P(Y&lt;=3 \| X=5) in the source synthetic superpopulation, using its continuous-in-x conditional probability kernel. Inclusive CDF threshold y=3, fixed covariate query x=5, scalar probability in [0,1]. This is conditional, not marginal, and not a quantile or a causal effect. | 0.2650259152973617 | reported_numeric |
+
+**Original submitted target notation:** theta = F_{Y\|X=5}(3)
+
 
 ## Identifiability assumptions
 
@@ -115,6 +118,14 @@ theta=Integral_5^infinity t^3*exp(-t)/6 dt (Gamma/Erlang survival)
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Keep the published Section 4 equation (26) Uniform(0,10) and Poisson(min(max(x,1),6)) law unchanged; rename source response Y4 to observed column Y.
+- Use the requested fixed scalar conditional CDF P(Y&lt;=3 \| X=5). This is a user-selected QDI target, not a numerical result reported by the source, which evaluates distributional predictions by CRPS.
+- Implement the unjittered equation (26), without the author training-script perturbations X+=Uniform(-1e-6,1e-6) and Y+=Uniform(-1e-6,1e-6) at lines 67-68. This preserves the requested discrete response. Do not claim exact reproduction of the full author preprocessing pipeline.
+- Use local Python random.Random and a Poisson arrival-count sampler instead of R runif/rpois. Equality in law is intended; R/Python draws are not bitwise identical.
+- Run only n=128 CPU interface checks and numerical truth checks. Do not reproduce the 500-replicate training/validation experiment, fit predictors, train PFN, or evaluate interval coverage.
 
 **Warnings:**
 

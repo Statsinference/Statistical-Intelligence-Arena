@@ -85,9 +85,12 @@ The newly introduced error terms are mutually independent N(0,0.5²).
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| original | theta | E[Y(1,1)-Y(0,0)] = 2. | 1.9999999999999998 | reported_numeric |
+| original | Longitudinal treatment regime mean contrast | E[Y(1,1)-Y(0,0)] = 2. | 1.9999999999999998 | reported_numeric |
+
+**Original submitted target notation:** theta
+
 
 ## Identifiability assumptions
 
@@ -102,6 +105,10 @@ The newly introduced error terms are mutually independent N(0,0.5²).
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- English description pending; see [original scientific record](./proximal-ying-2023-longitudinal-v1.json).
 
 **Warnings:**
 

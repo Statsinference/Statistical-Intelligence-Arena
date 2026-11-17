@@ -22,7 +22,14 @@
 
 **Observed variables**
 
+X1–X5 (5 variables), A, Y
+
+<details>
+<summary>All observed variable names</summary>
+
 X1, X2, X3, X4, X5, A, Y
+
+</details>
 
 **Latent variables**
 
@@ -80,9 +87,12 @@ Y = m(X) + A tau(X) + eps, eps ~ Normal(0,1)
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| original | tau(x0) = E[Y(1) - Y(0) \| X = x0] | Conditional average treatment effect at the declared query point; in this design it is identically zero for every x, which makes it a null-effect control for bias and interval coverage under confounding. | 0.0 | reported_numeric |
+| original | CATE | Conditional average treatment effect at the declared query point; in this design it is identically zero for every x, which makes it a null-effect control for bias and interval coverage under confounding. | 0.0 | reported_numeric |
+
+**Original submitted target notation:** tau(x0) = E[Y(1) - Y(0) \| X = x0]
+
 
 ## Identifiability assumptions
 
@@ -100,6 +110,13 @@ Y = m(X) + A tau(X) + eps, eps ~ Normal(0,1)
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Dimension is fixed at d = 5 instead of the source's d in {2,...,30}; only X1 enters the propensity and the baseline, X2-X5 are irrelevant coordinates kept so the design still has ambient dimension.
+- The source writes Y = m(X) + (W - 0.5) tau(X) + eps; this package uses the equivalent contrast form Y = m(X) + A tau(X) + eps with A in {0,1}. The CATE is unchanged, the marginal outcome law differs by the constant 0.5 tau(X) = 0.
+- The source reports MSE and coverage over 500 replications at n = 500; this package fixes one scenario and is checked at n = 128 for interface purposes only. No estimator is re-run.
+- beta_{2,4} is the Beta(2,4) *density* in the source; it is implemented as 20 u (1-u)^3 so that e(X) = 0.25 (1 + 20 X1 (1-X1)^3).
 
 **Warnings:**
 

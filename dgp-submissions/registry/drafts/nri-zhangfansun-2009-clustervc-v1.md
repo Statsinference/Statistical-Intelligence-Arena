@@ -171,9 +171,12 @@ Y_ij=beta0(U_ij)+X_ij^T*a_i(U_ij)+Z_i^T*beta(U_ij)+epsilon_ij; return cluster,U,
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| original-sigma05 | m(u0,x0,z0)=E[Y\|U=u0,X=x0,Z=z0] | Integrate the mean-zero random effect from the Section 5 simulation model: sin(2*pi*u)*(1+z1+z2)+sum(x)*(sin(2*pi*u)+z1*cos(2*pi*u)+z2*sin(pi*u)). The fixed query is u=.25, x=(0,0,0), z=(0,0), yielding 1. The source coefficient alpha01 is a different estimand, though it happens to equal 1 here. | 1.0 | reported_numeric |
+| original-sigma05 | Pointwise conditional mean | Integrate the mean-zero random effect from the Section 5 simulation model: sin(2*pi*u)*(1+z1+z2)+sum(x)*(sin(2*pi*u)+z1*cos(2*pi*u)+z2*sin(pi*u)). The fixed query is u=.25, x=(0,0,0), z=(0,0), yielding 1. The source coefficient alpha01 is a different estimand, though it happens to equal 1 here. | 1.0 | reported_numeric |
+
+**Original submitted target notation:** m(u0,x0,z0)=E[Y\|U=u0,X=x0,Z=z0]
+
 
 ## Identifiability assumptions
 
@@ -192,6 +195,14 @@ Y_ij=beta0(U_ij)+X_ij^T*a_i(U_ij)+Z_i^T*beta(U_ij)+epsilon_ij; return cluster,U,
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Follow the Section 5 simulation paragraph, which explicitly includes beta0(u)=sin(2*pi*u); disclose that general display (1.4) omits it.
+- Preserve cluster identifiers and shared Z/e in a numeric table. The interface fixes n individuals rather than m=100 clusters; the terminal cluster size is budget-constrained, so cluster sizes are not iid under this interface. For n&lt;6 the sole budget cluster is smaller than the source support. This is an adaptation, not an exact source design.
+- Replace the source coefficient-function target alpha01(u0) by the full conditional mean m(u0,x0,z0)=E[Y\|U=u0,X=x0,Z=z0], integrating the unobserved random effect. Fix u0=0.25 and x0=z0=0; truth remains 1 by coincidence of these chosen values.
+- Cluster-table acceptance by the maintainer is not proven by the open schema role vocabulary. The numeric contract runs, but the guide's request to confirm multilayer data remains an external review step.
+- Use CPU mechanism checks, not the paper's estimator, MISE or confidence-band experiment.
 
 **Warnings:**
 

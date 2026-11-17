@@ -18,11 +18,18 @@
 
 **Generator source:** [generator.py](../generators/sspi-wen-2025-gaussian-cdf-v1.py)
 
-**Keywords (source-described):** Linearity
+**Keywords (source-described):** Not specified
 
 **Observed variables**
 
+X1–X100 (100 variables), R, Y_obs
+
+<details>
+<summary>All observed variable names</summary>
+
 X1, X2, X3, X4, X5, X6, X7, X8, X9, X10, X11, X12, X13, X14, X15, X16, X17, X18, X19, X20, X21, X22, X23, X24, X25, X26, X27, X28, X29, X30, X31, X32, X33, X34, X35, X36, X37, X38, X39, X40, X41, X42, X43, X44, X45, X46, X47, X48, X49, X50, X51, X52, X53, X54, X55, X56, X57, X58, X59, X60, X61, X62, X63, X64, X65, X66, X67, X68, X69, X70, X71, X72, X73, X74, X75, X76, X77, X78, X79, X80, X81, X82, X83, X84, X85, X86, X87, X88, X89, X90, X91, X92, X93, X94, X95, X96, X97, X98, X99, X100, R, Y_obs
+
+</details>
 
 **Latent variables**
 
@@ -76,9 +83,12 @@ Two independent samples from the same population: source_n_labeled rows with obs
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| original | F_Y(1) | Marginal population CDF Pr(Y&lt;=1), using the semi-supervised observation design. | 0.8144533152386513 | reported_numeric |
+| original | Marginal population cumulative distribution function | Marginal population CDF Pr(Y&lt;=1), using the semi-supervised observation design. | 0.8144533152386513 | reported_numeric |
+
+**Original submitted target notation:** F_Y(1)
+
 
 ## Identifiability assumptions
 
@@ -95,6 +105,14 @@ Two independent samples from the same population: source_n_labeled rows with obs
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Select p=100,n=1000,m=10000 from Table 1.
+- Fix scalar CDF query y=1, within the Figure 1 evaluation region. The source studies the full CDF; the interface checks this single query.
+- Represent independent labeled/unlabeled samples in a single table: all X columns, label indicator R and Y_obs. A zero on an R=0 row is a finite placeholder.
+- The generate argument n counts total rows. Source total yields exact source allocation; other n use nearest-integer ratio allocation with both groups nonempty.
+- Use local PCG64 random streams, with independent covariate and response-noise streams. Each row remains an independent population draw.
 
 **Warnings:**
 

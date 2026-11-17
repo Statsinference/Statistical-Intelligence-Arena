@@ -16,13 +16,20 @@
 
 **Sampling design:** IID observations at a fixed structural configuration; separate mechanism and observation seeds.
 
-**Generator source:** [generator.py](https://github.com/Statsinference/stats-inference-arena/blob/main/dgp-submissions/registry/generators/mediation-standard-nie1-jones-correlated-v1.py)
+**Generator source:** [generator.py](../generators/mediation-standard-nie1-jones-correlated-v1.py)
 
 **Keywords (source-described):** High-dimensionality
 
 **Observed variables**
 
+A, M1–M100 (100 variables), Y
+
+<details>
+<summary>All observed variable names</summary>
+
 A, M1, M2, M3, M4, M5, M6, M7, M8, M9, M10, M11, M12, M13, M14, M15, M16, M17, M18, M19, M20, M21, M22, M23, M24, M25, M26, M27, M28, M29, M30, M31, M32, M33, M34, M35, M36, M37, M38, M39, M40, M41, M42, M43, M44, M45, M46, M47, M48, M49, M50, M51, M52, M53, M54, M55, M56, M57, M58, M59, M60, M61, M62, M63, M64, M65, M66, M67, M68, M69, M70, M71, M72, M73, M74, M75, M76, M77, M78, M79, M80, M81, M82, M83, M84, M85, M86, M87, M88, M89, M90, M91, M92, M93, M94, M95, M96, M97, M98, M99, M100, Y
+
+</details>
 
 **Latent variables**
 
@@ -89,7 +96,10 @@ return np.empty((n,0)),a,m,y,[&quot;continuous&quot;]*q,[],&quot;continuous&quot
 
 | Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| native | NIE | NIE = E[Y(1,M(1))-Y(1,M(0))] in the adapted fixed-SEM superpopulation, jointly intervening on the complete mediator vector. | 2 | reported_numeric |
+| native | NIE | NIE = E[Y(1,M(1))-Y(1,M(0))] in the adapted fixed-SEM superpopulation, jointly intervening on the complete mediator vector. | 2.0 | reported_numeric |
+
+**Original submitted target notation:** NIE
+
 
 ## Identifiability assumptions
 
@@ -106,6 +116,12 @@ return np.empty((n,0)),a,m,y,[&quot;continuous&quot;]*q,[],&quot;continuous&quot
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Retain randomized A, vector mediator and unit-diagonal two-block Gaussian error covariance. Factor sampling is distributionally equivalent for 0&lt;=rho_bridge&lt;=rho_within&lt;1. The source code does not use mediator_error_sd, and neither does this adaptation.
+- New complete-data superpopulation NIE1 target; original records/estimands are retained separately.
+- Standalone canonical generator core SHA256 443e04663970594a8ec2932dc0ee9718c10cc501314d133686dfd0e9acf1baa8
 
 **Warnings:**
 

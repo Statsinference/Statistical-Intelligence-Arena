@@ -249,9 +249,10 @@
   },
   "review_status": "needs_scientific_review",
   "warnings": [
-    "No explicit latent-variable metadata or reliably identifiable latent declarations; absence from this list does not prove that no latent variables exist."
+    "No explicit latent-variable metadata or reliably identifiable latent declarations; absence from this list does not prove that no latent variables exist.",
+    "Legacy combined DiD / Synthetic Control family: human classification required; not automatically reassigned."
   ],
   "source_suggested_domain": "did_sc",
-  "classification_status": "zip_metadata_unverified",
+  "classification_status": "needs_manual_classification",
   "suggested_secondary_domains": []
 }

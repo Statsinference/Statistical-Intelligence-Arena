@@ -36,9 +36,25 @@ Not explicitly identified (review required)
 
 **Original source equations (verbatim):** [Open raw scientific record (JSON)](./proximal-ying-2023-03-30-longitudinal-v1.json).
 
-定义 $`\sigma(t)=1/(1+\exp(-t))`$，所有下述高斯误差分别独立服从 $`\mathcal{N}(0,0.5^{2})`$。每个个体生成以下变量：
+English equation transcription pending; consult the linked original scientific record (JSON) for the complete source and context.
 
-1. $`X_{0} \sim \mathcal{N}(-0.35,0.5^{2})`$；$`U_{0} \sim \mathcal{N}(0.35,0.5^{2})`$；两者独立。
+$$
+\sigma(t)=1/(1+\exp(-t))
+$$
+
+$$
+\mathcal{N}(0,0.5^{2})
+$$
+
+English equation transcription pending; consult the linked original scientific record (JSON) for the complete source and context.
+
+$$
+X_{0} \sim \mathcal{N}(-0.35,0.5^{2})
+$$
+
+$$
+U_{0} \sim \mathcal{N}(0.35,0.5^{2})
+$$
 
 **Step 2**
 
@@ -94,14 +110,23 @@ $$
 Y = -1.3 + A_{1} + 1.14A_{0} + 0.5X_{1} - 0.7U_{1} + 0.2X_{0} - 0.7U_{0} + \varepsilon_{Y}
 $$
 
-除 <code>X0,U0</code> 的独立起始抽样外，时间节点所用结构误差也分别独立抽取。每名个体对应一行宽表，观测列为 <code>X0,A0,Z0,W0,X1,A1,Z1,W1,Y</code>；<code>U0,U1</code> 为内部潜在混杂。个体间独立，两个时点的观测在个体内按转移方程关联。
+English equation transcription pending; consult the linked original scientific record (JSON) for the complete source and context.
+
+X0,U0
+
+X0,A0,Z0,W0,X1,A1,Z1,W1,Y
+
+U0,U1
 
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| original | beta1 | Common slope beta1 in E[Y(a0,a1)]=beta0+beta1*(a0+a1). The 11-vs-00 contrast is separately 2*beta1. | 1.0 | reported_numeric |
+| original | Marginal structural mean model slope | Common slope beta1 in E[Y(a0,a1)]=beta0+beta1*(a0+a1). The 11-vs-00 contrast is separately 2*beta1. | 1.0 | reported_numeric |
+
+**Original submitted target notation:** beta1
+
 
 ## Identifiability assumptions
 
@@ -121,6 +146,10 @@ $$
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- English description pending; see [original scientific record](./proximal-ying-2023-03-30-longitudinal-v1.json).
 
 **Warnings:**
 

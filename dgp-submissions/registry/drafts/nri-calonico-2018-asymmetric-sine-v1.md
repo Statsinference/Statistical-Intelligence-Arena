@@ -90,13 +90,16 @@ Ordered exact source-query truths: 0,-1,0,1/5,0. These are analytically derived 
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| source_x_neg_two_thirds | m(x0) | E[Y \| X=x0], the continuous conditional regression mean at the fixed config.query_x; not a prediction quantile, population average, causal contrast or simultaneous band. | -1.2246467991473532e-16 | reported_numeric |
-| source_x_neg_one_third | m(x0) | E[Y \| X=x0], the continuous conditional regression mean at the fixed config.query_x; not a prediction quantile, population average, causal contrast or simultaneous band. | -1.0 | reported_numeric |
-| source_x_zero | m(x0) | E[Y \| X=x0], the continuous conditional regression mean at the fixed config.query_x; not a prediction quantile, population average, causal contrast or simultaneous band. | 0.0 | reported_numeric |
-| source_x_pos_one_third | m(x0) | E[Y \| X=x0], the continuous conditional regression mean at the fixed config.query_x; not a prediction quantile, population average, causal contrast or simultaneous band. | 0.2 | reported_numeric |
-| source_x_pos_two_thirds | m(x0) | E[Y \| X=x0], the continuous conditional regression mean at the fixed config.query_x; not a prediction quantile, population average, causal contrast or simultaneous band. | 7.203804700866784e-18 | reported_numeric |
+| source_x_neg_two_thirds | Pointwise conditional mean | E[Y \| X=x0], the continuous conditional regression mean at the fixed config.query_x; not a prediction quantile, population average, causal contrast or simultaneous band. | -1.2246467991473532e-16 | reported_numeric |
+| source_x_neg_one_third | Pointwise conditional mean | E[Y \| X=x0], the continuous conditional regression mean at the fixed config.query_x; not a prediction quantile, population average, causal contrast or simultaneous band. | -1.0 | reported_numeric |
+| source_x_zero | Pointwise conditional mean | E[Y \| X=x0], the continuous conditional regression mean at the fixed config.query_x; not a prediction quantile, population average, causal contrast or simultaneous band. | 0.0 | reported_numeric |
+| source_x_pos_one_third | Pointwise conditional mean | E[Y \| X=x0], the continuous conditional regression mean at the fixed config.query_x; not a prediction quantile, population average, causal contrast or simultaneous band. | 0.2 | reported_numeric |
+| source_x_pos_two_thirds | Pointwise conditional mean | E[Y \| X=x0], the continuous conditional regression mean at the fixed config.query_x; not a prediction quantile, population average, causal contrast or simultaneous band. | 7.203804700866784e-18 | reported_numeric |
+
+**Original submitted target notation:** m(x0)
+
 
 ## Identifiability assumptions
 
@@ -116,6 +119,15 @@ Ordered exact source-query truths: 0,-1,0,1/5,0. These are analytically derived 
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- English description pending; see [original scientific record](./nri-calonico-2018-asymmetric-sine-v1.json).
+- English description pending; see [original scientific record](./nri-calonico-2018-asymmetric-sine-v1.json).
+- English description pending; see [original scientific record](./nri-calonico-2018-asymmetric-sine-v1.json).
+- English description pending; see [original scientific record](./nri-calonico-2018-asymmetric-sine-v1.json).
+- English description pending; see [original scientific record](./nri-calonico-2018-asymmetric-sine-v1.json).
+- English description pending; see [original scientific record](./nri-calonico-2018-asymmetric-sine-v1.json).
 
 **Warnings:**
 

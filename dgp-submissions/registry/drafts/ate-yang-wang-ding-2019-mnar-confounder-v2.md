@@ -22,7 +22,14 @@
 
 **Observed variables**
 
+X1–X6 (6 variables), A, Y, R5, R6
+
+<details>
+<summary>All observed variable names</summary>
+
 X1, X2, X3, X4, X5, X6, A, Y, R5, R6
+
+</details>
 
 **Latent variables**
 
@@ -156,9 +163,12 @@ ATE=E[Y(1)-Y(0)]=1.5-2E[X1]+2E[X2]-2E[X3]+2E[X4]-2E[X5]-2E[X6] = -2.5-2E[X6] und
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
 | section53_equation_based_candidate | ATE | Population E[Y(1)-Y(0)] for the intervention A=1 versus A=0, under the declared Section 5.3 equation-based mechanism and its explicitly stated factorization adaptations. | -2.9835508151480576 | reported_numeric |
+
+**Original submitted target notation:** ATE
+
 
 ## Identifiability assumptions
 
@@ -177,6 +187,13 @@ ATE=E[Y(1)-Y(0)]=1.5-2E[X1]+2E[X2]-2E[X3]+2E[X4]-2E[X5]-2E[X6] = -2.5-2E[X6] und
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- The paper's stated tau=-0.5 is inconsistent with the supplied beta vectors and covariate-generating equations under the explicit independent factorization used here. This implementation retains the printed equations and computes their implied ATE; it does not force the reported -0.5 value.
+- Section 5.3 displays the missing-pattern right-hand sides after 'logit(p_..)' although those four right-hand-side quantities sum to one only when interpreted as probabilities themselves, not logits. This runnable candidate uses them as direct multinomial probabilities; author/maintainer confirmation is required.
+- The prose gives marginal distributions for X1 and X2 and does not explicitly state all within-person cross-independences. For a runnable joint distribution, this implementation generates X1 and X2 independently; it also independently generates X3, X4, epsilon5 and potential-outcome errors. These factorization choices are adaptations pending confirmation.
+- Missing X5 and X6 values are represented in finite numeric output by sentinel 0.0 plus explicit R5/R6 observation indicators, because the collection runner validates finite numeric tables. The indicator distinguishes a masked value from a true zero; this is an interface adaptation, not imputation.
 
 **Warnings:**
 

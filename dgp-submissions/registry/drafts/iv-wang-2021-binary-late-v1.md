@@ -63,15 +63,7 @@ $$
 **DGP equation 3**
 
 $$
-c=\phi_{1}
-$$
-
-$$
-\text{ a }=(1-c)\phi_{2}
-$$
-
-$$
-n=(1-c)(1-\phi_{2}).
+c=\phi_{1},\quad a=(1-c)\phi_{2},\quad n=(1-c)(1-\phi_{2})
 $$
 
 **DGP equation 4**
@@ -83,13 +75,13 @@ $$
 **DGP equation 5**
 
 $$
-p_{0}=(n(1-\phi_{3})+c(1-q_{0}), n\phi_{3}+\mathrm{cq}_{0}, \text{ a }(1-\phi_{4}), \text{ a }\phi_{4})
+p_{0}=(n(1-\phi_{3})+c(1-q_{0}),\ n\phi_{3}+c q_{0},\ a(1-\phi_{4}),\ a\phi_{4})
 $$
 
 **DGP equation 6**
 
 $$
-p_{1}=(n(1-\phi_{3}), n\phi_{3}, \text{ a }(1-\phi_{4})+c(1-q_{1}), \text{ a }\phi_{4}+\mathrm{cq}_{1}).
+p_{1}=(n(1-\phi_{3}),\ n\phi_{3},\ a(1-\phi_{4})+c(1-q_{1}),\ a\phi_{4}+c q_{1})
 $$
 
 **DGP equation 7**
@@ -105,9 +97,12 @@ $$
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| source_additive | alpha1 | Slope alpha1 in atanh(delta_L(x))=alpha0+alpha1*x, where delta_L(x)=E[Y(1)-Y(0)\|D(1)&gt;D(0),x]. Potential outcomes contrast D=1 versus D=0 among conditional compliers. Equivalently [atanh(delta_L(0.5))-atanh(delta_L(-0.5))]/1.0 under the declared curve model. This parameter is not a risk difference itself and is not the population ATE. | -1.0 | reported_numeric |
+| source_additive | Conditional LATE curve transformed-slope parameter | Slope alpha1 in atanh(delta_L(x))=alpha0+alpha1*x, where delta_L(x)=E[Y(1)-Y(0)\|D(1)&gt;D(0),x]. Potential outcomes contrast D=1 versus D=0 among conditional compliers. Equivalently [atanh(delta_L(0.5))-atanh(delta_L(-0.5))]/1.0 under the declared curve model. This parameter is not a risk difference itself and is not the population ATE. | -1.0 | reported_numeric |
+
+**Original submitted target notation:** alpha1
+
 
 ## Identifiability assumptions
 
@@ -128,6 +123,13 @@ $$
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Keep the additive Section 5 observed-data probability law and all its numeric parameters from the explicitly read arXiv v2. Only this single DGP scenario is declared; nuisance-model fitting variants are not separate DGPs.
+- Scalar collection interface reports the original curve parameter alpha1, the slope of atanh(LATE(x)), rather than the full two-component alpha vector or the entire curve. No new causal target population or intervention is introduced.
+- Return scalar x without the deterministic intercept column. Reconstruct the same observed joint law using Supplement S1 and a new local Python RNG categorical inverse CDF; author RNG and Monte Carlo outputs are not reproduced.
+- Run the required n=128 CPU check rather than the original estimator simulation. Full journal-Version-of-Record versus v2 comparison remains pending; the source version is explicit.
 
 **Warnings:**
 

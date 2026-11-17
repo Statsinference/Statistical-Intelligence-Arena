@@ -80,10 +80,13 @@ $$
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
 | L1 | ATE | ATE = E[0.5 + 3X1 - 5X2 + c4 W]. | 0.10888711551018415 | reported_numeric |
 | L2 | ATE | ATE = E[0.5 + 3X1 - 5X2 + c4 W]. | 0.0 | reported_numeric |
+
+**Original submitted target notation:** ATE
+
 
 ## Identifiability assumptions
 
@@ -98,6 +101,10 @@ $$
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- English description pending; see [original scientific record](./proximal-qi-2024-linear-itr-v1.json).
 
 **Warnings:**
 

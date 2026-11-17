@@ -16,7 +16,7 @@
 
 **Sampling design:** Unit: One30-unit panel; n must equal30,3groups each10;45pre10post observed.; Dependence: Unit intercepts persistent; independent normal errors; shared group renewal damping induces serial and within-group dependence; treatment depends on pre outcomes.
 
-**Generator source:** [generator.py](https://github.com/Statsinference/stats-inference-arena/blob/main/dgp-submissions/registry/generators/did-karmakar-2025-code-truncated-cluster-null-v1.py)
+**Generator source:** [generator.py](../generators/did-karmakar-2025-code-truncated-cluster-null-v1.py)
 
 **Keywords (source-described):** Nonlinearity · Panel data
 
@@ -87,7 +87,10 @@ Eff=(0,0,0); ATT=SATT=0
 
 | Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| baseline | ATT | Population average post-period treatment effect conditional on selected treated units; equals finite-panel SATT=0 under sharp null. | 0 | reported_numeric |
+| baseline | ATT | Population average post-period treatment effect conditional on selected treated units; equals finite-panel SATT=0 under sharp null. | 0.0 | reported_numeric |
+
+**Original submitted target notation:** ATT
+
 
 ## Identifiability assumptions
 
@@ -104,6 +107,14 @@ Eff=(0,0,0); ATT=SATT=0
 
 **Status:** needs_scientific_review
 
+**Adaptations from the source (submitted, unverified):**
+
+- User-authorized official2024 CODE VERSION, not published-formula replication. Only original id1 null distribution.
+- Independent local NumPy RNG; size1 weighted draw equals marginal first element of R weighted permutation but changes RNG consumption. No historical R bitwise replay.
+- Single30-row panel, observed55 of99 generated periods,57 output columns. C is observed design label.
+- Helper manuscript trend/selection/effect placement differ; formal main text inaccessible. Code law retained without mixing versions.
+
 **Warnings:**
 
 - Latent-variable candidates inferred from source equations; confirm their roles and completeness against the original paper or generator.
+- Legacy combined DiD / Synthetic Control family: human classification required; not automatically reassigned.

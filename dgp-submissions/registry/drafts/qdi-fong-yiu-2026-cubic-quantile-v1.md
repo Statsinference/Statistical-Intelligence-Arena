@@ -98,10 +98,13 @@ Q*(u)=4u^3-4.8u^2+2.12u-0.256; F_Y(y) is the unique inverse root in [0,1] on the
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| original_n50 | theta = Q_Y(0.9) | Marginal population quantile inf{y: P(Y&lt;=y)&gt;=0.9} under Y=4(U-0.4)^3+0.2U, U~Uniform(0,1); no conditioning variables or interventions. The fixed query is tau=0.9 in both scenarios. | 0.68 | reported_numeric |
-| original_n500 | theta = Q_Y(0.9) | Marginal population quantile inf{y: P(Y&lt;=y)&gt;=0.9} under Y=4(U-0.4)^3+0.2U, U~Uniform(0,1); no conditioning variables or interventions. The fixed query is tau=0.9 in both scenarios. | 0.68 | reported_numeric |
+| original_n50 | Marginal population quantile | Marginal population quantile inf{y: P(Y&lt;=y)&gt;=0.9} under Y=4(U-0.4)^3+0.2U, U~Uniform(0,1); no conditioning variables or interventions. The fixed query is tau=0.9 in both scenarios. | 0.68 | reported_numeric |
+| original_n500 | Marginal population quantile | Marginal population quantile inf{y: P(Y&lt;=y)&gt;=0.9} under Y=4(U-0.4)^3+0.2U, U~Uniform(0,1); no conditioning variables or interventions. The fixed query is tau=0.9 in both scenarios. | 0.68 | reported_numeric |
+
+**Original submitted target notation:** theta = Q_Y(0.9)
+
 
 ## Identifiability assumptions
 
@@ -119,6 +122,14 @@ Q*(u)=4u^3-4.8u^2+2.12u-0.256; F_Y(y) is the unique inverse root in [0,1] on the
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Preserve the paper analytic cubic distribution and n=50/n=500; restrict to scalar tau=.9. Author code instead implements a finite-grid interpolant with flat tails, so paper-law preservation does not imply exact author-code distribution reproduction.
+- Use direct cubic evaluation with local Python random.Random, instead of author NumPy global seed 2024 and np.interp over a JAX interior grid. Author n=50/500 data are nested prefixes; this local generator also has prefix coupling when called with the same seed at different n. No claim to author samples, posterior fitting or Figure 4 reproduction.
+- Declare original_n50 and original_n500 as two scenarios of one mechanism. The n argument controls generated row count; paper_n records the original design. CLI smoke checks use n=128 and verify additionally generates each original nominal sample size.
+- Linear-only and tau=0.4 cases are auxiliary verification cases, not additional source scenarios or new mechanism families.
+- 2026-11-01 numerical endpoint correction only: for random draw u=0 evaluate -a*b^3 using exact decimal-parameter fractions before float conversion; all nonzero draws use the previous expression. No clipping, changed schema, parameter or population law.
 
 **Warnings:**
 

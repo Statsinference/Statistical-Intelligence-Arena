@@ -122,10 +122,13 @@ Y|X~Bernoulli(m) or Poisson(m); Bernoulli inversion or Knuth product sampler; re
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| original-bernoulli | m(x0) = E[Y \| X = x0] | Conditional mean of the response at the fixed query point x0 = (0.5, 0.5) in the superpopulation defined by the fixed DGP: m(x0) = expit(eta(x0)) in scenario original-bernoulli (a classification probability) and m(x0) = exp(eta(x0)) in scenario original-poisson (a conditional count mean), with eta(x) = sin(pi x1) + 0.5 [x2 + sin(pi x2)]. A pointwise scalar query only; it is not a simultaneous confidence band over the covariate region. | 0.8519528019683106 | reported_numeric |
-| original-poisson | m(x0) = E[Y \| X = x0] | Conditional mean of the response at the fixed query point x0 = (0.5, 0.5) in the superpopulation defined by the fixed DGP: m(x0) = expit(eta(x0)) in scenario original-bernoulli (a classification probability) and m(x0) = exp(eta(x0)) in scenario original-poisson (a conditional count mean), with eta(x) = sin(pi x1) + 0.5 [x2 + sin(pi x2)]. A pointwise scalar query only; it is not a simultaneous confidence band over the covariate region. | 5.754602676005731 | reported_numeric |
+| original-bernoulli | Pointwise conditional mean | Conditional mean of the response at the fixed query point x0 = (0.5, 0.5) in the superpopulation defined by the fixed DGP: m(x0) = expit(eta(x0)) in scenario original-bernoulli (a classification probability) and m(x0) = exp(eta(x0)) in scenario original-poisson (a conditional count mean), with eta(x) = sin(pi x1) + 0.5 [x2 + sin(pi x2)]. A pointwise scalar query only; it is not a simultaneous confidence band over the covariate region. | 0.8519528019683106 | reported_numeric |
+| original-poisson | Pointwise conditional mean | Conditional mean of the response at the fixed query point x0 = (0.5, 0.5) in the superpopulation defined by the fixed DGP: m(x0) = expit(eta(x0)) in scenario original-bernoulli (a classification probability) and m(x0) = exp(eta(x0)) in scenario original-poisson (a conditional count mean), with eta(x) = sin(pi x1) + 0.5 [x2 + sin(pi x2)]. A pointwise scalar query only; it is not a simultaneous confidence band over the covariate region. | 5.754602676005731 | reported_numeric |
+
+**Original submitted target notation:** m(x0) = E[Y \| X = x0]
+
 
 ## Identifiability assumptions
 
@@ -144,6 +147,12 @@ Y|X~Bernoulli(m) or Poisson(m); Bernoulli inversion or Knuth product sampler; re
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Select design j=1, with independent standard-normal components jointly truncated to [-1,1]^2; keep Bernoulli/logit and Poisson/log as two scenarios.
+- Use the source's generating predictor with sin(pi*x1). The later cos expression conflicts with it; weighted centring integrals support the sin reading, but do not constitute an author-issued erratum.
+- Add the fixed query (0.5,0.5) and target the conditional response mean; do not reproduce smooth-backfitting estimators or coverage.
 
 **Warnings:**
 

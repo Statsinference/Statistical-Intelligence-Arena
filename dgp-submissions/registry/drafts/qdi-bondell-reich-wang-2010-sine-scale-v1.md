@@ -57,9 +57,12 @@ $$
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| source_law_fixed_query | Q_{0.9}(0.5) | Conditional 0.9 quantile at X=0.5 in source Example 5. | 4.036735897877181 | reported_numeric |
+| source_law_fixed_query | Conditional quantile | Conditional 0.9 quantile at X=0.5 in source Example 5. | 4.036735897877181 | reported_numeric |
+
+**Original submitted target notation:** Q_{0.9}(0.5)
+
 
 ## Identifiability assumptions
 
@@ -76,6 +79,12 @@ $$
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Fixed x=0.5 and tau=0.9 select one scalar query from source curves; the data-generating coefficients are retained.
+- The source calls g a variance function but multiplies epsilon by g. This implementation follows the displayed equation: g is the conditional standard deviation and Var(Y\|X)=g^2. Independence of X and epsilon and iid rows are explicit implementation conventions.
+- Independent Python/NumPy implementation from mathematical formulas; no author code is redistributed. PCG64(seed) replaces unspecified/source software random-number generation. Sample size is the generate n argument; source_n only records the published sample sizes. No fitting, bootstrap, confidence-band coverage experiment or PFN training is included.
 
 **Warnings:**
 

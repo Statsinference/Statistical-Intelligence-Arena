@@ -83,9 +83,12 @@ When S=0, SA/SZ/SY are coded as zero placeholders; the observed S indicator dist
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| original | theta | Theta = E[E(Y \| A=1,X,U,S=1) - E(Y \| A=0,X,U,S=1) \| S=0]. | -2.6489954259019695 | reported_numeric |
+| original | Target-population transported mean contrast | Theta = E[E(Y \| A=1,X,U,S=1) - E(Y \| A=0,X,U,S=1) \| S=0]. | -2.6489954259019695 | reported_numeric |
+
+**Original submitted target notation:** theta
+
 
 ## Identifiability assumptions
 
@@ -100,6 +103,10 @@ When S=0, SA/SZ/SY are coded as zero placeholders; the observed S indicator dist
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- English description pending; see [original scientific record](./proximal-su-2026-transport-v1.json).
 
 **Warnings:**
 

@@ -98,10 +98,13 @@ $$
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| source_G | CQCE(.5) | English description not yet supplied; consult the original scientific record (JSON). | 0.5 | reported_numeric |
-| source_H | CQCE(.5) | English description not yet supplied; consult the original scientific record (JSON). | 0.5809171213641415 | reported_numeric |
+| source_G | Conditional complier median causal effect | English description not yet supplied; consult the original scientific record (JSON). | 0.5 | reported_numeric |
+| source_H | Conditional complier median causal effect | English description not yet supplied; consult the original scientific record (JSON). | 0.5809171213641415 | reported_numeric |
+
+**Original submitted target notation:** CQCE(.5)
+
 
 ## Identifiability assumptions
 
@@ -116,6 +119,11 @@ $$
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Select original G/H scenarios because their censoring laws are explicitly supplied; A/B only state approximately30% without endpoints and are not claimed implemented.
+- Scalar interface selects original CQCE at tau=.5; new local RNG; no quantile regression fitting/bootstrap or coverage experiments.
 
 **Warnings:**
 

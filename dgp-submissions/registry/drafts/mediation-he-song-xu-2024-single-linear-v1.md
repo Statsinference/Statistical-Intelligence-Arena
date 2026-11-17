@@ -16,9 +16,9 @@
 
 **Sampling design:** Unit: individual; Dependence: iid
 
-**Generator source:** [generator.py](https://github.com/Statsinference/stats-inference-arena/blob/main/dgp-submissions/registry/generators/mediation-he-song-xu-2024-single-linear-v1.py)
+**Generator source:** [generator.py](../generators/mediation-he-song-xu-2024-single-linear-v1.py)
 
-**Keywords (source-described):** Linearity
+**Keywords (source-described):** Not specified
 
 **Observed variables**
 
@@ -78,10 +78,13 @@ Y=beta_M M+1+X1+X2+A+epsilon_Y, epsilon_Y~N(0,0.5^2), independent of epsilon_M
 
 | Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| fixed_product_004_ratio_1 | NIE_1 | E[Y(1,M(1))-Y(1,M(0))] in the source SEM superpopulation; exposure S is named A in data columns. | 0.04000000000000001 | reported_numeric |
-| fixed_null_h01 | NIE_1 | E[Y(1,M(1))-Y(1,M(0))] in the source SEM superpopulation; exposure S is named A in data columns. | 0 | reported_numeric |
-| fixed_null_h02 | NIE_1 | E[Y(1,M(1))-Y(1,M(0))] in the source SEM superpopulation; exposure S is named A in data columns. | 0 | reported_numeric |
-| fixed_null_h03 | NIE_1 | E[Y(1,M(1))-Y(1,M(0))] in the source SEM superpopulation; exposure S is named A in data columns. | 0 | reported_numeric |
+| fixed_product_004_ratio_1 | NIE | E[Y(1,M(1))-Y(1,M(0))] in the source SEM superpopulation; exposure S is named A in data columns. | 0.04000000000000001 | reported_numeric |
+| fixed_null_h01 | NIE | E[Y(1,M(1))-Y(1,M(0))] in the source SEM superpopulation; exposure S is named A in data columns. | 0.0 | reported_numeric |
+| fixed_null_h02 | NIE | E[Y(1,M(1))-Y(1,M(0))] in the source SEM superpopulation; exposure S is named A in data columns. | 0.0 | reported_numeric |
+| fixed_null_h03 | NIE | E[Y(1,M(1))-Y(1,M(0))] in the source SEM superpopulation; exposure S is named A in data columns. | 0.0 | reported_numeric |
+
+**Original submitted target notation:** NIE_1
+
 
 ## Identifiability assumptions
 
@@ -101,6 +104,12 @@ Y=beta_M M+1+X1+X2+A+epsilon_Y, epsilon_Y~N(0,0.5^2), independent of epsilon_M
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Retain the published linear SEM and baseline/noise constants. Register the three fixed null configurations from equation (12) as scenarios of one family.
+- Choose alpha_S=beta_M=0.2 from the §4.2 fixed-product 0.04 alternative at ratio one; this particular point is a disclosed selection from the paper's continuous power setting, not a new family.
+- Report the population natural NIE alpha_S*beta_M rather than the paper's bootstrap test performance.
 
 **Warnings:**
 

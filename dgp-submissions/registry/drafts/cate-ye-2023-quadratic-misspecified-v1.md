@@ -80,9 +80,12 @@ Y = eps + A tau(U, W)
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| original | tau(u0, w0) = E[Y(1) - Y(0) \| U = u0, W = w0] | Conditional average treatment effect at the declared query points for the arm-2 versus arm-1 contrast; affine in U and W with a small negative quadratic term in U, so the surface is curved but close to linear over the bulk of the covariate law. | -1.3925 | reported_numeric |
+| original | CATE | Conditional average treatment effect at the declared query points for the arm-2 versus arm-1 contrast; affine in U and W with a small negative quadratic term in U, so the surface is curved but close to linear over the bulk of the covariate law. | -1.3925 | reported_numeric |
+
+**Original submitted target notation:** tau(u0, w0) = E[Y(1) - Y(0) \| U = u0, W = w0]
+
 
 ## Identifiability assumptions
 
@@ -100,6 +103,14 @@ Y = eps + A tau(U, W)
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Three arms reduced to two: only the arm-2 versus arm-1 contrast is kept, so the registered target is the binary-treatment CATE of that contrast. The surface is exactly the increment in equation (21).
+- Y(1) in the source is the observed placebo-arm response of 481 real patients and is not distributed with the paper; this package replaces it with independent N(0,1) noise, which preserves the low R-squared reported for the real baseline but sets the paper's beta1 = -0.240 to 0. Declared deviation.
+- (U,W) are drawn as independent standard normals, with the paper's centring constants set to muU = muW = 0 and muU2 = E[U^2] = 1.
+- The source runs simple randomisation, stratified permuted blocks and Pocock-Simon minimisation with allocation 1:1:1 or 1:2:2 over three arms; this package uses simple randomisation with two arms at 1:1, so e = 0.5.
+- The source draws a random sample of n = 200 or 400 from the 481 subjects; no resampling of real subjects occurs here.
 
 **Warnings:**
 

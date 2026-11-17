@@ -36,9 +36,21 @@ Not explicitly identified (review required)
 
 **Original source equations (verbatim):** [Open raw scientific record (JSON)](./proximal-li-2023-07-10-continuous-tnd-v1.json).
 
-取 $`\sigma(t)=1/(1+\exp(-t))`$。对来源总体独立个体依次生成：
+English equation transcription pending; consult the linked original scientific record (JSON) for the complete source and context.
 
-1. $`U \sim \mathrm{Uniform}(0,1)`$，$`X \sim \mathrm{Uniform}(0,1)`$；两者独立。
+$$
+\sigma(t)=1/(1+\exp(-t))
+$$
+
+English equation transcription pending; consult the linked original scientific record (JSON) for the complete source and context.
+
+$$
+U \sim \mathrm{Uniform}(0,1)
+$$
+
+$$
+X \sim \mathrm{Uniform}(0,1)
+$$
 
 **Step 2**
 
@@ -80,19 +92,52 @@ $$
 S \mid  Y,D,U,X \sim \mathrm{Bernoulli}(\max(Y,D) \times  \sigma(-1.4 + 0.5X + 2U + UX))
 $$
 
-$`\varepsilon_{Z}`$ 与 $`\varepsilon_{W}`$ 为独立 $`\mathcal{N}(0,0.25^{2})`$，并独立于 <code>U,X</code> 及二元节点的随机数。最终只返回 $`S=1`$ 个体的观测列 <code>X,A,Z,W,Y</code>；内部变量为 <code>U,D,S</code>。连续协变量 <code>X</code> 的边界是 <code>[0,1]</code>；连续代理与正态噪声无固定数值截断。
+English equation transcription pending; consult the linked original scientific record (JSON) for the complete source and context.
 
-四个场景均固定 $`\eta_{0}=\log(0.01)`$，只改变处理效应 $`\beta\in \{\log(0.2), \log(0.5), \log(0.7), 0\}`$。
+εZ
+
+εW
+
+$$
+\mathcal{N}(0,0.25^{2})
+$$
+
+U,X
+
+$$
+S=1
+$$
+
+X,A,Z,W,Y
+
+U,D,S
+
+X
+
+[0,1]
+
+English equation transcription pending; consult the linked original scientific record (JSON) for the complete source and context.
+
+$$
+\eta_{0}=\log(0.01)
+$$
+
+$$
+\beta\in \{\log(0.2), \log(0.5), \log(0.7), 0\}
+$$
 
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| table-eta001-rr020 | beta_log_RR | log(E[Y(1)]/E[Y(0)]) in the source population before S selection; not selected-sample log odds ratio. | -1.6094379124341003 | reported_numeric |
-| table-eta001-rr050 | beta_log_RR | log(E[Y(1)]/E[Y(0)]) in the source population before S selection; not selected-sample log odds ratio. | -0.6931471805599453 | reported_numeric |
-| table-eta001-rr070 | beta_log_RR | log(E[Y(1)]/E[Y(0)]) in the source population before S selection; not selected-sample log odds ratio. | -0.35667494393873245 | reported_numeric |
-| table-eta001-rr100 | beta_log_RR | log(E[Y(1)]/E[Y(0)]) in the source population before S selection; not selected-sample log odds ratio. | 0.0 | reported_numeric |
+| table-eta001-rr020 | Causal log mean ratio | log(E[Y(1)]/E[Y(0)]) in the source population before S selection; not selected-sample log odds ratio. | -1.6094379124341003 | reported_numeric |
+| table-eta001-rr050 | Causal log mean ratio | log(E[Y(1)]/E[Y(0)]) in the source population before S selection; not selected-sample log odds ratio. | -0.6931471805599453 | reported_numeric |
+| table-eta001-rr070 | Causal log mean ratio | log(E[Y(1)]/E[Y(0)]) in the source population before S selection; not selected-sample log odds ratio. | -0.35667494393873245 | reported_numeric |
+| table-eta001-rr100 | Causal log mean ratio | log(E[Y(1)]/E[Y(0)]) in the source population before S selection; not selected-sample log odds ratio. | 0.0 | reported_numeric |
+
+**Original submitted target notation:** beta_log_RR
+
 
 ## Identifiability assumptions
 
@@ -112,6 +157,12 @@ $`\varepsilon_{Z}`$ 与 $`\varepsilon_{W}`$ 为独立 $`\mathcal{N}(0,0.25^{2})`
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- English description pending; see [original scientific record](./proximal-li-2023-07-10-continuous-tnd-v1.json).
+- English description pending; see [original scientific record](./proximal-li-2023-07-10-continuous-tnd-v1.json).
+- English description pending; see [original scientific record](./proximal-li-2023-07-10-continuous-tnd-v1.json).
 
 **Warnings:**
 

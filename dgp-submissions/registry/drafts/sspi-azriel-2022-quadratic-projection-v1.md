@@ -68,9 +68,12 @@ Two independent samples from the same population: source_n_labeled rows with obs
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| original | beta_L2 | Slope in the population least-squares projection of Y on (1,X). | 1.0 | reported_numeric |
+| original | Population least-squares projection slope | Slope in the population least-squares projection of Y on (1,X). | 1.0 | reported_numeric |
+
+**Original submitted target notation:** beta_L2
+
 
 ## Identifiability assumptions
 
@@ -87,6 +90,14 @@ Two independent samples from the same population: source_n_labeled rows with obs
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Select alpha=1/2 and n=100 from the source Figure 1 grid, beta=1 and m=2n.
+- Return the slope component of the population linear projection through the scalar truth interface.
+- Represent independent labeled/unlabeled samples in a single table: all X columns, label indicator R and Y_obs. A zero on an R=0 row is a finite placeholder.
+- The generate argument n counts total rows. Source total yields exact source allocation; other n use nearest-integer ratio allocation with both groups nonempty.
+- Use local PCG64 random streams, with independent covariate and response-noise streams. Each row remains an independent population draw.
 
 **Warnings:**
 

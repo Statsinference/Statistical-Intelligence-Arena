@@ -18,11 +18,18 @@
 
 **Generator source:** [generator.py](../generators/proximal-shi-2026-sc-gaussian-v1.py)
 
-**Keywords (source-described):** Linearity · Panel data
+**Keywords (source-described):** Panel data
 
 **Observed variables**
 
+time, A, Y, W1–W5 (5 variables), Z1–Z5 (5 variables)
+
+<details>
+<summary>All observed variable names</summary>
+
 time, A, Y, W1, W2, W3, W4, W5, Z1, Z2, Z3, Z4, Z5
+
+</details>
 
 **Latent variables**
 
@@ -71,9 +78,12 @@ $$
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| journal_r5_stationary | ETT | ETT = E[Y_t(1)-Y_t(0)] = 2, also when averaged over post-treatment periods. | 2.0 | reported_numeric |
+| journal_r5_stationary | Needs review | ETT = E[Y_t(1)-Y_t(0)] = 2, also when averaged over post-treatment periods. | 2.0 | reported_numeric |
+
+**Original submitted target notation:** ETT
+
 
 ## Identifiability assumptions
 
@@ -88,6 +98,10 @@ $$
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- English description pending; see [original scientific record](./proximal-shi-2026-sc-gaussian-v1.json).
 
 **Warnings:**
 

@@ -22,7 +22,14 @@
 
 **Observed variables**
 
+X1–X200 (200 variables), Z, D, Y
+
+<details>
+<summary>All observed variable names</summary>
+
 X1, X2, X3, X4, X5, X6, X7, X8, X9, X10, X11, X12, X13, X14, X15, X16, X17, X18, X19, X20, X21, X22, X23, X24, X25, X26, X27, X28, X29, X30, X31, X32, X33, X34, X35, X36, X37, X38, X39, X40, X41, X42, X43, X44, X45, X46, X47, X48, X49, X50, X51, X52, X53, X54, X55, X56, X57, X58, X59, X60, X61, X62, X63, X64, X65, X66, X67, X68, X69, X70, X71, X72, X73, X74, X75, X76, X77, X78, X79, X80, X81, X82, X83, X84, X85, X86, X87, X88, X89, X90, X91, X92, X93, X94, X95, X96, X97, X98, X99, X100, X101, X102, X103, X104, X105, X106, X107, X108, X109, X110, X111, X112, X113, X114, X115, X116, X117, X118, X119, X120, X121, X122, X123, X124, X125, X126, X127, X128, X129, X130, X131, X132, X133, X134, X135, X136, X137, X138, X139, X140, X141, X142, X143, X144, X145, X146, X147, X148, X149, X150, X151, X152, X153, X154, X155, X156, X157, X158, X159, X160, X161, X162, X163, X164, X165, X166, X167, X168, X169, X170, X171, X172, X173, X174, X175, X176, X177, X178, X179, X180, X181, X182, X183, X184, X185, X186, X187, X188, X189, X190, X191, X192, X193, X194, X195, X196, X197, X198, X199, X200, Z, D, Y
+
+</details>
 
 **Latent variables**
 
@@ -137,12 +144,15 @@ lambda11 in {0.5,0.75,1,1.25}; no interactions; source alpha0=1.
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| source_lambda11_0p5 | alpha0 = LATE | E[Y(1)-Y(0)\|D(1)&gt;D(0)]=1 in source DGP2 without treatment-covariate interactions. LCSTE(x)=1 for every x; alpha0 is the treatment coefficient directly evaluated in source Section 6. This is an IV complier estimand despite the paper's heterogeneous-effects title. | 1.0 | reported_numeric |
-| source_lambda11_0p75 | alpha0 = LATE | E[Y(1)-Y(0)\|D(1)&gt;D(0)]=1 in source DGP2 without treatment-covariate interactions. LCSTE(x)=1 for every x; alpha0 is the treatment coefficient directly evaluated in source Section 6. This is an IV complier estimand despite the paper's heterogeneous-effects title. | 1.0 | reported_numeric |
-| source_lambda11_1 | alpha0 = LATE | E[Y(1)-Y(0)\|D(1)&gt;D(0)]=1 in source DGP2 without treatment-covariate interactions. LCSTE(x)=1 for every x; alpha0 is the treatment coefficient directly evaluated in source Section 6. This is an IV complier estimand despite the paper's heterogeneous-effects title. | 1.0 | reported_numeric |
-| source_lambda11_1p25 | alpha0 = LATE | E[Y(1)-Y(0)\|D(1)&gt;D(0)]=1 in source DGP2 without treatment-covariate interactions. LCSTE(x)=1 for every x; alpha0 is the treatment coefficient directly evaluated in source Section 6. This is an IV complier estimand despite the paper's heterogeneous-effects title. | 1.0 | reported_numeric |
+| source_lambda11_0p5 | LATE | E[Y(1)-Y(0)\|D(1)&gt;D(0)]=1 in source DGP2 without treatment-covariate interactions. LCSTE(x)=1 for every x; alpha0 is the treatment coefficient directly evaluated in source Section 6. This is an IV complier estimand despite the paper's heterogeneous-effects title. | 1.0 | reported_numeric |
+| source_lambda11_0p75 | LATE | E[Y(1)-Y(0)\|D(1)&gt;D(0)]=1 in source DGP2 without treatment-covariate interactions. LCSTE(x)=1 for every x; alpha0 is the treatment coefficient directly evaluated in source Section 6. This is an IV complier estimand despite the paper's heterogeneous-effects title. | 1.0 | reported_numeric |
+| source_lambda11_1 | LATE | E[Y(1)-Y(0)\|D(1)&gt;D(0)]=1 in source DGP2 without treatment-covariate interactions. LCSTE(x)=1 for every x; alpha0 is the treatment coefficient directly evaluated in source Section 6. This is an IV complier estimand despite the paper's heterogeneous-effects title. | 1.0 | reported_numeric |
+| source_lambda11_1p25 | LATE | E[Y(1)-Y(0)\|D(1)&gt;D(0)]=1 in source DGP2 without treatment-covariate interactions. LCSTE(x)=1 for every x; alpha0 is the treatment coefficient directly evaluated in source Section 6. This is an IV complier estimand despite the paper's heterogeneous-effects title. | 1.0 | reported_numeric |
+
+**Original submitted target notation:** alpha0 = LATE
+
 
 ## Identifiability assumptions
 
@@ -161,6 +171,14 @@ lambda11 in {0.5,0.75,1,1.25}; no interactions; source alpha0=1.
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Select source DGP2 without interaction and p=200 from source p=50,100,200,300,400,500; retain all four lambda11 source scenarios as one family.
+- Return source alpha0=1, equal to constant complier local treatment effect and LATE without interaction; no new fixed-x or policy target is introduced.
+- Implement Gaussian AR(1) covariance and iid threshold/noise/Poisson innovations using independently written NumPy, without author seed equivalence.
+- Draw the generated Poisson innovations independently of X, treatment errors, outcome noise, instrument randomization and each other, spelling out the standard independent-draw reading of Section 6; no author software was available to check unreported coupling. Contrast truth is invariant to coupling because subgroup shifts are identical in both potentials.
+- Omit estimation, penalty selection, 1000 replications and CIs; n and seed supplied by caller.
 
 **Warnings:**
 

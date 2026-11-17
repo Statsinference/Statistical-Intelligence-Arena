@@ -22,7 +22,14 @@
 
 **Observed variables**
 
+X1–X5 (5 variables), A, Y
+
+<details>
+<summary>All observed variable names</summary>
+
 X1, X2, X3, X4, X5, A, Y
+
+</details>
 
 **Latent variables**
 
@@ -80,9 +87,12 @@ Y = m(X) + A tau(X) + eps, eps ~ Normal(0,1)
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| original | tau(x0) = E[Y(1) - Y(0) \| X = x0] | Conditional average treatment effect at the declared query points for the combined setting: sigmoid-product heterogeneity on X1, X2 together with a beta-density propensity and a linear baseline on X3. | 2.25 | reported_numeric |
+| original | CATE ⚠ review | Conditional average treatment effect at the declared query points for the combined setting: sigmoid-product heterogeneity on X1, X2 together with a beta-density propensity and a linear baseline on X3. | 2.25 | reported_numeric |
+
+**Original submitted target notation:** tau(x0) = E[Y(1) - Y(0) \| X = x0]
+
 
 ## Identifiability assumptions
 
@@ -100,6 +110,13 @@ Y = m(X) + A tau(X) + eps, eps ~ Normal(0,1)
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Ambient dimension fixed at p = 5 instead of the source's p in {10, 20}; the third setting needs only X1, X2 (effect) and X3 (confounding).
+- The source writes Y ~ N(m(X) + (W - 0.5) tau(X), 1); this package uses A in {0,1} and Y = m(X) + A tau(X) + eps with eps ~ N(0,1). The CATE is unchanged.
+- The effect surface is identical to cate-wager-2018-sigmoid-product-v1 because the source builds the third setting by reusing tau from its first setting; the difference between the two contributions is the confounding structure, which is the point of this row of Table 1.
+- The source aggregates over 60 replications with B = 2000 trees; no forest is fitted here.
 
 **Warnings:**
 

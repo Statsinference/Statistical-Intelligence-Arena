@@ -16,13 +16,20 @@
 
 **Sampling design:** Unit: individual panel, n individuals, 4 outcomes per row; Dependence: English description not yet supplied; consult the original scientific record (JSON).
 
-**Generator source:** [generator.py](https://github.com/Statsinference/stats-inference-arena/blob/main/dgp-submissions/registry/generators/did-ye-2024-bracketing-v1.py)
+**Generator source:** [generator.py](../generators/did-ye-2024-bracketing-v1.py)
 
-**Keywords (source-described):** Linearity · Panel data
+**Keywords (source-described):** Panel data
 
 **Observed variables**
 
+G, Y1–Y4 (4 variables)
+
+<details>
+<summary>All observed variable names</summary>
+
 G, Y1, Y2, Y3, Y4
+
+</details>
 
 **Latent variables**
 
@@ -113,8 +120,11 @@ $$
 
 | Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| case1_parallel | ATT_4 | English description not yet supplied; consult the original scientific record (JSON). | 1 | reported_numeric |
-| case2_partial | ATT_4 | English description not yet supplied; consult the original scientific record (JSON). | 1 | reported_numeric |
+| case1_parallel | ATT | English description not yet supplied; consult the original scientific record (JSON). | 1.0 | reported_numeric |
+| case2_partial | ATT | English description not yet supplied; consult the original scientific record (JSON). | 1.0 | reported_numeric |
+
+**Original submitted target notation:** ATT_4
+
 
 ## Identifiability assumptions
 
@@ -132,6 +142,15 @@ $$
 
 **Status:** needs_scientific_review
 
+**Adaptations from the source (submitted, unverified):**
+
+- English description pending; see [original scientific record](./did-ye-2024-bracketing-v1.json).
+- English description pending; see [original scientific record](./did-ye-2024-bracketing-v1.json).
+- English description pending; see [original scientific record](./did-ye-2024-bracketing-v1.json).
+- English description pending; see [original scientific record](./did-ye-2024-bracketing-v1.json).
+- English description pending; see [original scientific record](./did-ye-2024-bracketing-v1.json).
+
 **Warnings:**
 
 - No explicit latent-variable metadata or reliably identifiable latent declarations; absence from this list does not prove that no latent variables exist.
+- Legacy combined DiD / Synthetic Control family: human classification required; not automatically reassigned.

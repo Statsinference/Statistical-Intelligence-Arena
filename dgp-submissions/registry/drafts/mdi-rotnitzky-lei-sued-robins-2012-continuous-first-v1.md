@@ -22,7 +22,14 @@
 
 **Observed variables**
 
+L1–L4 (4 variables), A, Y_observed
+
+<details>
+<summary>All observed variable names</summary>
+
 L1, L2, L3, L4, A, Y_observed
+
+</details>
 
 **Latent variables**
 
@@ -84,9 +91,12 @@ beta_0=E(Y)=210
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| original | beta_0 = E(Y) | Full-data superpopulation mean of continuous Y before missingness. | 210.0 | reported_numeric |
+| original | Full-data population outcome mean | Full-data superpopulation mean of continuous Y before missingness. | 210.0 | reported_numeric |
+
+**Original submitted target notation:** beta_0 = E(Y)
+
 
 ## Identifiability assumptions
 
@@ -104,6 +114,12 @@ beta_0=E(Y)=210
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- One generate call produces one sample instead of paper n=200 or 1000 with 1000 Monte Carlo datasets.
+- Finite zero placeholder encodes missing Y; use A as its mask.
+- Auxiliary transformed X variables used only to fit intentionally misspecified working estimators are not output; fully observed L and the outcome/missingness mechanism are preserved.
 
 **Warnings:**
 

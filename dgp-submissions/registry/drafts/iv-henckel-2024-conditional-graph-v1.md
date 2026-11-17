@@ -18,7 +18,7 @@
 
 **Generator source:** [generator.py](../generators/iv-henckel-2024-conditional-graph-v1.py)
 
-**Keywords (source-described):** Linearity
+**Keywords (source-described):** Not specified
 
 **Observed variables**
 
@@ -126,10 +126,13 @@ tau_YX = coefficient[Y,X] + coefficient[M,X]*coefficient[Y,M].
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| frozen_gaussian | tau_YX | Population total effect d E[Y\|do(X=x)]/dx, equivalently E[Y\|do(X=1)]-E[Y\|do(X=0)], including X-&gt;M-&gt;Y. | -0.018451871582129575 | reported_numeric |
-| frozen_uniform | tau_YX | Population total effect d E[Y\|do(X=x)]/dx, equivalently E[Y\|do(X=1)]-E[Y\|do(X=0)], including X-&gt;M-&gt;Y. | -0.018451871582129575 | reported_numeric |
+| frozen_gaussian | Population total causal effect | Population total effect d E[Y\|do(X=x)]/dx, equivalently E[Y\|do(X=1)]-E[Y\|do(X=0)], including X-&gt;M-&gt;Y. | -0.018451871582129575 | reported_numeric |
+| frozen_uniform | Population total causal effect | Population total effect d E[Y\|do(X=x)]/dx, equivalently E[Y\|do(X=1)]-E[Y\|do(X=0)], including X-&gt;M-&gt;Y. | -0.018451871582129575 | reported_numeric |
+
+**Original submitted target notation:** tau_YX
+
 
 ## Identifiability assumptions
 
@@ -146,6 +149,13 @@ tau_YX = coefficient[Y,X] + coefficient[M,X]*coefficient[Y,M].
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Freeze one new PCG64 parameter draw seed 1729 from the original coefficient and variance laws; this is not the original R seed-5 draw or its published RMSE experiment.
+- Keep the graph G1 from the author code; rename code node e to M to expose its mediator role.
+- Both Gaussian and uniform errors use the same frozen graph and coefficients as two scenarios, not separate families.
+- Return observed nodes only; latent L1 and L2 are retained internally. Sample size is a hook input rather than fixed at 50 or 500.
 
 **Warnings:**
 

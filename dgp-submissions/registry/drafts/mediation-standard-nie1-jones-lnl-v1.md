@@ -16,13 +16,20 @@
 
 **Sampling design:** IID observations at a fixed structural configuration; separate mechanism and observation seeds.
 
-**Generator source:** [generator.py](https://github.com/Statsinference/stats-inference-arena/blob/main/dgp-submissions/registry/generators/mediation-standard-nie1-jones-lnl-v1.py)
+**Generator source:** [generator.py](../generators/mediation-standard-nie1-jones-lnl-v1.py)
 
 **Keywords (source-described):** Not specified
 
 **Observed variables**
 
+X1, X2, X3, A, M1–M10 (10 variables), Y
+
+<details>
+<summary>All observed variable names</summary>
+
 X1, X2, X3, A, M1, M2, M3, M4, M5, M6, M7, M8, M9, M10, Y
+
+</details>
 
 **Latent variables**
 
@@ -79,6 +86,9 @@ return x,a,m,y,[&quot;continuous&quot;]*q,[&quot;continuous&quot;]*3,&quot;conti
 |---|---|---|---|---|
 | native | NIE | NIE = E[Y(1,M(1))-Y(1,M(0))] in the adapted fixed-SEM superpopulation, jointly intervening on the complete mediator vector. | 2.4000000000000004 | reported_numeric |
 
+**Original submitted target notation:** NIE
+
+
 ## Identifiability assumptions
 
 - Independent exogenous structural errors and iid units conditional on fixed configuration.
@@ -94,6 +104,12 @@ return x,a,m,y,[&quot;continuous&quot;]*q,[&quot;continuous&quot;]*3,&quot;conti
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Retain LNL propensity/mediator-confounding/outcome-confounding forms, vector mediators and active paths.
+- New complete-data superpopulation NIE1 target; original records/estimands are retained separately.
+- Standalone canonical generator core SHA256 443e04663970594a8ec2932dc0ee9718c10cc501314d133686dfd0e9acf1baa8
 
 **Warnings:**
 

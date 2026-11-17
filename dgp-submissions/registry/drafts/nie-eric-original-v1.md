@@ -16,7 +16,7 @@
 
 **Sampling design:** Unit: individual; Dependence: iid
 
-**Generator source:** [generator.py](https://github.com/Statsinference/stats-inference-arena/blob/main/dgp-submissions/registry/generators/nie-eric-original-v1.py)
+**Generator source:** [generator.py](../generators/nie-eric-original-v1.py)
 
 **Keywords (source-described):** Interactions · Nonlinearity
 
@@ -93,7 +93,10 @@ Y = 1 + 0.2 X1 + 0.3 X2 + 1.4 X3 - 2.5 A - 3.5 M + 5 A M + epsilon; epsilon ~ No
 
 | Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| original | theta_NIE = theta_11 - theta_10 | E[Y(1,M(1)) - Y(1,M(0))] in the superpopulation defined by the fixed DGP. | 0.2366199012683949 | reported_numeric |
+| original | NIE | E[Y(1,M(1)) - Y(1,M(0))] in the superpopulation defined by the fixed DGP. | 0.2366199012683949 | reported_numeric |
+
+**Original submitted target notation:** theta_NIE = theta_11 - theta_10
+
 
 ## Identifiability assumptions
 
@@ -113,6 +116,13 @@ Y = 1 + 0.2 X1 + 0.3 X2 + 1.4 X3 - 2.5 A - 3.5 M + 5 A M + epsilon; epsilon ~ No
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Keep the Section 3 observed-data equations and fixed parameters unchanged; rename exposure E to A.
+- Evaluate NIE = theta_11 - theta_10, whereas the Section 3 simulation compares natural direct-effect estimators.
+- Use small CPU checks instead of reproducing the paper's entire n=600/1000, R=1000 simulation or any PFN experiment.
+- Promote the existing student-toolkit example to contributions; generator.py, truth.py, verify.py and config.json are copied unchanged. This is an existing example-family registration, not a newly discovered mechanism.
 
 **Warnings:**
 

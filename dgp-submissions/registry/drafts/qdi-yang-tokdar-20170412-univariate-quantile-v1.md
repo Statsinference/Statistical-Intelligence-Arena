@@ -18,7 +18,7 @@
 
 **Generator source:** [generator.py](../generators/qdi-yang-tokdar-20170412-univariate-quantile-v1.py)
 
-**Keywords (source-described):** Linearity
+**Keywords (source-described):** Not specified
 
 **Observed variables**
 
@@ -89,9 +89,12 @@ theta=Q_Y(0.9|X=0.5)=(38/25)*log(100/9)
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| original_law_x05_tau09 | theta = Q_Y(0.9 \| X=0.5) | inf{y: F_Y(y \| X=0.5) &gt;= 0.9} under the source superpopulation; use the conditional distribution version continuous in x specified by the quantile-plane law. A noncausal scalar conditional quantile, not a marginal quantile, beta_1(0.9), prediction interval, or simultaneous band. | 3.6600773251508456 | reported_numeric |
+| original_law_x05_tau09 | Conditional quantile | inf{y: F_Y(y \| X=0.5) &gt;= 0.9} under the source superpopulation; use the conditional distribution version continuous in x specified by the quantile-plane law. A noncausal scalar conditional quantile, not a marginal quantile, beta_1(0.9), prediction interval, or simultaneous band. | 3.6600773251508456 | reported_numeric |
+
+**Original submitted target notation:** theta = Q_Y(0.9 \| X=0.5)
+
 
 ## Identifiability assumptions
 
@@ -110,6 +113,16 @@ theta=Q_Y(0.9|X=0.5)=(38/25)*log(100/9)
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Retain the complete published Section 5.1 quantile law, X~Uniform(-1,1), coefficients 3 and 4, center 1/2 and powers. Choose query_x=0.5 and quantile_level=0.9 for the scalar Arena target; this query and numeric result are collection adaptations, not a single-point result designated or reported by the paper.
+- Implement this conditional law by Y=Q(U\|X), U uniform(0,1) independent of X, using local Python Random(seed) and iid rows. This is an independent law-equivalent implementation, not author-code or original-dataset replay; the published Section 5.1 experiment script, commit and author RNG/seed have not been located.
+- Output observed X,Y only. Finite-precision random() draws reject u=0 and use stable logarithms; no arbitrary tail clipping, extra noise or changed coefficient. Local seed and finite PRNG support are implementation choices.
+- Check n=128, seed=1729 rather than rerun the paper experiments (100 datasets of n=1000), estimators, MCMC, bootstrap or coverage. Analytic special cases are diagnostics within one declared scenario, not new mechanisms.
+- Retain source-only audit evidence dated 2026-10-31 for the supplement, published main text, pinned GitHub estimator snapshot and observed CRAN documentation. Do not import estimator preprocessing, example noise, censoring or base distributions into the DGP.
+- Documentation-only revision 2026-11-01 makes the already-read published version the current primary source. The preprint is historical comparison only. No change to the generation law, query, six implementation/config/schema/dependency files, numerical tolerances, scenario count or stable identifiers. Historical v1 comments in unchanged implementation/config files do not override the published primary reference in this manifest and card.
+- 2026-11-01 source-gap audit: obtain/review raw CRAN2.1-0 artifacts by read-only reuse of parallel official-source downloads, verify all35 members against fixed mirror commit, reread author websites, historical metadata and75 text files; update only provenance/missing evidence. Preserve formal primary source, complete law, scalar adaptation, six implementation files and tolerances; original experiment script/seed/RNG remain unlocated within the bounded search.
 
 **Warnings:**
 

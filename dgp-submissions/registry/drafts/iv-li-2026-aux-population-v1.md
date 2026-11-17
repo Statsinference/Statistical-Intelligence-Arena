@@ -22,7 +22,14 @@
 
 **Observed variables**
 
+V1–V4 (4 variables), R, Z_obs, X, Y
+
+<details>
+<summary>All observed variable names</summary>
+
 V1, V2, V3, V4, R, Z_obs, X, Y
+
+</details>
 
 **Latent variables**
 
@@ -91,9 +98,12 @@ $$
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| source_v1 | tau | English description not yet supplied; consult the original scientific record (JSON). | 2.224373475244555 | reported_numeric |
+| source_v1 | ATE | English description not yet supplied; consult the original scientific record (JSON). | 2.224373475244555 | reported_numeric |
+
+**Original submitted target notation:** tau
+
 
 ## Identifiability assumptions
 
@@ -108,6 +118,12 @@ $$
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- Use explicitly read v1 DGP; 2026 journal bibliographic status does not imply line-by-line matching with version of record.
+- Encode missing IV as Z_obs=0 when R=0 and supply R as the observation mask; never output the true unobserved IV.
+- Numerically integrate the exact population target instead of using source rounded value2.22 as exact truth; fit misspecification variants are not new DGPs.
 
 **Warnings:**
 

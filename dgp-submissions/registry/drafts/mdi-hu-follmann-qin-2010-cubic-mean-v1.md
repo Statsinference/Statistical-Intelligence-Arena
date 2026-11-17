@@ -84,9 +84,12 @@ theta=E(Y)=E[(X1+X2)^3]=0
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| original | theta = E(Y) | Marginal full-data response mean in the iid superpopulation, before outcome masking. | 0.0 | reported_numeric |
+| original | Full-data population outcome mean | Marginal full-data response mean in the iid superpopulation, before outcome masking. | 0.0 | reported_numeric |
+
+**Original submitted target notation:** theta = E(Y)
+
 
 ## Identifiability assumptions
 
@@ -104,6 +107,11 @@ theta=E(Y)=E[(X1+X2)^3]=0
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- One call generates one sample instead of repeating the paper's n=500 simulation 1000 times.
+- R=0 and finite Y_observed=0 encode missing Y for the numeric-only interface; always mask using R.
 
 **Warnings:**
 

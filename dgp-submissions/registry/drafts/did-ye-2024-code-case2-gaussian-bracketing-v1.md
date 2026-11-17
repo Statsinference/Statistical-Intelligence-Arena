@@ -16,9 +16,9 @@
 
 **Sampling design:** Unit: 1000 unit rows,4 observed periods; fixed300trt500b200a; n strictly1000; Dependence: All observed Gaussian cell innovations independent; fixed deterministic group/time means, no persistent latent state.
 
-**Generator source:** [generator.py](https://github.com/Statsinference/stats-inference-arena/blob/main/dgp-submissions/registry/generators/did-ye-2024-code-case2-gaussian-bracketing-v1.py)
+**Generator source:** [generator.py](../generators/did-ye-2024-code-case2-gaussian-bracketing-v1.py)
 
-**Keywords (source-described):** Linearity
+**Keywords (source-described):** Not specified
 
 **Observed variables**
 
@@ -79,7 +79,10 @@ Population ATT4=1; finite-sample cross-world coupling unspecified
 
 | Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| baseline | ATT_4 | Population mean treatment effect at final period4 conditional on treated group, source-declared att[4]=1; not finite-sample SATT. | 1 | reported_numeric |
+| baseline | ATT | Population mean treatment effect at final period4 conditional on treated group, source-declared att[4]=1; not finite-sample SATT. | 1.0 | reported_numeric |
+
+**Original submitted target notation:** ATT_4
+
 
 ## Identifiability assumptions
 
@@ -95,6 +98,15 @@ Population ATT4=1; finite-sample cross-world coupling unspecified
 
 **Status:** needs_scientific_review
 
+**Adaptations from the source (submitted, unverified):**
+
+- User-authorized fixed2020 AUTHOR CODE VERSION reproduction, not formal2023 simulation formulas verified.
+- CaseII parameter match to arXiv2006.02423v3 established; fixed counts differ from Pr(G) presentation; only CaseII selected; no S_t/phi mixture.
+- Independent NumPy local RNG preserves distributions/call block order, not R bitwise stream; author seed and RNGkind unpinned.
+- N1000 strictly; group-local ordinal wide mapping is lossless independent-cell rearrangement, not original tracked unit IDs. C0=trt,C1=b,C2=a.
+- Source draws observed Gaussians directly. Population ATT4 only; no cross-world coupling or fixed SATT claim.
+
 **Warnings:**
 
 - No explicit latent-variable metadata or reliably identifiable latent declarations; absence from this list does not prove that no latent variables exist.
+- Legacy combined DiD / Synthetic Control family: human classification required; not automatically reassigned.

@@ -22,7 +22,14 @@
 
 **Observed variables**
 
+X1–X5 (5 variables), S1_1–S1_5 (5 variables), S2, S3_1–S3_5 (5 variables), G, A, GY
+
+<details>
+<summary>All observed variable names</summary>
+
 X1, X2, X3, X4, X5, S1_1, S1_2, S1_3, S1_4, S1_5, S2, S3_1, S3_2, S3_3, S3_4, S3_5, G, A, GY
+
+</details>
 
 **Latent variables**
 
@@ -81,9 +88,12 @@ Coefficient directions are sampled from Uniform(0,1) and vector/column norms sca
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| paper_q2_p5_fixed_design | theta | Tau = E[Y(1)-Y(0) \| G=0] under the registered fixed coefficient design. | 0.8797723708687131 | reported_numeric |
+| paper_q2_p5_fixed_design | Subpopulation average treatment effect | Tau = E[Y(1)-Y(0) \| G=0] under the registered fixed coefficient design. | 0.8797723708687131 | reported_numeric |
+
+**Original submitted target notation:** theta
+
 
 ## Identifiability assumptions
 
@@ -98,6 +108,10 @@ Coefficient directions are sampled from Uniform(0,1) and vector/column norms sca
 **Original versus adapted:** adapted_from_source
 
 **Status:** needs_scientific_review
+
+**Adaptations from the source (submitted, unverified):**
+
+- English description pending; see [original scientific record](./proximal-imbens-2025-longterm-v1.json).
 
 **Warnings:**
 

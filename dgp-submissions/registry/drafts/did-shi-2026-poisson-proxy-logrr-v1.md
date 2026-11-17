@@ -16,7 +16,7 @@
 
 **Sampling design:** Unit: One fixed three-unit panel experiment; n=3 means treated, donor, supplemental proxy unit rows; columns are 100 pre and100 post counts.; Dependence: Shared lambda_t induces positive contemporaneous unconditional cross-unit covariance. Given the entire factor path, all observed Poisson draws are independent. Factor paths are iid across times. No independent-row assumption.
 
-**Generator source:** [generator.py](https://github.com/Statsinference/stats-inference-arena/blob/main/dgp-submissions/registry/generators/did-shi-2026-poisson-proxy-logrr-v1.py)
+**Generator source:** [generator.py](../generators/did-shi-2026-poisson-proxy-logrr-v1.py)
 
 **Keywords (source-described):** Nonlinearity · Panel data
 
@@ -87,7 +87,10 @@ log(E[Y_t(1)]/E[Y_t(0)])=-2
 
 | Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| baseline | log_RR_pop | For the treated unit at any post period, log(E[Y_t(1)]/E[Y_t(0)]) over the truncated-normal factor and Poisson population; equals -2. This is neither the impossible printed negative rate ratio nor an additive ATT nor finite-sample SATT. | -2 | reported_numeric |
+| baseline | Treated-unit population log mean ratio | For the treated unit at any post period, log(E[Y_t(1)]/E[Y_t(0)]) over the truncated-normal factor and Poisson population; equals -2. This is neither the impossible printed negative rate ratio nor an additive ATT nor finite-sample SATT. | -2.0 | reported_numeric |
+
+**Original submitted target notation:** log_RR_pop
+
 
 ## Identifiability assumptions
 
@@ -106,6 +109,15 @@ log(E[Y_t(1)]/E[Y_t(0)])=-2
 
 **Status:** needs_scientific_review
 
+**Adaptations from the source (submitted, unverified):**
+
+- Explicitly authorized target choice: scalar log population rate ratio -2 implied by S.25, while preserving the formal printed beta=E[Y(1)]/E[Y(0)]=-2 contradiction; no claim of author correction.
+- Formal r1, zeta0, Tpre=Tpost100 baseline with truncated N(.5,.1^2) factors and mu0=mu1=mu2=1. No old U01 factor, old 50-period branch, or covariate term.
+- Explicit cross-version joint-law adaptation: iid factor paths and conditionally independent product-Poisson draws across unit and time from the fixed 2023 author code; formal J.8 itself specifies only the Poisson marginals and does not explicitly complete this joint law.
+- Fixed 3-row wide observed panel, G treated and P supplemental-proxy design indicators; n=3 only. No unit resampling or enlargement. P is a design role, not a measured zeta covariate.
+- Independent Python implementation using local NumPy RNG; no estimator replication and no bitwise replication of R RNG.
+
 **Warnings:**
 
 - Latent-variable candidates inferred from source equations; confirm their roles and completeness against the original paper or generator.
+- Legacy combined DiD / Synthetic Control family: human classification required; not automatically reassigned.

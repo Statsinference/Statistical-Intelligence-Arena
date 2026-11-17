@@ -16,7 +16,7 @@
 
 **Sampling design:** Unit: One independent cross-sectional individual observed at exactly one time T in{0,1}. External n is total row count, not n per period and not a paired panel.; Dependence: Rows iid; independent X1,X2 standard normals; independent U0,U1 bridge(phi=.5); independent Z,T Bernoulli(.5); conditionally independent treatment draws and N(0,1) outcome errors. No serial initialization, common factors or donor construction.
 
-**Generator source:** [generator.py](https://github.com/Statsinference/stats-inference-arena/blob/main/dgp-submissions/registry/generators/did-zhao-cui-2025-bridge-iv-v1.py)
+**Generator source:** [generator.py](../generators/did-zhao-cui-2025-bridge-iv-v1.py)
 
 **Keywords (source-described):** Interactions · Nonlinearity · Panel data
 
@@ -142,7 +142,10 @@ tau_t(x)=E[Y_t(1)-Y_t(0)|X=x]=10*s(x); ATE=E[tau_t(X)]=-5. This is not ATT, fini
 
 | Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| section6_main | ATE | Population average causal effect E[Y_t(1)-Y_t(0)]=E[10(1.5X1+2X2-0.5)]=-5 for either t=0 or1, over X~N(0,I2), and original natural Z,U. Not ATT, a finite-sample SATT, optimal-policy value or PCD. | -5 | reported_numeric |
+| section6_main | ATE | Population average causal effect E[Y_t(1)-Y_t(0)]=E[10(1.5X1+2X2-0.5)]=-5 for either t=0 or1, over X~N(0,I2), and original natural Z,U. Not ATT, a finite-sample SATT, optimal-policy value or PCD. | -5.0 | reported_numeric |
+
+**Original submitted target notation:** ATE
+
 
 ## Identifiability assumptions
 
@@ -160,6 +163,14 @@ tau_t(x)=E[Y_t(1)-Y_t(0)|X=x]=10*s(x); ATE=E[tau_t(X)]=-5. This is not ATT, fini
 
 **Status:** needs_scientific_review
 
+**Adaptations from the source (submitted, unverified):**
+
+- Preserve the complete Section6 main-simulation distribution. Python local random.Random replaces R RNG; no claim of stream or estimator-performance reproduction.
+- Choose scalar population ATE E[tau(X)]=-5, the Section4 underlying estimand, rather than learning a policy or reporting PCD; it is not ATT.
+- External n counts independent repeated-cross-sectional rows; n=5000 is the main parametric-model source baseline. Other n are interface sample-size extensions; sample-size changes remain one family.
+- Only observed X1,X2,Z,T,A,Y are returned. No coupled potential outcomes or latent variables are exported; only the source-observed law and conditional mean causal effect are needed.
+
 **Warnings:**
 
 - Latent-variable candidates inferred from source equations; confirm their roles and completeness against the original paper or generator.
+- Legacy combined DiD / Synthetic Control family: human classification required; not automatically reassigned.
