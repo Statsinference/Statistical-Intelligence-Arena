@@ -36,7 +36,7 @@ The ZIP's `collection.json` already identifies its research family, so **student
 
 **Hierarchy:** Area → Paper → DGP → Scenario → Estimand & Truth. One paper may contribute multiple DGPs, and one DGP may contain multiple scenarios.
 
-[Submission processing report](registry/INTAKE_REPORT.md)
+[Submission processing report](registry/INTAKE_REPORT.md) · [Records needing review](registry/ESTIMAND_NEEDS_REVIEW.md)
 
 ## Scientific content and formatting checklist
 
