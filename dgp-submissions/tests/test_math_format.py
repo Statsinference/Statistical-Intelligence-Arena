@@ -90,7 +90,12 @@ class MathRenderingTests(unittest.TestCase):
             self.assertGreaterEqual(result["mechanisms"], 20)
             for file in (output / "drafts").glob("*.md"):
                 content = file.read_text(encoding="utf-8")
-                math = "\n".join(math_blocks(content))
+                # Source text is preserved in <pre>; only emitted display math
+                # outside those verbatim sections must use fenced Markdown.
+                displayed = re.sub(r"<pre>[\s\S]*?</pre>", "", content)
+                self.assertNotRegex(displayed, r"(?m)^\s*\$\$\s*$", file.name)
+                self.assertEqual(displayed.count("```math"), len(math_blocks(displayed)), file.name)
+                math = "\n".join(math_blocks(displayed))
                 self.assertNotIn(r"\operatorname", math, file.name)
                 self.assertIn("Original source equations (verbatim)", content)
 
