@@ -23,9 +23,39 @@ def truth_pairs(rec):
     for s in rec.get('scenarios') or []:
         est = (s.get('estimand') or {}).get('name') or (rec.get('estimand') or {}).get('name') or 'unknown'
         tr = s.get('truth') or {}
-        val = tr.get('value') if tr.get('value') is not None else tr.get('expression') or '?'
+        val = tr.get('value') if tr.get('value') is not None else 'not reported'
         pairs.append(f"{cell(s.get('id'))}: {cell(est)} = {cell(val)}")
     return '; '.join(pairs) if pairs else 'unknown'
+
+
+def concise_target(rec, limit=90):
+    """Summarize submitted target names; full scenario details remain linked.
+
+    Names are descriptive metadata and may contain equations, so we neither
+    infer a canonical estimand nor try to split or interpret their notation.
+    """
+    names = []
+    scenarios = rec.get('scenarios') or []
+    for scenario in scenarios or [{}]:
+        estimand = scenario.get('estimand') or rec.get('estimand') or {}
+        name = ' '.join(str(estimand.get('name') or 'Not specified').split())
+        if name not in names:
+            names.append(name)
+    label = '; '.join(names)
+    if len(label) > limit:
+        label = label[:limit - 1].rstrip() + '…'
+    return cell(label)
+
+
+def display_truth_value(truth):
+    """Do not substitute an unverified expression for a missing numeric value.
+
+    The submission format sometimes stores the estimand definition in
+    truth.expression. That expression is still shown separately in the detail
+    page and retained verbatim in the JSON; it is not a numeric ground truth.
+    """
+    value = truth.get('value')
+    return 'Not reported' if value is None else value
 
 
 def detail(rec):
@@ -55,12 +85,22 @@ def detail(rec):
     lines.extend(equation_markdown(mech.get('generation_equations') or [], include_source=not translated,
                                   source_entries=(source_rec.get('mechanism') or {}).get('generation_equations') or []))
     lines.extend(['','## Parameter scenarios, estimands and truth','',
-                  '| Scenario | Estimand | Definition | True value | Evidence status |',
+                  '| Scenario | Estimand | Definition | Reported value | Evidence status |',
                   '|---|---|---|---|---|'])
     for s in rec.get('scenarios') or []:
         e=s.get('estimand') or rec.get('estimand') or {}; t=s.get('truth') or {}
         lines.append('| '+ ' | '.join(cell(x) for x in (
-            s.get('id'),e.get('name'),e.get('definition'),t.get('value') if t.get('value') is not None else t.get('expression'),t.get('status')))+' |')
+            s.get('id'),e.get('name'),e.get('definition'),display_truth_value(t),t.get('status')))+' |')
+    missing_expressions = [(s.get('id'), (s.get('truth') or {}).get('expression'))
+                           for s in rec.get('scenarios') or []
+                           if (s.get('truth') or {}).get('value') is None
+                           and (s.get('truth') or {}).get('expression')]
+    if missing_expressions:
+        lines.extend(['', '**Stored expression (meaning requires review)**', '',
+                      'An expression may have been copied from the estimand definition; '
+                      'it is not a verified true value.', ''])
+        for scenario_id, expression in missing_expressions:
+            lines.append('- ' + cell(scenario_id) + ': ' + cell(expression))
     lines.extend(['','## Identifiability assumptions',''])
     for a in mech.get('assumptions') or []:
         lines.append('- '+cell(a))
@@ -97,7 +137,7 @@ def build(records, output_root: Path, notes=()):
     title=['# StatsArena — DGP Registry', '',
           '> **Draft view:** all automatically extracted records still need human scientific review.', '',
           f"**{len(records)} DGP mechanisms**, **{nscen} parameter scenarios**, **{len({(r.get('paper') or {}).get('doi') or (r.get('paper') or {}).get('citation') or r['record_id'] for r in records})} reference papers**",'',
-          '## Six research areas','',
+          '## Research areas','',
           '| Research area | Papers | DGP mechanisms | Open catalog |','|---|---:|---:|---|']
     summary=['# StatsArena — submission extraction (needs review)','',
              '> Domain is provisionally inferred from the ZIP family field, not scientifically verified. Reviewers may correct classification.','']
@@ -106,16 +146,18 @@ def build(records, output_root: Path, notes=()):
         title.append(f'| {cell(label)} | {len(_domain_papers(group))} | {len(group)} | [Browse](by-domain/{key}.md) |')
         page=[f'# {label}', '',
               f'**{len(group)} submitted DGP mechanism(s) · draft / unverified.**','',
-              '| Paper Title | DGP mechanism | Keywords | Estimand & truth (per scenario) | Review status | Generator.py |',
-              '|---|---|---|---|---|---|']
+              '> Target names are submitted labels, not verified classifications. '
+              'Open each DGP for scenario definitions and reported values.', '',
+              '| Paper Title | DGP mechanism | Keywords | Target (submitted name) | Scenarios | Review status | Generator.py |',
+              '|---|---|---|---|---:|---|---|']
         summary.extend([f'## {label}', ''])
         if not group:
-            page.append('| — | No DGPs submitted yet | — | — | — | — |')
+            page.append('| — | No DGPs submitted yet | — | — | 0 | — | — |')
             summary.append('No submissions in this area yet.\n')
         for rec in sorted(group,key=lambda r:(str((r.get('paper') or {}).get('citation','')),r['record_id'])):
             mech=rec.get('mechanism') or {};paper=rec.get('paper') or {}
             citation=paper.get('citation') or paper.get('doi') or 'Reference pending'
-            one=f"| {cell(paper_title_with_venue(rec))} | [{cell(display_title(rec))}](../drafts/{rec['record_id']}.md) | {cell(keywords_text(rec))} | {truth_pairs(rec)} | Needs review | {generator_link(rec, '../generators/')} |"
+            one=f"| {cell(paper_title_with_venue(rec))} | [{cell(display_title(rec))}](../drafts/{rec['record_id']}.md) | {cell(keywords_text(rec))} | {concise_target(rec)} | {len(rec.get('scenarios') or [])} | Needs review | {generator_link(rec, '../generators/')} |"
             page.append(one)
             summary.append(one)
         summary.append('')
