@@ -97,18 +97,36 @@ tau=N^{-1} sum_i[Y_i(1)-Y_i(0)]=(N10-N01)/N.
 
 | Scenario | Estimand | Definition | Reported value |
 |---|---|---|---|
-| case01_independent_null | ATE | Finite-population average treatment effect / causal risk difference for intervention A=1 versus A=0 over the N=200 experimental units. Y_i(1) and Y_i(0) are binary fixed potential outcomes; observed Y_i=A_i Y_i(1)+(1-A_i)Y_i(0). | 0.0 |
-| case02_independent_positive | ATE | Finite-population average treatment effect / causal risk difference for intervention A=1 versus A=0 over the N=200 experimental units. Y_i(1) and Y_i(0) are binary fixed potential outcomes; observed Y_i=A_i Y_i(1)+(1-A_i)Y_i(0). | 0.2 |
-| case03_independent_positive | ATE | Finite-population average treatment effect / causal risk difference for intervention A=1 versus A=0 over the N=200 experimental units. Y_i(1) and Y_i(0) are binary fixed potential outcomes; observed Y_i=A_i Y_i(1)+(1-A_i)Y_i(0). | 0.35 |
-| case04_independent_negative | ATE | Finite-population average treatment effect / causal risk difference for intervention A=1 versus A=0 over the N=200 experimental units. Y_i(1) and Y_i(0) are binary fixed potential outcomes; observed Y_i=A_i Y_i(1)+(1-A_i)Y_i(0). | -0.3 |
-| case05_independent_negative | ATE | Finite-population average treatment effect / causal risk difference for intervention A=1 versus A=0 over the N=200 experimental units. Y_i(1) and Y_i(0) are binary fixed potential outcomes; observed Y_i=A_i Y_i(1)+(1-A_i)Y_i(0). | -0.35 |
-| case06_positive_association_null | ATE | Finite-population average treatment effect / causal risk difference for intervention A=1 versus A=0 over the N=200 experimental units. Y_i(1) and Y_i(0) are binary fixed potential outcomes; observed Y_i=A_i Y_i(1)+(1-A_i)Y_i(0). | 0.0 |
-| case07_positive_association | ATE | Finite-population average treatment effect / causal risk difference for intervention A=1 versus A=0 over the N=200 experimental units. Y_i(1) and Y_i(0) are binary fixed potential outcomes; observed Y_i=A_i Y_i(1)+(1-A_i)Y_i(0). | 0.1 |
-| case08_positive_association | ATE | Finite-population average treatment effect / causal risk difference for intervention A=1 versus A=0 over the N=200 experimental units. Y_i(1) and Y_i(0) are binary fixed potential outcomes; observed Y_i=A_i Y_i(1)+(1-A_i)Y_i(0). | 0.2 |
-| case09_positive_association | ATE | Finite-population average treatment effect / causal risk difference for intervention A=1 versus A=0 over the N=200 experimental units. Y_i(1) and Y_i(0) are binary fixed potential outcomes; observed Y_i=A_i Y_i(1)+(1-A_i)Y_i(0). | 0.5 |
-| case10_positive_association_negative | ATE | Finite-population average treatment effect / causal risk difference for intervention A=1 versus A=0 over the N=200 experimental units. Y_i(1) and Y_i(0) are binary fixed potential outcomes; observed Y_i=A_i Y_i(1)+(1-A_i)Y_i(0). | -0.1 |
-| case11_positive_association_negative | ATE | Finite-population average treatment effect / causal risk difference for intervention A=1 versus A=0 over the N=200 experimental units. Y_i(1) and Y_i(0) are binary fixed potential outcomes; observed Y_i=A_i Y_i(1)+(1-A_i)Y_i(0). | -0.2 |
-| case12_positive_association_negative | ATE | Finite-population average treatment effect / causal risk difference for intervention A=1 versus A=0 over the N=200 experimental units. Y_i(1) and Y_i(0) are binary fixed potential outcomes; observed Y_i=A_i Y_i(1)+(1-A_i)Y_i(0). | -0.5 |
+| case01_independent_null | ATE | $`\frac{1}{N}\sum_{i=1}^{N}\{Y_i(1)-Y_i(0)\}`$ | 0 |
+| case02_independent_positive | ATE | $`\frac{1}{N}\sum_{i=1}^{N}\{Y_i(1)-Y_i(0)\}`$ | 0.2 |
+| case03_independent_positive | ATE | $`\frac{1}{N}\sum_{i=1}^{N}\{Y_i(1)-Y_i(0)\}`$ | 0.35 |
+| case04_independent_negative | ATE | $`\frac{1}{N}\sum_{i=1}^{N}\{Y_i(1)-Y_i(0)\}`$ | -0.3 |
+| case05_independent_negative | ATE | $`\frac{1}{N}\sum_{i=1}^{N}\{Y_i(1)-Y_i(0)\}`$ | -0.35 |
+| case06_positive_association_null | ATE | $`\frac{1}{N}\sum_{i=1}^{N}\{Y_i(1)-Y_i(0)\}`$ | 0 |
+| case07_positive_association | ATE | $`\frac{1}{N}\sum_{i=1}^{N}\{Y_i(1)-Y_i(0)\}`$ | 0.1 |
+| case08_positive_association | ATE | $`\frac{1}{N}\sum_{i=1}^{N}\{Y_i(1)-Y_i(0)\}`$ | 0.2 |
+| case09_positive_association | ATE | $`\frac{1}{N}\sum_{i=1}^{N}\{Y_i(1)-Y_i(0)\}`$ | 0.5 |
+| case10_positive_association_negative | ATE | $`\frac{1}{N}\sum_{i=1}^{N}\{Y_i(1)-Y_i(0)\}`$ | -0.1 |
+| case11_positive_association_negative | ATE | $`\frac{1}{N}\sum_{i=1}^{N}\{Y_i(1)-Y_i(0)\}`$ | -0.2 |
+| case12_positive_association_negative | ATE | $`\frac{1}{N}\sum_{i=1}^{N}\{Y_i(1)-Y_i(0)\}`$ | -0.5 |
+
+**Definition notes**
+
+- case01_independent_null, case02_independent_positive, case03_independent_positive, case04_independent_negative, case05_independent_negative, case06_positive_association_null, case07_positive_association, case08_positive_association, case09_positive_association, case10_positive_association_negative, case11_positive_association_negative, case12_positive_association_negative: Fixed finite population, N=200; the package draws a subset as an implementation adaptation.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** case01_independent_null, case02_independent_positive, case03_independent_positive, case04_independent_negative, case05_independent_negative, case06_positive_association_null, case07_positive_association, case08_positive_association, case09_positive_association, case10_positive_association_negative, case11_positive_association_negative, case12_positive_association_negative
+
+Finite-population average treatment effect / causal risk difference for intervention A=1 versus A=0 over the N=200 experimental units. Y_i(1) and Y_i(0) are binary fixed potential outcomes; observed Y_i=A_i Y_i(1)+(1-A_i)Y_i(0).
+
+[Open raw scientific record (JSON)](./ate-ding-dasgupta-2016-binary-rct-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** tau = N^{-1} sum_i [Y_i(1)-Y_i(0)] = (N10-N01)/N
 

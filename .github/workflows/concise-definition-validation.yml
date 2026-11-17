@@ -1,0 +1,35 @@
+name: Concise definition validation
+on:
+  push:
+    branches: [codex/concise-estimand-definitions]
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: python -m pip install pytest==8.4.2
+      - name: Run regression tests
+        working-directory: dgp-submissions
+        run: |
+          python integration/run_regressions.py
+          python -m pytest tests -q
+      - name: Rebuild all submissions
+        working-directory: dgp-submissions
+        run: |
+          python -m tools.dgp_registry.github_intake --incoming incoming --output registry
+          python -m tools.dgp_registry.paper_list --catalog registry/catalog.json --readme README.md
+          python integration/sync_contributing.py
+          python -m pytest tests/test_integration.py -q
+      - name: Validate curated mathematics
+        run: |
+          npm install --no-save --no-package-lock katex@0.16.22
+          node .github/validate-concise-definitions.cjs
