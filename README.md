@@ -43,33 +43,31 @@
 
 ## Contributors
 
-### Leadership
-
-<p align="center">
-  <strong>Zhiheng Zhang</strong>&nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;
-  <strong>Shi Bo</strong>&nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;
-  <strong>Jiaming Hu</strong>
-</p>
-
-### Method Contributors
-
-Suo Li
-
-### Data Contributors
-
-### Advisors
+<table>
+  <thead>
+    <tr><th colspan="4" align="left">Project Leadership</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td width="25%"><a href="mailto:shibo@bu.edu">Shi Bo</a><br><small>Boston University</small></td>
+      <td width="25%"><a href="mailto:jh7453@bu.edu">Jiaming Hu</a><br><small>Boston University</small></td>
+      <td width="25%"><a href="mailto:zhangzhiheng@mail.shufe.edu.cn">Zhiheng Zhang</a><br><small>Shanghai University of Finance and Economics</small></td>
+      <td width="25%"></td>
+    </tr>
+    <tr><th colspan="4" align="left">Method Contributors</th></tr>
+    <tr>
+      <td>Suo Li</td><td></td><td></td><td></td>
+    </tr>
+    <tr><th colspan="4" align="left">Data Contributors</th></tr>
+    <tr><th colspan="4" align="left">Advisors</th></tr>
+  </tbody>
+</table>
 
 ## Citation
 
 ## Contact
 
-For questions and feedback, please contact the project leads:
-
-<p align="center">
-  <a href="mailto:zhangzhiheng@mail.shufe.edu.cn">Zhiheng Zhang</a>&nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;
-  <a href="mailto:shibo@bu.edu">Shi Bo</a>&nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;
-  <a href="mailto:jh7453@bu.edu">Jiaming Hu</a>
-</p>
+For questions and feedback, please contact the project leads: [Shi Bo](mailto:shibo@bu.edu) · [Jiaming Hu](mailto:jh7453@bu.edu) · [Zhiheng Zhang](mailto:zhangzhiheng@mail.shufe.edu.cn)
 
 ## License
 
