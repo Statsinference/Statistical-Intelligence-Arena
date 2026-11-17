@@ -483,7 +483,7 @@ def equation_markdown(entries, include_source=True, source_entries=None):
         aligned=_align_assignments(blocks)
         if aligned:blocks=[('math',aligned)]
         for kind,expr in blocks:
-            if kind=='math':out.extend(['$$',expr,'$$',''])
+            if kind=='math':out.extend(['```math',expr,'```',''])
             elif kind=='mixed':out.extend([expr,''])
             elif kind=='label':out.extend(['**'+html.escape(expr)+'**',''])
             elif kind=='source':
