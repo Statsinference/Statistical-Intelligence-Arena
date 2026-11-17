@@ -13,6 +13,6 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           node - <<'JS'
-          const sample='```math\n\\mathrm{N}_{10}=\\#\\{i:Y_i(1)=1,Y_i(0)=0\\}\n```';
+          const sample='```math\n\\begin{aligned}\nX_1,X_2&\\overset{\\mathrm{iid}}{\\sim}\\mathcal{N}(0.25,0.25^2)\\\\\np(X)&=[1+\\exp\\{0.125(X_1+X_2)\\}]^{-1}\n\\end{aligned}\n```';
           fetch('https://api.github.com/markdown',{method:'POST',headers:{'Authorization':'Bearer '+process.env.GH_TOKEN,'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28','Content-Type':'application/json'},body:JSON.stringify({text:sample,mode:'gfm',context:'Statsinference/stats-inference-arena'})}).then(async r=>{let s=await r.text();console.log('status',r.status,'html',s);if(!r.ok)process.exitCode=1}).catch(e=>{console.error(e);process.exitCode=1});
           JS
