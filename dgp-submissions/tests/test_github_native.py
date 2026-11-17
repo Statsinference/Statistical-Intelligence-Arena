@@ -23,7 +23,11 @@ def test_research_area_catalog_from_one_zip(tmp_path):
     result=ingest(d,tmp_path/'registry')
     assert result['mechanisms']==1 and result['scenarios']==1 and result['papers']==1
     text=(tmp_path/'registry/by-domain/ate.md').read_text()
-    assert 'Minimal ATE' in text and 'original: ATE = 2.0' in text
+    assert 'Minimal ATE' in text and 'ATE' in text
+    assert 'Target (submitted name)' in text and 'Scenarios' in text
+    assert '| 1 | Needs review |' in text
+    detail=(tmp_path/'registry/drafts/example-ate-1.md').read_text(encoding='utf-8')
+    assert '| original |' in detail and '| 2.0 |' in detail
     assert (tmp_path/'registry/drafts/example-ate-1.json').exists()
     assert 'Unverified' in (tmp_path/'registry/drafts/example-ate-1.md').read_text()
     assert len(list((tmp_path/'registry/by-domain').glob('*.md'))) == len(DOMAINS)
