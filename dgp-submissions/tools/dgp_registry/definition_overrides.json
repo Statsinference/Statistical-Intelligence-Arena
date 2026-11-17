@@ -647,7 +647,7 @@
       }
     },
     "did-abadie-lhour-2021-nonlinear-null-v1": {
-      "domain": "did_sc",
+      "domain": "synthetic_control",
       "source_zip_sha256": "12ed713f0ef5464720af0223e5b3d34990ed3f244f0525ab5eaf2a093f130fdf",
       "scenarios": {
         "paper_table4_p4_r2_with_declared_n_extension": {
@@ -659,7 +659,7 @@
       }
     },
     "did-cwz-2021-donor-ar-null-v1": {
-      "domain": "did_sc",
+      "domain": "synthetic_control",
       "source_zip_sha256": "8159cdd3fa3d3c7da42557353657a93418df0e4e3e745fb6ee083f9b6a182146",
       "scenarios": {
         "W1": {
@@ -689,7 +689,7 @@
       }
     },
     "did-ferman-2021-two-factor-null-v1": {
-      "domain": "did_sc",
+      "domain": "synthetic_control",
       "source_zip_sha256": "3dcd9582d7ce5b7b8851217464fdacbf5079de20dec7a2c8b9c4c6ad6103d314",
       "scenarios": {
         "table1_j10_t020_null": {
@@ -701,12 +701,12 @@
       }
     },
     "did-karmakar-2025-code-truncated-cluster-null-v1": {
-      "domain": "did_sc",
+      "domain": "synthetic_control",
       "source_zip_sha256": "15e2a04225ae67a2a87a5e9420bb7d02449b0fd2c4da6bcb92f43921d798facb",
       "scenarios": {}
     },
     "did-santanna-zhao-2020-panel-dgp1-v1": {
-      "domain": "did_sc",
+      "domain": "did",
       "source_zip_sha256": "b9defbcbdc8290f7cf489d5227113adc705be56fb7feb187cc3d99aea399f908",
       "scenarios": {
         "original_panel_dgp1": {
@@ -718,12 +718,12 @@
       }
     },
     "did-shaikh-toulis-2021-conditional-first-adopter-null-v1": {
-      "domain": "did_sc",
+      "domain": "did",
       "source_zip_sha256": "b61ea6041845141104c0b1a6d95e0838b951b9aa3f24545900c5ec8c2556a77e",
       "scenarios": {}
     },
     "did-shi-2026-poisson-proxy-logrr-v1": {
-      "domain": "did_sc",
+      "domain": "synthetic_control",
       "source_zip_sha256": "dfdeecac2dea05aadb91108e7efe8ef598a20088cfc7699d9f0084420b37a61a",
       "scenarios": {
         "baseline": {
@@ -735,7 +735,7 @@
       }
     },
     "did-ye-2024-bracketing-v1": {
-      "domain": "did_sc",
+      "domain": "did",
       "source_zip_sha256": "9fde097a2af389c55cd7feb78f53b5039142a6290d8c0d3fbed1ab2b7acbb410",
       "scenarios": {
         "case1_parallel": {
@@ -753,7 +753,7 @@
       }
     },
     "did-ye-2024-code-case2-gaussian-bracketing-v1": {
-      "domain": "did_sc",
+      "domain": "did",
       "source_zip_sha256": "07d3e2c046e15f2f255d12c4f2f91a364eff217de9ec31f3743404e1193acdd6",
       "scenarios": {
         "baseline": {
@@ -765,7 +765,7 @@
       }
     },
     "did-zhao-cui-2025-bridge-iv-v1": {
-      "domain": "did_sc",
+      "domain": "did",
       "source_zip_sha256": "f6fe23488549481c09b46d1bfe5335042b0ff3fe07500ff98ade848a9a78654d",
       "scenarios": {
         "section6_main": {
@@ -777,7 +777,7 @@
       }
     },
     "did-zhao-cui-2025-instrumented-v1": {
-      "domain": "did_sc",
+      "domain": "did",
       "source_zip_sha256": "65686f84277b4595b16f5dcbb7dce5b03e6d8798e084e88a524ed7073770b953",
       "scenarios": {
         "source_section6_ate_target": {

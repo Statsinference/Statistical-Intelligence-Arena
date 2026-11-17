@@ -363,7 +363,7 @@
       "note": ""
     },
     "did-santanna-zhao-2020-panel-dgp1-v1": {
-      "domain": "did_sc",
+      "domain": "did",
       "standard_name": "ATT",
       "target_type": "att",
       "original_name": "ATT = E[Y_1(1)-Y_1(0) | D=1]",
@@ -373,7 +373,7 @@
       "note": ""
     },
     "did-abadie-lhour-2021-nonlinear-null-v1": {
-      "domain": "did_sc",
+      "domain": "synthetic_control",
       "standard_name": "ATT",
       "target_type": "att",
       "original_name": "ATT_post",
@@ -383,7 +383,7 @@
       "note": ""
     },
     "did-karmakar-2025-code-truncated-cluster-null-v1": {
-      "domain": "did_sc",
+      "domain": "synthetic_control",
       "standard_name": "ATT",
       "target_type": "att",
       "original_name": "ATT",
@@ -393,7 +393,7 @@
       "note": ""
     },
     "did-ye-2024-bracketing-v1": {
-      "domain": "did_sc",
+      "domain": "did",
       "standard_name": "ATT",
       "target_type": "att",
       "original_name": "ATT_4",
@@ -403,7 +403,7 @@
       "note": ""
     },
     "did-ye-2024-code-case2-gaussian-bracketing-v1": {
-      "domain": "did_sc",
+      "domain": "did",
       "standard_name": "ATT",
       "target_type": "att",
       "original_name": "ATT_4",
@@ -413,7 +413,7 @@
       "note": ""
     },
     "did-cwz-2021-donor-ar-null-v1": {
-      "domain": "did_sc",
+      "domain": "synthetic_control",
       "standard_name": "Treated-unit treatment effect",
       "target_type": "other",
       "original_name": "tau_T",
@@ -423,7 +423,7 @@
       "note": ""
     },
     "did-ferman-2021-two-factor-null-v1": {
-      "domain": "did_sc",
+      "domain": "synthetic_control",
       "standard_name": "Treated-unit treatment effect",
       "target_type": "other",
       "original_name": "tau_01",
@@ -433,7 +433,7 @@
       "note": ""
     },
     "did-shaikh-toulis-2021-conditional-first-adopter-null-v1": {
-      "domain": "did_sc",
+      "domain": "did",
       "standard_name": "Conditional first-adopter average treatment effect",
       "target_type": "other",
       "original_name": "ATT_cond",
@@ -443,7 +443,7 @@
       "note": ""
     },
     "did-shi-2026-poisson-proxy-logrr-v1": {
-      "domain": "did_sc",
+      "domain": "synthetic_control",
       "standard_name": "Treated-unit population log mean ratio",
       "target_type": "other",
       "original_name": "log_RR_pop",
@@ -453,7 +453,7 @@
       "note": ""
     },
     "did-zhao-cui-2025-bridge-iv-v1": {
-      "domain": "did_sc",
+      "domain": "did",
       "standard_name": "ATE",
       "target_type": "other",
       "original_name": "ATE",
@@ -463,7 +463,7 @@
       "note": ""
     },
     "did-zhao-cui-2025-instrumented-v1": {
-      "domain": "did_sc",
+      "domain": "did",
       "standard_name": "ATE",
       "target_type": "other",
       "original_name": "ATE",
