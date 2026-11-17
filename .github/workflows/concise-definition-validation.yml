@@ -10,6 +10,8 @@ jobs:
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -33,3 +35,4 @@ jobs:
         run: |
           npm install --no-save --no-package-lock katex@0.16.22
           node .github/validate-concise-definitions.cjs
+
