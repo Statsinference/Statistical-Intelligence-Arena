@@ -1,0 +1,1836 @@
+{
+  "schema_version": 1,
+  "description": "Provisional target names based on submitted estimand definitions. Match record_id, domain, original_name and source_definition exactly; otherwise leave unclassified. These entries are not independent paper verification.",
+  "records": {
+    "iv-qiu-2021-principal-stratum-poisson-v1": {
+      "domain": "iv",
+      "standard_name": "Population local average treatment effect (LATE)",
+      "target_type": "population_late",
+      "original_name": "alpha0 = LATE",
+      "source_definition": "E[Y(1)-Y(0)|D(1)>D(0)]=1 in source DGP2 without treatment-covariate interactions. LCSTE(x)=1 for every x; alpha0 is the treatment coefficient directly evaluated in source Section 6. This is an IV complier estimand despite the paper's heterogeneous-effects title.",
+      "evidence": "dgp-submissions/registry/drafts/iv-qiu-2021-principal-stratum-poisson-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "iv-ding-2017-binary-bias-v1": {
+      "domain": "iv",
+      "standard_name": "Population local average treatment effect (LATE)",
+      "target_type": "population_late",
+      "original_name": "LATE",
+      "source_definition": "E[Y(1)-Y(0) | A(1)>A(0)], treatment intervention 0 to 1 among instrument compliers.",
+      "evidence": "dgp-submissions/registry/drafts/iv-ding-2017-binary-bias-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "iv-guo-2018-author-linear-v1": {
+      "domain": "iv",
+      "standard_name": "Population unit-change structural mean effect",
+      "target_type": "other",
+      "original_name": "beta",
+      "source_definition": "beta：do(D=d+1)−do(D=d)的结构均值效应，1。",
+      "evidence": "dgp-submissions/registry/drafts/iv-guo-2018-author-linear-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "iv-lin-2024-wit-code-v1": {
+      "domain": "iv",
+      "standard_name": "Population unit-change structural mean effect",
+      "target_type": "other",
+      "original_name": "beta",
+      "source_definition": "Homogeneous structural coefficient: E[Y(do(D=d+1))-Y(do(D=d))]=beta for the specified superpopulation; both scenarios beta=1. Not LATE.",
+      "evidence": "dgp-submissions/registry/drafts/iv-lin-2024-wit-code-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "iv-ye-2024-genius-heteroskedastic-v1": {
+      "domain": "iv",
+      "standard_name": "Population unit-change structural mean effect",
+      "target_type": "other",
+      "original_name": "β0=.4",
+      "source_definition": "β0=.4；do(A=a+1)相对do(A=a)的均值变化",
+      "evidence": "dgp-submissions/registry/drafts/iv-ye-2024-genius-heteroskedastic-v1.json#estimand",
+      "status": "needs_review",
+      "note": "Conflicting duplicate submission ID; reconcile source before applying this label."
+    },
+    "iv-ye-2024-genius-heteroskedastic-v1-conflict-8dd1770580": {
+      "domain": "iv",
+      "standard_name": "Population unit-change structural mean effect",
+      "target_type": "other",
+      "original_name": "beta",
+      "source_definition": "Population constant causal slope dE[Y|do(A=a)]/da=0.4, equivalently unit contrast E[Y|do(A=1)]-E[Y|do(A=0)], in the frozen SNP coefficient population.",
+      "evidence": "dgp-submissions/registry/drafts/iv-ye-2024-genius-heteroskedastic-v1-conflict-8dd1770580.json#estimand",
+      "status": "needs_review",
+      "note": "Conflicting duplicate submission ID; reconcile source before applying this label."
+    },
+    "iv-kang-2016-invalid-linear-v1": {
+      "domain": "iv",
+      "standard_name": "Population unit-change structural mean effect",
+      "target_type": "other",
+      "original_name": "beta",
+      "source_definition": "Constant structural slope beta = E[Y(do(D=d+1))-Y(do(D=d))], with natural Z and errors held under the same intervention law.",
+      "evidence": "dgp-submissions/registry/drafts/iv-kang-2016-invalid-linear-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "iv-henckel-2024-g1-sem-v1": {
+      "domain": "iv",
+      "standard_name": "Population total causal effect",
+      "target_type": "other",
+      "original_name": "tau_YX",
+      "source_definition": "tau_YX：do(X=x+1)相对do(X=x)的总效应，b_XY+b_XM b_MY。",
+      "evidence": "dgp-submissions/registry/drafts/iv-henckel-2024-g1-sem-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "iv-henckel-2024-conditional-graph-v1": {
+      "domain": "iv",
+      "standard_name": "Population total causal effect",
+      "target_type": "other",
+      "original_name": "tau_YX",
+      "source_definition": "Population total effect d E[Y|do(X=x)]/dx, equivalently E[Y|do(X=1)]-E[Y|do(X=0)], including X->M->Y.",
+      "evidence": "dgp-submissions/registry/drafts/iv-henckel-2024-conditional-graph-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "iv-hoshino-2024-ring-network-v1": {
+      "domain": "iv",
+      "standard_name": "Unconditional local average direct effect",
+      "target_type": "other",
+      "original_name": "unconditional_LADE",
+      "source_definition": "unconditional_LADE：对他人Z按独立Bern(.4)边缘化后，平均自身结局变化/平均自身处理变化；处理/鼓励1减0的加权complier直接效应。",
+      "evidence": "dgp-submissions/registry/drafts/iv-hoshino-2024-ring-network-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "iv-li-2026-aux-population-v1": {
+      "domain": "iv",
+      "standard_name": "Target-population average treatment effect (ATE)",
+      "target_type": "other",
+      "original_name": "tau",
+      "source_definition": "tau：目标总体R=0中E[Y(1)−Y(0)|R=0]，处理1减0。",
+      "evidence": "dgp-submissions/registry/drafts/iv-li-2026-aux-population-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "iv-michael-2024-author-msmm-v1": {
+      "domain": "iv",
+      "standard_name": "Final-period marginal structural mean effect",
+      "target_type": "other",
+      "original_name": "beta_T",
+      "source_definition": "beta_T：最后一次处理增加1的MSMM均值效应，1。",
+      "evidence": "dgp-submissions/registry/drafts/iv-michael-2024-author-msmm-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "iv-wang-2021-binary-late-v1": {
+      "domain": "iv",
+      "standard_name": "Conditional LATE curve transformed-slope parameter",
+      "target_type": "other",
+      "original_name": "alpha1",
+      "source_definition": "Slope alpha1 in atanh(delta_L(x))=alpha0+alpha1*x, where delta_L(x)=E[Y(1)-Y(0)|D(1)>D(0),x]. Potential outcomes contrast D=1 versus D=0 among conditional compliers. Equivalently [atanh(delta_L(0.5))-atanh(delta_L(-0.5))]/1.0 under the declared curve model. This parameter is not a risk difference itself and is not the population ATE.",
+      "evidence": "dgp-submissions/registry/drafts/iv-wang-2021-binary-late-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "iv-wang-2021-binary-complier-odds-v1": {
+      "domain": "iv",
+      "standard_name": "Conditional LATE curve transformed-slope parameter",
+      "target_type": "other",
+      "original_name": "alpha1",
+      "source_definition": "Slope coefficient alpha1 in E[Y(1)-Y(0)|D(1)>D(0),X=x]=tanh(alpha0+alpha1*x). Target population is the complier stratum conditional on x; scalar alpha1=-1 is explicitly reported in source Table 2. It is a curve coefficient, not marginal LATE or ATE.",
+      "evidence": "dgp-submissions/registry/drafts/iv-wang-2021-binary-complier-odds-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "iv-wei-2021-censored-quantile-v1": {
+      "domain": "iv",
+      "standard_name": "Conditional complier median causal effect",
+      "target_type": "other",
+      "original_name": "CQCE(.5)",
+      "source_definition": "CQCE(.5)：条件complier的log生存时间中位数，处理1减0；G为.5，H为.5 exp(.15)。",
+      "evidence": "dgp-submissions/registry/drafts/iv-wei-2021-censored-quantile-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "iv-choi-2017-double-censor-v1": {
+      "domain": "iv",
+      "standard_name": "Unit-change structural mean effect on log-time scale",
+      "target_type": "other",
+      "original_name": "alpha_YZ",
+      "source_definition": "Structural coefficient1 of the true, possibly unobserved continuous exposure D in Y(d)=1+d+W1+W2+U+epsilon. Thus E[Y(d+1)-Y(d)]=1 on source linear/log-time outcome scale, not effect on exp(Y) survival time or complier LATE.",
+      "evidence": "dgp-submissions/registry/drafts/iv-choi-2017-double-censor-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "iv-cui-2023-longitudinal-survival-v1": {
+      "domain": "iv",
+      "standard_name": "Marginal structural log hazard ratio",
+      "target_type": "other",
+      "original_name": "psi",
+      "source_definition": "Population marginal structural Cox log hazard ratio for the current binary treatment under fixed two-visit intervention regimes: lambda_Ta(t)=lambda0(t)*exp(psi*a(t)), lambda0(t)=1. Compare treatment1 versus0 at the same time t away from the visit1 switch. Target is psi=-1 or0, not a survival probability difference or LATE.",
+      "evidence": "dgp-submissions/registry/drafts/iv-cui-2023-longitudinal-survival-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "iv-wang-2018-average-wald-v1": {
+      "domain": "iv",
+      "standard_name": "Population average treatment effect (ATE)",
+      "target_type": "other",
+      "original_name": "ATE",
+      "source_definition": "Population causal ATE E[Y(1)-Y(0)] in the explicitly adapted algebraic causal completion = E[tanh(0.1+0.5 X2)] = average conditional Wald ratio. Binary intervention a=1 versus a=0, full iid superpopulation; not a LATE.",
+      "evidence": "dgp-submissions/registry/drafts/iv-wang-2018-average-wald-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "iv-dikkala-2020-sine-v1": {
+      "domain": "iv",
+      "standard_name": "Structural outcome contrast for specified interventions",
+      "target_type": "other",
+      "original_name": "theta_IV = h0(0.5)-h0(0)",
+      "source_definition": "Structural outcome contrast for interventions P=.5 versus P=0, retaining the marginal centered latent confounder and outcome noise. This is not E[Y|P=.5]-E[Y|P=0].",
+      "evidence": "dgp-submissions/registry/drafts/iv-dikkala-2020-sine-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "iv-hartford-2017-demand-v1": {
+      "domain": "iv",
+      "standard_name": "Population structural mean price contrast",
+      "target_type": "other",
+      "original_name": "theta_IV = E[Y(do(P=21))-Y(do(P=20))]",
+      "source_definition": "Population structural mean contrast of a one-unit price intervention, averaging independent T~Uniform(0,10) and S~DiscreteUniform(1,...,7); nuisance latent errors retain their marginal distribution.",
+      "evidence": "dgp-submissions/registry/drafts/iv-hartford-2017-demand-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "iv-athey-tibshirani-wager-2019-compliance-v1": {
+      "domain": "iv",
+      "standard_name": "Pointwise conditional Wald ratio",
+      "target_type": "other",
+      "original_name": "tau_IV(x*)",
+      "source_definition": "Conditional Wald ratio at fixed x*: {E[Y|Z=1,x*]-E[Y|Z=0,x*]}/{E[A|Z=1,x*]-E[A|Z=0,x*]}.",
+      "evidence": "dgp-submissions/registry/drafts/iv-athey-tibshirani-wager-2019-compliance-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "proximal-cui-2024-linear-v1": {
+      "domain": "proximal",
+      "standard_name": "Average treatment effect (ATE)",
+      "target_type": "ate",
+      "original_name": "ATE",
+      "source_definition": "ATE = E[Y(1)−Y(0)] = 2。",
+      "evidence": "dgp-submissions/registry/drafts/proximal-cui-2024-linear-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "proximal-qi-2024-linear-itr-v1": {
+      "domain": "proximal",
+      "standard_name": "Average treatment effect (ATE)",
+      "target_type": "ate",
+      "original_name": "ATE",
+      "source_definition": "ATE = E[0.5+3X1−5X2+c4 W]。",
+      "evidence": "dgp-submissions/registry/drafts/proximal-qi-2024-linear-itr-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "proximal-qi-2024-quadratic-v1": {
+      "domain": "proximal",
+      "standard_name": "Average treatment effect (ATE)",
+      "target_type": "ate",
+      "original_name": "ATE",
+      "source_definition": "ATE = E[0.25−6X1X2] = −0.125。",
+      "evidence": "dgp-submissions/registry/drafts/proximal-qi-2024-quadratic-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "proximal-qi-2024-trigonometric-v1": {
+      "domain": "proximal",
+      "standard_name": "Average treatment effect (ATE)",
+      "target_type": "ate",
+      "original_name": "ATE",
+      "source_definition": "ATE = E[2.3+|X1−1|−|X2+1|+g(X)W]。",
+      "evidence": "dgp-submissions/registry/drafts/proximal-qi-2024-trigonometric-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "proximal-cui-2023-04-18-gaussian-v2": {
+      "domain": "proximal",
+      "standard_name": "Average treatment effect (ATE)",
+      "target_type": "ate",
+      "original_name": "psi_ATE",
+      "source_definition": "E[Y(1)-Y(0)] in the source population, same marginal U,W,X under both interventions.",
+      "evidence": "dgp-submissions/registry/drafts/proximal-cui-2023-04-18-gaussian-v2.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "proximal-dukes-2023-mediation-v1": {
+      "domain": "proximal",
+      "standard_name": "Natural direct effect (NDE)",
+      "target_type": "other",
+      "original_name": "NDE",
+      "source_definition": "NDE = E[Y(1,M(0))−Y(0,M(0))] = 2。",
+      "evidence": "dgp-submissions/registry/drafts/proximal-dukes-2023-mediation-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "proximal-dukes-2023-03-03-mediation-v1": {
+      "domain": "proximal",
+      "standard_name": "Natural direct effect (NDE)",
+      "target_type": "other",
+      "original_name": "NDE",
+      "source_definition": "E[Y(1,M(0))-Y(0,M(0))] in the source population; NIE and total effect are auxiliary only.",
+      "evidence": "dgp-submissions/registry/drafts/proximal-dukes-2023-03-03-mediation-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "proximal-imbens-2025-longterm-v1": {
+      "domain": "proximal",
+      "standard_name": "Subpopulation average treatment effect",
+      "target_type": "other",
+      "original_name": "theta",
+      "source_definition": "τ = E[Y(1)−Y(0)|G=0]，给定登记的固定系数。",
+      "evidence": "dgp-submissions/registry/drafts/proximal-imbens-2025-longterm-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "proximal-shi-2026-sc-gaussian-v1": {
+      "domain": "proximal",
+      "standard_name": "Post-treatment mean treatment effect",
+      "target_type": "other",
+      "original_name": "ETT",
+      "source_definition": "ETT = E[Y_t(1)−Y_t(0)] = 2，对全部后处理时期平均仍为2。",
+      "evidence": "dgp-submissions/registry/drafts/proximal-shi-2026-sc-gaussian-v1.json#estimand",
+      "status": "needs_review",
+      "note": "The submitted label says ETT while its displayed definition lacks treated-population conditioning; resolve against source before labeling."
+    },
+    "proximal-shi-2026-sc-poisson-v1": {
+      "domain": "proximal",
+      "standard_name": "Causal log mean ratio",
+      "target_type": "other",
+      "original_name": "theta",
+      "source_definition": "β = log{E[Y_t(1)]/E[Y_t(0)]} = −2；均值比为exp(−2)。",
+      "evidence": "dgp-submissions/registry/drafts/proximal-shi-2026-sc-poisson-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "proximal-li-2023-07-10-binary-tnd-v1": {
+      "domain": "proximal",
+      "standard_name": "Causal log mean ratio",
+      "target_type": "other",
+      "original_name": "beta_log_RR",
+      "source_definition": "log(E[Y(1)]/E[Y(0)]) in the source population before S selection; not selected-sample log odds ratio.",
+      "evidence": "dgp-submissions/registry/drafts/proximal-li-2023-07-10-binary-tnd-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "proximal-li-2023-07-10-continuous-tnd-v1": {
+      "domain": "proximal",
+      "standard_name": "Causal log mean ratio",
+      "target_type": "other",
+      "original_name": "beta_log_RR",
+      "source_definition": "log(E[Y(1)]/E[Y(0)]) in the source population before S selection; not selected-sample log odds ratio.",
+      "evidence": "dgp-submissions/registry/drafts/proximal-li-2023-07-10-continuous-tnd-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "proximal-su-2026-transport-v1": {
+      "domain": "proximal",
+      "standard_name": "Target-population transported mean contrast",
+      "target_type": "other",
+      "original_name": "theta",
+      "source_definition": "θ = E[E(Y|A=1,X,U,S=1)−E(Y|A=0,X,U,S=1) | S=0]。",
+      "evidence": "dgp-submissions/registry/drafts/proximal-su-2026-transport-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": "Causal interpretation requires review of transport assumptions."
+    },
+    "proximal-ying-2023-longitudinal-v1": {
+      "domain": "proximal",
+      "standard_name": "Longitudinal treatment regime mean contrast",
+      "target_type": "other",
+      "original_name": "theta",
+      "source_definition": "E[Y(1,1)−Y(0,0)] = 2。",
+      "evidence": "dgp-submissions/registry/drafts/proximal-ying-2023-longitudinal-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "proximal-ying-2023-03-30-longitudinal-v1": {
+      "domain": "proximal",
+      "standard_name": "Marginal structural mean model slope",
+      "target_type": "other",
+      "original_name": "beta1",
+      "source_definition": "Common slope beta1 in E[Y(a0,a1)]=beta0+beta1*(a0+a1). The 11-vs-00 contrast is separately 2*beta1.",
+      "evidence": "dgp-submissions/registry/drafts/proximal-ying-2023-03-30-longitudinal-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "did-santanna-zhao-2020-panel-dgp1-v1": {
+      "domain": "did_sc",
+      "standard_name": "Average treatment effect on the treated (ATT)",
+      "target_type": "att",
+      "original_name": "ATT = E[Y_1(1)-Y_1(0) | D=1]",
+      "source_definition": "Population ATT for the treated group at post-period 1. The realized group D and latent v are held fixed across treatment counterfactuals. Original value is zero; this is not the observed post-period group contrast or a sample-average effect.",
+      "evidence": "dgp-submissions/registry/drafts/did-santanna-zhao-2020-panel-dgp1-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "did-abadie-lhour-2021-nonlinear-null-v1": {
+      "domain": "did_sc",
+      "standard_name": "Average treatment effect on the treated (ATT)",
+      "target_type": "att",
+      "original_name": "ATT_post",
+      "source_definition": "E[Y_2(1)-Y_2(0)|G=1] in the treated covariate population. Equal-weight finite-sample treated SATT also equals zero pointwise.",
+      "evidence": "dgp-submissions/registry/drafts/did-abadie-lhour-2021-nonlinear-null-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "did-karmakar-2025-code-truncated-cluster-null-v1": {
+      "domain": "did_sc",
+      "standard_name": "Average treatment effect on the treated (ATT)",
+      "target_type": "att",
+      "original_name": "ATT",
+      "source_definition": "Population average post-period treatment effect conditional on selected treated units; equals finite-panel SATT=0 under sharp null.",
+      "evidence": "dgp-submissions/registry/drafts/did-karmakar-2025-code-truncated-cluster-null-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "did-ye-2024-bracketing-v1": {
+      "domain": "did_sc",
+      "standard_name": "Average treatment effect on the treated (ATT)",
+      "target_type": "att",
+      "original_name": "ATT_4",
+      "source_definition": "E[Y_4(1)-Y_4(0) | G=trt]；处理组自第2期接受处理，第1期无预期效应。两个场景真值均为1。",
+      "evidence": "dgp-submissions/registry/drafts/did-ye-2024-bracketing-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "did-ye-2024-code-case2-gaussian-bracketing-v1": {
+      "domain": "did_sc",
+      "standard_name": "Average treatment effect on the treated (ATT)",
+      "target_type": "att",
+      "original_name": "ATT_4",
+      "source_definition": "Population mean treatment effect at final period4 conditional on treated group, source-declared att[4]=1; not finite-sample SATT.",
+      "evidence": "dgp-submissions/registry/drafts/did-ye-2024-code-case2-gaussian-bracketing-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "did-cwz-2021-donor-ar-null-v1": {
+      "domain": "did_sc",
+      "standard_name": "Treated-unit treatment effect",
+      "target_type": "other",
+      "original_name": "tau_T",
+      "source_definition": "Y_1,T(1)-Y_1,T(0) at the fixed treated unit and T=T0+1=21. Its design-population expectation and the finite single-treated-unit SATT equal theta_T=0.",
+      "evidence": "dgp-submissions/registry/drafts/did-cwz-2021-donor-ar-null-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "did-ferman-2021-two-factor-null-v1": {
+      "domain": "did_sc",
+      "standard_name": "Treated-unit treatment effect",
+      "target_type": "other",
+      "original_name": "tau_01",
+      "source_definition": "Specified treated unit i=0, first and only post period t=1: Y_01(1)-Y_01(0). Its design-population mean and single-treated-unit finite SATT both equal zero pointwise.",
+      "evidence": "dgp-submissions/registry/drafts/did-ferman-2021-two-factor-null-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "did-shaikh-toulis-2021-conditional-first-adopter-null-v1": {
+      "domain": "did_sc",
+      "standard_name": "Conditional first-adopter average treatment effect",
+      "target_type": "other",
+      "original_name": "ATT_cond",
+      "source_definition": "Mean effect on first-adopter post cells in whole-experiment-success conditional population; also realized SATT=0 pathwise",
+      "evidence": "dgp-submissions/registry/drafts/did-shaikh-toulis-2021-conditional-first-adopter-null-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "did-shi-2026-poisson-proxy-logrr-v1": {
+      "domain": "did_sc",
+      "standard_name": "Treated-unit population log mean ratio",
+      "target_type": "other",
+      "original_name": "log_RR_pop",
+      "source_definition": "For the treated unit at any post period, log(E[Y_t(1)]/E[Y_t(0)]) over the truncated-normal factor and Poisson population; equals -2. This is neither the impossible printed negative rate ratio nor an additive ATT nor finite-sample SATT.",
+      "evidence": "dgp-submissions/registry/drafts/did-shi-2026-poisson-proxy-logrr-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "did-zhao-cui-2025-bridge-iv-v1": {
+      "domain": "did_sc",
+      "standard_name": "Population average treatment effect (ATE)",
+      "target_type": "other",
+      "original_name": "ATE",
+      "source_definition": "Population average causal effect E[Y_t(1)-Y_t(0)]=E[10(1.5X1+2X2-0.5)]=-5 for either t=0 or1, over X~N(0,I2), and original natural Z,U. Not ATT, a finite-sample SATT, optimal-policy value or PCD.",
+      "evidence": "dgp-submissions/registry/drafts/did-zhao-cui-2025-bridge-iv-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "did-zhao-cui-2025-instrumented-v1": {
+      "domain": "did_sc",
+      "standard_name": "Population average treatment effect (ATE)",
+      "target_type": "other",
+      "original_name": "ATE",
+      "source_definition": "E[Y_t(1)-Y_t(0)]，总体 X1,X2 独立标准正态，t=0或1；值为-5。并非 ATT，也非 d_opt 的政策价值。",
+      "evidence": "dgp-submissions/registry/drafts/did-zhao-cui-2025-instrumented-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "sspi-chakrabortty-cai-201808-nl2c-v1": {
+      "domain": "semi_supervised",
+      "standard_name": "Population least-squares projection intercept",
+      "target_type": "other",
+      "original_name": "alpha_projection = E[Y]",
+      "source_definition": "Intercept alpha of argmin_(alpha,beta) E[(Y-alpha-X^T beta)^2]; since E[X]=0 and Cov(X) is positive definite, alpha=E[Y].",
+      "evidence": "dgp-submissions/registry/drafts/sspi-chakrabortty-cai-201808-nl2c-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "sspi-chakrabortty-cai-201808-nl3c-v1": {
+      "domain": "semi_supervised",
+      "standard_name": "Population least-squares projection intercept",
+      "target_type": "other",
+      "original_name": "alpha_projection = E[Y]",
+      "source_definition": "Intercept alpha of argmin_(alpha,beta) E[(Y-alpha-X^T beta)^2]; since E[X]=0 and Cov(X) is positive definite, alpha=E[Y].",
+      "evidence": "dgp-submissions/registry/drafts/sspi-chakrabortty-cai-201808-nl3c-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "sspi-deng-ning-zhao-zhang-2024-additive-polynomial-v1": {
+      "domain": "semi_supervised",
+      "standard_name": "Population least-squares projection slope",
+      "target_type": "other",
+      "original_name": "beta_3",
+      "source_definition": "Coordinate 3 of beta in argmin_(alpha,beta) E[(Y-alpha-X^T beta)^2]. All 500 observed covariates are included, with an intercept.",
+      "evidence": "dgp-submissions/registry/drafts/sspi-deng-ning-zhao-zhang-2024-additive-polynomial-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "sspi-deng-ning-zhao-zhang-2024-cubic-index-v1": {
+      "domain": "semi_supervised",
+      "standard_name": "Population least-squares projection slope",
+      "target_type": "other",
+      "original_name": "beta_21",
+      "source_definition": "Coordinate 21 of beta in argmin_(alpha,beta) E[(Y-alpha-X^T beta)^2]. All 500 observed covariates are included, with an intercept.",
+      "evidence": "dgp-submissions/registry/drafts/sspi-deng-ning-zhao-zhang-2024-cubic-index-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "sspi-deng-ning-zhao-zhang-2024-quadratic-cubic-v1": {
+      "domain": "semi_supervised",
+      "standard_name": "Population least-squares projection slope",
+      "target_type": "other",
+      "original_name": "beta_4",
+      "source_definition": "Coordinate 4 of beta in argmin_(alpha,beta) E[(Y-alpha-X^T beta)^2]. All 500 observed covariates are included, with an intercept.",
+      "evidence": "dgp-submissions/registry/drafts/sspi-deng-ning-zhao-zhang-2024-quadratic-cubic-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "sspi-azriel-2022-quadratic-projection-v1": {
+      "domain": "semi_supervised",
+      "standard_name": "Population least-squares projection slope",
+      "target_type": "other",
+      "original_name": "beta_L2",
+      "source_definition": "Slope in the population least-squares projection of Y on (1,X).",
+      "evidence": "dgp-submissions/registry/drafts/sspi-azriel-2022-quadratic-projection-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "sspi-song-2024-nonlinear-noise-projection-v1": {
+      "domain": "semi_supervised",
+      "standard_name": "Population least-squares projection slope",
+      "target_type": "other",
+      "original_name": "theta_L2[1]",
+      "source_definition": "First slope in the population least-squares projection of Y on (1,X1,...,X4).",
+      "evidence": "dgp-submissions/registry/drafts/sspi-song-2024-nonlinear-noise-projection-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "sspi-zhang-bradic-202206-additive-sine-v1": {
+      "domain": "semi_supervised",
+      "standard_name": "Population outcome mean",
+      "target_type": "other",
+      "original_name": "theta = E[Y]",
+      "source_definition": "Superpopulation mean theta=E[Y] under the declared fixed mechanism, shared by labeled and unlabeled samples.",
+      "evidence": "dgp-submissions/registry/drafts/sspi-zhang-bradic-202206-additive-sine-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "sspi-zhang-bradic-202206-interaction-v1": {
+      "domain": "semi_supervised",
+      "standard_name": "Population outcome mean",
+      "target_type": "other",
+      "original_name": "theta = E[Y]",
+      "source_definition": "Superpopulation mean theta=E[Y] under the declared fixed mechanism, shared by labeled and unlabeled samples.",
+      "evidence": "dgp-submissions/registry/drafts/sspi-zhang-bradic-202206-interaction-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "sspi-zhang-brown-cai-201910-poisson-v1": {
+      "domain": "semi_supervised",
+      "standard_name": "Population outcome mean",
+      "target_type": "other",
+      "original_name": "theta = E[Y]",
+      "source_definition": "Superpopulation mean theta=E[Y] under the declared fixed mechanism, shared by labeled and unlabeled samples.",
+      "evidence": "dgp-submissions/registry/drafts/sspi-zhang-brown-cai-201910-poisson-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "sspi-ji-2026-discrete-surrogate-mean-v1": {
+      "domain": "semi_supervised",
+      "standard_name": "Population outcome mean",
+      "target_type": "other",
+      "original_name": "E[Y]",
+      "source_definition": "Population mean of Y, aided by the observed discrete prediction.",
+      "evidence": "dgp-submissions/registry/drafts/sspi-ji-2026-discrete-surrogate-mean-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "sspi-zhang-bradic-2022-cosine-index-v1": {
+      "domain": "semi_supervised",
+      "standard_name": "Population outcome mean",
+      "target_type": "other",
+      "original_name": "E[Y]",
+      "source_definition": "Population mean of Y in the common labeled/unlabeled population.",
+      "evidence": "dgp-submissions/registry/drafts/sspi-zhang-bradic-2022-cosine-index-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "sspi-ahmed-2025-cauchy-tail-quantile-v1": {
+      "domain": "semi_supervised",
+      "standard_name": "Marginal population quantile",
+      "target_type": "other",
+      "original_name": "Q_Y(0.998)",
+      "source_definition": "Marginal quantile inf{y:Pr(Y<=y)>=0.998} in the common population; tail probability is fixed at 0.002.",
+      "evidence": "dgp-submissions/registry/drafts/sspi-ahmed-2025-cauchy-tail-quantile-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "sspi-cai-guo-2020-dense-explained-variance-v1": {
+      "domain": "semi_supervised",
+      "standard_name": "Population explained variance",
+      "target_type": "other",
+      "original_name": "beta^T Sigma beta",
+      "source_definition": "Explained population variance Var(E[Y|X])=beta^T Sigma beta.",
+      "evidence": "dgp-submissions/registry/drafts/sspi-cai-guo-2020-dense-explained-variance-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "sspi-song-2024-even-mixture-logistic-projection-v1": {
+      "domain": "semi_supervised",
+      "standard_name": "Population logistic-loss projection slope",
+      "target_type": "other",
+      "original_name": "theta_logistic[1]",
+      "source_definition": "First slope in the population logistic-loss projection of Y on (1,X1,...,X4).",
+      "evidence": "dgp-submissions/registry/drafts/sspi-song-2024-even-mixture-logistic-projection-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "sspi-wen-2025-gaussian-cdf-v1": {
+      "domain": "semi_supervised",
+      "standard_name": "Marginal population cumulative distribution function",
+      "target_type": "other",
+      "original_name": "F_Y(1)",
+      "source_definition": "Marginal population CDF Pr(Y<=1), using the semi-supervised observation design.",
+      "evidence": "dgp-submissions/registry/drafts/sspi-wen-2025-gaussian-cdf-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "qdi-hall-yao-2005-additive-sine-v1": {
+      "domain": "quantile",
+      "standard_name": "Conditional cumulative distribution function",
+      "target_type": "other",
+      "original_name": "F_{Y|X}(0.5|x_query)",
+      "source_definition": "Conditional CDF P(Y<=0.5 | X=(0.5,0.25,-0.5,1)); conditioning is on the full four-dimensional X, not on the fitted index.",
+      "evidence": "dgp-submissions/registry/drafts/qdi-hall-yao-2005-additive-sine-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "qdi-hall-yao-2005-additive-sine-v2": {
+      "domain": "quantile",
+      "standard_name": "Conditional cumulative distribution function",
+      "target_type": "other",
+      "original_name": "F_{Y|X}(0.5|x_query)",
+      "source_definition": "Conditional CDF P(Y<=0.5 | X=(0.5,0.25,-0.5,1)); conditioning is on the full four-dimensional X, not on the fitted index.",
+      "evidence": "dgp-submissions/registry/drafts/qdi-hall-yao-2005-additive-sine-v2.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "qdi-hall-wolff-yao-1999-sine-triangular-v1": {
+      "domain": "quantile",
+      "standard_name": "Conditional cumulative distribution function",
+      "target_type": "other",
+      "original_name": "theta = F_{Y|X=0.1}(1)",
+      "source_definition": "P(Y<=1 | X=0.1) in the Example 1 superpopulation, using the continuous version F(y|x)=G(y-2*sin(3.1416*x)) induced by independent triangular noise. Conditional CDF, not a marginal CDF, quantile, conditional mean, causal contrast, or prediction interval. Query x=0.1 and CDF threshold y=1 are fixed in config.",
+      "evidence": "dgp-submissions/registry/drafts/qdi-hall-wolff-yao-1999-sine-triangular-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "qdi-henzi-2021-gamma-shift-v1": {
+      "domain": "quantile",
+      "standard_name": "Conditional cumulative distribution function",
+      "target_type": "other",
+      "original_name": "theta_s = F_s(10 | 5.5)",
+      "source_definition": "Scalar conditional CDF P(Y_s<=10 | X=5.5) for each source scenario, using the explicitly specified conditional-law version. Not a marginal CDF, quantile, causal effect, or simultaneous band.",
+      "evidence": "dgp-submissions/registry/drafts/qdi-henzi-2021-gamma-shift-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "qdi-henzi-2021-poisson-clipped-rate-v1": {
+      "domain": "quantile",
+      "standard_name": "Conditional cumulative distribution function",
+      "target_type": "other",
+      "original_name": "theta = F_{Y|X=5}(3)",
+      "source_definition": "P(Y<=3 | X=5) in the source synthetic superpopulation, using its continuous-in-x conditional probability kernel. Inclusive CDF threshold y=3, fixed covariate query x=5, scalar probability in [0,1]. This is conditional, not marginal, and not a quantile or a causal effect.",
+      "evidence": "dgp-submissions/registry/drafts/qdi-henzi-2021-poisson-clipped-rate-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "qdi-hall-yao-2005-gaussian-index-v1": {
+      "domain": "quantile",
+      "standard_name": "Marginal population quantile",
+      "target_type": "other",
+      "original_name": "Q_Y(0.9)",
+      "source_definition": "Marginal population quantile Q_Y(tau)=inf{y:P(Y<=y)>=tau}, tau=0.9; X is integrated over its N(0,I4) population, not fixed at zero.",
+      "evidence": "dgp-submissions/registry/drafts/qdi-hall-yao-2005-gaussian-index-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "qdi-hall-yao-2005-gaussian-index-v2": {
+      "domain": "quantile",
+      "standard_name": "Marginal population quantile",
+      "target_type": "other",
+      "original_name": "Q_Y(0.9)",
+      "source_definition": "Marginal population quantile Q_Y(tau)=inf{y:P(Y<=y)>=tau}, tau=0.9; X is integrated over its N(0,I4) population, not fixed at zero.",
+      "evidence": "dgp-submissions/registry/drafts/qdi-hall-yao-2005-gaussian-index-v2.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "qdi-fong-yiu-2026-cubic-quantile-v1": {
+      "domain": "quantile",
+      "standard_name": "Marginal population quantile",
+      "target_type": "other",
+      "original_name": "theta = Q_Y(0.9)",
+      "source_definition": "Marginal population quantile inf{y: P(Y<=y)>=0.9} under Y=4(U-0.4)^3+0.2U, U~Uniform(0,1); no conditioning variables or interventions. The fixed query is tau=0.9 in both scenarios.",
+      "evidence": "dgp-submissions/registry/drafts/qdi-fong-yiu-2026-cubic-quantile-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "qr-athey-tibshirani-wager-2019-mean-v1": {
+      "domain": "quantile",
+      "standard_name": "Conditional quantile",
+      "target_type": "conditional_quantile",
+      "original_name": "theta = Q_0.9(Y | X=x_query)",
+      "source_definition": "Conditional 90th percentile of the observed response at x_query=(0.5,0,...,0) in the 40-dimensional covariate support; inf{y:P(Y<=y|X=x_query)>=0.9}. A conditional quantile regression target, not a quantile treatment effect, population marginal quantile or causal estimand.",
+      "evidence": "dgp-submissions/registry/drafts/qr-athey-tibshirani-wager-2019-mean-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "qr-athey-tibshirani-wager-2019-scale-v1": {
+      "domain": "quantile",
+      "standard_name": "Conditional quantile",
+      "target_type": "conditional_quantile",
+      "original_name": "theta = Q_0.9(Y | X=x_query)",
+      "source_definition": "Conditional 90th percentile of the observed response at x_query=(0.5,0,...,0) in the 40-dimensional covariate support; inf{y:P(Y<=y|X=x_query)>=0.9}. A conditional quantile regression target, not a quantile treatment effect, population marginal quantile or causal estimand.",
+      "evidence": "dgp-submissions/registry/drafts/qr-athey-tibshirani-wager-2019-scale-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "qdi-bondell-reich-wang-2010-linear-scale-v2": {
+      "domain": "quantile",
+      "standard_name": "Conditional quantile",
+      "target_type": "conditional_quantile",
+      "original_name": "Q_{0.9}(x_query)",
+      "source_definition": "Conditional 0.9 quantile at X=(0.5,0.5,0.5,0.5) in source Example 1.",
+      "evidence": "dgp-submissions/registry/drafts/qdi-bondell-reich-wang-2010-linear-scale-v2.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "qdi-bondell-reich-wang-2010-sine-location-v2": {
+      "domain": "quantile",
+      "standard_name": "Conditional quantile",
+      "target_type": "conditional_quantile",
+      "original_name": "Q_{0.9}(0.5)",
+      "source_definition": "Conditional 0.9 quantile at X=0.5 in source Example 4.",
+      "evidence": "dgp-submissions/registry/drafts/qdi-bondell-reich-wang-2010-sine-location-v2.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "qdi-bondell-reich-wang-2010-sine-scale-v2": {
+      "domain": "quantile",
+      "standard_name": "Conditional quantile",
+      "target_type": "conditional_quantile",
+      "original_name": "Q_{0.9}(0.5)",
+      "source_definition": "Conditional 0.9 quantile at X=0.5 in source Example 5.",
+      "evidence": "dgp-submissions/registry/drafts/qdi-bondell-reich-wang-2010-sine-scale-v2.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "qdi-dette-volgushev-2008-exponential-scale-v2": {
+      "domain": "quantile",
+      "standard_name": "Conditional quantile",
+      "target_type": "conditional_quantile",
+      "original_name": "Q_{0.9}(2)",
+      "source_definition": "Conditional 0.9 quantile at X=2, according to the explicitly dated preprint model 4.",
+      "evidence": "dgp-submissions/registry/drafts/qdi-dette-volgushev-2008-exponential-scale-v2.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "qdi-li-liu-zhu-2007-exponential-surface-v2": {
+      "domain": "quantile",
+      "standard_name": "Conditional quantile",
+      "target_type": "conditional_quantile",
+      "original_name": "Q_{0.1}(0.5,0.5)",
+      "source_definition": "Conditional 0.1 quantile at X=(0.5,0.5); normal, t3, and specified normal-mixture errors are scenarios within ONE mechanism family.",
+      "evidence": "dgp-submissions/registry/drafts/qdi-li-liu-zhu-2007-exponential-surface-v2.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "qdi-li-liu-zhu-2007-sinc-v2": {
+      "domain": "quantile",
+      "standard_name": "Conditional quantile",
+      "target_type": "conditional_quantile",
+      "original_name": "Q_{0.9}(0.5)",
+      "source_definition": "Conditional 0.9 quantile at X=0.5, using the sinc data law of the Section 1 demonstration.",
+      "evidence": "dgp-submissions/registry/drafts/qdi-li-liu-zhu-2007-sinc-v2.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "qdi-bondell-reich-wang-2010-linear-scale-v1": {
+      "domain": "quantile",
+      "standard_name": "Conditional quantile",
+      "target_type": "conditional_quantile",
+      "original_name": "Q_{0.9}(x_query)",
+      "source_definition": "Conditional 0.9 quantile at X=(0.5,0.5,0.5,0.5) in source Example 1.",
+      "evidence": "dgp-submissions/registry/drafts/qdi-bondell-reich-wang-2010-linear-scale-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "qdi-bondell-reich-wang-2010-sine-location-v1": {
+      "domain": "quantile",
+      "standard_name": "Conditional quantile",
+      "target_type": "conditional_quantile",
+      "original_name": "Q_{0.9}(0.5)",
+      "source_definition": "Conditional 0.9 quantile at X=0.5 in source Example 4.",
+      "evidence": "dgp-submissions/registry/drafts/qdi-bondell-reich-wang-2010-sine-location-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "qdi-bondell-reich-wang-2010-sine-scale-v1": {
+      "domain": "quantile",
+      "standard_name": "Conditional quantile",
+      "target_type": "conditional_quantile",
+      "original_name": "Q_{0.9}(0.5)",
+      "source_definition": "Conditional 0.9 quantile at X=0.5 in source Example 5.",
+      "evidence": "dgp-submissions/registry/drafts/qdi-bondell-reich-wang-2010-sine-scale-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "qdi-dette-volgushev-2008-exponential-scale-v1": {
+      "domain": "quantile",
+      "standard_name": "Conditional quantile",
+      "target_type": "conditional_quantile",
+      "original_name": "Q_{0.9}(2)",
+      "source_definition": "Conditional 0.9 quantile at X=2, according to the explicitly dated preprint model 4.",
+      "evidence": "dgp-submissions/registry/drafts/qdi-dette-volgushev-2008-exponential-scale-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "qdi-li-liu-zhu-2007-exponential-surface-v1": {
+      "domain": "quantile",
+      "standard_name": "Conditional quantile",
+      "target_type": "conditional_quantile",
+      "original_name": "Q_{0.1}(0.5,0.5)",
+      "source_definition": "Conditional 0.1 quantile at X=(0.5,0.5); normal, t3, and specified normal-mixture errors are scenarios within ONE mechanism family.",
+      "evidence": "dgp-submissions/registry/drafts/qdi-li-liu-zhu-2007-exponential-surface-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "qdi-li-liu-zhu-2007-sinc-v1": {
+      "domain": "quantile",
+      "standard_name": "Conditional quantile",
+      "target_type": "conditional_quantile",
+      "original_name": "Q_{0.9}(0.5)",
+      "source_definition": "Conditional 0.9 quantile at X=0.5, using the sinc data law of the Section 1 demonstration.",
+      "evidence": "dgp-submissions/registry/drafts/qdi-li-liu-zhu-2007-sinc-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "qdi-shen-meinshausen-2025-preadditive-noise-v1": {
+      "domain": "quantile",
+      "standard_name": "Conditional quantile",
+      "target_type": "conditional_quantile",
+      "original_name": "q_s(0.5;0.5)",
+      "source_definition": "For each scenario s, q_s(0.5;0.5)=inf{y:F_s(y;0.5)>=0.5}, F_s(y;x)=P_eta[g_s(x+eta)<=y], eta~N(0,sigma_s^2). A scalar conditional median at an interior covariate point; not a marginal quantile, causal effect, prediction interval or simultaneous band.",
+      "evidence": "dgp-submissions/registry/drafts/qdi-shen-meinshausen-2025-preadditive-noise-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "qdi-tan-wang-zhou-20220201-active10-mixture-v2": {
+      "domain": "quantile",
+      "standard_name": "Conditional quantile",
+      "target_type": "conditional_quantile",
+      "original_name": "theta_tau = Q_tau(Y | W = e1)",
+      "source_definition": "inf{y:F_Y|W(y|e1)>=tau}, with W=(X_original,1,X_original,3,...,X_original,19) in R^10 and e1=(1,0,...,0). The default tau is 0.9; a second scenario uses 0.5. theta_tau=1.8+F_epsilon^(-1)(tau). This equals the parent model full-X target because the removed coordinates have zero coefficients and epsilon is independent of the full X.",
+      "evidence": "dgp-submissions/registry/drafts/qdi-tan-wang-zhou-20220201-active10-mixture-v2.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "qdi-yang-he-2012-conditional-quantile-v1": {
+      "domain": "quantile",
+      "standard_name": "Conditional quantile",
+      "target_type": "conditional_quantile",
+      "original_name": "theta_m = Q_0.95(Y | X=2,Z=0), m=1,2,3,4",
+      "source_definition": "inf{y: F_m(y|X=2,Z=0)>=0.95} in the model-specific synthetic superpopulation. Conditional, pointwise scalar; not a marginal quantile, regression slope, posterior quantile, sample-mean adjusted intercept or simultaneous band.",
+      "evidence": "dgp-submissions/registry/drafts/qdi-yang-he-2012-conditional-quantile-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "qdi-yang-tokdar-2017-triangular-quantile-v1": {
+      "domain": "quantile",
+      "standard_name": "Conditional quantile",
+      "target_type": "conditional_quantile",
+      "original_name": "theta = Q_Y(19/20 | X=(0,2/3))",
+      "source_definition": "inf{y:F_Y(y|X=(0,2/3))>=19/20} under the continuous conditional-law version specified by the published Figure 1 law. Exact centroid and quantile level are stored as rational metadata. One pointwise conditional quantile, not a marginal target or simultaneous band.",
+      "evidence": "dgp-submissions/registry/drafts/qdi-yang-tokdar-2017-triangular-quantile-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "qdi-yang-tokdar-20170412-univariate-quantile-v1": {
+      "domain": "quantile",
+      "standard_name": "Conditional quantile",
+      "target_type": "conditional_quantile",
+      "original_name": "theta = Q_Y(0.9 | X=0.5)",
+      "source_definition": "inf{y: F_Y(y | X=0.5) >= 0.9} under the source superpopulation; use the conditional distribution version continuous in x specified by the quantile-plane law. A noncausal scalar conditional quantile, not a marginal quantile, beta_1(0.9), prediction interval, or simultaneous band.",
+      "evidence": "dgp-submissions/registry/drafts/qdi-yang-tokdar-20170412-univariate-quantile-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "ate-athey-imbens-wager-2018-arb-v1": {
+      "domain": "ate",
+      "standard_name": "Average treatment effect (ATE)",
+      "target_type": "ate",
+      "original_name": "ATE",
+      "source_definition": "Population average treatment effect E[Y(1)-Y(0)] for an intervention setting W from 0 to 1 while holding each unit’s pretreatment X fixed; the two-cluster linear outcome equation gives Y(w)=X^T beta + w + epsilon and hence ATE=1.",
+      "evidence": "dgp-submissions/registry/drafts/ate-athey-imbens-wager-2018-arb-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "ate-athey-imbens-wager-2018-arb-v2": {
+      "domain": "ate",
+      "standard_name": "Average treatment effect (ATE)",
+      "target_type": "ate",
+      "original_name": "ATE = E[Y(1)-Y(0)]",
+      "source_definition": "Superpopulation average effect of the intervention setting W from 0 to 1, holding the pretreatment covariate vector X fixed in the potential outcomes, under the many-cluster DGP. This is a population ATE, not an estimator RMSE or finite-sample treatment-group contrast.",
+      "evidence": "dgp-submissions/registry/drafts/ate-athey-imbens-wager-2018-arb-v2.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "ate-athey-imbens-wager-2018-arb-v3": {
+      "domain": "ate",
+      "standard_name": "Average treatment effect (ATE)",
+      "target_type": "ate",
+      "original_name": "ATE",
+      "source_definition": "E[Y(1)-Y(0)] under interventions setting W=1 versus W=0 in the superpopulation defined by the sparse two-stage DGP; use the same pre-treatment X and epsilon_2 for both potential outcomes.",
+      "evidence": "dgp-submissions/registry/drafts/ate-athey-imbens-wager-2018-arb-v3.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "ate-athey-imbens-wager-2018-arb-v4": {
+      "domain": "ate",
+      "standard_name": "Average treatment effect (ATE)",
+      "target_type": "ate",
+      "original_name": "ATE",
+      "source_definition": "Population average treatment effect E[Y(1)-Y(0)] under the Section 5.2 moderately sparse two-stage DGP, comparing the intervention W=1 with W=0 while holding the same pretreatment X and outcome disturbance fixed.",
+      "evidence": "dgp-submissions/registry/drafts/ate-athey-imbens-wager-2018-arb-v4.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "ate-athey-imbens-wager-2018-arb-v5": {
+      "domain": "ate",
+      "standard_name": "Average treatment effect (ATE)",
+      "target_type": "ate",
+      "original_name": "ATE",
+      "source_definition": "Population average treatment effect E[Y(1)-Y(0)] in the synthetic superpopulation defined by Section 5.2's misspecified setting, comparing intervention W=1 with W=0 while holding the same pre-treatment X and outcome error fixed. The individual effect is theta(X1), so ATE=E[theta(X1)]. This is not ATT=E[theta(X1)|W=1].",
+      "evidence": "dgp-submissions/registry/drafts/ate-athey-imbens-wager-2018-arb-v5.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "ate-benkser-carone-vdl-gilbert-2017-dr-v1": {
+      "domain": "ate",
+      "standard_name": "Average treatment effect (ATE)",
+      "target_type": "ate",
+      "original_name": "ATE = E[Y(1)-Y(0)]",
+      "source_definition": "Population risk difference under interventions setting A=1 versus A=0, averaged over the source covariate distribution W=(W1,W2).",
+      "evidence": "dgp-submissions/registry/drafts/ate-benkser-carone-vdl-gilbert-2017-dr-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "ate-ding-dasgupta-2016-binary-rct-v1": {
+      "domain": "ate",
+      "standard_name": "Finite-population average treatment effect (ATE)",
+      "target_type": "ate",
+      "original_name": "tau = N^{-1} sum_i [Y_i(1)-Y_i(0)] = (N10-N01)/N",
+      "source_definition": "Finite-population average treatment effect / causal risk difference for intervention A=1 versus A=0 over the N=200 experimental units. Y_i(1) and Y_i(0) are binary fixed potential outcomes; observed Y_i=A_i Y_i(1)+(1-A_i)Y_i(0).",
+      "evidence": "dgp-submissions/registry/drafts/ate-ding-dasgupta-2016-binary-rct-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "ate-huang-chan-2017-05-19-setting-2-v1": {
+      "domain": "ate",
+      "standard_name": "Average treatment effect (ATE)",
+      "target_type": "ate",
+      "original_name": "ATE",
+      "source_definition": "E[Y(1)-Y(0)] in the full declared covariate population; treatment 1 versus 0; population, not sample-conditional, target.",
+      "evidence": "dgp-submissions/registry/drafts/ate-huang-chan-2017-05-19-setting-2-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "ate-ma-zhu-zhang-tsai-carroll-2019-06-01-model-1-v1": {
+      "domain": "ate",
+      "standard_name": "Average treatment effect (ATE)",
+      "target_type": "ate",
+      "original_name": "ATE",
+      "source_definition": "ATE = E[Y(1)-Y(0)] in the full original covariate population; binary treatment 1 versus 0.",
+      "evidence": "dgp-submissions/registry/drafts/ate-ma-zhu-zhang-tsai-carroll-2019-06-01-model-1-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "ate-ma-zhu-zhang-tsai-carroll-2019-06-01-model-2-v1": {
+      "domain": "ate",
+      "standard_name": "Average treatment effect (ATE)",
+      "target_type": "ate",
+      "original_name": "ATE",
+      "source_definition": "ATE = E[Y(1)-Y(0)] in the full original covariate population; binary treatment 1 versus 0.",
+      "evidence": "dgp-submissions/registry/drafts/ate-ma-zhu-zhang-tsai-carroll-2019-06-01-model-2-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "ate-nie-wager-2020-09-24-eq9-discontinuous-v1": {
+      "domain": "ate",
+      "standard_name": "Average treatment effect (ATE)",
+      "target_type": "ate",
+      "original_name": "ATE",
+      "source_definition": "ATE = E[Y(1)-Y(0)] in the full original covariate population; binary treatment 1 versus 0.",
+      "evidence": "dgp-submissions/registry/drafts/ate-nie-wager-2020-09-24-eq9-discontinuous-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "ate-nie-wager-2020-09-24-eq9-smooth-v1": {
+      "domain": "ate",
+      "standard_name": "Average treatment effect (ATE)",
+      "target_type": "ate",
+      "original_name": "ATE",
+      "source_definition": "ATE = E[Y(1)-Y(0)] in the full original covariate population; binary treatment 1 versus 0.",
+      "evidence": "dgp-submissions/registry/drafts/ate-nie-wager-2020-09-24-eq9-smooth-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "ate-nie-wager-2020-09-24-setup-b-v1": {
+      "domain": "ate",
+      "standard_name": "Average treatment effect (ATE)",
+      "target_type": "ate",
+      "original_name": "ATE",
+      "source_definition": "E[Y(1)-Y(0)] in the full declared covariate population; treatment 1 versus 0; population, not sample-conditional, target.",
+      "evidence": "dgp-submissions/registry/drafts/ate-nie-wager-2020-09-24-setup-b-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "ate-nie-wager-2020-09-24-setup-c-v1": {
+      "domain": "ate",
+      "standard_name": "Average treatment effect (ATE)",
+      "target_type": "ate",
+      "original_name": "ATE",
+      "source_definition": "E[Y(1)-Y(0)] in the full declared covariate population; treatment 1 versus 0; population, not sample-conditional, target.",
+      "evidence": "dgp-submissions/registry/drafts/ate-nie-wager-2020-09-24-setup-c-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "ate-nie-wager-2020-09-24-setup-d-v1": {
+      "domain": "ate",
+      "standard_name": "Average treatment effect (ATE)",
+      "target_type": "ate",
+      "original_name": "ATE",
+      "source_definition": "E[Y(1)-Y(0)] in the full declared covariate population; treatment 1 versus 0; population, not sample-conditional, target.",
+      "evidence": "dgp-submissions/registry/drafts/ate-nie-wager-2020-09-24-setup-d-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "ate-nie-wager-2021-a-v1": {
+      "domain": "ate",
+      "standard_name": "Average treatment effect (ATE)",
+      "target_type": "ate",
+      "original_name": "theta_ATE = E[Y(1)-Y(0)]",
+      "source_definition": "Superpopulation average effect of A=1 versus A=0, under X~Uniform([0,1]^6). Not the realized-sample average effect, ATT, CATE output, or unadjusted observed group difference.",
+      "evidence": "dgp-submissions/registry/drafts/ate-nie-wager-2021-a-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "ate-ning-peng-imai-2020-06-03-ar1-linear-v1": {
+      "domain": "ate",
+      "standard_name": "Average treatment effect (ATE)",
+      "target_type": "ate",
+      "original_name": "ATE",
+      "source_definition": "E[Y(1)-Y(0)] in the full declared covariate population; treatment 1 versus 0; population, not sample-conditional, target.",
+      "evidence": "dgp-submissions/registry/drafts/ate-ning-peng-imai-2020-06-03-ar1-linear-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "ate-ning-peng-imai-2020-linear-v1": {
+      "domain": "ate",
+      "standard_name": "Average treatment effect (ATE)",
+      "target_type": "ate",
+      "original_name": "ATE",
+      "source_definition": "E[Y(1)-Y(0)] in the superpopulation defined by the selected Gaussian-covariate linear-potential-outcome DGP; intervention contrast A=1 versus A=0.",
+      "evidence": "dgp-submissions/registry/drafts/ate-ning-peng-imai-2020-linear-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "ate-wager-athey-2018-06-06-rare-response-v1": {
+      "domain": "ate",
+      "standard_name": "Average treatment effect (ATE)",
+      "target_type": "ate",
+      "original_name": "ATE",
+      "source_definition": "E[Y(1)-Y(0)] in the full declared covariate population; treatment 1 versus 0; population, not sample-conditional, target.",
+      "evidence": "dgp-submissions/registry/drafts/ate-wager-athey-2018-06-06-rare-response-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "ate-yang-wang-ding-2019-mnar-confounder-v1": {
+      "domain": "ate",
+      "standard_name": "Average treatment effect (ATE)",
+      "target_type": "ate",
+      "original_name": "ATE = E[Y(1)-Y(0)]",
+      "source_definition": "Population average effect of intervening to set treatment A from 0 (control) to 1 (active), averaged over the full pre-treatment covariate distribution before missingness: E[Y(1)-Y(0)].",
+      "evidence": "dgp-submissions/registry/drafts/ate-yang-wang-ding-2019-mnar-confounder-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "ate-yang-wang-ding-2019-mnar-confounder-v2": {
+      "domain": "ate",
+      "standard_name": "Average treatment effect (ATE)",
+      "target_type": "ate",
+      "original_name": "ATE",
+      "source_definition": "Population E[Y(1)-Y(0)] for the intervention A=1 versus A=0, under the declared Section 5.3 equation-based mechanism and its explicitly stated factorization adaptations.",
+      "evidence": "dgp-submissions/registry/drafts/ate-yang-wang-ding-2019-mnar-confounder-v2.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "ate-wager-athey-2018-confounded-null-v1": {
+      "domain": "ate",
+      "standard_name": "Average treatment effect (ATE)",
+      "target_type": "ate",
+      "original_name": "theta_ATE=E[Y(1)-Y(0)]",
+      "source_definition": "Superpopulation average effect of A=1 versus A=0, integrating over iid Uniform covariates; not a sample average or observed treated-control mean difference.",
+      "evidence": "dgp-submissions/registry/drafts/ate-wager-athey-2018-confounded-null-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "cate-athey-2019-heterogeneity-confounding-v1": {
+      "domain": "cate",
+      "standard_name": "Conditional average treatment effect (CATE)",
+      "target_type": "cate",
+      "original_name": "tau(x0) = E[Y(1) - Y(0) | X = x0]",
+      "source_definition": "Conditional average treatment effect at the declared query points for the combined setting: sigmoid-product heterogeneity on X1, X2 together with a beta-density propensity and a linear baseline on X3.",
+      "evidence": "dgp-submissions/registry/drafts/cate-athey-2019-heterogeneity-confounding-v1.json#estimand",
+      "status": "needs_review",
+      "note": "The estimand is labeled CATE but the submitted page does not specify the query covariate point associated with the stated numeric value."
+    },
+    "cate-athey-tibshirani-wager-2019-confounded-v1": {
+      "domain": "cate",
+      "standard_name": "Conditional average treatment effect (CATE)",
+      "target_type": "cate",
+      "original_name": "tau(x_star)=E[Y(1)-Y(0)|X=x_star]",
+      "source_definition": "Scalar pointwise CATE at x_star=[0.3333333333333333, 0.3333333333333333, 0.25, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5]. Continuous source response functions specify the conditional version at this point. This is not a population ATE or the full CATE vector/function interface.",
+      "evidence": "dgp-submissions/registry/drafts/cate-athey-tibshirani-wager-2019-confounded-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "cate-lei-2021-conformal-cate-v1": {
+      "domain": "cate",
+      "standard_name": "Conditional average treatment effect (CATE)",
+      "target_type": "cate",
+      "original_name": "tau(x0) = E[Y(1) - Y(0) | X = x0]",
+      "source_definition": "Conditional average treatment effect at the declared query points when the control potential outcome is identically zero, so the effect equals the treated conditional mean.",
+      "evidence": "dgp-submissions/registry/drafts/cate-lei-2021-conformal-cate-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "cate-nie-2021-setup-a-v1": {
+      "domain": "cate",
+      "standard_name": "Conditional average treatment effect (CATE)",
+      "target_type": "cate",
+      "original_name": "tau(x0) = E[Y(1) - Y(0) | X = x0]",
+      "source_definition": "Conditional average treatment effect at the declared query points; a simple linear surface in the first two coordinates, embedded in a deliberately difficult nuisance structure.",
+      "evidence": "dgp-submissions/registry/drafts/cate-nie-2021-setup-a-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "cate-nie-2021-setup-b-v1": {
+      "domain": "cate",
+      "standard_name": "Conditional average treatment effect (CATE)",
+      "target_type": "cate",
+      "original_name": "tau(x0) = E[Y(1) - Y(0) | X = x0]",
+      "source_definition": "Conditional average treatment effect at the declared query points; linear in X1 plus a log-sum-exp transform of X2.",
+      "evidence": "dgp-submissions/registry/drafts/cate-nie-2021-setup-b-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "cate-nie-2021-setup-c-v1": {
+      "domain": "cate",
+      "standard_name": "Conditional average treatment effect (CATE)",
+      "target_type": "cate",
+      "original_name": "tau(x0) = E[Y(1) - Y(0) | X = x0]",
+      "source_definition": "Conditional average treatment effect at the declared query points; constant equal to 1 for every x, so the whole difficulty is the strongly confounded nuisance structure.",
+      "evidence": "dgp-submissions/registry/drafts/cate-nie-2021-setup-c-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "cate-nie-2021-setup-d-v1": {
+      "domain": "cate",
+      "standard_name": "Conditional average treatment effect (CATE)",
+      "target_type": "cate",
+      "original_name": "tau(x0) = E[Y(1) - Y(0) | X = x0]",
+      "source_definition": "Conditional average treatment effect at the declared query points; a difference of two rectified sums supported on disjoint coordinate blocks.",
+      "evidence": "dgp-submissions/registry/drafts/cate-nie-2021-setup-d-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "cate-wager-2018-null-confounded-v1": {
+      "domain": "cate",
+      "standard_name": "Conditional average treatment effect (CATE)",
+      "target_type": "cate",
+      "original_name": "tau(x0) = E[Y(1) - Y(0) | X = x0]",
+      "source_definition": "Conditional average treatment effect at the declared query point; in this design it is identically zero for every x, which makes it a null-effect control for bias and interval coverage under confounding.",
+      "evidence": "dgp-submissions/registry/drafts/cate-wager-2018-null-confounded-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "cate-wager-2018-sparse-signal-v1": {
+      "domain": "cate",
+      "standard_name": "Conditional average treatment effect (CATE)",
+      "target_type": "cate",
+      "original_name": "tau(x0) = E[Y(1) - Y(0) | X = x0]",
+      "source_definition": "Conditional average treatment effect when the signal is spread additively over q = 4 of the 6 coordinates; the estimand at a query point is the sum of four sigmoid contributions minus 2.",
+      "evidence": "dgp-submissions/registry/drafts/cate-wager-2018-sparse-signal-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "cate-ye-2023-interaction-zero-mean-v1": {
+      "domain": "cate",
+      "standard_name": "Conditional average treatment effect (CATE)",
+      "target_type": "cate",
+      "original_name": "tau(u0) = E[Y(1) - Y(0) | U = u0]",
+      "source_definition": "Conditional average treatment effect at the declared query points for the arm-2 versus arm-1 contrast; the surface is linear in U with slope zeta = 1 and has exactly zero mean over the covariate distribution, so there is heterogeneity but no average effect.",
+      "evidence": "dgp-submissions/registry/drafts/cate-ye-2023-interaction-zero-mean-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "cate-ye-2023-quadratic-misspecified-v1": {
+      "domain": "cate",
+      "standard_name": "Conditional average treatment effect (CATE)",
+      "target_type": "cate",
+      "original_name": "tau(u0, w0) = E[Y(1) - Y(0) | U = u0, W = w0]",
+      "source_definition": "Conditional average treatment effect at the declared query points for the arm-2 versus arm-1 contrast; affine in U and W with a small negative quadratic term in U, so the surface is curved but close to linear over the bulk of the covariate law.",
+      "evidence": "dgp-submissions/registry/drafts/cate-ye-2023-quadratic-misspecified-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "cate-wager-athey-2018-logistic-v1": {
+      "domain": "cate",
+      "standard_name": "Conditional average treatment effect (CATE)",
+      "target_type": "cate",
+      "original_name": "tau(x_star)=E[Y(1)-Y(0)|X=x_star]",
+      "source_definition": "Scalar pointwise CATE at x_star=[0.3333333333333333, 0.3333333333333333, 0.5, 0.5, 0.5, 0.5]. Continuous source response functions specify the conditional version at this point. This is not a population ATE or the full CATE vector/function interface.",
+      "evidence": "dgp-submissions/registry/drafts/cate-wager-athey-2018-logistic-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "nri-calonico-2018-asymmetric-sine-v1": {
+      "domain": "nonparametric_regression",
+      "standard_name": "Pointwise conditional mean",
+      "target_type": "conditional_mean",
+      "original_name": "m(x0)",
+      "source_definition": "E[Y | X=x0], the continuous conditional regression mean at the fixed config.query_x; not a prediction quantile, population average, causal contrast or simultaneous band.",
+      "evidence": "dgp-submissions/registry/drafts/nri-calonico-2018-asymmetric-sine-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "nri-damped-sine-v1": {
+      "domain": "nonparametric_regression",
+      "standard_name": "Pointwise conditional mean",
+      "target_type": "conditional_mean",
+      "original_name": "m(x0) = E[Y | X = x0]",
+      "source_definition": "Conditional mean of Y given X = x0 at a fixed query point x0 from the grid {-2/3,-1/3,0,1/3,2/3}, in the superpopulation defined by Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1). Model 5: m(x)=sin(3*pi*x/2)/(1+18*x^2*(sgn(x)+1)). Model 6: m(x)=sin(pi*x/2)/(1+2*x^2*(sgn(x)+1)) = g3(x) = g2(x/3) of the Hall-Horowitz family. Each (model, query point) is a separate pointwise inference target; the five points are not a simultaneous confidence band.",
+      "evidence": "dgp-submissions/registry/drafts/nri-damped-sine-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "nri-linear-gaussian-bump-v1": {
+      "domain": "nonparametric_regression",
+      "standard_name": "Pointwise conditional mean",
+      "target_type": "conditional_mean",
+      "original_name": "m(x0) = E[Y | X = x0]",
+      "source_definition": "Conditional mean of Y given X = x0 at the fixed query point x0 = 0, in the superpopulation defined by the DGP Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1). Models 2 and 4 from supplement S.II.7 are collected as two scenarios of the same mechanism family; both are linear-plus-Gaussian-bump regression functions.",
+      "evidence": "dgp-submissions/registry/drafts/nri-linear-gaussian-bump-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "nri-sine-gaussian-bump-v1": {
+      "domain": "nonparametric_regression",
+      "standard_name": "Pointwise conditional mean",
+      "target_type": "conditional_mean",
+      "original_name": "m(x0) = E[Y | X = x0]",
+      "source_definition": "Conditional mean of Y given X = x0 at a fixed query point x0 from the grid {-2/3,-1/3,0,1/3,2/3}, in the superpopulation defined by Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1). Model 1: m(x)=sin(4x)+2*exp(-64*x^2), a sine oscillation plus a sharp Gaussian bump centered at x=0. Each query point is a separate pointwise inference target; the five points are not a simultaneous confidence band.",
+      "evidence": "dgp-submissions/registry/drafts/nri-sine-gaussian-bump-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "nri-two-gaussian-peaks-v1": {
+      "domain": "nonparametric_regression",
+      "standard_name": "Pointwise conditional mean",
+      "target_type": "conditional_mean",
+      "original_name": "m(x0) = E[Y | X = x0]",
+      "source_definition": "Conditional mean of Y given X = x0 at a fixed query point x0 from the grid {-2/3,-1/3,0,1/3,2/3}, in the superpopulation defined by Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1) (homoscedastic). Model 3: m(x) = 0.3*exp(-4*(2x+1)^2) + 0.7*exp(-16*(2x-1)^2), a mixture of two Gaussian peaks with the left peak (amplitude 0.3, narrower width) centered at x=-1/2 and the right peak (amplitude 0.7, sharper width) centered at x=1/2. Each query point is a separate pointwise inference target; the five points are not a simultaneous confidence band. This contribution collects only the CCF M3 homoscedastic scenario; the Chen-Qin (2000) two-peak structure m_CQ(x) = m_CCF_M3(2x-1) with heteroscedastic noise, support [0,1], and query points {0,0.5} is a separate contribution because its complete observation law differs.",
+      "evidence": "dgp-submissions/registry/drafts/nri-two-gaussian-peaks-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "nri-binary-kink-v1": {
+      "domain": "nonparametric_regression",
+      "standard_name": "Pointwise conditional mean",
+      "target_type": "conditional_mean",
+      "original_name": "m_s(x*) = E[Y | X=x*] = p_s(x*)",
+      "source_definition": "Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0,0.1,...,1}; p_s is the piecewise-linear interpolation through (0,0), (a_s,0.2), (1,1), with a_s=0.2+0.8s. This is a conditional Bernoulli probability, not an intervention effect or a prediction interval.",
+      "evidence": "dgp-submissions/registry/drafts/nri-binary-kink-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "nri-binary-monomial-v1": {
+      "domain": "nonparametric_regression",
+      "standard_name": "Pointwise conditional mean",
+      "target_type": "conditional_mean",
+      "original_name": "m_s(x*) = E[Y | X=x*] = p_s(x*)",
+      "source_definition": "Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0,0.1,...,0.9}; with p_s(x)=x^(1-s), the target is p_s(0.5). This is a conditional Bernoulli probability, not an intervention effect or a prediction interval.",
+      "evidence": "dgp-submissions/registry/drafts/nri-binary-monomial-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "nri-binary-s-shape-v1": {
+      "domain": "nonparametric_regression",
+      "standard_name": "Pointwise conditional mean",
+      "target_type": "conditional_mean",
+      "original_name": "m_s(x*) = E[Y | X=x*] = p_s(x*)",
+      "source_definition": "Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0,0.1,...,1}; with p_s(x)=[1+{(1-x)/x}^(1+s)]^(-1), the target is p_s(0.5). This is a conditional Bernoulli probability, not an intervention effect or a prediction interval.",
+      "evidence": "dgp-submissions/registry/drafts/nri-binary-s-shape-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "nri-binary-step-v1": {
+      "domain": "nonparametric_regression",
+      "standard_name": "Pointwise conditional mean",
+      "target_type": "conditional_mean",
+      "original_name": "m_s(x*) = E[Y | X=x*] = p_s(x*)",
+      "source_definition": "Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0.1,0.2,...,1.0}; the step function is p_s(x)=(floor(k*x)+1{x!=1})/k with k=15-10*s, yielding a piecewise-constant right-continuous function with k equal steps of height 1/k. The target is a conditional Bernoulli probability, not an intervention effect or a prediction interval.",
+      "evidence": "dgp-submissions/registry/drafts/nri-binary-step-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "nri-binary-wave-v1": {
+      "domain": "nonparametric_regression",
+      "standard_name": "Pointwise conditional mean",
+      "target_type": "conditional_mean",
+      "original_name": "m_s(x*) = E[Y | X=x*] = p_s(x*)",
+      "source_definition": "Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0.1,0.2,...,1.0}; the wave function is the cubic polynomial p_s(x)=0.5-(2s-1)(x-0.5)+8s(x-0.5)^3 (equivalently 8s*x^3-12s*x^2+(4s+1)*x). The target is a conditional Bernoulli probability, not an intervention effect or a prediction interval.",
+      "evidence": "dgp-submissions/registry/drafts/nri-binary-wave-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "nri-hall-horowitz-2013-gaussian-bump-v1": {
+      "domain": "nonparametric_regression",
+      "standard_name": "Pointwise conditional mean",
+      "target_type": "conditional_mean",
+      "original_name": "theta(x0)=g1(x0)",
+      "source_definition": "Continuous conditional-mean version E[Y|X=x0]=x0+5*phi(10*x0) for a fixed query x0. Default x0=0; this is not a marginal mean or a future-response prediction target.",
+      "evidence": "dgp-submissions/registry/drafts/nri-hall-horowitz-2013-gaussian-bump-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "nri-hallhorowitz-2013-band-v1": {
+      "domain": "nonparametric_regression",
+      "standard_name": "Pointwise conditional mean",
+      "target_type": "conditional_mean",
+      "original_name": "m(x0) = E[Y | X = x0] = g_j(x0)",
+      "source_definition": "The value of the conditional mean function at one fixed interior design point x0 specified per scenario, in the superpopulation defined by the declared regression model with X uniform on [-1,1] and additive N(0, sigma^2) noise. This is a pointwise scalar query, not a simultaneous confidence band and not a coverage claim over any interval.",
+      "evidence": "dgp-submissions/registry/drafts/nri-hallhorowitz-2013-band-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "nri-liangliu-2010-singleindex-v1": {
+      "domain": "nonparametric_regression",
+      "standard_name": "Pointwise conditional mean",
+      "target_type": "conditional_mean",
+      "original_name": "eta(z0'alpha) + x0*beta = E[Y | Z = z0, X = x0]",
+      "source_definition": "The scalar conditional mean at the scenario's fixed covariate query (z0, x0). The nonparametric component is evaluated at the single-index value t0 = z0'alpha with alpha = (1,1,1)/sqrt(3); the linear component contributes x0*beta. This is a pointwise target, not a curve-level or band target.",
+      "evidence": "dgp-submissions/registry/drafts/nri-liangliu-2010-singleindex-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "nri-highdim-sparse-additive-v1": {
+      "domain": "nonparametric_regression",
+      "standard_name": "Pointwise conditional mean",
+      "target_type": "conditional_mean",
+      "original_name": "m(x*) = E[Y | X=x*] = sum_{j=1}^4 f_j(0.5), x*=(0.5,...,0.5) in R^600",
+      "source_definition": "Noncausal pointwise conditional mean under the declared sparse-additive DGP, evaluated at the fixed query x*=(0.5,...,0.5). Since E[epsilon|X]=0, m(x*) equals the sum of the four active component functions at the query; inactive coordinates contribute zero. This is a library adaptation and is not the paper's simultaneous confidence-band target.",
+      "evidence": "dgp-submissions/registry/drafts/nri-highdim-sparse-additive-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "nri-shangcheng-2013-spline-v1": {
+      "domain": "nonparametric_regression",
+      "standard_name": "Pointwise conditional mean",
+      "target_type": "conditional_mean",
+      "original_name": "g0(z0) = E[Y | Z = z0]",
+      "source_definition": "The scalar conditional mean at the scenario's fixed query point z0. This is a pointwise target, not a simultaneous confidence-band target.",
+      "evidence": "dgp-submissions/registry/drafts/nri-shangcheng-2013-spline-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "nri-wangghosal-2023-isotonic-v1": {
+      "domain": "nonparametric_regression",
+      "standard_name": "Pointwise conditional mean",
+      "target_type": "conditional_mean",
+      "original_name": "f_k(x0) = E[Y | X = x0]",
+      "source_definition": "Pointwise conditional mean of Y at the fixed query point x0 = (query_x1, query_x2) = (0.5, 0.5) under the declared Section 5.2 law, for the regression function f_k selected by the scenario. This is a scalar pointwise query, not a simultaneous confidence band and not a coverage probability.",
+      "evidence": "dgp-submissions/registry/drafts/nri-wangghosal-2023-isotonic-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "nri-wangyang-2007-hdadditive-v1": {
+      "domain": "nonparametric_regression",
+      "standard_name": "Pointwise conditional mean",
+      "target_type": "conditional_mean",
+      "original_name": "m(x0) = E[Y | X = x0] = sum_{alpha=1}^{30} sin(pi * x0_alpha / 2.5)",
+      "source_definition": "Scalar conditional mean of Y at a fixed 30-dimensional query point x0 in the superpopulation defined by the fixed Example 6.2 DGP. It is a pointwise regression functional, not a causal effect; the query is a parameter of each scenario and is read from config by truth(config).",
+      "evidence": "dgp-submissions/registry/drafts/nri-wangyang-2007-hdadditive-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "nri-yuparkmammen-2008-binarygam-v1": {
+      "domain": "nonparametric_regression",
+      "standard_name": "Pointwise conditional mean",
+      "target_type": "conditional_mean",
+      "original_name": "m(x0) = E[Y | X = x0]",
+      "source_definition": "Conditional mean of the response at the fixed query point x0 = (0.5, 0.5) in the superpopulation defined by the fixed DGP: m(x0) = expit(eta(x0)) in scenario original-bernoulli (a classification probability) and m(x0) = exp(eta(x0)) in scenario original-poisson (a conditional count mean), with eta(x) = sin(pi x1) + 0.5 [x2 + sin(pi x2)]. A pointwise scalar query only; it is not a simultaneous confidence band over the covariate region.",
+      "evidence": "dgp-submissions/registry/drafts/nri-yuparkmammen-2008-binarygam-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "nri-zhangfansun-2009-clustervc-v1": {
+      "domain": "nonparametric_regression",
+      "standard_name": "Pointwise conditional mean",
+      "target_type": "conditional_mean",
+      "original_name": "m(u0,x0,z0)=E[Y|U=u0,X=x0,Z=z0]",
+      "source_definition": "Integrate the mean-zero random effect from the Section 5 simulation model: sin(2*pi*u)*(1+z1+z2)+sum(x)*(sin(2*pi*u)+z1*cos(2*pi*u)+z2*sin(pi*u)). The fixed query is u=.25, x=(0,0,0), z=(0,0), yielding 1. The source coefficient alpha01 is a different estimand, though it happens to equal 1 here.",
+      "evidence": "dgp-submissions/registry/drafts/nri-zhangfansun-2009-clustervc-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "nri-zhao-wu-2008-ar1scb-v1": {
+      "domain": "nonparametric_regression",
+      "standard_name": "Pointwise conditional mean",
+      "target_type": "conditional_mean",
+      "original_name": "mu(x0) = E[Y_i | X_i = x0] = 0.9*sin(x0)",
+      "source_definition": "Pointwise conditional mean of the Markov regression at a single fixed query point x0 inside the source design interval T = [-1.1,1.1]; a scalar quantity, not a simultaneous confidence band and not a coverage probability.",
+      "evidence": "dgp-submissions/registry/drafts/nri-zhao-wu-2008-ar1scb-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "mdi-han-wang-2013-quadratic-mean-v1": {
+      "domain": "missing_data",
+      "standard_name": "Full-data population outcome mean",
+      "target_type": "mean",
+      "original_name": "theta = E(Y)",
+      "source_definition": "Full-data superpopulation response mean before outcome masking.",
+      "evidence": "dgp-submissions/registry/drafts/mdi-han-wang-2013-quadratic-mean-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "mdi-hu-follmann-qin-2010-cubic-mean-v1": {
+      "domain": "missing_data",
+      "standard_name": "Full-data population outcome mean",
+      "target_type": "mean",
+      "original_name": "theta = E(Y)",
+      "source_definition": "Marginal full-data response mean in the iid superpopulation, before outcome masking.",
+      "evidence": "dgp-submissions/registry/drafts/mdi-hu-follmann-qin-2010-cubic-mean-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "mdi-hu-follmann-wang-2014-linear-balance-v2": {
+      "domain": "missing_data",
+      "standard_name": "Full-data population outcome mean",
+      "target_type": "mean",
+      "original_name": "theta = E(Y)",
+      "source_definition": "Marginal full-data mean response for the iid superpopulation before Y is masked.",
+      "evidence": "dgp-submissions/registry/drafts/mdi-hu-follmann-wang-2014-linear-balance-v2.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "mdi-liu-fan-2023-light-tail-model2-v1": {
+      "domain": "missing_data",
+      "standard_name": "Full-data population outcome mean",
+      "target_type": "mean",
+      "original_name": "theta = E(Y)",
+      "source_definition": "Full-data superpopulation response mean before outcome masking.",
+      "evidence": "dgp-submissions/registry/drafts/mdi-liu-fan-2023-light-tail-model2-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "mdi-mueller-2009-cosine-mean-mar-v1": {
+      "domain": "missing_data",
+      "standard_name": "Full-data population outcome mean",
+      "target_type": "mean",
+      "original_name": "theta = E(Y)",
+      "source_definition": "Full-data superpopulation response mean before outcome masking.",
+      "evidence": "dgp-submissions/registry/drafts/mdi-mueller-2009-cosine-mean-mar-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "mdi-rotnitzky-lei-sued-robins-2012-continuous-first-v1": {
+      "domain": "missing_data",
+      "standard_name": "Full-data population outcome mean",
+      "target_type": "mean",
+      "original_name": "beta_0 = E(Y)",
+      "source_definition": "Full-data superpopulation mean of continuous Y before missingness.",
+      "evidence": "dgp-submissions/registry/drafts/mdi-rotnitzky-lei-sued-robins-2012-continuous-first-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "mdi-vermeulen-vansteelandt-2015-quadratic-logistic-v1": {
+      "domain": "missing_data",
+      "standard_name": "Full-data population outcome mean",
+      "target_type": "mean",
+      "original_name": "theta = E(Y)",
+      "source_definition": "Full-data superpopulation response mean before outcome masking.",
+      "evidence": "dgp-submissions/registry/drafts/mdi-vermeulen-vansteelandt-2015-quadratic-logistic-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "mdi-yiu-fong-holmes-rousseau-2025-piecewise-mean-mar-v1": {
+      "domain": "missing_data",
+      "standard_name": "Full-data population outcome mean",
+      "target_type": "mean",
+      "original_name": "theta = E(Y)",
+      "source_definition": "Full-data superpopulation response mean before outcome masking.",
+      "evidence": "dgp-submissions/registry/drafts/mdi-yiu-fong-holmes-rousseau-2025-piecewise-mean-mar-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "nie-eric-original-v1": {
+      "domain": "mediation",
+      "standard_name": "Natural indirect effect (NIE)",
+      "target_type": "natural_indirect_effect",
+      "original_name": "theta_NIE = theta_11 - theta_10",
+      "source_definition": "E[Y(1,M(1)) - Y(1,M(0))] in the superpopulation defined by the fixed DGP.",
+      "evidence": "dgp-submissions/registry/drafts/nie-eric-original-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "mediation-cheng-li-2025-principal-strata-kang-schafer-v1": {
+      "domain": "mediation",
+      "standard_name": "Intention-to-treat natural direct effect (NDE)",
+      "target_type": "natural_direct_effect",
+      "original_name": "ITT-NDE = E[Y_{1 M_0}] - E[Y_{0 M_0}]",
+      "source_definition": "Intention-to-treat natural direct effect of the randomized treatment Z with mediator M, in a design that also contains a post-treatment event D (for example noncompliance). Setting Z = z lets the post-treatment event take D(z), while the mediator is held at M(0). This is NOT the principal-stratum quantity theta^(10)_10 that the source plots, NOT an indirect effect, and NOT a complier average causal effect.",
+      "evidence": "dgp-submissions/registry/drafts/mediation-cheng-li-2025-principal-strata-kang-schafer-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "mediation-diaz-et-al-2021-intermediate-confounding-v1": {
+      "domain": "mediation",
+      "standard_name": "Interventional indirect effect",
+      "target_type": "interventional_indirect_effect",
+      "original_name": "IIE_1",
+      "source_definition": "E[Y(1,G1)-Y(1,G0)], where G_a is an independent draw from M(a)|W, marginalizing the post-treatment Z under treatment a.",
+      "evidence": "dgp-submissions/registry/drafts/mediation-diaz-et-al-2021-intermediate-confounding-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "mediation-diaz-hejazi-2020-discrete-three-mediators-v1": {
+      "domain": "mediation",
+      "standard_name": "Natural indirect effect (NIE)",
+      "target_type": "natural_indirect_effect",
+      "original_name": "NIE_1",
+      "source_definition": "E[Y(1,Z(1)) - Y(1,Z(0))] for the original §5 superpopulation, jointly intervening on all three mediators Z=(Z1,Z2,Z3). Treatment is fixed at 1 in both outcome terms.",
+      "evidence": "dgp-submissions/registry/drafts/mediation-diaz-hejazi-2020-discrete-three-mediators-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "mediation-he-song-xu-2024-single-linear-v1": {
+      "domain": "mediation",
+      "standard_name": "Natural indirect effect (NIE)",
+      "target_type": "natural_indirect_effect",
+      "original_name": "NIE_1",
+      "source_definition": "E[Y(1,M(1))-Y(1,M(0))] in the source SEM superpopulation; exposure S is named A in data columns.",
+      "evidence": "dgp-submissions/registry/drafts/mediation-he-song-xu-2024-single-linear-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "mediation-jones-2024-sparse-mediators-lnl-v1": {
+      "domain": "mediation",
+      "standard_name": "Natural indirect effect (NIE)",
+      "target_type": "natural_indirect_effect",
+      "original_name": "NIE = alpha_0 . beta_0",
+      "source_definition": "Natural indirect effect through the sparse mediator set: NIE = E[Y(1, M(1))] - E[Y(1, M(0))]. Under the source's additive structural model (its equation (1)) and its Proposition 2.1 this equals the inner product alpha_0 . beta_0 of the treatment-to-mediator and mediator-to-outcome coefficient vectors. The companion natural direct effect equals gamma_0. This is NOT a total effect and NOT a single-mediator indirect effect; ten candidate mediators are generated and only the first three are true mediators.",
+      "evidence": "dgp-submissions/registry/drafts/mediation-jones-2024-sparse-mediators-lnl-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "mediation-jones-2024-sparse-mediators-lnn-v1": {
+      "domain": "mediation",
+      "standard_name": "Natural indirect effect (NIE)",
+      "target_type": "natural_indirect_effect",
+      "original_name": "NIE = alpha_0 . beta_0",
+      "source_definition": "Natural indirect effect through the sparse mediator set: NIE = E[Y(1, M(1))] - E[Y(1, M(0))]. Under the source's additive structural model (its equation (1)) and its Proposition 2.1 this equals the inner product alpha_0 . beta_0 of the treatment-to-mediator and mediator-to-outcome coefficient vectors. The companion natural direct effect equals gamma_0. This is NOT a total effect and NOT a single-mediator indirect effect; ten candidate mediators are generated and only the first three are true mediators.",
+      "evidence": "dgp-submissions/registry/drafts/mediation-jones-2024-sparse-mediators-lnn-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "mediation-jones-2024-sparse-mediators-nnn-v1": {
+      "domain": "mediation",
+      "standard_name": "Natural indirect effect (NIE)",
+      "target_type": "natural_indirect_effect",
+      "original_name": "NIE = alpha_0 . beta_0",
+      "source_definition": "Natural indirect effect through the sparse mediator set: NIE = E[Y(1, M(1))] - E[Y(1, M(0))]. Under the source's additive structural model (its equation (1)) and its Proposition 2.1 this equals the inner product alpha_0 . beta_0 of the treatment-to-mediator and mediator-to-outcome coefficient vectors. The companion natural direct effect equals gamma_0. This is NOT a total effect and NOT a single-mediator indirect effect; ten candidate mediators are generated and only the first three are true mediators.",
+      "evidence": "dgp-submissions/registry/drafts/mediation-jones-2024-sparse-mediators-nnn-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "mediation-jones-et-al-2025-correlated-sparse-v1": {
+      "domain": "mediation",
+      "standard_name": "Natural indirect effect (NIE)",
+      "target_type": "natural_indirect_effect",
+      "original_name": "NIE_1",
+      "source_definition": "E[Y(1,M(1))-Y(1,M(0))] for the full 100-vector mediator under the additive structural equations.",
+      "evidence": "dgp-submissions/registry/drafts/mediation-jones-et-al-2025-correlated-sparse-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "mediation-luo-et-al-2025-dynamic-markov-v1": {
+      "domain": "mediation",
+      "standard_name": "Dynamic mediation effect",
+      "target_type": "dynamic_mediation_effect",
+      "original_name": "eta_1^(10)",
+      "source_definition": "For ten time points, contrast E[sum_t R_t|do(A_s=1)]-E[sum_t R_t|do(A_s=0)] and subtract the same contrast with do(M_{s,1}=0) for all s.",
+      "evidence": "dgp-submissions/registry/drafts/mediation-luo-et-al-2025-dynamic-markov-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "mediation-miles-2019-toxicity-path-specific-v1": {
+      "domain": "mediation",
+      "standard_name": "Path-specific effect",
+      "target_type": "other",
+      "original_name": "P_AMY = E(Y[M{a, C1(a')}, C1(a'), a']) - E[Y(a')]",
+      "source_definition": "The path-specific effect of A on Y along the path A -> M -> Y, as defined in Section 2 of the source. It is the CONTRAST of two nested counterfactual means: in both arms the treatment-induced confounder vector C1 and the outcome are held at the reference level a' = 0, and only the exposure level fed to the mediator equation moves, from a' = 0 to a = 1. Writing beta_0 = E(Y[M{a, C1(a')}, C1(a'), a']) for the moved arm and E[Y(a')] for the unmoved arm, P_AMY = beta_0 - E[Y(a')]. beta_0 on its own is a counterfactual MEAN, not an effect, and is registered only as a component; the source's Figure 2 plots beta_0, which is why that figure is used as coding evidence rather than as the target. P_AMY is NOT a natural indirect effect, NOT a natural direct effect and NOT a total effect; keeping C1 at a' inside the mediator counterfactual is what distinguishes it from the standard natural effects.",
+      "evidence": "dgp-submissions/registry/drafts/mediation-miles-2019-toxicity-path-specific-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "mediation-shan-li-ai-2026-missing-confounders-aux-shadow-v1": {
+      "domain": "mediation",
+      "standard_name": "Cross-world mediation functional",
+      "target_type": "other",
+      "original_name": "MF theta = E[Y(1, M(0))]",
+      "source_definition": "Mediation functional: the mean potential outcome when treatment is set to 1 while the mediator is set to the value it would have taken under treatment 0, theta = E[Y(1, M(0))]. The source calls this the fundamental quantity and derives the natural indirect effect xi(1) = E[Y(1,M(1))] - theta, the natural direct effect zeta(0) = theta - E[Y(0,M(0))] and the total effect tau = xi(1) + zeta(0) from it. theta is a cross-world mean and is NOT an indirect effect, NOT a direct effect and NOT a total effect.",
+      "evidence": "dgp-submissions/registry/drafts/mediation-shan-li-ai-2026-missing-confounders-aux-shadow-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "mediation-shan-li-ai-2026-missing-confounders-internal-shadow-v1": {
+      "domain": "mediation",
+      "standard_name": "Cross-world mediation functional",
+      "target_type": "other",
+      "original_name": "MF theta = E[Y(1, M(0))]",
+      "source_definition": "Mediation functional: the mean potential outcome when treatment is set to 1 while the mediator is set to the value it would have taken under treatment 0, theta = E[Y(1, M(0))]. The source calls this the fundamental quantity and derives the natural indirect effect xi(1) = E[Y(1,M(1))] - theta, the natural direct effect zeta(0) = theta - E[Y(0,M(0))] and the total effect tau = xi(1) + zeta(0) from it. theta is a cross-world mean and is NOT an indirect effect, NOT a direct effect and NOT a total effect.",
+      "evidence": "dgp-submissions/registry/drafts/mediation-shan-li-ai-2026-missing-confounders-internal-shadow-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "mediation-standard-nie1-cheng-v1": {
+      "domain": "mediation",
+      "standard_name": "Natural indirect effect (NIE)",
+      "target_type": "natural_indirect_effect",
+      "original_name": "NIE",
+      "source_definition": "NIE = E[Y(1,M(1))-Y(1,M(0))] in the adapted fixed-SEM superpopulation, jointly intervening on the complete mediator vector.",
+      "evidence": "dgp-submissions/registry/drafts/mediation-standard-nie1-cheng-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "mediation-standard-nie1-diaz-hejazi-v1": {
+      "domain": "mediation",
+      "standard_name": "Natural indirect effect (NIE)",
+      "target_type": "natural_indirect_effect",
+      "original_name": "NIE",
+      "source_definition": "NIE = E[Y(1,M(1))-Y(1,M(0))] in the adapted fixed-SEM superpopulation, jointly intervening on the complete mediator vector.",
+      "evidence": "dgp-submissions/registry/drafts/mediation-standard-nie1-diaz-hejazi-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "mediation-standard-nie1-diaz-intermediate-v1": {
+      "domain": "mediation",
+      "standard_name": "Natural indirect effect (NIE)",
+      "target_type": "natural_indirect_effect",
+      "original_name": "NIE",
+      "source_definition": "NIE = E[Y(1,M(1))-Y(1,M(0))] in the adapted fixed-SEM superpopulation, jointly intervening on the complete mediator vector.",
+      "evidence": "dgp-submissions/registry/drafts/mediation-standard-nie1-diaz-intermediate-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "mediation-standard-nie1-eric-v1": {
+      "domain": "mediation",
+      "standard_name": "Natural indirect effect (NIE)",
+      "target_type": "natural_indirect_effect",
+      "original_name": "NIE",
+      "source_definition": "NIE = E[Y(1,M(1))-Y(1,M(0))] in the adapted fixed-SEM superpopulation, jointly intervening on the complete mediator vector.",
+      "evidence": "dgp-submissions/registry/drafts/mediation-standard-nie1-eric-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "mediation-standard-nie1-he-song-xu-v1": {
+      "domain": "mediation",
+      "standard_name": "Natural indirect effect (NIE)",
+      "target_type": "natural_indirect_effect",
+      "original_name": "NIE",
+      "source_definition": "NIE = E[Y(1,M(1))-Y(1,M(0))] in the adapted fixed-SEM superpopulation, jointly intervening on the complete mediator vector.",
+      "evidence": "dgp-submissions/registry/drafts/mediation-standard-nie1-he-song-xu-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "mediation-standard-nie1-jones-correlated-v1": {
+      "domain": "mediation",
+      "standard_name": "Natural indirect effect (NIE)",
+      "target_type": "natural_indirect_effect",
+      "original_name": "NIE",
+      "source_definition": "NIE = E[Y(1,M(1))-Y(1,M(0))] in the adapted fixed-SEM superpopulation, jointly intervening on the complete mediator vector.",
+      "evidence": "dgp-submissions/registry/drafts/mediation-standard-nie1-jones-correlated-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "mediation-standard-nie1-jones-lnl-v1": {
+      "domain": "mediation",
+      "standard_name": "Natural indirect effect (NIE)",
+      "target_type": "natural_indirect_effect",
+      "original_name": "NIE",
+      "source_definition": "NIE = E[Y(1,M(1))-Y(1,M(0))] in the adapted fixed-SEM superpopulation, jointly intervening on the complete mediator vector.",
+      "evidence": "dgp-submissions/registry/drafts/mediation-standard-nie1-jones-lnl-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "mediation-standard-nie1-jones-lnn-v1": {
+      "domain": "mediation",
+      "standard_name": "Natural indirect effect (NIE)",
+      "target_type": "natural_indirect_effect",
+      "original_name": "NIE",
+      "source_definition": "NIE = E[Y(1,M(1))-Y(1,M(0))] in the adapted fixed-SEM superpopulation, jointly intervening on the complete mediator vector.",
+      "evidence": "dgp-submissions/registry/drafts/mediation-standard-nie1-jones-lnn-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "mediation-standard-nie1-jones-nnn-v1": {
+      "domain": "mediation",
+      "standard_name": "Natural indirect effect (NIE)",
+      "target_type": "natural_indirect_effect",
+      "original_name": "NIE",
+      "source_definition": "NIE = E[Y(1,M(1))-Y(1,M(0))] in the adapted fixed-SEM superpopulation, jointly intervening on the complete mediator vector.",
+      "evidence": "dgp-submissions/registry/drafts/mediation-standard-nie1-jones-nnn-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "mediation-standard-nie1-miles-v1": {
+      "domain": "mediation",
+      "standard_name": "Natural indirect effect (NIE)",
+      "target_type": "natural_indirect_effect",
+      "original_name": "NIE",
+      "source_definition": "NIE = E[Y(1,M(1))-Y(1,M(0))] in the adapted fixed-SEM superpopulation, jointly intervening on the complete mediator vector.",
+      "evidence": "dgp-submissions/registry/drafts/mediation-standard-nie1-miles-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "mediation-standard-nie1-shan-v1": {
+      "domain": "mediation",
+      "standard_name": "Natural indirect effect (NIE)",
+      "target_type": "natural_indirect_effect",
+      "original_name": "NIE",
+      "source_definition": "NIE = E[Y(1,M(1))-Y(1,M(0))] in the adapted fixed-SEM superpopulation, jointly intervening on the complete mediator vector.",
+      "evidence": "dgp-submissions/registry/drafts/mediation-standard-nie1-shan-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "mediation-standard-nie1-xia-binary-v1": {
+      "domain": "mediation",
+      "standard_name": "Natural indirect effect (NIE)",
+      "target_type": "natural_indirect_effect",
+      "original_name": "NIE",
+      "source_definition": "NIE = E[Y(1,M(1))-Y(1,M(0))] in the adapted fixed-SEM superpopulation, jointly intervening on the complete mediator vector.",
+      "evidence": "dgp-submissions/registry/drafts/mediation-standard-nie1-xia-binary-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "mediation-standard-nie1-xia-continuous-v1": {
+      "domain": "mediation",
+      "standard_name": "Natural indirect effect (NIE)",
+      "target_type": "natural_indirect_effect",
+      "original_name": "NIE",
+      "source_definition": "NIE = E[Y(1,M(1))-Y(1,M(0))] in the adapted fixed-SEM superpopulation, jointly intervening on the complete mediator vector.",
+      "evidence": "dgp-submissions/registry/drafts/mediation-standard-nie1-xia-continuous-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "mediation-standard-nie1-zuo-v1": {
+      "domain": "mediation",
+      "standard_name": "Natural indirect effect (NIE)",
+      "target_type": "natural_indirect_effect",
+      "original_name": "NIE",
+      "source_definition": "NIE = E[Y(1,M(1))-Y(1,M(0))] in the adapted fixed-SEM superpopulation, jointly intervening on the complete mediator vector.",
+      "evidence": "dgp-submissions/registry/drafts/mediation-standard-nie1-zuo-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "mediation-xia-chan-2023-binary-plackett-v1": {
+      "domain": "mediation",
+      "standard_name": "Natural direct effect (NDE)",
+      "target_type": "natural_direct_effect",
+      "original_name": "NDE",
+      "source_definition": "E[Y(1,M(0))-Y(0,M(0))] under the specified binary copula structural model, with C following the treatment in each outcome potential.",
+      "evidence": "dgp-submissions/registry/drafts/mediation-xia-chan-2023-binary-plackett-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "mediation-xia-chan-2023-continuous-copula-v1": {
+      "domain": "mediation",
+      "standard_name": "Natural direct effect (NDE)",
+      "target_type": "natural_direct_effect",
+      "original_name": "NDE",
+      "source_definition": "E[Y(1,M(0))-Y(0,M(0))], with the treatment-induced C under its own treatment in each outcome potential.",
+      "evidence": "dgp-submissions/registry/drafts/mediation-xia-chan-2023-continuous-copula-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "mediation-zhou-2022-ordered-two-mediators-v1": {
+      "domain": "mediation",
+      "standard_name": "Cumulative path-specific effect",
+      "target_type": "other",
+      "original_name": "cPSE_M2 = theta_011 - theta_001",
+      "source_definition": "Cumulative path-specific effect through the second mediator: theta_{a1,a2,a3} = E[Y(a3, M1(a1), M2(a2, M1(a1)))], and cPSE_M2 = theta_011 - theta_001 holds the Y-argument at A=1 and the M1-argument at A=0 while moving only the M2-argument from A=0 to A=1. This is NOT the natural indirect effect, NOT the natural direct effect and NOT the total effect.",
+      "evidence": "dgp-submissions/registry/drafts/mediation-zhou-2022-ordered-two-mediators-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    },
+    "mediation-zuo-et-al-2025-continuous-mnar-v1": {
+      "domain": "mediation",
+      "standard_name": "Natural indirect effect (NIE)",
+      "target_type": "natural_indirect_effect",
+      "original_name": "NIE_1",
+      "source_definition": "E[Y(1,M(1))-Y(1,M(0))] in the full-data law before MNAR masking.",
+      "evidence": "dgp-submissions/registry/drafts/mediation-zuo-et-al-2025-continuous-mnar-v1.json#estimand",
+      "status": "provisional_submitted_definition_only",
+      "note": ""
+    }
+  }
+}
