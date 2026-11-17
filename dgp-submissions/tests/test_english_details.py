@@ -31,7 +31,8 @@ class EnglishDetailsTests(unittest.TestCase):
             self.assertIn("Source locator:",content)
             self.assertIn("Identifiability assumptions",content)
             self.assertIn("Generator source",content)
-            self.assertEqual(content.count("$$")%2,0,f.name)
+            self.assertEqual(len(re.findall(r"^```math
+(.*?)\n```$", content, re.M | re.S)),\n                             content.count("```math"), f.name)
 
     def test_raw_proximal_science_is_unchanged(self):
         filename="proximal-dukes-2023-mediation-v1"
