@@ -12,7 +12,7 @@
 
 The button stays in the repository you are viewing; it does not automatically find your fork from the upstream page. Check the repository owner before uploading. **Do not extract the ZIP before uploading it.** One ZIP may contain multiple mechanisms and scenarios.
 
-## Research area (ten choices)
+## Research area
 
 The upload is classified using `family` in each `collection.json`:
 
@@ -23,7 +23,9 @@ The upload is classified using `family` in each `collection.json`:
 | `mediation` | Mediation |
 | `iv` | Instrumental Variables |
 | `proximal` | Proximal Causal Inference |
-| `did_sc` | DiD / Synthetic Control |
+| `did` | Difference-in-Differences |
+| `synthetic_control` | Synthetic Control |
+| `did_sc` | Legacy combined DiD / Synthetic Control; requires manual classification |
 | `nonparametric_regression` | Nonparametric Regression |
 | `quantile` | Quantile Inference |
 | `semi_supervised` | Semi-Supervised Inference |
