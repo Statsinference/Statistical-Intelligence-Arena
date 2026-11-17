@@ -139,6 +139,7 @@ def keyword_entries(record: dict[str, Any]) -> list[dict[str, Any]]:
     linear_negative = _has_flag(props, ("linear", "linearity"), False)
     nonlinear_positive = _has_flag(props, ("nonlinear", "nonlinearity"), True)
     linear_keyword = next((supplied[a] for a in ("linear", "linearity") if a in supplied), None)
+    known_aliases.update(("linear", "linearity"))
     if not linear_negative and not nonlinear_positive:
         if linear_positive:
             add("Linearity", "mechanism.properties." + linear_positive, True, "explicit_boolean")
