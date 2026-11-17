@@ -137,7 +137,7 @@ def ingest(incoming: Path, output: Path):
             area=to_domain(raw_area)
             record['source_suggested_domain']=raw_area
             record['domain']=area or 'unclassified'
-            record['classification_status']='zip_metadata_unverified' if area else 'needs_manual_classification'
+            record['classification_status']='zip_metadata_unverified' if area and area != 'did_sc' else 'needs_manual_classification'
             if record.get('review_status') != 'duplicate_conflict_needs_review':
                 record['review_status']='needs_scientific_review'
             record['provenance']['submission_file']=str(source.as_posix())
@@ -146,6 +146,8 @@ def ingest(incoming: Path, output: Path):
             record['provenance']['submitted_by']='github_file_upload'
             if not area:
                 record['warnings'].append('Unrecognized or missing family in collection.json: human classification required.')
+            elif area == 'did_sc':
+                record['warnings'].append('Legacy combined DiD / Synthetic Control family: human classification required; not automatically reassigned.')
             if area=='proximal' and (record.get('estimand') or {}).get('name') in ('NDE','NIE','ACME'):
                 record['suggested_secondary_domains']=['mediation']
             else:
