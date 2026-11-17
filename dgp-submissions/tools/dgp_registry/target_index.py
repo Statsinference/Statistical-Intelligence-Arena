@@ -36,7 +36,7 @@ def load_labels(path=LABELS_PATH):
     return json.loads(Path(path).read_text(encoding='utf-8')).get('records', {})
 
 def classification(record, labels):
-    """Return a verified mapping entry, or None if stale or needs review."""
+    """Return a matching curated entry, or None if stale or unnamed."""
     item = labels.get(record.get('record_id')) or {}
     estimand = record.get('estimand') or {}
     if (item.get('status') not in ('provisional_submitted_definition_only', 'needs_review')
