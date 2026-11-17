@@ -1,0 +1,53 @@
+name: Sync method submissions
+on:
+  schedule:
+    - cron: '7,17,27,37,47,57 * * * *'
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/method-submissions-sync.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: method-submissions-sync
+  cancel-in-progress: false
+jobs:
+  sync:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          sparse-checkout: method-submissions
+      - name: Fetch the pinned public intake parser
+        run: |
+          python3 - <<'PY'
+          import hashlib
+          import pathlib
+          import urllib.request
+          url = 'https://raw.githubusercontent.com/Statsinference/statsinference.github.io/3cbfacdf35a2744dbceb85e6f21bf7addb72cf13/method-submissions/sync.py'
+          with urllib.request.urlopen(url, timeout=30) as response:
+              content = response.read()
+          expected = 'a37d8c6bafe1e824ec31baf7643ca643ed4b294881b1d482b87def35af45fc3f'
+          if hashlib.sha256(content).hexdigest() != expected:
+              raise RuntimeError('Intake parser fingerprint mismatch')
+          pathlib.Path('method-submissions/sync.py').write_bytes(content)
+          PY
+      - name: Import public model links
+        run: python3 method-submissions/sync.py
+      - name: Save the submission list
+        shell: bash
+        run: |
+          mkdir -p method-submissions/received method-submissions/checks
+          git add -- method-submissions/received method-submissions/checks
+          if git diff --cached --quiet; then exit 0; fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'chore: sync method submission links'
+          for attempt in 1 2 3; do
+            if git push origin HEAD:main; then exit 0; fi
+            git pull --rebase origin main
+          done
+          exit 1
