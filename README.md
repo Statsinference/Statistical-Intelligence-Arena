@@ -36,6 +36,8 @@
 
 ## License
 
+The repository includes the [Apache License 2.0](LICENSE). Please see [NOTICE.md](NOTICE.md) for the current release status and rights information concerning other project materials.
+
 ## Acknowledgements
 
-This project is jointly led by Shanghai University of Finance and Economics and Boston University.
+[Statistical Inference Arena (StatsArena)](https://statsinference.github.io/) is an open academic collaboration jointly led by [Shanghai University of Finance and Economics](https://www.sufe.edu.cn/) and [Boston University](https://www.bu.edu/).
