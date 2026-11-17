@@ -6,7 +6,7 @@ import re
 from .domains import DOMAINS, to_domain
 from .math_format import equation_markdown
 from .title_display import display_title
-from .presentation_en import english_display, sampling_display
+from .presentation_en import english_display, sampling_display, has_cjk
 from .paper_list import paper_list_tables, _domain_papers, paper_title, paper_title_with_venue, generator_link, generator_file
 from .listing_metadata import venue_abbreviation, keyword_entries, keywords, keywords_text
 from .target_index import load_labels, target_name, render_target_indexes, TARGET_GROUPS
@@ -139,7 +139,11 @@ def detail(rec):
         '**Adaptations from the source (submitted, unverified):**',''])
     adaptations = source_rec.get('adaptations') or []
     if isinstance(adaptations, list) and adaptations:
-        lines.extend('- ' + cell(a) for a in adaptations)
+        for adaptation in adaptations:
+            if has_cjk(adaptation):
+                lines.append('- English description pending; see [original scientific record](./' + source_rec['record_id'] + '.json).')
+            else:
+                lines.append('- ' + cell(adaptation))
     else:
         lines.append('- None described in the submitted metadata; this does not establish exact reproduction.')
     lines.extend(['', '**Warnings:**', ''])
