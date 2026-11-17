@@ -63,7 +63,7 @@ Examples of targets within the requested areas include:
 
 These are examples, not an exhaustive list or a requirement to relabel a paper's target. Natural, interventional and dynamic effects are distinct; define the exact version from the source. In mediation, treatment-induced confounding is a feature of a causal setting, not by itself an estimand. Do not infer a natural effect merely from a paper discussing mediation. IV and proximal inference are approaches or settings: identify the actual target they estimate.
 
-The intake currently uses `collection.json.family` for the primary area. The currently supported DiD / synthetic-control value is `did_sc`; the existing registry combines these two subjects, so use the actual supported value until separate categories are implemented. Describe which design applies in the title and keywords. Other current values are `ate`, `cate`, `mediation`, `iv`, `proximal`, `nonparametric_regression`, `quantile`, `semi_supervised`, and `missing_data`. An unrecognized value is flagged for human classification.
+The intake uses `collection.json.family` for the primary area. For new submissions use `did` for Difference-in-Differences or `synthetic_control` for Synthetic Control. Historical `did_sc` entries remain in a separate legacy category pending human classification; they are not automatically reassigned. Other values are `ate`, `cate`, `mediation`, `iv`, `proximal`, `nonparametric_regression`, `quantile`, `semi_supervised`, and `missing_data`. An unrecognized value is flagged for human classification.
 
 ### 2. Write an informative estimand field
 
@@ -96,7 +96,7 @@ Before submitting, verify that the target's name, definition, population, source
 
 ## Browse research areas
 
-[ATE](dgp-submissions/registry/by-domain/ate.md) · [CATE](dgp-submissions/registry/by-domain/cate.md) · [Mediation](dgp-submissions/registry/by-domain/mediation.md) · [IV](dgp-submissions/registry/by-domain/iv.md) · [Proximal Causal Inference](dgp-submissions/registry/by-domain/proximal.md) · [DiD / Synthetic Control](dgp-submissions/registry/by-domain/did_sc.md) · [Nonparametric Regression](dgp-submissions/registry/by-domain/nonparametric_regression.md) · [Quantile Inference](dgp-submissions/registry/by-domain/quantile.md) · [Semi-Supervised Inference](dgp-submissions/registry/by-domain/semi_supervised.md) · [Missing Data](dgp-submissions/registry/by-domain/missing_data.md)
+[ATE](dgp-submissions/registry/by-domain/ate.md) · [CATE](dgp-submissions/registry/by-domain/cate.md) · [Mediation](dgp-submissions/registry/by-domain/mediation.md) · [IV](dgp-submissions/registry/by-domain/iv.md) · [Proximal Causal Inference](dgp-submissions/registry/by-domain/proximal.md) · [DiD](dgp-submissions/registry/by-domain/did.md) · [Synthetic Control](dgp-submissions/registry/by-domain/synthetic_control.md) · [Legacy DiD / Synthetic Control](dgp-submissions/registry/by-domain/did_sc.md) · [Nonparametric Regression](dgp-submissions/registry/by-domain/nonparametric_regression.md) · [Quantile Inference](dgp-submissions/registry/by-domain/quantile.md) · [Semi-Supervised Inference](dgp-submissions/registry/by-domain/semi_supervised.md) · [Missing Data](dgp-submissions/registry/by-domain/missing_data.md)
 
 <!-- STATSARENA_PAPER_LIST_BEGIN -->
 
