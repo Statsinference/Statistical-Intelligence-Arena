@@ -55,9 +55,11 @@
 
 ## Contact
 
-- **[Zhiheng Zhang](https://zhzhang01.github.io/)** — Shanghai University of Finance and Economics · [zhangzhiheng@mail.shufe.edu.cn](mailto:zhangzhiheng@mail.shufe.edu.cn)
-- **[Shi Bo](https://www.bu.edu/math/profile/shi-bo/)** — Statistics PhD Student, Boston University · [shibo@bu.edu](mailto:shibo@bu.edu)
-- **[Jiaming Hu](https://www.bu.edu/math/profile/jiaming-hu/)** — Statistics PhD Student, Boston University · [jh7453@bu.edu](mailto:jh7453@bu.edu)
+<p align="center">
+  <a href="mailto:zhangzhiheng@mail.shufe.edu.cn">Zhiheng Zhang</a>&nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;
+  <a href="mailto:shibo@bu.edu">Shi Bo</a>&nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;
+  <a href="mailto:jh7453@bu.edu">Jiaming Hu</a>
+</p>
 
 ## License
 
