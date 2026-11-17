@@ -157,7 +157,11 @@ class MathRenderingTests(unittest.TestCase):
                 markdown = '\n'.join(equation_markdown(rec['mechanism']['generation_equations']))
                 for latex in markdown.split(chr(36)*2)[1::2]:
                     self.assertNotIn(r'\operatorname', latex, rec['record_id'])
-                    self.assertNotIn(r'\_', latex, rec['record_id'])
+                    # Literal underscores are valid inside textual labels;
+                    # reject escaped underscores in mathematical notation.
+                    import re
+                    notation = re.sub(r'\\(?:mathrm|text)\{[^{}]*\}', '', latex)
+                    self.assertNotIn(r'\_', notation, rec['record_id'])
                     self.assertFalse(DIAGNOSTIC_RX.search(latex), rec['record_id'])
                     self.assertEqual(latex.count('{'), latex.count('}'), rec['record_id'])
         self.assertGreaterEqual(checked, 20)
