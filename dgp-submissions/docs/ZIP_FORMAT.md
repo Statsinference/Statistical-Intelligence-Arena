@@ -41,7 +41,7 @@ Matching `config.json`:
 
 Real submissions must use the *actual* paper citation, exact source location, faithful formulas and scenario-specific truth if available. If the true value is not known, do not invent it. A machine-valid submission does not mean a scientifically accepted result.
 
-The parser reads `collection.json.family` automatically: `ate`, `cate`, `mediation`, `iv`, `proximal`, or `did_sc`. Unknown family is flagged for manual classification.
+The parser reads `collection.json.family` automatically. Supported primary areas are `ate`, `cate`, `mediation`, `iv`, `proximal`, `did_sc`, `nonparametric_regression`, `quantile`, `semi_supervised`, and `missing_data`. The current `did_sc` area combines DiD and synthetic control; identify the actual design in the submission. Unknown family values are flagged for manual classification.
 
 **Archive security:** no submitted Python is executed, all entries are path-checked, archives over 25 MiB or 120 MiB expanded size are rejected, and duplicate DGP IDs block automatic indexing.
 
