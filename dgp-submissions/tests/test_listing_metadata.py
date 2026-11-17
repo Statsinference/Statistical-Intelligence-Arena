@@ -117,7 +117,7 @@ def test_title_only_plus_venue_and_keywords_remain_separate():
     assert paper_title(a)=='An unrelated paper title'
     page='\n'.join(paper_list_tables([a,b]))
     assert 'An unrelated paper title (JASA)' in page
-    assert '| DGP Mechanisms | Keywords | Generator.py |' in page
+    assert '| DGP Mechanisms | Keywords |' in page
     assert '1: Interactions · Nonlinearity<br/>2: Linearity' in page
     assert '1: [Alpha]' in page and '2: [Beta]' in page
     assert page.count('An unrelated paper title')==1
@@ -150,7 +150,7 @@ def test_full_collection_keywords_and_flat_summary_agree(tmp_path):
     page=(out/'by-domain/proximal.md').read_text(encoding='utf-8')
     assert ' (JRSSB)' in page and ' (JASA)' in page
     assert '| DGP mechanism | Keywords |' in page
-    assert '| Generator.py |' in page
+    assert '| Generator.py |' not in page
     flat='\n'.join(paper_list_tables(data['records']))
     assert ' (AoS)' in flat and ' (JASA)' in flat
     assert '| Keywords |' in flat
