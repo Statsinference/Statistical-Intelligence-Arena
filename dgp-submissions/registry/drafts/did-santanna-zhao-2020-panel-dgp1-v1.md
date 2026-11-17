@@ -2,7 +2,7 @@
 
 > **Unverified extraction — scientific review required.**
 
-**Primary area:** Legacy DiD / Synthetic Control — classification needed
+**Primary area:** DiD — Difference-in-Differences
 
 **Suggested cross-tags (unverified):** none
 
@@ -191,4 +191,4 @@ Population ATT for the treated group at post-period 1. The realized group D and 
 **Warnings:**
 
 - Latent-variable candidates inferred from source equations; confirm their roles and completeness against the original paper or generator.
-- Legacy combined DiD / Synthetic Control family: human classification required; not automatically reassigned.
+- Catalog placement: Two-period panel for doubly robust difference-in-differences.

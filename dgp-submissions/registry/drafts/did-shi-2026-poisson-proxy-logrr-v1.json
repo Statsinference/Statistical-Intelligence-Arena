@@ -2,7 +2,7 @@
   "schema_version": "0.1",
   "record_id": "did-shi-2026-poisson-proxy-logrr-v1",
   "kind": "synthetic_dgp",
-  "domain": "did_sc",
+  "domain": "synthetic_control",
   "english_display": {},
   "paper": {
     "citation": "Shi, X., Li, K. Q., Yu, M., Miao, W., Kuchibhotla, A. K., Hu, M., and Tchetgen Tchetgen, E. (2026). Theory for Identification and Inference with Synthetic Controls: A Proximal Causal Inference Framework. Journal of the American Statistical Association, advance online publication. DOI:10.1080/01621459.2026.2639734",
@@ -1789,9 +1789,9 @@
   "review_status": "needs_scientific_review",
   "warnings": [
     "Latent-variable candidates inferred from source equations; confirm their roles and completeness against the original paper or generator.",
-    "Legacy combined DiD / Synthetic Control family: human classification required; not automatically reassigned."
+    "Catalog placement: Proxy and donor panel for proximal synthetic control; the submitted estimand is a log mean ratio, not ATT."
   ],
   "source_suggested_domain": "did_sc",
-  "classification_status": "needs_manual_classification",
+  "classification_status": "source_bound_catalog_placement_needs_scientific_review",
   "suggested_secondary_domains": []
 }

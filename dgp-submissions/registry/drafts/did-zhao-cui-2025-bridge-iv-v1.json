@@ -2,7 +2,7 @@
   "schema_version": "0.1",
   "record_id": "did-zhao-cui-2025-bridge-iv-v1",
   "kind": "synthetic_dgp",
-  "domain": "did_sc",
+  "domain": "did",
   "english_display": {},
   "paper": {
     "citation": "Zhao, P., and Cui, Y. (2025). A semiparametric instrumented difference-in-differences approach to policy learning. Biometrika, 112(4), asaf043. DOI:10.1093/biomet/asaf043",
@@ -263,9 +263,9 @@
   "review_status": "needs_scientific_review",
   "warnings": [
     "Latent-variable candidates inferred from source equations; confirm their roles and completeness against the original paper or generator.",
-    "Legacy combined DiD / Synthetic Control family: human classification required; not automatically reassigned."
+    "Catalog placement: Instrumented DiD with bridge confounding; the submitted target is ATE."
   ],
   "source_suggested_domain": "did_sc",
-  "classification_status": "needs_manual_classification",
+  "classification_status": "source_bound_catalog_placement_needs_scientific_review",
   "suggested_secondary_domains": []
 }

@@ -9,9 +9,8 @@
     "mediation": 31,
     "iv": 21,
     "proximal": 15,
-    "did": 0,
-    "synthetic_control": 0,
-    "did_sc": 11,
+    "did": 6,
+    "synthetic_control": 5,
     "nonparametric_regression": 20,
     "quantile": 27,
     "semi_supervised": 16,
@@ -1811,7 +1810,7 @@
     },
     {
       "record_id": "did-santanna-zhao-2020-panel-dgp1-v1",
-      "domain": "did_sc",
+      "domain": "did",
       "paper": "Sant'Anna, P. H. C. and Zhao, J. (2020). Doubly robust difference-in-differences estimators. Journal of Econometrics 219(1), 101–122. DOI: 10.1016/j.jeconom.2020.06.003.",
       "paper_doi": null,
       "mechanism": "Sant'Anna--Zhao DGP1: two-period panel with covariate-specific trends",
@@ -2333,7 +2332,7 @@
     },
     {
       "record_id": "did-abadie-lhour-2021-nonlinear-null-v1",
-      "domain": "did_sc",
+      "domain": "synthetic_control",
       "paper": "Abadie, A., and L’Hour, J. (2021). A Penalized Synthetic Control Estimator for Disaggregated Data. Journal of the American Statistical Association, 116(536), 1817–1834. DOI:10.1080/01621459.2021.1971535",
       "paper_doi": "10.1080/01621459.2021.1971535",
       "mechanism": "Two-period nonlinear-covariate panel with a zero treatment effect",
@@ -2358,7 +2357,7 @@
     },
     {
       "record_id": "did-cwz-2021-donor-ar-null-v1",
-      "domain": "did_sc",
+      "domain": "synthetic_control",
       "paper": "Chernozhukov, V., Wüthrich, K., and Zhu, Y. (2021). An Exact and Robust Conformal Inference Method for Counterfactual and Synthetic Controls. Journal of the American Statistical Association, 116(536), 1849–1864. DOI:10.1080/01621459.2021.1920957",
       "paper_doi": "10.1080/01621459.2021.1920957",
       "mechanism": "Donor-outcome-weighted panel with stationary AR(1) residuals",
@@ -2388,7 +2387,7 @@
     },
     {
       "record_id": "did-ferman-2021-two-factor-null-v1",
-      "domain": "did_sc",
+      "domain": "synthetic_control",
       "paper": "Ferman, B. (2021). On the Properties of the Synthetic Control Estimator with Many Periods and Many Controls. Journal of the American Statistical Association, 116(536), 1764–1772. DOI:10.1080/01621459.2021.1965613",
       "paper_doi": "10.1080/01621459.2021.1965613",
       "mechanism": "Two-type donor panel with stationary common AR(1) factors",
@@ -2417,7 +2416,7 @@
     },
     {
       "record_id": "did-karmakar-2025-code-truncated-cluster-null-v1",
-      "domain": "did_sc",
+      "domain": "synthetic_control",
       "paper": "Karmakar, B., Mukherjee, G., and Kar, W. (2025). Using Penalized Synthetic Controls on Truncated Data: A Case Study on Effect of Marijuana Legalization on Direct Payments to Physicians by Opioid Manufacturers. Journal of the American Statistical Association, 120(549), 64–79. DOI:10.1080/01621459.2024.2406583",
       "paper_doi": "10.1080/01621459.2024.2406583",
       "mechanism": "History-selected cluster panel with renewal damping and zero-censored outcomes",
@@ -2451,7 +2450,7 @@
     },
     {
       "record_id": "did-shaikh-toulis-2021-conditional-first-adopter-null-v1",
-      "domain": "did_sc",
+      "domain": "did",
       "paper": "Shaikh, A. M., and Toulis, P. (2021). Randomization Tests in Observational Studies With Staggered Adoption of Treatment. Journal of the American Statistical Association, 116(536), 1835–1848. DOI:10.1080/01621459.2021.1974458",
       "paper_doi": "10.1080/01621459.2021.1974458",
       "mechanism": "First-adopter Cox adoption with AR(1) outcomes conditional on whole-experiment success",
@@ -2478,7 +2477,7 @@
     },
     {
       "record_id": "did-shi-2026-poisson-proxy-logrr-v1",
-      "domain": "did_sc",
+      "domain": "synthetic_control",
       "paper": "Shi, X., Li, K. Q., Yu, M., Miao, W., Kuchibhotla, A. K., Hu, M., and Tchetgen Tchetgen, E. (2026). Theory for Identification and Inference with Synthetic Controls: A Proximal Causal Inference Framework. Journal of the American Statistical Association, advance online publication. DOI:10.1080/01621459.2026.2639734",
       "paper_doi": "10.1080/01621459.2026.2639734",
       "mechanism": "Truncated-normal-factor Poisson donor-and-proxy panel",
@@ -2514,7 +2513,7 @@
     },
     {
       "record_id": "did-ye-2024-bracketing-v1",
-      "domain": "did_sc",
+      "domain": "did",
       "paper": "Ye, T., Keele, L., Hasegawa, R. B., & Small, D. S. (2024). A Negative Correlation Strategy for Bracketing in Difference-in-Differences. JASA, 119(547), 2256–2268.",
       "paper_doi": "10.1080/01621459.2023.2252576",
       "mechanism": "DGP did-ye-2024-bracketing-v1 (English title required)",
@@ -2539,7 +2538,7 @@
     },
     {
       "record_id": "did-ye-2024-code-case2-gaussian-bracketing-v1",
-      "domain": "did_sc",
+      "domain": "did",
       "paper": "Ye, T., Keele, L., Hasegawa, R., and Small, D. S. (2024). A Negative Correlation Strategy for Bracketing in Difference-in-Differences. Journal of the American Statistical Association, 119(547), 2256–2268. DOI:10.1080/01621459.2023.2252576",
       "paper_doi": "10.1080/01621459.2023.2252576",
       "mechanism": "Three-group Gaussian outcomes with nonparallel untreated trends",
@@ -2555,7 +2554,7 @@
     },
     {
       "record_id": "did-zhao-cui-2025-bridge-iv-v1",
-      "domain": "did_sc",
+      "domain": "did",
       "paper": "Zhao, P., and Cui, Y. (2025). A semiparametric instrumented difference-in-differences approach to policy learning. Biometrika, 112(4), asaf043. DOI:10.1093/biomet/asaf043",
       "paper_doi": "10.1093/biomet/asaf043",
       "mechanism": "Repeated-cross-sectional instrumented DiD with bridge confounding",
@@ -2599,7 +2598,7 @@
     },
     {
       "record_id": "did-zhao-cui-2025-instrumented-v1",
-      "domain": "did_sc",
+      "domain": "did",
       "paper": "Zhao, P., & Cui, Y. (2025). A semiparametric instrumented difference-in-differences approach to policy learning. Biometrika, 112(4), asaf043.",
       "paper_doi": "10.1093/biomet/asaf043",
       "mechanism": "DGP did-zhao-cui-2025-instrumented-v1 (English title required)",

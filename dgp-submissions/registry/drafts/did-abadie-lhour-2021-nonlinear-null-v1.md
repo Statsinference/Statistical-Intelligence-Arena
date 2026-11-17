@@ -2,7 +2,7 @@
 
 > **Unverified extraction — scientific review required.**
 
-**Primary area:** Legacy DiD / Synthetic Control — classification needed
+**Primary area:** Synthetic Control
 
 **Suggested cross-tags (unverified):** none
 
@@ -206,4 +206,4 @@ E[Y_2(1)-Y_2(0)\|G=1] in the treated covariate population. Equal-weight finite-s
 **Warnings:**
 
 - No explicit latent-variable metadata or reliably identifiable latent declarations; absence from this list does not prove that no latent variables exist.
-- Legacy combined DiD / Synthetic Control family: human classification required; not automatically reassigned.
+- Catalog placement: Two-period treated-group panel from a penalized synthetic-control study; the design may also be used for DiD.

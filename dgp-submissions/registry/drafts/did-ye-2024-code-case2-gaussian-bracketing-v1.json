@@ -2,7 +2,7 @@
   "schema_version": "0.1",
   "record_id": "did-ye-2024-code-case2-gaussian-bracketing-v1",
   "kind": "synthetic_dgp",
-  "domain": "did_sc",
+  "domain": "did",
   "english_display": {},
   "paper": {
     "citation": "Ye, T., Keele, L., Hasegawa, R., and Small, D. S. (2024). A Negative Correlation Strategy for Bracketing in Difference-in-Differences. Journal of the American Statistical Association, 119(547), 2256–2268. DOI:10.1080/01621459.2023.2252576",
@@ -171,9 +171,9 @@
   "review_status": "needs_scientific_review",
   "warnings": [
     "No explicit latent-variable metadata or reliably identifiable latent declarations; absence from this list does not prove that no latent variables exist.",
-    "Legacy combined DiD / Synthetic Control family: human classification required; not automatically reassigned."
+    "Catalog placement: Three-group design for DiD bracketing with nonparallel trends."
   ],
   "source_suggested_domain": "did_sc",
-  "classification_status": "needs_manual_classification",
+  "classification_status": "source_bound_catalog_placement_needs_scientific_review",
   "suggested_secondary_domains": []
 }

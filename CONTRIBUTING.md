@@ -64,7 +64,7 @@ Examples of targets within the requested areas include:
 
 These are examples, not an exhaustive list or a requirement to relabel a paper's target. Natural, interventional and dynamic effects are distinct; define the exact version from the source. In mediation, treatment-induced confounding is a feature of a causal setting, not by itself an estimand. Do not infer a natural effect merely from a paper discussing mediation. IV and proximal inference are approaches or settings: identify the actual target they estimate.
 
-The intake uses `collection.json.family` for the primary area. For new submissions use `did` for Difference-in-Differences or `synthetic_control` for Synthetic Control. Historical `did_sc` entries remain in a separate legacy category pending human classification; they are not automatically reassigned. Other values are `ate`, `cate`, `mediation`, `iv`, `proximal`, `nonparametric_regression`, `quantile`, `semi_supervised`, and `missing_data`. An unrecognized value is flagged for human classification.
+The intake uses `collection.json.family` for the primary area. For new submissions use `did` for Difference-in-Differences or `synthetic_control` for Synthetic Control. Eleven historical `did_sc` records have provisional catalog placements tied to their submitted ZIP hashes; changed or unrecognized mixed-family submissions are sent for manual classification. These placements do not constitute scientific review. Other values are `ate`, `cate`, `mediation`, `iv`, `proximal`, `nonparametric_regression`, `quantile`, `semi_supervised`, and `missing_data`. An unrecognized value is flagged for human classification.
 
 ### 2. Write an informative estimand field
 
@@ -97,7 +97,7 @@ Before submitting, verify that the target's name, definition, population, source
 
 ## Browse research areas
 
-[ATE](dgp-submissions/registry/by-domain/ate.md) · [CATE](dgp-submissions/registry/by-domain/cate.md) · [Mediation](dgp-submissions/registry/by-domain/mediation.md) · [IV](dgp-submissions/registry/by-domain/iv.md) · [Proximal Causal Inference](dgp-submissions/registry/by-domain/proximal.md) · [DiD](dgp-submissions/registry/by-domain/did.md) · [Synthetic Control](dgp-submissions/registry/by-domain/synthetic_control.md) · [Legacy DiD / Synthetic Control](dgp-submissions/registry/by-domain/did_sc.md) · [Nonparametric Regression](dgp-submissions/registry/by-domain/nonparametric_regression.md) · [Quantile Inference](dgp-submissions/registry/by-domain/quantile.md) · [Semi-Supervised Inference](dgp-submissions/registry/by-domain/semi_supervised.md) · [Missing Data](dgp-submissions/registry/by-domain/missing_data.md)
+[ATE](dgp-submissions/registry/by-domain/ate.md) · [CATE](dgp-submissions/registry/by-domain/cate.md) · [Mediation](dgp-submissions/registry/by-domain/mediation.md) · [IV](dgp-submissions/registry/by-domain/iv.md) · [Proximal Causal Inference](dgp-submissions/registry/by-domain/proximal.md) · [DiD](dgp-submissions/registry/by-domain/did.md) · [Synthetic Control](dgp-submissions/registry/by-domain/synthetic_control.md) · [Nonparametric Regression](dgp-submissions/registry/by-domain/nonparametric_regression.md) · [Quantile Inference](dgp-submissions/registry/by-domain/quantile.md) · [Semi-Supervised Inference](dgp-submissions/registry/by-domain/semi_supervised.md) · [Missing Data](dgp-submissions/registry/by-domain/missing_data.md)
 
 <!-- STATSARENA_PAPER_LIST_BEGIN -->
 
@@ -196,33 +196,24 @@ Each paper is listed **once per area**. Open a DGP mechanism for its details and
 
 ### [DiD — Difference-in-Differences](dgp-submissions/registry/by-domain/did.md)
 
-0 paper(s) · 0 DGP mechanism(s)
-
-| Paper Title | DGPs | DGP Mechanisms | Estimand | Keywords |
-|---|---:|---|---|---|
-| — | 0 | No submissions yet | — | — |
-
-### [Synthetic Control](dgp-submissions/registry/by-domain/synthetic_control.md)
-
-0 paper(s) · 0 DGP mechanism(s)
-
-| Paper Title | DGPs | DGP Mechanisms | Estimand | Keywords |
-|---|---:|---|---|---|
-| — | 0 | No submissions yet | — | — |
-
-### [Legacy DiD / Synthetic Control — classification needed](dgp-submissions/registry/by-domain/did_sc.md)
-
-9 paper(s) · 11 DGP mechanism(s)
+4 paper(s) · 6 DGP mechanism(s)
 
 | Paper Title | DGPs | DGP Mechanisms | Estimand | Keywords |
 |---|---:|---|---|---|
 | [A Negative Correlation Strategy for Bracketing in Difference-in-Differences](https://doi.org/10.1080/01621459.2023.2252576) (JASA) | 2 | 1: [DGP did-ye-2024-bracketing-v1 (English title required)](dgp-submissions/registry/drafts/did-ye-2024-bracketing-v1.md)<br/>2: [Three-group Gaussian outcomes with nonparallel untreated trends](dgp-submissions/registry/drafts/did-ye-2024-code-case2-gaussian-bracketing-v1.md) | 1: ATT<br/>2: ATT | 1: Panel data<br/>2: Not specified |
-| [A Penalized Synthetic Control Estimator for Disaggregated Data](https://doi.org/10.1080/01621459.2021.1971535) (JASA) | 1 | [Two-period nonlinear-covariate panel with a zero treatment effect](dgp-submissions/registry/drafts/did-abadie-lhour-2021-nonlinear-null-v1.md) | ATT | Nonlinearity |
 | [A semiparametric instrumented difference-in-differences approach to policy learning](https://doi.org/10.1093/biomet/asaf043) (Biometrika) | 2 | 1: [DGP did-zhao-cui-2025-instrumented-v1 (English title required)](dgp-submissions/registry/drafts/did-zhao-cui-2025-instrumented-v1.md)<br/>2: [Repeated-cross-sectional instrumented DiD with bridge confounding](dgp-submissions/registry/drafts/did-zhao-cui-2025-bridge-iv-v1.md) | 1: ATE<br/>2: ATE | 1: Interactions · Nonlinearity · Effect heterogeneity<br/>2: Interactions · Nonlinearity · Panel data |
-| [An Exact and Robust Conformal Inference Method for Counterfactual and Synthetic Controls](https://doi.org/10.1080/01621459.2021.1920957) (JASA) | 1 | [Donor-outcome-weighted panel with stationary AR(1) residuals](dgp-submissions/registry/drafts/did-cwz-2021-donor-ar-null-v1.md) | Treated-unit treatment effect | Panel data |
 | [Doubly robust difference-in-differences estimators](https://doi.org/10.1016/j.jeconom.2020.06.003) (JoE) | 1 | [Sant'Anna--Zhao DGP1: two-period panel with covariate-specific trends](dgp-submissions/registry/drafts/did-santanna-zhao-2020-panel-dgp1-v1.md) | ATT | Interactions · Nonlinearity · Panel data |
-| [On the Properties of the Synthetic Control Estimator with Many Periods and Many Controls](https://doi.org/10.1080/01621459.2021.1965613) (JASA) | 1 | [Two-type donor panel with stationary common AR(1) factors](dgp-submissions/registry/drafts/did-ferman-2021-two-factor-null-v1.md) | Treated-unit treatment effect | Panel data |
 | [Randomization Tests in Observational Studies With Staggered Adoption of Treatment](https://doi.org/10.1080/01621459.2021.1974458) (JASA) | 1 | [First-adopter Cox adoption with AR(1) outcomes conditional on whole-experiment success](dgp-submissions/registry/drafts/did-shaikh-toulis-2021-conditional-first-adopter-null-v1.md) | Conditional first-adopter average treatment effect | Nonlinearity |
+
+### [Synthetic Control](dgp-submissions/registry/by-domain/synthetic_control.md)
+
+5 paper(s) · 5 DGP mechanism(s)
+
+| Paper Title | DGPs | DGP Mechanisms | Estimand | Keywords |
+|---|---:|---|---|---|
+| [A Penalized Synthetic Control Estimator for Disaggregated Data](https://doi.org/10.1080/01621459.2021.1971535) (JASA) | 1 | [Two-period nonlinear-covariate panel with a zero treatment effect](dgp-submissions/registry/drafts/did-abadie-lhour-2021-nonlinear-null-v1.md) | ATT | Nonlinearity |
+| [An Exact and Robust Conformal Inference Method for Counterfactual and Synthetic Controls](https://doi.org/10.1080/01621459.2021.1920957) (JASA) | 1 | [Donor-outcome-weighted panel with stationary AR(1) residuals](dgp-submissions/registry/drafts/did-cwz-2021-donor-ar-null-v1.md) | Treated-unit treatment effect | Panel data |
+| [On the Properties of the Synthetic Control Estimator with Many Periods and Many Controls](https://doi.org/10.1080/01621459.2021.1965613) (JASA) | 1 | [Two-type donor panel with stationary common AR(1) factors](dgp-submissions/registry/drafts/did-ferman-2021-two-factor-null-v1.md) | Treated-unit treatment effect | Panel data |
 | [Theory for Identification and Inference with Synthetic Controls: A Proximal Causal Inference Framework](https://doi.org/10.1080/01621459.2026.2639734) (JASA) | 1 | [Truncated-normal-factor Poisson donor-and-proxy panel](dgp-submissions/registry/drafts/did-shi-2026-poisson-proxy-logrr-v1.md) | Treated-unit population log mean ratio | Nonlinearity · Panel data |
 | [Using Penalized Synthetic Controls on Truncated Data: A Case Study on Effect of Marijuana Legalization on Direct Payments to Physicians by Opioid Manufacturers](https://doi.org/10.1080/01621459.2024.2406583) (JASA) | 1 | [History-selected cluster panel with renewal damping and zero-censored outcomes](dgp-submissions/registry/drafts/did-karmakar-2025-code-truncated-cluster-null-v1.md) | ATT | Nonlinearity · Panel data |
 

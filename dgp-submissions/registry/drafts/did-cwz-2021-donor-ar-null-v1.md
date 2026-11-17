@@ -2,7 +2,7 @@
 
 > **Unverified extraction — scientific review required.**
 
-**Primary area:** Legacy DiD / Synthetic Control — classification needed
+**Primary area:** Synthetic Control
 
 **Suggested cross-tags (unverified):** none
 
@@ -217,4 +217,4 @@ Y_1,T(1)-Y_1,T(0) at the fixed treated unit and T=T0+1=21. Its design-population
 **Warnings:**
 
 - Latent-variable candidates inferred from source equations; confirm their roles and completeness against the original paper or generator.
-- Legacy combined DiD / Synthetic Control family: human classification required; not automatically reassigned.
+- Catalog placement: Treated-unit and donor panel for counterfactual/synthetic controls.

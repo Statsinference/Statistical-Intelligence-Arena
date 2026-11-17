@@ -2,7 +2,7 @@
 
 > **Unverified extraction — scientific review required.**
 
-**Primary area:** Legacy DiD / Synthetic Control — classification needed
+**Primary area:** DiD — Difference-in-Differences
 
 **Suggested cross-tags (unverified):** none
 
@@ -139,4 +139,4 @@ Mean effect on first-adopter post cells in whole-experiment-success conditional 
 **Warnings:**
 
 - Latent-variable candidates inferred from source equations; confirm their roles and completeness against the original paper or generator.
-- Legacy combined DiD / Synthetic Control family: human classification required; not automatically reassigned.
+- Catalog placement: Staggered-adoption randomization-test DGP, not verified as DiD; its conditional first-adopter target requires scientific review.

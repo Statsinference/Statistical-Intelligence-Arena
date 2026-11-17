@@ -2,7 +2,7 @@
   "schema_version": "0.1",
   "record_id": "did-zhao-cui-2025-instrumented-v1",
   "kind": "synthetic_dgp",
-  "domain": "did_sc",
+  "domain": "did",
   "english_display": {},
   "paper": {
     "citation": "Zhao, P., & Cui, Y. (2025). A semiparametric instrumented difference-in-differences approach to policy learning. Biometrika, 112(4), asaf043.",
@@ -250,9 +250,9 @@
   "review_status": "needs_scientific_review",
   "warnings": [
     "No explicit latent-variable metadata or reliably identifiable latent declarations; absence from this list does not prove that no latent variables exist.",
-    "Legacy combined DiD / Synthetic Control family: human classification required; not automatically reassigned."
+    "Catalog placement: Instrumented DiD; the submitted target is ATE."
   ],
   "source_suggested_domain": "did_sc",
-  "classification_status": "needs_manual_classification",
+  "classification_status": "source_bound_catalog_placement_needs_scientific_review",
   "suggested_secondary_domains": []
 }

@@ -2,7 +2,7 @@
 
 > **Unverified extraction — scientific review required.**
 
-**Primary area:** Legacy DiD / Synthetic Control — classification needed
+**Primary area:** Synthetic Control
 
 **Suggested cross-tags (unverified):** none
 
@@ -143,4 +143,4 @@ Population average post-period treatment effect conditional on selected treated 
 **Warnings:**
 
 - Latent-variable candidates inferred from source equations; confirm their roles and completeness against the original paper or generator.
-- Legacy combined DiD / Synthetic Control family: human classification required; not automatically reassigned.
+- Catalog placement: Cluster panel adapted from a penalized synthetic-control study.

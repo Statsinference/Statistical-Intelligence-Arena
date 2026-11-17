@@ -2,7 +2,7 @@
   "schema_version": "0.1",
   "record_id": "did-ye-2024-bracketing-v1",
   "kind": "synthetic_dgp",
-  "domain": "did_sc",
+  "domain": "did",
   "english_display": {},
   "paper": {
     "citation": "Ye, T., Keele, L., Hasegawa, R. B., & Small, D. S. (2024). A Negative Correlation Strategy for Bracketing in Difference-in-Differences. JASA, 119(547), 2256–2268.",
@@ -286,9 +286,9 @@
   "review_status": "needs_scientific_review",
   "warnings": [
     "No explicit latent-variable metadata or reliably identifiable latent declarations; absence from this list does not prove that no latent variables exist.",
-    "Legacy combined DiD / Synthetic Control family: human classification required; not automatically reassigned."
+    "Catalog placement: Three-group multi-period design for DiD bracketing."
   ],
   "source_suggested_domain": "did_sc",
-  "classification_status": "needs_manual_classification",
+  "classification_status": "source_bound_catalog_placement_needs_scientific_review",
   "suggested_secondary_domains": []
 }

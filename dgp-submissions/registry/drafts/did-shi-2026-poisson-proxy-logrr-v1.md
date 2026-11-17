@@ -2,7 +2,7 @@
 
 > **Unverified extraction — scientific review required.**
 
-**Primary area:** Legacy DiD / Synthetic Control — classification needed
+**Primary area:** Synthetic Control
 
 **Suggested cross-tags (unverified):** none
 
@@ -150,4 +150,4 @@ For the treated unit at any post period, log(E[Y_t(1)]/E[Y_t(0)]) over the trunc
 **Warnings:**
 
 - Latent-variable candidates inferred from source equations; confirm their roles and completeness against the original paper or generator.
-- Legacy combined DiD / Synthetic Control family: human classification required; not automatically reassigned.
+- Catalog placement: Proxy and donor panel for proximal synthetic control; the submitted estimand is a log mean ratio, not ATT.

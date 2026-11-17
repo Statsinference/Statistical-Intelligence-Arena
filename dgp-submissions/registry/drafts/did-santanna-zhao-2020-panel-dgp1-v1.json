@@ -2,7 +2,7 @@
   "schema_version": "0.1",
   "record_id": "did-santanna-zhao-2020-panel-dgp1-v1",
   "kind": "synthetic_dgp",
-  "domain": "did_sc",
+  "domain": "did",
   "english_display": {},
   "paper": {
     "citation": "Sant'Anna, P. H. C. and Zhao, J. (2020). Doubly robust difference-in-differences estimators. Journal of Econometrics 219(1), 101–122. DOI: 10.1016/j.jeconom.2020.06.003.",
@@ -242,9 +242,9 @@
   "review_status": "needs_scientific_review",
   "warnings": [
     "Latent-variable candidates inferred from source equations; confirm their roles and completeness against the original paper or generator.",
-    "Legacy combined DiD / Synthetic Control family: human classification required; not automatically reassigned."
+    "Catalog placement: Two-period panel for doubly robust difference-in-differences."
   ],
   "source_suggested_domain": "did_sc",
-  "classification_status": "needs_manual_classification",
+  "classification_status": "source_bound_catalog_placement_needs_scientific_review",
   "suggested_secondary_domains": []
 }

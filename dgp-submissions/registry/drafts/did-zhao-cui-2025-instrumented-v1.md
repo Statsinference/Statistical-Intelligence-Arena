@@ -2,7 +2,7 @@
 
 > **Unverified extraction — scientific review required.**
 
-**Primary area:** Legacy DiD / Synthetic Control — classification needed
+**Primary area:** DiD — Difference-in-Differences
 
 **Suggested cross-tags (unverified):** none
 
@@ -171,4 +171,4 @@ Original-language definition is available in the raw scientific record (JSON).
 **Warnings:**
 
 - No explicit latent-variable metadata or reliably identifiable latent declarations; absence from this list does not prove that no latent variables exist.
-- Legacy combined DiD / Synthetic Control family: human classification required; not automatically reassigned.
+- Catalog placement: Instrumented DiD; the submitted target is ATE.

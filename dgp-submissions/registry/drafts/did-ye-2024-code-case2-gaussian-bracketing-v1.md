@@ -2,7 +2,7 @@
 
 > **Unverified extraction — scientific review required.**
 
-**Primary area:** Legacy DiD / Synthetic Control — classification needed
+**Primary area:** DiD — Difference-in-Differences
 
 **Suggested cross-tags (unverified):** none
 
@@ -139,4 +139,4 @@ Population mean treatment effect at final period4 conditional on treated group, 
 **Warnings:**
 
 - No explicit latent-variable metadata or reliably identifiable latent declarations; absence from this list does not prove that no latent variables exist.
-- Legacy combined DiD / Synthetic Control family: human classification required; not automatically reassigned.
+- Catalog placement: Three-group design for DiD bracketing with nonparallel trends.

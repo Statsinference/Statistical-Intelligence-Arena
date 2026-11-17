@@ -2,7 +2,7 @@
   "schema_version": "0.1",
   "record_id": "did-abadie-lhour-2021-nonlinear-null-v1",
   "kind": "synthetic_dgp",
-  "domain": "did_sc",
+  "domain": "synthetic_control",
   "english_display": {},
   "paper": {
     "citation": "Abadie, A., and L’Hour, J. (2021). A Penalized Synthetic Control Estimator for Disaggregated Data. Journal of the American Statistical Association, 116(536), 1817–1834. DOI:10.1080/01621459.2021.1971535",
@@ -201,9 +201,9 @@
   "review_status": "needs_scientific_review",
   "warnings": [
     "No explicit latent-variable metadata or reliably identifiable latent declarations; absence from this list does not prove that no latent variables exist.",
-    "Legacy combined DiD / Synthetic Control family: human classification required; not automatically reassigned."
+    "Catalog placement: Two-period treated-group panel from a penalized synthetic-control study; the design may also be used for DiD."
   ],
   "source_suggested_domain": "did_sc",
-  "classification_status": "needs_manual_classification",
+  "classification_status": "source_bound_catalog_placement_needs_scientific_review",
   "suggested_secondary_domains": []
 }

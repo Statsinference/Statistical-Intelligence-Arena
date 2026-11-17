@@ -2,7 +2,7 @@
   "schema_version": "0.1",
   "record_id": "did-shaikh-toulis-2021-conditional-first-adopter-null-v1",
   "kind": "synthetic_dgp",
-  "domain": "did_sc",
+  "domain": "did",
   "english_display": {},
   "paper": {
     "citation": "Shaikh, A. M., and Toulis, P. (2021). Randomization Tests in Observational Studies With Staggered Adoption of Treatment. Journal of the American Statistical Association, 116(536), 1835–1848. DOI:10.1080/01621459.2021.1974458",
@@ -8173,9 +8173,9 @@
   "review_status": "needs_scientific_review",
   "warnings": [
     "Latent-variable candidates inferred from source equations; confirm their roles and completeness against the original paper or generator.",
-    "Legacy combined DiD / Synthetic Control family: human classification required; not automatically reassigned."
+    "Catalog placement: Staggered-adoption randomization-test DGP, not verified as DiD; its conditional first-adopter target requires scientific review."
   ],
   "source_suggested_domain": "did_sc",
-  "classification_status": "needs_manual_classification",
+  "classification_status": "source_bound_catalog_placement_needs_scientific_review",
   "suggested_secondary_domains": []
 }
