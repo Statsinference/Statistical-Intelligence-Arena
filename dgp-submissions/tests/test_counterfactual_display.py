@@ -2,6 +2,7 @@
 import re
 
 from tools.dgp_registry.concise_definitions import load_definitions
+from tools.dgp_registry.counterfactual_display import render_counterfactual_equations, _replacements
 
 
 def test_curated_counterfactual_display_and_noncausal_formulas():
@@ -29,3 +30,29 @@ def test_source_definition_and_provenance_are_preserved():
     entry = record['scenarios']['delta_dense_dense']
     assert 'Population average treatment effect E[Y(1)-Y(0)]' in entry['source_definition']
     assert entry['display_math'] == r'\mathbb{E}[Y^{(1)}-Y^{(0)}]'
+
+
+def test_equation_display_is_exact_and_source_bound():
+    replacements = _replacements()
+    keys = [key for key in replacements if key[0] == 'ate-athey-imbens-wager-2018-arb-v1'
+            and r'Y_{i}(w)' in key[2]]
+    assert len(keys) == 1
+    record_id, digest, original = keys[0]
+    record = {'record_id': record_id, 'provenance': {'submitted_zip_sha256': digest}}
+    lines = ['```math', original, '```', '<details>', original, '</details>']
+    result = render_counterfactual_equations(lines, record)
+    assert result[1] == replacements[keys[0]]
+    assert result[4] == original  # source inside details is untouched
+    assert lines[1] == original  # input not mutated
+    wrong_hash = {'record_id': record_id, 'provenance': {'submitted_zip_sha256': 'different'}}
+    assert render_counterfactual_equations(lines, wrong_hash) == lines
+    assert render_counterfactual_equations(['```math', original + ' ', '```'], record)[1] == original + ' '
+
+
+def test_equation_overrides_preserve_functions_and_multiplication():
+    replacements = _replacements()
+    assert len(replacements) == 72
+    assert len({key[0] for key in replacements}) == 39
+    assert any('Y^{(1, M^{(0)})}' in value for value in replacements.values())
+    assert not any(r'A(0.5+3X_1-5X_2' in key[2] for key in replacements)
+    assert not any('Q_Y(0.9)' in key[2] for key in replacements)

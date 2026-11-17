@@ -7,19 +7,40 @@ permissions:
 jobs:
   verify:
     runs-on: ubuntu-24.04
-    timeout-minutes: 10
+    timeout-minutes: 15
     defaults:
       run:
         working-directory: dgp-submissions
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
       - run: python -m pip install pytest==8.4.2
-      - name: Verify curated counterfactual expressions
+      - name: Verify curated counterfactual displays
         run: python -m pytest tests/test_counterfactual_display.py tests/test_concise_definitions.py -q
       - name: Run integration regressions
         run: python integration/run_regressions.py
       - name: Regenerate catalog without executing submitted code
         run: python -m tools.dgp_registry.github_intake --incoming incoming --output /tmp/counterfactual-registry
+      - name: Verify all reviewed equations and original catalog records
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          old=json.loads(Path('registry/catalog.json').read_text(encoding='utf-8'))
+          new=json.loads(Path('/tmp/counterfactual-registry/catalog.json').read_text(encoding='utf-8'))
+          for key in ('paper_count', 'mechanism_count', 'scenario_count', 'records'):
+              assert old[key] == new[key], f'Scientific catalog changed: {key}'
+          mapping=json.loads(Path('tools/dgp_registry/counterfactual_equation_overrides.json').read_text(encoding='utf-8'))
+          missed=[]
+          for item in mapping['replacements']:
+              path=Path('/tmp/counterfactual-registry/drafts') / (item['record_id']+'.md')
+              page=path.read_text(encoding='utf-8')
+              block='```math\n'+item['rewritten_latex']+'\n```'
+              if block not in page: missed.append(item['record_id']+': '+item['rendered_latex'][:90])
+          assert not missed, f'Reviewed displays not regenerated: {missed!r}'
+          print('All 72 reviewed math blocks rendered and scientific catalog unchanged')
+          PY
