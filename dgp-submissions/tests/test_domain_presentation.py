@@ -93,6 +93,18 @@ class DomainPresentationTests(unittest.TestCase):
         self.assertIn('Changed the treatment assignment.', detail_page)
         self.assertIn('Duplicate conflict — review required', page)
 
+
+    def test_original_language_adaptations_link_to_raw_record(self):
+        r = record()
+        r['adaptations'] = ['这是原始适配说明']
+        before = copy.deepcopy(r)
+        page = detail(r)
+        self.assertNotIn('这是原始适配说明', page)
+        self.assertIn('English description pending', page)
+        self.assertIn('./test-entry.json', page)
+        self.assertEqual(r, before)
+
+
     def test_structured_doi_survives_catalog_summary_grouping(self):
         import json
         from tools.dgp_registry.paper_list import _domain_papers
