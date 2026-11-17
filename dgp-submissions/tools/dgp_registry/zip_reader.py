@@ -80,7 +80,7 @@ def from_collection(z, prefix, source_name, archive_sha):
     if not (source.get('citation') or source.get('url')):
         raise ValueError('Missing reference citation/URL in collection.json under ' + prefix)
     if not collection.get('equations') or not isinstance(collection.get('equations'), list):
-        raise ValueError('Missing generating equations in collection.json under ' + prefix)
+        raise ValueError('Missing generating equations in collection.json under ' + (prefix or './') + '; supply a non-empty equations list.')
     if not estimand.get('definition'):
         raise ValueError('Missing estimand definition under ' + prefix)
     truth = collection.get('truth') or {}
