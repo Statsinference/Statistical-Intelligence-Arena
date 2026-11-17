@@ -91,7 +91,7 @@ For recognized abbreviations the current renderer derives the label from a defin
 
 ### 4. Understand registry status and review before submission
 
-In the scenario table, **Evidence status** is the intake's status for the *truth value*, not approval of the whole DGP. In current structured-ZIP intake, `reported_numeric` means a numeric value was supplied in the accepted truth inputs; `needs_review` means a numeric value was not extracted. Neither status establishes that the value or the corresponding equation is correct. A reported check is not independent execution by intake, and all extracted entries remain drafts pending scientific review.
+A supplied numeric value is not scientific approval: reviewers must check the value and the corresponding equation against the source. Intake does not independently execute a contributor's checks, and all extracted entries remain drafts pending scientific review. The original truth-status metadata remains available in each raw scientific JSON record.
 
 Before submitting, verify that the target's name, definition, population, source location, equations, variables, scenario settings, and truth all agree with each other and the source. Check the ZIP before submission; after opening the pull request, review the generated preview for missing values, malformed formulas, unreadable symbols and broken links. Leave uncertain scientific information explicitly marked for review rather than filling gaps by guesswork.
 
