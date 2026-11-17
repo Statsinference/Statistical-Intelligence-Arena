@@ -16,7 +16,7 @@
 
 **Sampling design:** Unit: individual; Dependence: iid individuals; C0, then A, then the three-vector C1, then M, then Y are generated in temporal order within an individual
 
-**Generator source:** [generator.py](../generators/mediation-miles-2019-toxicity-path-specific-v1.py)
+**Generator source:** [generator.py](https://github.com/Statsinference/stats-inference-arena/blob/main/dgp-submissions/registry/generators/mediation-miles-2019-toxicity-path-specific-v1.py)
 
 **Keywords (source-described):** Interactions · Nonlinearity
 
@@ -87,7 +87,7 @@ beta_0 = int int int E(Y|m, c1, a&#x27;, c0) dF(m|c1, a, c0) dF(c1|a&#x27;, c0) 
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
 | original | P_AMY = E(Y[M{a, C1(a')}, C1(a'), a']) - E[Y(a')] | The path-specific effect of A on Y along the path A -&gt; M -&gt; Y, as defined in Section 2 of the source. It is the CONTRAST of two nested counterfactual means: in both arms the treatment-induced confounder vector C1 and the outcome are held at the reference level a' = 0, and only the exposure level fed to the mediator equation moves, from a' = 0 to a = 1. Writing beta_0 = E(Y[M{a, C1(a')}, C1(a'), a']) for the moved arm and E[Y(a')] for the unmoved arm, P_AMY = beta_0 - E[Y(a')]. beta_0 on its own is a counterfactual MEAN, not an effect, and is registered only as a component; the source's Figure 2 plots beta_0, which is why that figure is used as coding evidence rather than as the target. P_AMY is NOT a natural indirect effect, NOT a natural direct effect and NOT a total effect; keeping C1 at a' inside the mediator counterfactual is what distinguishes it from the standard natural effects. | -0.9180000000000001 | reported_numeric |
 

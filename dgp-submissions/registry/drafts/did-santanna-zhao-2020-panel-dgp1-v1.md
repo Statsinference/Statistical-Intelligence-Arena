@@ -2,7 +2,7 @@
 
 > **Unverified extraction — scientific review required.**
 
-**Primary area:** DiD / Synthetic Control
+**Primary area:** Legacy DiD / Synthetic Control — classification needed
 
 **Suggested cross-tags (unverified):** none
 
@@ -16,7 +16,7 @@
 
 **Sampling design:** Unit: individual with a two-period panel stored in one wide row; Dependence: iid between individuals; baseline and post-period outcomes within an individual share latent v and covariates
 
-**Generator source:** [generator.py](../generators/did-santanna-zhao-2020-panel-dgp1-v1.py)
+**Generator source:** [generator.py](https://github.com/Statsinference/stats-inference-arena/blob/main/dgp-submissions/registry/generators/did-santanna-zhao-2020-panel-dgp1-v1.py)
 
 **Keywords (source-described):** Interactions · Nonlinearity · Panel data
 
@@ -118,9 +118,9 @@ eta,epsilon0,epsilon1(0),epsilon1(1) are independent N(0,1), independent of X,U
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| original_panel_dgp1 | ATT = E[Y_1(1)-Y_1(0) \| D=1] | Population ATT for the treated group at post-period 1. The realized group D and latent v are held fixed across treatment counterfactuals. Original value is zero; this is not the observed post-period group contrast or a sample-average effect. | 0.0 | reported_numeric |
+| original_panel_dgp1 | ATT = E[Y_1(1)-Y_1(0) \| D=1] | Population ATT for the treated group at post-period 1. The realized group D and latent v are held fixed across treatment counterfactuals. Original value is zero; this is not the observed post-period group contrast or a sample-average effect. | 0 | reported_numeric |
 
 ## Identifiability assumptions
 

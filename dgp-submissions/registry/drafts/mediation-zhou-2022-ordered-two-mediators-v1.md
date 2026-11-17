@@ -16,7 +16,7 @@
 
 **Sampling design:** Unit: individual; Dependence: iid individuals; all variables within an individual are generated jointly in temporal order
 
-**Generator source:** [generator.py](../generators/mediation-zhou-2022-ordered-two-mediators-v1.py)
+**Generator source:** [generator.py](https://github.com/Statsinference/stats-inference-arena/blob/main/dgp-submissions/registry/generators/mediation-zhou-2022-ordered-two-mediators-v1.py)
 
 **Keywords (source-described):** Nonlinearity
 
@@ -122,7 +122,7 @@ beta_X1=(0.77,-0.86,0.35,0.88); beta_X2=(-0.99,-0.72,-0.1,0.54); beta_X3=(-0.74,
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
 | original | cPSE_M2 = theta_011 - theta_001 | Cumulative path-specific effect through the second mediator: theta_{a1,a2,a3} = E[Y(a3, M1(a1), M2(a2, M1(a1)))], and cPSE_M2 = theta_011 - theta_001 holds the Y-argument at A=1 and the M1-argument at A=0 while moving only the M2-argument from A=0 to A=1. This is NOT the natural indirect effect, NOT the natural direct effect and NOT the total effect. | 0.3264 | reported_numeric |
 

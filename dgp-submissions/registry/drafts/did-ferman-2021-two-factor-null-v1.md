@@ -2,7 +2,7 @@
 
 > **Unverified extraction — scientific review required.**
 
-**Primary area:** DiD / Synthetic Control
+**Primary area:** Legacy DiD / Synthetic Control — classification needed
 
 **Suggested cross-tags (unverified):** none
 
@@ -16,7 +16,7 @@
 
 **Sampling design:** Unit: One jointly generated panel: 11 units (one treated and ten donors), 20 pre periods and one post, represented by one wide row per unit.; Dependence: Two independent stationary Gaussian AR(1) common factors with rho=.5; five donors share the treated loading and five share the second loading. Unit/time idiosyncratic errors are iid standard normal and independent of factors.
 
-**Generator source:** [generator.py](../generators/did-ferman-2021-two-factor-null-v1.py)
+**Generator source:** [generator.py](https://github.com/Statsinference/stats-inference-arena/blob/main/dgp-submissions/registry/generators/did-ferman-2021-two-factor-null-v1.py)
 
 **Keywords (source-described):** Linearity · Panel data
 
@@ -113,9 +113,9 @@ tau_01=Y_0,21(1)-Y_0,21(0)=post_effect=0 with common exogenous draws held fixed;
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| table1_j10_t020_null | tau_01 | Specified treated unit i=0, first and only post period t=1: Y_01(1)-Y_01(0). Its design-population mean and single-treated-unit finite SATT both equal zero pointwise. | 0.0 | reported_numeric |
+| table1_j10_t020_null | tau_01 | Specified treated unit i=0, first and only post period t=1: Y_01(1)-Y_01(0). Its design-population mean and single-treated-unit finite SATT both equal zero pointwise. | 0 | reported_numeric |
 
 ## Identifiability assumptions
 

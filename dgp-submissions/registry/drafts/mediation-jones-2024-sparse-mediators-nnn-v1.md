@@ -16,7 +16,7 @@
 
 **Sampling design:** Unit: individual; Dependence: iid individuals; X, then D, then the ten-dimensional mediator vector, then Y are generated in temporal order within an individual
 
-**Generator source:** [generator.py](../generators/mediation-jones-2024-sparse-mediators-nnn-v1.py)
+**Generator source:** [generator.py](https://github.com/Statsinference/stats-inference-arena/blob/main/dgp-submissions/registry/generators/mediation-jones-2024-sparse-mediators-nnn-v1.py)
 
 **Keywords (source-described):** Interactions · Nonlinearity
 
@@ -109,7 +109,7 @@ NDE = gamma_0 = 2; NIE = alpha_0 . beta_0 = 2.4
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
 | NNN | NIE = alpha_0 . beta_0 | Natural indirect effect through the sparse mediator set: NIE = E[Y(1, M(1))] - E[Y(1, M(0))]. Under the source's additive structural model (its equation (1)) and its Proposition 2.1 this equals the inner product alpha_0 . beta_0 of the treatment-to-mediator and mediator-to-outcome coefficient vectors. The companion natural direct effect equals gamma_0. This is NOT a total effect and NOT a single-mediator indirect effect; ten candidate mediators are generated and only the first three are true mediators. | 2.4000000000000004 | reported_numeric |
 

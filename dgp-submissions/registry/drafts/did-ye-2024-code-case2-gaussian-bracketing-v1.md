@@ -2,7 +2,7 @@
 
 > **Unverified extraction — scientific review required.**
 
-**Primary area:** DiD / Synthetic Control
+**Primary area:** Legacy DiD / Synthetic Control — classification needed
 
 **Suggested cross-tags (unverified):** none
 
@@ -16,7 +16,7 @@
 
 **Sampling design:** Unit: 1000 unit rows,4 observed periods; fixed300trt500b200a; n strictly1000; Dependence: All observed Gaussian cell innovations independent; fixed deterministic group/time means, no persistent latent state.
 
-**Generator source:** [generator.py](../generators/did-ye-2024-code-case2-gaussian-bracketing-v1.py)
+**Generator source:** [generator.py](https://github.com/Statsinference/stats-inference-arena/blob/main/dgp-submissions/registry/generators/did-ye-2024-code-case2-gaussian-bracketing-v1.py)
 
 **Keywords (source-described):** Linearity
 
@@ -77,9 +77,9 @@ Population ATT4=1; finite-sample cross-world coupling unspecified
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| baseline | ATT_4 | Population mean treatment effect at final period4 conditional on treated group, source-declared att[4]=1; not finite-sample SATT. | 1.0 | reported_numeric |
+| baseline | ATT_4 | Population mean treatment effect at final period4 conditional on treated group, source-declared att[4]=1; not finite-sample SATT. | 1 | reported_numeric |
 
 ## Identifiability assumptions
 

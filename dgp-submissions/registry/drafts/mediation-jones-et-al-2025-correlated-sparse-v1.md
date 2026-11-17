@@ -16,7 +16,7 @@
 
 **Sampling design:** Unit: individual; Dependence: IID rows; within-row 100-dimensional correlated mediator disturbances
 
-**Generator source:** [generator.py](../generators/mediation-jones-et-al-2025-correlated-sparse-v1.py)
+**Generator source:** [generator.py](https://github.com/Statsinference/stats-inference-arena/blob/main/dgp-submissions/registry/generators/mediation-jones-et-al-2025-correlated-sparse-v1.py)
 
 **Keywords (source-described):** Linearity · High-dimensionality
 
@@ -98,9 +98,9 @@ NIE_1=sum_j alpha_j beta_j=2
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| simulation_b_n200_p100_rho05 | NIE_1 | E[Y(1,M(1))-Y(1,M(0))] for the full 100-vector mediator under the additive structural equations. | 2.0 | reported_numeric |
+| simulation_b_n200_p100_rho05 | NIE_1 | E[Y(1,M(1))-Y(1,M(0))] for the full 100-vector mediator under the additive structural equations. | 2 | reported_numeric |
 
 ## Identifiability assumptions
 

@@ -16,7 +16,7 @@
 
 **Sampling design:** Unit: independent individual; Dependence: i.i.d. across units; no interference, no clustering and no panel structure. Missingness patterns are drawn independently across units given each unit's own covariates, treatment and noises.
 
-**Generator source:** [generator.py](../generators/mediation-shan-li-ai-2026-missing-confounders-internal-shadow-v1.py)
+**Generator source:** [generator.py](https://github.com/Statsinference/stats-inference-arena/blob/main/dgp-submissions/registry/generators/mediation-shan-li-ai-2026-missing-confounders-internal-shadow-v1.py)
 
 **Keywords (source-described):** Interactions · Nonlinearity
 
@@ -103,7 +103,7 @@ theta = E[Y(1, M(0))] = 3.192275262794844
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
 | dgp2_internal_shadow | MF theta = E[Y(1, M(0))] | Mediation functional: the mean potential outcome when treatment is set to 1 while the mediator is set to the value it would have taken under treatment 0, theta = E[Y(1, M(0))]. The source calls this the fundamental quantity and derives the natural indirect effect xi(1) = E[Y(1,M(1))] - theta, the natural direct effect zeta(0) = theta - E[Y(0,M(0))] and the total effect tau = xi(1) + zeta(0) from it. theta is a cross-world mean and is NOT an indirect effect, NOT a direct effect and NOT a total effect. | 3.192275262794844 | reported_numeric |
 

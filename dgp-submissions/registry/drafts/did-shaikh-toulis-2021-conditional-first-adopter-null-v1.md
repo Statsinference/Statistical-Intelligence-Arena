@@ -2,7 +2,7 @@
 
 > **Unverified extraction — scientific review required.**
 
-**Primary area:** DiD / Synthetic Control
+**Primary area:** Legacy DiD / Synthetic Control — classification needed
 
 **Suggested cross-tags (unverified):** none
 
@@ -16,7 +16,7 @@
 
 **Sampling design:** Unit: Exactly25 unit rows and1000 outcomes; horizon random from10000 calibration panels; Dependence: Shared random horizon and success conditioning induce panel-design dependence; conditional innovations iid normal with unit AR1 recursion.
 
-**Generator source:** [generator.py](../generators/did-shaikh-toulis-2021-conditional-first-adopter-null-v1.py)
+**Generator source:** [generator.py](https://github.com/Statsinference/stats-inference-arena/blob/main/dgp-submissions/registry/generators/did-shaikh-toulis-2021-conditional-first-adopter-null-v1.py)
 
 **Keywords (source-described):** Nonlinearity
 
@@ -81,9 +81,9 @@ Yij=.2 Yi,j-1+.5Xi+.5sqrt(j)+epsij; Yi0=0; eps~N(0,.15^2); tau0
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| baseline | ATT_cond | Mean effect on first-adopter post cells in whole-experiment-success conditional population; also realized SATT=0 pathwise | 0.0 | reported_numeric |
+| baseline | ATT_cond | Mean effect on first-adopter post cells in whole-experiment-success conditional population; also realized SATT=0 pathwise | 0 | reported_numeric |
 
 ## Identifiability assumptions
 

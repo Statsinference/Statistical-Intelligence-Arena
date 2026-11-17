@@ -16,7 +16,7 @@
 
 **Sampling design:** Unit: individual; Dependence: IID rows; within each row C and M residuals have Gaussian correlation 0.2
 
-**Generator source:** [generator.py](../generators/mediation-xia-chan-2023-continuous-copula-v1.py)
+**Generator source:** [generator.py](https://github.com/Statsinference/stats-inference-arena/blob/main/dgp-submissions/registry/generators/mediation-xia-chan-2023-continuous-copula-v1.py)
 
 **Keywords (source-described):** Interactions · Nonlinearity
 
@@ -98,9 +98,9 @@ NDE=2+3(2)+4E[C(1)]+2E[M(0)]=26
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| section_4_1_continuous | NDE | E[Y(1,M(0))-Y(0,M(0))], with the treatment-induced C under its own treatment in each outcome potential. | 26.0 | reported_numeric |
+| section_4_1_continuous | NDE | E[Y(1,M(0))-Y(0,M(0))], with the treatment-induced C under its own treatment in each outcome potential. | 26 | reported_numeric |
 
 ## Identifiability assumptions
 

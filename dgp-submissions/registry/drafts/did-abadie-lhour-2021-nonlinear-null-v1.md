@@ -2,7 +2,7 @@
 
 > **Unverified extraction — scientific review required.**
 
-**Primary area:** DiD / Synthetic Control
+**Primary area:** Legacy DiD / Synthetic Control — classification needed
 
 **Suggested cross-tags (unverified):** none
 
@@ -16,7 +16,7 @@
 
 **Sampling design:** Unit: Independent units in fixed treated/control strata; two observations per unit represented by one wide row.; Dependence: Shared four baseline covariates within unit; independent standard-normal period disturbances. Covariates iid within strata and across dimensions; no missingness or attrition.
 
-**Generator source:** [generator.py](../generators/did-abadie-lhour-2021-nonlinear-null-v1.py)
+**Generator source:** [generator.py](https://github.com/Statsinference/stats-inference-arena/blob/main/dgp-submissions/registry/generators/did-abadie-lhour-2021-nonlinear-null-v1.py)
 
 **Keywords (source-described):** Nonlinearity
 
@@ -138,9 +138,9 @@ ATT_post=E[Y_2(1)-Y_2(0)|G=1]=0; holding the same post error fixed across interv
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| paper_table4_p4_r2_with_declared_n_extension | ATT_post | E[Y_2(1)-Y_2(0)\|G=1] in the treated covariate population. Equal-weight finite-sample treated SATT also equals zero pointwise. | 0.0 | reported_numeric |
+| paper_table4_p4_r2_with_declared_n_extension | ATT_post | E[Y_2(1)-Y_2(0)\|G=1] in the treated covariate population. Equal-weight finite-sample treated SATT also equals zero pointwise. | 0 | reported_numeric |
 
 ## Identifiability assumptions
 

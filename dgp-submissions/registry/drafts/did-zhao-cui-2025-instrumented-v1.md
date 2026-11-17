@@ -2,7 +2,7 @@
 
 > **Unverified extraction — scientific review required.**
 
-**Primary area:** DiD / Synthetic Control
+**Primary area:** Legacy DiD / Synthetic Control — classification needed
 
 **Suggested cross-tags (unverified):** none
 
@@ -16,7 +16,7 @@
 
 **Sampling design:** Unit: independent individual from one of two repeated cross-sections; Dependence: English description not yet supplied; consult the original scientific record (JSON).
 
-**Generator source:** [generator.py](../generators/did-zhao-cui-2025-instrumented-v1.py)
+**Generator source:** [generator.py](https://github.com/Statsinference/stats-inference-arena/blob/main/dgp-submissions/registry/generators/did-zhao-cui-2025-instrumented-v1.py)
 
 **Keywords (source-described):** Interactions · Nonlinearity · Effect heterogeneity
 
@@ -107,9 +107,9 @@ $$
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| source_section6_ate_target | ATE | English description not yet supplied; consult the original scientific record (JSON). | -5.0 | reported_numeric |
+| source_section6_ate_target | ATE | English description not yet supplied; consult the original scientific record (JSON). | -5 | reported_numeric |
 
 ## Identifiability assumptions
 

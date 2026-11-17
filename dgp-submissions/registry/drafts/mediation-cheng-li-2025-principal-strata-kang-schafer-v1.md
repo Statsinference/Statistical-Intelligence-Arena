@@ -16,7 +16,7 @@
 
 **Sampling design:** Unit: individual; Dependence: iid individuals; X, then Z, then D, then M, then Y are generated in temporal order within an individual
 
-**Generator source:** [generator.py](../generators/mediation-cheng-li-2025-principal-strata-kang-schafer-v1.py)
+**Generator source:** [generator.py](https://github.com/Statsinference/stats-inference-arena/blob/main/dgp-submissions/registry/generators/mediation-cheng-li-2025-principal-strata-kang-schafer-v1.py)
 
 **Keywords (source-described):** Nonlinearity
 
@@ -80,7 +80,7 @@ Y | M, D, Z, X ~ N(210 + 1.5 Z - D + M + [27.4, 13.7, 13.7, 13.7]^T X, 1)
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
 | original | ITT-NDE = E[Y_{1 M_0}] - E[Y_{0 M_0}] | Intention-to-treat natural direct effect of the randomized treatment Z with mediator M, in a design that also contains a post-treatment event D (for example noncompliance). Setting Z = z lets the post-treatment event take D(z), while the mediator is held at M(0). This is NOT the principal-stratum quantity theta^(10)_10 that the source plots, NOT an indirect effect, and NOT a complier average causal effect. | 1.180857104770165 | reported_numeric |
 

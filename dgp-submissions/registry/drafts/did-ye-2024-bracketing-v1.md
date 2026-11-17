@@ -2,7 +2,7 @@
 
 > **Unverified extraction — scientific review required.**
 
-**Primary area:** DiD / Synthetic Control
+**Primary area:** Legacy DiD / Synthetic Control — classification needed
 
 **Suggested cross-tags (unverified):** none
 
@@ -16,7 +16,7 @@
 
 **Sampling design:** Unit: individual panel, n individuals, 4 outcomes per row; Dependence: English description not yet supplied; consult the original scientific record (JSON).
 
-**Generator source:** [generator.py](../generators/did-ye-2024-bracketing-v1.py)
+**Generator source:** [generator.py](https://github.com/Statsinference/stats-inference-arena/blob/main/dgp-submissions/registry/generators/did-ye-2024-bracketing-v1.py)
 
 **Keywords (source-described):** Linearity · Panel data
 
@@ -111,10 +111,10 @@ $$
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| case1_parallel | ATT_4 | English description not yet supplied; consult the original scientific record (JSON). | 1.0 | reported_numeric |
-| case2_partial | ATT_4 | English description not yet supplied; consult the original scientific record (JSON). | 1.0 | reported_numeric |
+| case1_parallel | ATT_4 | English description not yet supplied; consult the original scientific record (JSON). | 1 | reported_numeric |
+| case2_partial | ATT_4 | English description not yet supplied; consult the original scientific record (JSON). | 1 | reported_numeric |
 
 ## Identifiability assumptions
 

@@ -16,7 +16,7 @@
 
 **Sampling design:** Unit: individual; Dependence: IID units; W3 depends on W1,W2; A-&gt;Z-&gt;M-&gt;Y within each unit
 
-**Generator source:** [generator.py](../generators/mediation-diaz-et-al-2021-intermediate-confounding-v1.py)
+**Generator source:** [generator.py](https://github.com/Statsinference/stats-inference-arena/blob/main/dgp-submissions/registry/generators/mediation-diaz-et-al-2021-intermediate-confounding-v1.py)
 
 **Keywords (source-described):** Interactions · Nonlinearity
 
@@ -80,7 +80,7 @@ Y|M,Z,A,W~Bern(expit((A-Z+M-AZ)/(sum(W)+1)))
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
 | section_5 | IIE_1 | E[Y(1,G1)-Y(1,G0)], where G_a is an independent draw from M(a)\|W, marginalizing the post-treatment Z under treatment a. | 0.03026875404999696 | reported_numeric |
 

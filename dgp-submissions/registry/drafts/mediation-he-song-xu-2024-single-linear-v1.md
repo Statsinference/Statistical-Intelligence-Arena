@@ -16,7 +16,7 @@
 
 **Sampling design:** Unit: individual; Dependence: iid
 
-**Generator source:** [generator.py](../generators/mediation-he-song-xu-2024-single-linear-v1.py)
+**Generator source:** [generator.py](https://github.com/Statsinference/stats-inference-arena/blob/main/dgp-submissions/registry/generators/mediation-he-song-xu-2024-single-linear-v1.py)
 
 **Keywords (source-described):** Linearity
 
@@ -76,12 +76,12 @@ Y=beta_M M+1+X1+X2+A+epsilon_Y, epsilon_Y~N(0,0.5^2), independent of epsilon_M
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
 | fixed_product_004_ratio_1 | NIE_1 | E[Y(1,M(1))-Y(1,M(0))] in the source SEM superpopulation; exposure S is named A in data columns. | 0.04000000000000001 | reported_numeric |
-| fixed_null_h01 | NIE_1 | E[Y(1,M(1))-Y(1,M(0))] in the source SEM superpopulation; exposure S is named A in data columns. | 0.0 | reported_numeric |
-| fixed_null_h02 | NIE_1 | E[Y(1,M(1))-Y(1,M(0))] in the source SEM superpopulation; exposure S is named A in data columns. | 0.0 | reported_numeric |
-| fixed_null_h03 | NIE_1 | E[Y(1,M(1))-Y(1,M(0))] in the source SEM superpopulation; exposure S is named A in data columns. | 0.0 | reported_numeric |
+| fixed_null_h01 | NIE_1 | E[Y(1,M(1))-Y(1,M(0))] in the source SEM superpopulation; exposure S is named A in data columns. | 0 | reported_numeric |
+| fixed_null_h02 | NIE_1 | E[Y(1,M(1))-Y(1,M(0))] in the source SEM superpopulation; exposure S is named A in data columns. | 0 | reported_numeric |
+| fixed_null_h03 | NIE_1 | E[Y(1,M(1))-Y(1,M(0))] in the source SEM superpopulation; exposure S is named A in data columns. | 0 | reported_numeric |
 
 ## Identifiability assumptions
 

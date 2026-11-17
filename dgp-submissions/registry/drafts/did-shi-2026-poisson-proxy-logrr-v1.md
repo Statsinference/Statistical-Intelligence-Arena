@@ -2,7 +2,7 @@
 
 > **Unverified extraction — scientific review required.**
 
-**Primary area:** DiD / Synthetic Control
+**Primary area:** Legacy DiD / Synthetic Control — classification needed
 
 **Suggested cross-tags (unverified):** none
 
@@ -16,7 +16,7 @@
 
 **Sampling design:** Unit: One fixed three-unit panel experiment; n=3 means treated, donor, supplemental proxy unit rows; columns are 100 pre and100 post counts.; Dependence: Shared lambda_t induces positive contemporaneous unconditional cross-unit covariance. Given the entire factor path, all observed Poisson draws are independent. Factor paths are iid across times. No independent-row assumption.
 
-**Generator source:** [generator.py](../generators/did-shi-2026-poisson-proxy-logrr-v1.py)
+**Generator source:** [generator.py](https://github.com/Statsinference/stats-inference-arena/blob/main/dgp-submissions/registry/generators/did-shi-2026-poisson-proxy-logrr-v1.py)
 
 **Keywords (source-described):** Nonlinearity · Panel data
 
@@ -85,9 +85,9 @@ log(E[Y_t(1)]/E[Y_t(0)])=-2
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| baseline | log_RR_pop | For the treated unit at any post period, log(E[Y_t(1)]/E[Y_t(0)]) over the truncated-normal factor and Poisson population; equals -2. This is neither the impossible printed negative rate ratio nor an additive ATT nor finite-sample SATT. | -2.0 | reported_numeric |
+| baseline | log_RR_pop | For the treated unit at any post period, log(E[Y_t(1)]/E[Y_t(0)]) over the truncated-normal factor and Poisson population; equals -2. This is neither the impossible printed negative rate ratio nor an additive ATT nor finite-sample SATT. | -2 | reported_numeric |
 
 ## Identifiability assumptions
 

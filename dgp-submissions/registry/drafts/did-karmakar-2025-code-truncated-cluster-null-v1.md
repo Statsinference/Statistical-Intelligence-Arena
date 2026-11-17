@@ -2,7 +2,7 @@
 
 > **Unverified extraction — scientific review required.**
 
-**Primary area:** DiD / Synthetic Control
+**Primary area:** Legacy DiD / Synthetic Control — classification needed
 
 **Suggested cross-tags (unverified):** none
 
@@ -16,7 +16,7 @@
 
 **Sampling design:** Unit: One30-unit panel; n must equal30,3groups each10;45pre10post observed.; Dependence: Unit intercepts persistent; independent normal errors; shared group renewal damping induces serial and within-group dependence; treatment depends on pre outcomes.
 
-**Generator source:** [generator.py](../generators/did-karmakar-2025-code-truncated-cluster-null-v1.py)
+**Generator source:** [generator.py](https://github.com/Statsinference/stats-inference-arena/blob/main/dgp-submissions/registry/generators/did-karmakar-2025-code-truncated-cluster-null-v1.py)
 
 **Keywords (source-described):** Nonlinearity · Panel data
 
@@ -85,9 +85,9 @@ Eff=(0,0,0); ATT=SATT=0
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| baseline | ATT | Population average post-period treatment effect conditional on selected treated units; equals finite-panel SATT=0 under sharp null. | 0.0 | reported_numeric |
+| baseline | ATT | Population average post-period treatment effect conditional on selected treated units; equals finite-panel SATT=0 under sharp null. | 0 | reported_numeric |
 
 ## Identifiability assumptions
 

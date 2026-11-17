@@ -16,7 +16,7 @@
 
 **Sampling design:** Unit: subject trajectory; Dependence: IID subjects; ten temporally dependent observations retained in 50 wide columns per subject
 
-**Generator source:** [generator.py](../generators/mediation-luo-et-al-2025-dynamic-markov-v1.py)
+**Generator source:** [generator.py](https://github.com/Statsinference/stats-inference-arena/blob/main/dgp-submissions/registry/generators/mediation-luo-et-al-2025-dynamic-markov-v1.py)
 
 **Keywords (source-described):** Linearity
 
@@ -101,7 +101,7 @@ eta_1^(10)= [E sum R_t|do A=1 - E sum R_t|do A=0] - [E sum R_t|do A=1,M_t1=0 - E
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
 | finite_T10_seeded_coefficients | eta_1^(10) | For ten time points, contrast E[sum_t R_t\|do(A_s=1)]-E[sum_t R_t\|do(A_s=0)] and subtract the same contrast with do(M_{s,1}=0) for all s. | -0.02804345470955405 | reported_numeric |
 

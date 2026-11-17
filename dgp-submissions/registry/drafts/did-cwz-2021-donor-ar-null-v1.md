@@ -2,7 +2,7 @@
 
 > **Unverified extraction — scientific review required.**
 
-**Primary area:** DiD / Synthetic Control
+**Primary area:** Legacy DiD / Synthetic Control — classification needed
 
 **Suggested cross-tags (unverified):** none
 
@@ -16,7 +16,7 @@
 
 **Sampling design:** Unit: One joint 21-unit panel with20 pre and1 post periods, returned in unit-wide rows; one fixed treated unit and20 untreated donors.; Dependence: Shared iid Gaussian factors across units, stationary independent AR(1) donor residuals, and extra independent AR(1) u. Total treated residual inherits weighted donor residuals and is not independent of them.
 
-**Generator source:** [generator.py](../generators/did-cwz-2021-donor-ar-null-v1.py)
+**Generator source:** [generator.py](https://github.com/Statsinference/stats-inference-arena/blob/main/dgp-submissions/registry/generators/did-cwz-2021-donor-ar-null-v1.py)
 
 **Keywords (source-described):** Linearity · Panel data
 
@@ -136,12 +136,12 @@ Y_0,21(1)-Y_0,21(0)=theta_T=0 for every realization; design expectation and sing
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
-| W1 | tau_T | Y_1,T(1)-Y_1,T(0) at the fixed treated unit and T=T0+1=21. Its design-population expectation and the finite single-treated-unit SATT equal theta_T=0. | 0.0 | reported_numeric |
-| W2 | tau_T | Y_1,T(1)-Y_1,T(0) at the fixed treated unit and T=T0+1=21. Its design-population expectation and the finite single-treated-unit SATT equal theta_T=0. | 0.0 | reported_numeric |
-| W3 | tau_T | Y_1,T(1)-Y_1,T(0) at the fixed treated unit and T=T0+1=21. Its design-population expectation and the finite single-treated-unit SATT equal theta_T=0. | 0.0 | reported_numeric |
-| W4 | tau_T | Y_1,T(1)-Y_1,T(0) at the fixed treated unit and T=T0+1=21. Its design-population expectation and the finite single-treated-unit SATT equal theta_T=0. | 0.0 | reported_numeric |
+| W1 | tau_T | Y_1,T(1)-Y_1,T(0) at the fixed treated unit and T=T0+1=21. Its design-population expectation and the finite single-treated-unit SATT equal theta_T=0. | 0 | reported_numeric |
+| W2 | tau_T | Y_1,T(1)-Y_1,T(0) at the fixed treated unit and T=T0+1=21. Its design-population expectation and the finite single-treated-unit SATT equal theta_T=0. | 0 | reported_numeric |
+| W3 | tau_T | Y_1,T(1)-Y_1,T(0) at the fixed treated unit and T=T0+1=21. Its design-population expectation and the finite single-treated-unit SATT equal theta_T=0. | 0 | reported_numeric |
+| W4 | tau_T | Y_1,T(1)-Y_1,T(0) at the fixed treated unit and T=T0+1=21. Its design-population expectation and the finite single-treated-unit SATT equal theta_T=0. | 0 | reported_numeric |
 
 ## Identifiability assumptions
 

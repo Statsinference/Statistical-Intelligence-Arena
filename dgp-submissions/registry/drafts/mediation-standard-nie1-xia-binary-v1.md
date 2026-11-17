@@ -16,7 +16,7 @@
 
 **Sampling design:** IID observations at a fixed structural configuration; separate mechanism and observation seeds.
 
-**Generator source:** [generator.py](../generators/mediation-standard-nie1-xia-binary-v1.py)
+**Generator source:** [generator.py](https://github.com/Statsinference/stats-inference-arena/blob/main/dgp-submissions/registry/generators/mediation-standard-nie1-xia-binary-v1.py)
 
 **Keywords (source-described):** Not specified
 
@@ -69,7 +69,7 @@ return x,a,m,y,[&quot;binary&quot; if s==&quot;xia_binary&quot; else &quot;conti
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
 | native | NIE | NIE = E[Y(1,M(1))-Y(1,M(0))] in the adapted fixed-SEM superpopulation, jointly intervening on the complete mediator vector. | -0.36488213957756865 | reported_numeric |
 

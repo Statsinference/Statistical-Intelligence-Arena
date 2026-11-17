@@ -16,7 +16,7 @@
 
 **Sampling design:** Unit: individual; Dependence: IID rows; within-row binary M and C dependent via Plackett copula
 
-**Generator source:** [generator.py](../generators/mediation-xia-chan-2023-binary-plackett-v1.py)
+**Generator source:** [generator.py](https://github.com/Statsinference/stats-inference-arena/blob/main/dgp-submissions/registry/generators/mediation-xia-chan-2023-binary-plackett-v1.py)
 
 **Keywords (source-described):** Interactions · Nonlinearity
 
@@ -99,7 +99,7 @@ NDE=E_X[3+3{pC(1,X)-pC(0,X)}+4pC(1,X)+2pM(0,X)]
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
 | section_4_1_binary | NDE | E[Y(1,M(0))-Y(0,M(0))] under the specified binary copula structural model, with C following the treatment in each outcome potential. | 5.4954757582156875 | reported_numeric |
 

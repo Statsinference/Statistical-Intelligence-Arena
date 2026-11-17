@@ -16,7 +16,7 @@
 
 **Sampling design:** Unit: individual; Dependence: iid
 
-**Generator source:** [generator.py](../generators/nie-eric-original-v1.py)
+**Generator source:** [generator.py](https://github.com/Statsinference/stats-inference-arena/blob/main/dgp-submissions/registry/generators/nie-eric-original-v1.py)
 
 **Keywords (source-described):** Interactions · Nonlinearity
 
@@ -91,7 +91,7 @@ Y = 1 + 0.2 X1 + 0.3 X2 + 1.4 X3 - 2.5 A - 3.5 M + 5 A M + epsilon; epsilon ~ No
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | True value | Evidence status |
+| Scenario | Estimand | Definition | Reported value | Evidence status |
 |---|---|---|---|---|
 | original | theta_NIE = theta_11 - theta_10 | E[Y(1,M(1)) - Y(1,M(0))] in the superpopulation defined by the fixed DGP. | 0.2366199012683949 | reported_numeric |
 
