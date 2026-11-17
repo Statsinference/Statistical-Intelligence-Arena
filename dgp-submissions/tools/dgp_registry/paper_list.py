@@ -14,6 +14,9 @@ from pathlib import Path
 from .domains import DOMAINS
 from .title_display import display_title
 from .listing_metadata import venue_abbreviation, keywords_text
+from .target_index import load_labels, target_name
+
+TARGET_LABELS = load_labels()
 
 BEGIN = "<!-- STATSARENA_PAPER_LIST_BEGIN -->"
 END = "<!-- STATSARENA_PAPER_LIST_END -->"
@@ -135,11 +138,11 @@ def paper_list_tables(records, *, draft_prefix="drafts/", domain_prefix="by-doma
         lines.extend([
             "### [" + _escape(label) + "](" + domain_prefix + domain + ".md)", "",
             str(len(papers)) + " paper(s) · " + str(len(group)) + " DGP mechanism(s)", "",
-            "| Paper Title | DGPs | DGP Mechanisms | Keywords |",
-            "|---|---:|---|---|",
+            "| Paper Title | DGPs | DGP Mechanisms | Estimand | Keywords |",
+            "|---|---:|---|---|---|",
         ])
         if not papers:
-            lines.append("| — | 0 | No submissions yet | — |")
+            lines.append("| — | 0 | No submissions yet | — | — |")
         for paper in papers:
             title = _escape(paper["title"])
             if paper["doi"]:
@@ -159,8 +162,13 @@ def paper_list_tables(records, *, draft_prefix="drafts/", domain_prefix="by-doma
                 (str(i + 1) + ": " if n > 1 else "") + _escape(keywords_text(rec))
                 for i, rec in enumerate(mechanisms)
             )
+            target_cells = "<br/>".join(
+                (str(i + 1) + ": " if n > 1 else "") + _escape(
+                    rec.get("standard_target") or target_name(rec, TARGET_LABELS))
+                for i, rec in enumerate(mechanisms)
+            )
             lines.append(
-                "| " + title + " | " + str(n) + " | " + links + " | " + keyword_cells + " |"
+                "| " + title + " | " + str(n) + " | " + links + " | " + target_cells + " | " + keyword_cells + " |"
             )
         lines.append("")
     return lines
