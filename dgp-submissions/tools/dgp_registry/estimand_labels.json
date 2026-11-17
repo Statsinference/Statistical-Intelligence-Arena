@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "description": "Provisional target names based on submitted estimand definitions. Match record_id, domain, original_name and source_definition exactly; otherwise leave unclassified. These entries are not independent paper verification.",
+  "description": "Provisional target names based on submitted estimand definitions. Match record_id, domain, original_name and source_definition exactly; otherwise leave unclassified. Review marks indicate scientific or completeness concerns, not necessarily uncertain naming. These entries are not independent paper verification.",
   "records": {
     "iv-qiu-2021-principal-stratum-poisson-v1": {
       "domain": "iv",
-      "standard_name": "Population local average treatment effect (LATE)",
+      "standard_name": "LATE",
       "target_type": "population_late",
       "original_name": "alpha0 = LATE",
       "source_definition": "E[Y(1)-Y(0)|D(1)>D(0)]=1 in source DGP2 without treatment-covariate interactions. LCSTE(x)=1 for every x; alpha0 is the treatment coefficient directly evaluated in source Section 6. This is an IV complier estimand despite the paper's heterogeneous-effects title.",
@@ -14,7 +14,7 @@
     },
     "iv-ding-2017-binary-bias-v1": {
       "domain": "iv",
-      "standard_name": "Population local average treatment effect (LATE)",
+      "standard_name": "LATE",
       "target_type": "population_late",
       "original_name": "LATE",
       "source_definition": "E[Y(1)-Y(0) | A(1)>A(0)], treatment intervention 0 to 1 among instrument compliers.",
@@ -104,7 +104,7 @@
     },
     "iv-li-2026-aux-population-v1": {
       "domain": "iv",
-      "standard_name": "Target-population average treatment effect (ATE)",
+      "standard_name": "ATE",
       "target_type": "other",
       "original_name": "tau",
       "source_definition": "tau：目标总体R=0中E[Y(1)−Y(0)|R=0]，处理1减0。",
@@ -174,7 +174,7 @@
     },
     "iv-wang-2018-average-wald-v1": {
       "domain": "iv",
-      "standard_name": "Population average treatment effect (ATE)",
+      "standard_name": "ATE",
       "target_type": "other",
       "original_name": "ATE",
       "source_definition": "Population causal ATE E[Y(1)-Y(0)] in the explicitly adapted algebraic causal completion = E[tanh(0.1+0.5 X2)] = average conditional Wald ratio. Binary intervention a=1 versus a=0, full iid superpopulation; not a LATE.",
@@ -214,7 +214,7 @@
     },
     "proximal-cui-2024-linear-v1": {
       "domain": "proximal",
-      "standard_name": "Average treatment effect (ATE)",
+      "standard_name": "ATE",
       "target_type": "ate",
       "original_name": "ATE",
       "source_definition": "ATE = E[Y(1)−Y(0)] = 2。",
@@ -224,7 +224,7 @@
     },
     "proximal-qi-2024-linear-itr-v1": {
       "domain": "proximal",
-      "standard_name": "Average treatment effect (ATE)",
+      "standard_name": "ATE",
       "target_type": "ate",
       "original_name": "ATE",
       "source_definition": "ATE = E[0.5+3X1−5X2+c4 W]。",
@@ -234,7 +234,7 @@
     },
     "proximal-qi-2024-quadratic-v1": {
       "domain": "proximal",
-      "standard_name": "Average treatment effect (ATE)",
+      "standard_name": "ATE",
       "target_type": "ate",
       "original_name": "ATE",
       "source_definition": "ATE = E[0.25−6X1X2] = −0.125。",
@@ -244,7 +244,7 @@
     },
     "proximal-qi-2024-trigonometric-v1": {
       "domain": "proximal",
-      "standard_name": "Average treatment effect (ATE)",
+      "standard_name": "ATE",
       "target_type": "ate",
       "original_name": "ATE",
       "source_definition": "ATE = E[2.3+|X1−1|−|X2+1|+g(X)W]。",
@@ -254,7 +254,7 @@
     },
     "proximal-cui-2023-04-18-gaussian-v2": {
       "domain": "proximal",
-      "standard_name": "Average treatment effect (ATE)",
+      "standard_name": "ATE",
       "target_type": "ate",
       "original_name": "psi_ATE",
       "source_definition": "E[Y(1)-Y(0)] in the source population, same marginal U,W,X under both interventions.",
@@ -264,7 +264,7 @@
     },
     "proximal-dukes-2023-mediation-v1": {
       "domain": "proximal",
-      "standard_name": "Natural direct effect (NDE)",
+      "standard_name": "NDE",
       "target_type": "other",
       "original_name": "NDE",
       "source_definition": "NDE = E[Y(1,M(0))−Y(0,M(0))] = 2。",
@@ -274,7 +274,7 @@
     },
     "proximal-dukes-2023-03-03-mediation-v1": {
       "domain": "proximal",
-      "standard_name": "Natural direct effect (NDE)",
+      "standard_name": "NDE",
       "target_type": "other",
       "original_name": "NDE",
       "source_definition": "E[Y(1,M(0))-Y(0,M(0))] in the source population; NIE and total effect are auxiliary only.",
@@ -294,7 +294,7 @@
     },
     "proximal-shi-2026-sc-gaussian-v1": {
       "domain": "proximal",
-      "standard_name": "Post-treatment mean treatment effect",
+      "standard_name": null,
       "target_type": "other",
       "original_name": "ETT",
       "source_definition": "ETT = E[Y_t(1)−Y_t(0)] = 2，对全部后处理时期平均仍为2。",
@@ -364,7 +364,7 @@
     },
     "did-santanna-zhao-2020-panel-dgp1-v1": {
       "domain": "did_sc",
-      "standard_name": "Average treatment effect on the treated (ATT)",
+      "standard_name": "ATT",
       "target_type": "att",
       "original_name": "ATT = E[Y_1(1)-Y_1(0) | D=1]",
       "source_definition": "Population ATT for the treated group at post-period 1. The realized group D and latent v are held fixed across treatment counterfactuals. Original value is zero; this is not the observed post-period group contrast or a sample-average effect.",
@@ -374,7 +374,7 @@
     },
     "did-abadie-lhour-2021-nonlinear-null-v1": {
       "domain": "did_sc",
-      "standard_name": "Average treatment effect on the treated (ATT)",
+      "standard_name": "ATT",
       "target_type": "att",
       "original_name": "ATT_post",
       "source_definition": "E[Y_2(1)-Y_2(0)|G=1] in the treated covariate population. Equal-weight finite-sample treated SATT also equals zero pointwise.",
@@ -384,7 +384,7 @@
     },
     "did-karmakar-2025-code-truncated-cluster-null-v1": {
       "domain": "did_sc",
-      "standard_name": "Average treatment effect on the treated (ATT)",
+      "standard_name": "ATT",
       "target_type": "att",
       "original_name": "ATT",
       "source_definition": "Population average post-period treatment effect conditional on selected treated units; equals finite-panel SATT=0 under sharp null.",
@@ -394,7 +394,7 @@
     },
     "did-ye-2024-bracketing-v1": {
       "domain": "did_sc",
-      "standard_name": "Average treatment effect on the treated (ATT)",
+      "standard_name": "ATT",
       "target_type": "att",
       "original_name": "ATT_4",
       "source_definition": "E[Y_4(1)-Y_4(0) | G=trt]；处理组自第2期接受处理，第1期无预期效应。两个场景真值均为1。",
@@ -404,7 +404,7 @@
     },
     "did-ye-2024-code-case2-gaussian-bracketing-v1": {
       "domain": "did_sc",
-      "standard_name": "Average treatment effect on the treated (ATT)",
+      "standard_name": "ATT",
       "target_type": "att",
       "original_name": "ATT_4",
       "source_definition": "Population mean treatment effect at final period4 conditional on treated group, source-declared att[4]=1; not finite-sample SATT.",
@@ -454,7 +454,7 @@
     },
     "did-zhao-cui-2025-bridge-iv-v1": {
       "domain": "did_sc",
-      "standard_name": "Population average treatment effect (ATE)",
+      "standard_name": "ATE",
       "target_type": "other",
       "original_name": "ATE",
       "source_definition": "Population average causal effect E[Y_t(1)-Y_t(0)]=E[10(1.5X1+2X2-0.5)]=-5 for either t=0 or1, over X~N(0,I2), and original natural Z,U. Not ATT, a finite-sample SATT, optimal-policy value or PCD.",
@@ -464,7 +464,7 @@
     },
     "did-zhao-cui-2025-instrumented-v1": {
       "domain": "did_sc",
-      "standard_name": "Population average treatment effect (ATE)",
+      "standard_name": "ATE",
       "target_type": "other",
       "original_name": "ATE",
       "source_definition": "E[Y_t(1)-Y_t(0)]，总体 X1,X2 独立标准正态，t=0或1；值为-5。并非 ATT，也非 d_opt 的政策价值。",
@@ -904,7 +904,7 @@
     },
     "ate-athey-imbens-wager-2018-arb-v1": {
       "domain": "ate",
-      "standard_name": "Average treatment effect (ATE)",
+      "standard_name": "ATE",
       "target_type": "ate",
       "original_name": "ATE",
       "source_definition": "Population average treatment effect E[Y(1)-Y(0)] for an intervention setting W from 0 to 1 while holding each unit’s pretreatment X fixed; the two-cluster linear outcome equation gives Y(w)=X^T beta + w + epsilon and hence ATE=1.",
@@ -914,7 +914,7 @@
     },
     "ate-athey-imbens-wager-2018-arb-v2": {
       "domain": "ate",
-      "standard_name": "Average treatment effect (ATE)",
+      "standard_name": "ATE",
       "target_type": "ate",
       "original_name": "ATE = E[Y(1)-Y(0)]",
       "source_definition": "Superpopulation average effect of the intervention setting W from 0 to 1, holding the pretreatment covariate vector X fixed in the potential outcomes, under the many-cluster DGP. This is a population ATE, not an estimator RMSE or finite-sample treatment-group contrast.",
@@ -924,7 +924,7 @@
     },
     "ate-athey-imbens-wager-2018-arb-v3": {
       "domain": "ate",
-      "standard_name": "Average treatment effect (ATE)",
+      "standard_name": "ATE",
       "target_type": "ate",
       "original_name": "ATE",
       "source_definition": "E[Y(1)-Y(0)] under interventions setting W=1 versus W=0 in the superpopulation defined by the sparse two-stage DGP; use the same pre-treatment X and epsilon_2 for both potential outcomes.",
@@ -934,7 +934,7 @@
     },
     "ate-athey-imbens-wager-2018-arb-v4": {
       "domain": "ate",
-      "standard_name": "Average treatment effect (ATE)",
+      "standard_name": "ATE",
       "target_type": "ate",
       "original_name": "ATE",
       "source_definition": "Population average treatment effect E[Y(1)-Y(0)] under the Section 5.2 moderately sparse two-stage DGP, comparing the intervention W=1 with W=0 while holding the same pretreatment X and outcome disturbance fixed.",
@@ -944,7 +944,7 @@
     },
     "ate-athey-imbens-wager-2018-arb-v5": {
       "domain": "ate",
-      "standard_name": "Average treatment effect (ATE)",
+      "standard_name": "ATE",
       "target_type": "ate",
       "original_name": "ATE",
       "source_definition": "Population average treatment effect E[Y(1)-Y(0)] in the synthetic superpopulation defined by Section 5.2's misspecified setting, comparing intervention W=1 with W=0 while holding the same pre-treatment X and outcome error fixed. The individual effect is theta(X1), so ATE=E[theta(X1)]. This is not ATT=E[theta(X1)|W=1].",
@@ -954,7 +954,7 @@
     },
     "ate-benkser-carone-vdl-gilbert-2017-dr-v1": {
       "domain": "ate",
-      "standard_name": "Average treatment effect (ATE)",
+      "standard_name": "ATE",
       "target_type": "ate",
       "original_name": "ATE = E[Y(1)-Y(0)]",
       "source_definition": "Population risk difference under interventions setting A=1 versus A=0, averaged over the source covariate distribution W=(W1,W2).",
@@ -964,7 +964,7 @@
     },
     "ate-ding-dasgupta-2016-binary-rct-v1": {
       "domain": "ate",
-      "standard_name": "Finite-population average treatment effect (ATE)",
+      "standard_name": "ATE",
       "target_type": "ate",
       "original_name": "tau = N^{-1} sum_i [Y_i(1)-Y_i(0)] = (N10-N01)/N",
       "source_definition": "Finite-population average treatment effect / causal risk difference for intervention A=1 versus A=0 over the N=200 experimental units. Y_i(1) and Y_i(0) are binary fixed potential outcomes; observed Y_i=A_i Y_i(1)+(1-A_i)Y_i(0).",
@@ -974,7 +974,7 @@
     },
     "ate-huang-chan-2017-05-19-setting-2-v1": {
       "domain": "ate",
-      "standard_name": "Average treatment effect (ATE)",
+      "standard_name": "ATE",
       "target_type": "ate",
       "original_name": "ATE",
       "source_definition": "E[Y(1)-Y(0)] in the full declared covariate population; treatment 1 versus 0; population, not sample-conditional, target.",
@@ -984,7 +984,7 @@
     },
     "ate-ma-zhu-zhang-tsai-carroll-2019-06-01-model-1-v1": {
       "domain": "ate",
-      "standard_name": "Average treatment effect (ATE)",
+      "standard_name": "ATE",
       "target_type": "ate",
       "original_name": "ATE",
       "source_definition": "ATE = E[Y(1)-Y(0)] in the full original covariate population; binary treatment 1 versus 0.",
@@ -994,7 +994,7 @@
     },
     "ate-ma-zhu-zhang-tsai-carroll-2019-06-01-model-2-v1": {
       "domain": "ate",
-      "standard_name": "Average treatment effect (ATE)",
+      "standard_name": "ATE",
       "target_type": "ate",
       "original_name": "ATE",
       "source_definition": "ATE = E[Y(1)-Y(0)] in the full original covariate population; binary treatment 1 versus 0.",
@@ -1004,7 +1004,7 @@
     },
     "ate-nie-wager-2020-09-24-eq9-discontinuous-v1": {
       "domain": "ate",
-      "standard_name": "Average treatment effect (ATE)",
+      "standard_name": "ATE",
       "target_type": "ate",
       "original_name": "ATE",
       "source_definition": "ATE = E[Y(1)-Y(0)] in the full original covariate population; binary treatment 1 versus 0.",
@@ -1014,7 +1014,7 @@
     },
     "ate-nie-wager-2020-09-24-eq9-smooth-v1": {
       "domain": "ate",
-      "standard_name": "Average treatment effect (ATE)",
+      "standard_name": "ATE",
       "target_type": "ate",
       "original_name": "ATE",
       "source_definition": "ATE = E[Y(1)-Y(0)] in the full original covariate population; binary treatment 1 versus 0.",
@@ -1024,7 +1024,7 @@
     },
     "ate-nie-wager-2020-09-24-setup-b-v1": {
       "domain": "ate",
-      "standard_name": "Average treatment effect (ATE)",
+      "standard_name": "ATE",
       "target_type": "ate",
       "original_name": "ATE",
       "source_definition": "E[Y(1)-Y(0)] in the full declared covariate population; treatment 1 versus 0; population, not sample-conditional, target.",
@@ -1034,7 +1034,7 @@
     },
     "ate-nie-wager-2020-09-24-setup-c-v1": {
       "domain": "ate",
-      "standard_name": "Average treatment effect (ATE)",
+      "standard_name": "ATE",
       "target_type": "ate",
       "original_name": "ATE",
       "source_definition": "E[Y(1)-Y(0)] in the full declared covariate population; treatment 1 versus 0; population, not sample-conditional, target.",
@@ -1044,7 +1044,7 @@
     },
     "ate-nie-wager-2020-09-24-setup-d-v1": {
       "domain": "ate",
-      "standard_name": "Average treatment effect (ATE)",
+      "standard_name": "ATE",
       "target_type": "ate",
       "original_name": "ATE",
       "source_definition": "E[Y(1)-Y(0)] in the full declared covariate population; treatment 1 versus 0; population, not sample-conditional, target.",
@@ -1054,7 +1054,7 @@
     },
     "ate-nie-wager-2021-a-v1": {
       "domain": "ate",
-      "standard_name": "Average treatment effect (ATE)",
+      "standard_name": "ATE",
       "target_type": "ate",
       "original_name": "theta_ATE = E[Y(1)-Y(0)]",
       "source_definition": "Superpopulation average effect of A=1 versus A=0, under X~Uniform([0,1]^6). Not the realized-sample average effect, ATT, CATE output, or unadjusted observed group difference.",
@@ -1064,7 +1064,7 @@
     },
     "ate-ning-peng-imai-2020-06-03-ar1-linear-v1": {
       "domain": "ate",
-      "standard_name": "Average treatment effect (ATE)",
+      "standard_name": "ATE",
       "target_type": "ate",
       "original_name": "ATE",
       "source_definition": "E[Y(1)-Y(0)] in the full declared covariate population; treatment 1 versus 0; population, not sample-conditional, target.",
@@ -1074,7 +1074,7 @@
     },
     "ate-ning-peng-imai-2020-linear-v1": {
       "domain": "ate",
-      "standard_name": "Average treatment effect (ATE)",
+      "standard_name": "ATE",
       "target_type": "ate",
       "original_name": "ATE",
       "source_definition": "E[Y(1)-Y(0)] in the superpopulation defined by the selected Gaussian-covariate linear-potential-outcome DGP; intervention contrast A=1 versus A=0.",
@@ -1084,7 +1084,7 @@
     },
     "ate-wager-athey-2018-06-06-rare-response-v1": {
       "domain": "ate",
-      "standard_name": "Average treatment effect (ATE)",
+      "standard_name": "ATE",
       "target_type": "ate",
       "original_name": "ATE",
       "source_definition": "E[Y(1)-Y(0)] in the full declared covariate population; treatment 1 versus 0; population, not sample-conditional, target.",
@@ -1094,7 +1094,7 @@
     },
     "ate-yang-wang-ding-2019-mnar-confounder-v1": {
       "domain": "ate",
-      "standard_name": "Average treatment effect (ATE)",
+      "standard_name": "ATE",
       "target_type": "ate",
       "original_name": "ATE = E[Y(1)-Y(0)]",
       "source_definition": "Population average effect of intervening to set treatment A from 0 (control) to 1 (active), averaged over the full pre-treatment covariate distribution before missingness: E[Y(1)-Y(0)].",
@@ -1104,7 +1104,7 @@
     },
     "ate-yang-wang-ding-2019-mnar-confounder-v2": {
       "domain": "ate",
-      "standard_name": "Average treatment effect (ATE)",
+      "standard_name": "ATE",
       "target_type": "ate",
       "original_name": "ATE",
       "source_definition": "Population E[Y(1)-Y(0)] for the intervention A=1 versus A=0, under the declared Section 5.3 equation-based mechanism and its explicitly stated factorization adaptations.",
@@ -1114,7 +1114,7 @@
     },
     "ate-wager-athey-2018-confounded-null-v1": {
       "domain": "ate",
-      "standard_name": "Average treatment effect (ATE)",
+      "standard_name": "ATE",
       "target_type": "ate",
       "original_name": "theta_ATE=E[Y(1)-Y(0)]",
       "source_definition": "Superpopulation average effect of A=1 versus A=0, integrating over iid Uniform covariates; not a sample average or observed treated-control mean difference.",
@@ -1124,7 +1124,7 @@
     },
     "cate-athey-2019-heterogeneity-confounding-v1": {
       "domain": "cate",
-      "standard_name": "Conditional average treatment effect (CATE)",
+      "standard_name": "CATE",
       "target_type": "cate",
       "original_name": "tau(x0) = E[Y(1) - Y(0) | X = x0]",
       "source_definition": "Conditional average treatment effect at the declared query points for the combined setting: sigmoid-product heterogeneity on X1, X2 together with a beta-density propensity and a linear baseline on X3.",
@@ -1134,7 +1134,7 @@
     },
     "cate-athey-tibshirani-wager-2019-confounded-v1": {
       "domain": "cate",
-      "standard_name": "Conditional average treatment effect (CATE)",
+      "standard_name": "CATE",
       "target_type": "cate",
       "original_name": "tau(x_star)=E[Y(1)-Y(0)|X=x_star]",
       "source_definition": "Scalar pointwise CATE at x_star=[0.3333333333333333, 0.3333333333333333, 0.25, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5]. Continuous source response functions specify the conditional version at this point. This is not a population ATE or the full CATE vector/function interface.",
@@ -1144,7 +1144,7 @@
     },
     "cate-lei-2021-conformal-cate-v1": {
       "domain": "cate",
-      "standard_name": "Conditional average treatment effect (CATE)",
+      "standard_name": "CATE",
       "target_type": "cate",
       "original_name": "tau(x0) = E[Y(1) - Y(0) | X = x0]",
       "source_definition": "Conditional average treatment effect at the declared query points when the control potential outcome is identically zero, so the effect equals the treated conditional mean.",
@@ -1154,7 +1154,7 @@
     },
     "cate-nie-2021-setup-a-v1": {
       "domain": "cate",
-      "standard_name": "Conditional average treatment effect (CATE)",
+      "standard_name": "CATE",
       "target_type": "cate",
       "original_name": "tau(x0) = E[Y(1) - Y(0) | X = x0]",
       "source_definition": "Conditional average treatment effect at the declared query points; a simple linear surface in the first two coordinates, embedded in a deliberately difficult nuisance structure.",
@@ -1164,7 +1164,7 @@
     },
     "cate-nie-2021-setup-b-v1": {
       "domain": "cate",
-      "standard_name": "Conditional average treatment effect (CATE)",
+      "standard_name": "CATE",
       "target_type": "cate",
       "original_name": "tau(x0) = E[Y(1) - Y(0) | X = x0]",
       "source_definition": "Conditional average treatment effect at the declared query points; linear in X1 plus a log-sum-exp transform of X2.",
@@ -1174,7 +1174,7 @@
     },
     "cate-nie-2021-setup-c-v1": {
       "domain": "cate",
-      "standard_name": "Conditional average treatment effect (CATE)",
+      "standard_name": "CATE",
       "target_type": "cate",
       "original_name": "tau(x0) = E[Y(1) - Y(0) | X = x0]",
       "source_definition": "Conditional average treatment effect at the declared query points; constant equal to 1 for every x, so the whole difficulty is the strongly confounded nuisance structure.",
@@ -1184,7 +1184,7 @@
     },
     "cate-nie-2021-setup-d-v1": {
       "domain": "cate",
-      "standard_name": "Conditional average treatment effect (CATE)",
+      "standard_name": "CATE",
       "target_type": "cate",
       "original_name": "tau(x0) = E[Y(1) - Y(0) | X = x0]",
       "source_definition": "Conditional average treatment effect at the declared query points; a difference of two rectified sums supported on disjoint coordinate blocks.",
@@ -1194,7 +1194,7 @@
     },
     "cate-wager-2018-null-confounded-v1": {
       "domain": "cate",
-      "standard_name": "Conditional average treatment effect (CATE)",
+      "standard_name": "CATE",
       "target_type": "cate",
       "original_name": "tau(x0) = E[Y(1) - Y(0) | X = x0]",
       "source_definition": "Conditional average treatment effect at the declared query point; in this design it is identically zero for every x, which makes it a null-effect control for bias and interval coverage under confounding.",
@@ -1204,7 +1204,7 @@
     },
     "cate-wager-2018-sparse-signal-v1": {
       "domain": "cate",
-      "standard_name": "Conditional average treatment effect (CATE)",
+      "standard_name": "CATE",
       "target_type": "cate",
       "original_name": "tau(x0) = E[Y(1) - Y(0) | X = x0]",
       "source_definition": "Conditional average treatment effect when the signal is spread additively over q = 4 of the 6 coordinates; the estimand at a query point is the sum of four sigmoid contributions minus 2.",
@@ -1214,7 +1214,7 @@
     },
     "cate-ye-2023-interaction-zero-mean-v1": {
       "domain": "cate",
-      "standard_name": "Conditional average treatment effect (CATE)",
+      "standard_name": "CATE",
       "target_type": "cate",
       "original_name": "tau(u0) = E[Y(1) - Y(0) | U = u0]",
       "source_definition": "Conditional average treatment effect at the declared query points for the arm-2 versus arm-1 contrast; the surface is linear in U with slope zeta = 1 and has exactly zero mean over the covariate distribution, so there is heterogeneity but no average effect.",
@@ -1224,7 +1224,7 @@
     },
     "cate-ye-2023-quadratic-misspecified-v1": {
       "domain": "cate",
-      "standard_name": "Conditional average treatment effect (CATE)",
+      "standard_name": "CATE",
       "target_type": "cate",
       "original_name": "tau(u0, w0) = E[Y(1) - Y(0) | U = u0, W = w0]",
       "source_definition": "Conditional average treatment effect at the declared query points for the arm-2 versus arm-1 contrast; affine in U and W with a small negative quadratic term in U, so the surface is curved but close to linear over the bulk of the covariate law.",
@@ -1234,7 +1234,7 @@
     },
     "cate-wager-athey-2018-logistic-v1": {
       "domain": "cate",
-      "standard_name": "Conditional average treatment effect (CATE)",
+      "standard_name": "CATE",
       "target_type": "cate",
       "original_name": "tau(x_star)=E[Y(1)-Y(0)|X=x_star]",
       "source_definition": "Scalar pointwise CATE at x_star=[0.3333333333333333, 0.3333333333333333, 0.5, 0.5, 0.5, 0.5]. Continuous source response functions specify the conditional version at this point. This is not a population ATE or the full CATE vector/function interface.",
@@ -1524,7 +1524,7 @@
     },
     "nie-eric-original-v1": {
       "domain": "mediation",
-      "standard_name": "Natural indirect effect (NIE)",
+      "standard_name": "NIE",
       "target_type": "natural_indirect_effect",
       "original_name": "theta_NIE = theta_11 - theta_10",
       "source_definition": "E[Y(1,M(1)) - Y(1,M(0))] in the superpopulation defined by the fixed DGP.",
@@ -1534,7 +1534,7 @@
     },
     "mediation-cheng-li-2025-principal-strata-kang-schafer-v1": {
       "domain": "mediation",
-      "standard_name": "Intention-to-treat natural direct effect (NDE)",
+      "standard_name": "NDE",
       "target_type": "natural_direct_effect",
       "original_name": "ITT-NDE = E[Y_{1 M_0}] - E[Y_{0 M_0}]",
       "source_definition": "Intention-to-treat natural direct effect of the randomized treatment Z with mediator M, in a design that also contains a post-treatment event D (for example noncompliance). Setting Z = z lets the post-treatment event take D(z), while the mediator is held at M(0). This is NOT the principal-stratum quantity theta^(10)_10 that the source plots, NOT an indirect effect, and NOT a complier average causal effect.",
@@ -1544,7 +1544,7 @@
     },
     "mediation-diaz-et-al-2021-intermediate-confounding-v1": {
       "domain": "mediation",
-      "standard_name": "Interventional indirect effect",
+      "standard_name": "IIE",
       "target_type": "interventional_indirect_effect",
       "original_name": "IIE_1",
       "source_definition": "E[Y(1,G1)-Y(1,G0)], where G_a is an independent draw from M(a)|W, marginalizing the post-treatment Z under treatment a.",
@@ -1554,7 +1554,7 @@
     },
     "mediation-diaz-hejazi-2020-discrete-three-mediators-v1": {
       "domain": "mediation",
-      "standard_name": "Natural indirect effect (NIE)",
+      "standard_name": "NIE",
       "target_type": "natural_indirect_effect",
       "original_name": "NIE_1",
       "source_definition": "E[Y(1,Z(1)) - Y(1,Z(0))] for the original §5 superpopulation, jointly intervening on all three mediators Z=(Z1,Z2,Z3). Treatment is fixed at 1 in both outcome terms.",
@@ -1564,7 +1564,7 @@
     },
     "mediation-he-song-xu-2024-single-linear-v1": {
       "domain": "mediation",
-      "standard_name": "Natural indirect effect (NIE)",
+      "standard_name": "NIE",
       "target_type": "natural_indirect_effect",
       "original_name": "NIE_1",
       "source_definition": "E[Y(1,M(1))-Y(1,M(0))] in the source SEM superpopulation; exposure S is named A in data columns.",
@@ -1574,7 +1574,7 @@
     },
     "mediation-jones-2024-sparse-mediators-lnl-v1": {
       "domain": "mediation",
-      "standard_name": "Natural indirect effect (NIE)",
+      "standard_name": "NIE",
       "target_type": "natural_indirect_effect",
       "original_name": "NIE = alpha_0 . beta_0",
       "source_definition": "Natural indirect effect through the sparse mediator set: NIE = E[Y(1, M(1))] - E[Y(1, M(0))]. Under the source's additive structural model (its equation (1)) and its Proposition 2.1 this equals the inner product alpha_0 . beta_0 of the treatment-to-mediator and mediator-to-outcome coefficient vectors. The companion natural direct effect equals gamma_0. This is NOT a total effect and NOT a single-mediator indirect effect; ten candidate mediators are generated and only the first three are true mediators.",
@@ -1584,7 +1584,7 @@
     },
     "mediation-jones-2024-sparse-mediators-lnn-v1": {
       "domain": "mediation",
-      "standard_name": "Natural indirect effect (NIE)",
+      "standard_name": "NIE",
       "target_type": "natural_indirect_effect",
       "original_name": "NIE = alpha_0 . beta_0",
       "source_definition": "Natural indirect effect through the sparse mediator set: NIE = E[Y(1, M(1))] - E[Y(1, M(0))]. Under the source's additive structural model (its equation (1)) and its Proposition 2.1 this equals the inner product alpha_0 . beta_0 of the treatment-to-mediator and mediator-to-outcome coefficient vectors. The companion natural direct effect equals gamma_0. This is NOT a total effect and NOT a single-mediator indirect effect; ten candidate mediators are generated and only the first three are true mediators.",
@@ -1594,7 +1594,7 @@
     },
     "mediation-jones-2024-sparse-mediators-nnn-v1": {
       "domain": "mediation",
-      "standard_name": "Natural indirect effect (NIE)",
+      "standard_name": "NIE",
       "target_type": "natural_indirect_effect",
       "original_name": "NIE = alpha_0 . beta_0",
       "source_definition": "Natural indirect effect through the sparse mediator set: NIE = E[Y(1, M(1))] - E[Y(1, M(0))]. Under the source's additive structural model (its equation (1)) and its Proposition 2.1 this equals the inner product alpha_0 . beta_0 of the treatment-to-mediator and mediator-to-outcome coefficient vectors. The companion natural direct effect equals gamma_0. This is NOT a total effect and NOT a single-mediator indirect effect; ten candidate mediators are generated and only the first three are true mediators.",
@@ -1604,7 +1604,7 @@
     },
     "mediation-jones-et-al-2025-correlated-sparse-v1": {
       "domain": "mediation",
-      "standard_name": "Natural indirect effect (NIE)",
+      "standard_name": "NIE",
       "target_type": "natural_indirect_effect",
       "original_name": "NIE_1",
       "source_definition": "E[Y(1,M(1))-Y(1,M(0))] for the full 100-vector mediator under the additive structural equations.",
@@ -1654,7 +1654,7 @@
     },
     "mediation-standard-nie1-cheng-v1": {
       "domain": "mediation",
-      "standard_name": "Natural indirect effect (NIE)",
+      "standard_name": "NIE",
       "target_type": "natural_indirect_effect",
       "original_name": "NIE",
       "source_definition": "NIE = E[Y(1,M(1))-Y(1,M(0))] in the adapted fixed-SEM superpopulation, jointly intervening on the complete mediator vector.",
@@ -1664,7 +1664,7 @@
     },
     "mediation-standard-nie1-diaz-hejazi-v1": {
       "domain": "mediation",
-      "standard_name": "Natural indirect effect (NIE)",
+      "standard_name": "NIE",
       "target_type": "natural_indirect_effect",
       "original_name": "NIE",
       "source_definition": "NIE = E[Y(1,M(1))-Y(1,M(0))] in the adapted fixed-SEM superpopulation, jointly intervening on the complete mediator vector.",
@@ -1674,7 +1674,7 @@
     },
     "mediation-standard-nie1-diaz-intermediate-v1": {
       "domain": "mediation",
-      "standard_name": "Natural indirect effect (NIE)",
+      "standard_name": "NIE",
       "target_type": "natural_indirect_effect",
       "original_name": "NIE",
       "source_definition": "NIE = E[Y(1,M(1))-Y(1,M(0))] in the adapted fixed-SEM superpopulation, jointly intervening on the complete mediator vector.",
@@ -1684,7 +1684,7 @@
     },
     "mediation-standard-nie1-eric-v1": {
       "domain": "mediation",
-      "standard_name": "Natural indirect effect (NIE)",
+      "standard_name": "NIE",
       "target_type": "natural_indirect_effect",
       "original_name": "NIE",
       "source_definition": "NIE = E[Y(1,M(1))-Y(1,M(0))] in the adapted fixed-SEM superpopulation, jointly intervening on the complete mediator vector.",
@@ -1694,7 +1694,7 @@
     },
     "mediation-standard-nie1-he-song-xu-v1": {
       "domain": "mediation",
-      "standard_name": "Natural indirect effect (NIE)",
+      "standard_name": "NIE",
       "target_type": "natural_indirect_effect",
       "original_name": "NIE",
       "source_definition": "NIE = E[Y(1,M(1))-Y(1,M(0))] in the adapted fixed-SEM superpopulation, jointly intervening on the complete mediator vector.",
@@ -1704,7 +1704,7 @@
     },
     "mediation-standard-nie1-jones-correlated-v1": {
       "domain": "mediation",
-      "standard_name": "Natural indirect effect (NIE)",
+      "standard_name": "NIE",
       "target_type": "natural_indirect_effect",
       "original_name": "NIE",
       "source_definition": "NIE = E[Y(1,M(1))-Y(1,M(0))] in the adapted fixed-SEM superpopulation, jointly intervening on the complete mediator vector.",
@@ -1714,7 +1714,7 @@
     },
     "mediation-standard-nie1-jones-lnl-v1": {
       "domain": "mediation",
-      "standard_name": "Natural indirect effect (NIE)",
+      "standard_name": "NIE",
       "target_type": "natural_indirect_effect",
       "original_name": "NIE",
       "source_definition": "NIE = E[Y(1,M(1))-Y(1,M(0))] in the adapted fixed-SEM superpopulation, jointly intervening on the complete mediator vector.",
@@ -1724,7 +1724,7 @@
     },
     "mediation-standard-nie1-jones-lnn-v1": {
       "domain": "mediation",
-      "standard_name": "Natural indirect effect (NIE)",
+      "standard_name": "NIE",
       "target_type": "natural_indirect_effect",
       "original_name": "NIE",
       "source_definition": "NIE = E[Y(1,M(1))-Y(1,M(0))] in the adapted fixed-SEM superpopulation, jointly intervening on the complete mediator vector.",
@@ -1734,7 +1734,7 @@
     },
     "mediation-standard-nie1-jones-nnn-v1": {
       "domain": "mediation",
-      "standard_name": "Natural indirect effect (NIE)",
+      "standard_name": "NIE",
       "target_type": "natural_indirect_effect",
       "original_name": "NIE",
       "source_definition": "NIE = E[Y(1,M(1))-Y(1,M(0))] in the adapted fixed-SEM superpopulation, jointly intervening on the complete mediator vector.",
@@ -1744,7 +1744,7 @@
     },
     "mediation-standard-nie1-miles-v1": {
       "domain": "mediation",
-      "standard_name": "Natural indirect effect (NIE)",
+      "standard_name": "NIE",
       "target_type": "natural_indirect_effect",
       "original_name": "NIE",
       "source_definition": "NIE = E[Y(1,M(1))-Y(1,M(0))] in the adapted fixed-SEM superpopulation, jointly intervening on the complete mediator vector.",
@@ -1754,7 +1754,7 @@
     },
     "mediation-standard-nie1-shan-v1": {
       "domain": "mediation",
-      "standard_name": "Natural indirect effect (NIE)",
+      "standard_name": "NIE",
       "target_type": "natural_indirect_effect",
       "original_name": "NIE",
       "source_definition": "NIE = E[Y(1,M(1))-Y(1,M(0))] in the adapted fixed-SEM superpopulation, jointly intervening on the complete mediator vector.",
@@ -1764,7 +1764,7 @@
     },
     "mediation-standard-nie1-xia-binary-v1": {
       "domain": "mediation",
-      "standard_name": "Natural indirect effect (NIE)",
+      "standard_name": "NIE",
       "target_type": "natural_indirect_effect",
       "original_name": "NIE",
       "source_definition": "NIE = E[Y(1,M(1))-Y(1,M(0))] in the adapted fixed-SEM superpopulation, jointly intervening on the complete mediator vector.",
@@ -1774,7 +1774,7 @@
     },
     "mediation-standard-nie1-xia-continuous-v1": {
       "domain": "mediation",
-      "standard_name": "Natural indirect effect (NIE)",
+      "standard_name": "NIE",
       "target_type": "natural_indirect_effect",
       "original_name": "NIE",
       "source_definition": "NIE = E[Y(1,M(1))-Y(1,M(0))] in the adapted fixed-SEM superpopulation, jointly intervening on the complete mediator vector.",
@@ -1784,7 +1784,7 @@
     },
     "mediation-standard-nie1-zuo-v1": {
       "domain": "mediation",
-      "standard_name": "Natural indirect effect (NIE)",
+      "standard_name": "NIE",
       "target_type": "natural_indirect_effect",
       "original_name": "NIE",
       "source_definition": "NIE = E[Y(1,M(1))-Y(1,M(0))] in the adapted fixed-SEM superpopulation, jointly intervening on the complete mediator vector.",
@@ -1794,7 +1794,7 @@
     },
     "mediation-xia-chan-2023-binary-plackett-v1": {
       "domain": "mediation",
-      "standard_name": "Natural direct effect (NDE)",
+      "standard_name": "NDE",
       "target_type": "natural_direct_effect",
       "original_name": "NDE",
       "source_definition": "E[Y(1,M(0))-Y(0,M(0))] under the specified binary copula structural model, with C following the treatment in each outcome potential.",
@@ -1804,7 +1804,7 @@
     },
     "mediation-xia-chan-2023-continuous-copula-v1": {
       "domain": "mediation",
-      "standard_name": "Natural direct effect (NDE)",
+      "standard_name": "NDE",
       "target_type": "natural_direct_effect",
       "original_name": "NDE",
       "source_definition": "E[Y(1,M(0))-Y(0,M(0))], with the treatment-induced C under its own treatment in each outcome potential.",
@@ -1824,7 +1824,7 @@
     },
     "mediation-zuo-et-al-2025-continuous-mnar-v1": {
       "domain": "mediation",
-      "standard_name": "Natural indirect effect (NIE)",
+      "standard_name": "NIE",
       "target_type": "natural_indirect_effect",
       "original_name": "NIE_1",
       "source_definition": "E[Y(1,M(1))-Y(1,M(0))] in the full-data law before MNAR masking.",
