@@ -1,0 +1,79 @@
+name: Verify GitHub Markdown and regenerate DGP catalog
+on:
+  push:
+    branches: [codex/dgp-github-markdown-ci-20261117]
+permissions:
+  contents: write
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install test tools
+        run: |
+          python -m pip install pytest==8.4.2
+          npm install --no-save --ignore-scripts mathjax-full@3.2.2 jsdom@26.1.0
+      - name: Capture existing display formula baseline
+        working-directory: dgp-submissions
+        run: |
+          python - <<'PY'
+          import json, os, re
+          from pathlib import Path
+          pattern = re.compile(r'(?ms)^' + chr(96)*3 + r'math[ \t]*\r?\n(.*?)^' + chr(96)*3 + r'[ \t]*$|^\$\$[ \t]*\r?\n(.*?)^\$\$[ \t]*$')
+          baseline={}
+          for path in sorted(Path('registry/drafts').glob('*.md')):
+              baseline[path.name]=[a if a else b for a,b in pattern.findall(path.read_text(encoding='utf-8'))]
+          total=sum(len(v) for v in baseline.values())
+          assert len(baseline) == 183 and total == 1382, (len(baseline),total)
+          Path(os.environ['RUNNER_TEMP'],'math-baseline.json').write_text(json.dumps(baseline),encoding='utf-8')
+          print('Captured', len(baseline), 'records and', total, 'display expressions')
+          PY
+      - name: Frozen corpus regression
+        working-directory: dgp-submissions
+        run: python integration/run_regressions.py
+      - name: Regenerate complete catalog
+        working-directory: dgp-submissions
+        run: |
+          python -m tools.dgp_registry.github_intake --incoming incoming --output registry
+          python -m tools.dgp_registry.paper_list --catalog registry/catalog.json --readme README.md
+          python integration/sync_contributing.py
+      - name: Complete test suite
+        working-directory: dgp-submissions
+        run: python -m pytest tests -q
+      - name: Compare source equations, GitHub Markdown inputs and MathJax
+        working-directory: dgp-submissions
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: node integration/github_render_ci.cjs
+      - name: Commit generated outputs only to isolated branch
+        working-directory: .
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- CONTRIBUTING.md dgp-submissions/README.md dgp-submissions/registry
+          python - <<'PY'
+          import subprocess
+          staged=subprocess.check_output(['git','diff','--cached','--name-only','-z']).decode().split('\0')
+          allowed=lambda p: p=='CONTRIBUTING.md' or p=='dgp-submissions/README.md' or p.startswith('dgp-submissions/registry/')
+          invalid=[p for p in staged if p and not allowed(p)]
+          if invalid: raise SystemExit('Refusing changes outside generated output: '+repr(invalid))
+          PY
+          if git diff --cached --quiet; then
+            echo 'Generated pages are current.'
+          else
+            git commit -m 'chore: generate fenced mathematical DGP pages'
+            auth="$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)"
+            git -c "http.extraheader=AUTHORIZATION: basic $auth" push origin HEAD:codex/dgp-github-markdown-ci-20261117
+          fi
