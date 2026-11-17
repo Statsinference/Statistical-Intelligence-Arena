@@ -9,49 +9,49 @@
         "delta_dense_dense": {
           "source_name": "ATE",
           "source_definition": "Population average treatment effect E[Y(1)-Y(0)] for an intervention setting W from 0 to 1 while holding each unit’s pretreatment X fixed; the two-cluster linear outcome equation gives Y(w)=X^T beta + w + epsilon and hence ATE=1.",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}]",
           "display_note": "Population ATE; expectation is over the DGP's full population."
         },
         "delta_dense_harmonic": {
           "source_name": "ATE",
           "source_definition": "Population average treatment effect E[Y(1)-Y(0)] for an intervention setting W from 0 to 1 while holding each unit’s pretreatment X fixed; the two-cluster linear outcome equation gives Y(w)=X^T beta + w + epsilon and hence ATE=1.",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}]",
           "display_note": "Population ATE; expectation is over the DGP's full population."
         },
         "delta_dense_moderately_sparse": {
           "source_name": "ATE",
           "source_definition": "Population average treatment effect E[Y(1)-Y(0)] for an intervention setting W from 0 to 1 while holding each unit’s pretreatment X fixed; the two-cluster linear outcome equation gives Y(w)=X^T beta + w + epsilon and hence ATE=1.",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}]",
           "display_note": "Population ATE; expectation is over the DGP's full population."
         },
         "delta_dense_very_sparse": {
           "source_name": "ATE",
           "source_definition": "Population average treatment effect E[Y(1)-Y(0)] for an intervention setting W from 0 to 1 while holding each unit’s pretreatment X fixed; the two-cluster linear outcome equation gives Y(w)=X^T beta + w + epsilon and hence ATE=1.",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}]",
           "display_note": "Population ATE; expectation is over the DGP's full population."
         },
         "delta_sparse_dense": {
           "source_name": "ATE",
           "source_definition": "Population average treatment effect E[Y(1)-Y(0)] for an intervention setting W from 0 to 1 while holding each unit’s pretreatment X fixed; the two-cluster linear outcome equation gives Y(w)=X^T beta + w + epsilon and hence ATE=1.",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}]",
           "display_note": "Population ATE; expectation is over the DGP's full population."
         },
         "delta_sparse_harmonic": {
           "source_name": "ATE",
           "source_definition": "Population average treatment effect E[Y(1)-Y(0)] for an intervention setting W from 0 to 1 while holding each unit’s pretreatment X fixed; the two-cluster linear outcome equation gives Y(w)=X^T beta + w + epsilon and hence ATE=1.",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}]",
           "display_note": "Population ATE; expectation is over the DGP's full population."
         },
         "delta_sparse_moderately_sparse": {
           "source_name": "ATE",
           "source_definition": "Population average treatment effect E[Y(1)-Y(0)] for an intervention setting W from 0 to 1 while holding each unit’s pretreatment X fixed; the two-cluster linear outcome equation gives Y(w)=X^T beta + w + epsilon and hence ATE=1.",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}]",
           "display_note": "Population ATE; expectation is over the DGP's full population."
         },
         "delta_sparse_very_sparse": {
           "source_name": "ATE",
           "source_definition": "Population average treatment effect E[Y(1)-Y(0)] for an intervention setting W from 0 to 1 while holding each unit’s pretreatment X fixed; the two-cluster linear outcome equation gives Y(w)=X^T beta + w + epsilon and hence ATE=1.",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}]",
           "display_note": "Population ATE; expectation is over the DGP's full population."
         }
       }
@@ -63,49 +63,49 @@
         "eta_01_dense": {
           "source_name": "ATE = E[Y(1)-Y(0)]",
           "source_definition": "Superpopulation average effect of the intervention setting W from 0 to 1, holding the pretreatment covariate vector X fixed in the potential outcomes, under the many-cluster DGP. This is a population ATE, not an estimator RMSE or finite-sample treatment-group contrast.",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}]",
           "display_note": "Population ATE; expectation is over the DGP's full population."
         },
         "eta_01_harmonic": {
           "source_name": "ATE = E[Y(1)-Y(0)]",
           "source_definition": "Superpopulation average effect of the intervention setting W from 0 to 1, holding the pretreatment covariate vector X fixed in the potential outcomes, under the many-cluster DGP. This is a population ATE, not an estimator RMSE or finite-sample treatment-group contrast.",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}]",
           "display_note": "Population ATE; expectation is over the DGP's full population."
         },
         "eta_01_moderately_sparse": {
           "source_name": "ATE = E[Y(1)-Y(0)]",
           "source_definition": "Superpopulation average effect of the intervention setting W from 0 to 1, holding the pretreatment covariate vector X fixed in the potential outcomes, under the many-cluster DGP. This is a population ATE, not an estimator RMSE or finite-sample treatment-group contrast.",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}]",
           "display_note": "Population ATE; expectation is over the DGP's full population."
         },
         "eta_01_very_sparse": {
           "source_name": "ATE = E[Y(1)-Y(0)]",
           "source_definition": "Superpopulation average effect of the intervention setting W from 0 to 1, holding the pretreatment covariate vector X fixed in the potential outcomes, under the many-cluster DGP. This is a population ATE, not an estimator RMSE or finite-sample treatment-group contrast.",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}]",
           "display_note": "Population ATE; expectation is over the DGP's full population."
         },
         "eta_025_dense": {
           "source_name": "ATE = E[Y(1)-Y(0)]",
           "source_definition": "Superpopulation average effect of the intervention setting W from 0 to 1, holding the pretreatment covariate vector X fixed in the potential outcomes, under the many-cluster DGP. This is a population ATE, not an estimator RMSE or finite-sample treatment-group contrast.",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}]",
           "display_note": "Population ATE; expectation is over the DGP's full population."
         },
         "eta_025_harmonic": {
           "source_name": "ATE = E[Y(1)-Y(0)]",
           "source_definition": "Superpopulation average effect of the intervention setting W from 0 to 1, holding the pretreatment covariate vector X fixed in the potential outcomes, under the many-cluster DGP. This is a population ATE, not an estimator RMSE or finite-sample treatment-group contrast.",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}]",
           "display_note": "Population ATE; expectation is over the DGP's full population."
         },
         "eta_025_moderately_sparse": {
           "source_name": "ATE = E[Y(1)-Y(0)]",
           "source_definition": "Superpopulation average effect of the intervention setting W from 0 to 1, holding the pretreatment covariate vector X fixed in the potential outcomes, under the many-cluster DGP. This is a population ATE, not an estimator RMSE or finite-sample treatment-group contrast.",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}]",
           "display_note": "Population ATE; expectation is over the DGP's full population."
         },
         "eta_025_very_sparse": {
           "source_name": "ATE = E[Y(1)-Y(0)]",
           "source_definition": "Superpopulation average effect of the intervention setting W from 0 to 1, holding the pretreatment covariate vector X fixed in the potential outcomes, under the many-cluster DGP. This is a population ATE, not an estimator RMSE or finite-sample treatment-group contrast.",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}]",
           "display_note": "Population ATE; expectation is over the DGP's full population."
         }
       }
@@ -117,49 +117,49 @@
         "prop_very_sparse_bw1_by1": {
           "source_name": "ATE",
           "source_definition": "E[Y(1)-Y(0)] under interventions setting W=1 versus W=0 in the superpopulation defined by the sparse two-stage DGP; use the same pre-treatment X and epsilon_2 for both potential outcomes.",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}]",
           "display_note": "Population ATE; expectation is over the DGP's full population."
         },
         "prop_very_sparse_bw1_by4": {
           "source_name": "ATE",
           "source_definition": "E[Y(1)-Y(0)] under interventions setting W=1 versus W=0 in the superpopulation defined by the sparse two-stage DGP; use the same pre-treatment X and epsilon_2 for both potential outcomes.",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}]",
           "display_note": "Population ATE; expectation is over the DGP's full population."
         },
         "prop_very_sparse_bw4_by1": {
           "source_name": "ATE",
           "source_definition": "E[Y(1)-Y(0)] under interventions setting W=1 versus W=0 in the superpopulation defined by the sparse two-stage DGP; use the same pre-treatment X and epsilon_2 for both potential outcomes.",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}]",
           "display_note": "Population ATE; expectation is over the DGP's full population."
         },
         "prop_very_sparse_bw4_by4": {
           "source_name": "ATE",
           "source_definition": "E[Y(1)-Y(0)] under interventions setting W=1 versus W=0 in the superpopulation defined by the sparse two-stage DGP; use the same pre-treatment X and epsilon_2 for both potential outcomes.",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}]",
           "display_note": "Population ATE; expectation is over the DGP's full population."
         },
         "prop_dense_bw1_by1": {
           "source_name": "ATE",
           "source_definition": "E[Y(1)-Y(0)] under interventions setting W=1 versus W=0 in the superpopulation defined by the sparse two-stage DGP; use the same pre-treatment X and epsilon_2 for both potential outcomes.",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}]",
           "display_note": "Population ATE; expectation is over the DGP's full population."
         },
         "prop_dense_bw1_by4": {
           "source_name": "ATE",
           "source_definition": "E[Y(1)-Y(0)] under interventions setting W=1 versus W=0 in the superpopulation defined by the sparse two-stage DGP; use the same pre-treatment X and epsilon_2 for both potential outcomes.",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}]",
           "display_note": "Population ATE; expectation is over the DGP's full population."
         },
         "prop_dense_bw4_by1": {
           "source_name": "ATE",
           "source_definition": "E[Y(1)-Y(0)] under interventions setting W=1 versus W=0 in the superpopulation defined by the sparse two-stage DGP; use the same pre-treatment X and epsilon_2 for both potential outcomes.",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}]",
           "display_note": "Population ATE; expectation is over the DGP's full population."
         },
         "prop_dense_bw4_by4": {
           "source_name": "ATE",
           "source_definition": "E[Y(1)-Y(0)] under interventions setting W=1 versus W=0 in the superpopulation defined by the sparse two-stage DGP; use the same pre-treatment X and epsilon_2 for both potential outcomes.",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}]",
           "display_note": "Population ATE; expectation is over the DGP's full population."
         }
       }
@@ -171,49 +171,49 @@
         "dense_rho_0_5": {
           "source_name": "ATE",
           "source_definition": "Population average treatment effect E[Y(1)-Y(0)] under the Section 5.2 moderately sparse two-stage DGP, comparing the intervention W=1 with W=0 while holding the same pretreatment X and outcome disturbance fixed.",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}]",
           "display_note": "Population ATE; expectation is over the DGP's full population."
         },
         "dense_rho_0_9": {
           "source_name": "ATE",
           "source_definition": "Population average treatment effect E[Y(1)-Y(0)] under the Section 5.2 moderately sparse two-stage DGP, comparing the intervention W=1 with W=0 while holding the same pretreatment X and outcome disturbance fixed.",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}]",
           "display_note": "Population ATE; expectation is over the DGP's full population."
         },
         "harmonic_rho_0_5": {
           "source_name": "ATE",
           "source_definition": "Population average treatment effect E[Y(1)-Y(0)] under the Section 5.2 moderately sparse two-stage DGP, comparing the intervention W=1 with W=0 while holding the same pretreatment X and outcome disturbance fixed.",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}]",
           "display_note": "Population ATE; expectation is over the DGP's full population."
         },
         "harmonic_rho_0_9": {
           "source_name": "ATE",
           "source_definition": "Population average treatment effect E[Y(1)-Y(0)] under the Section 5.2 moderately sparse two-stage DGP, comparing the intervention W=1 with W=0 while holding the same pretreatment X and outcome disturbance fixed.",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}]",
           "display_note": "Population ATE; expectation is over the DGP's full population."
         },
         "moderately_sparse_rho_0_5": {
           "source_name": "ATE",
           "source_definition": "Population average treatment effect E[Y(1)-Y(0)] under the Section 5.2 moderately sparse two-stage DGP, comparing the intervention W=1 with W=0 while holding the same pretreatment X and outcome disturbance fixed.",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}]",
           "display_note": "Population ATE; expectation is over the DGP's full population."
         },
         "moderately_sparse_rho_0_9": {
           "source_name": "ATE",
           "source_definition": "Population average treatment effect E[Y(1)-Y(0)] under the Section 5.2 moderately sparse two-stage DGP, comparing the intervention W=1 with W=0 while holding the same pretreatment X and outcome disturbance fixed.",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}]",
           "display_note": "Population ATE; expectation is over the DGP's full population."
         },
         "very_sparse_rho_0_5": {
           "source_name": "ATE",
           "source_definition": "Population average treatment effect E[Y(1)-Y(0)] under the Section 5.2 moderately sparse two-stage DGP, comparing the intervention W=1 with W=0 while holding the same pretreatment X and outcome disturbance fixed.",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}]",
           "display_note": "Population ATE; expectation is over the DGP's full population."
         },
         "very_sparse_rho_0_9": {
           "source_name": "ATE",
           "source_definition": "Population average treatment effect E[Y(1)-Y(0)] under the Section 5.2 moderately sparse two-stage DGP, comparing the intervention W=1 with W=0 while holding the same pretreatment X and outcome disturbance fixed.",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}]",
           "display_note": "Population ATE; expectation is over the DGP's full population."
         }
       }
@@ -225,7 +225,7 @@
         "n400_p1600": {
           "source_name": "ATE",
           "source_definition": "Population average treatment effect E[Y(1)-Y(0)] in the synthetic superpopulation defined by Section 5.2's misspecified setting, comparing intervention W=1 with W=0 while holding the same pre-treatment X and outcome error fixed. The individual effect is theta(X1), so ATE=E[theta(X1)]. This is not ATT=E[theta(X1)|W=1].",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}]",
           "display_note": "Population ATE; expectation is over the DGP's full population."
         }
       }
@@ -237,7 +237,7 @@
         "section51_original": {
           "source_name": "ATE = E[Y(1)-Y(0)]",
           "source_definition": "Population risk difference under interventions setting A=1 versus A=0, averaged over the source covariate distribution W=(W1,W2).",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}]",
           "display_note": "Population ATE; expectation is over the DGP's full population."
         }
       }
@@ -249,73 +249,73 @@
         "case01_independent_null": {
           "source_name": "tau = N^{-1} sum_i [Y_i(1)-Y_i(0)] = (N10-N01)/N",
           "source_definition": "Finite-population average treatment effect / causal risk difference for intervention A=1 versus A=0 over the N=200 experimental units. Y_i(1) and Y_i(0) are binary fixed potential outcomes; observed Y_i=A_i Y_i(1)+(1-A_i)Y_i(0).",
-          "display_math": "\\frac{1}{N}\\sum_{i=1}^{N}\\{Y_i(1)-Y_i(0)\\}",
+          "display_math": "\\frac{1}{N}\\sum_{i=1}^{N}\\{Y_i^{(1)}-Y_i^{(0)}\\}",
           "display_note": "Fixed finite population, N=200; the package draws a subset as an implementation adaptation."
         },
         "case02_independent_positive": {
           "source_name": "tau = N^{-1} sum_i [Y_i(1)-Y_i(0)] = (N10-N01)/N",
           "source_definition": "Finite-population average treatment effect / causal risk difference for intervention A=1 versus A=0 over the N=200 experimental units. Y_i(1) and Y_i(0) are binary fixed potential outcomes; observed Y_i=A_i Y_i(1)+(1-A_i)Y_i(0).",
-          "display_math": "\\frac{1}{N}\\sum_{i=1}^{N}\\{Y_i(1)-Y_i(0)\\}",
+          "display_math": "\\frac{1}{N}\\sum_{i=1}^{N}\\{Y_i^{(1)}-Y_i^{(0)}\\}",
           "display_note": "Fixed finite population, N=200; the package draws a subset as an implementation adaptation."
         },
         "case03_independent_positive": {
           "source_name": "tau = N^{-1} sum_i [Y_i(1)-Y_i(0)] = (N10-N01)/N",
           "source_definition": "Finite-population average treatment effect / causal risk difference for intervention A=1 versus A=0 over the N=200 experimental units. Y_i(1) and Y_i(0) are binary fixed potential outcomes; observed Y_i=A_i Y_i(1)+(1-A_i)Y_i(0).",
-          "display_math": "\\frac{1}{N}\\sum_{i=1}^{N}\\{Y_i(1)-Y_i(0)\\}",
+          "display_math": "\\frac{1}{N}\\sum_{i=1}^{N}\\{Y_i^{(1)}-Y_i^{(0)}\\}",
           "display_note": "Fixed finite population, N=200; the package draws a subset as an implementation adaptation."
         },
         "case04_independent_negative": {
           "source_name": "tau = N^{-1} sum_i [Y_i(1)-Y_i(0)] = (N10-N01)/N",
           "source_definition": "Finite-population average treatment effect / causal risk difference for intervention A=1 versus A=0 over the N=200 experimental units. Y_i(1) and Y_i(0) are binary fixed potential outcomes; observed Y_i=A_i Y_i(1)+(1-A_i)Y_i(0).",
-          "display_math": "\\frac{1}{N}\\sum_{i=1}^{N}\\{Y_i(1)-Y_i(0)\\}",
+          "display_math": "\\frac{1}{N}\\sum_{i=1}^{N}\\{Y_i^{(1)}-Y_i^{(0)}\\}",
           "display_note": "Fixed finite population, N=200; the package draws a subset as an implementation adaptation."
         },
         "case05_independent_negative": {
           "source_name": "tau = N^{-1} sum_i [Y_i(1)-Y_i(0)] = (N10-N01)/N",
           "source_definition": "Finite-population average treatment effect / causal risk difference for intervention A=1 versus A=0 over the N=200 experimental units. Y_i(1) and Y_i(0) are binary fixed potential outcomes; observed Y_i=A_i Y_i(1)+(1-A_i)Y_i(0).",
-          "display_math": "\\frac{1}{N}\\sum_{i=1}^{N}\\{Y_i(1)-Y_i(0)\\}",
+          "display_math": "\\frac{1}{N}\\sum_{i=1}^{N}\\{Y_i^{(1)}-Y_i^{(0)}\\}",
           "display_note": "Fixed finite population, N=200; the package draws a subset as an implementation adaptation."
         },
         "case06_positive_association_null": {
           "source_name": "tau = N^{-1} sum_i [Y_i(1)-Y_i(0)] = (N10-N01)/N",
           "source_definition": "Finite-population average treatment effect / causal risk difference for intervention A=1 versus A=0 over the N=200 experimental units. Y_i(1) and Y_i(0) are binary fixed potential outcomes; observed Y_i=A_i Y_i(1)+(1-A_i)Y_i(0).",
-          "display_math": "\\frac{1}{N}\\sum_{i=1}^{N}\\{Y_i(1)-Y_i(0)\\}",
+          "display_math": "\\frac{1}{N}\\sum_{i=1}^{N}\\{Y_i^{(1)}-Y_i^{(0)}\\}",
           "display_note": "Fixed finite population, N=200; the package draws a subset as an implementation adaptation."
         },
         "case07_positive_association": {
           "source_name": "tau = N^{-1} sum_i [Y_i(1)-Y_i(0)] = (N10-N01)/N",
           "source_definition": "Finite-population average treatment effect / causal risk difference for intervention A=1 versus A=0 over the N=200 experimental units. Y_i(1) and Y_i(0) are binary fixed potential outcomes; observed Y_i=A_i Y_i(1)+(1-A_i)Y_i(0).",
-          "display_math": "\\frac{1}{N}\\sum_{i=1}^{N}\\{Y_i(1)-Y_i(0)\\}",
+          "display_math": "\\frac{1}{N}\\sum_{i=1}^{N}\\{Y_i^{(1)}-Y_i^{(0)}\\}",
           "display_note": "Fixed finite population, N=200; the package draws a subset as an implementation adaptation."
         },
         "case08_positive_association": {
           "source_name": "tau = N^{-1} sum_i [Y_i(1)-Y_i(0)] = (N10-N01)/N",
           "source_definition": "Finite-population average treatment effect / causal risk difference for intervention A=1 versus A=0 over the N=200 experimental units. Y_i(1) and Y_i(0) are binary fixed potential outcomes; observed Y_i=A_i Y_i(1)+(1-A_i)Y_i(0).",
-          "display_math": "\\frac{1}{N}\\sum_{i=1}^{N}\\{Y_i(1)-Y_i(0)\\}",
+          "display_math": "\\frac{1}{N}\\sum_{i=1}^{N}\\{Y_i^{(1)}-Y_i^{(0)}\\}",
           "display_note": "Fixed finite population, N=200; the package draws a subset as an implementation adaptation."
         },
         "case09_positive_association": {
           "source_name": "tau = N^{-1} sum_i [Y_i(1)-Y_i(0)] = (N10-N01)/N",
           "source_definition": "Finite-population average treatment effect / causal risk difference for intervention A=1 versus A=0 over the N=200 experimental units. Y_i(1) and Y_i(0) are binary fixed potential outcomes; observed Y_i=A_i Y_i(1)+(1-A_i)Y_i(0).",
-          "display_math": "\\frac{1}{N}\\sum_{i=1}^{N}\\{Y_i(1)-Y_i(0)\\}",
+          "display_math": "\\frac{1}{N}\\sum_{i=1}^{N}\\{Y_i^{(1)}-Y_i^{(0)}\\}",
           "display_note": "Fixed finite population, N=200; the package draws a subset as an implementation adaptation."
         },
         "case10_positive_association_negative": {
           "source_name": "tau = N^{-1} sum_i [Y_i(1)-Y_i(0)] = (N10-N01)/N",
           "source_definition": "Finite-population average treatment effect / causal risk difference for intervention A=1 versus A=0 over the N=200 experimental units. Y_i(1) and Y_i(0) are binary fixed potential outcomes; observed Y_i=A_i Y_i(1)+(1-A_i)Y_i(0).",
-          "display_math": "\\frac{1}{N}\\sum_{i=1}^{N}\\{Y_i(1)-Y_i(0)\\}",
+          "display_math": "\\frac{1}{N}\\sum_{i=1}^{N}\\{Y_i^{(1)}-Y_i^{(0)}\\}",
           "display_note": "Fixed finite population, N=200; the package draws a subset as an implementation adaptation."
         },
         "case11_positive_association_negative": {
           "source_name": "tau = N^{-1} sum_i [Y_i(1)-Y_i(0)] = (N10-N01)/N",
           "source_definition": "Finite-population average treatment effect / causal risk difference for intervention A=1 versus A=0 over the N=200 experimental units. Y_i(1) and Y_i(0) are binary fixed potential outcomes; observed Y_i=A_i Y_i(1)+(1-A_i)Y_i(0).",
-          "display_math": "\\frac{1}{N}\\sum_{i=1}^{N}\\{Y_i(1)-Y_i(0)\\}",
+          "display_math": "\\frac{1}{N}\\sum_{i=1}^{N}\\{Y_i^{(1)}-Y_i^{(0)}\\}",
           "display_note": "Fixed finite population, N=200; the package draws a subset as an implementation adaptation."
         },
         "case12_positive_association_negative": {
           "source_name": "tau = N^{-1} sum_i [Y_i(1)-Y_i(0)] = (N10-N01)/N",
           "source_definition": "Finite-population average treatment effect / causal risk difference for intervention A=1 versus A=0 over the N=200 experimental units. Y_i(1) and Y_i(0) are binary fixed potential outcomes; observed Y_i=A_i Y_i(1)+(1-A_i)Y_i(0).",
-          "display_math": "\\frac{1}{N}\\sum_{i=1}^{N}\\{Y_i(1)-Y_i(0)\\}",
+          "display_math": "\\frac{1}{N}\\sum_{i=1}^{N}\\{Y_i^{(1)}-Y_i^{(0)}\\}",
           "display_note": "Fixed finite population, N=200; the package draws a subset as an implementation adaptation."
         }
       }
@@ -327,7 +327,7 @@
         "original": {
           "source_name": "ATE",
           "source_definition": "E[Y(1)-Y(0)] in the full declared covariate population; treatment 1 versus 0; population, not sample-conditional, target.",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}]",
           "display_note": "Population ATE; expectation is over the DGP's full population."
         }
       }
@@ -339,7 +339,7 @@
         "original": {
           "source_name": "ATE",
           "source_definition": "ATE = E[Y(1)-Y(0)] in the full original covariate population; binary treatment 1 versus 0.",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}]",
           "display_note": "Population ATE; expectation is over the DGP's full population."
         }
       }
@@ -351,7 +351,7 @@
         "original": {
           "source_name": "ATE",
           "source_definition": "ATE = E[Y(1)-Y(0)] in the full original covariate population; binary treatment 1 versus 0.",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}]",
           "display_note": "Population ATE; expectation is over the DGP's full population."
         }
       }
@@ -363,7 +363,7 @@
         "original": {
           "source_name": "ATE",
           "source_definition": "ATE = E[Y(1)-Y(0)] in the full original covariate population; binary treatment 1 versus 0.",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}]",
           "display_note": "Population ATE; expectation is over the DGP's full population."
         }
       }
@@ -375,7 +375,7 @@
         "original": {
           "source_name": "ATE",
           "source_definition": "ATE = E[Y(1)-Y(0)] in the full original covariate population; binary treatment 1 versus 0.",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}]",
           "display_note": "Population ATE; expectation is over the DGP's full population."
         }
       }
@@ -387,7 +387,7 @@
         "original": {
           "source_name": "ATE",
           "source_definition": "E[Y(1)-Y(0)] in the full declared covariate population; treatment 1 versus 0; population, not sample-conditional, target.",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}]",
           "display_note": "Population ATE; expectation is over the DGP's full population."
         }
       }
@@ -399,7 +399,7 @@
         "original": {
           "source_name": "ATE",
           "source_definition": "E[Y(1)-Y(0)] in the full declared covariate population; treatment 1 versus 0; population, not sample-conditional, target.",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}]",
           "display_note": "Population ATE; expectation is over the DGP's full population."
         }
       }
@@ -411,7 +411,7 @@
         "original": {
           "source_name": "ATE",
           "source_definition": "E[Y(1)-Y(0)] in the full declared covariate population; treatment 1 versus 0; population, not sample-conditional, target.",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}]",
           "display_note": "Population ATE; expectation is over the DGP's full population."
         }
       }
@@ -423,7 +423,7 @@
         "original_d6_sigma1": {
           "source_name": "theta_ATE = E[Y(1)-Y(0)]",
           "source_definition": "Superpopulation average effect of A=1 versus A=0, under X~Uniform([0,1]^6). Not the realized-sample average effect, ATT, CATE output, or unadjusted observed group difference.",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}]",
           "display_note": "Population ATE; expectation is over the DGP's full population."
         }
       }
@@ -435,7 +435,7 @@
         "original": {
           "source_name": "ATE",
           "source_definition": "E[Y(1)-Y(0)] in the full declared covariate population; treatment 1 versus 0; population, not sample-conditional, target.",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}]",
           "display_note": "Population ATE; expectation is over the DGP's full population."
         }
       }
@@ -447,7 +447,7 @@
         "paper_d1000": {
           "source_name": "ATE",
           "source_definition": "E[Y(1)-Y(0)] in the superpopulation defined by the selected Gaussian-covariate linear-potential-outcome DGP; intervention contrast A=1 versus A=0.",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}]",
           "display_note": "Population ATE; expectation is over the DGP's full population."
         }
       }
@@ -459,7 +459,7 @@
         "original": {
           "source_name": "ATE",
           "source_definition": "E[Y(1)-Y(0)] in the full declared covariate population; treatment 1 versus 0; population, not sample-conditional, target.",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}]",
           "display_note": "Population ATE; expectation is over the DGP's full population."
         }
       }
@@ -471,7 +471,7 @@
         "source_d5_sigma1": {
           "source_name": "theta_ATE=E[Y(1)-Y(0)]",
           "source_definition": "Superpopulation average effect of A=1 versus A=0, integrating over iid Uniform covariates; not a sample average or observed treated-control mean difference.",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}]",
           "display_note": "Population ATE; expectation is over the DGP's full population."
         }
       }
@@ -483,7 +483,7 @@
         "paper_section_5_2": {
           "source_name": "ATE = E[Y(1)-Y(0)]",
           "source_definition": "Population average effect of intervening to set treatment A from 0 (control) to 1 (active), averaged over the full pre-treatment covariate distribution before missingness: E[Y(1)-Y(0)].",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}]",
           "display_note": "Population ATE; expectation is over the DGP's full population."
         }
       }
@@ -495,7 +495,7 @@
         "section53_equation_based_candidate": {
           "source_name": "ATE",
           "source_definition": "Population E[Y(1)-Y(0)] for the intervention A=1 versus A=0, under the declared Section 5.3 equation-based mechanism and its explicitly stated factorization adaptations.",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}]",
           "display_note": "Population ATE; expectation is over the DGP's full population. The candidate DGP truth conflicts with the paper-reported value; preserve the existing review warning."
         }
       }
@@ -507,7 +507,7 @@
         "original": {
           "source_name": "tau(x0) = E[Y(1) - Y(0) | X = x0]",
           "source_definition": "Conditional average treatment effect at the declared query points for the combined setting: sigmoid-product heterogeneity on X1, X2 together with a beta-density propensity and a linear baseline on X3.",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)\\mid X=x_0]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}\\mid X=x_0]",
           "display_note": "Primary query x_0=(1/3,1/3,1/4,1/2,1/2); recovered from the original submission truth.py."
         }
       }
@@ -519,7 +519,7 @@
         "source_d10_sigma1_fixed_query": {
           "source_name": "tau(x_star)=E[Y(1)-Y(0)|X=x_star]",
           "source_definition": "Scalar pointwise CATE at x_star=[0.3333333333333333, 0.3333333333333333, 0.25, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5]. Continuous source response functions specify the conditional version at this point. This is not a population ATE or the full CATE vector/function interface.",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)\\mid X=x_\\star]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}\\mid X=x_\\star]",
           "display_note": "The conditional target is evaluated at this covariate vector.",
           "display_note_math": "x_\\star=(1/3,1/3,1/4,1/2,1/2,1/2,1/2,1/2,1/2,1/2)"
         }
@@ -532,7 +532,7 @@
         "original": {
           "source_name": "tau(x0) = E[Y(1) - Y(0) | X = x0]",
           "source_definition": "Conditional average treatment effect at the declared query points when the control potential outcome is identically zero, so the effect equals the treated conditional mean.",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)\\mid X=x_0]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}\\mid X=x_0]",
           "display_note": "Primary query x_0=(1/2,1/2,1/2,1/2,1/2,1/2,1/2,1/2,1/2,1/2); recovered from the original submission truth.py."
         }
       }
@@ -544,7 +544,7 @@
         "original": {
           "source_name": "tau(x0) = E[Y(1) - Y(0) | X = x0]",
           "source_definition": "Conditional average treatment effect at the declared query points; a simple linear surface in the first two coordinates, embedded in a deliberately difficult nuisance structure.",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)\\mid X=x_0]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}\\mid X=x_0]",
           "display_note": "Primary query x_0=(0.2,0.3,0.5,0.5,0.5); recovered from the original submission truth.py."
         }
       }
@@ -556,7 +556,7 @@
         "original": {
           "source_name": "tau(x0) = E[Y(1) - Y(0) | X = x0]",
           "source_definition": "Conditional average treatment effect at the declared query points; linear in X1 plus a log-sum-exp transform of X2.",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)\\mid X=x_0]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}\\mid X=x_0]",
           "display_note": "Primary query x_0=(0.5,0.5,0,0,0); recovered from the original submission truth.py."
         }
       }
@@ -568,7 +568,7 @@
         "original": {
           "source_name": "tau(x0) = E[Y(1) - Y(0) | X = x0]",
           "source_definition": "Conditional average treatment effect at the declared query points; constant equal to 1 for every x, so the whole difficulty is the strongly confounded nuisance structure.",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)\\mid X=x_0]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}\\mid X=x_0]",
           "display_note": "Primary query x_0=(0,0,0); recovered from the original submission truth.py. The CATE is 1 at every query point."
         }
       }
@@ -580,7 +580,7 @@
         "original": {
           "source_name": "tau(x0) = E[Y(1) - Y(0) | X = x0]",
           "source_definition": "Conditional average treatment effect at the declared query points; a difference of two rectified sums supported on disjoint coordinate blocks.",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)\\mid X=x_0]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}\\mid X=x_0]",
           "display_note": "Primary query x_0=(0.5,0.5,0.5,0,0); recovered from the original submission truth.py."
         }
       }
@@ -592,7 +592,7 @@
         "original": {
           "source_name": "tau(x0) = E[Y(1) - Y(0) | X = x0]",
           "source_definition": "Conditional average treatment effect at the declared query point; in this design it is identically zero for every x, which makes it a null-effect control for bias and interval coverage under confounding.",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)\\mid X=x_0]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}\\mid X=x_0]",
           "display_note": "Primary query x_0=(0.5,0.5,0.5,0.5,0.5); recovered from the original submission truth.py. The CATE is 0 at every query point."
         }
       }
@@ -604,7 +604,7 @@
         "original": {
           "source_name": "tau(x0) = E[Y(1) - Y(0) | X = x0]",
           "source_definition": "Conditional average treatment effect when the signal is spread additively over q = 4 of the 6 coordinates; the estimand at a query point is the sum of four sigmoid contributions minus 2.",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)\\mid X=x_0]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}\\mid X=x_0]",
           "display_note": "Primary query x_0=(0.9,0.9,0.5,0.5,0.5,0.5); recovered from the original submission truth.py."
         }
       }
@@ -616,7 +616,7 @@
         "source_d6_sigma1_fixed_query": {
           "source_name": "tau(x_star)=E[Y(1)-Y(0)|X=x_star]",
           "source_definition": "Scalar pointwise CATE at x_star=[0.3333333333333333, 0.3333333333333333, 0.5, 0.5, 0.5, 0.5]. Continuous source response functions specify the conditional version at this point. This is not a population ATE or the full CATE vector/function interface.",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)\\mid X=x_\\star]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}\\mid X=x_\\star]",
           "display_note": "The conditional target is evaluated at this covariate vector.",
           "display_note_math": "x_\\star=(1/3,1/3,1/2,1/2,1/2,1/2)"
         }
@@ -629,7 +629,7 @@
         "original": {
           "source_name": "tau(u0) = E[Y(1) - Y(0) | U = u0]",
           "source_definition": "Conditional average treatment effect at the declared query points for the arm-2 versus arm-1 contrast; the surface is linear in U with slope zeta = 1 and has exactly zero mean over the covariate distribution, so there is heterogeneity but no average effect.",
-          "display_math": "\\mathbb{E}[Y(2)-Y(1)\\mid U=u_0]",
+          "display_math": "\\mathbb{E}[Y^{(2)}-Y^{(1)}\\mid U=u_0]",
           "display_note": "Primary query u_0=0.5; original truth.py. Potential-outcome arms are numbered 1 and 2 in the generation equations; observed A=1 selects arm 2."
         }
       }
@@ -641,7 +641,7 @@
         "original": {
           "source_name": "tau(u0, w0) = E[Y(1) - Y(0) | U = u0, W = w0]",
           "source_definition": "Conditional average treatment effect at the declared query points for the arm-2 versus arm-1 contrast; affine in U and W with a small negative quadratic term in U, so the surface is curved but close to linear over the bulk of the covariate law.",
-          "display_math": "\\mathbb{E}[Y(2)-Y(1)\\mid U=u_0,W=w_0]",
+          "display_math": "\\mathbb{E}[Y^{(2)}-Y^{(1)}\\mid U=u_0,W=w_0]",
           "display_note": "Primary query (u_0,w_0)=(0.5,0.5); original truth.py. Potential-outcome arms are numbered 1 and 2 in the generation equations; observed A=1 selects arm 2."
         }
       }
@@ -653,7 +653,7 @@
         "paper_table4_p4_r2_with_declared_n_extension": {
           "source_name": "ATT_post",
           "source_definition": "E[Y_2(1)-Y_2(0)|G=1] in the treated covariate population. Equal-weight finite-sample treated SATT also equals zero pointwise.",
-          "display_math": "\\mathbb{E}[Y_2(1)-Y_2(0)\\mid G=1]",
+          "display_math": "\\mathbb{E}[Y_2^{(1)}-Y_2^{(0)}\\mid G=1]",
           "display_note": "Treated covariate population."
         }
       }
@@ -665,25 +665,25 @@
         "W1": {
           "source_name": "tau_T",
           "source_definition": "Y_1,T(1)-Y_1,T(0) at the fixed treated unit and T=T0+1=21. Its design-population expectation and the finite single-treated-unit SATT equal theta_T=0.",
-          "display_math": "Y_{1,T}(1)-Y_{1,T}(0),\\quad T=T_0+1=21",
+          "display_math": "Y_{1,T}^{(1)}-Y_{1,T}^{(0)},\\quad T=T_0+1=21",
           "display_note": "Fixed treated unit."
         },
         "W2": {
           "source_name": "tau_T",
           "source_definition": "Y_1,T(1)-Y_1,T(0) at the fixed treated unit and T=T0+1=21. Its design-population expectation and the finite single-treated-unit SATT equal theta_T=0.",
-          "display_math": "Y_{1,T}(1)-Y_{1,T}(0),\\quad T=T_0+1=21",
+          "display_math": "Y_{1,T}^{(1)}-Y_{1,T}^{(0)},\\quad T=T_0+1=21",
           "display_note": "Fixed treated unit."
         },
         "W3": {
           "source_name": "tau_T",
           "source_definition": "Y_1,T(1)-Y_1,T(0) at the fixed treated unit and T=T0+1=21. Its design-population expectation and the finite single-treated-unit SATT equal theta_T=0.",
-          "display_math": "Y_{1,T}(1)-Y_{1,T}(0),\\quad T=T_0+1=21",
+          "display_math": "Y_{1,T}^{(1)}-Y_{1,T}^{(0)},\\quad T=T_0+1=21",
           "display_note": "Fixed treated unit."
         },
         "W4": {
           "source_name": "tau_T",
           "source_definition": "Y_1,T(1)-Y_1,T(0) at the fixed treated unit and T=T0+1=21. Its design-population expectation and the finite single-treated-unit SATT equal theta_T=0.",
-          "display_math": "Y_{1,T}(1)-Y_{1,T}(0),\\quad T=T_0+1=21",
+          "display_math": "Y_{1,T}^{(1)}-Y_{1,T}^{(0)},\\quad T=T_0+1=21",
           "display_note": "Fixed treated unit."
         }
       }
@@ -695,7 +695,7 @@
         "table1_j10_t020_null": {
           "source_name": "tau_01",
           "source_definition": "Specified treated unit i=0, first and only post period t=1: Y_01(1)-Y_01(0). Its design-population mean and single-treated-unit finite SATT both equal zero pointwise.",
-          "display_math": "Y_{0,1}(1)-Y_{0,1}(0)",
+          "display_math": "Y_{0,1}^{(1)}-Y_{0,1}^{(0)}",
           "display_note": "Fixed treated unit i=0, first post period t=1."
         }
       }
@@ -712,7 +712,7 @@
         "original_panel_dgp1": {
           "source_name": "ATT = E[Y_1(1)-Y_1(0) | D=1]",
           "source_definition": "Population ATT for the treated group at post-period 1. The realized group D and latent v are held fixed across treatment counterfactuals. Original value is zero; this is not the observed post-period group contrast or a sample-average effect.",
-          "display_math": "\\mathbb{E}[Y_1(1)-Y_1(0)\\mid D=1]",
+          "display_math": "\\mathbb{E}[Y_1^{(1)}-Y_1^{(0)}\\mid D=1]",
           "display_note": "Post-period 1."
         }
       }
@@ -729,7 +729,7 @@
         "baseline": {
           "source_name": "log_RR_pop",
           "source_definition": "For the treated unit at any post period, log(E[Y_t(1)]/E[Y_t(0)]) over the truncated-normal factor and Poisson population; equals -2. This is neither the impossible printed negative rate ratio nor an additive ATT nor finite-sample SATT.",
-          "display_math": "\\log\\{\\mathbb{E}[Y_t(1)]/\\mathbb{E}[Y_t(0)]\\}",
+          "display_math": "\\log\\{\\mathbb{E}[Y_t^{(1)}]/\\mathbb{E}[Y_t^{(0)}]\\}",
           "display_note": "Fixed treated unit, any post-treatment period; population means."
         }
       }
@@ -741,13 +741,13 @@
         "case1_parallel": {
           "source_name": "ATT_4",
           "source_definition": "E[Y_4(1)-Y_4(0) | G=trt]；处理组自第2期接受处理，第1期无预期效应。两个场景真值均为1。",
-          "display_math": "\\mathbb{E}[Y_4(1)-Y_4(0)\\mid G=\\mathrm{trt}]",
+          "display_math": "\\mathbb{E}[Y_4^{(1)}-Y_4^{(0)}\\mid G=\\mathrm{trt}]",
           "display_note": "Final period, treated group."
         },
         "case2_partial": {
           "source_name": "ATT_4",
           "source_definition": "E[Y_4(1)-Y_4(0) | G=trt]；处理组自第2期接受处理，第1期无预期效应。两个场景真值均为1。",
-          "display_math": "\\mathbb{E}[Y_4(1)-Y_4(0)\\mid G=\\mathrm{trt}]",
+          "display_math": "\\mathbb{E}[Y_4^{(1)}-Y_4^{(0)}\\mid G=\\mathrm{trt}]",
           "display_note": "Final period, treated group."
         }
       }
@@ -759,7 +759,7 @@
         "baseline": {
           "source_name": "ATT_4",
           "source_definition": "Population mean treatment effect at final period4 conditional on treated group, source-declared att[4]=1; not finite-sample SATT.",
-          "display_math": "\\mathbb{E}[Y_4(1)-Y_4(0)\\mid G=\\mathrm{trt}]",
+          "display_math": "\\mathbb{E}[Y_4^{(1)}-Y_4^{(0)}\\mid G=\\mathrm{trt}]",
           "display_note": "Final period, treated group."
         }
       }
@@ -771,7 +771,7 @@
         "section6_main": {
           "source_name": "ATE",
           "source_definition": "Population average causal effect E[Y_t(1)-Y_t(0)]=E[10(1.5X1+2X2-0.5)]=-5 for either t=0 or1, over X~N(0,I2), and original natural Z,U. Not ATT, a finite-sample SATT, optimal-policy value or PCD.",
-          "display_math": "\\mathbb{E}[Y_t(1)-Y_t(0)],\\quad t\\in\\{0,1\\}",
+          "display_math": "\\mathbb{E}[Y_t^{(1)}-Y_t^{(0)}],\\quad t\\in\\{0,1\\}",
           "display_note": "Marginal population ATE."
         }
       }
@@ -783,7 +783,7 @@
         "source_section6_ate_target": {
           "source_name": "ATE",
           "source_definition": "E[Y_t(1)-Y_t(0)]，总体 X1,X2 独立标准正态，t=0或1；值为-5。并非 ATT，也非 d_opt 的政策价值。",
-          "display_math": "\\mathbb{E}[Y_t(1)-Y_t(0)],\\quad t\\in\\{0,1\\}",
+          "display_math": "\\mathbb{E}[Y_t^{(1)}-Y_t^{(0)}],\\quad t\\in\\{0,1\\}",
           "display_note": "Marginal population ATE."
         }
       }
@@ -897,7 +897,7 @@
         "source_case1b_calibrated": {
           "source_name": "alpha_YZ",
           "source_definition": "Structural coefficient1 of the true, possibly unobserved continuous exposure D in Y(d)=1+d+W1+W2+U+epsilon. Thus E[Y(d+1)-Y(d)]=1 on source linear/log-time outcome scale, not effect on exp(Y) survival time or complier LATE.",
-          "display_math": "\\mathbb{E}[Y(d+1)-Y(d)]",
+          "display_math": "\\mathbb{E}[Y^{(d+1)}-Y^{(d)}]",
           "display_note": "Unit intervention on latent continuous D, linear/log-time outcome scale."
         }
       }
@@ -909,13 +909,13 @@
         "source_effect_minus1": {
           "source_name": "psi",
           "source_definition": "Population marginal structural Cox log hazard ratio for the current binary treatment under fixed two-visit intervention regimes: lambda_Ta(t)=lambda0(t)*exp(psi*a(t)), lambda0(t)=1. Compare treatment1 versus0 at the same time t away from the visit1 switch. Target is psi=-1 or0, not a survival probability difference or LATE.",
-          "display_math": "\\psi=\\log\\{\\lambda_{T^{\\bar a}}(t)/\\lambda_0(t)\\},\\quad a(t)=1",
+          "display_math": "\\psi=\\log\\{\\lambda_{T^{(\\bar a)}}(t)/\\lambda_0(t)\\},\\quad a(t)=1",
           "display_note": "The coefficient psi in the marginal structural Cox model, for a fixed two-visit intervention regime; compare treatment 1 to 0 at time t away from the visit-1 switch."
         },
         "source_null": {
           "source_name": "psi",
           "source_definition": "Population marginal structural Cox log hazard ratio for the current binary treatment under fixed two-visit intervention regimes: lambda_Ta(t)=lambda0(t)*exp(psi*a(t)), lambda0(t)=1. Compare treatment1 versus0 at the same time t away from the visit1 switch. Target is psi=-1 or0, not a survival probability difference or LATE.",
-          "display_math": "\\psi=\\log\\{\\lambda_{T^{\\bar a}}(t)/\\lambda_0(t)\\},\\quad a(t)=1",
+          "display_math": "\\psi=\\log\\{\\lambda_{T^{(\\bar a)}}(t)/\\lambda_0(t)\\},\\quad a(t)=1",
           "display_note": "The coefficient psi in the marginal structural Cox model, for a fixed two-visit intervention regime; compare treatment 1 to 0 at time t away from the visit-1 switch."
         }
       }
@@ -939,19 +939,19 @@
         "source_table1_case1": {
           "source_name": "LATE",
           "source_definition": "E[Y(1)-Y(0) | A(1)>A(0)], treatment intervention 0 to 1 among instrument compliers.",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)\\mid A(1)\\gt A(0)]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}\\mid A^{(1)}\\gt A^{(0)}]",
           "display_note": "Instrument compliers."
         },
         "source_table1_case2": {
           "source_name": "LATE",
           "source_definition": "E[Y(1)-Y(0) | A(1)>A(0)], treatment intervention 0 to 1 among instrument compliers.",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)\\mid A(1)\\gt A(0)]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}\\mid A^{(1)}\\gt A^{(0)}]",
           "display_note": "Instrument compliers."
         },
         "source_table1_case3": {
           "source_name": "LATE",
           "source_definition": "E[Y(1)-Y(0) | A(1)>A(0)], treatment intervention 0 to 1 among instrument compliers.",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)\\mid A(1)\\gt A(0)]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}\\mid A^{(1)}\\gt A^{(0)}]",
           "display_note": "Instrument compliers."
         }
       }
@@ -963,7 +963,7 @@
         "author_lowdim": {
           "source_name": "beta",
           "source_definition": "beta：do(D=d+1)−do(D=d)的结构均值效应，1。",
-          "display_math": "\\mathbb{E}[Y(d+1)-Y(d)]",
+          "display_math": "\\mathbb{E}[Y^{(d+1)}-Y^{(d)}]",
           "display_note": "Structural unit intervention on D; superpopulation."
         }
       }
@@ -975,7 +975,7 @@
         "paper_raw_rho08": {
           "source_name": "theta_IV = E[Y(do(P=21))-Y(do(P=20))]",
           "source_definition": "Population structural mean contrast of a one-unit price intervention, averaging independent T~Uniform(0,10) and S~DiscreteUniform(1,...,7); nuisance latent errors retain their marginal distribution.",
-          "display_math": "\\mathbb{E}[Y(21)-Y(20)]",
+          "display_math": "\\mathbb{E}[Y^{(21)}-Y^{(20)}]",
           "display_note": "Intervention on price P, averaged over T and S."
         }
       }
@@ -1028,7 +1028,7 @@
         "author_readme_fixed": {
           "source_name": "beta",
           "source_definition": "Constant structural slope beta = E[Y(do(D=d+1))-Y(do(D=d))], with natural Z and errors held under the same intervention law.",
-          "display_math": "\\mathbb{E}[Y(d+1)-Y(d)]",
+          "display_math": "\\mathbb{E}[Y^{(d+1)}-Y^{(d)}]",
           "display_note": "Structural unit intervention on D; superpopulation."
         }
       }
@@ -1040,7 +1040,7 @@
         "source_v1": {
           "source_name": "tau",
           "source_definition": "tau：目标总体R=0中E[Y(1)−Y(0)|R=0]，处理1减0。",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)\\mid R=0]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}\\mid R=0]",
           "display_note": "Target population R=0."
         }
       }
@@ -1052,13 +1052,13 @@
         "code_case_2": {
           "source_name": "beta",
           "source_definition": "Homogeneous structural coefficient: E[Y(do(D=d+1))-Y(do(D=d))]=beta for the specified superpopulation; both scenarios beta=1. Not LATE.",
-          "display_math": "\\mathbb{E}[Y(d+1)-Y(d)]",
+          "display_math": "\\mathbb{E}[Y^{(d+1)}-Y^{(d)}]",
           "display_note": "Structural unit intervention on D; superpopulation."
         },
         "code_case_1": {
           "source_name": "beta",
           "source_definition": "Homogeneous structural coefficient: E[Y(do(D=d+1))-Y(do(D=d))]=beta for the specified superpopulation; both scenarios beta=1. Not LATE.",
-          "display_math": "\\mathbb{E}[Y(d+1)-Y(d)]",
+          "display_math": "\\mathbb{E}[Y^{(d+1)}-Y^{(d)}]",
           "display_note": "Structural unit intervention on D; superpopulation."
         }
       }
@@ -1075,25 +1075,25 @@
         "source_lambda11_0p5": {
           "source_name": "alpha0 = LATE",
           "source_definition": "E[Y(1)-Y(0)|D(1)>D(0)]=1 in source DGP2 without treatment-covariate interactions. LCSTE(x)=1 for every x; alpha0 is the treatment coefficient directly evaluated in source Section 6. This is an IV complier estimand despite the paper's heterogeneous-effects title.",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)\\mid D(1)\\gt D(0)]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}\\mid D^{(1)}\\gt D^{(0)}]",
           "display_note": "Population complier effect."
         },
         "source_lambda11_0p75": {
           "source_name": "alpha0 = LATE",
           "source_definition": "E[Y(1)-Y(0)|D(1)>D(0)]=1 in source DGP2 without treatment-covariate interactions. LCSTE(x)=1 for every x; alpha0 is the treatment coefficient directly evaluated in source Section 6. This is an IV complier estimand despite the paper's heterogeneous-effects title.",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)\\mid D(1)\\gt D(0)]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}\\mid D^{(1)}\\gt D^{(0)}]",
           "display_note": "Population complier effect."
         },
         "source_lambda11_1": {
           "source_name": "alpha0 = LATE",
           "source_definition": "E[Y(1)-Y(0)|D(1)>D(0)]=1 in source DGP2 without treatment-covariate interactions. LCSTE(x)=1 for every x; alpha0 is the treatment coefficient directly evaluated in source Section 6. This is an IV complier estimand despite the paper's heterogeneous-effects title.",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)\\mid D(1)\\gt D(0)]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}\\mid D^{(1)}\\gt D^{(0)}]",
           "display_note": "Population complier effect."
         },
         "source_lambda11_1p25": {
           "source_name": "alpha0 = LATE",
           "source_definition": "E[Y(1)-Y(0)|D(1)>D(0)]=1 in source DGP2 without treatment-covariate interactions. LCSTE(x)=1 for every x; alpha0 is the treatment coefficient directly evaluated in source Section 6. This is an IV complier estimand despite the paper's heterogeneous-effects title.",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)\\mid D(1)\\gt D(0)]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}\\mid D^{(1)}\\gt D^{(0)}]",
           "display_note": "Population complier effect."
         }
       }
@@ -1105,7 +1105,7 @@
         "source_section5": {
           "source_name": "ATE",
           "source_definition": "Population causal ATE E[Y(1)-Y(0)] in the explicitly adapted algebraic causal completion = E[tanh(0.1+0.5 X2)] = average conditional Wald ratio. Binary intervention a=1 versus a=0, full iid superpopulation; not a LATE.",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}]",
           "display_note": "ATE in explicitly adapted algebraic causal completion."
         }
       }
@@ -1117,7 +1117,7 @@
         "source_additive": {
           "source_name": "alpha1",
           "source_definition": "Slope coefficient alpha1 in E[Y(1)-Y(0)|D(1)>D(0),X=x]=tanh(alpha0+alpha1*x). Target population is the complier stratum conditional on x; scalar alpha1=-1 is explicitly reported in source Table 2. It is a curve coefficient, not marginal LATE or ATE.",
-          "display_math": "\\alpha_1=\\frac{d}{dx}\\operatorname{atanh}\\{\\delta_L(x)\\},\\quad \\delta_L(x)=\\mathbb{E}[Y(1)-Y(0)\\mid D(1)\\gt D(0),X=x]",
+          "display_math": "\\alpha_1=\\frac{d}{dx}\\operatorname{atanh}\\{\\delta_L(x)\\},\\quad \\delta_L(x)=\\mathbb{E}[Y^{(1)}-Y^{(0)}\\mid D^{(1)}\\gt D^{(0)},X=x]",
           "display_note": "The slope alpha_1 of the transformed conditional complier-effect curve, not the conditional or population LATE itself."
         }
       }
@@ -1129,7 +1129,7 @@
         "source_additive": {
           "source_name": "alpha1",
           "source_definition": "Slope alpha1 in atanh(delta_L(x))=alpha0+alpha1*x, where delta_L(x)=E[Y(1)-Y(0)|D(1)>D(0),x]. Potential outcomes contrast D=1 versus D=0 among conditional compliers. Equivalently [atanh(delta_L(0.5))-atanh(delta_L(-0.5))]/1.0 under the declared curve model. This parameter is not a risk difference itself and is not the population ATE.",
-          "display_math": "\\alpha_1=\\frac{d}{dx}\\operatorname{atanh}\\{\\delta_L(x)\\},\\quad \\delta_L(x)=\\mathbb{E}[Y(1)-Y(0)\\mid D(1)\\gt D(0),X=x]",
+          "display_math": "\\alpha_1=\\frac{d}{dx}\\operatorname{atanh}\\{\\delta_L(x)\\},\\quad \\delta_L(x)=\\mathbb{E}[Y^{(1)}-Y^{(0)}\\mid D^{(1)}\\gt D^{(0)},X=x]",
           "display_note": "The slope alpha_1 of the transformed conditional complier-effect curve, not the conditional or population LATE itself."
         }
       }
@@ -1176,25 +1176,25 @@
         "setting1_new_draw": {
           "source_name": "β0=.4",
           "source_definition": "β0=.4；do(A=a+1)相对do(A=a)的均值变化",
-          "display_math": "\\mathbb{E}[Y(a+1)-Y(a)]",
+          "display_math": "\\mathbb{E}[Y^{(a+1)}-Y^{(a)}]",
           "display_note": "Unit exposure intervention; duplicate-ID conflict still needs review."
         },
         "setting2_new_draw": {
           "source_name": "β0=.4",
           "source_definition": "β0=.4；do(A=a+1)相对do(A=a)的均值变化",
-          "display_math": "\\mathbb{E}[Y(a+1)-Y(a)]",
+          "display_math": "\\mathbb{E}[Y^{(a+1)}-Y^{(a)}]",
           "display_note": "Unit exposure intervention; duplicate-ID conflict still needs review."
         },
         "setting3_new_draw": {
           "source_name": "β0=.4",
           "source_definition": "β0=.4；do(A=a+1)相对do(A=a)的均值变化",
-          "display_math": "\\mathbb{E}[Y(a+1)-Y(a)]",
+          "display_math": "\\mathbb{E}[Y^{(a+1)}-Y^{(a)}]",
           "display_note": "Unit exposure intervention; duplicate-ID conflict still needs review."
         },
         "setting4_new_draw": {
           "source_name": "β0=.4",
           "source_definition": "β0=.4；do(A=a+1)相对do(A=a)的均值变化",
-          "display_math": "\\mathbb{E}[Y(a+1)-Y(a)]",
+          "display_math": "\\mathbb{E}[Y^{(a+1)}-Y^{(a)}]",
           "display_note": "Unit exposure intervention; duplicate-ID conflict still needs review."
         }
       }
@@ -1302,7 +1302,7 @@
         "original": {
           "source_name": "ITT-NDE = E[Y_{1 M_0}] - E[Y_{0 M_0}]",
           "source_definition": "Intention-to-treat natural direct effect of the randomized treatment Z with mediator M, in a design that also contains a post-treatment event D (for example noncompliance). Setting Z = z lets the post-treatment event take D(z), while the mediator is held at M(0). This is NOT the principal-stratum quantity theta^(10)_10 that the source plots, NOT an indirect effect, and NOT a complier average causal effect.",
-          "display_math": "\\mathbb{E}\\!\\left[Y\\{1,M(0)\\}-Y\\{0,M(0)\\}\\right]",
+          "display_math": "\\mathbb{E}\\!\\left[Y^{(1,M^{(0)})}-Y^{(0,M^{(0)})}\\right]",
           "display_note": "The 1/0 intervention refers to randomized assignment Z; the post-treatment event follows its treatment-specific value D(z). This ITT natural direct effect is not the principal-stratum figure target."
         }
       }
@@ -1314,7 +1314,7 @@
         "section_5": {
           "source_name": "IIE_1",
           "source_definition": "E[Y(1,G1)-Y(1,G0)], where G_a is an independent draw from M(a)|W, marginalizing the post-treatment Z under treatment a.",
-          "display_math": "\\mathbb{E}\\!\\left[Y(1,G_1)-Y(1,G_0)\\right]",
+          "display_math": "\\mathbb{E}\\!\\left[Y^{(1,G_1)}-Y^{(1,G_0)}\\right]",
           "display_note": "G_a is an independent draw from M(a) conditional on W, marginalizing post-treatment Z under a."
         }
       }
@@ -1326,7 +1326,7 @@
         "journal_section_5": {
           "source_name": "NIE_1",
           "source_definition": "E[Y(1,Z(1)) - Y(1,Z(0))] for the original §5 superpopulation, jointly intervening on all three mediators Z=(Z1,Z2,Z3). Treatment is fixed at 1 in both outcome terms.",
-          "display_math": "\\mathbb{E}\\!\\left[Y\\{1,Z(1)\\}-Y\\{1,Z(0)\\}\\right]",
+          "display_math": "\\mathbb{E}\\!\\left[Y^{(1,Z^{(1)})}-Y^{(1,Z^{(0)})}\\right]",
           "display_note": "Z is the joint vector of all three mediators; this is an adapted NIE target."
         }
       }
@@ -1338,22 +1338,22 @@
         "fixed_product_004_ratio_1": {
           "source_name": "NIE_1",
           "source_definition": "E[Y(1,M(1))-Y(1,M(0))] in the source SEM superpopulation; exposure S is named A in data columns.",
-          "display_math": "\\mathbb{E}\\!\\left[Y\\{1,M(1)\\}-Y\\{1,M(0)\\}\\right]"
+          "display_math": "\\mathbb{E}\\!\\left[Y^{(1,M^{(1)})}-Y^{(1,M^{(0)})}\\right]"
         },
         "fixed_null_h01": {
           "source_name": "NIE_1",
           "source_definition": "E[Y(1,M(1))-Y(1,M(0))] in the source SEM superpopulation; exposure S is named A in data columns.",
-          "display_math": "\\mathbb{E}\\!\\left[Y\\{1,M(1)\\}-Y\\{1,M(0)\\}\\right]"
+          "display_math": "\\mathbb{E}\\!\\left[Y^{(1,M^{(1)})}-Y^{(1,M^{(0)})}\\right]"
         },
         "fixed_null_h02": {
           "source_name": "NIE_1",
           "source_definition": "E[Y(1,M(1))-Y(1,M(0))] in the source SEM superpopulation; exposure S is named A in data columns.",
-          "display_math": "\\mathbb{E}\\!\\left[Y\\{1,M(1)\\}-Y\\{1,M(0)\\}\\right]"
+          "display_math": "\\mathbb{E}\\!\\left[Y^{(1,M^{(1)})}-Y^{(1,M^{(0)})}\\right]"
         },
         "fixed_null_h03": {
           "source_name": "NIE_1",
           "source_definition": "E[Y(1,M(1))-Y(1,M(0))] in the source SEM superpopulation; exposure S is named A in data columns.",
-          "display_math": "\\mathbb{E}\\!\\left[Y\\{1,M(1)\\}-Y\\{1,M(0)\\}\\right]"
+          "display_math": "\\mathbb{E}\\!\\left[Y^{(1,M^{(1)})}-Y^{(1,M^{(0)})}\\right]"
         }
       }
     },
@@ -1364,7 +1364,7 @@
         "LNL": {
           "source_name": "NIE = alpha_0 . beta_0",
           "source_definition": "Natural indirect effect through the sparse mediator set: NIE = E[Y(1, M(1))] - E[Y(1, M(0))]. Under the source's additive structural model (its equation (1)) and its Proposition 2.1 this equals the inner product alpha_0 . beta_0 of the treatment-to-mediator and mediator-to-outcome coefficient vectors. The companion natural direct effect equals gamma_0. This is NOT a total effect and NOT a single-mediator indirect effect; ten candidate mediators are generated and only the first three are true mediators.",
-          "display_math": "\\mathbb{E}\\!\\left[Y\\{1,M(1)\\}-Y\\{1,M(0)\\}\\right]",
+          "display_math": "\\mathbb{E}\\!\\left[Y^{(1,M^{(1)})}-Y^{(1,M^{(0)})}\\right]",
           "display_note": "M is the joint mediator vector; under the stated additive model this equals the coefficient inner product."
         }
       }
@@ -1376,7 +1376,7 @@
         "LNN": {
           "source_name": "NIE = alpha_0 . beta_0",
           "source_definition": "Natural indirect effect through the sparse mediator set: NIE = E[Y(1, M(1))] - E[Y(1, M(0))]. Under the source's additive structural model (its equation (1)) and its Proposition 2.1 this equals the inner product alpha_0 . beta_0 of the treatment-to-mediator and mediator-to-outcome coefficient vectors. The companion natural direct effect equals gamma_0. This is NOT a total effect and NOT a single-mediator indirect effect; ten candidate mediators are generated and only the first three are true mediators.",
-          "display_math": "\\mathbb{E}\\!\\left[Y\\{1,M(1)\\}-Y\\{1,M(0)\\}\\right]",
+          "display_math": "\\mathbb{E}\\!\\left[Y^{(1,M^{(1)})}-Y^{(1,M^{(0)})}\\right]",
           "display_note": "M is the joint mediator vector; under the stated additive model this equals the coefficient inner product."
         }
       }
@@ -1388,7 +1388,7 @@
         "NNN": {
           "source_name": "NIE = alpha_0 . beta_0",
           "source_definition": "Natural indirect effect through the sparse mediator set: NIE = E[Y(1, M(1))] - E[Y(1, M(0))]. Under the source's additive structural model (its equation (1)) and its Proposition 2.1 this equals the inner product alpha_0 . beta_0 of the treatment-to-mediator and mediator-to-outcome coefficient vectors. The companion natural direct effect equals gamma_0. This is NOT a total effect and NOT a single-mediator indirect effect; ten candidate mediators are generated and only the first three are true mediators.",
-          "display_math": "\\mathbb{E}\\!\\left[Y\\{1,M(1)\\}-Y\\{1,M(0)\\}\\right]",
+          "display_math": "\\mathbb{E}\\!\\left[Y^{(1,M^{(1)})}-Y^{(1,M^{(0)})}\\right]",
           "display_note": "M is the joint mediator vector; under the stated additive model this equals the coefficient inner product."
         }
       }
@@ -1400,7 +1400,7 @@
         "simulation_b_n200_p100_rho05": {
           "source_name": "NIE_1",
           "source_definition": "E[Y(1,M(1))-Y(1,M(0))] for the full 100-vector mediator under the additive structural equations.",
-          "display_math": "\\mathbb{E}\\!\\left[Y\\{1,M(1)\\}-Y\\{1,M(0)\\}\\right]",
+          "display_math": "\\mathbb{E}\\!\\left[Y^{(1,M^{(1)})}-Y^{(1,M^{(0)})}\\right]",
           "display_note": "M is the full 100-dimensional mediator vector."
         }
       }
@@ -1425,7 +1425,7 @@
         "original": {
           "source_name": "P_AMY = E(Y[M{a, C1(a')}, C1(a'), a']) - E[Y(a')]",
           "source_definition": "The path-specific effect of A on Y along the path A -> M -> Y, as defined in Section 2 of the source. It is the CONTRAST of two nested counterfactual means: in both arms the treatment-induced confounder vector C1 and the outcome are held at the reference level a' = 0, and only the exposure level fed to the mediator equation moves, from a' = 0 to a = 1. Writing beta_0 = E(Y[M{a, C1(a')}, C1(a'), a']) for the moved arm and E[Y(a')] for the unmoved arm, P_AMY = beta_0 - E[Y(a')]. beta_0 on its own is a counterfactual MEAN, not an effect, and is registered only as a component; the source's Figure 2 plots beta_0, which is why that figure is used as coding evidence rather than as the target. P_AMY is NOT a natural indirect effect, NOT a natural direct effect and NOT a total effect; keeping C1 at a' inside the mediator counterfactual is what distinguishes it from the standard natural effects.",
-          "display_math": "\\mathbb{E}\\!\\left[Y\\{M(1,C_1(0)),C_1(0),0\\}-Y(0)\\right]",
+          "display_math": "\\mathbb{E}\\!\\left[Y^{(M^{(1,C_1^{(0)})},C_1^{(0)},0)}-Y^{(0)}\\right]",
           "display_note": "Path-specific effect along A → M → Y; the treatment-induced confounder C1 remains at its reference-treatment value."
         }
       }
@@ -1437,7 +1437,7 @@
         "dgp1_auxiliary_shadow": {
           "source_name": "MF theta = E[Y(1, M(0))]",
           "source_definition": "Mediation functional: the mean potential outcome when treatment is set to 1 while the mediator is set to the value it would have taken under treatment 0, theta = E[Y(1, M(0))]. The source calls this the fundamental quantity and derives the natural indirect effect xi(1) = E[Y(1,M(1))] - theta, the natural direct effect zeta(0) = theta - E[Y(0,M(0))] and the total effect tau = xi(1) + zeta(0) from it. theta is a cross-world mean and is NOT an indirect effect, NOT a direct effect and NOT a total effect.",
-          "display_math": "\\mathbb{E}\\!\\left[Y\\{1,M(0)\\}\\right]",
+          "display_math": "\\mathbb{E}\\!\\left[Y^{(1,M^{(0)})}\\right]",
           "display_note": "A cross-world potential outcome mean, not an indirect or direct effect."
         }
       }
@@ -1449,7 +1449,7 @@
         "dgp2_internal_shadow": {
           "source_name": "MF theta = E[Y(1, M(0))]",
           "source_definition": "Mediation functional: the mean potential outcome when treatment is set to 1 while the mediator is set to the value it would have taken under treatment 0, theta = E[Y(1, M(0))]. The source calls this the fundamental quantity and derives the natural indirect effect xi(1) = E[Y(1,M(1))] - theta, the natural direct effect zeta(0) = theta - E[Y(0,M(0))] and the total effect tau = xi(1) + zeta(0) from it. theta is a cross-world mean and is NOT an indirect effect, NOT a direct effect and NOT a total effect.",
-          "display_math": "\\mathbb{E}\\!\\left[Y\\{1,M(0)\\}\\right]",
+          "display_math": "\\mathbb{E}\\!\\left[Y^{(1,M^{(0)})}\\right]",
           "display_note": "A cross-world potential outcome mean, not an indirect or direct effect."
         }
       }
@@ -1461,7 +1461,7 @@
         "native": {
           "source_name": "NIE",
           "source_definition": "NIE = E[Y(1,M(1))-Y(1,M(0))] in the adapted fixed-SEM superpopulation, jointly intervening on the complete mediator vector.",
-          "display_math": "\\mathbb{E}\\!\\left[Y\\{1,M(1)\\}-Y\\{1,M(0)\\}\\right]",
+          "display_math": "\\mathbb{E}\\!\\left[Y^{(1,M^{(1)})}-Y^{(1,M^{(0)})}\\right]",
           "display_note": "The intervention applies jointly to the complete mediator vector when M is multivariate; the DGP is an adaptation."
         }
       }
@@ -1473,7 +1473,7 @@
         "native": {
           "source_name": "NIE",
           "source_definition": "NIE = E[Y(1,M(1))-Y(1,M(0))] in the adapted fixed-SEM superpopulation, jointly intervening on the complete mediator vector.",
-          "display_math": "\\mathbb{E}\\!\\left[Y\\{1,M(1)\\}-Y\\{1,M(0)\\}\\right]",
+          "display_math": "\\mathbb{E}\\!\\left[Y^{(1,M^{(1)})}-Y^{(1,M^{(0)})}\\right]",
           "display_note": "The intervention applies jointly to the complete mediator vector when M is multivariate; the DGP is an adaptation."
         }
       }
@@ -1485,7 +1485,7 @@
         "native": {
           "source_name": "NIE",
           "source_definition": "NIE = E[Y(1,M(1))-Y(1,M(0))] in the adapted fixed-SEM superpopulation, jointly intervening on the complete mediator vector.",
-          "display_math": "\\mathbb{E}\\!\\left[Y\\{1,M(1)\\}-Y\\{1,M(0)\\}\\right]",
+          "display_math": "\\mathbb{E}\\!\\left[Y^{(1,M^{(1)})}-Y^{(1,M^{(0)})}\\right]",
           "display_note": "The intervention applies jointly to the complete mediator vector when M is multivariate; the DGP is an adaptation."
         }
       }
@@ -1497,7 +1497,7 @@
         "native": {
           "source_name": "NIE",
           "source_definition": "NIE = E[Y(1,M(1))-Y(1,M(0))] in the adapted fixed-SEM superpopulation, jointly intervening on the complete mediator vector.",
-          "display_math": "\\mathbb{E}\\!\\left[Y\\{1,M(1)\\}-Y\\{1,M(0)\\}\\right]",
+          "display_math": "\\mathbb{E}\\!\\left[Y^{(1,M^{(1)})}-Y^{(1,M^{(0)})}\\right]",
           "display_note": "The intervention applies jointly to the complete mediator vector when M is multivariate; the DGP is an adaptation."
         }
       }
@@ -1509,7 +1509,7 @@
         "native": {
           "source_name": "NIE",
           "source_definition": "NIE = E[Y(1,M(1))-Y(1,M(0))] in the adapted fixed-SEM superpopulation, jointly intervening on the complete mediator vector.",
-          "display_math": "\\mathbb{E}\\!\\left[Y\\{1,M(1)\\}-Y\\{1,M(0)\\}\\right]",
+          "display_math": "\\mathbb{E}\\!\\left[Y^{(1,M^{(1)})}-Y^{(1,M^{(0)})}\\right]",
           "display_note": "The intervention applies jointly to the complete mediator vector when M is multivariate; the DGP is an adaptation."
         }
       }
@@ -1521,7 +1521,7 @@
         "native": {
           "source_name": "NIE",
           "source_definition": "NIE = E[Y(1,M(1))-Y(1,M(0))] in the adapted fixed-SEM superpopulation, jointly intervening on the complete mediator vector.",
-          "display_math": "\\mathbb{E}\\!\\left[Y\\{1,M(1)\\}-Y\\{1,M(0)\\}\\right]",
+          "display_math": "\\mathbb{E}\\!\\left[Y^{(1,M^{(1)})}-Y^{(1,M^{(0)})}\\right]",
           "display_note": "The intervention applies jointly to the complete mediator vector when M is multivariate; the DGP is an adaptation."
         }
       }
@@ -1533,7 +1533,7 @@
         "native": {
           "source_name": "NIE",
           "source_definition": "NIE = E[Y(1,M(1))-Y(1,M(0))] in the adapted fixed-SEM superpopulation, jointly intervening on the complete mediator vector.",
-          "display_math": "\\mathbb{E}\\!\\left[Y\\{1,M(1)\\}-Y\\{1,M(0)\\}\\right]",
+          "display_math": "\\mathbb{E}\\!\\left[Y^{(1,M^{(1)})}-Y^{(1,M^{(0)})}\\right]",
           "display_note": "The intervention applies jointly to the complete mediator vector when M is multivariate; the DGP is an adaptation."
         }
       }
@@ -1545,7 +1545,7 @@
         "native": {
           "source_name": "NIE",
           "source_definition": "NIE = E[Y(1,M(1))-Y(1,M(0))] in the adapted fixed-SEM superpopulation, jointly intervening on the complete mediator vector.",
-          "display_math": "\\mathbb{E}\\!\\left[Y\\{1,M(1)\\}-Y\\{1,M(0)\\}\\right]",
+          "display_math": "\\mathbb{E}\\!\\left[Y^{(1,M^{(1)})}-Y^{(1,M^{(0)})}\\right]",
           "display_note": "The intervention applies jointly to the complete mediator vector when M is multivariate; the DGP is an adaptation."
         }
       }
@@ -1557,7 +1557,7 @@
         "native": {
           "source_name": "NIE",
           "source_definition": "NIE = E[Y(1,M(1))-Y(1,M(0))] in the adapted fixed-SEM superpopulation, jointly intervening on the complete mediator vector.",
-          "display_math": "\\mathbb{E}\\!\\left[Y\\{1,M(1)\\}-Y\\{1,M(0)\\}\\right]",
+          "display_math": "\\mathbb{E}\\!\\left[Y^{(1,M^{(1)})}-Y^{(1,M^{(0)})}\\right]",
           "display_note": "The intervention applies jointly to the complete mediator vector when M is multivariate; the DGP is an adaptation."
         }
       }
@@ -1569,7 +1569,7 @@
         "native": {
           "source_name": "NIE",
           "source_definition": "NIE = E[Y(1,M(1))-Y(1,M(0))] in the adapted fixed-SEM superpopulation, jointly intervening on the complete mediator vector.",
-          "display_math": "\\mathbb{E}\\!\\left[Y\\{1,M(1)\\}-Y\\{1,M(0)\\}\\right]",
+          "display_math": "\\mathbb{E}\\!\\left[Y^{(1,M^{(1)})}-Y^{(1,M^{(0)})}\\right]",
           "display_note": "The intervention applies jointly to the complete mediator vector when M is multivariate; the DGP is an adaptation."
         }
       }
@@ -1581,7 +1581,7 @@
         "native": {
           "source_name": "NIE",
           "source_definition": "NIE = E[Y(1,M(1))-Y(1,M(0))] in the adapted fixed-SEM superpopulation, jointly intervening on the complete mediator vector.",
-          "display_math": "\\mathbb{E}\\!\\left[Y\\{1,M(1)\\}-Y\\{1,M(0)\\}\\right]",
+          "display_math": "\\mathbb{E}\\!\\left[Y^{(1,M^{(1)})}-Y^{(1,M^{(0)})}\\right]",
           "display_note": "The intervention applies jointly to the complete mediator vector when M is multivariate; the DGP is an adaptation."
         }
       }
@@ -1593,7 +1593,7 @@
         "native": {
           "source_name": "NIE",
           "source_definition": "NIE = E[Y(1,M(1))-Y(1,M(0))] in the adapted fixed-SEM superpopulation, jointly intervening on the complete mediator vector.",
-          "display_math": "\\mathbb{E}\\!\\left[Y\\{1,M(1)\\}-Y\\{1,M(0)\\}\\right]",
+          "display_math": "\\mathbb{E}\\!\\left[Y^{(1,M^{(1)})}-Y^{(1,M^{(0)})}\\right]",
           "display_note": "The intervention applies jointly to the complete mediator vector when M is multivariate; the DGP is an adaptation."
         }
       }
@@ -1605,7 +1605,7 @@
         "native": {
           "source_name": "NIE",
           "source_definition": "NIE = E[Y(1,M(1))-Y(1,M(0))] in the adapted fixed-SEM superpopulation, jointly intervening on the complete mediator vector.",
-          "display_math": "\\mathbb{E}\\!\\left[Y\\{1,M(1)\\}-Y\\{1,M(0)\\}\\right]",
+          "display_math": "\\mathbb{E}\\!\\left[Y^{(1,M^{(1)})}-Y^{(1,M^{(0)})}\\right]",
           "display_note": "The intervention applies jointly to the complete mediator vector when M is multivariate; the DGP is an adaptation."
         }
       }
@@ -1617,7 +1617,7 @@
         "native": {
           "source_name": "NIE",
           "source_definition": "NIE = E[Y(1,M(1))-Y(1,M(0))] in the adapted fixed-SEM superpopulation, jointly intervening on the complete mediator vector.",
-          "display_math": "\\mathbb{E}\\!\\left[Y\\{1,M(1)\\}-Y\\{1,M(0)\\}\\right]",
+          "display_math": "\\mathbb{E}\\!\\left[Y^{(1,M^{(1)})}-Y^{(1,M^{(0)})}\\right]",
           "display_note": "The intervention applies jointly to the complete mediator vector when M is multivariate; the DGP is an adaptation."
         }
       }
@@ -1629,7 +1629,7 @@
         "section_4_1_binary": {
           "source_name": "NDE",
           "source_definition": "E[Y(1,M(0))-Y(0,M(0))] under the specified binary copula structural model, with C following the treatment in each outcome potential.",
-          "display_math": "\\mathbb{E}\\!\\left[Y\\{1,M(0)\\}-Y\\{0,M(0)\\}\\right]",
+          "display_math": "\\mathbb{E}\\!\\left[Y^{(1,M^{(0)})}-Y^{(0,M^{(0)})}\\right]",
           "display_note": "The treatment-induced C follows its treatment-specific value in each outcome potential."
         }
       }
@@ -1641,7 +1641,7 @@
         "section_4_1_continuous": {
           "source_name": "NDE",
           "source_definition": "E[Y(1,M(0))-Y(0,M(0))], with the treatment-induced C under its own treatment in each outcome potential.",
-          "display_math": "\\mathbb{E}\\!\\left[Y\\{1,M(0)\\}-Y\\{0,M(0)\\}\\right]",
+          "display_math": "\\mathbb{E}\\!\\left[Y^{(1,M^{(0)})}-Y^{(0,M^{(0)})}\\right]",
           "display_note": "The treatment-induced C follows its treatment-specific value in each outcome potential."
         }
       }
@@ -1655,7 +1655,7 @@
           "source_definition": "Cumulative path-specific effect through the second mediator: theta_{a1,a2,a3} = E[Y(a3, M1(a1), M2(a2, M1(a1)))], and cPSE_M2 = theta_011 - theta_001 holds the Y-argument at A=1 and the M1-argument at A=0 while moving only the M2-argument from A=0 to A=1. This is NOT the natural indirect effect, NOT the natural direct effect and NOT the total effect.",
           "display_math": "\\theta_{011}-\\theta_{001}",
           "display_note": "This is the cumulative path-specific effect through the second mediator.",
-          "display_note_math": "\\theta_{a_1a_2a_3}=\\mathbb{E}[Y\\{a_3,M_1(a_1),M_2(a_2,M_1(a_1))\\}]"
+          "display_note_math": "\\theta_{a_1a_2a_3}=\\mathbb{E}[Y^{(a_3,M_1^{(a_1)},M_2^{(a_2,M_1^{(a_1)})})}]"
         }
       }
     },
@@ -1666,7 +1666,7 @@
         "setting_C_III": {
           "source_name": "NIE_1",
           "source_definition": "E[Y(1,M(1))-Y(1,M(0))] in the full-data law before MNAR masking.",
-          "display_math": "\\mathbb{E}\\!\\left[Y\\{1,M(1)\\}-Y\\{1,M(0)\\}\\right]",
+          "display_math": "\\mathbb{E}\\!\\left[Y^{(1,M^{(1)})}-Y^{(1,M^{(0)})}\\right]",
           "display_note": "Full-data estimand before MNAR masking."
         }
       }
@@ -1678,7 +1678,7 @@
         "original": {
           "source_name": "theta_NIE = theta_11 - theta_10",
           "source_definition": "E[Y(1,M(1)) - Y(1,M(0))] in the superpopulation defined by the fixed DGP.",
-          "display_math": "\\mathbb{E}\\!\\left[Y\\{1,M(1)\\}-Y\\{1,M(0)\\}\\right]"
+          "display_math": "\\mathbb{E}\\!\\left[Y^{(1,M^{(1)})}-Y^{(1,M^{(0)})}\\right]"
         }
       }
     },
@@ -2500,7 +2500,7 @@
         "original": {
           "source_name": "psi_ATE",
           "source_definition": "E[Y(1)-Y(0)] in the source population, same marginal U,W,X under both interventions.",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}]",
           "display_note": "Source population; original bridge-function derivation remains available."
         }
       }
@@ -2512,7 +2512,7 @@
         "original": {
           "source_name": "ATE",
           "source_definition": "ATE = E[Y(1)−Y(0)] = 2。",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}]",
           "display_note": "Source population; original bridge-function derivation remains available."
         }
       }
@@ -2524,7 +2524,7 @@
         "original": {
           "source_name": "NDE",
           "source_definition": "E[Y(1,M(0))-Y(0,M(0))] in the source population; NIE and total effect are auxiliary only.",
-          "display_math": "\\mathbb{E}[Y(1,M(0))-Y(0,M(0))]",
+          "display_math": "\\mathbb{E}[Y^{(1,M^{(0)})}-Y^{(0,M^{(0)})}]",
           "display_note": "Natural direct effect."
         }
       }
@@ -2536,7 +2536,7 @@
         "original": {
           "source_name": "NDE",
           "source_definition": "NDE = E[Y(1,M(0))−Y(0,M(0))] = 2。",
-          "display_math": "\\mathbb{E}[Y(1,M(0))-Y(0,M(0))]",
+          "display_math": "\\mathbb{E}[Y^{(1,M^{(0)})}-Y^{(0,M^{(0)})}]",
           "display_note": "Natural direct effect."
         }
       }
@@ -2548,7 +2548,7 @@
         "paper_q2_p5_fixed_design": {
           "source_name": "theta",
           "source_definition": "τ = E[Y(1)−Y(0)|G=0]，给定登记的固定系数。",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)\\mid G=0]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}\\mid G=0]",
           "display_note": "Experimental population; fixed coefficients."
         }
       }
@@ -2560,25 +2560,25 @@
         "table-eta001-rr020": {
           "source_name": "beta_log_RR",
           "source_definition": "log(E[Y(1)]/E[Y(0)]) in the source population before S selection; not selected-sample log odds ratio.",
-          "display_math": "\\log\\{\\mathbb{E}[Y(1)]/\\mathbb{E}[Y(0)]\\}",
+          "display_math": "\\log\\{\\mathbb{E}[Y^{(1)}]/\\mathbb{E}[Y^{(0)}]\\}",
           "display_note": "Source population before selection S."
         },
         "table-eta001-rr050": {
           "source_name": "beta_log_RR",
           "source_definition": "log(E[Y(1)]/E[Y(0)]) in the source population before S selection; not selected-sample log odds ratio.",
-          "display_math": "\\log\\{\\mathbb{E}[Y(1)]/\\mathbb{E}[Y(0)]\\}",
+          "display_math": "\\log\\{\\mathbb{E}[Y^{(1)}]/\\mathbb{E}[Y^{(0)}]\\}",
           "display_note": "Source population before selection S."
         },
         "table-eta001-rr070": {
           "source_name": "beta_log_RR",
           "source_definition": "log(E[Y(1)]/E[Y(0)]) in the source population before S selection; not selected-sample log odds ratio.",
-          "display_math": "\\log\\{\\mathbb{E}[Y(1)]/\\mathbb{E}[Y(0)]\\}",
+          "display_math": "\\log\\{\\mathbb{E}[Y^{(1)}]/\\mathbb{E}[Y^{(0)}]\\}",
           "display_note": "Source population before selection S."
         },
         "table-eta001-rr100": {
           "source_name": "beta_log_RR",
           "source_definition": "log(E[Y(1)]/E[Y(0)]) in the source population before S selection; not selected-sample log odds ratio.",
-          "display_math": "\\log\\{\\mathbb{E}[Y(1)]/\\mathbb{E}[Y(0)]\\}",
+          "display_math": "\\log\\{\\mathbb{E}[Y^{(1)}]/\\mathbb{E}[Y^{(0)}]\\}",
           "display_note": "Source population before selection S."
         }
       }
@@ -2590,25 +2590,25 @@
         "table-eta001-rr020": {
           "source_name": "beta_log_RR",
           "source_definition": "log(E[Y(1)]/E[Y(0)]) in the source population before S selection; not selected-sample log odds ratio.",
-          "display_math": "\\log\\{\\mathbb{E}[Y(1)]/\\mathbb{E}[Y(0)]\\}",
+          "display_math": "\\log\\{\\mathbb{E}[Y^{(1)}]/\\mathbb{E}[Y^{(0)}]\\}",
           "display_note": "Source population before selection S."
         },
         "table-eta001-rr050": {
           "source_name": "beta_log_RR",
           "source_definition": "log(E[Y(1)]/E[Y(0)]) in the source population before S selection; not selected-sample log odds ratio.",
-          "display_math": "\\log\\{\\mathbb{E}[Y(1)]/\\mathbb{E}[Y(0)]\\}",
+          "display_math": "\\log\\{\\mathbb{E}[Y^{(1)}]/\\mathbb{E}[Y^{(0)}]\\}",
           "display_note": "Source population before selection S."
         },
         "table-eta001-rr070": {
           "source_name": "beta_log_RR",
           "source_definition": "log(E[Y(1)]/E[Y(0)]) in the source population before S selection; not selected-sample log odds ratio.",
-          "display_math": "\\log\\{\\mathbb{E}[Y(1)]/\\mathbb{E}[Y(0)]\\}",
+          "display_math": "\\log\\{\\mathbb{E}[Y^{(1)}]/\\mathbb{E}[Y^{(0)}]\\}",
           "display_note": "Source population before selection S."
         },
         "table-eta001-rr100": {
           "source_name": "beta_log_RR",
           "source_definition": "log(E[Y(1)]/E[Y(0)]) in the source population before S selection; not selected-sample log odds ratio.",
-          "display_math": "\\log\\{\\mathbb{E}[Y(1)]/\\mathbb{E}[Y(0)]\\}",
+          "display_math": "\\log\\{\\mathbb{E}[Y^{(1)}]/\\mathbb{E}[Y^{(0)}]\\}",
           "display_note": "Source population before selection S."
         }
       }
@@ -2620,13 +2620,13 @@
         "L1": {
           "source_name": "ATE",
           "source_definition": "ATE = E[0.5+3X1−5X2+c4 W]。",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}]",
           "display_note": "Source population; original bridge-function derivation remains available."
         },
         "L2": {
           "source_name": "ATE",
           "source_definition": "ATE = E[0.5+3X1−5X2+c4 W]。",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}]",
           "display_note": "Source population; original bridge-function derivation remains available."
         }
       }
@@ -2638,7 +2638,7 @@
         "N2": {
           "source_name": "ATE",
           "source_definition": "ATE = E[0.25−6X1X2] = −0.125。",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}]",
           "display_note": "Source population; original bridge-function derivation remains available."
         }
       }
@@ -2650,7 +2650,7 @@
         "N1": {
           "source_name": "ATE",
           "source_definition": "ATE = E[2.3+|X1−1|−|X2+1|+g(X)W]。",
-          "display_math": "\\mathbb{E}[Y(1)-Y(0)]",
+          "display_math": "\\mathbb{E}[Y^{(1)}-Y^{(0)}]",
           "display_note": "Source population; original bridge-function derivation remains available."
         }
       }
@@ -2667,7 +2667,7 @@
         "journal_r1_no_covariates": {
           "source_name": "theta",
           "source_definition": "β = log{E[Y_t(1)]/E[Y_t(0)]} = −2；均值比为exp(−2)。",
-          "display_math": "\\log\\{\\mathbb{E}[Y_t(1)]/\\mathbb{E}[Y_t(0)]\\}",
+          "display_math": "\\log\\{\\mathbb{E}[Y_t^{(1)}]/\\mathbb{E}[Y_t^{(0)}]\\}",
           "display_note": "Treated unit; post-period marginal means."
         }
       }
@@ -2691,7 +2691,7 @@
         "original": {
           "source_name": "beta1",
           "source_definition": "Common slope beta1 in E[Y(a0,a1)]=beta0+beta1*(a0+a1). The 11-vs-00 contrast is separately 2*beta1.",
-          "display_math": "\\beta_1=\\mathbb{E}[Y(1,0)-Y(0,0)]",
+          "display_math": "\\beta_1=\\mathbb{E}[Y^{(1,0)}-Y^{(0,0)}]",
           "display_note": "Common slope beta_1 in E[Y(a_0,a_1)]=beta_0+beta_1(a_0+a_1); the 11-vs-00 contrast is 2 beta_1."
         }
       }
@@ -2703,7 +2703,7 @@
         "original": {
           "source_name": "theta",
           "source_definition": "E[Y(1,1)−Y(0,0)] = 2。",
-          "display_math": "\\mathbb{E}[Y(1,1)-Y(0,0)]",
+          "display_math": "\\mathbb{E}[Y^{(1,1)}-Y^{(0,0)}]",
           "display_note": "Two-visit intervention contrast."
         }
       }

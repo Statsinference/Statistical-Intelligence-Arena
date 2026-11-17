@@ -1,0 +1,25 @@
+name: Preview counterfactual notation
+on:
+  push:
+    branches: [codex/counterfactual-registry]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: dgp-submissions
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install pytest==8.4.2
+      - name: Verify curated counterfactual expressions
+        run: python -m pytest tests/test_counterfactual_display.py tests/test_concise_definitions.py -q
+      - name: Run integration regressions
+        run: python integration/run_regressions.py
+      - name: Regenerate catalog without executing submitted code
+        run: python -m tools.dgp_registry.github_intake --incoming incoming --output /tmp/counterfactual-registry
