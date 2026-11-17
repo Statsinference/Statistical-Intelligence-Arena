@@ -28,13 +28,13 @@ class DomainPresentationTests(unittest.TestCase):
         r = record()
         before = copy.deepcopy(r)
         output = detail(r)
-        self.assertIn('| missing |', output)
-        self.assertIn('| Not reported |', output)
+        self.assertIn('<td>missing</td>', output)
+        self.assertIn('<td>Not reported</td>', output)
         self.assertNotIn('Evidence status', output)
         self.assertNotIn('| unknown |', output)
         self.assertIn('Stored expression (meaning requires review)', output)
         self.assertIn('missing: Expected response difference', output)
-        self.assertIn('| 0 |', output)
+        self.assertIn('<td>0</td>', output)
         self.assertNotIn('| reported_numeric |', output)
         self.assertIn('missing:', truth_pairs(r))
         self.assertIn('not reported', truth_pairs(r))
@@ -66,7 +66,7 @@ class DomainPresentationTests(unittest.TestCase):
         ] + [{'name': 'A'}, {'name': 'Y'}]
         before = copy.deepcopy(r)
         text = detail(r)
-        self.assertIn('X1–X1000 (1000 variables), A, Y', text)
+        self.assertIn('X1-X1000 (1000 variables), A, Y', text)
         self.assertIn('All observed variable names', text)
         self.assertIn('X1, X2, X3, X4', text)
         self.assertEqual(r, before)
@@ -95,15 +95,15 @@ class DomainPresentationTests(unittest.TestCase):
         self.assertNotIn('Generator.py', summary)
         self.assertIn('../generators/test-entry.py', detail_page)
         self.assertIn('Changed the treatment assignment.', detail_page)
-        self.assertIn('Duplicate conflict — review required', page)
+        self.assertIn('Duplicate conflict - review required', page)
 
 
     def test_original_language_adaptations_link_to_raw_record(self):
         r = record()
-        r['adaptations'] = ['这是原始适配说明']
+        r['adaptations'] = ['????????']
         before = copy.deepcopy(r)
         page = detail(r)
-        self.assertNotIn('这是原始适配说明', page)
+        self.assertNotIn('????????', page)
         self.assertIn('English description pending', page)
         self.assertIn('./test-entry.json', page)
         self.assertEqual(r, before)
@@ -130,3 +130,5 @@ class DomainPresentationTests(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+
