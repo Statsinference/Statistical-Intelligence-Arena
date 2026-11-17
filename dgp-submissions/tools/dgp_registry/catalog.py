@@ -9,6 +9,9 @@ from .title_display import display_title
 from .presentation_en import english_display, sampling_display
 from .paper_list import paper_list_tables, _domain_papers, paper_title, paper_title_with_venue, generator_link, generator_file
 from .listing_metadata import venue_abbreviation, keyword_entries, keywords, keywords_text
+from .target_index import load_labels, target_name, render_target_indexes, TARGET_GROUPS
+
+TARGET_LABELS = load_labels()
 
 
 def cell(v):
@@ -21,7 +24,7 @@ def cell(v):
 def truth_pairs(rec):
     pairs=[]
     for s in rec.get('scenarios') or []:
-        est = (s.get('estimand') or {}).get('name') or (rec.get('estimand') or {}).get('name') or 'unknown'
+        est = target_name(rec, TARGET_LABELS) if not s.get('estimand') or s.get('estimand') == rec.get('estimand') else 'Needs review'
         tr = s.get('truth') or {}
         val = tr.get('value') if tr.get('value') is not None else 'not reported'
         pairs.append(f"{cell(s.get('id'))}: {cell(est)} = {cell(val)}")
@@ -29,22 +32,8 @@ def truth_pairs(rec):
 
 
 def concise_target(rec, limit=90):
-    """Summarize submitted target names; full scenario details remain linked.
-
-    Names are descriptive metadata and may contain equations, so we neither
-    infer a canonical estimand nor try to split or interpret their notation.
-    """
-    names = []
-    scenarios = rec.get('scenarios') or []
-    for scenario in scenarios or [{}]:
-        estimand = scenario.get('estimand') or rec.get('estimand') or {}
-        name = ' '.join(str(estimand.get('name') or 'Not specified').split())
-        if name not in names:
-            names.append(name)
-    label = '; '.join(names)
-    if len(label) > limit:
-        label = label[:limit - 1].rstrip() + '…'
-    return cell(label)
+    """Return the source-bound audited target label, or flag for review."""
+    return cell(target_name(rec, TARGET_LABELS))
 
 
 def display_truth_value(truth):
@@ -125,7 +114,8 @@ def detail(rec):
     for s in rec.get('scenarios') or []:
         e=s.get('estimand') or rec.get('estimand') or {}; t=s.get('truth') or {}
         lines.append('| '+ ' | '.join(cell(x) for x in (
-            s.get('id'),e.get('name'),e.get('definition'),display_truth_value(t),t.get('status')))+' |')
+            s.get('id'),target_name(source_rec, TARGET_LABELS) if not s.get('estimand') or s.get('estimand') == source_rec.get('estimand') else 'Needs review',e.get('definition'),display_truth_value(t),t.get('status')))+' |')
+    lines.extend(['', '**Original submitted target notation:** ' + cell((source_rec.get('estimand') or {}).get('name')), ''])
     missing_expressions = [(s.get('id'), (s.get('truth') or {}).get('expression'))
                            for s in rec.get('scenarios') or []
                            if (s.get('truth') or {}).get('value') is None
@@ -187,10 +177,12 @@ def build(records, output_root: Path, notes=()):
         title.append(f'| {cell(label)} | {len(_domain_papers(group))} | {len(group)} | [Browse](by-domain/{key}.md) |')
         page=[f'# {label}', '',
               f'**{len(group)} submitted DGP mechanism(s) · draft / unverified.**','',
-              '> Target names are submitted labels, not verified classifications. '
+              '> Standardized target names are based on submitted definitions and require scientific review. '
               'Open each DGP for scenario definitions and reported values.', '',
-              '| Paper Title | DGP mechanism | Keywords | Target (submitted name) | Scenarios | Review status |',
+              '| Paper Title | DGP mechanism | Keywords | Estimand | Scenarios | Review status |',
               '|---|---|---|---|---:|---|']
+        if key in TARGET_GROUPS:
+            page[4:4] = [f'[Browse estimands within this area](../by-target/{key}.md)', '']
         summary.extend([f'## {label}', ''])
         if not group:
             page.append('| — | No DGPs submitted yet | — | — | 0 | — |')
@@ -203,6 +195,7 @@ def build(records, output_root: Path, notes=()):
             summary.append(one)
         summary.append('')
         (by/f'{key}.md').write_text('\n'.join(page)+'\n',encoding='utf-8')
+    render_target_indexes(records, out, TARGET_LABELS)
     title.extend([''] + paper_list_tables(records, draft_prefix='drafts/', domain_prefix='by-domain/', generator_prefix='generators/'))
     if buckets.get('unclassified'):
         title.extend(['', '## Needs classification', '',
@@ -226,6 +219,7 @@ def build(records, output_root: Path, notes=()):
         'records':[{'record_id':r['record_id'],'domain':r.get('domain'),'paper':(r.get('paper') or {}).get('citation'),
                     'paper_doi':(r.get('paper') or {}).get('doi'),
                     'mechanism':display_title(r),
+                    'standard_target':target_name(r, TARGET_LABELS),
                     'paper_title':paper_title(r),
                     'venue_abbreviation':venue_abbreviation(r),
                     'keywords':keywords(r),
