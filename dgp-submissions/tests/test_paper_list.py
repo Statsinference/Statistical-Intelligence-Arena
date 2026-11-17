@@ -72,9 +72,11 @@ class PaperListTests(unittest.TestCase):
         section="\n".join(paper_list_tables(records))
         self.assertIn("New Synthetic Control Paper", section)
         self.assertIn("[Novel SCM](drafts/test-1.md)", section)
-        self.assertIn("### [Legacy DiD / Synthetic Control — classification needed]", section)
+        self.assertNotIn("Legacy DiD / Synthetic Control", section)
+        self.assertIn("### [Needs classification]", section)
         self.assertIn("No submissions yet", section)
 
 
 if __name__ == "__main__":
     unittest.main()
+

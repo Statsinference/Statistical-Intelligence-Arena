@@ -131,7 +131,8 @@ def paper_list_tables(records, *, draft_prefix="drafts/", domain_prefix="by-doma
         "match the DGP mechanisms in the same row.", "",
     ]
     for domain, label in list(DOMAINS.items()) + [("unclassified", "Needs classification")]:
-        group = [rec for rec in records if rec.get("domain") == domain]
+        group = [rec for rec in records if
+                 ("unclassified" if rec.get("domain") == "did_sc" else rec.get("domain")) == domain]
         if domain == "unclassified" and not group:
             continue
         papers = _domain_papers(group)
@@ -205,3 +206,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

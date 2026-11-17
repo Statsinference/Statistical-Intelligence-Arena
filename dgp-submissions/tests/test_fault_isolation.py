@@ -119,7 +119,7 @@ def test_unknown_family_is_not_guessed_and_all_areas_render(tmp_path):
     case(inc/'unknown.zip','unknown-case-1','novel-unclassified')
     ingest(inc,tmp_path/'registry')
     assert (tmp_path/'registry/by-domain/unclassified.md').exists()
-    assert len(DOMAINS)==12
+    assert len(DOMAINS)==11
     assert to_domain('quantile_regression')=='quantile'
     assert to_domain('nonparametric regression')=='nonparametric_regression'
     assert to_domain('totally-unknown') is None
@@ -133,14 +133,14 @@ def test_did_and_synthetic_control_have_distinct_backward_compatible_domains(tmp
     result=ingest(inc,out)
     assert result['mechanisms']==3 and result['failure_count']==0
     for rid, domain in [('new-did-1','did'),('new-synthetic-control-1','synthetic_control'),
-                        ('legacy-mixed-design-1','did_sc')]:
+                        ('legacy-mixed-design-1','unclassified')]:
         record=json.loads((out/'drafts'/(rid+'.json')).read_text(encoding='utf-8'))
         assert record['domain']==domain
         assert rid in (out/'by-domain'/(domain+'.md')).read_text(encoding='utf-8')
     legacy=json.loads((out/'drafts/legacy-mixed-design-1.json').read_text(encoding='utf-8'))
     assert legacy['source_suggested_domain']=='did_sc'
     assert legacy['classification_status']=='needs_manual_classification'
-    assert any('human classification required' in w for w in legacy['warnings'])
+    assert any('review the design' in w for w in legacy['warnings'])
     assert to_domain('DiD / Synthetic Control')=='did_sc'
     assert to_domain('difference-in-differences')=='did'
     assert to_domain('synthetic control')=='synthetic_control'
@@ -181,3 +181,4 @@ def test_navigation_updates_only_marked_section(tmp_path):
     assert 'semi_supervised.md' in once and 'missing_data.md' in once
     assert 'six research' not in once
     assert once.endswith('## Tail\nunchanged\n')
+

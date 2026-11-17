@@ -26,8 +26,8 @@ TARGET_GROUPS = {
                  'other': 'Other proximal targets'},
     'did': {'att': 'Average treatment effect on the treated (ATT)',
             'other': 'Other DiD targets'},
-    'did_sc': {'att': 'Average treatment effect on the treated (ATT)',
-               'other': 'Other mixed-category targets'},
+    'synthetic_control': {'att': 'Average treatment effect on the treated (ATT)',
+                          'other': 'Other synthetic-control targets'},
     'quantile': {'conditional_quantile': 'Conditional quantile',
                  'other': 'Other quantile or distribution targets'},
 }
@@ -61,6 +61,10 @@ def render_target_indexes(records, output_root, labels):
 
     out = Path(output_root) / 'by-target'
     out.mkdir(parents=True, exist_ok=True)
+    (out / 'did_sc.md').write_text(
+        '# DiD and Synthetic Control targets\n\n'
+        'Browse [DiD targets](did.md) and [Synthetic Control targets](synthetic_control.md).\n',
+        encoding='utf-8')
     for domain, choices in TARGET_GROUPS.items():
         groups = defaultdict(list)
         selected = [rec for rec in records if rec.get('domain') == domain]
@@ -93,3 +97,4 @@ def render_target_indexes(records, output_root, labels):
                              f'{_cell(target)} | {_cell(raw)} |')
             lines.append('')
         (out / f'{domain}.md').write_text('\n'.join(lines) + '\n', encoding='utf-8')
+

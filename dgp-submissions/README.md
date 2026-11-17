@@ -64,7 +64,7 @@ Examples of targets within the requested areas include:
 
 These are examples, not an exhaustive list or a requirement to relabel a paper's target. Natural, interventional and dynamic effects are distinct; define the exact version from the source. In mediation, treatment-induced confounding is a feature of a causal setting, not by itself an estimand. Do not infer a natural effect merely from a paper discussing mediation. IV and proximal inference are approaches or settings: identify the actual target they estimate.
 
-The intake uses `collection.json.family` for the primary area. For new submissions use `did` for Difference-in-Differences or `synthetic_control` for Synthetic Control. Historical `did_sc` entries remain in a separate legacy category pending human classification; they are not automatically reassigned. Other values are `ate`, `cate`, `mediation`, `iv`, `proximal`, `nonparametric_regression`, `quantile`, `semi_supervised`, and `missing_data`. An unrecognized value is flagged for human classification.
+The intake uses `collection.json.family` for the primary area. For new submissions use `did` for Difference-in-Differences or `synthetic_control` for Synthetic Control. Eleven historical `did_sc` records have provisional catalog placements tied to their submitted ZIP hashes; changed or unrecognized mixed-family submissions are sent for manual classification. These placements do not constitute scientific review. Other values are `ate`, `cate`, `mediation`, `iv`, `proximal`, `nonparametric_regression`, `quantile`, `semi_supervised`, and `missing_data`. An unrecognized value is flagged for human classification.
 
 ### 2. Write an informative estimand field
 
@@ -308,3 +308,4 @@ The downloadable [`examples/proximal_10_dgps.zip`](examples/proximal_10_dgps.zip
 Submitted ZIPs are treated as **data only**, never executed. The catalog shows extracted text and submitted truth values with **Needs scientific review** labels. The archive format requires structured `collection.json` and `config.json`. If the ZIP only contains a raw PDF or random Python code, deterministic extraction is not possible without additional author-supplied structure.
 
 **GitHub-native limitation:** This is GitHub's normal file-upload page, not a custom domain-selection form. DGP area comes from the ZIP's `collection.json` `family` field. Automatic indexing requires the checked-in `../.github/workflows/dgp-submissions.yml` workflow and Actions permission to write generated draft catalog files.
+

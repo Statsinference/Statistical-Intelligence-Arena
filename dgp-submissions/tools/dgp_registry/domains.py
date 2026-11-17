@@ -13,7 +13,6 @@ DOMAINS = {
     'proximal': 'Proximal Causal Inference',
     'did': 'DiD — Difference-in-Differences',
     'synthetic_control': 'Synthetic Control',
-    'did_sc': 'Legacy DiD / Synthetic Control — classification needed',
     'nonparametric_regression': 'Nonparametric Regression',
     'quantile': 'Quantile Inference',
     'semi_supervised': 'Semi-Supervised Inference',
@@ -22,6 +21,7 @@ DOMAINS = {
 
 _ALIASES = {
     # Keep historical values in the legacy bucket; do not infer a design.
+    'did_sc': 'did_sc',
     'did_/_synthetic_control': 'did_sc',
     'difference_in_differences': 'did',
     'difference_in_difference': 'did',
@@ -55,3 +55,4 @@ def to_domain(value: str | None) -> str | None:
         if s.casefold() == label.casefold():
             return domain
     return None
+

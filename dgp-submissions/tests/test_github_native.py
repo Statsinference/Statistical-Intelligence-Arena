@@ -31,7 +31,8 @@ def test_research_area_catalog_from_one_zip(tmp_path):
     assert '<td>original</td>' in detail and '<td>2.0</td>' in detail
     assert (tmp_path/'registry/drafts/example-ate-1.json').exists()
     assert 'Unverified' in (tmp_path/'registry/drafts/example-ate-1.md').read_text()
-    assert len(list((tmp_path/'registry/by-domain').glob('*.md'))) == len(DOMAINS)
+    # One historical did_sc URL remains as a compatibility landing page.
+    assert len(list((tmp_path/'registry/by-domain').glob('*.md'))) == len(DOMAINS) + 1
 
 def test_unknown_family_is_not_guessed(tmp_path):
     d=tmp_path/'incoming';d.mkdir();make_zip(d/'submission.zip',family='strange')
@@ -58,4 +59,5 @@ def test_unstructured_zip_is_reported_without_global_failure(tmp_path):
     result=ingest(d,tmp_path/'registry')
     assert result['mechanisms']==0 and result['failure_count']==1
     assert 'no structured collection.json' in (tmp_path/'registry/INTAKE_REPORT.md').read_text()
+
 

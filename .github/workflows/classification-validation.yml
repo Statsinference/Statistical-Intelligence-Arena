@@ -1,0 +1,30 @@
+name: Validate DiD and synthetic-control migration
+on:
+  push:
+    branches: [codex/did-synthetic-classification]
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: dgp-submissions
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install pytest==8.4.2
+      - name: Frozen corpus regressions
+        run: python integration/run_regressions.py
+      - name: Rebuild and verify navigation
+        run: |
+          python -m tools.dgp_registry.github_intake --incoming incoming --output registry
+          python -m tools.dgp_registry.paper_list --catalog registry/catalog.json --readme README.md
+          python integration/sync_contributing.py
+          python -m pytest tests -q
+

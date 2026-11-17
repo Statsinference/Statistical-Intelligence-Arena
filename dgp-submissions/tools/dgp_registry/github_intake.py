@@ -14,6 +14,7 @@ import tempfile
 from pathlib import Path
 from .catalog import build, detail
 from .domains import DOMAINS, to_domain
+from .legacy_designs import legacy_design
 from .intake_safety import (INPUT_ERRORS, failure, read_zip_report,
                             write_intake_report, refresh_navigation)
 from .paper_list import paper_list_tables
@@ -136,18 +137,29 @@ def ingest(incoming: Path, output: Path):
             raw_area=record.get('domain')
             area=to_domain(raw_area)
             record['source_suggested_domain']=raw_area
-            record['domain']=area or 'unclassified'
-            record['classification_status']='zip_metadata_unverified' if area and area != 'did_sc' else 'needs_manual_classification'
+            placement = legacy_design(record['record_id'], digest) if area == 'did_sc' else None
+            if area == 'did_sc' and placement:
+                area, classification_note = placement
+                record['domain'] = area
+                record['classification_status'] = 'source_bound_catalog_placement_needs_scientific_review'
+                record['warnings'].append('Catalog placement: ' + classification_note)
+            elif area == 'did_sc':
+                area = None
+                record['domain'] = 'unclassified'
+                record['classification_status'] = 'needs_manual_classification'
+                record['warnings'].append(
+                    'Legacy combined DiD / Synthetic Control family does not match a source-bound classification; review the design before assigning it.')
+            else:
+                record['domain']=area or 'unclassified'
+                record['classification_status']='zip_metadata_unverified' if area else 'needs_manual_classification'
             if record.get('review_status') != 'duplicate_conflict_needs_review':
                 record['review_status']='needs_scientific_review'
             record['provenance']['submission_file']=str(source.as_posix())
             record['provenance']['submitted_zip_sha256']=digest
             record['provenance']['reviewed_original_paper']=False
             record['provenance']['submitted_by']='github_file_upload'
-            if not area:
+            if not area and to_domain(raw_area) != 'did_sc':
                 record['warnings'].append('Unrecognized or missing family in collection.json: human classification required.')
-            elif area == 'did_sc':
-                record['warnings'].append('Legacy combined DiD / Synthetic Control family: human classification required; not automatically reassigned.')
             if area=='proximal' and (record.get('estimand') or {}).get('name') in ('NDE','NIE','ACME'):
                 record['suggested_secondary_domains']=['mediation']
             else:
@@ -160,6 +172,13 @@ def ingest(incoming: Path, output: Path):
         source=(old.get('provenance') or {}).get('submission_file')
         if source in failed_sources and rid not in active_ids:
             retained=copy.deepcopy(old)
+            if to_domain(retained.get('domain')) == 'did_sc':
+                placement = legacy_design(rid, (retained.get('provenance') or {}).get('submitted_zip_sha256'))
+                retained['domain'] = placement[0] if placement else 'unclassified'
+                if placement:
+                    note = 'Catalog placement: ' + placement[1]
+                    if note not in retained.setdefault('warnings', []):
+                        retained['warnings'].append(note)
             retained['ingestion_status']='stale_last_valid'
             retained['review_status']='stale_last_valid_needs_review'
             warning='Latest source failed processing; this is the last valid record, not a validation of the latest ZIP.'
@@ -223,3 +242,4 @@ def main():
 
 if __name__=='__main__':
     main()
+

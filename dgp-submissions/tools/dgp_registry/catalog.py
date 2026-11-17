@@ -223,6 +223,8 @@ def build(records, output_root: Path, notes=()):
         (drafts/f'{rid}.json').write_text(json.dumps(rec,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
         (drafts/f'{rid}.md').write_text(detail(rec),encoding='utf-8')
         domain=to_domain(rec.get('domain')) or 'unclassified'
+        if domain == 'did_sc':
+            domain = 'unclassified'
         buckets[domain].append(rec)
     nscen=sum(len(r.get('scenarios') or []) for r in records)
     title=['# StatsArena — DGP Registry', '',
@@ -255,6 +257,14 @@ def build(records, output_root: Path, notes=()):
             summary.append(one)
         summary.append('')
         (by/f'{key}.md').write_text('\n'.join(page)+'\n',encoding='utf-8')
+    # Keep the historical URL working without exposing the old mixed category
+    # as a separate area in the navigation or silently dropping unknown inputs.
+    (by/'did_sc.md').write_text(
+        '# DiD and Synthetic Control\n\n'
+        'Browse [Difference-in-Differences](did.md), '
+        '[Synthetic Control](synthetic_control.md)' +
+        (', or [records requiring classification](unclassified.md)' if buckets.get('unclassified') else '') + '.\n',
+        encoding='utf-8')
     render_target_indexes(records, out, TARGET_LABELS)
     title.extend([''] + paper_list_tables(records, draft_prefix='drafts/', domain_prefix='by-domain/', generator_prefix='generators/'))
     if buckets.get('unclassified'):
@@ -290,3 +300,4 @@ def build(records, output_root: Path, notes=()):
                     'status':r.get('review_status')} for r in records],
         'notes':list(notes)},ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     return {'mechanisms':len(records),'scenarios':nscen,'domains':len([k for k in DOMAINS if buckets.get(k)])}
+
