@@ -1,5 +1,7 @@
 """Create browsable six-area DGP draft pages from unverified records."""
 from collections import Counter, defaultdict
+from itertools import groupby
+from html import escape
 from pathlib import Path
 import json
 import re
@@ -10,8 +12,10 @@ from .presentation_en import english_display, sampling_display, has_cjk
 from .paper_list import paper_list_tables, _domain_papers, paper_title, paper_title_with_venue, generator_link, generator_file
 from .listing_metadata import venue_abbreviation, keyword_entries, keywords, keywords_text
 from .target_index import load_labels, target_name, render_target_indexes, TARGET_GROUPS
+from .concise_definitions import load_definitions, concise_definition, definition_note, PENDING
 
 TARGET_LABELS = load_labels()
+CONCISE_DEFINITIONS = load_definitions()
 
 
 def cell(v):
@@ -109,12 +113,60 @@ def detail(rec):
     lines.extend(equation_markdown(mech.get('generation_equations') or [], include_source=not translated,
                                   source_entries=(source_rec.get('mechanism') or {}).get('generation_equations') or []))
     lines.extend(['','## Parameter scenarios, estimands and truth','',
-                  '| Scenario | Estimand | Definition | Reported value |',
-                  '|---|---|---|---|'])
-    for s in rec.get('scenarios') or []:
-        e=s.get('estimand') or rec.get('estimand') or {}; t=s.get('truth') or {}
-        lines.append('| '+ ' | '.join(cell(x) for x in (
-            s.get('id'),target_name(source_rec, TARGET_LABELS) if not s.get('estimand') or s.get('estimand') == source_rec.get('estimand') else 'Needs review',e.get('definition'),display_truth_value(t)))+' |')
+                  '<table>', '<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>', '<tbody>'])
+    rows = []
+    for position, (s, source_s) in enumerate(zip(rec.get('scenarios') or [], source_rec.get('scenarios') or [])):
+        name = target_name(source_rec, TARGET_LABELS) if not source_s.get('estimand') or source_s.get('estimand') == source_rec.get('estimand') else 'Needs review'
+        formula = concise_definition(source_rec, source_s, CONCISE_DEFINITIONS)
+        note = definition_note(source_rec, source_s, CONCISE_DEFINITIONS)
+        original_estimand = source_s.get('estimand') or source_rec.get('estimand') or {}
+        # A shared review placeholder is not evidence that targets are the
+        # same. Bind grouping to the complete submitted estimand; if the
+        # definition itself is missing, leave each uncertain row separate.
+        unknown_position = position if formula == PENDING and not original_estimand.get('definition') else None
+        rows.append(((name, formula, note, original_estimand, unknown_position), s.get('id'), display_truth_value(s.get('truth') or {})))
+    for (name, formula, note, original_estimand, unknown_position), group_iter in groupby(rows, key=lambda row: row[0]):
+        group = list(group_iter)
+        for index, (_, scenario, value) in enumerate(group):
+            lines.extend(['<tr>', '<td>' + escape(str(scenario if scenario is not None else '—')) + '</td>'])
+            if index == 0:
+                span = str(len(group))
+                lines.append('<td rowspan="' + span + '">' + escape(str(name)) + '</td>')
+                lines.append('<td rowspan="' + span + '">')
+                # GitHub parses inline math within HTML cells only when the
+                # expression is isolated by blank lines. Escape entities, but
+                # keep the trusted math delimiters and TeX intact.
+                lines.extend(['', escape(str(formula)), '', '</td>'])
+            lines.extend(['<td>' + escape(str(value if value is not None else '—')) + '</td>', '</tr>'])
+    lines.extend(['</tbody>', '</table>'])
+    notes = {}
+    for source_s in source_rec.get('scenarios') or []:
+        note = definition_note(source_rec, source_s, CONCISE_DEFINITIONS)
+        if note:
+            notes.setdefault(note, []).append(str(source_s.get('id') or 'Unnamed scenario'))
+    if notes:
+        lines.extend(['', '**Definition notes**', ''])
+        all_scenarios = [str(s.get('id') or 'Unnamed scenario') for s in source_rec.get('scenarios') or []]
+        for (note, math), scenarios in notes.items():
+            formula = ('$`' + math + '`$') if math else ''
+            text = ' '.join(part for part in (formula, cell(note) if note else '') if part)
+            label = 'All scenarios' if scenarios == all_scenarios else ', '.join(scenarios)
+            lines.append('- ' + cell(label) + ': ' + text)
+    originals = {}
+    for source_s in source_rec.get('scenarios') or []:
+        source_e = source_s.get('estimand') or source_rec.get('estimand') or {}
+        definition = source_e.get('definition') or 'Not provided'
+        if has_cjk(definition):
+            # Preserve the unmodified source in JSON without inserting original
+            # language text into an English-only presentation page. Do not use
+            # the record-level translation for a distinct scenario target.
+            definition = 'Original-language definition is available in the raw scientific record (JSON).'
+        originals.setdefault(str(definition), []).append(str(source_s.get('id') or 'Unnamed scenario'))
+    lines.extend(['', '<details>', '<summary>Submitted estimand definitions</summary>', '',
+                  'Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.', ''])
+    for definition, scenarios in originals.items():
+        lines.extend(['**Scenario(s):** ' + cell(', '.join(scenarios)), '', cell(definition), ''])
+    lines.extend(['[Open raw scientific record (JSON)](./' + source_rec['record_id'] + '.json).', '', '</details>', ''])
     submitted_target = (source_rec.get('estimand') or {}).get('name')
     if has_cjk(submitted_target):
         lines.extend(['', '**Original submitted target notation:** [See original scientific record](./' + source_rec['record_id'] + '.json).', ''])

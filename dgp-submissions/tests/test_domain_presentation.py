@@ -28,13 +28,13 @@ class DomainPresentationTests(unittest.TestCase):
         r = record()
         before = copy.deepcopy(r)
         output = detail(r)
-        self.assertIn('| missing |', output)
-        self.assertIn('| Not reported |', output)
+        self.assertIn('<td>missing</td>', output)
+        self.assertIn('<td>Not reported</td>', output)
         self.assertNotIn('Evidence status', output)
         self.assertNotIn('| unknown |', output)
         self.assertIn('Stored expression (meaning requires review)', output)
         self.assertIn('missing: Expected response difference', output)
-        self.assertIn('| 0 |', output)
+        self.assertIn('<td>0</td>', output)
         self.assertNotIn('| reported_numeric |', output)
         self.assertIn('missing:', truth_pairs(r))
         self.assertIn('not reported', truth_pairs(r))
@@ -130,3 +130,4 @@ class DomainPresentationTests(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
