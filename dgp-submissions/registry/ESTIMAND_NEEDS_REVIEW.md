@@ -26,6 +26,18 @@ The following pairs have matching displayed mechanisms, estimands, scenarios, an
 | qdi-li-liu-zhu-2007-exponential-surface | [qdi-li-liu-zhu-2007-exponential-surface-v1](drafts/qdi-li-liu-zhu-2007-exponential-surface-v1.md) · [qdi-li-liu-zhu-2007-exponential-surface-v2](drafts/qdi-li-liu-zhu-2007-exponential-surface-v2.md) |
 | qdi-li-liu-zhu-2007-sinc | [qdi-li-liu-zhu-2007-sinc-v1](drafts/qdi-li-liu-zhu-2007-sinc-v1.md) · [qdi-li-liu-zhu-2007-sinc-v2](drafts/qdi-li-liu-zhu-2007-sinc-v2.md) |
 
+## ZIP submissions awaiting scientific and intake review
+
+The following five submissions are not currently indexed because their `collection.json` does not contain the required `equations` list. Their submitted `card.md` and `model.py` contain mechanism information, but the source, target and adaptations still need to be checked before preparing corrected metadata. The original ZIPs have not been altered or executed.
+
+| Submission | Review focus |
+|---|---|
+| [did-qin-zhang-2008-bounded-panel-v1.zip](../incoming/did-qin-zhang-2008-bounded-panel-v1.zip) | Reconcile equations and two outcome variants with the submitted card and implementation. |
+| [did-ye-2024-iid-common-trend-v1.zip](../incoming/did-ye-2024-iid-common-trend-v1.zip) | Reconcile group assignments, treatment and outcome equations with the submitted implementation. |
+| [did-zhou-2026-mixture-mean-v1.zip](../incoming/did-zhou-2026-mixture-mean-v1.zip) | Check the adaptation from the original distributional target to a scalar ATT. |
+| [did-zhou-2026-network-weight-v1.zip](../incoming/did-zhou-2026-network-weight-v1.zip) | Check the network construction and scalar ATT adaptation against the source. |
+| [did-zhou-2026-truncated-mean-v1.zip](../incoming/did-zhou-2026-truncated-mean-v1.zip) | Check the truncated-normal mean and scalar ATT adaptation against the source. |
+
 ## Cross-cutting scientific review
 
 - Verify each equation and target definition against the relevant paper and source code, including differences in adapted DGPs.
