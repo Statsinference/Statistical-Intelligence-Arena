@@ -1,0 +1,475 @@
+{
+  "schema_version": 1,
+  "description": "Reviewed source-bound replacements of rendered mechanism equations only; do not mutate raw source.",
+  "replacements": [
+    {
+      "record_id": "ate-athey-imbens-wager-2018-arb-v1",
+      "source_zip_sha256": "f29ff168545fa811ed66400f5a557feaea35e6e19a36e41377f7fd136fa34021",
+      "rendered_latex": "Y_{i}(w)=X_{i}^{T} \\beta+ w + \\varepsilon_{i}, w \\in \\{0,1\\}",
+      "rewritten_latex": "Y_{i}^{(w)}=X_{i}^{T} \\beta+ w + \\varepsilon_{i}, w \\in \\{0,1\\}"
+    },
+    {
+      "record_id": "ate-athey-imbens-wager-2018-arb-v1",
+      "source_zip_sha256": "f29ff168545fa811ed66400f5a557feaea35e6e19a36e41377f7fd136fa34021",
+      "rendered_latex": "\\mathrm{ATE}=\\mathbb{E}[Y_{i}(1)-Y_{i}(0)]=1.",
+      "rewritten_latex": "\\mathrm{ATE}=\\mathbb{E}[Y_{i}^{(1)}-Y_{i}^{(0)}]=1."
+    },
+    {
+      "record_id": "ate-athey-imbens-wager-2018-arb-v2",
+      "source_zip_sha256": "cd7d7f615937a781a8d339576adb1a2717d031ec320ada7d0a72b8e525e27d40",
+      "rendered_latex": "\\mathrm{Structural} \\mathrm{interpretation} \\text{ for } w \\in \\{0,1\\}: Y_{i}(w)=X_{i}^{T} \\beta+w+\\varepsilon_{i}, \\mathrm{so} \\mathrm{ATE}=\\mathbb{E}[Y(1)-Y(0)]=1.",
+      "rewritten_latex": "\\mathrm{Structural} \\mathrm{interpretation} \\text{ for } w \\in \\{0,1\\}: Y_{i}^{(w)}=X_{i}^{T} \\beta+w+\\varepsilon_{i}, \\mathrm{so} \\mathrm{ATE}=\\mathbb{E}[Y^{(1)}-Y^{(0)}]=1."
+    },
+    {
+      "record_id": "ate-athey-imbens-wager-2018-arb-v3",
+      "source_zip_sha256": "0fb2661240bd6c880341f1b26cae2cea44201423b7c356e18ab3a1a595326d77",
+      "rendered_latex": "Y_{i}(w)=X_{i}^{T} \\beta_{Y}+0.5 w+\\varepsilon_{i2}",
+      "rewritten_latex": "Y_{i}^{(w)}=X_{i}^{T} \\beta_{Y}+0.5 w+\\varepsilon_{i2}"
+    },
+    {
+      "record_id": "ate-athey-imbens-wager-2018-arb-v3",
+      "source_zip_sha256": "0fb2661240bd6c880341f1b26cae2cea44201423b7c356e18ab3a1a595326d77",
+      "rendered_latex": "\\mathrm{ATE}=\\mathbb{E}[Y_{i}(1)-Y_{i}(0)]=0.5.",
+      "rewritten_latex": "\\mathrm{ATE}=\\mathbb{E}[Y_{i}^{(1)}-Y_{i}^{(0)}]=0.5."
+    },
+    {
+      "record_id": "ate-athey-imbens-wager-2018-arb-v4",
+      "source_zip_sha256": "ce1fc062ecfd1caa523fa1bb385209e0b09f5c5d0ae227d61bc407d85e298e93",
+      "rendered_latex": "Y_{i}(w)=X_{i}^{T} \\beta_{Y} + 0.5w + \\varepsilon_{i}, w \\in \\{0,1\\}",
+      "rewritten_latex": "Y_{i}^{(w)}=X_{i}^{T} \\beta_{Y} + 0.5w + \\varepsilon_{i}, w \\in \\{0,1\\}"
+    },
+    {
+      "record_id": "ate-athey-imbens-wager-2018-arb-v4",
+      "source_zip_sha256": "ce1fc062ecfd1caa523fa1bb385209e0b09f5c5d0ae227d61bc407d85e298e93",
+      "rendered_latex": "\\mathrm{ATE}=\\mathbb{E}[Y_{i}(1)-Y_{i}(0)]=0.5.",
+      "rewritten_latex": "\\mathrm{ATE}=\\mathbb{E}[Y_{i}^{(1)}-Y_{i}^{(0)}]=0.5."
+    },
+    {
+      "record_id": "ate-athey-imbens-wager-2018-arb-v5",
+      "source_zip_sha256": "70f202767fc6f48855fc68e21899af98f2195bd96dd19536136a83625fc780b9",
+      "rendered_latex": "Y_{i}(w)=\\sum_{j=1}^{10} X_{ij} + \\theta_{i}(2w-1)/2 + \\varepsilon_{i}, w \\in \\{0,1\\}",
+      "rewritten_latex": "Y_{i}^{(w)}=\\sum_{j=1}^{10} X_{ij} + \\theta_{i}(2w-1)/2 + \\varepsilon_{i}, w \\in \\{0,1\\}"
+    },
+    {
+      "record_id": "ate-athey-imbens-wager-2018-arb-v5",
+      "source_zip_sha256": "70f202767fc6f48855fc68e21899af98f2195bd96dd19536136a83625fc780b9",
+      "rendered_latex": "Y_{i}(1)-Y_{i}(0)=\\theta_{i}",
+      "rewritten_latex": "Y_{i}^{(1)}-Y_{i}^{(0)}=\\theta_{i}"
+    },
+    {
+      "record_id": "ate-ding-dasgupta-2016-binary-rct-v1",
+      "source_zip_sha256": "0d87c5859fc0a88485b186fba9197d271aefc06374b936e33479fb0099eb96b5",
+      "rendered_latex": "\\mathrm{N}_{11}=\\#\\{i:Y_{i}(1)=1,Y_{i}(0)=1\\}",
+      "rewritten_latex": "\\mathrm{N}_{11}=\\#\\{i:Y_{i}^{(1)}=1,Y_{i}^{(0)}=1\\}"
+    },
+    {
+      "record_id": "ate-ding-dasgupta-2016-binary-rct-v1",
+      "source_zip_sha256": "0d87c5859fc0a88485b186fba9197d271aefc06374b936e33479fb0099eb96b5",
+      "rendered_latex": "\\mathrm{N}_{10}=\\#\\{i:Y_{i}(1)=1,Y_{i}(0)=0\\}",
+      "rewritten_latex": "\\mathrm{N}_{10}=\\#\\{i:Y_{i}^{(1)}=1,Y_{i}^{(0)}=0\\}"
+    },
+    {
+      "record_id": "ate-ding-dasgupta-2016-binary-rct-v1",
+      "source_zip_sha256": "0d87c5859fc0a88485b186fba9197d271aefc06374b936e33479fb0099eb96b5",
+      "rendered_latex": "\\mathrm{N}_{01}=\\#\\{i:Y_{i}(1)=0,Y_{i}(0)=1\\}",
+      "rewritten_latex": "\\mathrm{N}_{01}=\\#\\{i:Y_{i}^{(1)}=0,Y_{i}^{(0)}=1\\}"
+    },
+    {
+      "record_id": "ate-ding-dasgupta-2016-binary-rct-v1",
+      "source_zip_sha256": "0d87c5859fc0a88485b186fba9197d271aefc06374b936e33479fb0099eb96b5",
+      "rendered_latex": "\\mathrm{N}_{00}=\\#\\{i:Y_{i}(1)=0,Y_{i}(0)=0\\}",
+      "rewritten_latex": "\\mathrm{N}_{00}=\\#\\{i:Y_{i}^{(1)}=0,Y_{i}^{(0)}=0\\}"
+    },
+    {
+      "record_id": "ate-ding-dasgupta-2016-binary-rct-v1",
+      "source_zip_sha256": "0d87c5859fc0a88485b186fba9197d271aefc06374b936e33479fb0099eb96b5",
+      "rendered_latex": "Y_{i}=A_{i} Y_{i}(1)+(1-A_{i})Y_{i}(0)",
+      "rewritten_latex": "Y_{i}=A_{i} Y_{i}^{(1)}+(1-A_{i})Y_{i}^{(0)}"
+    },
+    {
+      "record_id": "ate-ding-dasgupta-2016-binary-rct-v1",
+      "source_zip_sha256": "0d87c5859fc0a88485b186fba9197d271aefc06374b936e33479fb0099eb96b5",
+      "rendered_latex": "\\tau=\\mathrm{N}^{-1} \\sum_{i}[Y_{i}(1)-Y_{i}(0)]=(\\mathrm{N}_{10}-\\mathrm{N}_{01})/\\mathrm{N}.",
+      "rewritten_latex": "\\tau=\\mathrm{N}^{-1} \\sum_{i}[Y_{i}^{(1)}-Y_{i}^{(0)}]=(\\mathrm{N}_{10}-\\mathrm{N}_{01})/\\mathrm{N}."
+    },
+    {
+      "record_id": "ate-huang-chan-2017-05-19-setting-2-v1",
+      "source_zip_sha256": "538901d123b9ee914960c59ec9c696b8935c45bbc75a13512509ce0de093e68b",
+      "rendered_latex": "Y(1)=1+Z_{1}+\\varepsilon_{1}",
+      "rewritten_latex": "Y^{(1)}=1+Z_{1}+\\varepsilon_{1}"
+    },
+    {
+      "record_id": "ate-huang-chan-2017-05-19-setting-2-v1",
+      "source_zip_sha256": "538901d123b9ee914960c59ec9c696b8935c45bbc75a13512509ce0de093e68b",
+      "rendered_latex": "Y(0)=Z_{2}+\\varepsilon_{0}",
+      "rewritten_latex": "Y^{(0)}=Z_{2}+\\varepsilon_{0}"
+    },
+    {
+      "record_id": "ate-huang-chan-2017-05-19-setting-2-v1",
+      "source_zip_sha256": "538901d123b9ee914960c59ec9c696b8935c45bbc75a13512509ce0de093e68b",
+      "rendered_latex": "Y=A\\cdot Y(1)+(1-A)\\cdot Y(0).",
+      "rewritten_latex": "Y=A\\cdot Y^{(1)}+(1-A)\\cdot Y^{(0)}."
+    },
+    {
+      "record_id": "ate-ning-peng-imai-2020-06-03-ar1-linear-v1",
+      "source_zip_sha256": "e1aadeb8022cc88af37e75ca803a9f1acd63fbbe027b71839297ae92bfc804b6",
+      "rendered_latex": "Y(1)=2+0.137\\cdot (X_{5}+X_{6}+X_{7}+X_{8})+\\varepsilon_{1}",
+      "rewritten_latex": "Y^{(1)}=2+0.137\\cdot (X_{5}+X_{6}+X_{7}+X_{8})+\\varepsilon_{1}"
+    },
+    {
+      "record_id": "ate-ning-peng-imai-2020-06-03-ar1-linear-v1",
+      "source_zip_sha256": "e1aadeb8022cc88af37e75ca803a9f1acd63fbbe027b71839297ae92bfc804b6",
+      "rendered_latex": "Y(0)=1+0.291\\cdot (X_{5}+X_{6}+X_{7}+X_{8}+X_{9}+X_{10})+\\varepsilon_{0}.",
+      "rewritten_latex": "Y^{(0)}=1+0.291\\cdot (X_{5}+X_{6}+X_{7}+X_{8}+X_{9}+X_{10})+\\varepsilon_{0}."
+    },
+    {
+      "record_id": "ate-ning-peng-imai-2020-06-03-ar1-linear-v1",
+      "source_zip_sha256": "e1aadeb8022cc88af37e75ca803a9f1acd63fbbe027b71839297ae92bfc804b6",
+      "rendered_latex": "Y=A\\cdot Y(1)+(1-A)\\cdot Y(0).",
+      "rewritten_latex": "Y=A\\cdot Y^{(1)}+(1-A)\\cdot Y^{(0)}."
+    },
+    {
+      "record_id": "ate-ning-peng-imai-2020-linear-v1",
+      "source_zip_sha256": "3a2804dbe5d203949b22ca03195acefc95c15d5f2a1be6fae0c32478b6ec9644",
+      "rendered_latex": "Y_{i}(1)=2+0.137(X_{i5}+X_{i6}+X_{i7}+X_{i8})+\\varepsilon_{i1}.",
+      "rewritten_latex": "Y_{i}^{(1)}=2+0.137(X_{i5}+X_{i6}+X_{i7}+X_{i8})+\\varepsilon_{i1}."
+    },
+    {
+      "record_id": "ate-ning-peng-imai-2020-linear-v1",
+      "source_zip_sha256": "3a2804dbe5d203949b22ca03195acefc95c15d5f2a1be6fae0c32478b6ec9644",
+      "rendered_latex": "Y_{i}(0)=1+0.291(X_{i5}+X_{i6}+X_{i7}+X_{i8}+X_{i9}+X_{i10})+\\varepsilon_{i0}.",
+      "rewritten_latex": "Y_{i}^{(0)}=1+0.291(X_{i5}+X_{i6}+X_{i7}+X_{i8}+X_{i9}+X_{i10})+\\varepsilon_{i0}."
+    },
+    {
+      "record_id": "ate-ning-peng-imai-2020-linear-v1",
+      "source_zip_sha256": "3a2804dbe5d203949b22ca03195acefc95c15d5f2a1be6fae0c32478b6ec9644",
+      "rendered_latex": "Y_{i}=A_{i} Y_{i}(1)+(1-A_{i})Y_{i}(0)",
+      "rewritten_latex": "Y_{i}=A_{i} Y_{i}^{(1)}+(1-A_{i})Y_{i}^{(0)}"
+    },
+    {
+      "record_id": "ate-ning-peng-imai-2020-linear-v1",
+      "source_zip_sha256": "3a2804dbe5d203949b22ca03195acefc95c15d5f2a1be6fae0c32478b6ec9644",
+      "rendered_latex": "\\mathrm{ATE}=\\mathbb{E}[Y(1)-Y(0)]=2-1+0.137 \\mathbb{E}[X_{5}+X_{6}+X_{7}+X_{8}]-0.291 \\mathbb{E}[X_{5}+\\ldots +X_{10}]+\\mathbb{E}[\\varepsilon_{1}-\\varepsilon_{0}]=1.",
+      "rewritten_latex": "\\mathrm{ATE}=\\mathbb{E}[Y^{(1)}-Y^{(0)}]=2-1+0.137 \\mathbb{E}[X_{5}+X_{6}+X_{7}+X_{8}]-0.291 \\mathbb{E}[X_{5}+\\ldots +X_{10}]+\\mathbb{E}[\\varepsilon_{1}-\\varepsilon_{0}]=1."
+    },
+    {
+      "record_id": "ate-yang-wang-ding-2019-mnar-confounder-v1",
+      "source_zip_sha256": "c6c8ebd9213eb64fd1771300b66b9e0060721380dc1b61e9ea8e26573ca4dee9",
+      "rendered_latex": "Y(0) = 0.5 + 2\\cdot X_{1} + X_{2} + \\varepsilon(0), \\varepsilon(0) \\sim \\mathcal{N}(0,1)",
+      "rewritten_latex": "Y^{(0)} = 0.5 + 2\\cdot X_{1} + X_{2} + \\varepsilon(0), \\varepsilon(0) \\sim \\mathcal{N}(0,1)"
+    },
+    {
+      "record_id": "ate-yang-wang-ding-2019-mnar-confounder-v1",
+      "source_zip_sha256": "c6c8ebd9213eb64fd1771300b66b9e0060721380dc1b61e9ea8e26573ca4dee9",
+      "rendered_latex": "Y(1) = 3\\cdot X_{1} + 2\\cdot X_{2} + \\varepsilon(1), \\varepsilon(1) \\sim \\mathcal{N}(0,1)",
+      "rewritten_latex": "Y^{(1)} = 3\\cdot X_{1} + 2\\cdot X_{2} + \\varepsilon(1), \\varepsilon(1) \\sim \\mathcal{N}(0,1)"
+    },
+    {
+      "record_id": "ate-yang-wang-ding-2019-mnar-confounder-v1",
+      "source_zip_sha256": "c6c8ebd9213eb64fd1771300b66b9e0060721380dc1b61e9ea8e26573ca4dee9",
+      "rendered_latex": "Y = A\\cdot Y(1) + (1-A)\\cdot Y(0)",
+      "rewritten_latex": "Y = A\\cdot Y^{(1)} + (1-A)\\cdot Y^{(0)}"
+    },
+    {
+      "record_id": "ate-yang-wang-ding-2019-mnar-confounder-v1",
+      "source_zip_sha256": "c6c8ebd9213eb64fd1771300b66b9e0060721380dc1b61e9ea8e26573ca4dee9",
+      "rendered_latex": "\\mathrm{ATE}=\\mathbb{E}[Y(1)-Y(0)]=-0.5 + 1\\cdot \\mathbb{E}[X_{1}] + 1\\cdot \\mathbb{E}[X_{2}] = -0.5+1+0.5=1",
+      "rewritten_latex": "\\mathrm{ATE}=\\mathbb{E}[Y^{(1)}-Y^{(0)}]=-0.5 + 1\\cdot \\mathbb{E}[X_{1}] + 1\\cdot \\mathbb{E}[X_{2}] = -0.5+1+0.5=1"
+    },
+    {
+      "record_id": "ate-yang-wang-ding-2019-mnar-confounder-v2",
+      "source_zip_sha256": "7a69b5b8ed14637fc2ab27232a57d06369d15b420bb234db7469cb55887fa940",
+      "rendered_latex": "Y(0)=(1,X^{T}) \\beta_{0}+\\varepsilon_{0}",
+      "rewritten_latex": "Y^{(0)}=(1,X^{T}) \\beta_{0}+\\varepsilon_{0}"
+    },
+    {
+      "record_id": "ate-yang-wang-ding-2019-mnar-confounder-v2",
+      "source_zip_sha256": "7a69b5b8ed14637fc2ab27232a57d06369d15b420bb234db7469cb55887fa940",
+      "rendered_latex": "Y(1)=(1,X^{T}) \\beta_{1}+\\varepsilon_{1}",
+      "rewritten_latex": "Y^{(1)}=(1,X^{T}) \\beta_{1}+\\varepsilon_{1}"
+    },
+    {
+      "record_id": "ate-yang-wang-ding-2019-mnar-confounder-v2",
+      "source_zip_sha256": "7a69b5b8ed14637fc2ab27232a57d06369d15b420bb234db7469cb55887fa940",
+      "rendered_latex": "Y=A\\cdot Y(1)+(1-A)\\cdot Y(0).",
+      "rewritten_latex": "Y=A\\cdot Y^{(1)}+(1-A)\\cdot Y^{(0)}."
+    },
+    {
+      "record_id": "ate-yang-wang-ding-2019-mnar-confounder-v2",
+      "source_zip_sha256": "7a69b5b8ed14637fc2ab27232a57d06369d15b420bb234db7469cb55887fa940",
+      "rendered_latex": "\\mathrm{ATE}=\\mathbb{E}[Y(1)-Y(0)]=1.5-2\\mathbb{E}[X_{1}]+2\\mathbb{E}[X_{2}]-2\\mathbb{E}[X_{3}]+2\\mathbb{E}[X_{4}]-2\\mathbb{E}[X_{5}]-2\\mathbb{E}[X_{6}] = -2.5-2\\mathbb{E}[X_{6}] \\mathrm{under} \\text{ the } \\mathrm{declared} \\mathrm{factorization}",
+      "rewritten_latex": "\\mathrm{ATE}=\\mathbb{E}[Y^{(1)}-Y^{(0)}]=1.5-2\\mathbb{E}[X_{1}]+2\\mathbb{E}[X_{2}]-2\\mathbb{E}[X_{3}]+2\\mathbb{E}[X_{4}]-2\\mathbb{E}[X_{5}]-2\\mathbb{E}[X_{6}] = -2.5-2\\mathbb{E}[X_{6}] \\mathrm{under} \\text{ the } \\mathrm{declared} \\mathrm{factorization}"
+    },
+    {
+      "record_id": "cate-lei-2021-conformal-cate-v1",
+      "source_zip_sha256": "287d732da3ef6fd35b21bff5aa55cfae47452d7d61e586a1f980c1a1f732572a",
+      "rendered_latex": "Y(0) = 0",
+      "rewritten_latex": "Y^{(0)} = 0"
+    },
+    {
+      "record_id": "cate-lei-2021-conformal-cate-v1",
+      "source_zip_sha256": "287d732da3ef6fd35b21bff5aa55cfae47452d7d61e586a1f980c1a1f732572a",
+      "rendered_latex": "\\mathbb{E}[Y(1)\\mid X] = f(X_{1}) f(X_{2}), f(u) = 2 / (1 + \\exp(-12 (u - 1/2)))",
+      "rewritten_latex": "\\mathbb{E}[Y^{(1)}\\mid X] = f(X_{1}) f(X_{2}), f(u) = 2 / (1 + \\exp(-12 (u - 1/2)))"
+    },
+    {
+      "record_id": "cate-lei-2021-conformal-cate-v1",
+      "source_zip_sha256": "287d732da3ef6fd35b21bff5aa55cfae47452d7d61e586a1f980c1a1f732572a",
+      "rendered_latex": "Y(1) = \\mathbb{E}[Y(1)\\mid X] + \\sigma\\varepsilon",
+      "rewritten_latex": "Y^{(1)} = \\mathbb{E}[Y^{(1)}\\mid X] + \\sigma\\varepsilon"
+    },
+    {
+      "record_id": "cate-lei-2021-conformal-cate-v1",
+      "source_zip_sha256": "287d732da3ef6fd35b21bff5aa55cfae47452d7d61e586a1f980c1a1f732572a",
+      "rendered_latex": "Y = A Y(1) + (1-A) Y(0)",
+      "rewritten_latex": "Y = A Y^{(1)} + (1-A) Y^{(0)}"
+    },
+    {
+      "record_id": "cate-ye-2023-interaction-zero-mean-v1",
+      "source_zip_sha256": "f9fb04d030c9864c009bc7552068bacca7906e6bbf7bca82e20c72b3b9bbe153",
+      "rendered_latex": "Y(1) = \\varepsilon, Y(2) = Y(1) + \\zeta(U - \\mathrm{muU})",
+      "rewritten_latex": "Y^{(1)} = \\varepsilon, Y^{(2)} = Y^{(1)} + \\zeta(U - \\mathrm{muU})"
+    },
+    {
+      "record_id": "cate-ye-2023-interaction-zero-mean-v1",
+      "source_zip_sha256": "f9fb04d030c9864c009bc7552068bacca7906e6bbf7bca82e20c72b3b9bbe153",
+      "rendered_latex": "Y = A Y(2) + (1-A) Y(1) = \\varepsilon+ A \\tau(U)",
+      "rewritten_latex": "Y = A Y^{(2)} + (1-A) Y^{(1)} = \\varepsilon+ A \\tau(U)"
+    },
+    {
+      "record_id": "cate-ye-2023-quadratic-misspecified-v1",
+      "source_zip_sha256": "8470244ccd31c6233a7c5ae0a772b378ab3c33b2bc89b827bfb14e10e0d3826d",
+      "rendered_latex": "Y(1) = \\varepsilon, Y(2) = -1.3 + Y(1) - 0.5(U - \\mathrm{muU}) - 0.01(U^{2} - \\mathrm{muU2}) + 0.3(W - \\mathrm{muW})",
+      "rewritten_latex": "Y^{(1)} = \\varepsilon, Y^{(2)} = -1.3 + Y^{(1)} - 0.5(U - \\mathrm{muU}) - 0.01(U^{2} - \\mathrm{muU2}) + 0.3(W - \\mathrm{muW})"
+    },
+    {
+      "record_id": "did-abadie-lhour-2021-nonlinear-null-v1",
+      "source_zip_sha256": "12ed713f0ef5464720af0223e5b3d34990ed3f244f0525ab5eaf2a093f130fdf",
+      "rendered_latex": "\\mathrm{ATT}_{\\mathrm{post}}=\\mathbb{E}[Y_{2}(1)-Y_{2}(0)\\mid G=1]=0",
+      "rewritten_latex": "\\mathrm{ATT}_{\\mathrm{post}}=\\mathbb{E}[Y_{2}^{(1)}-Y_{2}^{(0)}\\mid G=1]=0"
+    },
+    {
+      "record_id": "did-cwz-2021-donor-ar-null-v1",
+      "source_zip_sha256": "8159cdd3fa3d3c7da42557353657a93418df0e4e3e745fb6ee083f9b6a182146",
+      "rendered_latex": "Y_{0t}=Y_{0t}(0)+1\\{t=21\\}\\cdot \\theta_{T}, \\theta_{T}=0. G_{0}=1,\\mathrm{donors} G=0",
+      "rewritten_latex": "Y_{0t}=Y_{0t}^{(0)}+1\\{t=21\\}\\cdot \\theta_{T}, \\theta_{T}=0. G_{0}=1,\\mathrm{donors} G=0"
+    },
+    {
+      "record_id": "did-santanna-zhao-2020-panel-dgp1-v1",
+      "source_zip_sha256": "b9defbcbdc8290f7cf489d5227113adc705be56fb7feb187cc3d99aea399f908",
+      "rendered_latex": "Y_{1}(d)=2\\cdot f(Z)+v+\\varepsilon_{1}(d)",
+      "rewritten_latex": "Y_{1}^{(d)}=2\\cdot f(Z)+v+\\varepsilon_{1}(d)"
+    },
+    {
+      "record_id": "did-santanna-zhao-2020-panel-dgp1-v1",
+      "source_zip_sha256": "b9defbcbdc8290f7cf489d5227113adc705be56fb7feb187cc3d99aea399f908",
+      "rendered_latex": "Y_{\\mathrm{post}}=Y_{1}(D)",
+      "rewritten_latex": "Y_{\\mathrm{post}}=Y_{1}^{(D)}"
+    },
+    {
+      "record_id": "did-shi-2026-poisson-proxy-logrr-v1",
+      "source_zip_sha256": "dfdeecac2dea05aadb91108e7efe8ef598a20088cfc7699d9f0084420b37a61a",
+      "rendered_latex": "\\log(\\mathbb{E}[Y_{t}(1)]/\\mathbb{E}[Y_{t}(0)])=-2",
+      "rewritten_latex": "\\log(\\mathbb{E}[Y_{t}^{(1)}]/\\mathbb{E}[Y_{t}^{(0)}])=-2"
+    },
+    {
+      "record_id": "did-ye-2024-bracketing-v1",
+      "source_zip_sha256": "9fde097a2af389c55cd7feb78f53b5039142a6290d8c0d3fbed1ab2b7acbb410",
+      "rendered_latex": "ATT_4=E[Y_{i4}(1)-Y_{i4}(0)\\mid G_i=trt]=\\theta_4=1",
+      "rewritten_latex": "ATT_4=E[Y_{i4}^{(1)}-Y_{i4}^{(0)}\\mid G_i=trt]=\\theta_4=1"
+    },
+    {
+      "record_id": "did-zhao-cui-2025-bridge-iv-v1",
+      "source_zip_sha256": "f6fe23488549481c09b46d1bfe5335042b0ff3fe07500ff98ade848a9a78654d",
+      "rendered_latex": "\\tau_{t}(x)=\\mathbb{E}[Y_{t}(1)-Y_{t}(0)\\mid X=x]=10\\cdot s(x)",
+      "rewritten_latex": "\\tau_{t}(x)=\\mathbb{E}[Y_{t}^{(1)}-Y_{t}^{(0)}\\mid X=x]=10\\cdot s(x)"
+    },
+    {
+      "record_id": "iv-ding-2017-binary-bias-v1",
+      "source_zip_sha256": "bb10aa8a1f9df344731e01bce1cbe3a059ea30170bb188fc52c5a074a71e8e71",
+      "rendered_latex": "A(z)=1\\{V_{A}<p[z,U]\\}",
+      "rewritten_latex": "A^{(z)}=1\\{V_{A}<p[z,U]\\}"
+    },
+    {
+      "record_id": "iv-ding-2017-binary-bias-v1",
+      "source_zip_sha256": "bb10aa8a1f9df344731e01bce1cbe3a059ea30170bb188fc52c5a074a71e8e71",
+      "rendered_latex": "A=A(Z)",
+      "rewritten_latex": "A=A^{(Z)}"
+    },
+    {
+      "record_id": "iv-ding-2017-binary-bias-v1",
+      "source_zip_sha256": "bb10aa8a1f9df344731e01bce1cbe3a059ea30170bb188fc52c5a074a71e8e71",
+      "rendered_latex": "Y(\\text{ a })=1\\{V_{Y}<r[\\text{ a },U]\\}",
+      "rewritten_latex": "Y^{(a)}=1\\{V_{Y}<r[\\text{ a },U]\\}"
+    },
+    {
+      "record_id": "iv-ding-2017-binary-bias-v1",
+      "source_zip_sha256": "bb10aa8a1f9df344731e01bce1cbe3a059ea30170bb188fc52c5a074a71e8e71",
+      "rendered_latex": "Y=Y(A).",
+      "rewritten_latex": "Y=Y^{(A)}."
+    },
+    {
+      "record_id": "iv-wang-2018-average-wald-v1",
+      "source_zip_sha256": "fefa9861403641a7de129f7ce57023f1db8898e711b747e1a8bfa07e3440116c",
+      "rendered_latex": "g_{a}=\\mathrm{rY}-t\\cdot \\mathrm{rD}+\\text{ a }\\cdot t, Y(\\text{ a })=1\\{V_{Y}<g_{a}\\}",
+      "rewritten_latex": "g_{a}=\\mathrm{rY}-t\\cdot \\mathrm{rD}+\\text{ a }\\cdot t, Y^{(a)}=1\\{V_{Y}<g_{a}\\}"
+    },
+    {
+      "record_id": "iv-wang-2018-average-wald-v1",
+      "source_zip_sha256": "fefa9861403641a7de129f7ce57023f1db8898e711b747e1a8bfa07e3440116c",
+      "rendered_latex": "\\mathrm{Observe} D=D(Z)",
+      "rewritten_latex": "\\mathrm{Observe} D=D^{(Z)}"
+    },
+    {
+      "record_id": "iv-wang-2018-average-wald-v1",
+      "source_zip_sha256": "fefa9861403641a7de129f7ce57023f1db8898e711b747e1a8bfa07e3440116c",
+      "rendered_latex": "Y=Y(D)",
+      "rewritten_latex": "Y=Y^{(D)}"
+    },
+    {
+      "record_id": "iv-wang-2018-average-wald-v1",
+      "source_zip_sha256": "fefa9861403641a7de129f7ce57023f1db8898e711b747e1a8bfa07e3440116c",
+      "rendered_latex": "\\mathrm{Then} \\mathbb{E}[Y|Z,X,U]=g_{0}+P(D=1|Z,X,U)\\cdot (g_{1}-g_{0})=\\mathrm{rY}+Z \\mathrm{deltaD}\\cdot t. \\mathbb{E}[Y(1)-Y(0)|X,U]=t.",
+      "rewritten_latex": "\\mathrm{Then} \\mathbb{E}[Y|Z,X,U]=g_{0}+P(D=1|Z,X,U)\\cdot (g_{1}-g_{0})=\\mathrm{rY}+Z \\mathrm{deltaD}\\cdot t. \\mathbb{E}[Y^{(1)}-Y^{(0)}|X,U]=t."
+    },
+    {
+      "record_id": "mediation-shan-li-ai-2026-missing-confounders-aux-shadow-v1",
+      "source_zip_sha256": "ebd36d1d3f00e0aaece7804e8d5ec237d71edff59e77549ca8c93dfc58edd544",
+      "rendered_latex": "\\theta= \\mathbb{E}[Y(1, M(0))] = 3.192275262794844",
+      "rewritten_latex": "\\theta= \\mathbb{E}[Y^{(1, M^{(0)})}] = 3.192275262794844"
+    },
+    {
+      "record_id": "mediation-shan-li-ai-2026-missing-confounders-internal-shadow-v1",
+      "source_zip_sha256": "2348d00476f8219f110a74d9c8578e9b7e1f60764aa3e233c257599d8eac5628",
+      "rendered_latex": "\\theta= \\mathbb{E}[Y(1, M(0))] = 3.192275262794844",
+      "rewritten_latex": "\\theta= \\mathbb{E}[Y^{(1, M^{(0)})}] = 3.192275262794844"
+    },
+    {
+      "record_id": "mediation-standard-nie1-cheng-v1",
+      "source_zip_sha256": "31d8ed00889bfbf19cc9540d0074701e2beaa5e04fb69e9b5b11179bb020dfb2",
+      "rendered_latex": "\\psi=\\mathbb{E}[Y(1,M(1))-Y(1,M(0))]",
+      "rewritten_latex": "\\psi=\\mathbb{E}[Y^{(1,M^{(1)})}-Y^{(1,M^{(0)})}]"
+    },
+    {
+      "record_id": "mediation-standard-nie1-diaz-hejazi-v1",
+      "source_zip_sha256": "31d8ed00889bfbf19cc9540d0074701e2beaa5e04fb69e9b5b11179bb020dfb2",
+      "rendered_latex": "\\psi=\\mathbb{E}[Y(1,M(1))-Y(1,M(0))]",
+      "rewritten_latex": "\\psi=\\mathbb{E}[Y^{(1,M^{(1)})}-Y^{(1,M^{(0)})}]"
+    },
+    {
+      "record_id": "mediation-standard-nie1-diaz-intermediate-v1",
+      "source_zip_sha256": "31d8ed00889bfbf19cc9540d0074701e2beaa5e04fb69e9b5b11179bb020dfb2",
+      "rendered_latex": "\\psi=\\mathbb{E}[Y(1,M(1))-Y(1,M(0))]",
+      "rewritten_latex": "\\psi=\\mathbb{E}[Y^{(1,M^{(1)})}-Y^{(1,M^{(0)})}]"
+    },
+    {
+      "record_id": "mediation-standard-nie1-eric-v1",
+      "source_zip_sha256": "31d8ed00889bfbf19cc9540d0074701e2beaa5e04fb69e9b5b11179bb020dfb2",
+      "rendered_latex": "\\psi=\\mathbb{E}[Y(1,M(1))-Y(1,M(0))]",
+      "rewritten_latex": "\\psi=\\mathbb{E}[Y^{(1,M^{(1)})}-Y^{(1,M^{(0)})}]"
+    },
+    {
+      "record_id": "mediation-standard-nie1-he-song-xu-v1",
+      "source_zip_sha256": "31d8ed00889bfbf19cc9540d0074701e2beaa5e04fb69e9b5b11179bb020dfb2",
+      "rendered_latex": "\\psi=\\mathbb{E}[Y(1,M(1))-Y(1,M(0))]",
+      "rewritten_latex": "\\psi=\\mathbb{E}[Y^{(1,M^{(1)})}-Y^{(1,M^{(0)})}]"
+    },
+    {
+      "record_id": "mediation-standard-nie1-jones-correlated-v1",
+      "source_zip_sha256": "31d8ed00889bfbf19cc9540d0074701e2beaa5e04fb69e9b5b11179bb020dfb2",
+      "rendered_latex": "\\psi=\\mathbb{E}[Y(1,M(1))-Y(1,M(0))]",
+      "rewritten_latex": "\\psi=\\mathbb{E}[Y^{(1,M^{(1)})}-Y^{(1,M^{(0)})}]"
+    },
+    {
+      "record_id": "mediation-standard-nie1-jones-lnl-v1",
+      "source_zip_sha256": "31d8ed00889bfbf19cc9540d0074701e2beaa5e04fb69e9b5b11179bb020dfb2",
+      "rendered_latex": "\\psi=\\mathbb{E}[Y(1,M(1))-Y(1,M(0))]",
+      "rewritten_latex": "\\psi=\\mathbb{E}[Y^{(1,M^{(1)})}-Y^{(1,M^{(0)})}]"
+    },
+    {
+      "record_id": "mediation-standard-nie1-jones-lnn-v1",
+      "source_zip_sha256": "31d8ed00889bfbf19cc9540d0074701e2beaa5e04fb69e9b5b11179bb020dfb2",
+      "rendered_latex": "\\psi=\\mathbb{E}[Y(1,M(1))-Y(1,M(0))]",
+      "rewritten_latex": "\\psi=\\mathbb{E}[Y^{(1,M^{(1)})}-Y^{(1,M^{(0)})}]"
+    },
+    {
+      "record_id": "mediation-standard-nie1-jones-nnn-v1",
+      "source_zip_sha256": "31d8ed00889bfbf19cc9540d0074701e2beaa5e04fb69e9b5b11179bb020dfb2",
+      "rendered_latex": "\\psi=\\mathbb{E}[Y(1,M(1))-Y(1,M(0))]",
+      "rewritten_latex": "\\psi=\\mathbb{E}[Y^{(1,M^{(1)})}-Y^{(1,M^{(0)})}]"
+    },
+    {
+      "record_id": "mediation-standard-nie1-miles-v1",
+      "source_zip_sha256": "31d8ed00889bfbf19cc9540d0074701e2beaa5e04fb69e9b5b11179bb020dfb2",
+      "rendered_latex": "\\psi=\\mathbb{E}[Y(1,M(1))-Y(1,M(0))]",
+      "rewritten_latex": "\\psi=\\mathbb{E}[Y^{(1,M^{(1)})}-Y^{(1,M^{(0)})}]"
+    },
+    {
+      "record_id": "mediation-standard-nie1-shan-v1",
+      "source_zip_sha256": "31d8ed00889bfbf19cc9540d0074701e2beaa5e04fb69e9b5b11179bb020dfb2",
+      "rendered_latex": "\\psi=\\mathbb{E}[Y(1,M(1))-Y(1,M(0))]",
+      "rewritten_latex": "\\psi=\\mathbb{E}[Y^{(1,M^{(1)})}-Y^{(1,M^{(0)})}]"
+    },
+    {
+      "record_id": "mediation-standard-nie1-xia-binary-v1",
+      "source_zip_sha256": "31d8ed00889bfbf19cc9540d0074701e2beaa5e04fb69e9b5b11179bb020dfb2",
+      "rendered_latex": "\\psi=\\mathbb{E}[Y(1,M(1))-Y(1,M(0))]",
+      "rewritten_latex": "\\psi=\\mathbb{E}[Y^{(1,M^{(1)})}-Y^{(1,M^{(0)})}]"
+    },
+    {
+      "record_id": "mediation-standard-nie1-xia-continuous-v1",
+      "source_zip_sha256": "31d8ed00889bfbf19cc9540d0074701e2beaa5e04fb69e9b5b11179bb020dfb2",
+      "rendered_latex": "\\psi=\\mathbb{E}[Y(1,M(1))-Y(1,M(0))]",
+      "rewritten_latex": "\\psi=\\mathbb{E}[Y^{(1,M^{(1)})}-Y^{(1,M^{(0)})}]"
+    },
+    {
+      "record_id": "mediation-standard-nie1-zuo-v1",
+      "source_zip_sha256": "31d8ed00889bfbf19cc9540d0074701e2beaa5e04fb69e9b5b11179bb020dfb2",
+      "rendered_latex": "\\psi=\\mathbb{E}[Y(1,M(1))-Y(1,M(0))]",
+      "rewritten_latex": "\\psi=\\mathbb{E}[Y^{(1,M^{(1)})}-Y^{(1,M^{(0)})}]"
+    },
+    {
+      "record_id": "mediation-xia-chan-2023-continuous-copula-v1",
+      "source_zip_sha256": "24c5e6c3de8459dfa1458cf78c8bf59ea640c8d0cfb8d479053f34a0f4b2c0e2",
+      "rendered_latex": "\\mathrm{NDE}=2+3(2)+4\\mathbb{E}[C(1)]+2\\mathbb{E}[M(0)]=26",
+      "rewritten_latex": "\\mathrm{NDE}=2+3(2)+4\\mathbb{E}[C^{(1)}]+2\\mathbb{E}[M^{(0)}]=26"
+    }
+  ],
+  "unmodified_candidates": [
+    {
+      "id": "iv-wang-2018-average-wald-v1",
+      "reason": "no unambiguous potential token",
+      "math": "\\delta(X)=\\tanh(0.1+0.5 X_{2}), \\mathrm{deltaD}(X)=\\tanh(-0.5 X_{2}), OPD(X)=\\exp(-0.5+X_{2}), OPY(X)=\\exp(-X_{2}). \\alpha=(0.1,0.5)"
+    },
+    {
+      "id": "proximal-cui-2023-04-18-gaussian-v2",
+      "reason": "no unambiguous potential token",
+      "math": "\\mu(A,X) = (0.25,0.25,0.25)^{T} + A(0.25,0.125,0.25)^{T} + (0.25 X_{1} + 0.25 X_{2})(1,1,1)^{T}"
+    },
+    {
+      "id": "proximal-qi-2024-linear-itr-v1",
+      "reason": "no unambiguous potential token",
+      "math": "\\begin{aligned}\nY&=2+0.25s+8m_W+2(W-m_W)\\\\\n&\\quad+A(0.5+3X_1-5X_2+c_4m_W)+\\varepsilon\\\\\n\\varepsilon&\\sim\\mathrm{Uniform}(-1,1)\n\\end{aligned}"
+    },
+    {
+      "id": "proximal-qi-2024-quadratic-v1",
+      "reason": "no unambiguous potential token",
+      "math": "\\begin{aligned}\nY&=2+X_1^2+X_2^2+5m_W+2(W-m_W)\\\\\n&\\quad +A(0.25-6X_1X_2)+\\varepsilon\\\\\n\\varepsilon&\\sim\\mathrm{Uniform}(-1,1)\n\\end{aligned}"
+    },
+    {
+      "id": "qdi-hall-yao-2005-gaussian-index-v1",
+      "reason": "no unambiguous potential token",
+      "math": "Q_Y(0.9)=\\sqrt 2\\,\\Phi^{-1}(0.9)"
+    },
+    {
+      "id": "qdi-hall-yao-2005-gaussian-index-v2",
+      "reason": "no unambiguous potential token",
+      "math": "Q_Y(0.9)=\\sqrt 2\\,\\Phi^{-1}(0.9)"
+    },
+    {
+      "id": "qdi-yang-tokdar-2017-triangular-quantile-v1",
+      "reason": "no unambiguous potential token",
+      "math": "f_{X},Y(x,y)=(2/3)\\cdot 1_{D}(x)\\cdot \\phi((y-\\mu(x))/\\sigma(x))/\\sigma(x)"
+    }
+  ]
+}

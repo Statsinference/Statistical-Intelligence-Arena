@@ -7,6 +7,7 @@ import json
 import re
 from .domains import DOMAINS, to_domain
 from .math_format import equation_markdown
+from .counterfactual_display import render_counterfactual_equations
 from .title_display import display_title
 from .presentation_en import english_display, sampling_display, has_cjk
 from .paper_list import paper_list_tables, _domain_papers, paper_title, paper_title_with_venue, generator_link, generator_file
@@ -110,8 +111,9 @@ def detail(rec):
             cell(', '.join(observed_names)), '', '</details>', '']
     if translated:
         lines.extend(['**Original source equations (verbatim):** [Open raw scientific record (JSON)](./'+source_rec['record_id']+'.json).', ''])
-    lines.extend(equation_markdown(mech.get('generation_equations') or [], include_source=not translated,
-                                  source_entries=(source_rec.get('mechanism') or {}).get('generation_equations') or []))
+    equations = equation_markdown(mech.get('generation_equations') or [], include_source=not translated,
+                                 source_entries=(source_rec.get('mechanism') or {}).get('generation_equations') or [])
+    lines.extend(render_counterfactual_equations(equations, source_rec))
     lines.extend(['','## Parameter scenarios, estimands and truth','',
                   '<table>', '<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>', '<tbody>'])
     rows = []
