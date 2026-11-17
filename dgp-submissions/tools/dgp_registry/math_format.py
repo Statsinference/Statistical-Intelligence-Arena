@@ -465,10 +465,21 @@ def equation_markdown(entries, include_source=True, source_entries=None):
     out=[]
     for entry,source in zip(display,originals):
         pending='transcription pending' in original_equation(entry)
-        if pending:entry=source
+        original=original_equation(source)
+        pending_cjk=bool(pending and CJK.search(original))
+        if pending and not pending_cjk:entry=source
         label=(entry.get('label') if isinstance(entry,dict) else None) or (source.get('label') if isinstance(source,dict) else None)
         if label and not CJK.search(str(label)):out.extend(['**'+html.escape(str(label))+'**',''])
-        blocks=formatted_blocks(entry,starred,aliases)
+        if pending_cjk:
+            # Only extract author-delimited fragments without CJK; preserve all
+            # untranslated context in the linked original scientific JSON.
+            out.extend(['English equation transcription pending; consult the linked original scientific record (JSON) for the complete source and context.', ''])
+            blocks=[]
+            for span in re.findall(r'\x60([^\x60\n]+)\x60', original):
+                if not CJK.search(span):
+                    blocks.extend(formatted_blocks(span,starred,aliases))
+        else:
+            blocks=formatted_blocks(entry,starred,aliases)
         aligned=_align_assignments(blocks)
         if aligned:blocks=[('math',aligned)]
         for kind,expr in blocks:
