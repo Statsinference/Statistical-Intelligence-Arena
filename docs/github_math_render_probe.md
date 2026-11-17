@@ -45,3 +45,38 @@ $$
 ```math
 P(A=\text{ a })=1/\mathrm{binom}(\mathrm{N},\mathrm{N}_{1}) \text{ for } \mathrm{every} \mathrm{assignment} \text{ vector } \text{ a } \text{ with } \sum_{i} \text{ a }_{i}=\mathrm{N}_{1}.
 ```
+
+## Multiline original
+
+```math
+\begin{aligned}
+L_{0} &= 1.5\cdot T_{00}+\varepsilon_{1} \\
+U_{0} &= 1.5\cdot T_{00}+\varepsilon_{2}.
+\end{aligned}
+```
+
+## Multiline flattened
+
+```math
+\begin{aligned}
+L_{0} &= 1.5\cdot T_{00}+\varepsilon_{1} \\ U_{0} &= 1.5\cdot T_{00}+\varepsilon_{2}.
+\end{aligned}
+```
+
+## Matrix original
+
+```math
+\begin{bmatrix}
+1 & 0.25 & 0.5\\
+0.25 & 1 & 0.5\\
+0.5 & 0.5 & 1
+\end{bmatrix}
+```
+
+## Matrix flattened
+
+```math
+\begin{bmatrix}
+1 & 0.25 & 0.5\\ 0.25 & 1 & 0.5\\ 0.5 & 0.5 & 1
+\end{bmatrix}
+```
