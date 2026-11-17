@@ -45,7 +45,15 @@
 
 ### Leadership
 
+<p align="center">
+  <strong>Zhiheng Zhang</strong>&nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;
+  <strong>Shi Bo</strong>&nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;
+  <strong>Jiaming Hu</strong>
+</p>
+
 ### Method Contributors
+
+Suo Li
 
 ### Data Contributors
 
@@ -54,6 +62,8 @@
 ## Citation
 
 ## Contact
+
+For questions and feedback, please contact the project leads:
 
 <p align="center">
   <a href="mailto:zhangzhiheng@mail.shufe.edu.cn">Zhiheng Zhang</a>&nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;
