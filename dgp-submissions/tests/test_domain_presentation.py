@@ -66,7 +66,7 @@ class DomainPresentationTests(unittest.TestCase):
         ] + [{'name': 'A'}, {'name': 'Y'}]
         before = copy.deepcopy(r)
         text = detail(r)
-        self.assertIn('X1-X1000 (1000 variables), A, Y', text)
+        self.assertIn('X1–X1000 (1000 variables), A, Y', text)
         self.assertIn('All observed variable names', text)
         self.assertIn('X1, X2, X3, X4', text)
         self.assertEqual(r, before)
@@ -95,15 +95,15 @@ class DomainPresentationTests(unittest.TestCase):
         self.assertNotIn('Generator.py', summary)
         self.assertIn('../generators/test-entry.py', detail_page)
         self.assertIn('Changed the treatment assignment.', detail_page)
-        self.assertIn('Duplicate conflict - review required', page)
+        self.assertIn('Duplicate conflict — review required', page)
 
 
     def test_original_language_adaptations_link_to_raw_record(self):
         r = record()
-        r['adaptations'] = ['????????']
+        r['adaptations'] = ['这是原始适配说明']
         before = copy.deepcopy(r)
         page = detail(r)
-        self.assertNotIn('????????', page)
+        self.assertNotIn('这是原始适配说明', page)
         self.assertIn('English description pending', page)
         self.assertIn('./test-entry.json', page)
         self.assertEqual(r, before)
@@ -130,5 +130,4 @@ class DomainPresentationTests(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
-
 

@@ -12,7 +12,7 @@ from .presentation_en import english_display, sampling_display, has_cjk
 from .paper_list import paper_list_tables, _domain_papers, paper_title, paper_title_with_venue, generator_link, generator_file
 from .listing_metadata import venue_abbreviation, keyword_entries, keywords, keywords_text
 from .target_index import load_labels, target_name, render_target_indexes, TARGET_GROUPS
-from .concise_definitions import load_definitions, concise_definition, definition_note
+from .concise_definitions import load_definitions, concise_definition, definition_note, PENDING
 
 TARGET_LABELS = load_labels()
 CONCISE_DEFINITIONS = load_definitions()
@@ -115,12 +115,17 @@ def detail(rec):
     lines.extend(['','## Parameter scenarios, estimands and truth','',
                   '<table>', '<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>', '<tbody>'])
     rows = []
-    for s, source_s in zip(rec.get('scenarios') or [], source_rec.get('scenarios') or []):
+    for position, (s, source_s) in enumerate(zip(rec.get('scenarios') or [], source_rec.get('scenarios') or [])):
         name = target_name(source_rec, TARGET_LABELS) if not source_s.get('estimand') or source_s.get('estimand') == source_rec.get('estimand') else 'Needs review'
         formula = concise_definition(source_rec, source_s, CONCISE_DEFINITIONS)
         note = definition_note(source_rec, source_s, CONCISE_DEFINITIONS)
-        rows.append(((name, formula, note), s.get('id'), display_truth_value(s.get('truth') or {})))
-    for (name, formula, note), group_iter in groupby(rows, key=lambda row: row[0]):
+        original_estimand = source_s.get('estimand') or source_rec.get('estimand') or {}
+        # A shared review placeholder is not evidence that targets are the
+        # same. Bind grouping to the complete submitted estimand; if the
+        # definition itself is missing, leave each uncertain row separate.
+        unknown_position = position if formula == PENDING and not original_estimand.get('definition') else None
+        rows.append(((name, formula, note, original_estimand, unknown_position), s.get('id'), display_truth_value(s.get('truth') or {})))
+    for (name, formula, note, original_estimand, unknown_position), group_iter in groupby(rows, key=lambda row: row[0]):
         group = list(group_iter)
         for index, (_, scenario, value) in enumerate(group):
             lines.extend(['<tr>', '<td>' + escape(str(scenario if scenario is not None else '—')) + '</td>'])

@@ -127,3 +127,22 @@ def test_html_cells_escape_untrusted_scenario_and_reported_value(monkeypatch):
     assert '<td>&lt;script&gt;alert(&quot;x&quot;)&lt;/script&gt;</td>' in page
     assert '<td>&lt;img src=x onerror=alert(1)&gt;</td>' in page
     assert '<script>alert' not in page and '<img src=' not in page
+
+
+def test_different_pending_source_targets_are_not_merged(monkeypatch):
+    rec, defs = fixtures()
+    rec['scenarios'][0]['estimand'] = {'name': 'unknown one', 'definition': 'First target'}
+    rec['scenarios'][1]['estimand'] = {'name': 'unknown two', 'definition': 'Second target'}
+    monkeypatch.setattr(catalog, 'CONCISE_DEFINITIONS', {})
+    page = catalog.detail(rec)
+    assert page.count('rowspan="1"') == 4
+    assert page.count(PENDING) == 2
+
+
+def test_missing_pending_definitions_are_not_merged(monkeypatch):
+    rec, defs = fixtures()
+    rec['estimand'] = {'name': 'unknown', 'definition': None}
+    monkeypatch.setattr(catalog, 'CONCISE_DEFINITIONS', {})
+    page = catalog.detail(rec)
+    assert page.count('rowspan="1"') == 4
+    assert page.count(PENDING) == 2
