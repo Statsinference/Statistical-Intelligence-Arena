@@ -117,8 +117,9 @@ def detail(rec):
             s.get('id'),target_name(source_rec, TARGET_LABELS) if not s.get('estimand') or s.get('estimand') == source_rec.get('estimand') else 'Needs review',e.get('definition'),display_truth_value(t),t.get('status')))+' |')
     submitted_target = (source_rec.get('estimand') or {}).get('name')
     if has_cjk(submitted_target):
-        submitted_target = 'Original-language notation: see the linked scientific record.'
-    lines.extend(['', '**Original submitted target notation:** ' + cell(submitted_target), ''])
+        lines.extend(['', '**Original submitted target notation:** [See original scientific record](./' + source_rec['record_id'] + '.json).', ''])
+    else:
+        lines.extend(['', '**Original submitted target notation:** ' + cell(submitted_target), ''])
     missing_expressions = [(s.get('id'), (s.get('truth') or {}).get('expression'))
                            for s in rec.get('scenarios') or []
                            if (s.get('truth') or {}).get('value') is None
