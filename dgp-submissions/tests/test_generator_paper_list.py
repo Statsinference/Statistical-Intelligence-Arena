@@ -56,7 +56,7 @@ class GeneratorPaperListTests(unittest.TestCase):
                 records, draft_prefix="registry/drafts/",
                 generator_prefix="registry/generators/"
             ))
-            self.assertIn("| Paper Title | DGPs | DGP Mechanisms | Keywords |", readme)
+            self.assertIn("| Paper Title | DGPs | DGP Mechanisms | Estimand | Keywords |", readme)
             self.assertNotIn("| Generator.py |", readme)
             self.assertIn("[Proximal mediation analysis]", readme)
             self.assertNotIn("registry/generators/proximal-dukes-2023-mediation-v1.py", readme)
