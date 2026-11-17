@@ -136,9 +136,22 @@ class MathRenderingTests(unittest.TestCase):
         self.assertEqual(len(parts), 3)
         self.assertIn(r'\delta,\zeta\sim', parts[-1])
         self.assertTrue(all('mutually independent' not in p for p in parts))
+        from tools.dgp_registry.intake_safety import read_zip_report
+        # Five known uploads lack equations. They are rejected by intake and
+        # must not prevent independent valid submissions from being checked.
+        known_invalid = {
+            'did-qin-zhang-2008-bounded-panel-v1.zip',
+            'did-ye-2024-iid-common-trend-v1.zip',
+            'did-zhou-2026-mixture-mean-v1.zip',
+            'did-zhou-2026-network-weight-v1.zip',
+            'did-zhou-2026-truncated-mean-v1.zip',
+        }
         checked = 0
         for archive in Path('incoming').glob('*.zip'):
-            records, _ = read_archive(archive)
+            records, _, errors, _ = read_zip_report(archive)
+            if errors:
+                self.assertIn(archive.name, known_invalid, str(errors))
+                self.assertTrue(all('Missing generating equations' in e['message'] for e in errors))
             for rec in records:
                 checked += 1
                 markdown = '\n'.join(equation_markdown(rec['mechanism']['generation_equations']))
