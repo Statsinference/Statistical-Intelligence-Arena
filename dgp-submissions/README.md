@@ -56,6 +56,7 @@ Examples of targets within the requested areas include:
 | Instrumental Variables (IV) | Population local average treatment effect (LATE) for the specified complier population, when applicable |
 | Proximal Causal Inference | The particular target, for example ATE or CATE, defined for its population |
 | Difference-in-Differences (DiD) | Average treatment effect on the treated (ATT), including the relevant time or cohort |
+| Synthetic Control | The study's specified treated-unit or aggregate effect and post-treatment time point |
 | Nonparametric Regression | The regression function or a specified pointwise/functional target |
 | Quantile Inference | Conditional quantile at a stated level and covariate value |
 | Semi-Supervised Inference | The target parameter and the population to which it refers |
