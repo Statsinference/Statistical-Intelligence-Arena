@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "issue_number": 3,
+  "model": "Brownight/tabpfn-iv-adapter-v0.3",
+  "huggingface_url": "https://huggingface.co/Brownight/tabpfn-iv-adapter-v0.3",
+  "domain": "iv",
+  "submitted_by": "brownight",
+  "created_at": "2026-11-17T02:45:27Z",
+  "updated_at": "2026-11-17T02:45:27Z",
+  "status": "open",
+  "issue_url": "https://github.com/Statsinference/statsinference.github.io/issues/3",
+  "is_test": true
+}
