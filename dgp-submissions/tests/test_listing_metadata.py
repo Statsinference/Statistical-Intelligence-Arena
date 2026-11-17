@@ -129,7 +129,7 @@ def test_title_only_plus_venue_and_keywords_remain_separate():
     assert paper_title(a)=='An unrelated paper title'
     page='\n'.join(paper_list_tables([a,b]))
     assert 'An unrelated paper title (JASA)' in page
-    assert '| DGP Mechanisms | Keywords |' in page
+    assert '| DGP Mechanisms | Estimand | Keywords |' in page
     assert '1: Interactions · Nonlinearity<br/>2: Linearity' in page
     assert '1: [Alpha]' in page and '2: [Beta]' in page
     assert page.count('An unrelated paper title')==1
