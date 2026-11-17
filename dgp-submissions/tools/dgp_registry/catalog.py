@@ -109,12 +109,12 @@ def detail(rec):
     lines.extend(equation_markdown(mech.get('generation_equations') or [], include_source=not translated,
                                   source_entries=(source_rec.get('mechanism') or {}).get('generation_equations') or []))
     lines.extend(['','## Parameter scenarios, estimands and truth','',
-                  '| Scenario | Estimand | Definition | Reported value | Evidence status |',
-                  '|---|---|---|---|---|'])
+                  '| Scenario | Estimand | Definition | Reported value |',
+                  '|---|---|---|---|'])
     for s in rec.get('scenarios') or []:
         e=s.get('estimand') or rec.get('estimand') or {}; t=s.get('truth') or {}
         lines.append('| '+ ' | '.join(cell(x) for x in (
-            s.get('id'),target_name(source_rec, TARGET_LABELS) if not s.get('estimand') or s.get('estimand') == source_rec.get('estimand') else 'Needs review',e.get('definition'),display_truth_value(t),t.get('status')))+' |')
+            s.get('id'),target_name(source_rec, TARGET_LABELS) if not s.get('estimand') or s.get('estimand') == source_rec.get('estimand') else 'Needs review',e.get('definition'),display_truth_value(t)))+' |')
     submitted_target = (source_rec.get('estimand') or {}).get('name')
     if has_cjk(submitted_target):
         lines.extend(['', '**Original submitted target notation:** [See original scientific record](./' + source_rec['record_id'] + '.json).', ''])
