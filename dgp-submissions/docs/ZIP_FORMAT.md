@@ -47,7 +47,7 @@ The parser reads `collection.json.family` automatically. Supported primary areas
 
 ## Optional LaTeX equations (recommended)
 
-GitHub renders math in Registry detail pages with standard `$$ ... $$` blocks. No LLM or API key is needed.
+GitHub renders equations in Registry detail pages using fenced `math` code blocks. Fenced blocks preserve LaTeX backslash escapes through GitHub's Markdown parser. No LLM or API key is needed.
 
 For reliable, publication-quality math, an entry in `collection.json`'s `equations` list may be an object with both the original text and a verified LaTeX expression:
 
