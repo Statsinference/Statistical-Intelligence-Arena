@@ -41,27 +41,27 @@ Not explicitly identified (review required)
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
-$$
+```math
 X\sim \mathcal{N}_{20}(0,\Sigma), \Sigma[j,k]=0.5^{\lvert j-k\rvert}
-$$
+```
 
 independent individuals
 
-$$
+```math
 p(X)=\mathrm{expit}((X_{1}+X_{2}+X_{3})/2)
-$$
+```
 
-$$
+```math
 A\mid X\sim \mathrm{Bernoulli}(p).
-$$
+```
 
-$$
+```math
 Y=A+(X_{1}+2)\cdot (X_{2}+X_{3}+2)+\varepsilon
-$$
+```
 
-$$
+```math
 \varepsilon\sim \mathcal{N}(0,1)
-$$
+```
 
 independent across individuals and of X/assignment randomness
 
@@ -79,9 +79,9 @@ Y=A+(X1+2)*(X2+X3+2)+epsilon; epsilon~N(0,1), independent across individuals and
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| original | ATE | ATE = E[Y(1)-Y(0)] in the full original covariate population; binary treatment 1 versus 0. | 1.0 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| original | ATE | ATE = E[Y(1)-Y(0)] in the full original covariate population; binary treatment 1 versus 0. | 1.0 |
 
 **Original submitted target notation:** ATE
 

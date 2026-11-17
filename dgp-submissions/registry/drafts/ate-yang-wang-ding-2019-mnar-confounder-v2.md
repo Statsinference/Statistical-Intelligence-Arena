@@ -43,85 +43,85 @@ Not explicitly identified (review required)
 
 **X1-X2**
 
-$$
+```math
 X_{1}, X_{2} \text{ independently } \mathrm{sampled} \mathcal{N}(\text{ mean }=1, \text{ variance }=1)
-$$
+```
 
 independence is an explicit implementation adaptation because joint independence is not stated in Section 5.3.
 
 **X3-X4**
 
-$$
+```math
 \mathrm{Xj}=(\mathrm{Bj}-0.5)/0.5 \text{ where } \mathrm{Bj} \text{ independently } \mathrm{follows} \mathrm{Bernoulli}(0.5), j=3,4
-$$
+```
 
 hence Xj is -1 or +1 with equal probability.
 
 **X5**
 
-$$
+```math
 X_{5}=X_{1}+X_{2}+X_{3}+X_{4}+\varepsilon_{5}
-$$
+```
 
-$$
+```math
 \varepsilon_{5}\sim \mathcal{N}(0,1), \text{ independently } \mathrm{generated}.
-$$
+```
 
 **X6**
 
-$$
+```math
 X_{6}\mid X_{5}\sim \mathrm{Bernoulli}(p_{6}), \mathrm{logit}(p_{6})=-X_{5}.
-$$
+```
 
 **Potential outcomes**
 
-$$
+```math
 Y(0)=(1,X^{T}) \beta_{0}+\varepsilon_{0}
-$$
+```
 
-$$
+```math
 Y(1)=(1,X^{T}) \beta_{1}+\varepsilon_{1}
-$$
+```
 
-$$
+```math
 \beta_{0}=(-1.5,1,-1,1,-1,1,1)^{T}
-$$
+```
 
-$$
+```math
 \beta_{1}=(0,-1,1,-1,1,-1,-1)^{T}
-$$
+```
 
-$$
+```math
 \varepsilon_{0},\varepsilon_{1}\sim \mathcal{N}(0,1).
-$$
+```
 
 **Treatment**
 
-$$
+```math
 A\mid X\sim \mathrm{Bernoulli}(\mathrm{expit}((1,X^{T}) \alpha))
-$$
+```
 
-$$
+```math
 \alpha=0.5\cdot (2,1,1,1,1,-2,-2)^{T}.
-$$
+```
 
 **Missing pattern**
 
-$$
+```math
 R=(R_{5},R_{6}) \in \{(11),(10),(01),(00)\}
-$$
+```
 
-$$
+```math
 \mathrm{Let} q=(1,A,X^{T}) \eta, \eta=0.25\cdot (-4,1,1,1,1,1,-1,-1)^{T}
-$$
+```
 
 Source notation retained without guessing:
 
 <pre>Interpreting the printed RHS as direct probabilities: p11=1/(1+3 exp(q))</pre>
 
-$$
+```math
 \mathrm{pkl}=1/(\exp(-q)+3) \text{ for } \mathrm{kl}=10,01,00
-$$
+```
 
 The source prints &#x27;logit(p...)&#x27; before these right-hand sides
 
@@ -129,15 +129,15 @@ this interpretation is necessary for a multinomial probability vector and requir
 
 **Observed outcome**
 
-$$
+```math
 Y=A\cdot Y(1)+(1-A)\cdot Y(0).
-$$
+```
 
 **Equation-implied ATE**
 
-$$
+```math
 \mathrm{ATE}=\mathbb{E}[Y(1)-Y(0)]=1.5-2\mathbb{E}[X_{1}]+2\mathbb{E}[X_{2}]-2\mathbb{E}[X_{3}]+2\mathbb{E}[X_{4}]-2\mathbb{E}[X_{5}]-2\mathbb{E}[X_{6}] = -2.5-2\mathbb{E}[X_{6}] \mathrm{under} \text{ the } \mathrm{declared} \mathrm{factorization}
-$$
+```
 
 Source notation retained without guessing:
 
@@ -163,9 +163,9 @@ ATE=E[Y(1)-Y(0)]=1.5-2E[X1]+2E[X2]-2E[X3]+2E[X4]-2E[X5]-2E[X6] = -2.5-2E[X6] und
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| section53_equation_based_candidate | ATE | Population E[Y(1)-Y(0)] for the intervention A=1 versus A=0, under the declared Section 5.3 equation-based mechanism and its explicitly stated factorization adaptations. | -2.9835508151480576 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| section53_equation_based_candidate | ATE | Population E[Y(1)-Y(0)] for the intervention A=1 versus A=0, under the declared Section 5.3 equation-based mechanism and its explicitly stated factorization adaptations. | -2.9835508151480576 |
 
 **Original submitted target notation:** ATE
 

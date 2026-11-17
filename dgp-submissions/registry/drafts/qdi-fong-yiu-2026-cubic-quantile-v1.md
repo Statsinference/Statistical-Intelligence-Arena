@@ -36,49 +36,49 @@ U_i
 
 **Source sampling law**
 
-$$
+```math
 Y_{1},\ldots ,Y_{n} \text{ iid } \sim P^{\ast}, Q^{\ast}(u)=4(u-0.4)^{3}+0.2u, 0<u<1
-$$
+```
 
 n in {50,500}.
 
 **Equivalent inverse-transform construction**
 
-$$
+```math
 U_{i}\overset{\mathrm{iid}}{\sim} \mathrm{Uniform}(0,1)
-$$
+```
 
-$$
+```math
 Y_{i}=4(U_{i}-0.4)^{3}+0.2U_{i}. \mathrm{No} \text{ added } \text{ noise }
-$$
+```
 
 only Y is observed.
 
 **Derived monotonicity and support**
 
-$$
+```math
 Q'(u)=12(u-0.4)^{2}+0.2\geq 0.2
-$$
+```
 
-$$
+```math
 Q(0)=-0.256
-$$
+```
 
-$$
+```math
 Q(1)=1.064 (\text{ continuous } \text{ endpoint } \text{ extensions }).
-$$
+```
 
 **Adapted scalar target**
 
-$$
+```math
 \theta=\inf\{y:F_{Y}(y)\geq 0.9\}=Q^{\ast}(0.9)=17/25=0.68.
-$$
+```
 
 **Independent verification route**
 
-$$
+```math
 Q^{\ast}(u)=4u^{3}-4.8u^{2}+2.12u-0.256
-$$
+```
 
 F_Y(y) is the unique inverse root in [0,1] on the support, with 0/1 outside.
 
@@ -98,10 +98,10 @@ Q*(u)=4u^3-4.8u^2+2.12u-0.256; F_Y(y) is the unique inverse root in [0,1] on the
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| original_n50 | Marginal population quantile | Marginal population quantile inf{y: P(Y&lt;=y)&gt;=0.9} under Y=4(U-0.4)^3+0.2U, U~Uniform(0,1); no conditioning variables or interventions. The fixed query is tau=0.9 in both scenarios. | 0.68 | reported_numeric |
-| original_n500 | Marginal population quantile | Marginal population quantile inf{y: P(Y&lt;=y)&gt;=0.9} under Y=4(U-0.4)^3+0.2U, U~Uniform(0,1); no conditioning variables or interventions. The fixed query is tau=0.9 in both scenarios. | 0.68 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| original_n50 | Marginal population quantile | Marginal population quantile inf{y: P(Y&lt;=y)&gt;=0.9} under Y=4(U-0.4)^3+0.2U, U~Uniform(0,1); no conditioning variables or interventions. The fixed query is tau=0.9 in both scenarios. | 0.68 |
+| original_n500 | Marginal population quantile | Marginal population quantile inf{y: P(Y&lt;=y)&gt;=0.9} under Y=4(U-0.4)^3+0.2U, U~Uniform(0,1); no conditioning variables or interventions. The fixed query is tau=0.9 in both scenarios. | 0.68 |
 
 **Original submitted target notation:** theta = Q_Y(0.9)
 

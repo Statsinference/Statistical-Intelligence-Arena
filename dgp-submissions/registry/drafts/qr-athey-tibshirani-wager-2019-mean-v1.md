@@ -43,29 +43,29 @@ Not explicitly identified (review required)
 
 **Features**
 
-$$
+```math
 X_{j}\overset{\mathrm{iid}}{\sim} \mathrm{Uniform}(-1,1), j=1,\ldots ,40
-$$
+```
 
 **Noise**
 
-$$
+```math
 \varepsilon\sim \mathcal{N}(0,1)
-$$
+```
 
 independent of all X_j
 
 **Observed response**
 
-$$
+```math
 Y=0.8\cdot I(X_{1}>0)+\varepsilon
-$$
+```
 
 **Conditional quantile**
 
-$$
+```math
 Q_{q}(Y\mid X=x)=0.8\cdot I(x_{1}>0)+\Phi_{\mathrm{inverse}}(q)
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -82,9 +82,9 @@ Q_q(Y|X=x)=0.8*I(x1&gt;0)+Phi_inverse(q)
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| source_p40_q90_positive_query | Conditional quantile | Conditional 90th percentile of the observed response at x_query=(0.5,0,...,0) in the 40-dimensional covariate support; inf{y:P(Y&lt;=y\|X=x_query)&gt;=0.9}. A conditional quantile regression target, not a quantile treatment effect, population marginal quantile or causal estimand. | 2.0815515655446006 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| source_p40_q90_positive_query | Conditional quantile | Conditional 90th percentile of the observed response at x_query=(0.5,0,...,0) in the 40-dimensional covariate support; inf{y:P(Y&lt;=y\|X=x_query)&gt;=0.9}. A conditional quantile regression target, not a quantile treatment effect, population marginal quantile or causal estimand. | 2.0815515655446006 |
 
 **Original submitted target notation:** theta = Q_0.9(Y \| X=x_query)
 

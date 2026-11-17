@@ -41,29 +41,29 @@ B
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
-$$
+```math
 X\sim \mathrm{Uniform}([0,1]^{10})
-$$
+```
 
-$$
+```math
 A\sim \mathrm{Bernoulli}(0.5)
-$$
+```
 
 independent of X
 
-$$
+```math
 B\sim \mathrm{Bernoulli}(0.05)
-$$
+```
 
-$$
+```math
 \varepsilon\sim \mathcal{N}(0,0.1^{2})
-$$
+```
 
 independent of X,A and each other
 
-$$
+```math
 Y=2\cdot A\cdot B+\varepsilon
-$$
+```
 
 Source W is treatment A here
 
@@ -83,9 +83,9 @@ Y=2*A*B+epsilon. Source W is treatment A here; source A_i is the latent response
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| original | ATE | E[Y(1)-Y(0)] in the full declared covariate population; treatment 1 versus 0; population, not sample-conditional, target. | 0.1 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| original | ATE | E[Y(1)-Y(0)] in the full declared covariate population; treatment 1 versus 0; population, not sample-conditional, target. | 0.1 |
 
 **Original submitted target notation:** ATE
 

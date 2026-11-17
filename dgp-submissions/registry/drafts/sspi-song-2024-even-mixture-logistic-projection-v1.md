@@ -43,17 +43,17 @@ G
 
 B is equiprobable on {-1,+1}
 
-$$
+```math
 G\sim \mathcal{N}_{4}(0,\Sigma)
-$$
+```
 
-$$
+```math
 \Sigma_{jk}=0.8^{\lvert j-k\rvert}, \text{ independently }. X=B\cdot 1+G.
-$$
+```
 
-$$
+```math
 Y\mid X\sim \mathrm{Bernoulli}(\mathrm{expit}(\sum_{j=1}^{4} [0.9\cdot X_{j}^{4}\cdot \sin(X_{j})^{6}-2\cdot X_{j}^{2}+2.2]))
-$$
+```
 
 Conditional draws are
 
@@ -63,13 +63,13 @@ Source notation retained without guessing:
 
 <pre>Two independent samples from the same population: source_n_labeled rows with observed Y and source_n_unlabeled rows with observed X only. R=1 in the first labeled block</pre>
 
-$$
+```math
 Y_{\mathrm{obs}}=Y \text{ there }. R=0 \in \text{ the } \mathrm{remaining} \mathrm{block}
-$$
+```
 
-$$
+```math
 Y_{\mathrm{obs}}=0 \text{ is } \text{ a } \text{ placeholder }.
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -85,9 +85,9 @@ Two independent samples from the same population: source_n_labeled rows with obs
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| original | Population logistic-loss projection slope | First slope in the population logistic-loss projection of Y on (1,X1,...,X4). | 0.0 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| original | Population logistic-loss projection slope | First slope in the population logistic-loss projection of Y on (1,X1,...,X4). | 0.0 |
 
 **Original submitted target notation:** theta_logistic[1]
 

@@ -36,53 +36,53 @@ Not explicitly identified (review required)
 
 **Treatment**
 
-$$
+```math
 A_{t}\overset{\mathrm{iid}}{\sim} \mathrm{Bernoulli}(.5), t=1,\ldots ,10
-$$
+```
 
 **Coefficients**
 
-$$
+```math
 \mathrm{Every} \mathrm{entry} \text{ of } \Theta_{1t}=(\alpha_{1t},\delta_{1t},\Gamma_{1t},\zeta_{1t}) \text{ and } \Theta_{2t}=(\alpha_{2t},\delta_{2t},\gamma_{2t},\zeta_{2t,k}\mathrm{appa}_{t}) \text{ is } \text{ drawn } \text{ independently } \mathrm{Uniform}(-0.5,0.5)
-$$
+```
 
 realized arrays stored in config.json
 
 **Mediators**
 
-$$
+```math
 \mu_{t}=\alpha_{1t}+\delta_{1t} A_{t}+\Gamma_{1t} M_{t-1}+\zeta_{1t} R_{t-1}
-$$
+```
 
-$$
+```math
 M_{t}=\mu_{t}+(I-W^{T})^{-1} \varepsilon_{\mathrm{wt}}
-$$
+```
 
-$$
+```math
 \mathrm{Equivalently} M_{t}-\mu_{t}=W^{T}(M_{t}-\mu_{t})+\varepsilon_{\mathrm{wt}}
-$$
+```
 
 **Outcome**
 
-$$
+```math
 R_{t}=\alpha_{2t}+\delta_{2t} A_{t}+\gamma_{2t}^{T} M_{t-1}+\zeta_{2t} R_{t-1}+\kappa_{t}^{T} M_{t}+\varepsilon_{rt}
-$$
+```
 
 **W**
 
 [[0,-0.80,0.61],[0,0,-0.82],[0,0,0]]
 
-$$
+```math
 M_{0}=0,R_{0}=0
-$$
+```
 
 epsilon_wt and epsilon_rt independent standard normal
 
 **Target**
 
-$$
+```math
 \eta_{1}^{10}= [E \sum R_{t}|\mathrm{do} A=1 - E \sum R_{t}|\mathrm{do} A=0] - [E \sum R_{t}|\mathrm{do} A=1,M_{t1}=0 - E \sum R_{t}|\mathrm{do} A=0,M_{t1}=0]
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -101,9 +101,9 @@ eta_1^(10)= [E sum R_t|do A=1 - E sum R_t|do A=0] - [E sum R_t|do A=1,M_t1=0 - E
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| finite_T10_seeded_coefficients | Dynamic mediation effect | For ten time points, contrast E[sum_t R_t\|do(A_s=1)]-E[sum_t R_t\|do(A_s=0)] and subtract the same contrast with do(M_{s,1}=0) for all s. | -0.02804345470955405 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| finite_T10_seeded_coefficients | Dynamic mediation effect | For ten time points, contrast E[sum_t R_t\|do(A_s=1)]-E[sum_t R_t\|do(A_s=0)] and subtract the same contrast with do(M_{s,1}=0) for all s. | -0.02804345470955405 |
 
 **Original submitted target notation:** eta_1^(10)
 

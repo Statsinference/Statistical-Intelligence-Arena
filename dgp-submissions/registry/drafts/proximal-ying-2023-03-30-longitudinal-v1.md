@@ -38,77 +38,77 @@ Not explicitly identified (review required)
 
 English equation transcription pending; consult the linked original scientific record (JSON) for the complete source and context.
 
-$$
+```math
 \sigma(t)=1/(1+\exp(-t))
-$$
+```
 
-$$
+```math
 \mathcal{N}(0,0.5^{2})
-$$
+```
 
 English equation transcription pending; consult the linked original scientific record (JSON) for the complete source and context.
 
-$$
+```math
 X_{0} \sim \mathcal{N}(-0.35,0.5^{2})
-$$
+```
 
-$$
+```math
 U_{0} \sim \mathcal{N}(0.35,0.5^{2})
-$$
+```
 
 **Step 2**
 
-$$
+```math
 A_{0} \mid  X_{0},U_{0} \sim \mathrm{Bernoulli}(\sigma(-0.5 + 0.35X_{0} - 0.35U_{0}))
-$$
+```
 
 **Step 3**
 
-$$
+```math
 Z_{0} = 0.2 + 0.5A_{0} + 0.5X_{0} + 0.75U_{0} + \varepsilon_{Z0}
-$$
+```
 
 **Step 4**
 
-$$
+```math
 W_{0} = 0.2 + 0.5X_{0} - 0.95U_{0} + \varepsilon_{W0}
-$$
+```
 
 **Step 5**
 
-$$
+```math
 X_{1} = 0.2 + 0.7A_{0} + 0.7X_{0} + \varepsilon_{X1}
-$$
+```
 
 **Step 6**
 
-$$
+```math
 U_{1} = 0.2 + 0.7A_{0} + 0.7U_{0} + \varepsilon_{U1}
-$$
+```
 
 **Step 7**
 
-$$
+```math
 A_{1} \mid  A_{0},X_{0},X_{1},U_{0},U_{1} \sim \mathrm{Bernoulli}(\sigma(-0.5 + 0.5A_{0} + 0.35(X_{0}+X_{1}) + 0.35(U_{0}+U_{1})))
-$$
+```
 
 **Step 8**
 
-$$
+```math
 Z_{1} = 0.2 + 0.5(A_{0}+A_{1}) + 0.5(X_{0}+X_{1}) - 0.75(U_{0}+U_{1}) + \varepsilon_{Z1}
-$$
+```
 
 **Step 9**
 
-$$
+```math
 W_{1} = 0.35 + 0.45(X_{0}+X_{1}) - 0.85(U_{0}+U_{1}) + \varepsilon_{W1}
-$$
+```
 
 **Step 10**
 
-$$
+```math
 Y = -1.3 + A_{1} + 1.14A_{0} + 0.5X_{1} - 0.7U_{1} + 0.2X_{0} - 0.7U_{0} + \varepsilon_{Y}
-$$
+```
 
 English equation transcription pending; consult the linked original scientific record (JSON) for the complete source and context.
 
@@ -121,9 +121,9 @@ U0,U1
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| original | Marginal structural mean model slope | Common slope beta1 in E[Y(a0,a1)]=beta0+beta1*(a0+a1). The 11-vs-00 contrast is separately 2*beta1. | 1.0 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| original | Marginal structural mean model slope | Common slope beta1 in E[Y(a0,a1)]=beta0+beta1*(a0+a1). The 11-vs-00 contrast is separately 2*beta1. | 1.0 |
 
 **Original submitted target notation:** beta1
 

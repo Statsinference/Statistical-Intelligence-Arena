@@ -43,73 +43,73 @@ U1, U2, U3, UXY
 
 **Latent errors**
 
-$$
+```math
 (U_{1},U_{2},U_{3},UXY) \sim \mathcal{N}(0, I_{4})
-$$
+```
 
 **Baseline covariates**
 
-$$
+```math
 \mathrm{Xj} \sim \mathcal{N}((U_{1},U_{2},U_{3},UXY) \beta_{\mathrm{Xj}}, 1), j = 1,2,3,4
-$$
+```
 
 **Treatment**
 
-$$
+```math
 A \sim \mathrm{Bernoulli}(\mathrm{logit}^{-1}[(1,X_{1},X_{2},X_{3},X_{4}) \beta_{A}])
-$$
+```
 
 **First mediator**
 
-$$
+```math
 M_{1} \sim \mathcal{N}((1,X_{1},X_{2},X_{3},X_{4},A) \beta_{\mathrm{M1}}, 1)
-$$
+```
 
 **Second mediator**
 
-$$
+```math
 M_{2} \sim \mathcal{N}((1,X_{1},X_{2},X_{3},X_{4},A,M_{1}) \beta_{\mathrm{M2}}, 1)
-$$
+```
 
 **Outcome**
 
-$$
+```math
 Y \sim \mathcal{N}((1,UXY,X_{1},X_{2},X_{3},X_{4},A,M_{1},M_{2}) \beta_{Y}, 1)
-$$
+```
 
 **Coefficients (Supplementary Material F)**
 
-$$
+```math
 \beta_{\mathrm{X1}}=(0.77,-0.86,0.35,0.88)
-$$
+```
 
-$$
+```math
 \beta_{\mathrm{X2}}=(-0.99,-0.72,-0.1,0.54)
-$$
+```
 
-$$
+```math
 \beta_{\mathrm{X3}}=(-0.74,0.1,0.91,0.46)
-$$
+```
 
-$$
+```math
 \beta_{\mathrm{X4}}=(-0.21,-0.43,-0.21,-0.7)
-$$
+```
 
-$$
+```math
 \beta_{A}=(-0.36,-0.08,-0.06,0.4,-0.14)
-$$
+```
 
-$$
+```math
 \beta_{\mathrm{M1}}=(0,0.3,0.42,0.48,0.28,0.41)
-$$
+```
 
-$$
+```math
 \beta_{\mathrm{M2}}=(0.04,0.2,0.09,0.12,0.39,0.34,0.24)
-$$
+```
 
-$$
+```math
 \beta_{Y}=(-0.27,-0.1,0.25,0.2,-0.08,0.78,0.76,-0.4,0.96)
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -129,9 +129,9 @@ beta_X1=(0.77,-0.86,0.35,0.88); beta_X2=(-0.99,-0.72,-0.1,0.54); beta_X3=(-0.74,
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| original | Cumulative path-specific effect | Cumulative path-specific effect through the second mediator: theta_{a1,a2,a3} = E[Y(a3, M1(a1), M2(a2, M1(a1)))], and cPSE_M2 = theta_011 - theta_001 holds the Y-argument at A=1 and the M1-argument at A=0 while moving only the M2-argument from A=0 to A=1. This is NOT the natural indirect effect, NOT the natural direct effect and NOT the total effect. | 0.3264 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| original | Cumulative path-specific effect | Cumulative path-specific effect through the second mediator: theta_{a1,a2,a3} = E[Y(a3, M1(a1), M2(a2, M1(a1)))], and cPSE_M2 = theta_011 - theta_001 holds the Y-argument at A=1 and the M1-argument at A=0 while moving only the M2-argument from A=0 to A=1. This is NOT the natural indirect effect, NOT the natural direct effect and NOT the total effect. | 0.3264 |
 
 **Original submitted target notation:** cPSE_M2 = theta_011 - theta_001
 

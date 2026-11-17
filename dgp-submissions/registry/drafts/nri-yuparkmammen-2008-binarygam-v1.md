@@ -36,39 +36,39 @@ Not explicitly identified (review required)
 
 **1. First covariate**
 
-$$
+```math
 X_{1}\sim \mathcal{N}(0,1) \mathrm{conditional} \text{ on } -1\leq X_{1}\leq 1, \mathrm{using} \mathrm{rejection} \mathrm{resampling}
-$$
+```
 
-$$
+```math
 \mathrm{Source} \mathrm{design} j=1
-$$
+```
 
-$$
+```math
 \mathrm{pre}-\mathrm{truncation} \text{ mean }=0, \mathrm{sd}=1.
-$$
+```
 
 **2. Second covariate**
 
-$$
+```math
 X_{2}\sim \mathcal{N}(0,1) \mathrm{conditional} \text{ on } -1\leq X_{2}\leq 1
-$$
+```
 
 independently of X1
 
-$$
+```math
 \mathrm{Source} j=1 \mathrm{correlation}=0
-$$
+```
 
-$$
+```math
 \text{ the } \mathrm{correlated} j=2 \mathrm{design} \text{ is } \text{ not } \mathrm{generated}.
-$$
+```
 
 **3. Predictor**
 
-$$
+```math
 \eta=\sin(\pi\cdot X_{1})+0.5\cdot (X_{2}+\sin(\pi\cdot X_{2}))
-$$
+```
 
 Deterministic source predictor
 
@@ -76,13 +76,13 @@ no extra noise.
 
 **4. Response mean**
 
-$$
+```math
 m=1/(1+\exp(-\eta)) \text{ for } \mathrm{Bernoulli}
-$$
+```
 
-$$
+```math
 m=\exp(\eta) \text{ for } \mathrm{Poisson}
-$$
+```
 
 Stable logistic evaluation
 
@@ -90,19 +90,19 @@ finite eta on [-1,1]^2.
 
 **5. Observed response**
 
-$$
+```math
 Y\mid X\sim \mathrm{Bernoulli}(m) \text{ or } \mathrm{Poisson}(m)
-$$
+```
 
-$$
+```math
 \mathrm{Bernoulli} \mathrm{inversion} \text{ or } \mathrm{Knuth} \mathrm{product} \mathrm{sampler}
-$$
+```
 
 return X1,X2,Y
 
-$$
+```math
 \mathrm{Conditional} \text{ variance }=m\cdot (1-m) \text{ or } m, \text{ respectively }
-$$
+```
 
 no independent additive error is used.
 
@@ -122,10 +122,10 @@ Y|X~Bernoulli(m) or Poisson(m); Bernoulli inversion or Knuth product sampler; re
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| original-bernoulli | Pointwise conditional mean | Conditional mean of the response at the fixed query point x0 = (0.5, 0.5) in the superpopulation defined by the fixed DGP: m(x0) = expit(eta(x0)) in scenario original-bernoulli (a classification probability) and m(x0) = exp(eta(x0)) in scenario original-poisson (a conditional count mean), with eta(x) = sin(pi x1) + 0.5 [x2 + sin(pi x2)]. A pointwise scalar query only; it is not a simultaneous confidence band over the covariate region. | 0.8519528019683106 | reported_numeric |
-| original-poisson | Pointwise conditional mean | Conditional mean of the response at the fixed query point x0 = (0.5, 0.5) in the superpopulation defined by the fixed DGP: m(x0) = expit(eta(x0)) in scenario original-bernoulli (a classification probability) and m(x0) = exp(eta(x0)) in scenario original-poisson (a conditional count mean), with eta(x) = sin(pi x1) + 0.5 [x2 + sin(pi x2)]. A pointwise scalar query only; it is not a simultaneous confidence band over the covariate region. | 5.754602676005731 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| original-bernoulli | Pointwise conditional mean | Conditional mean of the response at the fixed query point x0 = (0.5, 0.5) in the superpopulation defined by the fixed DGP: m(x0) = expit(eta(x0)) in scenario original-bernoulli (a classification probability) and m(x0) = exp(eta(x0)) in scenario original-poisson (a conditional count mean), with eta(x) = sin(pi x1) + 0.5 [x2 + sin(pi x2)]. A pointwise scalar query only; it is not a simultaneous confidence band over the covariate region. | 0.8519528019683106 |
+| original-poisson | Pointwise conditional mean | Conditional mean of the response at the fixed query point x0 = (0.5, 0.5) in the superpopulation defined by the fixed DGP: m(x0) = expit(eta(x0)) in scenario original-bernoulli (a classification probability) and m(x0) = exp(eta(x0)) in scenario original-poisson (a conditional count mean), with eta(x) = sin(pi x1) + 0.5 [x2 + sin(pi x2)]. A pointwise scalar query only; it is not a simultaneous confidence band over the covariate region. | 5.754602676005731 |
 
 **Original submitted target notation:** m(x0) = E[Y \| X = x0]
 

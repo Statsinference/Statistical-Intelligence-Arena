@@ -36,23 +36,23 @@ U
 
 **Original source equations (verbatim):** [Open raw scientific record (JSON)](./proximal-qi-2024-trigonometric-v1.json).
 
-$$
+```math
 \begin{aligned}
 X_1,X_2&\overset{\mathrm{iid}}{\sim}\mathcal{N}(0.25,0.25^2)\\
 p(X)&=[1+\exp\{0.125(X_1+X_2)\}]^{-1}\\
 A\mid X&\sim\mathrm{Bernoulli}(p(X))
 \end{aligned}
-$$
+```
 
-$$
+```math
 \begin{aligned}
 (Z,W,U)\mid A,X&\sim\mathcal{N}_{3}(m,\Sigma)\\
 m&=(0.25+0.25A+0.25s,\ 0.25+0.125A+0.25s,\ 0.25+0.25A+0.25s)\\
 s&=X_1+X_2
 \end{aligned}
-$$
+```
 
-$$
+```math
 \begin{aligned}
 \Sigma&=\begin{bmatrix}
 1 & 0.25 & 0.5\\
@@ -61,31 +61,31 @@ $$
 \end{bmatrix}\\
 m_W(U,X)&=0.125+0.125s+0.5U
 \end{aligned}
-$$
+```
 
 Covariance matrix: 3 × 3.
 
-$$
+```math
 \begin{aligned}
 g(X)&=-2.5+\sin(X_1)-2\cos(X_2)\\
 d(U,X)&=2.3+|X_1-1|-|X_2+1|+g(X)m_W
 \end{aligned}
-$$
+```
 
-$$
+```math
 \begin{aligned}
 Y&=2+X_1^2+X_2^2+4m_W+2(W-m_W)\\
 &\quad+A\,d(U,X)+\varepsilon\\
 \varepsilon&\sim\mathrm{Uniform}(-1,1)
 \end{aligned}
-$$
+```
 
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| N1 | ATE | ATE = E[2.3 + \|X1-1\| - \|X2+1\| + g(X)W]. | 0.019533193713670016 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| N1 | ATE | ATE = E[2.3 + \|X1-1\| - \|X2+1\| + g(X)W]. | 0.019533193713670016 |
 
 **Original submitted target notation:** ATE
 

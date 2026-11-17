@@ -36,31 +36,31 @@ Not explicitly identified (review required)
 
 **observed**
 
-$$
+```math
 Y_{\mathrm{gtj}}\sim \mathcal{N}(\mu_{\mathrm{gt}}+I(g=\mathrm{trt})\mathrm{att}_{t},1), \text{ independent } \text{ all } \mathrm{cells}
-$$
+```
 
-$$
+```math
 \mu_{trt}=(3,4,0,1)
-$$
+```
 
-$$
+```math
 \mu_{a}=(10,11,10,11)
-$$
+```
 
-$$
+```math
 \mu_{b}=(4,6,2,3)
-$$
+```
 
-$$
+```math
 \mathrm{att}=(0,2,3,1)
-$$
+```
 
 **truth**
 
-$$
+```math
 \mathrm{Population} \mathrm{ATT4}=1
-$$
+```
 
 finite-sample cross-world coupling unspecified
 
@@ -77,9 +77,9 @@ Population ATT4=1; finite-sample cross-world coupling unspecified
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| baseline | ATT | Population mean treatment effect at final period4 conditional on treated group, source-declared att[4]=1; not finite-sample SATT. | 1.0 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| baseline | ATT | Population mean treatment effect at final period4 conditional on treated group, source-declared att[4]=1; not finite-sample SATT. | 1.0 |
 
 **Original submitted target notation:** ATT_4
 

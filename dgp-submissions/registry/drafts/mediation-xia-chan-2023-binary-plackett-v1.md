@@ -36,51 +36,51 @@ Not explicitly identified (review required)
 
 **X,A**
 
-$$
+```math
 X\sim \mathcal{N}(0,1)
-$$
+```
 
-$$
+```math
 A\mid X\sim \mathrm{Bern}(\mathrm{expit}(-0.2+0.3X))
-$$
+```
 
 **Marginal M**
 
-$$
+```math
 M\mid A,X\sim \mathrm{Bern}(\mathrm{expit}(-0.3-0.2A+0.5X))
-$$
+```
 
 **Marginal C**
 
-$$
+```math
 C\mid A,X\sim \mathrm{Bern}(\mathrm{expit}(-0.2-0.1A+0.3X))
-$$
+```
 
 **Copula**
 
-$$
+```math
 OR(M,C\mid A,X)=\exp(1-2A+3X)
-$$
+```
 
-$$
+```math
 \mathrm{joint} p_{11} \mathrm{solves} p_{11}(1-\mathrm{pM}-\mathrm{pC}+p_{11})/[(\mathrm{pM}-p_{11})(\mathrm{pC}-p_{11})]=OR
-$$
+```
 
 **Outcome**
 
-$$
+```math
 Y=1+3A+6M+3C+6X+4AC+2AM+\varepsilon_{Y}
-$$
+```
 
-$$
+```math
 \varepsilon_{Y}\sim \mathcal{N}(0,16)
-$$
+```
 
 **Target**
 
-$$
+```math
 \mathrm{NDE}=E_{X}[3+3\{\mathrm{pC}(1,X)-\mathrm{pC}(0,X)\}+4\mathrm{pC}(1,X)+2\mathrm{pM}(0,X)]
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -99,9 +99,9 @@ NDE=E_X[3+3{pC(1,X)-pC(0,X)}+4pC(1,X)+2pM(0,X)]
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| section_4_1_binary | NDE | E[Y(1,M(0))-Y(0,M(0))] under the specified binary copula structural model, with C following the treatment in each outcome potential. | 5.4954757582156875 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| section_4_1_binary | NDE | E[Y(1,M(0))-Y(0,M(0))] under the specified binary copula structural model, with C following the treatment in each outcome potential. | 5.4954757582156875 |
 
 **Original submitted target notation:** NDE
 

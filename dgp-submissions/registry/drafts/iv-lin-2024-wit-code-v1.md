@@ -43,51 +43,51 @@ eta_i
 
 **Instrument distribution**
 
-$$
+```math
 Z_i\sim\mathcal{N}_{21}(0,\Sigma_Z),\qquad (\Sigma_Z)_{jk}=0.8(0.3)^{|j-k|},\quad j,k=1,\ldots,21.
-$$
+```
 
 **Joint structural error distribution**
 
-$$
+```math
 \begin{pmatrix}\varepsilon_i\\\eta_i\end{pmatrix}\sim\mathcal{N}_2\!\left(\begin{pmatrix}0\\0\end{pmatrix},\begin{pmatrix}1&0.6\\0.6&1\end{pmatrix}\right).
-$$
+```
 
 **Sampling independence**
 
-$$
+```math
 Z_i\perp\!\!\!\perp(\varepsilon_i,\eta_i),\qquad (Z_i,\varepsilon_i,\eta_i)\overset{\mathrm{iid}}{\sim}P,\quad i=1,\ldots,n.
-$$
+```
 
 **Common fixed parameters**
 
-$$
+```math
 p=21,\qquad\beta=1,\qquad\alpha=(0\mathbf{1}_{9}^{\top},0.4\mathbf{1}_{6}^{\top},0.2\mathbf{1}_{6}^{\top})^{\top}.
-$$
+```
 
 **Default code_case_2 first-stage coefficients**
 
-$$
+```math
 \gamma_{\mathrm{code\_case\_2}}=0.15\mathbf{1}_{21}.
-$$
+```
 
 **Alternative code_case_1 first-stage coefficients**
 
-$$
+```math
 \gamma_{\mathrm{code\_case\_1}}=0.4\mathbf{1}_{21}.
-$$
+```
 
 **Endogenous continuous treatment**
 
-$$
+```math
 D_i=Z_i^{\top}\gamma+\eta_i.
-$$
+```
 
 **Continuous outcome**
 
-$$
+```math
 Y_i=\beta D_i+Z_i^{\top}\alpha+\varepsilon_i.
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -108,10 +108,10 @@ Y_i = beta*D_i + Z_i^T alpha + epsilon_i. Only Z1,...,Z21,D,Y are observed outpu
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| code_case_2 | Population unit-change structural mean effect | Homogeneous structural coefficient: E[Y(do(D=d+1))-Y(do(D=d))]=beta for the specified superpopulation; both scenarios beta=1. Not LATE. | 1.0 | reported_numeric |
-| code_case_1 | Population unit-change structural mean effect | Homogeneous structural coefficient: E[Y(do(D=d+1))-Y(do(D=d))]=beta for the specified superpopulation; both scenarios beta=1. Not LATE. | 1.0 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| code_case_2 | Population unit-change structural mean effect | Homogeneous structural coefficient: E[Y(do(D=d+1))-Y(do(D=d))]=beta for the specified superpopulation; both scenarios beta=1. Not LATE. | 1.0 |
+| code_case_1 | Population unit-change structural mean effect | Homogeneous structural coefficient: E[Y(do(D=d+1))-Y(do(D=d))]=beta for the specified superpopulation; both scenarios beta=1. Not LATE. | 1.0 |
 
 **Original submitted target notation:** beta
 

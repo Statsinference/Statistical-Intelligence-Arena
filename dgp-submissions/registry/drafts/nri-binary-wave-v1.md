@@ -36,61 +36,61 @@ Not explicitly identified (review required)
 
 **Covariate**
 
-$$
+```math
 X_{i} \sim \mathrm{Uniform}[0,1] \text{ independently }
-$$
+```
 
 **Wave regression function (factored)**
 
-$$
+```math
 p_{s}(x) = 0.5 - (2s-1)(x-0.5) + 8s(x-0.5)^{3}, s \in \{0,0.1,\ldots ,1\}
-$$
+```
 
 **Wave regression function (expanded)**
 
-$$
+```math
 p_{s}(x) = 8s\cdot x^{3} - 12s\cdot x^{2} + (4s+1)\cdot x
-$$
+```
 
 **Special values**
 
-$$
+```math
 p_{s}(0)=0
-$$
+```
 
-$$
+```math
 p_{s}(0.5)=0.5 \text{ for } \text{ all } s
-$$
+```
 
-$$
+```math
 p_{s}(1)=1
-$$
+```
 
-$$
+```math
 s=0 \mathrm{reduces} \text{ to } p(x)=x (\mathrm{excluded} \text{ as } \mathrm{duplicate})
-$$
+```
 
 **Monotonicity boundary**
 
-$$
+```math
 p_{s}'(x) = -(2s-1) + 24s(x-0.5)^{2}
-$$
+```
 
-$$
+```math
 \mathrm{monotone} \text{ on } [0,1] \mathrm{iff} s\leq 0.5
-$$
+```
 
 **Binary outcome**
 
-$$
+```math
 Y_{i} \mid  X_{i}=x \sim \mathrm{Bernoulli}(p_{s}(x)) \text{ independently }
-$$
+```
 
 **NRI scalar target (default)**
 
-$$
+```math
 m_{s}(0.5) = \mathbb{E}[Y \mid  X=0.5] = p_{s}(0.5) = 0.5 \text{ for } \text{ all } s
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -110,18 +110,18 @@ m_s(0.5) = E[Y | X=0.5] = p_s(0.5) = 0.5 for all s
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| s01 | Pointwise conditional mean | Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0.1,0.2,...,1.0}; the wave function is the cubic polynomial p_s(x)=0.5-(2s-1)(x-0.5)+8s(x-0.5)^3 (equivalently 8s*x^3-12s*x^2+(4s+1)*x). The target is a conditional Bernoulli probability, not an intervention effect or a prediction interval. | 0.5 | reported_numeric |
-| s02 | Pointwise conditional mean | Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0.1,0.2,...,1.0}; the wave function is the cubic polynomial p_s(x)=0.5-(2s-1)(x-0.5)+8s(x-0.5)^3 (equivalently 8s*x^3-12s*x^2+(4s+1)*x). The target is a conditional Bernoulli probability, not an intervention effect or a prediction interval. | 0.5 | reported_numeric |
-| s03 | Pointwise conditional mean | Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0.1,0.2,...,1.0}; the wave function is the cubic polynomial p_s(x)=0.5-(2s-1)(x-0.5)+8s(x-0.5)^3 (equivalently 8s*x^3-12s*x^2+(4s+1)*x). The target is a conditional Bernoulli probability, not an intervention effect or a prediction interval. | 0.5 | reported_numeric |
-| s04 | Pointwise conditional mean | Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0.1,0.2,...,1.0}; the wave function is the cubic polynomial p_s(x)=0.5-(2s-1)(x-0.5)+8s(x-0.5)^3 (equivalently 8s*x^3-12s*x^2+(4s+1)*x). The target is a conditional Bernoulli probability, not an intervention effect or a prediction interval. | 0.5 | reported_numeric |
-| s05 | Pointwise conditional mean | Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0.1,0.2,...,1.0}; the wave function is the cubic polynomial p_s(x)=0.5-(2s-1)(x-0.5)+8s(x-0.5)^3 (equivalently 8s*x^3-12s*x^2+(4s+1)*x). The target is a conditional Bernoulli probability, not an intervention effect or a prediction interval. | 0.5 | reported_numeric |
-| s06 | Pointwise conditional mean | Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0.1,0.2,...,1.0}; the wave function is the cubic polynomial p_s(x)=0.5-(2s-1)(x-0.5)+8s(x-0.5)^3 (equivalently 8s*x^3-12s*x^2+(4s+1)*x). The target is a conditional Bernoulli probability, not an intervention effect or a prediction interval. | 0.5 | reported_numeric |
-| s07 | Pointwise conditional mean | Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0.1,0.2,...,1.0}; the wave function is the cubic polynomial p_s(x)=0.5-(2s-1)(x-0.5)+8s(x-0.5)^3 (equivalently 8s*x^3-12s*x^2+(4s+1)*x). The target is a conditional Bernoulli probability, not an intervention effect or a prediction interval. | 0.5 | reported_numeric |
-| s08 | Pointwise conditional mean | Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0.1,0.2,...,1.0}; the wave function is the cubic polynomial p_s(x)=0.5-(2s-1)(x-0.5)+8s(x-0.5)^3 (equivalently 8s*x^3-12s*x^2+(4s+1)*x). The target is a conditional Bernoulli probability, not an intervention effect or a prediction interval. | 0.5 | reported_numeric |
-| s09 | Pointwise conditional mean | Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0.1,0.2,...,1.0}; the wave function is the cubic polynomial p_s(x)=0.5-(2s-1)(x-0.5)+8s(x-0.5)^3 (equivalently 8s*x^3-12s*x^2+(4s+1)*x). The target is a conditional Bernoulli probability, not an intervention effect or a prediction interval. | 0.5 | reported_numeric |
-| s10 | Pointwise conditional mean | Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0.1,0.2,...,1.0}; the wave function is the cubic polynomial p_s(x)=0.5-(2s-1)(x-0.5)+8s(x-0.5)^3 (equivalently 8s*x^3-12s*x^2+(4s+1)*x). The target is a conditional Bernoulli probability, not an intervention effect or a prediction interval. | 0.5 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| s01 | Pointwise conditional mean | Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0.1,0.2,...,1.0}; the wave function is the cubic polynomial p_s(x)=0.5-(2s-1)(x-0.5)+8s(x-0.5)^3 (equivalently 8s*x^3-12s*x^2+(4s+1)*x). The target is a conditional Bernoulli probability, not an intervention effect or a prediction interval. | 0.5 |
+| s02 | Pointwise conditional mean | Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0.1,0.2,...,1.0}; the wave function is the cubic polynomial p_s(x)=0.5-(2s-1)(x-0.5)+8s(x-0.5)^3 (equivalently 8s*x^3-12s*x^2+(4s+1)*x). The target is a conditional Bernoulli probability, not an intervention effect or a prediction interval. | 0.5 |
+| s03 | Pointwise conditional mean | Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0.1,0.2,...,1.0}; the wave function is the cubic polynomial p_s(x)=0.5-(2s-1)(x-0.5)+8s(x-0.5)^3 (equivalently 8s*x^3-12s*x^2+(4s+1)*x). The target is a conditional Bernoulli probability, not an intervention effect or a prediction interval. | 0.5 |
+| s04 | Pointwise conditional mean | Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0.1,0.2,...,1.0}; the wave function is the cubic polynomial p_s(x)=0.5-(2s-1)(x-0.5)+8s(x-0.5)^3 (equivalently 8s*x^3-12s*x^2+(4s+1)*x). The target is a conditional Bernoulli probability, not an intervention effect or a prediction interval. | 0.5 |
+| s05 | Pointwise conditional mean | Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0.1,0.2,...,1.0}; the wave function is the cubic polynomial p_s(x)=0.5-(2s-1)(x-0.5)+8s(x-0.5)^3 (equivalently 8s*x^3-12s*x^2+(4s+1)*x). The target is a conditional Bernoulli probability, not an intervention effect or a prediction interval. | 0.5 |
+| s06 | Pointwise conditional mean | Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0.1,0.2,...,1.0}; the wave function is the cubic polynomial p_s(x)=0.5-(2s-1)(x-0.5)+8s(x-0.5)^3 (equivalently 8s*x^3-12s*x^2+(4s+1)*x). The target is a conditional Bernoulli probability, not an intervention effect or a prediction interval. | 0.5 |
+| s07 | Pointwise conditional mean | Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0.1,0.2,...,1.0}; the wave function is the cubic polynomial p_s(x)=0.5-(2s-1)(x-0.5)+8s(x-0.5)^3 (equivalently 8s*x^3-12s*x^2+(4s+1)*x). The target is a conditional Bernoulli probability, not an intervention effect or a prediction interval. | 0.5 |
+| s08 | Pointwise conditional mean | Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0.1,0.2,...,1.0}; the wave function is the cubic polynomial p_s(x)=0.5-(2s-1)(x-0.5)+8s(x-0.5)^3 (equivalently 8s*x^3-12s*x^2+(4s+1)*x). The target is a conditional Bernoulli probability, not an intervention effect or a prediction interval. | 0.5 |
+| s09 | Pointwise conditional mean | Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0.1,0.2,...,1.0}; the wave function is the cubic polynomial p_s(x)=0.5-(2s-1)(x-0.5)+8s(x-0.5)^3 (equivalently 8s*x^3-12s*x^2+(4s+1)*x). The target is a conditional Bernoulli probability, not an intervention effect or a prediction interval. | 0.5 |
+| s10 | Pointwise conditional mean | Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0.1,0.2,...,1.0}; the wave function is the cubic polynomial p_s(x)=0.5-(2s-1)(x-0.5)+8s(x-0.5)^3 (equivalently 8s*x^3-12s*x^2+(4s+1)*x). The target is a conditional Bernoulli probability, not an intervention effect or a prediction interval. | 0.5 |
 
 **Original submitted target notation:** m_s(x*) = E[Y \| X=x*] = p_s(x*)
 

@@ -36,37 +36,37 @@ Not explicitly identified (review required)
 
 **Covariate**
 
-$$
+```math
 X \sim \mathrm{Uniform}(-2.5,2.5)
-$$
+```
 
 **Full outcome**
 
-$$
+```math
 Y\mid X=x \sim \mathcal{N}(1+2x+3x^{2}, 4x^{2}+2), \text{ with } \mathrm{second} \mathrm{argument} \text{ variance }
-$$
+```
 
 **Observation**
 
-$$
+```math
 R\mid X=x \sim \mathrm{Bernoulli}(1/[1+\exp(0.8+0.5x-0.3x^{2})])
-$$
+```
 
-$$
+```math
 R=1 \mathrm{means} \text{ observed }
-$$
+```
 
 **Observed encoding**
 
-$$
+```math
 Y_{\mathrm{observed}}=Y \text{ when } R=1 \text{ and } 0 \text{ placeholder } \text{ when } R=0
-$$
+```
 
 **Target**
 
-$$
+```math
 \theta=\mathbb{E}(Y)=7.25
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -84,9 +84,9 @@ theta=E(Y)=7.25
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| original | Full-data population outcome mean | Full-data superpopulation response mean before outcome masking. | 7.25 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| original | Full-data population outcome mean | Full-data superpopulation response mean before outcome masking. | 7.25 |
 
 **Original submitted target notation:** theta = E(Y)
 

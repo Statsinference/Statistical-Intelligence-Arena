@@ -34,25 +34,25 @@ Not explicitly identified (review required)
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
-$$
+```math
 X\sim \mathcal{N}(0,1) \text{ and } \varepsilon\sim \mathcal{N}(0,1) \text{ independently }.
-$$
+```
 
-$$
+```math
 Y=0.5\cdot X^{2}+X+\varepsilon.
-$$
+```
 
 Source notation retained without guessing:
 
 <pre>Two independent samples from the same population: source_n_labeled rows with observed Y and source_n_unlabeled rows with observed X only. R=1 in the first labeled block</pre>
 
-$$
+```math
 Y_{\mathrm{obs}}=Y \text{ there }. R=0 \in \text{ the } \mathrm{remaining} \mathrm{block}
-$$
+```
 
-$$
+```math
 Y_{\mathrm{obs}}=0 \text{ is } \text{ a } \text{ placeholder }.
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -68,9 +68,9 @@ Two independent samples from the same population: source_n_labeled rows with obs
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| original | Population least-squares projection slope | Slope in the population least-squares projection of Y on (1,X). | 1.0 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| original | Population least-squares projection slope | Slope in the population least-squares projection of Y on (1,X). | 1.0 |
 
 **Original submitted target notation:** beta_L2
 

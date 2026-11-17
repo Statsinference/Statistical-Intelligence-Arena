@@ -43,61 +43,61 @@ theta_i
 
 **Covariates**
 
-$$
+```math
 X_{i} \sim \mathcal{N}_{p}(0,I_{p})
-$$
+```
 
-$$
+```math
 p=1600 \in \text{ the } \mathrm{selected} \mathrm{Table} 5 \mathrm{setting}
-$$
+```
 
 all coordinates are independent standard normal.
 
 **Latent treatment intensity**
 
-$$
+```math
 \theta_{i} = \log(1 + \exp(-2 - 2 X_{i1})) / 0.915
-$$
+```
 
 implement with stable softplus logaddexp. theta_i is latent and is not returned as an observed column.
 
 **Treatment assignment**
 
-$$
+```math
 W_{i} \mid  X_{i} \sim \mathrm{Bernoulli}(1 - \exp(-\theta_{i}))
-$$
+```
 
-$$
+```math
 \mathrm{equivalently} P(W_{i}=1\mid X_{i})= -\mathrm{expm1}(-\theta_{i}) \text{ for } \mathrm{stable} \mathrm{numeric} \mathrm{evaluation}
-$$
+```
 
 This is the source&#x27;s misspecified-setting mechanism, not an assumed logistic regression.
 
 **Observed outcome**
 
-$$
+```math
 Y_{i} = \sum_{j=1}^{10} X_{ij} + \theta_{i} (2 W_{i} - 1)/2 + \varepsilon_{i}
-$$
+```
 
-$$
+```math
 \varepsilon_{i} \sim \mathcal{N}(0,1)
-$$
+```
 
 Cross-independence of epsilon is an implementation assumption pending review.
 
 **Potential outcomes / ATE**
 
-$$
+```math
 Y_{i}(w)=\sum_{j=1}^{10} X_{ij} + \theta_{i}(2w-1)/2 + \varepsilon_{i}, w \in \{0,1\}
-$$
+```
 
-$$
+```math
 Y_{i}(1)-Y_{i}(0)=\theta_{i}
-$$
+```
 
-$$
+```math
 \mathrm{ATE}=\mathbb{E}[\theta(X_{1})]\approx 0.389416787118157.
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -115,9 +115,9 @@ Y_i(w)=sum_{j=1}^{10} X_ij + theta_i(2w-1)/2 + epsilon_i, w in {0,1}; Y_i(1)-Y_i
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| n400_p1600 | ATE | Population average treatment effect E[Y(1)-Y(0)] in the synthetic superpopulation defined by Section 5.2's misspecified setting, comparing intervention W=1 with W=0 while holding the same pre-treatment X and outcome error fixed. The individual effect is theta(X1), so ATE=E[theta(X1)]. This is not ATT=E[theta(X1)\|W=1]. | 0.38941678711815697 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| n400_p1600 | ATE | Population average treatment effect E[Y(1)-Y(0)] in the synthetic superpopulation defined by Section 5.2's misspecified setting, comparing intervention W=1 with W=0 while holding the same pre-treatment X and outcome error fixed. The individual effect is theta(X1), so ATE=E[theta(X1)]. This is not ATT=E[theta(X1)\|W=1]. | 0.38941678711815697 |
 
 **Original submitted target notation:** ATE
 

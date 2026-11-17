@@ -43,33 +43,33 @@ Z1, epsilon
 
 **Covariates**
 
-$$
+```math
 Z\sim \mathcal{N}_{500}(0,\Sigma)
-$$
+```
 
-$$
+```math
 \Sigma_{jk}=0.3^{\lvert j-k\rvert}
-$$
+```
 
-$$
+```math
 X_{1}=\lvert Z_{1}\rvert
-$$
+```
 
-$$
+```math
 \mathrm{Xj}=\mathrm{Zj} \text{ for } j>1
-$$
+```
 
 Exact stationary AR recursion generates Z.
 
 **Response**
 
-$$
+```math
 Y = 0.5 X_{1}^{2} + 0.8 X_{3}^{3} - (X_{4}-2)^{2} + 2 (X_{5}+1)^{2} + 2 X_{6} + \varepsilon
-$$
+```
 
-$$
+```math
 \varepsilon\sim \mathcal{N}(0,1)
-$$
+```
 
 independent of Z and all other units
 
@@ -79,9 +79,9 @@ Source notation retained without guessing:
 
 <pre>Independent iid labeled and unlabeled samples from the same complete-data population</pre>
 
-$$
+```math
 \mathrm{nL}=200,\mathrm{nU}=1000 \mathrm{reference}
-$$
+```
 
 Export X1..X500,R,Y_obs.
 
@@ -99,9 +99,9 @@ Independent iid labeled and unlabeled samples from the same complete-data popula
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| source_formula_fixed | Population least-squares projection slope | Coordinate 3 of beta in argmin_(alpha,beta) E[(Y-alpha-X^T beta)^2]. All 500 observed covariates are included, with an intercept. | 2.4000000000000004 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| source_formula_fixed | Population least-squares projection slope | Coordinate 3 of beta in argmin_(alpha,beta) E[(Y-alpha-X^T beta)^2]. All 500 observed covariates are included, with an intercept. | 2.4000000000000004 |
 
 **Original submitted target notation:** beta_3
 

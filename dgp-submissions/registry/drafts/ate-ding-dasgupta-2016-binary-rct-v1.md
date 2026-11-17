@@ -36,49 +36,49 @@ Not explicitly identified (review required)
 
 **Fixed finite-population potential-outcome cells**
 
-$$
+```math
 \mathrm{N}_{11}=\#\{i:Y_{i}(1)=1,Y_{i}(0)=1\}
-$$
+```
 
-$$
+```math
 \mathrm{N}_{10}=\#\{i:Y_{i}(1)=1,Y_{i}(0)=0\}
-$$
+```
 
-$$
+```math
 \mathrm{N}_{01}=\#\{i:Y_{i}(1)=0,Y_{i}(0)=1\}
-$$
+```
 
-$$
+```math
 \mathrm{N}_{00}=\#\{i:Y_{i}(1)=0,Y_{i}(0)=0\}
-$$
+```
 
-$$
+```math
 \mathrm{N}=\mathrm{N}_{11}+\mathrm{N}_{10}+\mathrm{N}_{01}+\mathrm{N}_{00}=200.
-$$
+```
 
 **Complete randomization (user-approved allocation adaptation)**
 
-$$
+```math
 \mathrm{N}_{1}=\mathrm{N}_{0}=100
-$$
+```
 
-$$
+```math
 P(A=\text{ a })=1/\mathrm{binom}(\mathrm{N},\mathrm{N}_{1}) \text{ for } \mathrm{every} \mathrm{assignment} \text{ vector } \text{ a } \text{ with } \sum_{i} \text{ a }_{i}=\mathrm{N}_{1}.
-$$
+```
 
 **Observed outcome**
 
-$$
+```math
 Y_{i}=A_{i} Y_{i}(1)+(1-A_{i})Y_{i}(0)
-$$
+```
 
 Only (A_i,Y_i) are returned.
 
 **Finite-population ATE**
 
-$$
+```math
 \tau=\mathrm{N}^{-1} \sum_{i}[Y_{i}(1)-Y_{i}(0)]=(\mathrm{N}_{10}-\mathrm{N}_{01})/\mathrm{N}.
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -95,20 +95,20 @@ tau=N^{-1} sum_i[Y_i(1)-Y_i(0)]=(N10-N01)/N.
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| case01_independent_null | ATE | Finite-population average treatment effect / causal risk difference for intervention A=1 versus A=0 over the N=200 experimental units. Y_i(1) and Y_i(0) are binary fixed potential outcomes; observed Y_i=A_i Y_i(1)+(1-A_i)Y_i(0). | 0.0 | reported_numeric |
-| case02_independent_positive | ATE | Finite-population average treatment effect / causal risk difference for intervention A=1 versus A=0 over the N=200 experimental units. Y_i(1) and Y_i(0) are binary fixed potential outcomes; observed Y_i=A_i Y_i(1)+(1-A_i)Y_i(0). | 0.2 | reported_numeric |
-| case03_independent_positive | ATE | Finite-population average treatment effect / causal risk difference for intervention A=1 versus A=0 over the N=200 experimental units. Y_i(1) and Y_i(0) are binary fixed potential outcomes; observed Y_i=A_i Y_i(1)+(1-A_i)Y_i(0). | 0.35 | reported_numeric |
-| case04_independent_negative | ATE | Finite-population average treatment effect / causal risk difference for intervention A=1 versus A=0 over the N=200 experimental units. Y_i(1) and Y_i(0) are binary fixed potential outcomes; observed Y_i=A_i Y_i(1)+(1-A_i)Y_i(0). | -0.3 | reported_numeric |
-| case05_independent_negative | ATE | Finite-population average treatment effect / causal risk difference for intervention A=1 versus A=0 over the N=200 experimental units. Y_i(1) and Y_i(0) are binary fixed potential outcomes; observed Y_i=A_i Y_i(1)+(1-A_i)Y_i(0). | -0.35 | reported_numeric |
-| case06_positive_association_null | ATE | Finite-population average treatment effect / causal risk difference for intervention A=1 versus A=0 over the N=200 experimental units. Y_i(1) and Y_i(0) are binary fixed potential outcomes; observed Y_i=A_i Y_i(1)+(1-A_i)Y_i(0). | 0.0 | reported_numeric |
-| case07_positive_association | ATE | Finite-population average treatment effect / causal risk difference for intervention A=1 versus A=0 over the N=200 experimental units. Y_i(1) and Y_i(0) are binary fixed potential outcomes; observed Y_i=A_i Y_i(1)+(1-A_i)Y_i(0). | 0.1 | reported_numeric |
-| case08_positive_association | ATE | Finite-population average treatment effect / causal risk difference for intervention A=1 versus A=0 over the N=200 experimental units. Y_i(1) and Y_i(0) are binary fixed potential outcomes; observed Y_i=A_i Y_i(1)+(1-A_i)Y_i(0). | 0.2 | reported_numeric |
-| case09_positive_association | ATE | Finite-population average treatment effect / causal risk difference for intervention A=1 versus A=0 over the N=200 experimental units. Y_i(1) and Y_i(0) are binary fixed potential outcomes; observed Y_i=A_i Y_i(1)+(1-A_i)Y_i(0). | 0.5 | reported_numeric |
-| case10_positive_association_negative | ATE | Finite-population average treatment effect / causal risk difference for intervention A=1 versus A=0 over the N=200 experimental units. Y_i(1) and Y_i(0) are binary fixed potential outcomes; observed Y_i=A_i Y_i(1)+(1-A_i)Y_i(0). | -0.1 | reported_numeric |
-| case11_positive_association_negative | ATE | Finite-population average treatment effect / causal risk difference for intervention A=1 versus A=0 over the N=200 experimental units. Y_i(1) and Y_i(0) are binary fixed potential outcomes; observed Y_i=A_i Y_i(1)+(1-A_i)Y_i(0). | -0.2 | reported_numeric |
-| case12_positive_association_negative | ATE | Finite-population average treatment effect / causal risk difference for intervention A=1 versus A=0 over the N=200 experimental units. Y_i(1) and Y_i(0) are binary fixed potential outcomes; observed Y_i=A_i Y_i(1)+(1-A_i)Y_i(0). | -0.5 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| case01_independent_null | ATE | Finite-population average treatment effect / causal risk difference for intervention A=1 versus A=0 over the N=200 experimental units. Y_i(1) and Y_i(0) are binary fixed potential outcomes; observed Y_i=A_i Y_i(1)+(1-A_i)Y_i(0). | 0.0 |
+| case02_independent_positive | ATE | Finite-population average treatment effect / causal risk difference for intervention A=1 versus A=0 over the N=200 experimental units. Y_i(1) and Y_i(0) are binary fixed potential outcomes; observed Y_i=A_i Y_i(1)+(1-A_i)Y_i(0). | 0.2 |
+| case03_independent_positive | ATE | Finite-population average treatment effect / causal risk difference for intervention A=1 versus A=0 over the N=200 experimental units. Y_i(1) and Y_i(0) are binary fixed potential outcomes; observed Y_i=A_i Y_i(1)+(1-A_i)Y_i(0). | 0.35 |
+| case04_independent_negative | ATE | Finite-population average treatment effect / causal risk difference for intervention A=1 versus A=0 over the N=200 experimental units. Y_i(1) and Y_i(0) are binary fixed potential outcomes; observed Y_i=A_i Y_i(1)+(1-A_i)Y_i(0). | -0.3 |
+| case05_independent_negative | ATE | Finite-population average treatment effect / causal risk difference for intervention A=1 versus A=0 over the N=200 experimental units. Y_i(1) and Y_i(0) are binary fixed potential outcomes; observed Y_i=A_i Y_i(1)+(1-A_i)Y_i(0). | -0.35 |
+| case06_positive_association_null | ATE | Finite-population average treatment effect / causal risk difference for intervention A=1 versus A=0 over the N=200 experimental units. Y_i(1) and Y_i(0) are binary fixed potential outcomes; observed Y_i=A_i Y_i(1)+(1-A_i)Y_i(0). | 0.0 |
+| case07_positive_association | ATE | Finite-population average treatment effect / causal risk difference for intervention A=1 versus A=0 over the N=200 experimental units. Y_i(1) and Y_i(0) are binary fixed potential outcomes; observed Y_i=A_i Y_i(1)+(1-A_i)Y_i(0). | 0.1 |
+| case08_positive_association | ATE | Finite-population average treatment effect / causal risk difference for intervention A=1 versus A=0 over the N=200 experimental units. Y_i(1) and Y_i(0) are binary fixed potential outcomes; observed Y_i=A_i Y_i(1)+(1-A_i)Y_i(0). | 0.2 |
+| case09_positive_association | ATE | Finite-population average treatment effect / causal risk difference for intervention A=1 versus A=0 over the N=200 experimental units. Y_i(1) and Y_i(0) are binary fixed potential outcomes; observed Y_i=A_i Y_i(1)+(1-A_i)Y_i(0). | 0.5 |
+| case10_positive_association_negative | ATE | Finite-population average treatment effect / causal risk difference for intervention A=1 versus A=0 over the N=200 experimental units. Y_i(1) and Y_i(0) are binary fixed potential outcomes; observed Y_i=A_i Y_i(1)+(1-A_i)Y_i(0). | -0.1 |
+| case11_positive_association_negative | ATE | Finite-population average treatment effect / causal risk difference for intervention A=1 versus A=0 over the N=200 experimental units. Y_i(1) and Y_i(0) are binary fixed potential outcomes; observed Y_i=A_i Y_i(1)+(1-A_i)Y_i(0). | -0.2 |
+| case12_positive_association_negative | ATE | Finite-population average treatment effect / causal risk difference for intervention A=1 versus A=0 over the N=200 experimental units. Y_i(1) and Y_i(0) are binary fixed potential outcomes; observed Y_i=A_i Y_i(1)+(1-A_i)Y_i(0). | -0.5 |
 
 **Original submitted target notation:** tau = N^{-1} sum_i [Y_i(1)-Y_i(0)] = (N10-N01)/N
 

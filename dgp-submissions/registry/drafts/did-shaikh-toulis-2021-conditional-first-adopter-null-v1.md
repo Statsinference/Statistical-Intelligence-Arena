@@ -36,35 +36,35 @@ Ti
 
 **adoption**
 
-$$
+```math
 X\sim U[-10,10]
-$$
+```
 
-$$
+```math
 \mathrm{Ti}\mid \Xi\sim \mathrm{Exp}(\exp(1+.5\Xi))
-$$
+```
 
-$$
+```math
 H=\mathrm{max10000} \mathrm{sample15}\%\mathrm{quantiles}
-$$
+```
 
-$$
+```math
 \mathrm{condition} \mathrm{minTi}<H
-$$
+```
 
 **outcome**
 
-$$
+```math
 \mathrm{Yij}=.2 \mathrm{Yi},j-1+.5\Xi+.5\sqrt{j}+\mathrm{epsij}
-$$
+```
 
-$$
+```math
 \mathrm{Yi0}=0
-$$
+```
 
-$$
+```math
 \varepsilon\sim \mathcal{N}(0,.15^{2})
-$$
+```
 
 tau0
 
@@ -81,9 +81,9 @@ Yij=.2 Yi,j-1+.5Xi+.5sqrt(j)+epsij; Yi0=0; eps~N(0,.15^2); tau0
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| baseline | Conditional first-adopter average treatment effect | Mean effect on first-adopter post cells in whole-experiment-success conditional population; also realized SATT=0 pathwise | 0.0 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| baseline | Conditional first-adopter average treatment effect | Mean effect on first-adopter post cells in whole-experiment-success conditional population; also realized SATT=0 pathwise | 0.0 |
 
 **Original submitted target notation:** ATT_cond
 

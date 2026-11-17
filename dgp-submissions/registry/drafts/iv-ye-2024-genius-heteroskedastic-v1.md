@@ -45,55 +45,55 @@ U
 
 **DGP equation 1**
 
-$$
+```math
 m=100, Z_{j}\overset{\mathrm{iid}}{\sim} \mathrm{Binomial}(2,0.5)
-$$
+```
 
-$$
+```math
 U\sim \mathcal{N}(0,0.48), \varepsilon_{A},\varepsilon_{Y}\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,0.32).
-$$
+```
 
 **DGP equation 2**
 
-$$
+```math
 A=\sum_{j}\gamma_{j}Z_{j}+U+(1+\sum_{j}\delta_{j}Z_{j})\varepsilon_{A}
-$$
+```
 
 **DGP equation 3**
 
-$$
+```math
 Y=0.4A+\sum_{j}\alpha_{j}Z_{j}+U+\varepsilon_{Y}.
-$$
+```
 
 **DGP equation 4**
 
-$$
+```math
 h^{2}=0.2, \kappa=1, s^{2}=h^{2}/(1.5m)
-$$
+```
 
-$$
+```math
 \gamma_{j}=s\phi_{\gamma j}, \delta_{j}=\kappa s\phi_{\delta j}.
-$$
+```
 
 **DGP equation 5**
 
-$$
+```math
 \phi_{\gamma j},\phi_{\delta j}\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1)
-$$
+```
 
-$$
+```math
 \alpha_{j}=0, \text{ or } \alpha_{j}\sim \mathcal{N}(s,s^{2}), \text{ or } \alpha_{j}=\gamma_{j}/2.
-$$
+```
 
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| setting1_new_draw | Population unit-change structural mean effect ⚠ review | English description not yet supplied; consult the original scientific record (JSON). | 0.4 | reported_numeric |
-| setting2_new_draw | Population unit-change structural mean effect ⚠ review | English description not yet supplied; consult the original scientific record (JSON). | 0.4 | reported_numeric |
-| setting3_new_draw | Population unit-change structural mean effect ⚠ review | English description not yet supplied; consult the original scientific record (JSON). | 0.4 | reported_numeric |
-| setting4_new_draw | Population unit-change structural mean effect ⚠ review | English description not yet supplied; consult the original scientific record (JSON). | 0.4 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| setting1_new_draw | Population unit-change structural mean effect ⚠ review | English description not yet supplied; consult the original scientific record (JSON). | 0.4 |
+| setting2_new_draw | Population unit-change structural mean effect ⚠ review | English description not yet supplied; consult the original scientific record (JSON). | 0.4 |
+| setting3_new_draw | Population unit-change structural mean effect ⚠ review | English description not yet supplied; consult the original scientific record (JSON). | 0.4 |
+| setting4_new_draw | Population unit-change structural mean effect ⚠ review | English description not yet supplied; consult the original scientific record (JSON). | 0.4 |
 
 **Original submitted target notation:** β0=.4
 

@@ -36,50 +36,50 @@ E_M, E_C
 
 **X,A**
 
-$$
+```math
 X\sim \mathcal{N}(0,1)
-$$
+```
 
-$$
+```math
 A\mid X\sim \mathrm{Bern}(\mathrm{expit}(-0.4+0.6X))
-$$
+```
 
 **Copula**
 
-$$
+```math
 (E_{M},E_{C})\sim \mathcal{N}_{2}(0,\begin{bmatrix}
 1 & 0.2 \\
 0.2 & 1
 \end{bmatrix})
-$$
+```
 
 **Mediator**
 
-$$
+```math
 M=3+2A+4X+5E_{M}
-$$
+```
 
 **Confounder**
 
-$$
+```math
 C=1+2A+2X+4E_{C}
-$$
+```
 
 **Outcome**
 
-$$
+```math
 Y=1+2A+2M+3C+5X+4AC+2AM+\varepsilon_{Y}
-$$
+```
 
-$$
+```math
 \varepsilon_{Y}\sim \mathcal{N}(0,16)
-$$
+```
 
 **Target**
 
-$$
+```math
 \mathrm{NDE}=2+3(2)+4\mathbb{E}[C(1)]+2\mathbb{E}[M(0)]=26
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -98,9 +98,9 @@ NDE=2+3(2)+4E[C(1)]+2E[M(0)]=26
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| section_4_1_continuous | NDE | E[Y(1,M(0))-Y(0,M(0))], with the treatment-induced C under its own treatment in each outcome potential. | 26.0 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| section_4_1_continuous | NDE | E[Y(1,M(0))-Y(0,M(0))], with the treatment-induced C under its own treatment in each outcome potential. | 26.0 |
 
 **Original submitted target notation:** NDE
 

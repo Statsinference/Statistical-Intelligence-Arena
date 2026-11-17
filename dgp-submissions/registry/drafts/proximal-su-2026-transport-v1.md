@@ -36,7 +36,7 @@ V, Uj
 
 **Original source equations (verbatim):** [Open raw scientific record (JSON)](./proximal-su-2026-transport-v1.json).
 
-$$
+```math
 \begin{aligned}
 V&\sim\mathcal{N}_{3}(0,\Sigma_X)\\
 \Sigma_X&=\begin{bmatrix}
@@ -48,44 +48,44 @@ X_j&=\Phi(V_j)
 \\
 U_j&\overset{\mathrm{iid}}{\sim}\mathrm{Uniform}(-1,0)
 \end{aligned}
-$$
+```
 
 The covariance matrix is 3 × 3, with unit diagonal and off-diagonal 0.25. U is independent of X.
 
-$$
+```math
 S\mid X,U\sim\mathrm{Bernoulli}(\mathrm{expit}\{-0.625+0.5\sum_jX_j+0.5\sum_jU_j\})
-$$
+```
 
 S=1 denotes the source trial; S=0 denotes the target population.
 
-$$
+```math
 \begin{aligned}
 A\mid S=1&\sim\mathrm{Bernoulli}(0.5)\\
 Z\mid X,U,S=1&\sim\mathcal{N}_{3}(U+X,0.25I)\\
 W\mid X,U&\sim\mathcal{N}_{3}(U+X,0.25I)
 \end{aligned}
-$$
+```
 
-$$
+```math
 \begin{aligned}
 Y\mid S=1&=0.5-A+\sum_j U_j+A\sum_j U_j+\sum_jX_j\\
 &\quad+\sum_jW_j+A\sum_jW_j+\varepsilon\\
 \varepsilon&\sim\mathcal{N}(0,0.5^2)
 \end{aligned}
-$$
+```
 
-$$
+```math
 \mathrm{observed}\{X,W,S,SA,SZ,SY\}
-$$
+```
 
 When S=0, SA/SZ/SY are coded as zero placeholders; the observed S indicator distinguishes unmeasured entries from genuine zero values.
 
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| original | Target-population transported mean contrast | Theta = E[E(Y \| A=1,X,U,S=1) - E(Y \| A=0,X,U,S=1) \| S=0]. | -2.6489954259019695 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| original | Target-population transported mean contrast | Theta = E[E(Y \| A=1,X,U,S=1) - E(Y \| A=0,X,U,S=1) \| S=0]. | -2.6489954259019695 |
 
 **Original submitted target notation:** theta
 

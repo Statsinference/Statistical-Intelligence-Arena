@@ -45,28 +45,28 @@ Not explicitly identified (review required)
 
 **E1**
 
-$$
+```math
 X_{ij}\overset{\mathrm{iid}}{\sim}U(0,1),\quad\varepsilon_i\sim\mathcal N(0,1),\quad\varepsilon_i\perp X_i
-$$
+```
 
 **E2**
 
-$$
+```math
 Y_i=1+\sum_{j=1}^4X_{ij}+\left(1+0.1\sum_{j=1}^4X_{ij}\right)\varepsilon_i
-$$
+```
 
 **E3**
 
-$$
+```math
 Q_\tau(x)=1+\sum_{j=1}^4x_j+\left(1+0.1\sum_{j=1}^4x_j\right)\Phi^{-1}(\tau)
-$$
+```
 
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| source_law_fixed_query | Conditional quantile | Conditional 0.9 quantile at X=(0.5,0.5,0.5,0.5) in source Example 1. | 4.537861878653521 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| source_law_fixed_query | Conditional quantile | Conditional 0.9 quantile at X=(0.5,0.5,0.5,0.5) in source Example 1. | 4.537861878653521 |
 
 **Original submitted target notation:** Q_{0.9}(x_query)
 

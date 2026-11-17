@@ -45,17 +45,17 @@ Not explicitly identified (review required)
 
 n is units
 
-$$
+```math
 n_{1}=\min(n-1,\max(1,\lfloor n/5+0.5\rfloor))
-$$
+```
 
-$$
+```math
 n_{0}=n-n_{1}
-$$
+```
 
-$$
+```math
 \mathrm{baseline} n=500 \mathrm{gives} n_{1}=100,n_{0}=400
-$$
+```
 
 Source notation retained without guessing:
 
@@ -63,37 +63,37 @@ Source notation retained without guessing:
 
 **covariates**
 
-$$
+```math
 p=4,r=2,\text{ a }=0.1,b=0.9,h=0.1
-$$
+```
 
-$$
+```math
 X_{ij}\mid G_{i}=1\overset{\mathrm{iid}}{\sim} \mathrm{Uniform}(\text{ a },b)
-$$
+```
 
-$$
+```math
 X_{ij}\mid G_{i}=0=\sqrt{U_{ij}}, U_{ij}\overset{\mathrm{iid}}{\sim} \mathrm{Uniform}(0,1)
-$$
+```
 
 Independent across units and covariate coordinates
 
 **population normalization**
 
-$$
+```math
 v=\sqrt{p\cdot \mathrm{Var}(X^{r}\mid G=1)}
-$$
+```
 
-$$
+```math
 \mathbb{E}[X^{k}\mid G=1]=(b^{k+1}-\text{ a }^{k+1})/((k+1)\cdot (b-\text{ a }))
-$$
+```
 
-$$
+```math
 v^{2}=6256/28125
-$$
+```
 
-$$
+```math
 \mu_{i}=\sum_{j=1}^{4} X_{ij}^{2}/v.
-$$
+```
 
 **observed two-period outcomes**
 
@@ -105,25 +105,25 @@ Source notation retained without guessing:
 
 <pre>Y_post_i=mu_i+epsilon_post_i</pre>
 
-$$
+```math
 \text{ all } \mathrm{period}/\mathrm{unit} \mathrm{errors}\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1)
-$$
+```
 
 independent of X
 
-$$
+```math
 \mathrm{The} \mathrm{same} X \text{ is } \mathrm{shared} \text{ across } \mathrm{periods}. A_{\mathrm{pre}}=0,A_{\mathrm{post}}=G
-$$
+```
 
-$$
+```math
 \mathrm{treatment}_{\mathrm{effect}}=0.
-$$
+```
 
 **causal target**
 
-$$
+```math
 \mathrm{ATT}_{\mathrm{post}}=\mathbb{E}[Y_{2}(1)-Y_{2}(0)\mid G=1]=0
-$$
+```
 
 Source notation retained without guessing:
 
@@ -145,9 +145,9 @@ ATT_post=E[Y_2(1)-Y_2(0)|G=1]=0; holding the same post error fixed across interv
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| paper_table4_p4_r2_with_declared_n_extension | ATT | E[Y_2(1)-Y_2(0)\|G=1] in the treated covariate population. Equal-weight finite-sample treated SATT also equals zero pointwise. | 0.0 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| paper_table4_p4_r2_with_declared_n_extension | ATT | E[Y_2(1)-Y_2(0)\|G=1] in the treated covariate population. Equal-weight finite-sample treated SATT also equals zero pointwise. | 0.0 |
 
 **Original submitted target notation:** ATT_post
 

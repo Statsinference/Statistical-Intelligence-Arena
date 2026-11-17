@@ -43,33 +43,33 @@ Not explicitly identified (review required)
 
 **Baseline covariates**
 
-$$
+```math
 X = (X_{1}, X_{2}, X_{3}, X_{4}) \sim \mathcal{N}(0_{4\times 1}, I_{4\times 4})
-$$
+```
 
 **Randomized treatment**
 
-$$
+```math
 Z \mid  X \sim \mathrm{Bernoulli}(\mathrm{expit}([-1, 0.5, -0.25, -0.1]^{T} X))
-$$
+```
 
 **Post-treatment event**
 
-$$
+```math
 D \mid  Z, X \sim \mathrm{Bernoulli}(\mathrm{expit}(-1 + 2 Z + [1, -0.8, 0.6, -1]^{T} X))
-$$
+```
 
 **Mediator**
 
-$$
+```math
 M \mid  D, Z, X \sim \mathrm{Bernoulli}(\mathrm{expit}(-1.8 + 2 Z + 1.5 D + [1, -0.5, 0.9, -1]^{T} X))
-$$
+```
 
 **Outcome**
 
-$$
+```math
 Y \mid  M, D, Z, X \sim \mathcal{N}(210 + 1.5 Z - D + M + [27.4, 13.7, 13.7, 13.7]^{T} X, 1)
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -87,9 +87,9 @@ Y | M, D, Z, X ~ N(210 + 1.5 Z - D + M + [27.4, 13.7, 13.7, 13.7]^T X, 1)
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| original | NDE | Intention-to-treat natural direct effect of the randomized treatment Z with mediator M, in a design that also contains a post-treatment event D (for example noncompliance). Setting Z = z lets the post-treatment event take D(z), while the mediator is held at M(0). This is NOT the principal-stratum quantity theta^(10)_10 that the source plots, NOT an indirect effect, and NOT a complier average causal effect. | 1.180857104770165 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| original | NDE | Intention-to-treat natural direct effect of the randomized treatment Z with mediator M, in a design that also contains a post-treatment event D (for example noncompliance). Setting Z = z lets the post-treatment event take D(z), while the mediator is held at M(0). This is NOT the principal-stratum quantity theta^(10)_10 that the source plots, NOT an indirect effect, and NOT a complier average causal effect. | 1.180857104770165 |
 
 **Original submitted target notation:** ITT-NDE = E[Y_{1 M_0}] - E[Y_{0 M_0}]
 

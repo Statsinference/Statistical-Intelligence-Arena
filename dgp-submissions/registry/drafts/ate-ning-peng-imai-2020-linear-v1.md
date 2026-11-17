@@ -43,43 +43,43 @@ Not explicitly identified (review required)
 
 **Covariates**
 
-$$
+```math
 X_{i} \sim \mathcal{N}_{d}(0,\Sigma)
-$$
+```
 
-$$
+```math
 \Sigma_{jk} = \rho^{\lvert j-k\rvert}, \rho=1/2
-$$
+```
 
-$$
+```math
 i=1,\ldots ,n \text{ independently }.
-$$
+```
 
 **Treatment**
 
-$$
+```math
 A_{i} \mid  X_{i} \sim \mathrm{Bernoulli}(e_{i})
-$$
+```
 
-$$
+```math
 e_{i} = 1 - 1/\{1 + \exp(-X_{i1} + X_{i2}/2 - X_{i3}/4 - X_{i4}/10 - X_{i5}/10 + X_{i6}/10)\} = \mathrm{expit}(\eta_{i})
-$$
+```
 
-$$
+```math
 \eta_{i}=-X_{i1}+X_{i2}/2-X_{i3}/4-X_{i4}/10-X_{i5}/10+X_{i6}/10.
-$$
+```
 
 **Treated potential outcome**
 
-$$
+```math
 Y_{i}(1)=2+0.137(X_{i5}+X_{i6}+X_{i7}+X_{i8})+\varepsilon_{i1}.
-$$
+```
 
 **Control potential outcome**
 
-$$
+```math
 Y_{i}(0)=1+0.291(X_{i5}+X_{i6}+X_{i7}+X_{i8}+X_{i9}+X_{i10})+\varepsilon_{i0}.
-$$
+```
 
 **Errors**
 
@@ -95,9 +95,9 @@ independently of X and treatment, pending scientific confirmation
 
 **Observed outcome**
 
-$$
+```math
 Y_{i}=A_{i} Y_{i}(1)+(1-A_{i})Y_{i}(0)
-$$
+```
 
 Only X_1,...,X_d,A,Y are returned
 
@@ -105,9 +105,9 @@ potential outcomes are not observed columns.
 
 **Population estimand**
 
-$$
+```math
 \mathrm{ATE}=\mathbb{E}[Y(1)-Y(0)]=2-1+0.137 \mathbb{E}[X_{5}+X_{6}+X_{7}+X_{8}]-0.291 \mathbb{E}[X_{5}+\ldots +X_{10}]+\mathbb{E}[\varepsilon_{1}-\varepsilon_{0}]=1.
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -127,9 +127,9 @@ ATE=E[Y(1)-Y(0)]=2-1+0.137 E[X5+X6+X7+X8]-0.291 E[X5+...+X10]+E[epsilon1-epsilon
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| paper_d1000 | ATE | E[Y(1)-Y(0)] in the superpopulation defined by the selected Gaussian-covariate linear-potential-outcome DGP; intervention contrast A=1 versus A=0. | 1.0 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| paper_d1000 | ATE | E[Y(1)-Y(0)] in the superpopulation defined by the selected Gaussian-covariate linear-potential-outcome DGP; intervention contrast A=1 versus A=0. | 1.0 |
 
 **Original submitted target notation:** ATE
 

@@ -43,27 +43,27 @@ F_1t, F_2t, eta_dt, xi_t
 
 **factors and stationary residuals**
 
-$$
+```math
 t=1,\ldots ,21
-$$
+```
 
-$$
+```math
 F_{1t},F_{2t}\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1)
-$$
+```
 
 independent across factors and times. epsilon_d0,u_0 iid N(0,1)
 
-$$
+```math
 \varepsilon_{\mathrm{dt}}=0.6\cdot \varepsilon_{d,t-1}+\eta_{\mathrm{dt}}
-$$
+```
 
-$$
+```math
 u_{t}=0.6\cdot u_{t}-1+\xi_{t}
-$$
+```
 
-$$
+```math
 \eta_{\mathrm{dt}},\xi_{t}\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,0.64)
-$$
+```
 
 Initial states and innovations mutually independent and
 
@@ -71,35 +71,35 @@ independent of factors
 
 **donor observations**
 
-$$
+```math
 J=20
-$$
+```
 
-$$
+```math
 \mathrm{reindex} \mathrm{donors} d=1,\ldots ,20 (\text{ source } j=d+1)
-$$
+```
 
-$$
+```math
 \text{ a }_{d}=b_{d}=d/20. Y_{\mathrm{dt}}=\text{ a }_{d}+F_{1t}+b_{d}\cdot F_{2t}+\varepsilon_{\mathrm{dt}}.
-$$
+```
 
 **source weight scenarios**
 
-$$
+```math
 W_{1}: w_{d}=1/20 (\mathrm{default})
-$$
+```
 
-$$
+```math
 W_{2}: w_{1}=w_{2}=w_{3}=1/3, \mathrm{others0}
-$$
+```
 
-$$
+```math
 W_{3}: w_{d}=-1/20
-$$
+```
 
-$$
+```math
 W_{4}: w_{1}=1,w_{2}=-1,\mathrm{others0}
-$$
+```
 
 These are four scenarios of one family.
 
@@ -109,21 +109,21 @@ Source notation retained without guessing:
 
 <pre>Y_0t(0)=sum_(d=1)^20 w_d*Y_dt+u_t, using actual donor outcomes including donor errors</pre>
 
-$$
+```math
 Y_{0t}=Y_{0t}(0)+1\{t=21\}\cdot \theta_{T}, \theta_{T}=0. G_{0}=1,\mathrm{donors} G=0
-$$
+```
 
 20pre+1post
 
-$$
+```math
 n=21 \text{ only }.
-$$
+```
 
 **causal target**
 
-$$
+```math
 Y_{0},21(1)-Y_{0},21(0)=\theta_{T}=0 \text{ for } \mathrm{every} \mathrm{realization}
-$$
+```
 
 design expectation and single-treated finite SATT are zero for every weight scenario.
 
@@ -143,12 +143,12 @@ Y_0,21(1)-Y_0,21(0)=theta_T=0 for every realization; design expectation and sing
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| W1 | Treated-unit treatment effect | Y_1,T(1)-Y_1,T(0) at the fixed treated unit and T=T0+1=21. Its design-population expectation and the finite single-treated-unit SATT equal theta_T=0. | 0.0 | reported_numeric |
-| W2 | Treated-unit treatment effect | Y_1,T(1)-Y_1,T(0) at the fixed treated unit and T=T0+1=21. Its design-population expectation and the finite single-treated-unit SATT equal theta_T=0. | 0.0 | reported_numeric |
-| W3 | Treated-unit treatment effect | Y_1,T(1)-Y_1,T(0) at the fixed treated unit and T=T0+1=21. Its design-population expectation and the finite single-treated-unit SATT equal theta_T=0. | 0.0 | reported_numeric |
-| W4 | Treated-unit treatment effect | Y_1,T(1)-Y_1,T(0) at the fixed treated unit and T=T0+1=21. Its design-population expectation and the finite single-treated-unit SATT equal theta_T=0. | 0.0 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| W1 | Treated-unit treatment effect | Y_1,T(1)-Y_1,T(0) at the fixed treated unit and T=T0+1=21. Its design-population expectation and the finite single-treated-unit SATT equal theta_T=0. | 0.0 |
+| W2 | Treated-unit treatment effect | Y_1,T(1)-Y_1,T(0) at the fixed treated unit and T=T0+1=21. Its design-population expectation and the finite single-treated-unit SATT equal theta_T=0. | 0.0 |
+| W3 | Treated-unit treatment effect | Y_1,T(1)-Y_1,T(0) at the fixed treated unit and T=T0+1=21. Its design-population expectation and the finite single-treated-unit SATT equal theta_T=0. | 0.0 |
+| W4 | Treated-unit treatment effect | Y_1,T(1)-Y_1,T(0) at the fixed treated unit and T=T0+1=21. Its design-population expectation and the finite single-treated-unit SATT equal theta_T=0. | 0.0 |
 
 **Original submitted target notation:** tau_T
 

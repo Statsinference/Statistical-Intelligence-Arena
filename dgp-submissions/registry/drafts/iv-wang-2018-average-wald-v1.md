@@ -36,73 +36,73 @@ V_D, V_Y
 
 **Baseline and latent distribution**
 
-$$
+```math
 X=(1,X_{2})
-$$
+```
 
 X2 uniform on (-1,-0.5) union (0.5,1), density 1
 
-$$
+```math
 U\sim \mathrm{Bernoulli}(0.5)
-$$
+```
 
 independent of X2 (explicit adaptation)
 
-$$
+```math
 \mathrm{Individuals} \text{ iid }.
-$$
+```
 
 **Instrument**
 
-$$
+```math
 Z\mid X,U \sim \mathrm{Bernoulli}(\mathrm{expit}(0.1-0.5 X_{2})).
-$$
+```
 
 **Source contrasts and odds products**
 
-$$
+```math
 \delta(X)=\tanh(0.1+0.5 X_{2}), \mathrm{deltaD}(X)=\tanh(-0.5 X_{2}), OPD(X)=\exp(-0.5+X_{2}), OPY(X)=\exp(-X_{2}). \alpha=(0.1,0.5)
-$$
+```
 
-$$
+```math
 \beta=(0,-0.5)
-$$
+```
 
-$$
+```math
 \gamma=(0.1,-0.5)
-$$
+```
 
-$$
+```math
 \eta=(-0.5,1)
-$$
+```
 
-$$
+```math
 \zeta=(0,-1)
-$$
+```
 
-$$
+```math
 \kappa=0.1.
-$$
+```
 
 **Eq6 and Eq7 mapping**
 
-$$
+```math
 \mathrm{Let} B=q(2-d)+d. F(d,q)=[B-\sqrt{B^{2}+4q(1-d)(1-q)}]/[2(q-1)]=2q(1-d)/[B+\sqrt{B^{2}+4q(1-d)(1-q)}]
-$$
+```
 
-$$
+```math
 \mathrm{For} q=1, F(d,1)=(1-d)/2. \mathrm{p0D}=F(\mathrm{deltaD},OPD)
-$$
+```
 
-$$
+```math
 \mathrm{p0Y}=F(\mathrm{deltaD}\cdot \delta,OPY).
-$$
+```
 
 **Treatment**
 
-$$
+```math
 D\mid Z,X,U \sim \mathrm{Bernoulli}(\mathrm{p0D}(X)+Z \mathrm{deltaD}(X)+0.1(2U-1)).
-$$
+```
 
 **Source outcome marginal**
 
@@ -112,41 +112,41 @@ Source notation retained without guessing:
 
 **Algebraic causal completion adaptation**
 
-$$
+```math
 \mathrm{rD}=\mathrm{p0D}+0.1(2U-1)
-$$
+```
 
-$$
+```math
 \mathrm{rY}=\mathrm{p0Y}+0.1(2U-1), t=\delta(X)
-$$
+```
 
-$$
+```math
 \text{ independent } V_{Z},V_{D},V_{Y}\sim \mathrm{Uniform}(0,1)
-$$
+```
 
 independent of X,U. Z=1{V_Z&lt;expit(gamma^T X)}, D(z)=1{V_D&lt;rD+z deltaD}
 
-$$
+```math
 g_{a}=\mathrm{rY}-t\cdot \mathrm{rD}+\text{ a }\cdot t, Y(\text{ a })=1\{V_{Y}<g_{a}\}
-$$
+```
 
-$$
+```math
 \mathrm{Observe} D=D(Z)
-$$
+```
 
-$$
+```math
 Y=Y(D)
-$$
+```
 
-$$
+```math
 \mathrm{Then} \mathbb{E}[Y|Z,X,U]=g_{0}+P(D=1|Z,X,U)\cdot (g_{1}-g_{0})=\mathrm{rY}+Z \mathrm{deltaD}\cdot t. \mathbb{E}[Y(1)-Y(0)|X,U]=t.
-$$
+```
 
 **Population target**
 
-$$
+```math
 \Delta_{W}=\int_{-1}^{-0.5} \tanh(0.1+0.5x) \mathrm{dx} + \int_{0.5}^{1} \tanh(0.1+0.5x) \mathrm{dx}
-$$
+```
 
 antiderivative 2 log cosh(0.1+0.5x).
 
@@ -169,9 +169,9 @@ Delta_W=integral_{-1}^{-0.5} tanh(0.1+0.5x) dx + integral_{0.5}^{1} tanh(0.1+0.5
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| source_section5 | ATE | Population causal ATE E[Y(1)-Y(0)] in the explicitly adapted algebraic causal completion = E[tanh(0.1+0.5 X2)] = average conditional Wald ratio. Binary intervention a=1 versus a=0, full iid superpopulation; not a LATE. | 0.08670199394664552 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| source_section5 | ATE | Population causal ATE E[Y(1)-Y(0)] in the explicitly adapted algebraic causal completion = E[tanh(0.1+0.5 X2)] = average conditional Wald ratio. Binary intervention a=1 versus a=0, full iid superpopulation; not a LATE. | 0.08670199394664552 |
 
 **Original submitted target notation:** ATE
 

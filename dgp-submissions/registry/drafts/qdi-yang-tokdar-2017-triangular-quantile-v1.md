@@ -36,75 +36,75 @@ R_i, T_i, Z_i
 
 **Generation step 0: n, seed, fixed constants**
 
-$$
+```math
 \mathrm{Published} \mathrm{illustration} n=1000
-$$
+```
 
 Source notation retained without guessing:
 
 <pre>check n=128, seed=1729 are collector choices. A=(-1,1)</pre>
 
-$$
+```math
 B=(-1,2)
-$$
+```
 
-$$
+```math
 C=(2,-1)
-$$
+```
 
 normal means (0,1), standard deviations (1,1/5).
 
 **Generation step 1: R_i,T_i; u_i,v_i (internal)**
 
-$$
+```math
 R_{i},T_{i}\overset{\mathrm{iid}}{\sim} \mathrm{Uniform}(0,1)
-$$
+```
 
-$$
+```math
 \text{ if } R_{i}+T_{i}>1 \text{ then } (u_{i},v_{i})=(1-R_{i},1-T_{i}), \mathrm{else} (R_{i},T_{i})
-$$
+```
 
-$$
+```math
 \mathrm{Density} \text{ of } (u_{i},v_{i}) \text{ is } 2 \text{ on } u\geq 0,v\geq 0,u+v\leq 1.
-$$
+```
 
 **Generation step 2: X_i=(X1_i,X2_i) (observed)**
 
-$$
+```math
 X_{i}=A+u_{i}(B-A)+v_{i}(C-A)=(-1+3v_{i},1+u_{i}-2v_{i})
-$$
+```
 
-$$
+```math
 X_{i}\sim \mathrm{Uniform}_{\mathrm{area}}(D). D=\{x_{1}\geq -1,2x_{1}+3x_{2}\geq 1,x_{1}+x_{2}\leq 1\}
-$$
+```
 
-$$
+```math
 \mathrm{area}=3/2, \mathrm{density}=2/3.
-$$
+```
 
 **Generation step 3: s_i,a_i,b_i (internal deterministic values)**
 
-$$
+```math
 s_{i}=\mathrm{X1}_{i}+\mathrm{X2}_{i} \in [0,1]
-$$
+```
 
-$$
+```math
 \text{ a }_{i}=(1-s_{i})/3 \in [0,1/3]
-$$
+```
 
-$$
+```math
 b_{i}=(2+s_{i})/3 \in [2/3,1]
-$$
+```
 
-$$
+```math
 \text{ a }_{i}+b_{i}=1.
-$$
+```
 
 **Generation step 4: Z_i (internal common rank)**
 
-$$
+```math
 Z_{i}\sim \mathcal{N}(0,1)
-$$
+```
 
 independent of (R_i,T_i), X_i and other rows
 
@@ -114,13 +114,13 @@ Source notation retained without guessing:
 
 **Generation step 5: Y_i (observed)**
 
-$$
+```math
 Y_{i}=\text{ a }_{i} Z_{i}+b_{i}(1+Z_{i}/5)=\mu_{i}+\sigma_{i} Z_{i}
-$$
+```
 
-$$
+```math
 \mu_{i}=(2+s_{i})/3, \sigma_{i}=(7-4s_{i})/15 \in [1/5,7/15]. Y_{i}\mid X_{i}\sim \mathcal{N}(\mu_{i},\sigma_{i}^{2}). \varepsilon_{i}=Y_{i}-\mu_{i} \mathrm{has} \mathrm{conditional} \text{ variance } \sigma_{i}^{2}
-$$
+```
 
 epsilon_i is not marginally
 
@@ -128,63 +128,63 @@ independent of X_i because its scale varies
 
 **Generation step 6: Observed table and independent rows**
 
-$$
+```math
 \mathrm{Repeat} \text{ the } \mathrm{row} \mathrm{law} \text{ iid } \text{ for } i=1,\ldots ,n
-$$
+```
 
 Return X1,X2,Y only
 
-$$
+```math
 \mathrm{Within}-\mathrm{row} X_{1}/X_{2} \mathrm{covariance}=-5/12
-$$
+```
 
 Y depends on their sum. No treatment/mediator, assignment, label selection, missingness, censoring, measurement error, predictor training, cluster, panel or interference mechanism.
 
 **Published quantile law**
 
-$$
+```math
 s=x_{1}+x_{2}
-$$
+```
 
-$$
+```math
 Q_{Y}(\tau|x)=(1-s)/3\cdot Q_{\mathcal{N}}(\tau|0,1)+(2+s)/3\cdot Q_{\mathcal{N}}(\tau|1,0.2^{2}), \text{ where } \mathrm{second} Q_{\mathrm{N}} \mathrm{parameter} \text{ is } \text{ variance }.
-$$
+```
 
 **Derived coefficient functions**
 
-$$
+```math
 z_{\tau}=\Phi^{-1}(\tau)
-$$
+```
 
-$$
+```math
 \beta_{0}(\tau)=2/3+(7/15)z_{\tau}
-$$
+```
 
-$$
+```math
 \beta_{1}(\tau)=\beta_{2}(\tau)=1/3-(4/15)z_{\tau}
-$$
+```
 
 Derived, not new parameters.
 
 **Joint density and CDF**
 
-$$
+```math
 f_{X},Y(x,y)=(2/3)\cdot 1_{D}(x)\cdot \phi((y-\mu(x))/\sigma(x))/\sigma(x)
-$$
+```
 
-$$
+```math
 F_{Y}(y\mid x)=\Phi((y-\mu(x))/\sigma(x)).
-$$
+```
 
 **Adapted fixed query**
 
-$$
+```math
 x^{\ast}=(0,2/3), \tau^{\ast}=19/20
-$$
+```
 
-$$
+```math
 \theta=8/9+(13/45)\cdot \Phi^{-1}(19/20).
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -208,9 +208,9 @@ x*=(0,2/3), tau*=19/20; theta=8/9+(13/45)*Phi^-1(19/20).
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| published_triangle_centroid | Conditional quantile | inf{y:F_Y(y\|X=(0,2/3))&gt;=19/20} under the continuous conditional-law version specified by the published Figure 1 law. Exact centroid and quantile level are stored as rational metadata. One pointwise conditional quantile, not a marginal target or simultaneous band. | 1.3640688255637583 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| published_triangle_centroid | Conditional quantile | inf{y:F_Y(y\|X=(0,2/3))&gt;=19/20} under the continuous conditional-law version specified by the published Figure 1 law. Exact centroid and quantile level are stored as rational metadata. One pointwise conditional quantile, not a marginal target or simultaneous band. | 1.3640688255637583 |
 
 **Original submitted target notation:** theta = Q_Y(19/20 \| X=(0,2/3))
 

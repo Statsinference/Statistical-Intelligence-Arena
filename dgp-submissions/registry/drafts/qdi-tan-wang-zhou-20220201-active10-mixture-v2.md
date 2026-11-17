@@ -43,93 +43,93 @@ Z_ik, B_i, U_i
 
 **Source-to-observation mapping**
 
-$$
+```math
 A=(1,3,5,7,9,11,13,15,17,19)
-$$
+```
 
-$$
+```math
 W_{ik}=X_{\mathrm{original},i},A[k]
-$$
+```
 
 The remaining 990 zero-coefficient coordinates are marginalized out.
 
 **Marginal covariates**
 
-$$
+```math
 W_{i} \sim \mathcal{N}_{10}(0,\Sigma_{AA})
-$$
+```
 
-$$
+```math
 (\Sigma_{AA})_{jk}=0.7^{\lvert \mathrm{Aj}-\mathrm{Ak}\rvert}=0.49^{\lvert j-k\rvert}
-$$
+```
 
 independent rows.
 
 **Sampling factorization**
 
-$$
+```math
 Z_{ik}\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1)
-$$
+```
 
-$$
+```math
 W_{i1}=Z_{i1}
-$$
+```
 
-$$
+```math
 W_{ik}=0.49\cdot W_{i,k-1}+\sqrt{1-0.49^{2}}\cdot Z_{ik}, k=2,\ldots ,10.
-$$
+```
 
 **Coefficients**
 
-$$
+```math
 b=(1.8,1.6,1.4,1.2,1,-1,-1.2,-1.4,-1.6,-1.8)
-$$
+```
 
-$$
+```math
 \mathrm{intercept}=0. W_{k} \text{ is } \text{ the } \mathrm{original} \mathrm{coordinate} 2k-1.
-$$
+```
 
 **Noise**
 
-$$
+```math
 B_{i} \sim \mathrm{Bernoulli}(0.7)
-$$
+```
 
-$$
+```math
 U_{i} \sim \mathcal{N}(0,1)
-$$
+```
 
 independent of W and across rows
 
-$$
+```math
 \varepsilon_{i}=[B_{i}+5\cdot (1-B_{i})]\cdot U_{i} \sim 0.7\cdot \mathcal{N}(0,1)+0.3\cdot \mathcal{N}(0,25)
-$$
+```
 
-$$
+```math
 \mathrm{Normal} \mathrm{second} \mathrm{parameter} \text{ is } \text{ variance }.
-$$
+```
 
 **Response**
 
-$$
+```math
 Y_{i}=\sum_{k=1}^{10} b_{k} W_{ik}+\varepsilon_{i}
-$$
+```
 
 This is the marginal (X_A,Y) law of the parent independent-noise model. No clipping, standardization or quantile recentering.
 
 **Fixed scalar query**
 
-$$
+```math
 w_{0}=e_{1} \in R^{10}
-$$
+```
 
-$$
+```math
 \theta_{\tau}=1.8+q_{\tau}
-$$
+```
 
-$$
+```math
 0.7\cdot \Phi(q_{\tau})+0.3\cdot \Phi(q_{\tau}/5)=\tau, \tau\in \{0.5,0.9\}.
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -149,10 +149,10 @@ w0=e1 in R^10; theta_tau=1.8+q_tau; 0.7*Phi(q_tau)+0.3*Phi(q_tau/5)=tau, tau in 
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| q50-active10-mixture | Conditional quantile | inf{y:F_Y\|W(y\|e1)&gt;=tau}, with W=(X_original,1,X_original,3,...,X_original,19) in R^10 and e1=(1,0,...,0). The default tau is 0.9; a second scenario uses 0.5. theta_tau=1.8+F_epsilon^(-1)(tau). This equals the parent model full-X target because the removed coordinates have zero coefficients and epsilon is independent of the full X. | 1.7999999999997158 | reported_numeric |
-| q90-active10-mixture | Conditional quantile | inf{y:F_Y\|W(y\|e1)&gt;=tau}, with W=(X_original,1,X_original,3,...,X_original,19) in R^10 and e1=(1,0,...,0). The default tau is 0.9; a second scenario uses 0.5. theta_tau=1.8+F_epsilon^(-1)(tau). This equals the parent model full-X target because the removed coordinates have zero coefficients and epsilon is independent of the full X. | 4.2114834571051345 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| q50-active10-mixture | Conditional quantile | inf{y:F_Y\|W(y\|e1)&gt;=tau}, with W=(X_original,1,X_original,3,...,X_original,19) in R^10 and e1=(1,0,...,0). The default tau is 0.9; a second scenario uses 0.5. theta_tau=1.8+F_epsilon^(-1)(tau). This equals the parent model full-X target because the removed coordinates have zero coefficients and epsilon is independent of the full X. | 1.7999999999997158 |
+| q90-active10-mixture | Conditional quantile | inf{y:F_Y\|W(y\|e1)&gt;=tau}, with W=(X_original,1,X_original,3,...,X_original,19) in R^10 and e1=(1,0,...,0). The default tau is 0.9; a second scenario uses 0.5. theta_tau=1.8+F_epsilon^(-1)(tau). This equals the parent model full-X target because the removed coordinates have zero coefficients and epsilon is independent of the full X. | 4.2114834571051345 |
 
 **Original submitted target notation:** theta_tau = Q_tau(Y \| W = e1)
 

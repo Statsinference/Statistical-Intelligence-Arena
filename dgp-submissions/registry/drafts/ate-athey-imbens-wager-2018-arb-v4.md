@@ -43,37 +43,37 @@ p
 
 **Covariates**
 
-$$
+```math
 X_{i} \sim \mathcal{N}_{p}(0,\Sigma)
-$$
+```
 
-$$
+```math
 \Sigma_{ij}=\rho^{\lvert i-j\rvert}
-$$
+```
 
 rho in {0.5,0.9}
 
-$$
+```math
 p=2000.
-$$
+```
 
 **Equivalent Gaussian recursion used in implementation**
 
-$$
+```math
 X_{i1}=Z_{i1}
-$$
+```
 
-$$
+```math
 X_{ij}=\rho\cdot X_{i,j-1} + \sqrt{1-\rho^{2}}\cdot Z_{ij} \text{ for } j=2,\ldots ,p, \text{ where } \mathrm{innovations} Z_{ij} \mathrm{are}\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1)
-$$
+```
 
 This is distributionally equivalent to the source covariance, not the same random draw sequence.
 
 **Index permutation**
 
-$$
+```math
 k_{j} = (23\cdot (j-1)) \bmod  p
-$$
+```
 
 Source notation retained without guessing:
 
@@ -81,77 +81,77 @@ Source notation retained without guessing:
 
 **Dense outcome profile**
 
-$$
+```math
 \mathrm{raw}_{j} = 1/\sqrt{1+k_{j}}
-$$
+```
 
-$$
+```math
 k_{j}=(23\cdot (j-1)) \bmod  p.
-$$
+```
 
 **Harmonic outcome profile**
 
-$$
+```math
 \mathrm{raw}_{j} = 1/(10+k_{j})
-$$
+```
 
-$$
+```math
 k_{j}=(23\cdot (j-1)) \bmod  p.
-$$
+```
 
 **Moderately sparse outcome profile**
 
-$$
+```math
 \mathrm{raw}_{j}=10 \text{ if } k_{j}<10
-$$
+```
 
-$$
+```math
 \mathrm{raw}_{j}=1 \text{ if } 10\leq k_{j}<100
-$$
+```
 
-$$
+```math
 \mathrm{raw}_{j}=0 \text{ if } k_{j}\geq 100
-$$
+```
 
-$$
+```math
 k_{j}=(23\cdot (j-1)) \bmod  p.
-$$
+```
 
 **Very sparse outcome profile**
 
-$$
+```math
 \mathrm{raw}_{j}=1 \text{ if } k_{j}<10, \text{ otherwise } 0
-$$
+```
 
-$$
+```math
 k_{j}=(23\cdot (j-1)) \bmod  p.
-$$
+```
 
 **Treatment assignment**
 
-$$
+```math
 W_{i} \mid  X_{i} \sim \mathrm{Bernoulli}(\mathrm{expit}(\sum_{j=1}^{100} X_{ij}/40))
-$$
+```
 
-$$
+```math
 \mathrm{equivalently} P(W_{i}=1\mid X_{i})=1/[1+\exp(-\sum_{j=1}^{100} X_{ij}/40)].
-$$
+```
 
 **Observed outcome**
 
-$$
+```math
 Y_{i} = X_{i}^{T} \beta_{Y} + 0.5 W_{i} + \varepsilon_{i}, \varepsilon_{i} \sim \mathcal{N}(0,1), \text{ independent } \mathrm{under} \text{ the } \mathrm{implementation} \mathrm{convention}.
-$$
+```
 
 **Target / potential outcomes**
 
-$$
+```math
 Y_{i}(w)=X_{i}^{T} \beta_{Y} + 0.5w + \varepsilon_{i}, w \in \{0,1\}
-$$
+```
 
-$$
+```math
 \mathrm{ATE}=\mathbb{E}[Y_{i}(1)-Y_{i}(0)]=0.5.
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -174,16 +174,16 @@ Y_i(w)=X_i^T beta_Y + 0.5w + epsilon_i, w in {0,1}; ATE=E[Y_i(1)-Y_i(0)]=0.5.
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| dense_rho_0_5 | ATE | Population average treatment effect E[Y(1)-Y(0)] under the Section 5.2 moderately sparse two-stage DGP, comparing the intervention W=1 with W=0 while holding the same pretreatment X and outcome disturbance fixed. | 0.5 | reported_numeric |
-| dense_rho_0_9 | ATE | Population average treatment effect E[Y(1)-Y(0)] under the Section 5.2 moderately sparse two-stage DGP, comparing the intervention W=1 with W=0 while holding the same pretreatment X and outcome disturbance fixed. | 0.5 | reported_numeric |
-| harmonic_rho_0_5 | ATE | Population average treatment effect E[Y(1)-Y(0)] under the Section 5.2 moderately sparse two-stage DGP, comparing the intervention W=1 with W=0 while holding the same pretreatment X and outcome disturbance fixed. | 0.5 | reported_numeric |
-| harmonic_rho_0_9 | ATE | Population average treatment effect E[Y(1)-Y(0)] under the Section 5.2 moderately sparse two-stage DGP, comparing the intervention W=1 with W=0 while holding the same pretreatment X and outcome disturbance fixed. | 0.5 | reported_numeric |
-| moderately_sparse_rho_0_5 | ATE | Population average treatment effect E[Y(1)-Y(0)] under the Section 5.2 moderately sparse two-stage DGP, comparing the intervention W=1 with W=0 while holding the same pretreatment X and outcome disturbance fixed. | 0.5 | reported_numeric |
-| moderately_sparse_rho_0_9 | ATE | Population average treatment effect E[Y(1)-Y(0)] under the Section 5.2 moderately sparse two-stage DGP, comparing the intervention W=1 with W=0 while holding the same pretreatment X and outcome disturbance fixed. | 0.5 | reported_numeric |
-| very_sparse_rho_0_5 | ATE | Population average treatment effect E[Y(1)-Y(0)] under the Section 5.2 moderately sparse two-stage DGP, comparing the intervention W=1 with W=0 while holding the same pretreatment X and outcome disturbance fixed. | 0.5 | reported_numeric |
-| very_sparse_rho_0_9 | ATE | Population average treatment effect E[Y(1)-Y(0)] under the Section 5.2 moderately sparse two-stage DGP, comparing the intervention W=1 with W=0 while holding the same pretreatment X and outcome disturbance fixed. | 0.5 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| dense_rho_0_5 | ATE | Population average treatment effect E[Y(1)-Y(0)] under the Section 5.2 moderately sparse two-stage DGP, comparing the intervention W=1 with W=0 while holding the same pretreatment X and outcome disturbance fixed. | 0.5 |
+| dense_rho_0_9 | ATE | Population average treatment effect E[Y(1)-Y(0)] under the Section 5.2 moderately sparse two-stage DGP, comparing the intervention W=1 with W=0 while holding the same pretreatment X and outcome disturbance fixed. | 0.5 |
+| harmonic_rho_0_5 | ATE | Population average treatment effect E[Y(1)-Y(0)] under the Section 5.2 moderately sparse two-stage DGP, comparing the intervention W=1 with W=0 while holding the same pretreatment X and outcome disturbance fixed. | 0.5 |
+| harmonic_rho_0_9 | ATE | Population average treatment effect E[Y(1)-Y(0)] under the Section 5.2 moderately sparse two-stage DGP, comparing the intervention W=1 with W=0 while holding the same pretreatment X and outcome disturbance fixed. | 0.5 |
+| moderately_sparse_rho_0_5 | ATE | Population average treatment effect E[Y(1)-Y(0)] under the Section 5.2 moderately sparse two-stage DGP, comparing the intervention W=1 with W=0 while holding the same pretreatment X and outcome disturbance fixed. | 0.5 |
+| moderately_sparse_rho_0_9 | ATE | Population average treatment effect E[Y(1)-Y(0)] under the Section 5.2 moderately sparse two-stage DGP, comparing the intervention W=1 with W=0 while holding the same pretreatment X and outcome disturbance fixed. | 0.5 |
+| very_sparse_rho_0_5 | ATE | Population average treatment effect E[Y(1)-Y(0)] under the Section 5.2 moderately sparse two-stage DGP, comparing the intervention W=1 with W=0 while holding the same pretreatment X and outcome disturbance fixed. | 0.5 |
+| very_sparse_rho_0_9 | ATE | Population average treatment effect E[Y(1)-Y(0)] under the Section 5.2 moderately sparse two-stage DGP, comparing the intervention W=1 with W=0 while holding the same pretreatment X and outcome disturbance fixed. | 0.5 |
 
 **Original submitted target notation:** ATE
 

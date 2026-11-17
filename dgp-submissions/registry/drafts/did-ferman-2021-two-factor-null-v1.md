@@ -43,65 +43,65 @@ F_k0, eta_ks, F_ks
 
 **stationary common factors**
 
-$$
+```math
 k=1,2
-$$
+```
 
-$$
+```math
 F_{k0}\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1)
-$$
+```
 
-$$
+```math
 F_{ks}=0.5\cdot F_{k},s-1+\eta_{ks} \text{ for } s=1,\ldots ,21, \eta_{ks}\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,0.75)
-$$
+```
 
 independent across k,s and of the initial states
 
-$$
+```math
 \mathrm{Omit} \text{ only } s=0
-$$
+```
 
 no extra burn-in.
 
 **unit loadings and noise**
 
-$$
+```math
 \mathrm{N}=11,J=10
-$$
+```
 
-$$
+```math
 \mu_{0}=\mu_{1}=\ldots =\mu_{5}=(1,0)
-$$
+```
 
-$$
+```math
 \mu_{6}=\ldots =\mu_{10}=(0,1)
-$$
+```
 
-$$
+```math
 \varepsilon_{is}\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1)
-$$
+```
 
 independent of both factor paths
 
 **observed outcomes and treatment**
 
-$$
+```math
 Y_{is}=\mu_{i}^{T} F_{s}+\varepsilon_{is}+1\{i=0,s=21\}\cdot \mathrm{post}_{\mathrm{effect}}
-$$
+```
 
-$$
+```math
 \mathrm{post}_{\mathrm{effect}}=0. G_{0}=1,G_{1}:10=0
-$$
+```
 
-$$
+```math
 s=1,\ldots ,20 \mathrm{pre} \text{ and } s=21 \mathrm{post}. n \mathrm{must} \mathrm{equal11}.
-$$
+```
 
 **causal target**
 
-$$
+```math
 \tau_{01}=Y_{0},21(1)-Y_{0},21(0)=\mathrm{post}_{\mathrm{effect}}=0 \text{ with } \mathrm{common} \mathrm{exogenous} \mathrm{draws} \mathrm{held} \text{ fixed }
-$$
+```
 
 single-treated SATT and its design expectation are zero.
 
@@ -120,9 +120,9 @@ tau_01=Y_0,21(1)-Y_0,21(0)=post_effect=0 with common exogenous draws held fixed;
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| table1_j10_t020_null | Treated-unit treatment effect | Specified treated unit i=0, first and only post period t=1: Y_01(1)-Y_01(0). Its design-population mean and single-treated-unit finite SATT both equal zero pointwise. | 0.0 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| table1_j10_t020_null | Treated-unit treatment effect | Specified treated unit i=0, first and only post period t=1: Y_01(1)-Y_01(0). Its design-population mean and single-treated-unit finite SATT both equal zero pointwise. | 0.0 |
 
 **Original submitted target notation:** tau_01
 

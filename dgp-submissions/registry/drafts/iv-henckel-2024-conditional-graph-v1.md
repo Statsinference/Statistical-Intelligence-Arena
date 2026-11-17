@@ -36,73 +36,73 @@ Not explicitly identified (review required)
 
 **Equation 1**
 
-$$
+```math
 A <- \varepsilon_{A}
-$$
+```
 
 **Equation 2**
 
-$$
+```math
 C <- \varepsilon_{C}
-$$
+```
 
 **Equation 3**
 
-$$
+```math
 L_{1} <- \varepsilon_{\mathrm{L1}}
-$$
+```
 
 **Equation 4**
 
-$$
+```math
 B <- (-0.78408214029946133)\cdot C + \varepsilon_{B}
-$$
+```
 
 **Equation 5**
 
-$$
+```math
 D <- (0.2011394215552596)\cdot A + (0.40685244250001207)\cdot L_{1} + (0.60072810314434222)\cdot B + \varepsilon_{D}
-$$
+```
 
 **Equation 6**
 
-$$
+```math
 L_{2} <- \varepsilon_{\mathrm{L2}}
-$$
+```
 
 **Equation 7**
 
-$$
+```math
 X <- (1.4038923130557954)\cdot L_{1} + (-1.0690158213970873)\cdot B + (-1.8992312433635747)\cdot L_{2} + \varepsilon_{X}
-$$
+```
 
 **Equation 8**
 
-$$
+```math
 M <- (0.35800137127747389)\cdot X + \varepsilon_{M}
-$$
+```
 
 **Equation 9**
 
-$$
+```math
 Y <- (-0.79585700972545459)\cdot C + (-0.71641682995974743)\cdot L_{2} + (-0.52749259051598618)\cdot X + (1.4218960031282049)\cdot M + \varepsilon_{Y}
-$$
+```
 
 **Equation 10**
 
-$$
+```math
 \mathrm{Gaussian} \mathrm{scenario}: \text{ independent } \varepsilon_{v} \sim \mathcal{N}(0,\text{ variance }_{v})
-$$
+```
 
-$$
+```math
 \mathrm{uniform} \mathrm{scenario}: \text{ independent } \varepsilon_{v} \sim \mathrm{Uniform}(-\sqrt{3 \text{ variance }_{v}},\sqrt{3 \text{ variance }_{v}}).
-$$
+```
 
 **Equation 11**
 
-$$
+```math
 \tau_{YX} = \mathrm{coefficient}[Y,X] + \mathrm{coefficient}[M,X]\cdot \mathrm{coefficient}[Y,M].
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -126,10 +126,10 @@ tau_YX = coefficient[Y,X] + coefficient[M,X]*coefficient[Y,M].
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| frozen_gaussian | Population total causal effect | Population total effect d E[Y\|do(X=x)]/dx, equivalently E[Y\|do(X=1)]-E[Y\|do(X=0)], including X-&gt;M-&gt;Y. | -0.018451871582129575 | reported_numeric |
-| frozen_uniform | Population total causal effect | Population total effect d E[Y\|do(X=x)]/dx, equivalently E[Y\|do(X=1)]-E[Y\|do(X=0)], including X-&gt;M-&gt;Y. | -0.018451871582129575 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| frozen_gaussian | Population total causal effect | Population total effect d E[Y\|do(X=x)]/dx, equivalently E[Y\|do(X=1)]-E[Y\|do(X=0)], including X-&gt;M-&gt;Y. | -0.018451871582129575 |
+| frozen_uniform | Population total causal effect | Population total effect d E[Y\|do(X=x)]/dx, equivalently E[Y\|do(X=1)]-E[Y\|do(X=0)], including X-&gt;M-&gt;Y. | -0.018451871582129575 |
 
 **Original submitted target notation:** tau_YX
 

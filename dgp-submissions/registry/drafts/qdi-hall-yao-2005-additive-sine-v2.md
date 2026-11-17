@@ -45,28 +45,28 @@ Not explicitly identified (review required)
 
 **E1**
 
-$$
+```math
 X_{ij},\varepsilon_i\overset{\mathrm{ind}}{\sim}\mathcal N(0,1),\quad j=1,\ldots,4
-$$
+```
 
 **E2**
 
-$$
+```math
 Y_i=\frac12\sum_{j=1}^4\sin(X_{ij})+\varepsilon_i
-$$
+```
 
 **E3**
 
-$$
+```math
 F_{Y\mid X}(y\mid x)=\Phi\!\left(y-\frac12\sum_{j=1}^4\sin x_j\right)
-$$
+```
 
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| source_law_fixed_query | Conditional cumulative distribution function | Conditional CDF P(Y&lt;=0.5 \| X=(0.5,0.25,-0.5,1)); conditioning is on the full four-dimensional X, not on the fitted index. | 0.4822778463878529 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| source_law_fixed_query | Conditional cumulative distribution function | Conditional CDF P(Y&lt;=0.5 \| X=(0.5,0.25,-0.5,1)); conditioning is on the full four-dimensional X, not on the fitted index. | 0.4822778463878529 |
 
 **Original submitted target notation:** F_{Y\|X}(0.5\|x_query)
 

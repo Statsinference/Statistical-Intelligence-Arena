@@ -36,33 +36,33 @@ Not explicitly identified (review required)
 
 **W**
 
-$$
+```math
 W_{1}\sim \mathrm{Bern}(0.6), W_{2}|W_{1}\sim \mathrm{Bern}(0.3), W_{3}|W_{1},W_{2}\sim \mathrm{Bern}(0.2+(W_{1}+W_{2})/3)
-$$
+```
 
 **A**
 
-$$
+```math
 A\mid W\sim \mathrm{Bern}(\mathrm{expit}(0.25 \sum(W)+3W_{1}W_{2}-2))
-$$
+```
 
 **Z**
 
-$$
+```math
 Z\mid A,W\sim \mathrm{Bern}(\mathrm{expit}(\sum(W)/3-A-\mathrm{AW3}-0.25))
-$$
+```
 
 **M**
 
-$$
+```math
 M\mid Z,A,W\sim \mathrm{Bern}(\mathrm{expit}(W_{1}+W_{2}+A-Z+AZ-0.3\mathrm{AW2}))
-$$
+```
 
 **Y**
 
-$$
+```math
 Y\mid M,Z,A,W\sim \mathrm{Bern}(\mathrm{expit}((A-Z+M-AZ)/(\sum(W)+1)))
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -80,9 +80,9 @@ Y|M,Z,A,W~Bern(expit((A-Z+M-AZ)/(sum(W)+1)))
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| section_5 | IIE | E[Y(1,G1)-Y(1,G0)], where G_a is an independent draw from M(a)\|W, marginalizing the post-treatment Z under treatment a. | 0.03026875404999696 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| section_5 | IIE | E[Y(1,G1)-Y(1,G0)], where G_a is an independent draw from M(a)\|W, marginalizing the post-treatment Z under treatment a. | 0.03026875404999696 |
 
 **Original submitted target notation:** IIE_1
 

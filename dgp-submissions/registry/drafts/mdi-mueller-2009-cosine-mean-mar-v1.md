@@ -36,35 +36,35 @@ Not explicitly identified (review required)
 
 **Full data and observation**
 
-$$
+```math
 X\sim \mathrm{Uniform}(-1,1)
-$$
+```
 
-$$
+```math
 \varepsilon\sim \mathcal{N}(0,1)
-$$
+```
 
 independent of X
 
-$$
+```math
 Y=\cos(2X)+\varepsilon
-$$
+```
 
-$$
+```math
 R\mid X=x\sim \mathrm{Bernoulli}(\mathrm{expit}(x)).
-$$
+```
 
 **Observed encoding**
 
-$$
+```math
 Y_{\mathrm{observed}}=Y \text{ if } R=1, \mathrm{else} \mathrm{finite} \mathrm{zero} \text{ placeholder }.
-$$
+```
 
 **Target**
 
-$$
+```math
 \theta=\mathbb{E}(Y)=0.454648713412841
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -80,9 +80,9 @@ theta=E(Y)=0.454648713412841
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| original | Full-data population outcome mean | Full-data superpopulation response mean before outcome masking. | 0.45464871341284085 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| original | Full-data population outcome mean | Full-data superpopulation response mean before outcome masking. | 0.45464871341284085 |
 
 **Original submitted target notation:** theta = E(Y)
 

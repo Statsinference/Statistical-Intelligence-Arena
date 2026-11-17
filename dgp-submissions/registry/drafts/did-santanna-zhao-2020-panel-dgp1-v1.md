@@ -43,63 +43,63 @@ X, U, eta, v
 
 **Raw covariates**
 
-$$
+```math
 X \sim \mathcal{N}(0,I_{4})
-$$
+```
 
-$$
+```math
 Z_{j}=(\mathrm{Ztilde}_{j}-\mathbb{E}[\mathrm{Ztilde}_{j}])/\mathrm{sd}(\mathrm{Ztilde}_{j})
-$$
+```
 
 **Transformations**
 
-$$
+```math
 \mathrm{Ztilde}=(\exp(X_{1}/2),10+X_{2}/(1+\exp(X_{1})),(0.6+X_{1}\cdot X_{3}/25)^{3},(20+X_{2}+X_{4})^{2})
-$$
+```
 
 **Prognosis**
 
-$$
+```math
 f(Z)=210+27.4\cdot Z_{1}+13.7\cdot (Z_{2}+Z_{3}+Z_{4})
-$$
+```
 
 **Group assignment**
 
-$$
+```math
 g(Z)=0.75\cdot (-Z_{1}+0.5\cdot Z_{2}-0.25\cdot Z_{3}-0.1\cdot Z_{4})
-$$
+```
 
-$$
+```math
 D=1\{U\leq \mathrm{sigmoid}(g(Z))\}
-$$
+```
 
-$$
+```math
 U\sim U(0,1)
-$$
+```
 
 **Latent fixed effect**
 
-$$
+```math
 v=D\cdot f(Z)+\eta
-$$
+```
 
-$$
+```math
 \eta\sim \mathcal{N}(0,1)
-$$
+```
 
 **Panel outcomes**
 
-$$
+```math
 Y_{\mathrm{pre}}=f(Z)+v+\varepsilon_{0}
-$$
+```
 
-$$
+```math
 Y_{1}(d)=2\cdot f(Z)+v+\varepsilon_{1}(d)
-$$
+```
 
-$$
+```math
 Y_{\mathrm{post}}=Y_{1}(D)
-$$
+```
 
 **Innovations**
 
@@ -125,9 +125,9 @@ eta,epsilon0,epsilon1(0),epsilon1(1) are independent N(0,1), independent of X,U
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| original_panel_dgp1 | ATT | Population ATT for the treated group at post-period 1. The realized group D and latent v are held fixed across treatment counterfactuals. Original value is zero; this is not the observed post-period group contrast or a sample-average effect. | 0.0 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| original_panel_dgp1 | ATT | Population ATT for the treated group at post-period 1. The realized group D and latent v are held fixed across treatment counterfactuals. Original value is zero; this is not the observed post-period group contrast or a sample-average effect. | 0.0 |
 
 **Original submitted target notation:** ATT = E[Y_1(1)-Y_1(0) \| D=1]
 

@@ -43,37 +43,37 @@ Not explicitly identified (review required)
 
 **Covariates and noise**
 
-$$
+```math
 (L_{1},L_{2},L_{3},L_{4},\varepsilon) \sim \mathcal{N}(0,I_{5})
-$$
+```
 
 **Full outcome**
 
-$$
+```math
 Y=210+27.4L_{1}+13.7(L_{2}+L_{3}+L_{4})+\varepsilon
-$$
+```
 
 **Observation**
 
-$$
+```math
 A\mid L\sim \mathrm{Bernoulli}(\mathrm{expit}(-L_{1}+0.5L_{2}-0.25L_{3}-0.1L_{4}))
-$$
+```
 
-$$
+```math
 A=1 \mathrm{means} Y \text{ observed }
-$$
+```
 
 **Observed encoding**
 
-$$
+```math
 Y_{\mathrm{observed}}=Y \text{ if } A=1, \text{ otherwise } \mathrm{finite} \mathrm{zero} \text{ placeholder }
-$$
+```
 
 **Target**
 
-$$
+```math
 \beta_{0}=\mathbb{E}(Y)=210
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -91,9 +91,9 @@ beta_0=E(Y)=210
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| original | Full-data population outcome mean | Full-data superpopulation mean of continuous Y before missingness. | 210.0 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| original | Full-data population outcome mean | Full-data superpopulation mean of continuous Y before missingness. | 210.0 |
 
 **Original submitted target notation:** beta_0 = E(Y)
 

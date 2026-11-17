@@ -36,47 +36,47 @@ V, W
 
 **1**
 
-$$
+```math
 T\sim \mathrm{Uniform}(0,10)
-$$
+```
 
-$$
+```math
 S\sim \mathrm{DiscreteUniform}(\{1,\ldots ,7\})
-$$
+```
 
-$$
+```math
 Z,V,W\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1)
-$$
+```
 
 mutually independent
 
 **2**
 
-$$
+```math
 \psi(T)=2\cdot ((T-5)^{4}/600+\exp(-4\cdot (T-5)^{2})+T/10-2)
-$$
+```
 
 **3**
 
-$$
+```math
 P=25+(Z+3)\cdot \psi(T)+V
-$$
+```
 
 **4**
 
-$$
+```math
 e=\rho\cdot V+\sqrt{1-\rho^{2}}\cdot W
-$$
+```
 
-$$
+```math
 \rho=0.8
-$$
+```
 
 **5**
 
-$$
+```math
 Y=100+(10+P)\cdot S\cdot \psi(T)-2\cdot P+e
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -94,9 +94,9 @@ Y=100+(10+P)*S*psi(T)-2*P+e
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| paper_raw_rho08 | Population structural mean price contrast | Population structural mean contrast of a one-unit price intervention, averaging independent T~Uniform(0,10) and S~DiscreteUniform(1,...,7); nuisance latent errors retain their marginal distribution. | -11.624351792971128 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| paper_raw_rho08 | Population structural mean price contrast | Population structural mean contrast of a one-unit price intervention, averaging independent T~Uniform(0,10) and S~DiscreteUniform(1,...,7); nuisance latent errors retain their marginal distribution. | -11.624351792971128 |
 
 **Original submitted target notation:** theta_IV = E[Y(do(P=21))-Y(do(P=20))]
 

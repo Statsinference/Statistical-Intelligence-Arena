@@ -36,17 +36,17 @@ Not explicitly identified (review required)
 
 **1. First covariate**
 
-$$
+```math
 \mathrm{X1}_{i}\overset{\mathrm{iid}}{\sim} \mathrm{Uniform}(0,1)
-$$
+```
 
 Source main simulation, Section 5.2.
 
 **2. Second covariate**
 
-$$
+```math
 \mathrm{X2}_{i}\overset{\mathrm{iid}}{\sim} \mathrm{Uniform}(0,1)
-$$
+```
 
 independent of X1
 
@@ -54,39 +54,39 @@ Independent rows and independent within-row coordinates.
 
 **3. Innovation**
 
-$$
+```math
 \varepsilon_{i}\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1)
-$$
+```
 
 independent of X1,X2
 
-$$
+```math
 \mathrm{Main} \mathrm{simulation} \mathrm{error} \mathrm{sd}=1
-$$
+```
 
 not the separate Section 3.5 small-example noise.
 
 **4. Mean surface**
 
-$$
+```math
 f_{1}=(X_{1}+X_{2})^{2}
-$$
+```
 
-$$
+```math
 f_{2}=\sqrt{X_{1}+X_{2}}
-$$
+```
 
-$$
+```math
 f_{3}=X_{1}\cdot X_{2}
-$$
+```
 
-$$
+```math
 f_{4}=\exp(X_{1}+X_{2})
-$$
+```
 
-$$
+```math
 f_{5}=\exp(X_{1}\cdot X_{2})
-$$
+```
 
 Deterministic source functions
 
@@ -94,9 +94,9 @@ the radical in f2 covers the whole sum.
 
 **5. Observed response**
 
-$$
+```math
 Y_{i}=f_{k}(\mathrm{X1}_{i},\mathrm{X2}_{i})+\varepsilon_{i}
-$$
+```
 
 return X1,X2,Y. No latent surface or oracle column
 
@@ -118,13 +118,13 @@ Y_i=f_k(X1_i,X2_i)+epsilon_i; return X1,X2,Y. No latent surface or oracle column
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| original-f1 | Pointwise conditional mean | Pointwise conditional mean of Y at the fixed query point x0 = (query_x1, query_x2) = (0.5, 0.5) under the declared Section 5.2 law, for the regression function f_k selected by the scenario. This is a scalar pointwise query, not a simultaneous confidence band and not a coverage probability. | 1.0 | reported_numeric |
-| original-f2 | Pointwise conditional mean | Pointwise conditional mean of Y at the fixed query point x0 = (query_x1, query_x2) = (0.5, 0.5) under the declared Section 5.2 law, for the regression function f_k selected by the scenario. This is a scalar pointwise query, not a simultaneous confidence band and not a coverage probability. | 1.0 | reported_numeric |
-| original-f3 | Pointwise conditional mean | Pointwise conditional mean of Y at the fixed query point x0 = (query_x1, query_x2) = (0.5, 0.5) under the declared Section 5.2 law, for the regression function f_k selected by the scenario. This is a scalar pointwise query, not a simultaneous confidence band and not a coverage probability. | 0.25 | reported_numeric |
-| original-f4 | Pointwise conditional mean | Pointwise conditional mean of Y at the fixed query point x0 = (query_x1, query_x2) = (0.5, 0.5) under the declared Section 5.2 law, for the regression function f_k selected by the scenario. This is a scalar pointwise query, not a simultaneous confidence band and not a coverage probability. | 2.718281828459045 | reported_numeric |
-| original-f5 | Pointwise conditional mean | Pointwise conditional mean of Y at the fixed query point x0 = (query_x1, query_x2) = (0.5, 0.5) under the declared Section 5.2 law, for the regression function f_k selected by the scenario. This is a scalar pointwise query, not a simultaneous confidence band and not a coverage probability. | 1.2840254166877414 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| original-f1 | Pointwise conditional mean | Pointwise conditional mean of Y at the fixed query point x0 = (query_x1, query_x2) = (0.5, 0.5) under the declared Section 5.2 law, for the regression function f_k selected by the scenario. This is a scalar pointwise query, not a simultaneous confidence band and not a coverage probability. | 1.0 |
+| original-f2 | Pointwise conditional mean | Pointwise conditional mean of Y at the fixed query point x0 = (query_x1, query_x2) = (0.5, 0.5) under the declared Section 5.2 law, for the regression function f_k selected by the scenario. This is a scalar pointwise query, not a simultaneous confidence band and not a coverage probability. | 1.0 |
+| original-f3 | Pointwise conditional mean | Pointwise conditional mean of Y at the fixed query point x0 = (query_x1, query_x2) = (0.5, 0.5) under the declared Section 5.2 law, for the regression function f_k selected by the scenario. This is a scalar pointwise query, not a simultaneous confidence band and not a coverage probability. | 0.25 |
+| original-f4 | Pointwise conditional mean | Pointwise conditional mean of Y at the fixed query point x0 = (query_x1, query_x2) = (0.5, 0.5) under the declared Section 5.2 law, for the regression function f_k selected by the scenario. This is a scalar pointwise query, not a simultaneous confidence band and not a coverage probability. | 2.718281828459045 |
+| original-f5 | Pointwise conditional mean | Pointwise conditional mean of Y at the fixed query point x0 = (query_x1, query_x2) = (0.5, 0.5) under the declared Section 5.2 law, for the regression function f_k selected by the scenario. This is a scalar pointwise query, not a simultaneous confidence band and not a coverage probability. | 1.2840254166877414 |
 
 **Original submitted target notation:** f_k(x0) = E[Y \| X = x0]
 

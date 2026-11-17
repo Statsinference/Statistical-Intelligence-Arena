@@ -41,43 +41,43 @@ Not explicitly identified (review required)
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
-$$
+```math
 X\sim \mathcal{N}_{d}(0,I)
-$$
+```
 
 coordinates independent.
 
-$$
+```math
 p(X)=1/(1+\exp(-X_{1})+\exp(-X_{2}))
-$$
+```
 
-$$
+```math
 A\mid X\sim \mathrm{Bernoulli}(p).
-$$
+```
 
-$$
+```math
 u=\max(X_{1}+X_{2}+X_{3},0)
-$$
+```
 
-$$
+```math
 v=\max(X_{4}+X_{5},0)
-$$
+```
 
-$$
+```math
 b=(u+v)/2
-$$
+```
 
-$$
+```math
 \tau=u-v.
-$$
+```
 
-$$
+```math
 Y=b(X)+(A-0.5)\cdot \tau(X)+\varepsilon, \varepsilon\sim \mathcal{N}(0,1)
-$$
+```
 
-$$
+```math
 \mathrm{equivalently} \mathbb{E}[Y|X,A=1]=u \text{ and } \mathbb{E}[Y|X,A=0]=v.
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -94,9 +94,9 @@ Y=b(X)+(A-0.5)*tau(X)+epsilon, epsilon~N(0,1); equivalently E[Y|X,A=1]=u and E[Y
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| original | ATE | E[Y(1)-Y(0)] in the full declared covariate population; treatment 1 versus 0; population, not sample-conditional, target. | 0.1267987153949146 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| original | ATE | E[Y(1)-Y(0)] in the full declared covariate population; treatment 1 versus 0; population, not sample-conditional, target. | 0.1267987153949146 |
 
 **Original submitted target notation:** ATE
 

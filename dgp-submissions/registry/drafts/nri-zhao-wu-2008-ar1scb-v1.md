@@ -46,9 +46,9 @@ not source-specified initialization or burn-in parameters.
 
 **2. Innovation sequence**
 
-$$
+```math
 \varepsilon_{t}\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1)
-$$
+```
 
 independent of the past
 
@@ -56,29 +56,29 @@ draw sequentially during recursion
 
 Source standard-normal innovations
 
-$$
+```math
 \text{ noise } \mathrm{multiplier} s=0.4.
-$$
+```
 
 **3. Recursion**
 
-$$
+```math
 Y_{t}=0.9\cdot \sin(Y_{t-1})+0.4\cdot \varepsilon_{t} \text{ for } \mathrm{burn}_{in}+n \mathrm{updates}
-$$
+```
 
 Compute source nonlinear mean before adding each independent innovation.
 
 **4. Observation pairs**
 
-$$
+```math
 \mathrm{Return} (X_{i},Y_{i})=(Y_{\mathrm{burn}_{in}+i-1},Y_{\mathrm{burn}_{in}+i}), i=1..n
-$$
+```
 
 Deterministic export in time order
 
-$$
+```math
 X_{i+1}=Y_{i} \mathrm{exactly}
-$$
+```
 
 no innovation column.
 
@@ -97,10 +97,10 @@ Return (X_i,Y_i)=(Y_(burn_in+i-1),Y_(burn_in+i)), i=1..n. Deterministic export i
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| original-s04 | Pointwise conditional mean | Pointwise conditional mean of the Markov regression at a single fixed query point x0 inside the source design interval T = [-1.1,1.1]; a scalar quantity, not a simultaneous confidence band and not a coverage probability. | 0.4314829847437827 | reported_numeric |
-| interior-anchor | Pointwise conditional mean | Pointwise conditional mean of the Markov regression at a single fixed query point x0 inside the source design interval T = [-1.1,1.1]; a scalar quantity, not a simultaneous confidence band and not a coverage probability. | 0.0 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| original-s04 | Pointwise conditional mean | Pointwise conditional mean of the Markov regression at a single fixed query point x0 inside the source design interval T = [-1.1,1.1]; a scalar quantity, not a simultaneous confidence band and not a coverage probability. | 0.4314829847437827 |
+| interior-anchor | Pointwise conditional mean | Pointwise conditional mean of the Markov regression at a single fixed query point x0 inside the source design interval T = [-1.1,1.1]; a scalar quantity, not a simultaneous confidence band and not a coverage probability. | 0.0 |
 
 **Original submitted target notation:** mu(x0) = E[Y_i \| X_i = x0] = 0.9*sin(x0)
 

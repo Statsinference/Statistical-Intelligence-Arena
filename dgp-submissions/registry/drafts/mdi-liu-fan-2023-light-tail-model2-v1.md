@@ -36,53 +36,53 @@ eta
 
 **Propensity score coordinate**
 
-$$
+```math
 P=\pi(X) \mathrm{generated} \mathrm{directly}: \mathrm{Pr}(P\leq u)=u^{\gamma-1}, u \in [0,1]
-$$
+```
 
-$$
+```math
 \gamma=2.5
-$$
+```
 
 equivalently Beta(1.5,1)
 
 **Full outcome**
 
-$$
+```math
 \eta\sim \chi-\mathrm{square}(4)
-$$
+```
 
 independent of P
 
-$$
+```math
 Y=1-P+c\cdot (\eta-4)/\sqrt{8}
-$$
+```
 
-$$
+```math
 c=1 (\mathrm{Model} 2)
-$$
+```
 
 **Observation**
 
-$$
+```math
 D\mid P\sim \mathrm{Bernoulli}(P)
-$$
+```
 
-$$
+```math
 D=1 \mathrm{means} Y \text{ observed }
-$$
+```
 
 **Observed encoding**
 
-$$
+```math
 Y_{\mathrm{observed}}=Y \text{ when } D=1 \text{ and } 0 \text{ placeholder } \text{ when } D=0
-$$
+```
 
 **Target**
 
-$$
+```math
 \theta=\mathbb{E}(Y)=1/\gamma=0.4
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -100,9 +100,9 @@ theta=E(Y)=1/gamma=0.4
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| original | Full-data population outcome mean | Full-data superpopulation response mean before outcome masking. | 0.4 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| original | Full-data population outcome mean | Full-data superpopulation response mean before outcome masking. | 0.4 |
 
 **Original submitted target notation:** theta = E(Y)
 

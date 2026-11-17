@@ -36,43 +36,43 @@ U
 
 **Published Section 5.1 predictor, PDF p.8 / JASA p.1113, unnumbered**
 
-$$
+```math
 X \sim \mathrm{Uniform}(-1,1)
-$$
+```
 
 **Published Section 5.1 conditional quantile, PDF p.8 / JASA p.1113, unnumbered**
 
-$$
+```math
 Q_{Y}(\tau\mid X=x) = 3\cdot (\tau-1/2)\cdot \log(1/[\tau\cdot (1-\tau)]) + 4\cdot (\tau-1/2)^{2}\cdot \log(1/[\tau\cdot (1-\tau)])\cdot x
-$$
+```
 
-$$
+```math
 0<\tau<1
-$$
+```
 
 **Derived sampling representation, not an added noise law**
 
-$$
+```math
 U \sim \mathrm{Uniform}(0,1)
-$$
+```
 
 independent of X
 
-$$
+```math
 Y=Q_{Y}(U\mid X)
-$$
+```
 
-$$
+```math
 \text{ iid } \mathrm{pairs} \text{ across } \text{ rows }
-$$
+```
 
 only X,Y observed/exported
 
 **Collection target adaptation**
 
-$$
+```math
 \theta=Q_{Y}(0.9\mid X=0.5)=(38/25)\cdot \log(100/9)
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -89,9 +89,9 @@ theta=Q_Y(0.9|X=0.5)=(38/25)*log(100/9)
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| original_law_x05_tau09 | Conditional quantile | inf{y: F_Y(y \| X=0.5) &gt;= 0.9} under the source superpopulation; use the conditional distribution version continuous in x specified by the quantile-plane law. A noncausal scalar conditional quantile, not a marginal quantile, beta_1(0.9), prediction interval, or simultaneous band. | 3.6600773251508456 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| original_law_x05_tau09 | Conditional quantile | inf{y: F_Y(y \| X=0.5) &gt;= 0.9} under the source superpopulation; use the conditional distribution version continuous in x specified by the quantile-plane law. A noncausal scalar conditional quantile, not a marginal quantile, beta_1(0.9), prediction interval, or simultaneous band. | 3.6600773251508456 |
 
 **Original submitted target notation:** theta = Q_Y(0.9 \| X=0.5)
 

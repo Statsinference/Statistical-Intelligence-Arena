@@ -43,27 +43,27 @@ Z_s
 
 **1. Scalar stream**
 
-$$
+```math
 Z_{s}\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1) \mathrm{conditional} \text{ on } -2.5\leq Z_{s}\leq 2.5, s=0..n+29-1
-$$
+```
 
 rejection sampling
 
-$$
+```math
 \mathrm{sd}=1 \mathrm{before} \mathrm{truncation}
-$$
+```
 
 One scalar truncated-normal stream
 
-$$
+```math
 \text{ source } d=30, \mathrm{bound}=2.5.
-$$
+```
 
 **2. Lag window**
 
-$$
+```math
 X_{t}=(Z_{t+29},Z_{t+28},\ldots ,Z_{t}), t=0..n-1
-$$
+```
 
 X1 is the most recent lag
 
@@ -75,17 +75,17 @@ Adjacent rows share 29 stream values.
 
 **3. Mean and scale**
 
-$$
+```math
 m(X)=\sum_{\text{ a }=1}^{30} \sin(\pi\cdot X_{a}/2.5)
-$$
+```
 
-$$
+```math
 L=\text{ mean }(\lvert X_{a}\rvert)
-$$
+```
 
-$$
+```math
 \sigma(X)=0.1\cdot (\sqrt{30}/2)\cdot (5-\exp(L))/(5+\exp(L))
-$$
+```
 
 Deterministic
 
@@ -95,27 +95,27 @@ Divisor 2 is outside the radical.
 
 **4. Innovation**
 
-$$
+```math
 \varepsilon_{t}\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1)
-$$
+```
 
 independent of the scalar stream and other innovations
 
-$$
+```math
 \mathrm{Noise} \mathrm{sd}=1 \mathrm{before} \mathrm{multiplication} \text{ by } \sigma(X).
-$$
+```
 
 **5. Outcome and columns**
 
-$$
+```math
 Y_{t}=m(X_{t})+\sigma(X_{t})\cdot \varepsilon_{t}
-$$
+```
 
 return X1..X30,Y in chronological window order
 
-$$
+```math
 \mathrm{Conditional} \text{ variance }=\sigma(X_{t})^{2}
-$$
+```
 
 no latent/noiseless column is exported.
 
@@ -135,10 +135,10 @@ Y_t=m(X_t)+sigma(X_t)*epsilon_t; return X1..X30,Y in chronological window order.
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| original-sigma01 | Pointwise conditional mean | Scalar conditional mean of Y at a fixed 30-dimensional query point x0 in the superpopulation defined by the fixed Example 6.2 DGP. It is a pointwise regression functional, not a causal effect; the query is a parameter of each scenario and is read from config by truth(config). | 1.0 | reported_numeric |
-| origin-query | Pointwise conditional mean | Scalar conditional mean of Y at a fixed 30-dimensional query point x0 in the superpopulation defined by the fixed Example 6.2 DGP. It is a pointwise regression functional, not a causal effect; the query is a parameter of each scenario and is read from config by truth(config). | 0.0 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| original-sigma01 | Pointwise conditional mean | Scalar conditional mean of Y at a fixed 30-dimensional query point x0 in the superpopulation defined by the fixed Example 6.2 DGP. It is a pointwise regression functional, not a causal effect; the query is a parameter of each scenario and is read from config by truth(config). | 1.0 |
+| origin-query | Pointwise conditional mean | Scalar conditional mean of Y at a fixed 30-dimensional query point x0 in the superpopulation defined by the fixed Example 6.2 DGP. It is a pointwise regression functional, not a causal effect; the query is a parameter of each scenario and is read from config by truth(config). | 0.0 |
 
 **Original submitted target notation:** m(x0) = E[Y \| X = x0] = sum_{alpha=1}^{30} sin(pi * x0_alpha / 2.5)
 

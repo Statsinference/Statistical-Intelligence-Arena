@@ -38,30 +38,30 @@ Not explicitly identified (review required)
 
 **E1**
 
-$$
+```math
 X_i\sim U(0,1),\quad\varepsilon_i\sim\mathcal N(0,1),\quad X_i\perp\varepsilon_i
-$$
+```
 
 The displayed marginals are source-supported; the independence/product-sampling part is a declared implementation convention. See source_recheck.json.
 
 **E2**
 
-$$
+```math
 Y_i=3X_i+\{0.5+2X_i+\sin(2\pi X_i-0.5)\}\varepsilon_i
-$$
+```
 
 **E3**
 
-$$
+```math
 Q_\tau(x)=m(x)+s(x)\Phi^{-1}(\tau)
-$$
+```
 
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| source_law_fixed_query | Conditional quantile | Conditional 0.9 quantile at X=0.5 in source Example 5. | 4.036735897877181 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| source_law_fixed_query | Conditional quantile | Conditional 0.9 quantile at X=0.5 in source Example 5. | 4.036735897877181 |
 
 **Original submitted target notation:** Q_{0.9}(0.5)
 

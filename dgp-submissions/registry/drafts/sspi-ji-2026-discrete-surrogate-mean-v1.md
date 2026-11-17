@@ -34,21 +34,21 @@ Z
 
 > Automatically typeset for readability; English display transcriptions are not changes to the submitted scientific data.
 
-$$
+```math
 Z\sim \mathrm{Uniform}(\{1,2,3\})
-$$
+```
 
-$$
+```math
 \varepsilon\sim \mathcal{N}(0,1) \text{ independently }
-$$
+```
 
-$$
+```math
 Y=\mu_{Z}+\varepsilon, \text{ with } (\mu_{1},\mu_{2},\mu_{3})=(-2,0,4).
-$$
+```
 
-$$
+```math
 \mathrm{The} \text{ source } \mathrm{assumes} \text{ an } \text{ observed } \text{ fixed } \mathrm{surrogate} \mathrm{prediction} Y_{\mathrm{hat}}=Z
-$$
+```
 
 Export it as X1 with role auxiliary_prediction, on both labeled and unlabeled rows.
 
@@ -56,13 +56,13 @@ Source notation retained without guessing:
 
 <pre>Two independent samples from the same population: source_n_labeled rows with observed Y and source_n_unlabeled rows with observed X only. R=1 in the first labeled block</pre>
 
-$$
+```math
 Y_{\mathrm{obs}}=Y \text{ there }. R=0 \in \text{ the } \mathrm{remaining} \mathrm{block}
-$$
+```
 
-$$
+```math
 Y_{\mathrm{obs}}=0 \text{ is } \text{ a } \text{ placeholder }.
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -78,9 +78,9 @@ Two independent samples from the same population: source_n_labeled rows with obs
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| original | Population outcome mean | Population mean of Y, aided by the observed discrete prediction. | 0.6666666666666666 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| original | Population outcome mean | Population mean of Y, aided by the observed discrete prediction. | 0.6666666666666666 |
 
 **Original submitted target notation:** E[Y]
 

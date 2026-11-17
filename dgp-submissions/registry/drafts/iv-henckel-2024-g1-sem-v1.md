@@ -38,51 +38,51 @@ Not explicitly identified (review required)
 
 **DGP equation 1**
 
-$$
+```math
 \begin{aligned}
 A &= \varepsilon_{A} \\
 C &= \varepsilon_{C} \\
 B &= b_{CB}C+\varepsilon_{B}
 \end{aligned}
-$$
+```
 
 **DGP equation 2**
 
-$$
+```math
 D=b_{AD}A+b_{BD}B+b_{HD}H_{DX}+\varepsilon_{D}
-$$
+```
 
 **DGP equation 3**
 
-$$
+```math
 X=b_{BX}B+b_{HX}H_{DX}+b_{GX}H_{XY}+\varepsilon_{X}
-$$
+```
 
 **DGP equation 4**
 
-$$
+```math
 M=b_{XM}X+\varepsilon_{M}
-$$
+```
 
 **DGP equation 5**
 
-$$
+```math
 Y=b_{XY}X+b_{MY}M+b_{CY}C+b_{GY}H_{XY}+\varepsilon_{Y}.
-$$
+```
 
 **DGP equation 6**
 
-$$
+```math
 \varepsilon_{k} \sim \mathcal{N}(0,v_{k})  \text{ or }  \mathrm{Uniform}(-\sqrt{3v_{k}},\sqrt{3v_{k}}).
-$$
+```
 
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| G1_gaussian_new_draw | Population total causal effect | English description not yet supplied; consult the original scientific record (JSON). | 0.7324265699272281 | reported_numeric |
-| G1_uniform_new_draw | Population total causal effect | English description not yet supplied; consult the original scientific record (JSON). | 0.7324265699272281 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| G1_gaussian_new_draw | Population total causal effect | English description not yet supplied; consult the original scientific record (JSON). | 0.7324265699272281 |
+| G1_uniform_new_draw | Population total causal effect | English description not yet supplied; consult the original scientific record (JSON). | 0.7324265699272281 |
 
 **Original submitted target notation:** tau_YX
 

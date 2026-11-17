@@ -36,43 +36,43 @@ Not explicitly identified (review required)
 
 **Baseline X1**
 
-$$
+```math
 X_{1} \sim \mathrm{Bernoulli}(0.4)
-$$
+```
 
 **Baseline X2**
 
-$$
+```math
 X_{2} \mid  X_{1} \sim \mathrm{Bernoulli}(0.3 + 0.4 X_{1})
-$$
+```
 
 **Baseline X3**
 
-$$
+```math
 X_{3} \mid  X_{1},X_{2} \sim \mathcal{N}(-0.024 - 0.4 X_{1} + 0.4 X_{2}, 1)
-$$
+```
 
 **Treatment**
 
-$$
+```math
 \mathrm{logit} P(A=1\mid X) = 0.4 + X_{1} - X_{2} + 0.1 X_{3} - 1.5 X_{1} X_{3}
-$$
+```
 
 **Mediator**
 
-$$
+```math
 \mathrm{logit} P(M=1\mid A,X) = 0.5 - X_{1} + 0.5 X_{2} - 0.9 X_{3} - 1.5 X_{1} X_{3} + A
-$$
+```
 
 **Outcome**
 
-$$
+```math
 Y = 1 + 0.2 X_{1} + 0.3 X_{2} + 1.4 X_{3} - 2.5 A - 3.5 M + 5 A M + \varepsilon
-$$
+```
 
-$$
+```math
 \varepsilon\sim \mathcal{N}(0,1)
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -91,9 +91,9 @@ Y = 1 + 0.2 X1 + 0.3 X2 + 1.4 X3 - 2.5 A - 3.5 M + 5 A M + epsilon; epsilon ~ No
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| original | NIE | E[Y(1,M(1)) - Y(1,M(0))] in the superpopulation defined by the fixed DGP. | 0.2366199012683949 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| original | NIE | E[Y(1,M(1)) - Y(1,M(0))] in the superpopulation defined by the fixed DGP. | 0.2366199012683949 |
 
 **Original submitted target notation:** theta_NIE = theta_11 - theta_10
 

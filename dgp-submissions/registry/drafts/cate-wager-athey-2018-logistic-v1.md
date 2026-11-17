@@ -43,41 +43,41 @@ Not explicitly identified (review required)
 
 **Covariates**
 
-$$
+```math
 X_{j}\overset{\mathrm{iid}}{\sim} \mathrm{Uniform}(0,1), j=1,\ldots ,6
-$$
+```
 
 **Treatment assignment**
 
-$$
+```math
 e(X)=0.5
-$$
+```
 
-$$
+```math
 A\mid X\sim \mathrm{Bernoulli}(e(X))
-$$
+```
 
 **Centered baseline**
 
-$$
+```math
 m(X)=0
-$$
+```
 
 **Conditional effect**
 
-$$
+```math
 \tau(X)=s(X_{1})\cdot s(X_{2}), s(u)=1+1/[1+\exp(-20\cdot (u-1/3))]
-$$
+```
 
 **Outcome**
 
-$$
+```math
 Y=m(X)+(A-0.5)\cdot \tau(X)+\varepsilon
-$$
+```
 
-$$
+```math
 \varepsilon\sim \mathcal{N}(0,1)
-$$
+```
 
 independent of X and assignment uniforms
 
@@ -97,9 +97,9 @@ Y=m(X)+(A-0.5)*tau(X)+epsilon; epsilon~Normal(0,1), independent of X and assignm
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| source_d6_sigma1_fixed_query | CATE | Scalar pointwise CATE at x_star=[0.3333333333333333, 0.3333333333333333, 0.5, 0.5, 0.5, 0.5]. Continuous source response functions specify the conditional version at this point. This is not a population ATE or the full CATE vector/function interface. | 2.25 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| source_d6_sigma1_fixed_query | CATE | Scalar pointwise CATE at x_star=[0.3333333333333333, 0.3333333333333333, 0.5, 0.5, 0.5, 0.5]. Continuous source response functions specify the conditional version at this point. This is not a population ATE or the full CATE vector/function interface. | 2.25 |
 
 **Original submitted target notation:** tau(x_star)=E[Y(1)-Y(0)\|X=x_star]
 

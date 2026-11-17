@@ -36,39 +36,39 @@ Not explicitly identified (review required)
 
 **Baseline covariate**
 
-$$
+```math
 C_{0} \sim \mathrm{Uniform}(0, 2)
-$$
+```
 
 **Exposure**
 
-$$
+```math
 A \mid  C_{0} \sim \mathrm{Bernoulli}(1 - \{1 + \exp(0.9 + 0.3 C_{0})\}^{-1}) = \mathrm{Bernoulli}(\mathrm{expit}(0.9 + 0.3 C_{0}))
-$$
+```
 
 **Treatment-induced confounder vector**
 
-$$
+```math
 C_{1} = (0.8, 0.6, -0.3)^{T} + (1, 0.1, 0.2)^{T} C_{0} + (0.5, -0.4, 0.5)^{T} A + (-0.1, 0.8, -0.2)^{T} C_{0} A + \mathcal{N}(0, I_{3})
-$$
+```
 
 **Mediator**
 
-$$
+```math
 M = -0.5 - 0.2 C_{0} + 0.3 A + [-0.2, 0.1, 0.5] C_{1} + [0.4, 0, 0] A C_{1} + \mathcal{N}(0, 1)
-$$
+```
 
 **Outcome**
 
-$$
+```math
 Y = 0.2 + 0.2 C_{0} + 0.6 A + [1, 0.7, 0.3] C_{1} - 0.9 M - 0.8 A M + \mathcal{N}(0, 1)
-$$
+```
 
 **Identification formula (source equation (1))**
 
-$$
+```math
 \beta_{0} = \mathrm{int} \mathrm{int} \mathrm{int} \mathbb{E}(Y|m, c_{1}, \text{ a }', c_{0}) \mathrm{dF}(m|c_{1}, \text{ a }, c_{0}) \mathrm{dF}(c_{1}|\text{ a }', c_{0}) \mathrm{dF}(c_{0})
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -87,9 +87,9 @@ beta_0 = int int int E(Y|m, c1, a&#x27;, c0) dF(m|c1, a, c0) dF(c1|a&#x27;, c0) 
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| original | Path-specific effect | The path-specific effect of A on Y along the path A -&gt; M -&gt; Y, as defined in Section 2 of the source. It is the CONTRAST of two nested counterfactual means: in both arms the treatment-induced confounder vector C1 and the outcome are held at the reference level a' = 0, and only the exposure level fed to the mediator equation moves, from a' = 0 to a = 1. Writing beta_0 = E(Y[M{a, C1(a')}, C1(a'), a']) for the moved arm and E[Y(a')] for the unmoved arm, P_AMY = beta_0 - E[Y(a')]. beta_0 on its own is a counterfactual MEAN, not an effect, and is registered only as a component; the source's Figure 2 plots beta_0, which is why that figure is used as coding evidence rather than as the target. P_AMY is NOT a natural indirect effect, NOT a natural direct effect and NOT a total effect; keeping C1 at a' inside the mediator counterfactual is what distinguishes it from the standard natural effects. | -0.9180000000000001 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| original | Path-specific effect | The path-specific effect of A on Y along the path A -&gt; M -&gt; Y, as defined in Section 2 of the source. It is the CONTRAST of two nested counterfactual means: in both arms the treatment-induced confounder vector C1 and the outcome are held at the reference level a' = 0, and only the exposure level fed to the mediator equation moves, from a' = 0 to a = 1. Writing beta_0 = E(Y[M{a, C1(a')}, C1(a'), a']) for the moved arm and E[Y(a')] for the unmoved arm, P_AMY = beta_0 - E[Y(a')]. beta_0 on its own is a counterfactual MEAN, not an effect, and is registered only as a component; the source's Figure 2 plots beta_0, which is why that figure is used as coding evidence rather than as the target. P_AMY is NOT a natural indirect effect, NOT a natural direct effect and NOT a total effect; keeping C1 at a' inside the mediator counterfactual is what distinguishes it from the standard natural effects. | -0.9180000000000001 |
 
 **Original submitted target notation:** P_AMY = E(Y[M{a, C1(a')}, C1(a'), a']) - E[Y(a')]
 

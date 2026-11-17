@@ -43,37 +43,37 @@ Not explicitly identified (review required)
 
 **Covariates**
 
-$$
+```math
 X_{1},\ldots ,X_{10} \text{ independent } \mathrm{Poisson}(10)
-$$
+```
 
 **Response**
 
-$$
+```math
 X_{j}\overset{\mathrm{iid}}{\sim} \mathrm{Poisson}(10)
-$$
+```
 
-$$
+```math
 Y \mid  X \sim \mathrm{Poisson}(10 X_{1})
-$$
+```
 
 **Sampling and observed data**
 
 Independent units and independent outcome noise
 
-$$
+```math
 \mathrm{Two} \text{ iid } \mathrm{samples} \text{ from } \text{ the } \mathrm{same} \text{ population }
-$$
+```
 
 fixed group sizes, R indicates observed Y
 
-$$
+```math
 \mathrm{Export} X,R,Y_{\mathrm{obs}} \text{ where } Y_{\mathrm{obs}}=Y \text{ when } R=1 \text{ and } 0 \text{ otherwise }
-$$
+```
 
-$$
+```math
 n_{\mathrm{total}}=\mathrm{nL}+\mathrm{nU}.
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -89,9 +89,9 @@ Independent units and independent outcome noise. Two iid samples from the same p
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| source_fixed | Population outcome mean | Superpopulation mean theta=E[Y] under the declared fixed mechanism, shared by labeled and unlabeled samples. | 100.0 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| source_fixed | Population outcome mean | Superpopulation mean theta=E[Y] under the declared fixed mechanism, shared by labeled and unlabeled samples. | 100.0 |
 
 **Original submitted target notation:** theta = E[Y]
 

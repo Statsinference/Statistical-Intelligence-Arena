@@ -36,58 +36,58 @@ U0, U1
 
 **Original source equations (verbatim):** [Open raw scientific record (JSON)](./proximal-ying-2023-longitudinal-v1.json).
 
-$$
+```math
 \begin{aligned}
 X_0&\sim\mathcal{N}(-0.35,0.5^2)\\
 U_0&\sim\mathcal{N}(0.35,0.5^2)\\
 p_0&=[1+\exp(0.5-0.35X_0+0.35U_0)]^{-1}
 \end{aligned}
-$$
+```
 
 X0 and U0 are independent.
 
-$$
+```math
 \begin{aligned}
 A_0&\sim\mathrm{Bernoulli}(p_0)\\
 Z_0&=0.2+0.5A_0+0.5X_0+0.75U_0+\varepsilon_{z0}\\
 W_0&=0.2+0.5X_0-0.95U_0+\varepsilon_{w0}
 \end{aligned}
-$$
+```
 
-$$
+```math
 \begin{aligned}
 X_1&=0.2+0.7A_0+0.7X_0+\varepsilon_{x1}\\
 U_1&=0.2+0.7A_0+0.7U_0+\varepsilon_{u1}
 \end{aligned}
-$$
+```
 
-$$
+```math
 \begin{aligned}
 p_1&=[1+\exp\{0.5-0.5A_0-0.35(X_0+X_1)-0.35(U_0+U_1)\}]^{-1}\\
 A_1&\sim\mathrm{Bernoulli}(p_1)
 \end{aligned}
-$$
+```
 
-$$
+```math
 Z_1=0.2+0.5(A_0+A_1)+0.5(X_0+X_1)-0.75(U_0+U_1)+\varepsilon_{z1}
-$$
+```
 
-$$
+```math
 W_1=0.35+0.45(X_0+X_1)-0.85(U_0+U_1)+\varepsilon_{w1}
-$$
+```
 
-$$
+```math
 Y=-1.3+A_1+1.14A_0+0.5X_1-0.7U_1+0.2X_0-0.7U_0+\varepsilon_{y}
-$$
+```
 
 The newly introduced error terms are mutually independent N(0,0.5²).
 
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| original | Longitudinal treatment regime mean contrast | E[Y(1,1)-Y(0,0)] = 2. | 1.9999999999999998 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| original | Longitudinal treatment regime mean contrast | E[Y(1,1)-Y(0,0)] = 2. | 1.9999999999999998 |
 
 **Original submitted target notation:** theta
 

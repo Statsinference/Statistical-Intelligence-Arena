@@ -36,29 +36,29 @@ Not explicitly identified (review required)
 
 **Baseline**
 
-$$
+```math
 A\sim \mathrm{Bern}(0.5)
-$$
+```
 
-$$
+```math
 X_{1}\sim \mathcal{N}(0,1)
-$$
+```
 
-$$
+```math
 X_{2}\sim \mathrm{Bern}(0.5), \text{ independently }
-$$
+```
 
 **Mediator**
 
-$$
+```math
 M=\alpha_{S} A+1+X_{1}+X_{2}+\varepsilon_{M}, \varepsilon_{M}\sim \mathcal{N}(0,0.5^{2})
-$$
+```
 
 **Outcome**
 
-$$
+```math
 Y=\beta_{M} M+1+X_{1}+X_{2}+A+\varepsilon_{Y}, \varepsilon_{Y}\sim \mathcal{N}(0,0.5^{2})
-$$
+```
 
 independent of epsilon_M
 
@@ -76,12 +76,12 @@ Y=beta_M M+1+X1+X2+A+epsilon_Y, epsilon_Y~N(0,0.5^2), independent of epsilon_M
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| fixed_product_004_ratio_1 | NIE | E[Y(1,M(1))-Y(1,M(0))] in the source SEM superpopulation; exposure S is named A in data columns. | 0.04000000000000001 | reported_numeric |
-| fixed_null_h01 | NIE | E[Y(1,M(1))-Y(1,M(0))] in the source SEM superpopulation; exposure S is named A in data columns. | 0.0 | reported_numeric |
-| fixed_null_h02 | NIE | E[Y(1,M(1))-Y(1,M(0))] in the source SEM superpopulation; exposure S is named A in data columns. | 0.0 | reported_numeric |
-| fixed_null_h03 | NIE | E[Y(1,M(1))-Y(1,M(0))] in the source SEM superpopulation; exposure S is named A in data columns. | 0.0 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| fixed_product_004_ratio_1 | NIE | E[Y(1,M(1))-Y(1,M(0))] in the source SEM superpopulation; exposure S is named A in data columns. | 0.04000000000000001 |
+| fixed_null_h01 | NIE | E[Y(1,M(1))-Y(1,M(0))] in the source SEM superpopulation; exposure S is named A in data columns. | 0.0 |
+| fixed_null_h02 | NIE | E[Y(1,M(1))-Y(1,M(0))] in the source SEM superpopulation; exposure S is named A in data columns. | 0.0 |
+| fixed_null_h03 | NIE | E[Y(1,M(1))-Y(1,M(0))] in the source SEM superpopulation; exposure S is named A in data columns. | 0.0 |
 
 **Original submitted target notation:** NIE_1
 

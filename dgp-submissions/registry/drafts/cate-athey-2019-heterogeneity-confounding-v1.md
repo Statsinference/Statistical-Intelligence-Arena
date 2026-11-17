@@ -43,33 +43,33 @@ Xj
 
 **X1-X5**
 
-$$
+```math
 \mathrm{Xj} \sim \mathrm{Uniform}(0,1) \text{ independently }, j = 1..5
-$$
+```
 
 **Treatment**
 
-$$
+```math
 P(A=1\mid X) = 0.25 (1 + 20 X_{3} (1-X_{3})^{3})
-$$
+```
 
 **Baseline**
 
-$$
+```math
 m(X) = 2 X_{3} - 1
-$$
+```
 
 **Heterogeneity**
 
-$$
+```math
 \tau(X) = s(X_{1}) s(X_{2}), s(u) = 1 + 1/(1 + \exp(-20 (u - 1/3)))
-$$
+```
 
 **Outcome**
 
-$$
+```math
 Y = m(X) + A \tau(X) + \varepsilon, \varepsilon\sim \mathcal{N}(0,1)
-$$
+```
 
 <details>
 <summary>Original source equations (verbatim)</summary>
@@ -87,9 +87,9 @@ Y = m(X) + A tau(X) + eps, eps ~ Normal(0,1)
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| original | CATE ⚠ review | Conditional average treatment effect at the declared query points for the combined setting: sigmoid-product heterogeneity on X1, X2 together with a beta-density propensity and a linear baseline on X3. | 2.25 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| original | CATE ⚠ review | Conditional average treatment effect at the declared query points for the combined setting: sigmoid-product heterogeneity on X1, X2 together with a beta-density propensity and a linear baseline on X3. | 2.25 |
 
 **Original submitted target notation:** tau(x0) = E[Y(1) - Y(0) \| X = x0]
 

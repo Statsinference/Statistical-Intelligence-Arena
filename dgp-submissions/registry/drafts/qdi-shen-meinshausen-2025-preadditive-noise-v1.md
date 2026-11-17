@@ -36,13 +36,13 @@ eta_i
 
 **Source pre-ANM (4)**
 
-$$
+```math
 Y=g(WX+\eta)+\beta^{T} X
-$$
+```
 
-$$
+```math
 \mathrm{collected} \mathrm{simulation} \mathrm{specializes} \text{ to } d=k=1,W=1,\beta=0, \mathrm{so} Y=g_{s}(X+\eta).
-$$
+```
 
 **Independent noise and rows**
 
@@ -50,55 +50,55 @@ eta_i
 
 independent of X_i
 
-$$
+```math
 (X_{i},\eta_{i}) \text{ iid } \text{ across } i
-$$
+```
 
-$$
+```math
 \eta_{i}\sim \mathcal{N}(0,\sigma_{s}^{2})
-$$
+```
 
-$$
+```math
 \sigma_{\mathrm{cubic}}=1.1, \text{ all } \mathrm{others}=1.
-$$
+```
 
 **Covariate laws**
 
-$$
+```math
 X_{i}\sim \mathrm{Unif}[-2,2] \text{ for } \mathrm{softplus},\mathrm{cubic}
-$$
+```
 
-$$
+```math
 X_{i}\sim \mathrm{Unif}[0,2] \text{ for } \mathrm{square},\log.
-$$
+```
 
 **Softplus**
 
-$$
+```math
 g_{\mathrm{softplus}}(u)=\ln(1+\exp(u)).
-$$
+```
 
 **Square**
 
-$$
+```math
 g_{\mathrm{square}}(u)=\max(u,0)^{2}/2.
-$$
+```
 
 **Cubic**
 
-$$
+```math
 g_{\mathrm{cubic}}(u)=u^{3}/3.
-$$
+```
 
 **Log, literal table**
 
-$$
+```math
 g_{\log}(u)=(u-2)/3+\ln(3) \text{ if } u\leq 2
-$$
+```
 
-$$
+```math
 \ln(u) \text{ if } u>2
-$$
+```
 
 Literal official supplementary Table C.1, explicitly selected by user
 
@@ -106,9 +106,9 @@ inspected author fixed-snapshot simulator.py line 30 differs.
 
 **Scalar QDI target**
 
-$$
+```math
 q_{s}=\inf\{y:P_{\eta}(g_{s}(0.5+\eta)\leq y)\geq 0.5\}
-$$
+```
 
 Source notation retained without guessing:
 
@@ -133,12 +133,12 @@ q_s=inf{y:P_eta(g_s(0.5+eta)&lt;=y)&gt;=0.5}; (q_softplus,q_square,q_cubic,q_log
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| softplus | Conditional quantile | For each scenario s, q_s(0.5;0.5)=inf{y:F_s(y;0.5)&gt;=0.5}, F_s(y;x)=P_eta[g_s(x+eta)&lt;=y], eta~N(0,sigma_s^2). A scalar conditional median at an interior covariate point; not a marginal quantile, causal effect, prediction interval or simultaneous band. | 0.9740769841801067 | reported_numeric |
-| square | Conditional quantile | For each scenario s, q_s(0.5;0.5)=inf{y:F_s(y;0.5)&gt;=0.5}, F_s(y;x)=P_eta[g_s(x+eta)&lt;=y], eta~N(0,sigma_s^2). A scalar conditional median at an interior covariate point; not a marginal quantile, causal effect, prediction interval or simultaneous band. | 0.125 | reported_numeric |
-| cubic | Conditional quantile | For each scenario s, q_s(0.5;0.5)=inf{y:F_s(y;0.5)&gt;=0.5}, F_s(y;x)=P_eta[g_s(x+eta)&lt;=y], eta~N(0,sigma_s^2). A scalar conditional median at an interior covariate point; not a marginal quantile, causal effect, prediction interval or simultaneous band. | 0.041666666666666664 | reported_numeric |
-| log | Conditional quantile | For each scenario s, q_s(0.5;0.5)=inf{y:F_s(y;0.5)&gt;=0.5}, F_s(y;x)=P_eta[g_s(x+eta)&lt;=y], eta~N(0,sigma_s^2). A scalar conditional median at an interior covariate point; not a marginal quantile, causal effect, prediction interval or simultaneous band. | 0.5986122886681097 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| softplus | Conditional quantile | For each scenario s, q_s(0.5;0.5)=inf{y:F_s(y;0.5)&gt;=0.5}, F_s(y;x)=P_eta[g_s(x+eta)&lt;=y], eta~N(0,sigma_s^2). A scalar conditional median at an interior covariate point; not a marginal quantile, causal effect, prediction interval or simultaneous band. | 0.9740769841801067 |
+| square | Conditional quantile | For each scenario s, q_s(0.5;0.5)=inf{y:F_s(y;0.5)&gt;=0.5}, F_s(y;x)=P_eta[g_s(x+eta)&lt;=y], eta~N(0,sigma_s^2). A scalar conditional median at an interior covariate point; not a marginal quantile, causal effect, prediction interval or simultaneous band. | 0.125 |
+| cubic | Conditional quantile | For each scenario s, q_s(0.5;0.5)=inf{y:F_s(y;0.5)&gt;=0.5}, F_s(y;x)=P_eta[g_s(x+eta)&lt;=y], eta~N(0,sigma_s^2). A scalar conditional median at an interior covariate point; not a marginal quantile, causal effect, prediction interval or simultaneous band. | 0.041666666666666664 |
+| log | Conditional quantile | For each scenario s, q_s(0.5;0.5)=inf{y:F_s(y;0.5)&gt;=0.5}, F_s(y;x)=P_eta[g_s(x+eta)&lt;=y], eta~N(0,sigma_s^2). A scalar conditional median at an interior covariate point; not a marginal quantile, causal effect, prediction interval or simultaneous band. | 0.5986122886681097 |
 
 **Original submitted target notation:** q_s(0.5;0.5)
 

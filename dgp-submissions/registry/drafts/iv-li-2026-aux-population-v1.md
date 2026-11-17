@@ -45,62 +45,62 @@ U
 
 **DGP equation 1**
 
-$$
+```math
 V_{k}\overset{\mathrm{iid}}{\sim} \mathcal{N}(0,1), v_{k}=\mathrm{expit}(2V_{k}-1), k=1,\ldots ,4.
-$$
+```
 
 **DGP equation 2**
 
-$$
+```math
 \rho^{2}=0.75+1.5v_{1}+1.5v_{2}-0.3v_{3}-0.3v_{4}
-$$
+```
 
-$$
+```math
 U\mid V \sim \mathrm{Uniform}(-\rho,\rho).
-$$
+```
 
 **DGP equation 3**
 
-$$
+```math
 p_{R}=\mathrm{expit}(0.8+3v_{1}-2v_{2}-v_{3}-v_{4}), R\mid V \sim \mathrm{Bernoulli}(p_{R}).
-$$
+```
 
 **DGP equation 4**
 
-$$
+```math
 Z\mid V,R=1 \sim \mathrm{Bernoulli}[\mathrm{expit}(-0.5-v_{1}+1.5v_{2}+2v_{3}-v_{4})].
-$$
+```
 
 **DGP equation 5**
 
-$$
+```math
 \text{ a }_{1}=\mathrm{expit}(1.3-2.4Z), \text{ a }_{0}=\mathrm{expit}(v_{1}-v_{2}+0.8v_{3}-0.6v_{4}).
-$$
+```
 
 **DGP equation 6**
 
-$$
+```math
 X\mid V,U,R,Z \sim \mathrm{Bernoulli}[\mathrm{Ra}_{1}+(1-R)\text{ a }_{0}+0.1U].
-$$
+```
 
 **DGP equation 7**
 
-$$
+```math
 Y=(2-R+2v_{1}-v_{2}+v_{3}-0.5v_{4})(1+X)+U+\varepsilon, \varepsilon\sim \mathcal{N}(0,0.5^{2}).
-$$
+```
 
 **DGP equation 8**
 
-$$
+```math
 \tau=\mathbb{E}[(1-p_{R})(2+2v_{1}-v_{2}+v_{3}-0.5v_{4})] / \mathbb{E}[1-p_{R}].
-$$
+```
 
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| source_v1 | ATE | English description not yet supplied; consult the original scientific record (JSON). | 2.224373475244555 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| source_v1 | ATE | English description not yet supplied; consult the original scientific record (JSON). | 2.224373475244555 |
 
 **Original submitted target notation:** tau
 

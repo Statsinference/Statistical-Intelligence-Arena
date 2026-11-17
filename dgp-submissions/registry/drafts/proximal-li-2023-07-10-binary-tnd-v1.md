@@ -46,55 +46,55 @@ S
 
 **Step 1**
 
-$$
+```math
 U \sim \mathrm{Bernoulli}(0.5)
-$$
+```
 
 **Step 2**
 
-$$
+```math
 Z \mid  U \sim \mathrm{Bernoulli}(0.2 + 0.4U)
-$$
+```
 
 **Step 3**
 
-$$
+```math
 A \mid  U \sim \mathrm{Bernoulli}(0.2 + 0.4U)
-$$
+```
 
 English equation transcription pending; consult the linked original scientific record (JSON) for the complete source and context.
 
-$$
+```math
 Y \mid  A,U \sim \mathrm{Bernoulli}(\exp(\eta_{0} + \beta A - 0.693U))
-$$
+```
 
-$$
+```math
 \eta_{0}=\ln(0.01)
-$$
+```
 
 **Step 5**
 
-$$
+```math
 W \mid  U \sim \mathrm{Bernoulli}(0.02 - 0.01U)
-$$
+```
 
 **Step 6**
 
-$$
+```math
 D \mid  U \sim \mathrm{Bernoulli}(0.02 - 0.015U)
-$$
+```
 
 **Step 7**
 
-$$
+```math
 S \mid  Y,D,W,U \sim \mathrm{Bernoulli}(\max(Y,D,W) \times  (0.1 + 0.4U))
-$$
+```
 
 English equation transcription pending; consult the linked original scientific record (JSON) for the complete source and context.
 
-$$
+```math
 S=1
-$$
+```
 
 A,Z,W,Y
 
@@ -104,23 +104,23 @@ U,D,S
 
 English equation transcription pending; consult the linked original scientific record (JSON) for the complete source and context.
 
-$$
+```math
 \eta_{0}=\log(0.01)
-$$
+```
 
-$$
+```math
 \beta\in \{\log(0.2), \log(0.5), \log(0.7), 0\}
-$$
+```
 
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value | Evidence status |
-|---|---|---|---|---|
-| table-eta001-rr020 | Causal log mean ratio | log(E[Y(1)]/E[Y(0)]) in the source population before S selection; not selected-sample log odds ratio. | -1.6094379124341003 | reported_numeric |
-| table-eta001-rr050 | Causal log mean ratio | log(E[Y(1)]/E[Y(0)]) in the source population before S selection; not selected-sample log odds ratio. | -0.6931471805599453 | reported_numeric |
-| table-eta001-rr070 | Causal log mean ratio | log(E[Y(1)]/E[Y(0)]) in the source population before S selection; not selected-sample log odds ratio. | -0.35667494393873245 | reported_numeric |
-| table-eta001-rr100 | Causal log mean ratio | log(E[Y(1)]/E[Y(0)]) in the source population before S selection; not selected-sample log odds ratio. | 0.0 | reported_numeric |
+| Scenario | Estimand | Definition | Reported value |
+|---|---|---|---|
+| table-eta001-rr020 | Causal log mean ratio | log(E[Y(1)]/E[Y(0)]) in the source population before S selection; not selected-sample log odds ratio. | -1.6094379124341003 |
+| table-eta001-rr050 | Causal log mean ratio | log(E[Y(1)]/E[Y(0)]) in the source population before S selection; not selected-sample log odds ratio. | -0.6931471805599453 |
+| table-eta001-rr070 | Causal log mean ratio | log(E[Y(1)]/E[Y(0)]) in the source population before S selection; not selected-sample log odds ratio. | -0.35667494393873245 |
+| table-eta001-rr100 | Causal log mean ratio | log(E[Y(1)]/E[Y(0)]) in the source population before S selection; not selected-sample log odds ratio. | 0.0 |
 
 **Original submitted target notation:** beta_log_RR
 
