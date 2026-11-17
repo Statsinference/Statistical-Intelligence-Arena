@@ -13,7 +13,7 @@ This list is based on the current submitted records; no independent paper verifi
 
 ## Potential duplicate quantile records
 
-The following pairs have matching displayed mechanisms, estimands, scenarios, and truth in the current registry. Compare the submitted archives and generators before merging or removing anything.
+The following pairs have matching displayed mechanisms, estimands, scenarios, and truth in the current registry. Their exported generator files also have matching SHA-256 hashes within each pair. Some metadata differs, so compare submitted archives, provenance, and author intent before merging or removing anything.
 
 | Pair | Records |
 |---|---|
