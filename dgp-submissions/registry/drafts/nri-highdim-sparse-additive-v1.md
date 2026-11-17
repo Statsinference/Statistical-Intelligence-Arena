@@ -102,9 +102,39 @@ m(x*)=E[Y|X=x*]=sum_{j=1}^4 f_j(0.5), x*=(0.5,...,0.5), with truth -1.1.
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| original | Pointwise conditional mean | Noncausal pointwise conditional mean under the declared sparse-additive DGP, evaluated at the fixed query x*=(0.5,...,0.5). Since E[epsilon\|X]=0, m(x*) equals the sum of the four active component functions at the query; inactive coordinates contribute zero. This is a library adaptation and is not the paper's simultaneous confidence-band target. | -1.1000000000000003 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>original</td>
+<td rowspan="1">Pointwise conditional mean</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y\mid X=(0.5,\ldots,0.5)]`$
+
+</td>
+<td>-1.1000000000000003</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: The query has 600 coordinates.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** original
+
+Noncausal pointwise conditional mean under the declared sparse-additive DGP, evaluated at the fixed query x*=(0.5,...,0.5). Since E[epsilon\|X]=0, m(x*) equals the sum of the four active component functions at the query; inactive coordinates contribute zero. This is a library adaptation and is not the paper's simultaneous confidence-band target.
+
+[Open raw scientific record (JSON)](./nri-highdim-sparse-additive-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** m(x*) = E[Y \| X=x*] = sum_{j=1}^4 f_j(0.5), x*=(0.5,...,0.5) in R^600
 

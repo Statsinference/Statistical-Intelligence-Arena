@@ -84,11 +84,47 @@ theta_s=P(Y_i&lt;=10 | X_i=5.5)
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| smooth_gamma | Conditional cumulative distribution function | Scalar conditional CDF P(Y_s&lt;=10 \| X=5.5) for each source scenario, using the explicitly specified conditional-law version. Not a marginal CDF, quantile, causal effect, or simultaneous band. | 0.44022759069779993 |
-| discontinuous_gamma | Conditional cumulative distribution function | Scalar conditional CDF P(Y_s&lt;=10 \| X=5.5) for each source scenario, using the explicitly specified conditional-law version. Not a marginal CDF, quantile, causal effect, or simultaneous band. | 0.0 |
-| non_isotonic_gamma | Conditional cumulative distribution function | Scalar conditional CDF P(Y_s&lt;=10 \| X=5.5) for each source scenario, using the explicitly specified conditional-law version. Not a marginal CDF, quantile, causal effect, or simultaneous band. | 0.44022759069779993 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>smooth_gamma</td>
+<td rowspan="3">Conditional cumulative distribution function</td>
+<td rowspan="3">
+
+$`\Pr(Y\le 10\mid X=5.5)`$
+
+</td>
+<td>0.44022759069779993</td>
+</tr>
+<tr>
+<td>discontinuous_gamma</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>non_isotonic_gamma</td>
+<td>0.44022759069779993</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Under the scenario-specific conditional law.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** smooth_gamma, discontinuous_gamma, non_isotonic_gamma
+
+Scalar conditional CDF P(Y_s&lt;=10 \| X=5.5) for each source scenario, using the explicitly specified conditional-law version. Not a marginal CDF, quantile, causal effect, or simultaneous band.
+
+[Open raw scientific record (JSON)](./qdi-henzi-2021-gamma-shift-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** theta_s = F_s(10 \| 5.5)
 

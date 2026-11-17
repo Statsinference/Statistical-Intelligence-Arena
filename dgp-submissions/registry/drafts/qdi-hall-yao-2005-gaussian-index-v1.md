@@ -64,9 +64,39 @@ Q_Y(0.9)=\sqrt 2\,\Phi^{-1}(0.9)
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| source_law_fixed_query | Marginal population quantile | Marginal population quantile Q_Y(tau)=inf{y:P(Y&lt;=y)&gt;=tau}, tau=0.9; X is integrated over its N(0,I4) population, not fixed at zero. | 1.8123876048736471 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>source_law_fixed_query</td>
+<td rowspan="1">Marginal population quantile</td>
+<td rowspan="1">
+
+$`Q_{0.9}(Y)`$
+
+</td>
+<td>1.8123876048736471</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Marginal quantile.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** source_law_fixed_query
+
+Marginal population quantile Q_Y(tau)=inf{y:P(Y&lt;=y)&gt;=tau}, tau=0.9; X is integrated over its N(0,I4) population, not fixed at zero.
+
+[Open raw scientific record (JSON)](./qdi-hall-yao-2005-gaussian-index-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** Q_Y(0.9)
 

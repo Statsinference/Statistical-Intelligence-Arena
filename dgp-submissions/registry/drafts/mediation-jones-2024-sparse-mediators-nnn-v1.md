@@ -116,9 +116,39 @@ NDE = gamma_0 = 2; NIE = alpha_0 . beta_0 = 2.4
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| NNN | NIE | Natural indirect effect through the sparse mediator set: NIE = E[Y(1, M(1))] - E[Y(1, M(0))]. Under the source's additive structural model (its equation (1)) and its Proposition 2.1 this equals the inner product alpha_0 . beta_0 of the treatment-to-mediator and mediator-to-outcome coefficient vectors. The companion natural direct effect equals gamma_0. This is NOT a total effect and NOT a single-mediator indirect effect; ten candidate mediators are generated and only the first three are true mediators. | 2.4000000000000004 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>NNN</td>
+<td rowspan="1">NIE</td>
+<td rowspan="1">
+
+$`\mathbb{E}\!\left[Y\{1,M(1)\}-Y\{1,M(0)\}\right]`$
+
+</td>
+<td>2.4000000000000004</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: M is the joint mediator vector; under the stated additive model this equals the coefficient inner product.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** NNN
+
+Natural indirect effect through the sparse mediator set: NIE = E[Y(1, M(1))] - E[Y(1, M(0))]. Under the source's additive structural model (its equation (1)) and its Proposition 2.1 this equals the inner product alpha_0 . beta_0 of the treatment-to-mediator and mediator-to-outcome coefficient vectors. The companion natural direct effect equals gamma_0. This is NOT a total effect and NOT a single-mediator indirect effect; ten candidate mediators are generated and only the first three are true mediators.
+
+[Open raw scientific record (JSON)](./mediation-jones-2024-sparse-mediators-nnn-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** NIE = alpha_0 . beta_0
 

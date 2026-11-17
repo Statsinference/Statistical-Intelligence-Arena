@@ -57,9 +57,35 @@ Q_\tau(x)=\mathrm{sinc}(x)+0.2\Phi^{-1}(\tau)
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| source_law_fixed_query | Conditional quantile | Conditional 0.9 quantile at X=0.5, using the sinc data law of the Section 1 demonstration. | 0.8929300854765015 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>source_law_fixed_query</td>
+<td rowspan="1">Conditional quantile</td>
+<td rowspan="1">
+
+$`Q_{0.9}(Y\mid X=0.5)`$
+
+</td>
+<td>0.8929300854765015</td>
+</tr>
+</tbody>
+</table>
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** source_law_fixed_query
+
+Conditional 0.9 quantile at X=0.5, using the sinc data law of the Section 1 demonstration.
+
+[Open raw scientific record (JSON)](./qdi-li-liu-zhu-2007-sinc-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** Q_{0.9}(0.5)
 

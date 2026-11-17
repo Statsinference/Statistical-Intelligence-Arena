@@ -208,9 +208,35 @@ x*=(0,2/3), tau*=19/20; theta=8/9+(13/45)*Phi^-1(19/20).
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| published_triangle_centroid | Conditional quantile | inf{y:F_Y(y\|X=(0,2/3))&gt;=19/20} under the continuous conditional-law version specified by the published Figure 1 law. Exact centroid and quantile level are stored as rational metadata. One pointwise conditional quantile, not a marginal target or simultaneous band. | 1.3640688255637583 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>published_triangle_centroid</td>
+<td rowspan="1">Conditional quantile</td>
+<td rowspan="1">
+
+$`Q_{19/20}(Y\mid X=(0,2/3))`$
+
+</td>
+<td>1.3640688255637583</td>
+</tr>
+</tbody>
+</table>
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** published_triangle_centroid
+
+inf{y:F_Y(y\|X=(0,2/3))&gt;=19/20} under the continuous conditional-law version specified by the published Figure 1 law. Exact centroid and quantile level are stored as rational metadata. One pointwise conditional quantile, not a marginal target or simultaneous band.
+
+[Open raw scientific record (JSON)](./qdi-yang-tokdar-2017-triangular-quantile-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** theta = Q_Y(19/20 \| X=(0,2/3))
 

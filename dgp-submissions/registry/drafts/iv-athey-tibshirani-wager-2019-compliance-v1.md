@@ -119,24 +119,99 @@ k ∈ {2,4}; ω ∈ {0,1}; c ∈ {0,3}; p=10.
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| source_additive_k2_omega0_mu0 | Pointwise conditional Wald ratio | Conditional Wald ratio at fixed x*: {E[Y\|Z=1,x*]-E[Y\|Z=0,x*]}/{E[A\|Z=1,x*]-E[A\|Z=0,x*]}. | 1.0 |
-| source_additive_k2_omega0_mu3 | Pointwise conditional Wald ratio | Conditional Wald ratio at fixed x*: {E[Y\|Z=1,x*]-E[Y\|Z=0,x*]}/{E[A\|Z=1,x*]-E[A\|Z=0,x*]}. | 1.0 |
-| source_additive_k2_omega1_mu0 | Pointwise conditional Wald ratio | Conditional Wald ratio at fixed x*: {E[Y\|Z=1,x*]-E[Y\|Z=0,x*]}/{E[A\|Z=1,x*]-E[A\|Z=0,x*]}. | 1.0 |
-| source_additive_k2_omega1_mu3 | Pointwise conditional Wald ratio | Conditional Wald ratio at fixed x*: {E[Y\|Z=1,x*]-E[Y\|Z=0,x*]}/{E[A\|Z=1,x*]-E[A\|Z=0,x*]}. | 1.0 |
-| source_additive_k4_omega0_mu0 | Pointwise conditional Wald ratio | Conditional Wald ratio at fixed x*: {E[Y\|Z=1,x*]-E[Y\|Z=0,x*]}/{E[A\|Z=1,x*]-E[A\|Z=0,x*]}. | 1.75 |
-| source_additive_k4_omega0_mu3 | Pointwise conditional Wald ratio | Conditional Wald ratio at fixed x*: {E[Y\|Z=1,x*]-E[Y\|Z=0,x*]}/{E[A\|Z=1,x*]-E[A\|Z=0,x*]}. | 1.75 |
-| source_additive_k4_omega1_mu0 | Pointwise conditional Wald ratio | Conditional Wald ratio at fixed x*: {E[Y\|Z=1,x*]-E[Y\|Z=0,x*]}/{E[A\|Z=1,x*]-E[A\|Z=0,x*]}. | 1.75 |
-| source_additive_k4_omega1_mu3 | Pointwise conditional Wald ratio | Conditional Wald ratio at fixed x*: {E[Y\|Z=1,x*]-E[Y\|Z=0,x*]}/{E[A\|Z=1,x*]-E[A\|Z=0,x*]}. | 1.75 |
-| source_nonadditive_k2_omega0_mu0 | Pointwise conditional Wald ratio | Conditional Wald ratio at fixed x*: {E[Y\|Z=1,x*]-E[Y\|Z=0,x*]}/{E[A\|Z=1,x*]-E[A\|Z=0,x*]}. | 0.5 |
-| source_nonadditive_k2_omega0_mu3 | Pointwise conditional Wald ratio | Conditional Wald ratio at fixed x*: {E[Y\|Z=1,x*]-E[Y\|Z=0,x*]}/{E[A\|Z=1,x*]-E[A\|Z=0,x*]}. | 0.5 |
-| source_nonadditive_k2_omega1_mu0 | Pointwise conditional Wald ratio | Conditional Wald ratio at fixed x*: {E[Y\|Z=1,x*]-E[Y\|Z=0,x*]}/{E[A\|Z=1,x*]-E[A\|Z=0,x*]}. | 0.5 |
-| source_nonadditive_k2_omega1_mu3 | Pointwise conditional Wald ratio | Conditional Wald ratio at fixed x*: {E[Y\|Z=1,x*]-E[Y\|Z=0,x*]}/{E[A\|Z=1,x*]-E[A\|Z=0,x*]}. | 0.5 |
-| source_nonadditive_k4_omega0_mu0 | Pointwise conditional Wald ratio | Conditional Wald ratio at fixed x*: {E[Y\|Z=1,x*]-E[Y\|Z=0,x*]}/{E[A\|Z=1,x*]-E[A\|Z=0,x*]}. | 1.0 |
-| source_nonadditive_k4_omega0_mu3 | Pointwise conditional Wald ratio | Conditional Wald ratio at fixed x*: {E[Y\|Z=1,x*]-E[Y\|Z=0,x*]}/{E[A\|Z=1,x*]-E[A\|Z=0,x*]}. | 1.0 |
-| source_nonadditive_k4_omega1_mu0 | Pointwise conditional Wald ratio | Conditional Wald ratio at fixed x*: {E[Y\|Z=1,x*]-E[Y\|Z=0,x*]}/{E[A\|Z=1,x*]-E[A\|Z=0,x*]}. | 1.0 |
-| source_nonadditive_k4_omega1_mu3 | Pointwise conditional Wald ratio | Conditional Wald ratio at fixed x*: {E[Y\|Z=1,x*]-E[Y\|Z=0,x*]}/{E[A\|Z=1,x*]-E[A\|Z=0,x*]}. | 1.0 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>source_additive_k2_omega0_mu0</td>
+<td rowspan="16">Pointwise conditional Wald ratio</td>
+<td rowspan="16">
+
+$`\frac{\mathbb{E}[Y\mid Z=1,X=x^*]-\mathbb{E}[Y\mid Z=0,X=x^*]}{\mathbb{E}[A\mid Z=1,X=x^*]-\mathbb{E}[A\mid Z=0,X=x^*]}`$
+
+</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>source_additive_k2_omega0_mu3</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>source_additive_k2_omega1_mu0</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>source_additive_k2_omega1_mu3</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>source_additive_k4_omega0_mu0</td>
+<td>1.75</td>
+</tr>
+<tr>
+<td>source_additive_k4_omega0_mu3</td>
+<td>1.75</td>
+</tr>
+<tr>
+<td>source_additive_k4_omega1_mu0</td>
+<td>1.75</td>
+</tr>
+<tr>
+<td>source_additive_k4_omega1_mu3</td>
+<td>1.75</td>
+</tr>
+<tr>
+<td>source_nonadditive_k2_omega0_mu0</td>
+<td>0.5</td>
+</tr>
+<tr>
+<td>source_nonadditive_k2_omega0_mu3</td>
+<td>0.5</td>
+</tr>
+<tr>
+<td>source_nonadditive_k2_omega1_mu0</td>
+<td>0.5</td>
+</tr>
+<tr>
+<td>source_nonadditive_k2_omega1_mu3</td>
+<td>0.5</td>
+</tr>
+<tr>
+<td>source_nonadditive_k4_omega0_mu0</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>source_nonadditive_k4_omega0_mu3</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>source_nonadditive_k4_omega1_mu0</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>source_nonadditive_k4_omega1_mu3</td>
+<td>1.0</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Conditional Wald ratio. Query point x*=(1,-0.5,0.75,-0.25,0.4,-0.6,0,0,0,0).
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** source_additive_k2_omega0_mu0, source_additive_k2_omega0_mu3, source_additive_k2_omega1_mu0, source_additive_k2_omega1_mu3, source_additive_k4_omega0_mu0, source_additive_k4_omega0_mu3, source_additive_k4_omega1_mu0, source_additive_k4_omega1_mu3, source_nonadditive_k2_omega0_mu0, source_nonadditive_k2_omega0_mu3, source_nonadditive_k2_omega1_mu0, source_nonadditive_k2_omega1_mu3, source_nonadditive_k4_omega0_mu0, source_nonadditive_k4_omega0_mu3, source_nonadditive_k4_omega1_mu0, source_nonadditive_k4_omega1_mu3
+
+Conditional Wald ratio at fixed x*: {E[Y\|Z=1,x*]-E[Y\|Z=0,x*]}/{E[A\|Z=1,x*]-E[A\|Z=0,x*]}.
+
+[Open raw scientific record (JSON)](./iv-athey-tibshirani-wager-2019-compliance-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** tau_IV(x*)
 

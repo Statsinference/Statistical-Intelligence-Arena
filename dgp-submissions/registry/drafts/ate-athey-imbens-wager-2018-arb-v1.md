@@ -146,16 +146,67 @@ Y_i(w)=X_i^T beta + w + epsilon_i, w in {0,1}; ATE=E[Y_i(1)-Y_i(0)]=1.
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| delta_dense_dense | ATE | Population average treatment effect E[Y(1)-Y(0)] for an intervention setting W from 0 to 1 while holding each unit’s pretreatment X fixed; the two-cluster linear outcome equation gives Y(w)=X^T beta + w + epsilon and hence ATE=1. | 1.0 |
-| delta_dense_harmonic | ATE | Population average treatment effect E[Y(1)-Y(0)] for an intervention setting W from 0 to 1 while holding each unit’s pretreatment X fixed; the two-cluster linear outcome equation gives Y(w)=X^T beta + w + epsilon and hence ATE=1. | 1.0 |
-| delta_dense_moderately_sparse | ATE | Population average treatment effect E[Y(1)-Y(0)] for an intervention setting W from 0 to 1 while holding each unit’s pretreatment X fixed; the two-cluster linear outcome equation gives Y(w)=X^T beta + w + epsilon and hence ATE=1. | 1.0 |
-| delta_dense_very_sparse | ATE | Population average treatment effect E[Y(1)-Y(0)] for an intervention setting W from 0 to 1 while holding each unit’s pretreatment X fixed; the two-cluster linear outcome equation gives Y(w)=X^T beta + w + epsilon and hence ATE=1. | 1.0 |
-| delta_sparse_dense | ATE | Population average treatment effect E[Y(1)-Y(0)] for an intervention setting W from 0 to 1 while holding each unit’s pretreatment X fixed; the two-cluster linear outcome equation gives Y(w)=X^T beta + w + epsilon and hence ATE=1. | 1.0 |
-| delta_sparse_harmonic | ATE | Population average treatment effect E[Y(1)-Y(0)] for an intervention setting W from 0 to 1 while holding each unit’s pretreatment X fixed; the two-cluster linear outcome equation gives Y(w)=X^T beta + w + epsilon and hence ATE=1. | 1.0 |
-| delta_sparse_moderately_sparse | ATE | Population average treatment effect E[Y(1)-Y(0)] for an intervention setting W from 0 to 1 while holding each unit’s pretreatment X fixed; the two-cluster linear outcome equation gives Y(w)=X^T beta + w + epsilon and hence ATE=1. | 1.0 |
-| delta_sparse_very_sparse | ATE | Population average treatment effect E[Y(1)-Y(0)] for an intervention setting W from 0 to 1 while holding each unit’s pretreatment X fixed; the two-cluster linear outcome equation gives Y(w)=X^T beta + w + epsilon and hence ATE=1. | 1.0 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>delta_dense_dense</td>
+<td rowspan="8">ATE</td>
+<td rowspan="8">
+
+$`\mathbb{E}[Y(1)-Y(0)]`$
+
+</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>delta_dense_harmonic</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>delta_dense_moderately_sparse</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>delta_dense_very_sparse</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>delta_sparse_dense</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>delta_sparse_harmonic</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>delta_sparse_moderately_sparse</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>delta_sparse_very_sparse</td>
+<td>1.0</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Population ATE; expectation is over the DGP's full population.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** delta_dense_dense, delta_dense_harmonic, delta_dense_moderately_sparse, delta_dense_very_sparse, delta_sparse_dense, delta_sparse_harmonic, delta_sparse_moderately_sparse, delta_sparse_very_sparse
+
+Population average treatment effect E[Y(1)-Y(0)] for an intervention setting W from 0 to 1 while holding each unit’s pretreatment X fixed; the two-cluster linear outcome equation gives Y(w)=X^T beta + w + epsilon and hence ATE=1.
+
+[Open raw scientific record (JSON)](./ate-athey-imbens-wager-2018-arb-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** ATE
 

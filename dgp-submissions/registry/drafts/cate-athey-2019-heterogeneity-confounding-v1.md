@@ -87,9 +87,39 @@ Y = m(X) + A tau(X) + eps, eps ~ Normal(0,1)
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| original | CATE ⚠ review | Conditional average treatment effect at the declared query points for the combined setting: sigmoid-product heterogeneity on X1, X2 together with a beta-density propensity and a linear baseline on X3. | 2.25 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>original</td>
+<td rowspan="1">CATE ⚠ review</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y(1)-Y(0)\mid X=x_0]`$
+
+</td>
+<td>2.25</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Primary query x_0=(1/3,1/3,1/4,1/2,1/2); recovered from the original submission truth.py.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** original
+
+Conditional average treatment effect at the declared query points for the combined setting: sigmoid-product heterogeneity on X1, X2 together with a beta-density propensity and a linear baseline on X3.
+
+[Open raw scientific record (JSON)](./cate-athey-2019-heterogeneity-confounding-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** tau(x0) = E[Y(1) - Y(0) \| X = x0]
 

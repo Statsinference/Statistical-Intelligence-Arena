@@ -99,9 +99,39 @@ Independent iid labeled and unlabeled samples from the same complete-data popula
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| source_formula_fixed | Population least-squares projection slope | Coordinate 4 of beta in argmin_(alpha,beta) E[(Y-alpha-X^T beta)^2]. All 500 observed covariates are included, with an intercept. | 1.2000000000000002 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>source_formula_fixed</td>
+<td rowspan="1">Population least-squares projection slope</td>
+<td rowspan="1">
+
+$`\beta^{*}_{4},\quad (\alpha^{*},\beta^{*})=\operatorname*{argmin}_{\alpha,\beta}\mathbb{E}[(Y-\alpha-X^\top\beta)^2]`$
+
+</td>
+<td>1.2000000000000002</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Population projection includes an intercept and all 500 observed covariates.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** source_formula_fixed
+
+Coordinate 4 of beta in argmin_(alpha,beta) E[(Y-alpha-X^T beta)^2]. All 500 observed covariates are included, with an intercept.
+
+[Open raw scientific record (JSON)](./sspi-deng-ning-zhao-zhang-2024-quadratic-cubic-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** beta_4
 

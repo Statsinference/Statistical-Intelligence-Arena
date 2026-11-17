@@ -83,9 +83,39 @@ Y | A=a,W=w ~ Bernoulli(Qbar0(a,w)); Qbar0(a,w)=expit(0.2*a - w1 + 2*w1*w2)
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| section51_original | ATE | Population risk difference under interventions setting A=1 versus A=0, averaged over the source covariate distribution W=(W1,W2). | 0.03802642731065545 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>section51_original</td>
+<td rowspan="1">ATE</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y(1)-Y(0)]`$
+
+</td>
+<td>0.03802642731065545</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Population ATE; expectation is over the DGP's full population.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** section51_original
+
+Population risk difference under interventions setting A=1 versus A=0, averaged over the source covariate distribution W=(W1,W2).
+
+[Open raw scientific record (JSON)](./ate-benkser-carone-vdl-gilbert-2017-dr-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** ATE = E[Y(1)-Y(0)]
 

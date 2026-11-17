@@ -93,9 +93,39 @@ Two independent samples from the same population: source_n_labeled rows with obs
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| original | Marginal population quantile | Marginal quantile inf{y:Pr(Y&lt;=y)&gt;=0.998} in the common population; tail probability is fixed at 0.002. | 6.214608098422191 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>original</td>
+<td rowspan="1">Marginal population quantile</td>
+<td rowspan="1">
+
+$`Q_{0.998}(Y)`$
+
+</td>
+<td>6.214608098422191</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Marginal quantile.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** original
+
+Marginal quantile inf{y:Pr(Y&lt;=y)&gt;=0.998} in the common population; tail probability is fixed at 0.002.
+
+[Open raw scientific record (JSON)](./sspi-ahmed-2025-cauchy-tail-quantile-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** Q_Y(0.998)
 

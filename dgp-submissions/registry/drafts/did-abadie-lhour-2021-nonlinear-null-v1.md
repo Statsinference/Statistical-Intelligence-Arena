@@ -145,9 +145,39 @@ ATT_post=E[Y_2(1)-Y_2(0)|G=1]=0; holding the same post error fixed across interv
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| paper_table4_p4_r2_with_declared_n_extension | ATT | E[Y_2(1)-Y_2(0)\|G=1] in the treated covariate population. Equal-weight finite-sample treated SATT also equals zero pointwise. | 0.0 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>paper_table4_p4_r2_with_declared_n_extension</td>
+<td rowspan="1">ATT</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y_2(1)-Y_2(0)\mid G=1]`$
+
+</td>
+<td>0.0</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Treated covariate population.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** paper_table4_p4_r2_with_declared_n_extension
+
+E[Y_2(1)-Y_2(0)\|G=1] in the treated covariate population. Equal-weight finite-sample treated SATT also equals zero pointwise.
+
+[Open raw scientific record (JSON)](./did-abadie-lhour-2021-nonlinear-null-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** ATT_post
 

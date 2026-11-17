@@ -85,9 +85,39 @@ Two independent samples from the same population: source_n_labeled rows with obs
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| original | Population logistic-loss projection slope | First slope in the population logistic-loss projection of Y on (1,X1,...,X4). | 0.0 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>original</td>
+<td rowspan="1">Population logistic-loss projection slope</td>
+<td rowspan="1">
+
+$`\beta_1^{*},\quad (\alpha^{*},\beta^{*})=\operatorname*{argmin}_{\alpha,\beta}\mathbb{E}[\log(1+e^{\alpha+X^\top\beta})-Y(\alpha+X^\top\beta)]`$
+
+</td>
+<td>0.0</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: First slope of the population logistic-loss projection, including an intercept and four covariates.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** original
+
+First slope in the population logistic-loss projection of Y on (1,X1,...,X4).
+
+[Open raw scientific record (JSON)](./sspi-song-2024-even-mixture-logistic-projection-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** theta_logistic[1]
 

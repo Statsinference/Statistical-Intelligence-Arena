@@ -107,9 +107,39 @@ D_observed=max(D,C_D); D_exact=I(D&gt;=C_D); Y_observed=min(Y,C_Y); Y_event=I(Y&
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| source_case1b_calibrated | Unit-change structural mean effect on log-time scale | Structural coefficient1 of the true, possibly unobserved continuous exposure D in Y(d)=1+d+W1+W2+U+epsilon. Thus E[Y(d+1)-Y(d)]=1 on source linear/log-time outcome scale, not effect on exp(Y) survival time or complier LATE. | 1.0 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>source_case1b_calibrated</td>
+<td rowspan="1">Unit-change structural mean effect on log-time scale</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y(d+1)-Y(d)]`$
+
+</td>
+<td>1.0</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Unit intervention on latent continuous D, linear/log-time outcome scale.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** source_case1b_calibrated
+
+Structural coefficient1 of the true, possibly unobserved continuous exposure D in Y(d)=1+d+W1+W2+U+epsilon. Thus E[Y(d+1)-Y(d)]=1 on source linear/log-time outcome scale, not effect on exp(Y) survival time or complier LATE.
+
+[Open raw scientific record (JSON)](./iv-choi-2017-double-censor-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** alpha_YZ
 

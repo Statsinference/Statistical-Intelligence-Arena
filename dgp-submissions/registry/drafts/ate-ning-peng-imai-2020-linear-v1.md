@@ -127,9 +127,39 @@ ATE=E[Y(1)-Y(0)]=2-1+0.137 E[X5+X6+X7+X8]-0.291 E[X5+...+X10]+E[epsilon1-epsilon
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| paper_d1000 | ATE | E[Y(1)-Y(0)] in the superpopulation defined by the selected Gaussian-covariate linear-potential-outcome DGP; intervention contrast A=1 versus A=0. | 1.0 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>paper_d1000</td>
+<td rowspan="1">ATE</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y(1)-Y(0)]`$
+
+</td>
+<td>1.0</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Population ATE; expectation is over the DGP's full population.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** paper_d1000
+
+E[Y(1)-Y(0)] in the superpopulation defined by the selected Gaussian-covariate linear-potential-outcome DGP; intervention contrast A=1 versus A=0.
+
+[Open raw scientific record (JSON)](./ate-ning-peng-imai-2020-linear-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** ATE
 

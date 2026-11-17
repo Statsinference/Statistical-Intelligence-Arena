@@ -113,9 +113,39 @@ ATE=E[Y(1)-Y(0)]=-0.5 + 1*E[X1] + 1*E[X2] = -0.5+1+0.5=1
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| paper_section_5_2 | ATE | Population average effect of intervening to set treatment A from 0 (control) to 1 (active), averaged over the full pre-treatment covariate distribution before missingness: E[Y(1)-Y(0)]. | 1.0 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>paper_section_5_2</td>
+<td rowspan="1">ATE</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y(1)-Y(0)]`$
+
+</td>
+<td>1.0</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Population ATE; expectation is over the DGP's full population.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** paper_section_5_2
+
+Population average effect of intervening to set treatment A from 0 (control) to 1 (active), averaged over the full pre-treatment covariate distribution before missingness: E[Y(1)-Y(0)].
+
+[Open raw scientific record (JSON)](./ate-yang-wang-ding-2019-mnar-confounder-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** ATE = E[Y(1)-Y(0)]
 

@@ -117,9 +117,39 @@ Y|CO,D,x~Bernoulli(fD); Y|AT,x~Bernoulli(q); Y|NT,x~Bernoulli(q). Only X,Z,D,Y a
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| source_additive | Conditional LATE curve transformed-slope parameter | Slope coefficient alpha1 in E[Y(1)-Y(0)\|D(1)&gt;D(0),X=x]=tanh(alpha0+alpha1*x). Target population is the complier stratum conditional on x; scalar alpha1=-1 is explicitly reported in source Table 2. It is a curve coefficient, not marginal LATE or ATE. | -1.0 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>source_additive</td>
+<td rowspan="1">Conditional LATE curve transformed-slope parameter</td>
+<td rowspan="1">
+
+$`\alpha_1=\frac{d}{dx}\operatorname{atanh}\{\delta_L(x)\},\quad \delta_L(x)=\mathbb{E}[Y(1)-Y(0)\mid D(1)\gt D(0),X=x]`$
+
+</td>
+<td>-1.0</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: The slope alpha_1 of the transformed conditional complier-effect curve, not the conditional or population LATE itself.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** source_additive
+
+Slope coefficient alpha1 in E[Y(1)-Y(0)\|D(1)&gt;D(0),X=x]=tanh(alpha0+alpha1*x). Target population is the complier stratum conditional on x; scalar alpha1=-1 is explicitly reported in source Table 2. It is a curve coefficient, not marginal LATE or ATE.
+
+[Open raw scientific record (JSON)](./iv-wang-2021-binary-complier-odds-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** alpha1
 

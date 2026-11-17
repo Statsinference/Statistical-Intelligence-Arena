@@ -106,13 +106,79 @@ m3(-2/3)=0.3*e^(-4/9)+0.7*e^(-784/9); m3(-1/3)=0.3*e^(-4/9)+0.7*e^(-400/9); m3(0
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| m3_x0_neg2o3 | Pointwise conditional mean | Conditional mean of Y given X = x0 at a fixed query point x0 from the grid {-2/3,-1/3,0,1/3,2/3}, in the superpopulation defined by Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1) (homoscedastic). Model 3: m(x) = 0.3*exp(-4*(2x+1)^2) + 0.7*exp(-16*(2x-1)^2), a mixture of two Gaussian peaks with the left peak (amplitude 0.3, narrower width) centered at x=-1/2 and the right peak (amplitude 0.7, sharper width) centered at x=1/2. Each query point is a separate pointwise inference target; the five points are not a simultaneous confidence band. This contribution collects only the CCF M3 homoscedastic scenario; the Chen-Qin (2000) two-peak structure m_CQ(x) = m_CCF_M3(2x-1) with heteroscedastic noise, support [0,1], and query points {0,0.5} is a separate contribution because its complete observation law differs. | 0.1923541165289864 |
-| m3_x0_neg1o3 | Pointwise conditional mean | Conditional mean of Y given X = x0 at a fixed query point x0 from the grid {-2/3,-1/3,0,1/3,2/3}, in the superpopulation defined by Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1) (homoscedastic). Model 3: m(x) = 0.3*exp(-4*(2x+1)^2) + 0.7*exp(-16*(2x-1)^2), a mixture of two Gaussian peaks with the left peak (amplitude 0.3, narrower width) centered at x=-1/2 and the right peak (amplitude 0.7, sharper width) centered at x=1/2. Each query point is a separate pointwise inference target; the five points are not a simultaneous confidence band. This contribution collects only the CCF M3 homoscedastic scenario; the Chen-Qin (2000) two-peak structure m_CQ(x) = m_CCF_M3(2x-1) with heteroscedastic noise, support [0,1], and query points {0,0.5} is a separate contribution because its complete observation law differs. | 0.19235411652898635 |
-| m3_x0_0 | Pointwise conditional mean | Conditional mean of Y given X = x0 at a fixed query point x0 from the grid {-2/3,-1/3,0,1/3,2/3}, in the superpopulation defined by Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1) (homoscedastic). Model 3: m(x) = 0.3*exp(-4*(2x+1)^2) + 0.7*exp(-16*(2x-1)^2), a mixture of two Gaussian peaks with the left peak (amplitude 0.3, narrower width) centered at x=-1/2 and the right peak (amplitude 0.7, sharper width) centered at x=1/2. Each query point is a separate pointwise inference target; the five points are not a simultaneous confidence band. This contribution collects only the CCF M3 homoscedastic scenario; the Chen-Qin (2000) two-peak structure m_CQ(x) = m_CCF_M3(2x-1) with heteroscedastic noise, support [0,1], and query points {0,0.5} is a separate contribution because its complete observation law differs. | 0.005494770441242557 |
-| m3_x0_1o3 | Pointwise conditional mean | Conditional mean of Y given X = x0 at a fixed query point x0 from the grid {-2/3,-1/3,0,1/3,2/3}, in the superpopulation defined by Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1) (homoscedastic). Model 3: m(x) = 0.3*exp(-4*(2x+1)^2) + 0.7*exp(-16*(2x-1)^2), a mixture of two Gaussian peaks with the left peak (amplitude 0.3, narrower width) centered at x=-1/2 and the right peak (amplitude 0.7, sharper width) centered at x=1/2. Each query point is a separate pointwise inference target; the five points are not a simultaneous confidence band. This contribution collects only the CCF M3 homoscedastic scenario; the Chen-Qin (2000) two-peak structure m_CQ(x) = m_CCF_M3(2x-1) with heteroscedastic noise, support [0,1], and query points {0,0.5} is a separate contribution because its complete observation law differs. | 0.11831380438580363 |
-| m3_x0_2o3 | Pointwise conditional mean | Conditional mean of Y given X = x0 at a fixed query point x0 from the grid {-2/3,-1/3,0,1/3,2/3}, in the superpopulation defined by Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1) (homoscedastic). Model 3: m(x) = 0.3*exp(-4*(2x+1)^2) + 0.7*exp(-16*(2x-1)^2), a mixture of two Gaussian peaks with the left peak (amplitude 0.3, narrower width) centered at x=-1/2 and the right peak (amplitude 0.7, sharper width) centered at x=1/2. Each query point is a separate pointwise inference target; the five points are not a simultaneous confidence band. This contribution collects only the CCF M3 homoscedastic scenario; the Chen-Qin (2000) two-peak structure m_CQ(x) = m_CCF_M3(2x-1) with heteroscedastic noise, support [0,1], and query points {0,0.5} is a separate contribution because its complete observation law differs. | 0.11830932088875505 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>m3_x0_neg2o3</td>
+<td rowspan="1">Pointwise conditional mean</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y\mid X=-2/3]`$
+
+</td>
+<td>0.1923541165289864</td>
+</tr>
+<tr>
+<td>m3_x0_neg1o3</td>
+<td rowspan="1">Pointwise conditional mean</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y\mid X=-1/3]`$
+
+</td>
+<td>0.19235411652898635</td>
+</tr>
+<tr>
+<td>m3_x0_0</td>
+<td rowspan="1">Pointwise conditional mean</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y\mid X=0]`$
+
+</td>
+<td>0.005494770441242557</td>
+</tr>
+<tr>
+<td>m3_x0_1o3</td>
+<td rowspan="1">Pointwise conditional mean</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y\mid X=1/3]`$
+
+</td>
+<td>0.11831380438580363</td>
+</tr>
+<tr>
+<td>m3_x0_2o3</td>
+<td rowspan="1">Pointwise conditional mean</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y\mid X=2/3]`$
+
+</td>
+<td>0.11830932088875505</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Under the scenario-specific data law.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** m3_x0_neg2o3, m3_x0_neg1o3, m3_x0_0, m3_x0_1o3, m3_x0_2o3
+
+Conditional mean of Y given X = x0 at a fixed query point x0 from the grid {-2/3,-1/3,0,1/3,2/3}, in the superpopulation defined by Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1) (homoscedastic). Model 3: m(x) = 0.3*exp(-4*(2x+1)^2) + 0.7*exp(-16*(2x-1)^2), a mixture of two Gaussian peaks with the left peak (amplitude 0.3, narrower width) centered at x=-1/2 and the right peak (amplitude 0.7, sharper width) centered at x=1/2. Each query point is a separate pointwise inference target; the five points are not a simultaneous confidence band. This contribution collects only the CCF M3 homoscedastic scenario; the Chen-Qin (2000) two-peak structure m_CQ(x) = m_CCF_M3(2x-1) with heteroscedastic noise, support [0,1], and query points {0,0.5} is a separate contribution because its complete observation law differs.
+
+[Open raw scientific record (JSON)](./nri-two-gaussian-peaks-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** m(x0) = E[Y \| X = x0]
 

@@ -144,12 +144,51 @@ lambda11 in {0.5,0.75,1,1.25}; no interactions; source alpha0=1.
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| source_lambda11_0p5 | LATE | E[Y(1)-Y(0)\|D(1)&gt;D(0)]=1 in source DGP2 without treatment-covariate interactions. LCSTE(x)=1 for every x; alpha0 is the treatment coefficient directly evaluated in source Section 6. This is an IV complier estimand despite the paper's heterogeneous-effects title. | 1.0 |
-| source_lambda11_0p75 | LATE | E[Y(1)-Y(0)\|D(1)&gt;D(0)]=1 in source DGP2 without treatment-covariate interactions. LCSTE(x)=1 for every x; alpha0 is the treatment coefficient directly evaluated in source Section 6. This is an IV complier estimand despite the paper's heterogeneous-effects title. | 1.0 |
-| source_lambda11_1 | LATE | E[Y(1)-Y(0)\|D(1)&gt;D(0)]=1 in source DGP2 without treatment-covariate interactions. LCSTE(x)=1 for every x; alpha0 is the treatment coefficient directly evaluated in source Section 6. This is an IV complier estimand despite the paper's heterogeneous-effects title. | 1.0 |
-| source_lambda11_1p25 | LATE | E[Y(1)-Y(0)\|D(1)&gt;D(0)]=1 in source DGP2 without treatment-covariate interactions. LCSTE(x)=1 for every x; alpha0 is the treatment coefficient directly evaluated in source Section 6. This is an IV complier estimand despite the paper's heterogeneous-effects title. | 1.0 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>source_lambda11_0p5</td>
+<td rowspan="4">LATE</td>
+<td rowspan="4">
+
+$`\mathbb{E}[Y(1)-Y(0)\mid D(1)\gt D(0)]`$
+
+</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>source_lambda11_0p75</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>source_lambda11_1</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>source_lambda11_1p25</td>
+<td>1.0</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Population complier effect.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** source_lambda11_0p5, source_lambda11_0p75, source_lambda11_1, source_lambda11_1p25
+
+E[Y(1)-Y(0)\|D(1)&gt;D(0)]=1 in source DGP2 without treatment-covariate interactions. LCSTE(x)=1 for every x; alpha0 is the treatment coefficient directly evaluated in source Section 6. This is an IV complier estimand despite the paper's heterogeneous-effects title.
+
+[Open raw scientific record (JSON)](./iv-qiu-2021-principal-stratum-poisson-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** alpha0 = LATE
 

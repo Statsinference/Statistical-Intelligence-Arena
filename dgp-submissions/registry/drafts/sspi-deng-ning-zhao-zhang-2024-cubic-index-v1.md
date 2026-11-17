@@ -109,9 +109,39 @@ S1={11,12,13,14,15}; S2={21,22,23,24,25}, one-based indices, fixed for all calls
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| source_formula_fixed | Population least-squares projection slope | Coordinate 21 of beta in argmin_(alpha,beta) E[(Y-alpha-X^T beta)^2]. All 500 observed covariates are included, with an intercept. | 1.2096300000000002 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>source_formula_fixed</td>
+<td rowspan="1">Population least-squares projection slope</td>
+<td rowspan="1">
+
+$`\beta^{*}_{21},\quad (\alpha^{*},\beta^{*})=\operatorname*{argmin}_{\alpha,\beta}\mathbb{E}[(Y-\alpha-X^\top\beta)^2]`$
+
+</td>
+<td>1.2096300000000002</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Population projection includes an intercept and all 500 observed covariates.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** source_formula_fixed
+
+Coordinate 21 of beta in argmin_(alpha,beta) E[(Y-alpha-X^T beta)^2]. All 500 observed covariates are included, with an intercept.
+
+[Open raw scientific record (JSON)](./sspi-deng-ning-zhao-zhang-2024-cubic-index-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** beta_21
 

@@ -84,9 +84,39 @@ Y = A Y(2) + (1-A) Y(1) = eps + A tau(U)
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| original | CATE | Conditional average treatment effect at the declared query points for the arm-2 versus arm-1 contrast; the surface is linear in U with slope zeta = 1 and has exactly zero mean over the covariate distribution, so there is heterogeneity but no average effect. | 0.5 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>original</td>
+<td rowspan="1">CATE</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y(2)-Y(1)\mid U=u_0]`$
+
+</td>
+<td>0.5</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Primary query u_0=0.5; original truth.py. Potential-outcome arms are numbered 1 and 2 in the generation equations; observed A=1 selects arm 2.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** original
+
+Conditional average treatment effect at the declared query points for the arm-2 versus arm-1 contrast; the surface is linear in U with slope zeta = 1 and has exactly zero mean over the covariate distribution, so there is heterogeneity but no average effect.
+
+[Open raw scientific record (JSON)](./cate-ye-2023-interaction-zero-mean-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** tau(u0) = E[Y(1) - Y(0) \| U = u0]
 

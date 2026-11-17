@@ -85,9 +85,35 @@ Eff=(0,0,0); ATT=SATT=0
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| baseline | ATT | Population average post-period treatment effect conditional on selected treated units; equals finite-panel SATT=0 under sharp null. | 0.0 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>baseline</td>
+<td rowspan="1">ATT</td>
+<td rowspan="1">
+
+Definition needs review; see the submitted definition below.
+
+</td>
+<td>0.0</td>
+</tr>
+</tbody>
+</table>
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** baseline
+
+Population average post-period treatment effect conditional on selected treated units; equals finite-panel SATT=0 under sharp null.
+
+[Open raw scientific record (JSON)](./did-karmakar-2025-code-truncated-cluster-null-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** ATT
 

@@ -90,13 +90,79 @@ Ordered exact source-query truths: 0,-1,0,1/5,0. These are analytically derived 
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| source_x_neg_two_thirds | Pointwise conditional mean | E[Y \| X=x0], the continuous conditional regression mean at the fixed config.query_x; not a prediction quantile, population average, causal contrast or simultaneous band. | -1.2246467991473532e-16 |
-| source_x_neg_one_third | Pointwise conditional mean | E[Y \| X=x0], the continuous conditional regression mean at the fixed config.query_x; not a prediction quantile, population average, causal contrast or simultaneous band. | -1.0 |
-| source_x_zero | Pointwise conditional mean | E[Y \| X=x0], the continuous conditional regression mean at the fixed config.query_x; not a prediction quantile, population average, causal contrast or simultaneous band. | 0.0 |
-| source_x_pos_one_third | Pointwise conditional mean | E[Y \| X=x0], the continuous conditional regression mean at the fixed config.query_x; not a prediction quantile, population average, causal contrast or simultaneous band. | 0.2 |
-| source_x_pos_two_thirds | Pointwise conditional mean | E[Y \| X=x0], the continuous conditional regression mean at the fixed config.query_x; not a prediction quantile, population average, causal contrast or simultaneous band. | 7.203804700866784e-18 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>source_x_neg_two_thirds</td>
+<td rowspan="1">Pointwise conditional mean</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y\mid X=-2/3]`$
+
+</td>
+<td>-1.2246467991473532e-16</td>
+</tr>
+<tr>
+<td>source_x_neg_one_third</td>
+<td rowspan="1">Pointwise conditional mean</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y\mid X=-1/3]`$
+
+</td>
+<td>-1.0</td>
+</tr>
+<tr>
+<td>source_x_zero</td>
+<td rowspan="1">Pointwise conditional mean</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y\mid X=0]`$
+
+</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>source_x_pos_one_third</td>
+<td rowspan="1">Pointwise conditional mean</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y\mid X=1/3]`$
+
+</td>
+<td>0.2</td>
+</tr>
+<tr>
+<td>source_x_pos_two_thirds</td>
+<td rowspan="1">Pointwise conditional mean</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y\mid X=2/3]`$
+
+</td>
+<td>7.203804700866784e-18</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Under the scenario-specific data law.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** source_x_neg_two_thirds, source_x_neg_one_third, source_x_zero, source_x_pos_one_third, source_x_pos_two_thirds
+
+E[Y \| X=x0], the continuous conditional regression mean at the fixed config.query_x; not a prediction quantile, population average, causal contrast or simultaneous band.
+
+[Open raw scientific record (JSON)](./nri-calonico-2018-asymmetric-sine-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** m(x0)
 

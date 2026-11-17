@@ -99,10 +99,45 @@ Y_i=g0(Z_i)+epsilon_i; return Z,Y. No additional noise or oracle column. Both z0
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| peak-mode | Pointwise conditional mean | The scalar conditional mean at the scenario's fixed query point z0. This is a pointwise target, not a simultaneous confidence-band target. | 3.406258317314956 |
-| query-z0-050 | Pointwise conditional mean | The scalar conditional mean at the scenario's fixed query point z0. This is a pointwise target, not a simultaneous confidence-band target. | 0.5910281636814358 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>peak-mode</td>
+<td rowspan="1">Pointwise conditional mean</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y\mid Z=0.64]`$
+
+</td>
+<td>3.406258317314956</td>
+</tr>
+<tr>
+<td>query-z0-050</td>
+<td rowspan="1">Pointwise conditional mean</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y\mid Z=0.5]`$
+
+</td>
+<td>0.5910281636814358</td>
+</tr>
+</tbody>
+</table>
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** peak-mode, query-z0-050
+
+The scalar conditional mean at the scenario's fixed query point z0. This is a pointwise target, not a simultaneous confidence-band target.
+
+[Open raw scientific record (JSON)](./nri-shangcheng-2013-spline-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** g0(z0) = E[Y \| Z = z0]
 

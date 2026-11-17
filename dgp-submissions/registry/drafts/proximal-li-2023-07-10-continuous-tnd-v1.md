@@ -129,12 +129,51 @@ English equation transcription pending; consult the linked original scientific r
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| table-eta001-rr020 | Causal log mean ratio | log(E[Y(1)]/E[Y(0)]) in the source population before S selection; not selected-sample log odds ratio. | -1.6094379124341003 |
-| table-eta001-rr050 | Causal log mean ratio | log(E[Y(1)]/E[Y(0)]) in the source population before S selection; not selected-sample log odds ratio. | -0.6931471805599453 |
-| table-eta001-rr070 | Causal log mean ratio | log(E[Y(1)]/E[Y(0)]) in the source population before S selection; not selected-sample log odds ratio. | -0.35667494393873245 |
-| table-eta001-rr100 | Causal log mean ratio | log(E[Y(1)]/E[Y(0)]) in the source population before S selection; not selected-sample log odds ratio. | 0.0 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>table-eta001-rr020</td>
+<td rowspan="4">Causal log mean ratio</td>
+<td rowspan="4">
+
+$`\log\{\mathbb{E}[Y(1)]/\mathbb{E}[Y(0)]\}`$
+
+</td>
+<td>-1.6094379124341003</td>
+</tr>
+<tr>
+<td>table-eta001-rr050</td>
+<td>-0.6931471805599453</td>
+</tr>
+<tr>
+<td>table-eta001-rr070</td>
+<td>-0.35667494393873245</td>
+</tr>
+<tr>
+<td>table-eta001-rr100</td>
+<td>0.0</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Source population before selection S.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** table-eta001-rr020, table-eta001-rr050, table-eta001-rr070, table-eta001-rr100
+
+log(E[Y(1)]/E[Y(0)]) in the source population before S selection; not selected-sample log odds ratio.
+
+[Open raw scientific record (JSON)](./proximal-li-2023-07-10-continuous-tnd-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** beta_log_RR
 

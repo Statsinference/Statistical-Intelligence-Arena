@@ -112,9 +112,39 @@ original
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| original | ATE | E[Y(1)-Y(0)] in the source population, same marginal U,W,X under both interventions. | 2.0 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>original</td>
+<td rowspan="1">ATE</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y(1)-Y(0)]`$
+
+</td>
+<td>2.0</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Source population; original bridge-function derivation remains available.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** original
+
+E[Y(1)-Y(0)] in the source population, same marginal U,W,X under both interventions.
+
+[Open raw scientific record (JSON)](./proximal-cui-2023-04-18-gaussian-v2.json).
+
+</details>
+
 
 **Original submitted target notation:** psi_ATE
 

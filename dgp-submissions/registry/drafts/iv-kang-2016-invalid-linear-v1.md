@@ -80,9 +80,39 @@ Y=1+Z₁+Z₂+Z₃+βD+ε; β=1.
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| author_readme_fixed | Population unit-change structural mean effect | Constant structural slope beta = E[Y(do(D=d+1))-Y(do(D=d))], with natural Z and errors held under the same intervention law. | 1.0 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>author_readme_fixed</td>
+<td rowspan="1">Population unit-change structural mean effect</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y(d+1)-Y(d)]`$
+
+</td>
+<td>1.0</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Structural unit intervention on D; superpopulation.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** author_readme_fixed
+
+Constant structural slope beta = E[Y(do(D=d+1))-Y(do(D=d))], with natural Z and errors held under the same intervention law.
+
+[Open raw scientific record (JSON)](./iv-kang-2016-invalid-linear-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** beta
 

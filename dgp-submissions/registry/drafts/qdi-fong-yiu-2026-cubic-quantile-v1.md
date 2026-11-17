@@ -98,10 +98,43 @@ Q*(u)=4u^3-4.8u^2+2.12u-0.256; F_Y(y) is the unique inverse root in [0,1] on the
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| original_n50 | Marginal population quantile | Marginal population quantile inf{y: P(Y&lt;=y)&gt;=0.9} under Y=4(U-0.4)^3+0.2U, U~Uniform(0,1); no conditioning variables or interventions. The fixed query is tau=0.9 in both scenarios. | 0.68 |
-| original_n500 | Marginal population quantile | Marginal population quantile inf{y: P(Y&lt;=y)&gt;=0.9} under Y=4(U-0.4)^3+0.2U, U~Uniform(0,1); no conditioning variables or interventions. The fixed query is tau=0.9 in both scenarios. | 0.68 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>original_n50</td>
+<td rowspan="2">Marginal population quantile</td>
+<td rowspan="2">
+
+$`Q_{0.9}(Y)`$
+
+</td>
+<td>0.68</td>
+</tr>
+<tr>
+<td>original_n500</td>
+<td>0.68</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Marginal quantile.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** original_n50, original_n500
+
+Marginal population quantile inf{y: P(Y&lt;=y)&gt;=0.9} under Y=4(U-0.4)^3+0.2U, U~Uniform(0,1); no conditioning variables or interventions. The fixed query is tau=0.9 in both scenarios.
+
+[Open raw scientific record (JSON)](./qdi-fong-yiu-2026-cubic-quantile-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** theta = Q_Y(0.9)
 

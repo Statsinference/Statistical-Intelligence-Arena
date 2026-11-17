@@ -118,9 +118,35 @@ theta=F(1|0.1)=1-2*sin(0.31416)^2=0.8090161307517588 (binary64 evaluation).
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| original_mechanism_fixed_cdf | Conditional cumulative distribution function | P(Y&lt;=1 \| X=0.1) in the Example 1 superpopulation, using the continuous version F(y\|x)=G(y-2*sin(3.1416*x)) induced by independent triangular noise. Conditional CDF, not a marginal CDF, quantile, conditional mean, causal contrast, or prediction interval. Query x=0.1 and CDF threshold y=1 are fixed in config. | 0.8090161307517588 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>original_mechanism_fixed_cdf</td>
+<td rowspan="1">Conditional cumulative distribution function</td>
+<td rowspan="1">
+
+$`\Pr(Y\le 1\mid X=0.1)`$
+
+</td>
+<td>0.8090161307517588</td>
+</tr>
+</tbody>
+</table>
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** original_mechanism_fixed_cdf
+
+P(Y&lt;=1 \| X=0.1) in the Example 1 superpopulation, using the continuous version F(y\|x)=G(y-2*sin(3.1416*x)) induced by independent triangular noise. Conditional CDF, not a marginal CDF, quantile, conditional mean, causal contrast, or prediction interval. Query x=0.1 and CDF threshold y=1 are fixed in config.
+
+[Open raw scientific record (JSON)](./qdi-hall-wolff-yao-1999-sine-triangular-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** theta = F_{Y\|X=0.1}(1)
 

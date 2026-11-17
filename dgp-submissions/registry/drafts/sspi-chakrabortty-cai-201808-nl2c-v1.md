@@ -116,10 +116,43 @@ Independent units and independent outcome noise. Two iid samples from the same p
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| source_b1_conditional_truncation | Population least-squares projection intercept | Intercept alpha of argmin_(alpha,beta) E[(Y-alpha-X^T beta)^2]; since E[X]=0 and Cov(X) is positive definite, alpha=E[Y]. | 0.0 |
-| source_b2_conditional_truncation | Population least-squares projection intercept | Intercept alpha of argmin_(alpha,beta) E[(Y-alpha-X^T beta)^2]; since E[X]=0 and Cov(X) is positive definite, alpha=E[Y]. | 4.999925663981647 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>source_b1_conditional_truncation</td>
+<td rowspan="2">Population least-squares projection intercept</td>
+<td rowspan="2">
+
+$`\alpha^{*}=\mathbb{E}[Y],\quad (\alpha^{*},\beta^{*})=\operatorname*{argmin}_{\alpha,\beta}\mathbb{E}[(Y-\alpha-X^\top\beta)^2]`$
+
+</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>source_b2_conditional_truncation</td>
+<td>4.999925663981647</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: The submitted design has E[X]=0.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** source_b1_conditional_truncation, source_b2_conditional_truncation
+
+Intercept alpha of argmin_(alpha,beta) E[(Y-alpha-X^T beta)^2]; since E[X]=0 and Cov(X) is positive definite, alpha=E[Y].
+
+[Open raw scientific record (JSON)](./sspi-chakrabortty-cai-201808-nl2c-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** alpha_projection = E[Y]
 

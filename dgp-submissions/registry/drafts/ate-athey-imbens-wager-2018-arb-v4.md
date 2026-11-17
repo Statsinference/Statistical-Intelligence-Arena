@@ -174,16 +174,67 @@ Y_i(w)=X_i^T beta_Y + 0.5w + epsilon_i, w in {0,1}; ATE=E[Y_i(1)-Y_i(0)]=0.5.
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| dense_rho_0_5 | ATE | Population average treatment effect E[Y(1)-Y(0)] under the Section 5.2 moderately sparse two-stage DGP, comparing the intervention W=1 with W=0 while holding the same pretreatment X and outcome disturbance fixed. | 0.5 |
-| dense_rho_0_9 | ATE | Population average treatment effect E[Y(1)-Y(0)] under the Section 5.2 moderately sparse two-stage DGP, comparing the intervention W=1 with W=0 while holding the same pretreatment X and outcome disturbance fixed. | 0.5 |
-| harmonic_rho_0_5 | ATE | Population average treatment effect E[Y(1)-Y(0)] under the Section 5.2 moderately sparse two-stage DGP, comparing the intervention W=1 with W=0 while holding the same pretreatment X and outcome disturbance fixed. | 0.5 |
-| harmonic_rho_0_9 | ATE | Population average treatment effect E[Y(1)-Y(0)] under the Section 5.2 moderately sparse two-stage DGP, comparing the intervention W=1 with W=0 while holding the same pretreatment X and outcome disturbance fixed. | 0.5 |
-| moderately_sparse_rho_0_5 | ATE | Population average treatment effect E[Y(1)-Y(0)] under the Section 5.2 moderately sparse two-stage DGP, comparing the intervention W=1 with W=0 while holding the same pretreatment X and outcome disturbance fixed. | 0.5 |
-| moderately_sparse_rho_0_9 | ATE | Population average treatment effect E[Y(1)-Y(0)] under the Section 5.2 moderately sparse two-stage DGP, comparing the intervention W=1 with W=0 while holding the same pretreatment X and outcome disturbance fixed. | 0.5 |
-| very_sparse_rho_0_5 | ATE | Population average treatment effect E[Y(1)-Y(0)] under the Section 5.2 moderately sparse two-stage DGP, comparing the intervention W=1 with W=0 while holding the same pretreatment X and outcome disturbance fixed. | 0.5 |
-| very_sparse_rho_0_9 | ATE | Population average treatment effect E[Y(1)-Y(0)] under the Section 5.2 moderately sparse two-stage DGP, comparing the intervention W=1 with W=0 while holding the same pretreatment X and outcome disturbance fixed. | 0.5 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>dense_rho_0_5</td>
+<td rowspan="8">ATE</td>
+<td rowspan="8">
+
+$`\mathbb{E}[Y(1)-Y(0)]`$
+
+</td>
+<td>0.5</td>
+</tr>
+<tr>
+<td>dense_rho_0_9</td>
+<td>0.5</td>
+</tr>
+<tr>
+<td>harmonic_rho_0_5</td>
+<td>0.5</td>
+</tr>
+<tr>
+<td>harmonic_rho_0_9</td>
+<td>0.5</td>
+</tr>
+<tr>
+<td>moderately_sparse_rho_0_5</td>
+<td>0.5</td>
+</tr>
+<tr>
+<td>moderately_sparse_rho_0_9</td>
+<td>0.5</td>
+</tr>
+<tr>
+<td>very_sparse_rho_0_5</td>
+<td>0.5</td>
+</tr>
+<tr>
+<td>very_sparse_rho_0_9</td>
+<td>0.5</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Population ATE; expectation is over the DGP's full population.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** dense_rho_0_5, dense_rho_0_9, harmonic_rho_0_5, harmonic_rho_0_9, moderately_sparse_rho_0_5, moderately_sparse_rho_0_9, very_sparse_rho_0_5, very_sparse_rho_0_9
+
+Population average treatment effect E[Y(1)-Y(0)] under the Section 5.2 moderately sparse two-stage DGP, comparing the intervention W=1 with W=0 while holding the same pretreatment X and outcome disturbance fixed.
+
+[Open raw scientific record (JSON)](./ate-athey-imbens-wager-2018-arb-v4.json).
+
+</details>
+
 
 **Original submitted target notation:** ATE
 

@@ -97,9 +97,39 @@ M_obs0=R_M*M; Y_obs0=R_Y*Y; include R_M,R_Y to distinguish missing from genuine 
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| setting_C_III | NIE | E[Y(1,M(1))-Y(1,M(0))] in the full-data law before MNAR masking. | 2.0 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>setting_C_III</td>
+<td rowspan="1">NIE</td>
+<td rowspan="1">
+
+$`\mathbb{E}\!\left[Y\{1,M(1)\}-Y\{1,M(0)\}\right]`$
+
+</td>
+<td>2.0</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Full-data estimand before MNAR masking.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** setting_C_III
+
+E[Y(1,M(1))-Y(1,M(0))] in the full-data law before MNAR masking.
+
+[Open raw scientific record (JSON)](./mediation-zuo-et-al-2025-continuous-mnar-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** NIE_1
 

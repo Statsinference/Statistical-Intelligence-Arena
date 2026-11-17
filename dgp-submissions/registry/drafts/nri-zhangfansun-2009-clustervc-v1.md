@@ -171,9 +171,35 @@ Y_ij=beta0(U_ij)+X_ij^T*a_i(U_ij)+Z_i^T*beta(U_ij)+epsilon_ij; return cluster,U,
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| original-sigma05 | Pointwise conditional mean | Integrate the mean-zero random effect from the Section 5 simulation model: sin(2*pi*u)*(1+z1+z2)+sum(x)*(sin(2*pi*u)+z1*cos(2*pi*u)+z2*sin(pi*u)). The fixed query is u=.25, x=(0,0,0), z=(0,0), yielding 1. The source coefficient alpha01 is a different estimand, though it happens to equal 1 here. | 1.0 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>original-sigma05</td>
+<td rowspan="1">Pointwise conditional mean</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y\mid U=0.25,X=(0,0,0),Z=(0,0)]`$
+
+</td>
+<td>1.0</td>
+</tr>
+</tbody>
+</table>
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** original-sigma05
+
+Integrate the mean-zero random effect from the Section 5 simulation model: sin(2*pi*u)*(1+z1+z2)+sum(x)*(sin(2*pi*u)+z1*cos(2*pi*u)+z2*sin(pi*u)). The fixed query is u=.25, x=(0,0,0), z=(0,0), yielding 1. The source coefficient alpha01 is a different estimand, though it happens to equal 1 here.
+
+[Open raw scientific record (JSON)](./nri-zhangfansun-2009-clustervc-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** m(u0,x0,z0)=E[Y\|U=u0,X=x0,Z=z0]
 

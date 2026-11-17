@@ -76,9 +76,39 @@ Y&=2+X_1^2+X_2^2+5m_W+2(W-m_W)\\
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| N2 | ATE | ATE = E[0.25 - 6X1X2] = -0.125. | -0.125 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>N2</td>
+<td rowspan="1">ATE</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y(1)-Y(0)]`$
+
+</td>
+<td>-0.125</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Source population; original bridge-function derivation remains available.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** N2
+
+ATE = E[0.25−6X1X2] = −0.125。
+
+[Open raw scientific record (JSON)](./proximal-qi-2024-quadratic-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** ATE
 

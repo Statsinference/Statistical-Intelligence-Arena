@@ -57,9 +57,35 @@ Q_\tau(x)=2+x+e^{-x}\{-\log(1-\tau)-\log(2.6)\}
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| source_law_fixed_query | Conditional quantile | Conditional 0.9 quantile at X=2, according to the explicitly dated preprint model 4. | 4.182306593688138 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>source_law_fixed_query</td>
+<td rowspan="1">Conditional quantile</td>
+<td rowspan="1">
+
+$`Q_{0.9}(Y\mid X=2)`$
+
+</td>
+<td>4.182306593688138</td>
+</tr>
+</tbody>
+</table>
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** source_law_fixed_query
+
+Conditional 0.9 quantile at X=2, according to the explicitly dated preprint model 4.
+
+[Open raw scientific record (JSON)](./qdi-dette-volgushev-2008-exponential-scale-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** Q_{0.9}(2)
 

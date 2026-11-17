@@ -93,10 +93,39 @@ m(0) = 0 + 5*phi(0) = 5/sqrt(2*pi) approx 1.994711
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| model2 | Pointwise conditional mean | Conditional mean of Y given X = x0 at the fixed query point x0 = 0, in the superpopulation defined by the DGP Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1). Models 2 and 4 from supplement S.II.7 are collected as two scenarios of the same mechanism family; both are linear-plus-Gaussian-bump regression functions. | 2.0 |
-| model4 | Pointwise conditional mean | Conditional mean of Y given X = x0 at the fixed query point x0 = 0, in the superpopulation defined by the DGP Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1). Models 2 and 4 from supplement S.II.7 are collected as two scenarios of the same mechanism family; both are linear-plus-Gaussian-bump regression functions. | 1.9947114020071635 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>model2</td>
+<td rowspan="2">Pointwise conditional mean</td>
+<td rowspan="2">
+
+$`\mathbb{E}[Y\mid X=0]`$
+
+</td>
+<td>2.0</td>
+</tr>
+<tr>
+<td>model4</td>
+<td>1.9947114020071635</td>
+</tr>
+</tbody>
+</table>
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** model2, model4
+
+Conditional mean of Y given X = x0 at the fixed query point x0 = 0, in the superpopulation defined by the DGP Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1). Models 2 and 4 from supplement S.II.7 are collected as two scenarios of the same mechanism family; both are linear-plus-Gaussian-bump regression functions.
+
+[Open raw scientific record (JSON)](./nri-linear-gaussian-bump-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** m(x0) = E[Y \| X = x0]
 

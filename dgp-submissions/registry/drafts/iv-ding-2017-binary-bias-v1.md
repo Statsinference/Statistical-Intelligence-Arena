@@ -97,11 +97,47 @@ Source population ATE=sum_u q[u]*tau[u]; it is an audit quantity, not the regist
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| source_table1_case1 | LATE | E[Y(1)-Y(0) \| A(1)&gt;A(0)], treatment intervention 0 to 1 among instrument compliers. | 0.05545454545454545 |
-| source_table1_case2 | LATE | E[Y(1)-Y(0) \| A(1)&gt;A(0)], treatment intervention 0 to 1 among instrument compliers. | 0.01 |
-| source_table1_case3 | LATE | E[Y(1)-Y(0) \| A(1)&gt;A(0)], treatment intervention 0 to 1 among instrument compliers. | 0.022500000000000003 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>source_table1_case1</td>
+<td rowspan="3">LATE</td>
+<td rowspan="3">
+
+$`\mathbb{E}[Y(1)-Y(0)\mid A(1)\gt A(0)]`$
+
+</td>
+<td>0.05545454545454545</td>
+</tr>
+<tr>
+<td>source_table1_case2</td>
+<td>0.01</td>
+</tr>
+<tr>
+<td>source_table1_case3</td>
+<td>0.022500000000000003</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Instrument compliers.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** source_table1_case1, source_table1_case2, source_table1_case3
+
+E[Y(1)-Y(0) \| A(1)&gt;A(0)], treatment intervention 0 to 1 among instrument compliers.
+
+[Open raw scientific record (JSON)](./iv-ding-2017-binary-bias-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** LATE
 

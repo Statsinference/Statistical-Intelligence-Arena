@@ -83,9 +83,39 @@ When S=0, SA/SZ/SY are coded as zero placeholders; the observed S indicator dist
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| original | Target-population transported mean contrast | Theta = E[E(Y \| A=1,X,U,S=1) - E(Y \| A=0,X,U,S=1) \| S=0]. | -2.6489954259019695 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>original</td>
+<td rowspan="1">Target-population transported mean contrast</td>
+<td rowspan="1">
+
+$`\mathbb{E}[\mathbb{E}(Y\mid A=1,X,U,S=1)-\mathbb{E}(Y\mid A=0,X,U,S=1)\mid S=0]`$
+
+</td>
+<td>-2.6489954259019695</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Transport target in S=0.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** original
+
+θ = E[E(Y\|A=1,X,U,S=1)−E(Y\|A=0,X,U,S=1) \| S=0]。
+
+[Open raw scientific record (JSON)](./proximal-su-2026-transport-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** theta
 

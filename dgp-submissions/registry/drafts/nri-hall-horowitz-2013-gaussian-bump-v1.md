@@ -84,23 +84,179 @@ theta(x0)=E[Y|X=x0]=g1(x0); x0 in {-0.3,-0.15,0,0.15,0.3}.
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| source_sd100_query_neg030 | Pointwise conditional mean | Continuous conditional-mean version E[Y\|X=x0]=x0+5*phi(10*x0) for a fixed query x0. Default x0=0; this is not a marginal mean or a future-response prediction target. | -0.27784075794030993 |
-| source_sd100_query_neg015 | Pointwise conditional mean | Continuous conditional-mean version E[Y\|X=x0]=x0+5*phi(10*x0) for a fixed query x0. Default x0=0; this is not a marginal mean or a future-response prediction target. | 0.49758797832945867 |
-| source_sd100_query_zero | Pointwise conditional mean | Continuous conditional-mean version E[Y\|X=x0]=x0+5*phi(10*x0) for a fixed query x0. Default x0=0; this is not a marginal mean or a future-response prediction target. | 1.9947114020071635 |
-| source_sd100_query_pos015 | Pointwise conditional mean | Continuous conditional-mean version E[Y\|X=x0]=x0+5*phi(10*x0) for a fixed query x0. Default x0=0; this is not a marginal mean or a future-response prediction target. | 0.7975879783294587 |
-| source_sd100_query_pos030 | Pointwise conditional mean | Continuous conditional-mean version E[Y\|X=x0]=x0+5*phi(10*x0) for a fixed query x0. Default x0=0; this is not a marginal mean or a future-response prediction target. | 0.32215924205969004 |
-| source_sd050_query_neg030 | Pointwise conditional mean | Continuous conditional-mean version E[Y\|X=x0]=x0+5*phi(10*x0) for a fixed query x0. Default x0=0; this is not a marginal mean or a future-response prediction target. | -0.27784075794030993 |
-| source_sd050_query_neg015 | Pointwise conditional mean | Continuous conditional-mean version E[Y\|X=x0]=x0+5*phi(10*x0) for a fixed query x0. Default x0=0; this is not a marginal mean or a future-response prediction target. | 0.49758797832945867 |
-| source_sd050_query_zero | Pointwise conditional mean | Continuous conditional-mean version E[Y\|X=x0]=x0+5*phi(10*x0) for a fixed query x0. Default x0=0; this is not a marginal mean or a future-response prediction target. | 1.9947114020071635 |
-| source_sd050_query_pos015 | Pointwise conditional mean | Continuous conditional-mean version E[Y\|X=x0]=x0+5*phi(10*x0) for a fixed query x0. Default x0=0; this is not a marginal mean or a future-response prediction target. | 0.7975879783294587 |
-| source_sd050_query_pos030 | Pointwise conditional mean | Continuous conditional-mean version E[Y\|X=x0]=x0+5*phi(10*x0) for a fixed query x0. Default x0=0; this is not a marginal mean or a future-response prediction target. | 0.32215924205969004 |
-| source_sd020_query_neg030 | Pointwise conditional mean | Continuous conditional-mean version E[Y\|X=x0]=x0+5*phi(10*x0) for a fixed query x0. Default x0=0; this is not a marginal mean or a future-response prediction target. | -0.27784075794030993 |
-| source_sd020_query_neg015 | Pointwise conditional mean | Continuous conditional-mean version E[Y\|X=x0]=x0+5*phi(10*x0) for a fixed query x0. Default x0=0; this is not a marginal mean or a future-response prediction target. | 0.49758797832945867 |
-| source_sd020_query_zero | Pointwise conditional mean | Continuous conditional-mean version E[Y\|X=x0]=x0+5*phi(10*x0) for a fixed query x0. Default x0=0; this is not a marginal mean or a future-response prediction target. | 1.9947114020071635 |
-| source_sd020_query_pos015 | Pointwise conditional mean | Continuous conditional-mean version E[Y\|X=x0]=x0+5*phi(10*x0) for a fixed query x0. Default x0=0; this is not a marginal mean or a future-response prediction target. | 0.7975879783294587 |
-| source_sd020_query_pos030 | Pointwise conditional mean | Continuous conditional-mean version E[Y\|X=x0]=x0+5*phi(10*x0) for a fixed query x0. Default x0=0; this is not a marginal mean or a future-response prediction target. | 0.32215924205969004 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>source_sd100_query_neg030</td>
+<td rowspan="1">Pointwise conditional mean</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y\mid X=-0.30]`$
+
+</td>
+<td>-0.27784075794030993</td>
+</tr>
+<tr>
+<td>source_sd100_query_neg015</td>
+<td rowspan="1">Pointwise conditional mean</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y\mid X=-0.15]`$
+
+</td>
+<td>0.49758797832945867</td>
+</tr>
+<tr>
+<td>source_sd100_query_zero</td>
+<td rowspan="1">Pointwise conditional mean</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y\mid X=0]`$
+
+</td>
+<td>1.9947114020071635</td>
+</tr>
+<tr>
+<td>source_sd100_query_pos015</td>
+<td rowspan="1">Pointwise conditional mean</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y\mid X=0.15]`$
+
+</td>
+<td>0.7975879783294587</td>
+</tr>
+<tr>
+<td>source_sd100_query_pos030</td>
+<td rowspan="1">Pointwise conditional mean</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y\mid X=0.30]`$
+
+</td>
+<td>0.32215924205969004</td>
+</tr>
+<tr>
+<td>source_sd050_query_neg030</td>
+<td rowspan="1">Pointwise conditional mean</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y\mid X=-0.30]`$
+
+</td>
+<td>-0.27784075794030993</td>
+</tr>
+<tr>
+<td>source_sd050_query_neg015</td>
+<td rowspan="1">Pointwise conditional mean</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y\mid X=-0.15]`$
+
+</td>
+<td>0.49758797832945867</td>
+</tr>
+<tr>
+<td>source_sd050_query_zero</td>
+<td rowspan="1">Pointwise conditional mean</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y\mid X=0]`$
+
+</td>
+<td>1.9947114020071635</td>
+</tr>
+<tr>
+<td>source_sd050_query_pos015</td>
+<td rowspan="1">Pointwise conditional mean</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y\mid X=0.15]`$
+
+</td>
+<td>0.7975879783294587</td>
+</tr>
+<tr>
+<td>source_sd050_query_pos030</td>
+<td rowspan="1">Pointwise conditional mean</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y\mid X=0.30]`$
+
+</td>
+<td>0.32215924205969004</td>
+</tr>
+<tr>
+<td>source_sd020_query_neg030</td>
+<td rowspan="1">Pointwise conditional mean</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y\mid X=-0.30]`$
+
+</td>
+<td>-0.27784075794030993</td>
+</tr>
+<tr>
+<td>source_sd020_query_neg015</td>
+<td rowspan="1">Pointwise conditional mean</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y\mid X=-0.15]`$
+
+</td>
+<td>0.49758797832945867</td>
+</tr>
+<tr>
+<td>source_sd020_query_zero</td>
+<td rowspan="1">Pointwise conditional mean</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y\mid X=0]`$
+
+</td>
+<td>1.9947114020071635</td>
+</tr>
+<tr>
+<td>source_sd020_query_pos015</td>
+<td rowspan="1">Pointwise conditional mean</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y\mid X=0.15]`$
+
+</td>
+<td>0.7975879783294587</td>
+</tr>
+<tr>
+<td>source_sd020_query_pos030</td>
+<td rowspan="1">Pointwise conditional mean</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y\mid X=0.30]`$
+
+</td>
+<td>0.32215924205969004</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Under the scenario-specific data law.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** source_sd100_query_neg030, source_sd100_query_neg015, source_sd100_query_zero, source_sd100_query_pos015, source_sd100_query_pos030, source_sd050_query_neg030, source_sd050_query_neg015, source_sd050_query_zero, source_sd050_query_pos015, source_sd050_query_pos030, source_sd020_query_neg030, source_sd020_query_neg015, source_sd020_query_zero, source_sd020_query_pos015, source_sd020_query_pos030
+
+Continuous conditional-mean version E[Y\|X=x0]=x0+5*phi(10*x0) for a fixed query x0. Default x0=0; this is not a marginal mean or a future-response prediction target.
+
+[Open raw scientific record (JSON)](./nri-hall-horowitz-2013-gaussian-bump-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** theta(x0)=g1(x0)
 

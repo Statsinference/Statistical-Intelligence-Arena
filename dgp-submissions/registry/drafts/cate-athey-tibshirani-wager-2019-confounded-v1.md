@@ -97,9 +97,39 @@ Y=m(X)+(A-0.5)*tau(X)+epsilon; epsilon~Normal(0,1), independent of X and assignm
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| source_d10_sigma1_fixed_query | CATE | Scalar pointwise CATE at x_star=[0.3333333333333333, 0.3333333333333333, 0.25, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5]. Continuous source response functions specify the conditional version at this point. This is not a population ATE or the full CATE vector/function interface. | 2.25 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>source_d10_sigma1_fixed_query</td>
+<td rowspan="1">CATE</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y(1)-Y(0)\mid X=x_\star]`$
+
+</td>
+<td>2.25</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: $`x_\star=(1/3,1/3,1/4,1/2,1/2,1/2,1/2,1/2,1/2,1/2)`$ The conditional target is evaluated at this covariate vector.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** source_d10_sigma1_fixed_query
+
+Scalar pointwise CATE at x_star=[0.3333333333333333, 0.3333333333333333, 0.25, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5]. Continuous source response functions specify the conditional version at this point. This is not a population ATE or the full CATE vector/function interface.
+
+[Open raw scientific record (JSON)](./cate-athey-tibshirani-wager-2019-confounded-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** tau(x_star)=E[Y(1)-Y(0)\|X=x_star]
 

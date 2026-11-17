@@ -76,12 +76,47 @@ Y=beta_M M+1+X1+X2+A+epsilon_Y, epsilon_Y~N(0,0.5^2), independent of epsilon_M
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| fixed_product_004_ratio_1 | NIE | E[Y(1,M(1))-Y(1,M(0))] in the source SEM superpopulation; exposure S is named A in data columns. | 0.04000000000000001 |
-| fixed_null_h01 | NIE | E[Y(1,M(1))-Y(1,M(0))] in the source SEM superpopulation; exposure S is named A in data columns. | 0.0 |
-| fixed_null_h02 | NIE | E[Y(1,M(1))-Y(1,M(0))] in the source SEM superpopulation; exposure S is named A in data columns. | 0.0 |
-| fixed_null_h03 | NIE | E[Y(1,M(1))-Y(1,M(0))] in the source SEM superpopulation; exposure S is named A in data columns. | 0.0 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>fixed_product_004_ratio_1</td>
+<td rowspan="4">NIE</td>
+<td rowspan="4">
+
+$`\mathbb{E}\!\left[Y\{1,M(1)\}-Y\{1,M(0)\}\right]`$
+
+</td>
+<td>0.04000000000000001</td>
+</tr>
+<tr>
+<td>fixed_null_h01</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>fixed_null_h02</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>fixed_null_h03</td>
+<td>0.0</td>
+</tr>
+</tbody>
+</table>
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** fixed_product_004_ratio_1, fixed_null_h01, fixed_null_h02, fixed_null_h03
+
+E[Y(1,M(1))-Y(1,M(0))] in the source SEM superpopulation; exposure S is named A in data columns.
+
+[Open raw scientific record (JSON)](./mediation-he-song-xu-2024-single-linear-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** NIE_1
 

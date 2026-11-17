@@ -88,9 +88,39 @@ Coefficient directions are sampled from Uniform(0,1) and vector/column norms sca
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| paper_q2_p5_fixed_design | Subpopulation average treatment effect | Tau = E[Y(1)-Y(0) \| G=0] under the registered fixed coefficient design. | 0.8797723708687131 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>paper_q2_p5_fixed_design</td>
+<td rowspan="1">Subpopulation average treatment effect</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y(1)-Y(0)\mid G=0]`$
+
+</td>
+<td>0.8797723708687131</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Experimental population; fixed coefficients.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** paper_q2_p5_fixed_design
+
+Original-language definition is available in the raw scientific record (JSON).
+
+[Open raw scientific record (JSON)](./proximal-imbens-2025-longterm-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** theta
 

@@ -68,9 +68,39 @@ Two independent samples from the same population: source_n_labeled rows with obs
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| original | Population least-squares projection slope | Slope in the population least-squares projection of Y on (1,X). | 1.0 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>original</td>
+<td rowspan="1">Population least-squares projection slope</td>
+<td rowspan="1">
+
+$`\beta^{*},\quad (\alpha^{*},\beta^{*})=\operatorname*{argmin}_{\alpha,\beta}\mathbb{E}[(Y-\alpha-\beta X)^2]`$
+
+</td>
+<td>1.0</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Population least-squares projection slope.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** original
+
+Slope in the population least-squares projection of Y on (1,X).
+
+[Open raw scientific record (JSON)](./sspi-azriel-2022-quadratic-projection-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** beta_L2
 

@@ -98,9 +98,39 @@ Y=(2-R+2v_{1}-v_{2}+v_{3}-0.5v_{4})(1+X)+U+\varepsilon, \varepsilon\sim \mathcal
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| source_v1 | ATE | English description not yet supplied; consult the original scientific record (JSON). | 2.224373475244555 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>source_v1</td>
+<td rowspan="1">ATE</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y(1)-Y(0)\mid R=0]`$
+
+</td>
+<td>2.224373475244555</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Target population R=0.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** source_v1
+
+Original-language definition is available in the raw scientific record (JSON).
+
+[Open raw scientific record (JSON)](./iv-li-2026-aux-population-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** tau
 

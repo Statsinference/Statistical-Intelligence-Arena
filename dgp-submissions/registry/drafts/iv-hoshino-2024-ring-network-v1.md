@@ -89,12 +89,47 @@ Y_{i}=\beta_{0i}+\beta_{1i}D_{i}+\beta_{2i}\sum_{j\in \mathrm{N}_{i}}D_{j}.
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| DGP1_L2_new_draw | Unconditional local average direct effect | English description not yet supplied; consult the original scientific record (JSON). | 1.5004749754609084 |
-| DGP1_L3_new_draw | Unconditional local average direct effect | English description not yet supplied; consult the original scientific record (JSON). | 1.4982310561355603 |
-| DGP2_L2_new_draw | Unconditional local average direct effect | English description not yet supplied; consult the original scientific record (JSON). | 1.52768116166732 |
-| DGP2_L3_new_draw | Unconditional local average direct effect | English description not yet supplied; consult the original scientific record (JSON). | 1.52768116166732 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>DGP1_L2_new_draw</td>
+<td rowspan="4">Unconditional local average direct effect</td>
+<td rowspan="4">
+
+Definition needs review; see the submitted definition below.
+
+</td>
+<td>1.5004749754609084</td>
+</tr>
+<tr>
+<td>DGP1_L3_new_draw</td>
+<td>1.4982310561355603</td>
+</tr>
+<tr>
+<td>DGP2_L2_new_draw</td>
+<td>1.52768116166732</td>
+</tr>
+<tr>
+<td>DGP2_L3_new_draw</td>
+<td>1.52768116166732</td>
+</tr>
+</tbody>
+</table>
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** DGP1_L2_new_draw, DGP1_L3_new_draw, DGP2_L2_new_draw, DGP2_L3_new_draw
+
+Original-language definition is available in the raw scientific record (JSON).
+
+[Open raw scientific record (JSON)](./iv-hoshino-2024-ring-network-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** unconditional_LADE
 

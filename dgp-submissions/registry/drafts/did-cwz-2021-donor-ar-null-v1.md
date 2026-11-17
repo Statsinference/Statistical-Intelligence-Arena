@@ -143,12 +143,51 @@ Y_0,21(1)-Y_0,21(0)=theta_T=0 for every realization; design expectation and sing
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| W1 | Treated-unit treatment effect | Y_1,T(1)-Y_1,T(0) at the fixed treated unit and T=T0+1=21. Its design-population expectation and the finite single-treated-unit SATT equal theta_T=0. | 0.0 |
-| W2 | Treated-unit treatment effect | Y_1,T(1)-Y_1,T(0) at the fixed treated unit and T=T0+1=21. Its design-population expectation and the finite single-treated-unit SATT equal theta_T=0. | 0.0 |
-| W3 | Treated-unit treatment effect | Y_1,T(1)-Y_1,T(0) at the fixed treated unit and T=T0+1=21. Its design-population expectation and the finite single-treated-unit SATT equal theta_T=0. | 0.0 |
-| W4 | Treated-unit treatment effect | Y_1,T(1)-Y_1,T(0) at the fixed treated unit and T=T0+1=21. Its design-population expectation and the finite single-treated-unit SATT equal theta_T=0. | 0.0 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>W1</td>
+<td rowspan="4">Treated-unit treatment effect</td>
+<td rowspan="4">
+
+$`Y_{1,T}(1)-Y_{1,T}(0),\quad T=T_0+1=21`$
+
+</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>W2</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>W3</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>W4</td>
+<td>0.0</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Fixed treated unit.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** W1, W2, W3, W4
+
+Y_1,T(1)-Y_1,T(0) at the fixed treated unit and T=T0+1=21. Its design-population expectation and the finite single-treated-unit SATT equal theta_T=0.
+
+[Open raw scientific record (JSON)](./did-cwz-2021-donor-ar-null-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** tau_T
 

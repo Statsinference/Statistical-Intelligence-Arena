@@ -120,9 +120,39 @@ tau_01=Y_0,21(1)-Y_0,21(0)=post_effect=0 with common exogenous draws held fixed;
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| table1_j10_t020_null | Treated-unit treatment effect | Specified treated unit i=0, first and only post period t=1: Y_01(1)-Y_01(0). Its design-population mean and single-treated-unit finite SATT both equal zero pointwise. | 0.0 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>table1_j10_t020_null</td>
+<td rowspan="1">Treated-unit treatment effect</td>
+<td rowspan="1">
+
+$`Y_{0,1}(1)-Y_{0,1}(0)`$
+
+</td>
+<td>0.0</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Fixed treated unit i=0, first post period t=1.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** table1_j10_t020_null
+
+Specified treated unit i=0, first and only post period t=1: Y_01(1)-Y_01(0). Its design-population mean and single-treated-unit finite SATT both equal zero pointwise.
+
+[Open raw scientific record (JSON)](./did-ferman-2021-two-factor-null-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** tau_01
 

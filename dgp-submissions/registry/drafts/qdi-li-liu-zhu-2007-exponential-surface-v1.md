@@ -63,11 +63,43 @@ Q_\tau(x)=m(x)+F_\varepsilon^{-1}(\tau)
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| source_normal | Conditional quantile | Conditional 0.1 quantile at X=(0.5,0.5); normal, t3, and specified normal-mixture errors are scenarios within ONE mechanism family. | 5.787542073631004 |
-| source_t3 | Conditional quantile | Conditional 0.1 quantile at X=(0.5,0.5); normal, t3, and specified normal-mixture errors are scenarios within ONE mechanism family. | 5.431349285479395 |
-| source_normal_mixture | Conditional quantile | Conditional 0.1 quantile at X=(0.5,0.5); normal, t3, and specified normal-mixture errors are scenarios within ONE mechanism family. | 5.582372494783503 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>source_normal</td>
+<td rowspan="3">Conditional quantile</td>
+<td rowspan="3">
+
+$`Q_{0.1}(Y\mid X=(0.5,0.5))`$
+
+</td>
+<td>5.787542073631004</td>
+</tr>
+<tr>
+<td>source_t3</td>
+<td>5.431349285479395</td>
+</tr>
+<tr>
+<td>source_normal_mixture</td>
+<td>5.582372494783503</td>
+</tr>
+</tbody>
+</table>
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** source_normal, source_t3, source_normal_mixture
+
+Conditional 0.1 quantile at X=(0.5,0.5); normal, t3, and specified normal-mixture errors are scenarios within ONE mechanism family.
+
+[Open raw scientific record (JSON)](./qdi-li-liu-zhu-2007-exponential-surface-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** Q_{0.1}(0.5,0.5)
 

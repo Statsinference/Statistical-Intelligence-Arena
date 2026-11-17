@@ -117,12 +117,69 @@ Y_i=m_i+0.1*epsilon_i; export Z1,Z2,Z3,X,Y in row order. No index t, noiseless m
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| index-mid-x0 | Pointwise conditional mean | The scalar conditional mean at the scenario's fixed covariate query (z0, x0). The nonparametric component is evaluated at the single-index value t0 = z0'alpha with alpha = (1,1,1)/sqrt(3); the linear component contributes x0*beta. This is a pointwise target, not a curve-level or band target. | 0.9818328784088086 |
-| index-mid-x1 | Pointwise conditional mean | The scalar conditional mean at the scenario's fixed covariate query (z0, x0). The nonparametric component is evaluated at the single-index value t0 = z0'alpha with alpha = (1,1,1)/sqrt(3); the linear component contributes x0*beta. This is a pointwise target, not a curve-level or band target. | 1.2818328784088087 |
-| index-low-x0 | Pointwise conditional mean | The scalar conditional mean at the scenario's fixed covariate query (z0, x0). The nonparametric component is evaluated at the single-index value t0 = z0'alpha with alpha = (1,1,1)/sqrt(3); the linear component contributes x0*beta. This is a pointwise target, not a curve-level or band target. | 0.8402560393492512 |
-| index-high-x1 | Pointwise conditional mean | The scalar conditional mean at the scenario's fixed covariate query (z0, x0). The nonparametric component is evaluated at the single-index value t0 = z0'alpha with alpha = (1,1,1)/sqrt(3); the linear component contributes x0*beta. This is a pointwise target, not a curve-level or band target. | 0.47575809676587577 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>index-mid-x0</td>
+<td rowspan="1">Pointwise conditional mean</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y\mid Z=(0.2,0.5,0.9),X=0]`$
+
+</td>
+<td>0.9818328784088086</td>
+</tr>
+<tr>
+<td>index-mid-x1</td>
+<td rowspan="1">Pointwise conditional mean</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y\mid Z=(0.2,0.5,0.9),X=1]`$
+
+</td>
+<td>1.2818328784088087</td>
+</tr>
+<tr>
+<td>index-low-x0</td>
+<td rowspan="1">Pointwise conditional mean</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y\mid Z=(0.3,0.4,0.5),X=0]`$
+
+</td>
+<td>0.8402560393492512</td>
+</tr>
+<tr>
+<td>index-high-x1</td>
+<td rowspan="1">Pointwise conditional mean</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y\mid Z=(0.68,0.75,0.8),X=1]`$
+
+</td>
+<td>0.47575809676587577</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: The source design for X is deterministic.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** index-mid-x0, index-mid-x1, index-low-x0, index-high-x1
+
+The scalar conditional mean at the scenario's fixed covariate query (z0, x0). The nonparametric component is evaluated at the single-index value t0 = z0'alpha with alpha = (1,1,1)/sqrt(3); the linear component contributes x0*beta. This is a pointwise target, not a curve-level or band target.
+
+[Open raw scientific record (JSON)](./nri-liangliu-2010-singleindex-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** eta(z0'alpha) + x0*beta = E[Y \| Z = z0, X = x0]
 

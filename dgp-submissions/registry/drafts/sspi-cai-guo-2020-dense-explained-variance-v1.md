@@ -87,9 +87,39 @@ Two independent samples from the same population: source_n_labeled rows with obs
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| original | Population explained variance | Explained population variance Var(E[Y\|X])=beta^T Sigma beta. | 9.333333333333336 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>original</td>
+<td rowspan="1">Population explained variance</td>
+<td rowspan="1">
+
+$`\operatorname{Var}(\mathbb{E}[Y\mid X])`$
+
+</td>
+<td>9.333333333333336</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Population explained variance.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** original
+
+Explained population variance Var(E[Y\|X])=beta^T Sigma beta.
+
+[Open raw scientific record (JSON)](./sspi-cai-guo-2020-dense-explained-variance-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** beta^T Sigma beta
 

@@ -76,9 +76,39 @@ Y=sin(P)+U+zeta
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| code_scale_alpha06_raw | Structural outcome contrast for specified interventions | Structural outcome contrast for interventions P=.5 versus P=0, retaining the marginal centered latent confounder and outcome noise. This is not E[Y\|P=.5]-E[Y\|P=0]. | 0.479425538604203 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>code_scale_alpha06_raw</td>
+<td rowspan="1">Structural outcome contrast for specified interventions</td>
+<td rowspan="1">
+
+$`h_0(0.5)-h_0(0)`$
+
+</td>
+<td>0.479425538604203</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Structural outcome contrast under interventions P=0.5 versus P=0.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** code_scale_alpha06_raw
+
+Structural outcome contrast for interventions P=.5 versus P=0, retaining the marginal centered latent confounder and outcome noise. This is not E[Y\|P=.5]-E[Y\|P=0].
+
+[Open raw scientific record (JSON)](./iv-dikkala-2020-sine-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** theta_IV = h0(0.5)-h0(0)
 

@@ -88,12 +88,51 @@ h^{2}=0.2, \kappa=1, s^{2}=h^{2}/(1.5m)
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| setting1_new_draw | Population unit-change structural mean effect ⚠ review | English description not yet supplied; consult the original scientific record (JSON). | 0.4 |
-| setting2_new_draw | Population unit-change structural mean effect ⚠ review | English description not yet supplied; consult the original scientific record (JSON). | 0.4 |
-| setting3_new_draw | Population unit-change structural mean effect ⚠ review | English description not yet supplied; consult the original scientific record (JSON). | 0.4 |
-| setting4_new_draw | Population unit-change structural mean effect ⚠ review | English description not yet supplied; consult the original scientific record (JSON). | 0.4 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>setting1_new_draw</td>
+<td rowspan="4">Population unit-change structural mean effect ⚠ review</td>
+<td rowspan="4">
+
+$`\mathbb{E}[Y(a+1)-Y(a)]`$
+
+</td>
+<td>0.4</td>
+</tr>
+<tr>
+<td>setting2_new_draw</td>
+<td>0.4</td>
+</tr>
+<tr>
+<td>setting3_new_draw</td>
+<td>0.4</td>
+</tr>
+<tr>
+<td>setting4_new_draw</td>
+<td>0.4</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Unit exposure intervention; duplicate-ID conflict still needs review.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** setting1_new_draw, setting2_new_draw, setting3_new_draw, setting4_new_draw
+
+Original-language definition is available in the raw scientific record (JSON).
+
+[Open raw scientific record (JSON)](./iv-ye-2024-genius-heteroskedastic-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** β0=.4
 

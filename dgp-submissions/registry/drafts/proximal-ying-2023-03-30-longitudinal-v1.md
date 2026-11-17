@@ -121,9 +121,39 @@ U0,U1
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| original | Marginal structural mean model slope | Common slope beta1 in E[Y(a0,a1)]=beta0+beta1*(a0+a1). The 11-vs-00 contrast is separately 2*beta1. | 1.0 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>original</td>
+<td rowspan="1">Marginal structural mean model slope</td>
+<td rowspan="1">
+
+$`\beta_1=\mathbb{E}[Y(1,0)-Y(0,0)]`$
+
+</td>
+<td>1.0</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Common slope beta_1 in E[Y(a_0,a_1)]=beta_0+beta_1(a_0+a_1); the 11-vs-00 contrast is 2 beta_1.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** original
+
+Common slope beta1 in E[Y(a0,a1)]=beta0+beta1*(a0+a1). The 11-vs-00 contrast is separately 2*beta1.
+
+[Open raw scientific record (JSON)](./proximal-ying-2023-03-30-longitudinal-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** beta1
 

@@ -135,10 +135,49 @@ Y_t=m(X_t)+sigma(X_t)*epsilon_t; return X1..X30,Y in chronological window order.
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| original-sigma01 | Pointwise conditional mean | Scalar conditional mean of Y at a fixed 30-dimensional query point x0 in the superpopulation defined by the fixed Example 6.2 DGP. It is a pointwise regression functional, not a causal effect; the query is a parameter of each scenario and is read from config by truth(config). | 1.0 |
-| origin-query | Pointwise conditional mean | Scalar conditional mean of Y at a fixed 30-dimensional query point x0 in the superpopulation defined by the fixed Example 6.2 DGP. It is a pointwise regression functional, not a causal effect; the query is a parameter of each scenario and is read from config by truth(config). | 0.0 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>original-sigma01</td>
+<td rowspan="1">Pointwise conditional mean</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y\mid X=(1.25,0,\ldots,0)]`$
+
+</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>origin-query</td>
+<td rowspan="1">Pointwise conditional mean</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y\mid X=(0,\ldots,0)]`$
+
+</td>
+<td>0.0</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: The query has 30 coordinates.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** original-sigma01, origin-query
+
+Scalar conditional mean of Y at a fixed 30-dimensional query point x0 in the superpopulation defined by the fixed Example 6.2 DGP. It is a pointwise regression functional, not a causal effect; the query is a parameter of each scenario and is read from config by truth(config).
+
+[Open raw scientific record (JSON)](./nri-wangyang-2007-hdadditive-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** m(x0) = E[Y \| X = x0] = sum_{alpha=1}^{30} sin(pi * x0_alpha / 2.5)
 

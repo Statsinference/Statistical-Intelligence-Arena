@@ -98,9 +98,39 @@ NDE=2+3(2)+4E[C(1)]+2E[M(0)]=26
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| section_4_1_continuous | NDE | E[Y(1,M(0))-Y(0,M(0))], with the treatment-induced C under its own treatment in each outcome potential. | 26.0 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>section_4_1_continuous</td>
+<td rowspan="1">NDE</td>
+<td rowspan="1">
+
+$`\mathbb{E}\!\left[Y\{1,M(0)\}-Y\{0,M(0)\}\right]`$
+
+</td>
+<td>26.0</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: The treatment-induced C follows its treatment-specific value in each outcome potential.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** section_4_1_continuous
+
+E[Y(1,M(0))-Y(0,M(0))], with the treatment-induced C under its own treatment in each outcome potential.
+
+[Open raw scientific record (JSON)](./mediation-xia-chan-2023-continuous-copula-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** NDE
 

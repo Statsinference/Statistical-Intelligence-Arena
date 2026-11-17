@@ -81,9 +81,35 @@ Yij=.2 Yi,j-1+.5Xi+.5sqrt(j)+epsij; Yi0=0; eps~N(0,.15^2); tau0
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| baseline | Conditional first-adopter average treatment effect | Mean effect on first-adopter post cells in whole-experiment-success conditional population; also realized SATT=0 pathwise | 0.0 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>baseline</td>
+<td rowspan="1">Conditional first-adopter average treatment effect</td>
+<td rowspan="1">
+
+Definition needs review; see the submitted definition below.
+
+</td>
+<td>0.0</td>
+</tr>
+</tbody>
+</table>
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** baseline
+
+Mean effect on first-adopter post cells in whole-experiment-success conditional population; also realized SATT=0 pathwise
+
+[Open raw scientific record (JSON)](./did-shaikh-toulis-2021-conditional-first-adopter-null-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** ATT_cond
 

@@ -89,9 +89,35 @@ theta=Q_Y(0.9|X=0.5)=(38/25)*log(100/9)
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| original_law_x05_tau09 | Conditional quantile | inf{y: F_Y(y \| X=0.5) &gt;= 0.9} under the source superpopulation; use the conditional distribution version continuous in x specified by the quantile-plane law. A noncausal scalar conditional quantile, not a marginal quantile, beta_1(0.9), prediction interval, or simultaneous band. | 3.6600773251508456 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>original_law_x05_tau09</td>
+<td rowspan="1">Conditional quantile</td>
+<td rowspan="1">
+
+$`Q_{0.9}(Y\mid X=0.5)`$
+
+</td>
+<td>3.6600773251508456</td>
+</tr>
+</tbody>
+</table>
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** original_law_x05_tau09
+
+inf{y: F_Y(y \| X=0.5) &gt;= 0.9} under the source superpopulation; use the conditional distribution version continuous in x specified by the quantile-plane law. A noncausal scalar conditional quantile, not a marginal quantile, beta_1(0.9), prediction interval, or simultaneous band.
+
+[Open raw scientific record (JSON)](./qdi-yang-tokdar-20170412-univariate-quantile-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** theta = Q_Y(0.9 \| X=0.5)
 

@@ -107,9 +107,39 @@ A_i=(1-T_i)A_{0i}+T_iA_{1i},\quad Y_i=(1-T_i)Y_{0i}+T_iY_{1i}
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| source_section6_ate_target | ATE | English description not yet supplied; consult the original scientific record (JSON). | -5.0 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>source_section6_ate_target</td>
+<td rowspan="1">ATE</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y_t(1)-Y_t(0)],\quad t\in\{0,1\}`$
+
+</td>
+<td>-5.0</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Marginal population ATE.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** source_section6_ate_target
+
+Original-language definition is available in the raw scientific record (JSON).
+
+[Open raw scientific record (JSON)](./did-zhao-cui-2025-instrumented-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** ATE
 

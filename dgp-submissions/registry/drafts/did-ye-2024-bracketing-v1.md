@@ -118,10 +118,43 @@ ATT_4=E[Y_{i4}(1)-Y_{i4}(0)\mid G_i=trt]=\theta_4=1
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| case1_parallel | ATT | English description not yet supplied; consult the original scientific record (JSON). | 1.0 |
-| case2_partial | ATT | English description not yet supplied; consult the original scientific record (JSON). | 1.0 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>case1_parallel</td>
+<td rowspan="2">ATT</td>
+<td rowspan="2">
+
+$`\mathbb{E}[Y_4(1)-Y_4(0)\mid G=\mathrm{trt}]`$
+
+</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>case2_partial</td>
+<td>1.0</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Final period, treated group.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** case1_parallel, case2_partial
+
+Original-language definition is available in the raw scientific record (JSON).
+
+[Open raw scientific record (JSON)](./did-ye-2024-bracketing-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** ATT_4
 

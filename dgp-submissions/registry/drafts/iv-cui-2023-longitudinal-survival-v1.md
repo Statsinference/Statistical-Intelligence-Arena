@@ -180,10 +180,43 @@ For fixed treatment regime a, lambda_Ta(t)=exp(psi*a(t)); psi=log(hazard under a
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| source_effect_minus1 | Marginal structural log hazard ratio | Population marginal structural Cox log hazard ratio for the current binary treatment under fixed two-visit intervention regimes: lambda_Ta(t)=lambda0(t)*exp(psi*a(t)), lambda0(t)=1. Compare treatment1 versus0 at the same time t away from the visit1 switch. Target is psi=-1 or0, not a survival probability difference or LATE. | -1.0 |
-| source_null | Marginal structural log hazard ratio | Population marginal structural Cox log hazard ratio for the current binary treatment under fixed two-visit intervention regimes: lambda_Ta(t)=lambda0(t)*exp(psi*a(t)), lambda0(t)=1. Compare treatment1 versus0 at the same time t away from the visit1 switch. Target is psi=-1 or0, not a survival probability difference or LATE. | 0.0 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>source_effect_minus1</td>
+<td rowspan="2">Marginal structural log hazard ratio</td>
+<td rowspan="2">
+
+$`\psi=\log\{\lambda_{T^{\bar a}}(t)/\lambda_0(t)\},\quad a(t)=1`$
+
+</td>
+<td>-1.0</td>
+</tr>
+<tr>
+<td>source_null</td>
+<td>0.0</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: The coefficient psi in the marginal structural Cox model, for a fixed two-visit intervention regime; compare treatment 1 to 0 at time t away from the visit-1 switch.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** source_effect_minus1, source_null
+
+Population marginal structural Cox log hazard ratio for the current binary treatment under fixed two-visit intervention regimes: lambda_Ta(t)=lambda0(t)*exp(psi*a(t)), lambda0(t)=1. Compare treatment1 versus0 at the same time t away from the visit1 switch. Target is psi=-1 or0, not a survival probability difference or LATE.
+
+[Open raw scientific record (JSON)](./iv-cui-2023-longitudinal-survival-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** psi
 

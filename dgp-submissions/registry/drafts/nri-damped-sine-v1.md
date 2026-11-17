@@ -86,18 +86,129 @@ m5(-2/3)=0, m5(-1/3)=-1, m5(0)=0, m5(1/3)=0.2, m5(2/3)=0
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| m5_x0_neg2o3 | Pointwise conditional mean | Conditional mean of Y given X = x0 at a fixed query point x0 from the grid {-2/3,-1/3,0,1/3,2/3}, in the superpopulation defined by Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1). Model 5: m(x)=sin(3*pi*x/2)/(1+18*x^2*(sgn(x)+1)). Model 6: m(x)=sin(pi*x/2)/(1+2*x^2*(sgn(x)+1)) = g3(x) = g2(x/3) of the Hall-Horowitz family. Each (model, query point) is a separate pointwise inference target; the five points are not a simultaneous confidence band. | -1.2246467991473532e-16 |
-| m5_x0_neg1o3 | Pointwise conditional mean | Conditional mean of Y given X = x0 at a fixed query point x0 from the grid {-2/3,-1/3,0,1/3,2/3}, in the superpopulation defined by Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1). Model 5: m(x)=sin(3*pi*x/2)/(1+18*x^2*(sgn(x)+1)). Model 6: m(x)=sin(pi*x/2)/(1+2*x^2*(sgn(x)+1)) = g3(x) = g2(x/3) of the Hall-Horowitz family. Each (model, query point) is a separate pointwise inference target; the five points are not a simultaneous confidence band. | -1.0 |
-| m5_x0_0 | Pointwise conditional mean | Conditional mean of Y given X = x0 at a fixed query point x0 from the grid {-2/3,-1/3,0,1/3,2/3}, in the superpopulation defined by Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1). Model 5: m(x)=sin(3*pi*x/2)/(1+18*x^2*(sgn(x)+1)). Model 6: m(x)=sin(pi*x/2)/(1+2*x^2*(sgn(x)+1)) = g3(x) = g2(x/3) of the Hall-Horowitz family. Each (model, query point) is a separate pointwise inference target; the five points are not a simultaneous confidence band. | 0.0 |
-| m5_x0_1o3 | Pointwise conditional mean | Conditional mean of Y given X = x0 at a fixed query point x0 from the grid {-2/3,-1/3,0,1/3,2/3}, in the superpopulation defined by Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1). Model 5: m(x)=sin(3*pi*x/2)/(1+18*x^2*(sgn(x)+1)). Model 6: m(x)=sin(pi*x/2)/(1+2*x^2*(sgn(x)+1)) = g3(x) = g2(x/3) of the Hall-Horowitz family. Each (model, query point) is a separate pointwise inference target; the five points are not a simultaneous confidence band. | 0.2 |
-| m5_x0_2o3 | Pointwise conditional mean | Conditional mean of Y given X = x0 at a fixed query point x0 from the grid {-2/3,-1/3,0,1/3,2/3}, in the superpopulation defined by Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1). Model 5: m(x)=sin(3*pi*x/2)/(1+18*x^2*(sgn(x)+1)). Model 6: m(x)=sin(pi*x/2)/(1+2*x^2*(sgn(x)+1)) = g3(x) = g2(x/3) of the Hall-Horowitz family. Each (model, query point) is a separate pointwise inference target; the five points are not a simultaneous confidence band. | 7.203804700866784e-18 |
-| m6_x0_neg2o3 | Pointwise conditional mean | Conditional mean of Y given X = x0 at a fixed query point x0 from the grid {-2/3,-1/3,0,1/3,2/3}, in the superpopulation defined by Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1). Model 5: m(x)=sin(3*pi*x/2)/(1+18*x^2*(sgn(x)+1)). Model 6: m(x)=sin(pi*x/2)/(1+2*x^2*(sgn(x)+1)) = g3(x) = g2(x/3) of the Hall-Horowitz family. Each (model, query point) is a separate pointwise inference target; the five points are not a simultaneous confidence band. | -0.8660254037844386 |
-| m6_x0_neg1o3 | Pointwise conditional mean | Conditional mean of Y given X = x0 at a fixed query point x0 from the grid {-2/3,-1/3,0,1/3,2/3}, in the superpopulation defined by Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1). Model 5: m(x)=sin(3*pi*x/2)/(1+18*x^2*(sgn(x)+1)). Model 6: m(x)=sin(pi*x/2)/(1+2*x^2*(sgn(x)+1)) = g3(x) = g2(x/3) of the Hall-Horowitz family. Each (model, query point) is a separate pointwise inference target; the five points are not a simultaneous confidence band. | -0.49999999999999994 |
-| m6_x0_0 | Pointwise conditional mean | Conditional mean of Y given X = x0 at a fixed query point x0 from the grid {-2/3,-1/3,0,1/3,2/3}, in the superpopulation defined by Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1). Model 5: m(x)=sin(3*pi*x/2)/(1+18*x^2*(sgn(x)+1)). Model 6: m(x)=sin(pi*x/2)/(1+2*x^2*(sgn(x)+1)) = g3(x) = g2(x/3) of the Hall-Horowitz family. Each (model, query point) is a separate pointwise inference target; the five points are not a simultaneous confidence band. | 0.0 |
-| m6_x0_1o3 | Pointwise conditional mean | Conditional mean of Y given X = x0 at a fixed query point x0 from the grid {-2/3,-1/3,0,1/3,2/3}, in the superpopulation defined by Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1). Model 5: m(x)=sin(3*pi*x/2)/(1+18*x^2*(sgn(x)+1)). Model 6: m(x)=sin(pi*x/2)/(1+2*x^2*(sgn(x)+1)) = g3(x) = g2(x/3) of the Hall-Horowitz family. Each (model, query point) is a separate pointwise inference target; the five points are not a simultaneous confidence band. | 0.34615384615384615 |
-| m6_x0_2o3 | Pointwise conditional mean | Conditional mean of Y given X = x0 at a fixed query point x0 from the grid {-2/3,-1/3,0,1/3,2/3}, in the superpopulation defined by Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1). Model 5: m(x)=sin(3*pi*x/2)/(1+18*x^2*(sgn(x)+1)). Model 6: m(x)=sin(pi*x/2)/(1+2*x^2*(sgn(x)+1)) = g3(x) = g2(x/3) of the Hall-Horowitz family. Each (model, query point) is a separate pointwise inference target; the five points are not a simultaneous confidence band. | 0.3117691453623979 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>m5_x0_neg2o3</td>
+<td rowspan="1">Pointwise conditional mean</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y\mid X=-2/3]`$
+
+</td>
+<td>-1.2246467991473532e-16</td>
+</tr>
+<tr>
+<td>m5_x0_neg1o3</td>
+<td rowspan="1">Pointwise conditional mean</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y\mid X=-1/3]`$
+
+</td>
+<td>-1.0</td>
+</tr>
+<tr>
+<td>m5_x0_0</td>
+<td rowspan="1">Pointwise conditional mean</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y\mid X=0]`$
+
+</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>m5_x0_1o3</td>
+<td rowspan="1">Pointwise conditional mean</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y\mid X=1/3]`$
+
+</td>
+<td>0.2</td>
+</tr>
+<tr>
+<td>m5_x0_2o3</td>
+<td rowspan="1">Pointwise conditional mean</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y\mid X=2/3]`$
+
+</td>
+<td>7.203804700866784e-18</td>
+</tr>
+<tr>
+<td>m6_x0_neg2o3</td>
+<td rowspan="1">Pointwise conditional mean</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y\mid X=-2/3]`$
+
+</td>
+<td>-0.8660254037844386</td>
+</tr>
+<tr>
+<td>m6_x0_neg1o3</td>
+<td rowspan="1">Pointwise conditional mean</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y\mid X=-1/3]`$
+
+</td>
+<td>-0.49999999999999994</td>
+</tr>
+<tr>
+<td>m6_x0_0</td>
+<td rowspan="1">Pointwise conditional mean</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y\mid X=0]`$
+
+</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>m6_x0_1o3</td>
+<td rowspan="1">Pointwise conditional mean</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y\mid X=1/3]`$
+
+</td>
+<td>0.34615384615384615</td>
+</tr>
+<tr>
+<td>m6_x0_2o3</td>
+<td rowspan="1">Pointwise conditional mean</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y\mid X=2/3]`$
+
+</td>
+<td>0.3117691453623979</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Under the scenario-specific data law.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** m5_x0_neg2o3, m5_x0_neg1o3, m5_x0_0, m5_x0_1o3, m5_x0_2o3, m6_x0_neg2o3, m6_x0_neg1o3, m6_x0_0, m6_x0_1o3, m6_x0_2o3
+
+Conditional mean of Y given X = x0 at a fixed query point x0 from the grid {-2/3,-1/3,0,1/3,2/3}, in the superpopulation defined by Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1). Model 5: m(x)=sin(3*pi*x/2)/(1+18*x^2*(sgn(x)+1)). Model 6: m(x)=sin(pi*x/2)/(1+2*x^2*(sgn(x)+1)) = g3(x) = g2(x/3) of the Hall-Horowitz family. Each (model, query point) is a separate pointwise inference target; the five points are not a simultaneous confidence band.
+
+[Open raw scientific record (JSON)](./nri-damped-sine-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** m(x0) = E[Y \| X = x0]
 

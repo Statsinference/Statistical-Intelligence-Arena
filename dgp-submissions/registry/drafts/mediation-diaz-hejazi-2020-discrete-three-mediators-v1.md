@@ -97,9 +97,39 @@ Y=Z1+Z2-Z3+A-0.1(W1+W2+W3)^2+epsilon, epsilon~N(0,0.25)
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| journal_section_5 | NIE | E[Y(1,Z(1)) - Y(1,Z(0))] for the original §5 superpopulation, jointly intervening on all three mediators Z=(Z1,Z2,Z3). Treatment is fixed at 1 in both outcome terms. | -0.11950701713951144 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>journal_section_5</td>
+<td rowspan="1">NIE</td>
+<td rowspan="1">
+
+$`\mathbb{E}\!\left[Y\{1,Z(1)\}-Y\{1,Z(0)\}\right]`$
+
+</td>
+<td>-0.11950701713951144</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Z is the joint vector of all three mediators; this is an adapted NIE target.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** journal_section_5
+
+E[Y(1,Z(1)) - Y(1,Z(0))] for the original §5 superpopulation, jointly intervening on all three mediators Z=(Z1,Z2,Z3). Treatment is fixed at 1 in both outcome terms.
+
+[Open raw scientific record (JSON)](./mediation-diaz-hejazi-2020-discrete-three-mediators-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** NIE_1
 

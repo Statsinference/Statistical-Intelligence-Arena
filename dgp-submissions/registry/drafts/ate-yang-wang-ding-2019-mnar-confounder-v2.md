@@ -163,9 +163,39 @@ ATE=E[Y(1)-Y(0)]=1.5-2E[X1]+2E[X2]-2E[X3]+2E[X4]-2E[X5]-2E[X6] = -2.5-2E[X6] und
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| section53_equation_based_candidate | ATE | Population E[Y(1)-Y(0)] for the intervention A=1 versus A=0, under the declared Section 5.3 equation-based mechanism and its explicitly stated factorization adaptations. | -2.9835508151480576 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>section53_equation_based_candidate</td>
+<td rowspan="1">ATE</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y(1)-Y(0)]`$
+
+</td>
+<td>-2.9835508151480576</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Population ATE; expectation is over the DGP's full population. The candidate DGP truth conflicts with the paper-reported value; preserve the existing review warning.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** section53_equation_based_candidate
+
+Population E[Y(1)-Y(0)] for the intervention A=1 versus A=0, under the declared Section 5.3 equation-based mechanism and its explicitly stated factorization adaptations.
+
+[Open raw scientific record (JSON)](./ate-yang-wang-ding-2019-mnar-confounder-v2.json).
+
+</details>
+
 
 **Original submitted target notation:** ATE
 

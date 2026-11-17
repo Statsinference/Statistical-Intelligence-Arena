@@ -125,9 +125,39 @@ eta,epsilon0,epsilon1(0),epsilon1(1) are independent N(0,1), independent of X,U
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| original_panel_dgp1 | ATT | Population ATT for the treated group at post-period 1. The realized group D and latent v are held fixed across treatment counterfactuals. Original value is zero; this is not the observed post-period group contrast or a sample-average effect. | 0.0 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>original_panel_dgp1</td>
+<td rowspan="1">ATT</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y_1(1)-Y_1(0)\mid D=1]`$
+
+</td>
+<td>0.0</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Post-period 1.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** original_panel_dgp1
+
+Population ATT for the treated group at post-period 1. The realized group D and latent v are held fixed across treatment counterfactuals. Original value is zero; this is not the observed post-period group contrast or a sample-average effect.
+
+[Open raw scientific record (JSON)](./did-santanna-zhao-2020-panel-dgp1-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** ATT = E[Y_1(1)-Y_1(0) \| D=1]
 

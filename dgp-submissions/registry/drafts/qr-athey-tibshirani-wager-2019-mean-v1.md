@@ -82,9 +82,39 @@ Q_q(Y|X=x)=0.8*I(x1&gt;0)+Phi_inverse(q)
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| source_p40_q90_positive_query | Conditional quantile | Conditional 90th percentile of the observed response at x_query=(0.5,0,...,0) in the 40-dimensional covariate support; inf{y:P(Y&lt;=y\|X=x_query)&gt;=0.9}. A conditional quantile regression target, not a quantile treatment effect, population marginal quantile or causal estimand. | 2.0815515655446006 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>source_p40_q90_positive_query</td>
+<td rowspan="1">Conditional quantile</td>
+<td rowspan="1">
+
+$`Q_{0.9}(Y\mid X=(0.5,0,\ldots,0))`$
+
+</td>
+<td>2.0815515655446006</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: The query has 40 coordinates.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** source_p40_q90_positive_query
+
+Conditional 90th percentile of the observed response at x_query=(0.5,0,...,0) in the 40-dimensional covariate support; inf{y:P(Y&lt;=y\|X=x_query)&gt;=0.9}. A conditional quantile regression target, not a quantile treatment effect, population marginal quantile or causal estimand.
+
+[Open raw scientific record (JSON)](./qr-athey-tibshirani-wager-2019-mean-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** theta = Q_0.9(Y \| X=x_query)
 

@@ -119,12 +119,51 @@ theta_m=2+s_m(2)q_e(0.95), with s_1=s_2=1, s_3(x)=s_4(x)=1+x/2; q_normal(tau)=2 
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| model1_normal_homoscedastic | Conditional quantile | inf{y: F_m(y\|X=2,Z=0)&gt;=0.95} in the model-specific synthetic superpopulation. Conditional, pointwise scalar; not a marginal quantile, regression slope, posterior quantile, sample-mean adjusted intercept or simultaneous band. | 5.289707253902943 |
-| model2_lognormal_homoscedastic | Conditional quantile | inf{y: F_m(y\|X=2,Z=0)&gt;=0.95} in the model-specific synthetic superpopulation. Conditional, pointwise scalar; not a marginal quantile, regression slope, posterior quantile, sample-mean adjusted intercept or simultaneous band. | 7.18025160223301 |
-| model3_normal_heteroscedastic | Conditional quantile | inf{y: F_m(y\|X=2,Z=0)&gt;=0.95} in the model-specific synthetic superpopulation. Conditional, pointwise scalar; not a marginal quantile, regression slope, posterior quantile, sample-mean adjusted intercept or simultaneous band. | 8.579414507805886 |
-| model4_lognormal_heteroscedastic | Conditional quantile | inf{y: F_m(y\|X=2,Z=0)&gt;=0.95} in the model-specific synthetic superpopulation. Conditional, pointwise scalar; not a marginal quantile, regression slope, posterior quantile, sample-mean adjusted intercept or simultaneous band. | 12.36050320446602 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>model1_normal_homoscedastic</td>
+<td rowspan="4">Conditional quantile</td>
+<td rowspan="4">
+
+$`Q_{0.95}(Y\mid X=2,Z=0)`$
+
+</td>
+<td>5.289707253902943</td>
+</tr>
+<tr>
+<td>model2_lognormal_homoscedastic</td>
+<td>7.18025160223301</td>
+</tr>
+<tr>
+<td>model3_normal_heteroscedastic</td>
+<td>8.579414507805886</td>
+</tr>
+<tr>
+<td>model4_lognormal_heteroscedastic</td>
+<td>12.36050320446602</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Under the scenario-specific conditional law.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** model1_normal_homoscedastic, model2_lognormal_homoscedastic, model3_normal_heteroscedastic, model4_lognormal_heteroscedastic
+
+inf{y: F_m(y\|X=2,Z=0)&gt;=0.95} in the model-specific synthetic superpopulation. Conditional, pointwise scalar; not a marginal quantile, regression slope, posterior quantile, sample-mean adjusted intercept or simultaneous band.
+
+[Open raw scientific record (JSON)](./qdi-yang-he-2012-conditional-quantile-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** theta_m = Q_0.95(Y \| X=2,Z=0), m=1,2,3,4
 

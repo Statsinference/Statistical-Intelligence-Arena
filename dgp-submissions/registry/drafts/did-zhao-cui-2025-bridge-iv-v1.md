@@ -140,9 +140,39 @@ tau_t(x)=E[Y_t(1)-Y_t(0)|X=x]=10*s(x); ATE=E[tau_t(X)]=-5. This is not ATT, fini
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| section6_main | ATE | Population average causal effect E[Y_t(1)-Y_t(0)]=E[10(1.5X1+2X2-0.5)]=-5 for either t=0 or1, over X~N(0,I2), and original natural Z,U. Not ATT, a finite-sample SATT, optimal-policy value or PCD. | -5.0 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>section6_main</td>
+<td rowspan="1">ATE</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y_t(1)-Y_t(0)],\quad t\in\{0,1\}`$
+
+</td>
+<td>-5.0</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Marginal population ATE.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** section6_main
+
+Population average causal effect E[Y_t(1)-Y_t(0)]=E[10(1.5X1+2X2-0.5)]=-5 for either t=0 or1, over X~N(0,I2), and original natural Z,U. Not ATT, a finite-sample SATT, optimal-policy value or PCD.
+
+[Open raw scientific record (JSON)](./did-zhao-cui-2025-bridge-iv-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** ATE
 

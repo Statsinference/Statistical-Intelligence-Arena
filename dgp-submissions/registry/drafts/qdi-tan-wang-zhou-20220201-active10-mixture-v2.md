@@ -149,10 +149,49 @@ w0=e1 in R^10; theta_tau=1.8+q_tau; 0.7*Phi(q_tau)+0.3*Phi(q_tau/5)=tau, tau in 
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| q50-active10-mixture | Conditional quantile | inf{y:F_Y\|W(y\|e1)&gt;=tau}, with W=(X_original,1,X_original,3,...,X_original,19) in R^10 and e1=(1,0,...,0). The default tau is 0.9; a second scenario uses 0.5. theta_tau=1.8+F_epsilon^(-1)(tau). This equals the parent model full-X target because the removed coordinates have zero coefficients and epsilon is independent of the full X. | 1.7999999999997158 |
-| q90-active10-mixture | Conditional quantile | inf{y:F_Y\|W(y\|e1)&gt;=tau}, with W=(X_original,1,X_original,3,...,X_original,19) in R^10 and e1=(1,0,...,0). The default tau is 0.9; a second scenario uses 0.5. theta_tau=1.8+F_epsilon^(-1)(tau). This equals the parent model full-X target because the removed coordinates have zero coefficients and epsilon is independent of the full X. | 4.2114834571051345 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>q50-active10-mixture</td>
+<td rowspan="1">Conditional quantile</td>
+<td rowspan="1">
+
+$`Q_{0.5}(Y\mid W=e_1)`$
+
+</td>
+<td>1.7999999999997158</td>
+</tr>
+<tr>
+<td>q90-active10-mixture</td>
+<td rowspan="1">Conditional quantile</td>
+<td rowspan="1">
+
+$`Q_{0.9}(Y\mid W=e_1)`$
+
+</td>
+<td>4.2114834571051345</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: W consists of the ten odd-indexed original covariates and e_1=(1,0,...,0).
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** q50-active10-mixture, q90-active10-mixture
+
+inf{y:F_Y\|W(y\|e1)&gt;=tau}, with W=(X_original,1,X_original,3,...,X_original,19) in R^10 and e1=(1,0,...,0). The default tau is 0.9; a second scenario uses 0.5. theta_tau=1.8+F_epsilon^(-1)(tau). This equals the parent model full-X target because the removed coordinates have zero coefficients and epsilon is independent of the full X.
+
+[Open raw scientific record (JSON)](./qdi-tan-wang-zhou-20220201-active10-mixture-v2.json).
+
+</details>
+
 
 **Original submitted target notation:** theta_tau = Q_tau(Y \| W = e1)
 

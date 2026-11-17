@@ -129,9 +129,39 @@ beta_X1=(0.77,-0.86,0.35,0.88); beta_X2=(-0.99,-0.72,-0.1,0.54); beta_X3=(-0.74,
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| original | Cumulative path-specific effect | Cumulative path-specific effect through the second mediator: theta_{a1,a2,a3} = E[Y(a3, M1(a1), M2(a2, M1(a1)))], and cPSE_M2 = theta_011 - theta_001 holds the Y-argument at A=1 and the M1-argument at A=0 while moving only the M2-argument from A=0 to A=1. This is NOT the natural indirect effect, NOT the natural direct effect and NOT the total effect. | 0.3264 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>original</td>
+<td rowspan="1">Cumulative path-specific effect</td>
+<td rowspan="1">
+
+$`\theta_{011}-\theta_{001}`$
+
+</td>
+<td>0.3264</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: $`\theta_{a_1a_2a_3}=\mathbb{E}[Y\{a_3,M_1(a_1),M_2(a_2,M_1(a_1))\}]`$ This is the cumulative path-specific effect through the second mediator.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** original
+
+Cumulative path-specific effect through the second mediator: theta_{a1,a2,a3} = E[Y(a3, M1(a1), M2(a2, M1(a1)))], and cPSE_M2 = theta_011 - theta_001 holds the Y-argument at A=1 and the M1-argument at A=0 while moving only the M2-argument from A=0 to A=1. This is NOT the natural indirect effect, NOT the natural direct effect and NOT the total effect.
+
+[Open raw scientific record (JSON)](./mediation-zhou-2022-ordered-two-mediators-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** cPSE_M2 = theta_011 - theta_001
 

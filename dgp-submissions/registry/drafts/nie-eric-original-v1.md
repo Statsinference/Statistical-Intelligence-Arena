@@ -91,9 +91,35 @@ Y = 1 + 0.2 X1 + 0.3 X2 + 1.4 X3 - 2.5 A - 3.5 M + 5 A M + epsilon; epsilon ~ No
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| original | NIE | E[Y(1,M(1)) - Y(1,M(0))] in the superpopulation defined by the fixed DGP. | 0.2366199012683949 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>original</td>
+<td rowspan="1">NIE</td>
+<td rowspan="1">
+
+$`\mathbb{E}\!\left[Y\{1,M(1)\}-Y\{1,M(0)\}\right]`$
+
+</td>
+<td>0.2366199012683949</td>
+</tr>
+</tbody>
+</table>
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** original
+
+E[Y(1,M(1)) - Y(1,M(0))] in the superpopulation defined by the fixed DGP.
+
+[Open raw scientific record (JSON)](./nie-eric-original-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** theta_NIE = theta_11 - theta_10
 

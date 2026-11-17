@@ -92,18 +92,75 @@ m_s(0.5) = E[Y | X=0.5] = p_s(0.5) = (floor(k*0.5)+1)/k; for s=0.5, k=10: floor(
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| s01 | Pointwise conditional mean | Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0.1,0.2,...,1.0}; the step function is p_s(x)=(floor(k*x)+1{x!=1})/k with k=15-10*s, yielding a piecewise-constant right-continuous function with k equal steps of height 1/k. The target is a conditional Bernoulli probability, not an intervention effect or a prediction interval. | 0.5714285714285714 |
-| s02 | Pointwise conditional mean | Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0.1,0.2,...,1.0}; the step function is p_s(x)=(floor(k*x)+1{x!=1})/k with k=15-10*s, yielding a piecewise-constant right-continuous function with k equal steps of height 1/k. The target is a conditional Bernoulli probability, not an intervention effect or a prediction interval. | 0.5384615384615384 |
-| s03 | Pointwise conditional mean | Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0.1,0.2,...,1.0}; the step function is p_s(x)=(floor(k*x)+1{x!=1})/k with k=15-10*s, yielding a piecewise-constant right-continuous function with k equal steps of height 1/k. The target is a conditional Bernoulli probability, not an intervention effect or a prediction interval. | 0.5833333333333334 |
-| s04 | Pointwise conditional mean | Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0.1,0.2,...,1.0}; the step function is p_s(x)=(floor(k*x)+1{x!=1})/k with k=15-10*s, yielding a piecewise-constant right-continuous function with k equal steps of height 1/k. The target is a conditional Bernoulli probability, not an intervention effect or a prediction interval. | 0.5454545454545454 |
-| s05 | Pointwise conditional mean | Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0.1,0.2,...,1.0}; the step function is p_s(x)=(floor(k*x)+1{x!=1})/k with k=15-10*s, yielding a piecewise-constant right-continuous function with k equal steps of height 1/k. The target is a conditional Bernoulli probability, not an intervention effect or a prediction interval. | 0.6 |
-| s06 | Pointwise conditional mean | Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0.1,0.2,...,1.0}; the step function is p_s(x)=(floor(k*x)+1{x!=1})/k with k=15-10*s, yielding a piecewise-constant right-continuous function with k equal steps of height 1/k. The target is a conditional Bernoulli probability, not an intervention effect or a prediction interval. | 0.5555555555555556 |
-| s07 | Pointwise conditional mean | Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0.1,0.2,...,1.0}; the step function is p_s(x)=(floor(k*x)+1{x!=1})/k with k=15-10*s, yielding a piecewise-constant right-continuous function with k equal steps of height 1/k. The target is a conditional Bernoulli probability, not an intervention effect or a prediction interval. | 0.625 |
-| s08 | Pointwise conditional mean | Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0.1,0.2,...,1.0}; the step function is p_s(x)=(floor(k*x)+1{x!=1})/k with k=15-10*s, yielding a piecewise-constant right-continuous function with k equal steps of height 1/k. The target is a conditional Bernoulli probability, not an intervention effect or a prediction interval. | 0.5714285714285714 |
-| s09 | Pointwise conditional mean | Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0.1,0.2,...,1.0}; the step function is p_s(x)=(floor(k*x)+1{x!=1})/k with k=15-10*s, yielding a piecewise-constant right-continuous function with k equal steps of height 1/k. The target is a conditional Bernoulli probability, not an intervention effect or a prediction interval. | 0.6666666666666666 |
-| s10 | Pointwise conditional mean | Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0.1,0.2,...,1.0}; the step function is p_s(x)=(floor(k*x)+1{x!=1})/k with k=15-10*s, yielding a piecewise-constant right-continuous function with k equal steps of height 1/k. The target is a conditional Bernoulli probability, not an intervention effect or a prediction interval. | 0.6 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>s01</td>
+<td rowspan="10">Pointwise conditional mean</td>
+<td rowspan="10">
+
+$`\mathbb{E}[Y\mid X=0.5]`$
+
+</td>
+<td>0.5714285714285714</td>
+</tr>
+<tr>
+<td>s02</td>
+<td>0.5384615384615384</td>
+</tr>
+<tr>
+<td>s03</td>
+<td>0.5833333333333334</td>
+</tr>
+<tr>
+<td>s04</td>
+<td>0.5454545454545454</td>
+</tr>
+<tr>
+<td>s05</td>
+<td>0.6</td>
+</tr>
+<tr>
+<td>s06</td>
+<td>0.5555555555555556</td>
+</tr>
+<tr>
+<td>s07</td>
+<td>0.625</td>
+</tr>
+<tr>
+<td>s08</td>
+<td>0.5714285714285714</td>
+</tr>
+<tr>
+<td>s09</td>
+<td>0.6666666666666666</td>
+</tr>
+<tr>
+<td>s10</td>
+<td>0.6</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Under the scenario-specific data law.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** s01, s02, s03, s04, s05, s06, s07, s08, s09, s10
+
+Noncausal nonparametric regression function at the fixed query x*=0.5 for a selected source scenario s in {0.1,0.2,...,1.0}; the step function is p_s(x)=(floor(k*x)+1{x!=1})/k with k=15-10*s, yielding a piecewise-constant right-continuous function with k equal steps of height 1/k. The target is a conditional Bernoulli probability, not an intervention effect or a prediction interval.
+
+[Open raw scientific record (JSON)](./nri-binary-step-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** m_s(x*) = E[Y \| X=x*] = p_s(x*)
 

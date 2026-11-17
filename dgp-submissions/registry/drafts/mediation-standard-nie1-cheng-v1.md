@@ -74,9 +74,39 @@ return x,a,m,y,[&quot;binary&quot;],[&quot;continuous&quot;]*4,&quot;continuous&
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| native | NIE | NIE = E[Y(1,M(1))-Y(1,M(0))] in the adapted fixed-SEM superpopulation, jointly intervening on the complete mediator vector. | 0.30114731040193965 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>native</td>
+<td rowspan="1">NIE</td>
+<td rowspan="1">
+
+$`\mathbb{E}\!\left[Y\{1,M(1)\}-Y\{1,M(0)\}\right]`$
+
+</td>
+<td>0.30114731040193965</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: The intervention applies jointly to the complete mediator vector when M is multivariate; the DGP is an adaptation.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** native
+
+NIE = E[Y(1,M(1))-Y(1,M(0))] in the adapted fixed-SEM superpopulation, jointly intervening on the complete mediator vector.
+
+[Open raw scientific record (JSON)](./mediation-standard-nie1-cheng-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** NIE
 

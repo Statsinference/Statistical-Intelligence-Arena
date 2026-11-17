@@ -115,9 +115,39 @@ Y_i(w)=sum_{j=1}^{10} X_ij + theta_i(2w-1)/2 + epsilon_i, w in {0,1}; Y_i(1)-Y_i
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| n400_p1600 | ATE | Population average treatment effect E[Y(1)-Y(0)] in the synthetic superpopulation defined by Section 5.2's misspecified setting, comparing intervention W=1 with W=0 while holding the same pre-treatment X and outcome error fixed. The individual effect is theta(X1), so ATE=E[theta(X1)]. This is not ATT=E[theta(X1)\|W=1]. | 0.38941678711815697 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>n400_p1600</td>
+<td rowspan="1">ATE</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y(1)-Y(0)]`$
+
+</td>
+<td>0.38941678711815697</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Population ATE; expectation is over the DGP's full population.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** n400_p1600
+
+Population average treatment effect E[Y(1)-Y(0)] in the synthetic superpopulation defined by Section 5.2's misspecified setting, comparing intervention W=1 with W=0 while holding the same pre-treatment X and outcome error fixed. The individual effect is theta(X1), so ATE=E[theta(X1)]. This is not ATT=E[theta(X1)\|W=1].
+
+[Open raw scientific record (JSON)](./ate-athey-imbens-wager-2018-arb-v5.json).
+
+</details>
+
 
 **Original submitted target notation:** ATE
 

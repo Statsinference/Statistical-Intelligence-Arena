@@ -83,9 +83,39 @@ Two independent samples from the same population: source_n_labeled rows with obs
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| original | Marginal population cumulative distribution function | Marginal population CDF Pr(Y&lt;=1), using the semi-supervised observation design. | 0.8144533152386513 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>original</td>
+<td rowspan="1">Marginal population cumulative distribution function</td>
+<td rowspan="1">
+
+$`\Pr(Y\le 1)`$
+
+</td>
+<td>0.8144533152386513</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Marginal CDF.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** original
+
+Marginal population CDF Pr(Y&lt;=1), using the semi-supervised observation design.
+
+[Open raw scientific record (JSON)](./sspi-wen-2025-gaussian-cdf-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** F_Y(1)
 

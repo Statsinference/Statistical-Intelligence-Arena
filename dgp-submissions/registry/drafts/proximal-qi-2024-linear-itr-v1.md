@@ -80,10 +80,43 @@ Y&=2+0.25s+8m_W+2(W-m_W)\\
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| L1 | ATE | ATE = E[0.5 + 3X1 - 5X2 + c4 W]. | 0.10888711551018415 |
-| L2 | ATE | ATE = E[0.5 + 3X1 - 5X2 + c4 W]. | 0.0 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>L1</td>
+<td rowspan="2">ATE</td>
+<td rowspan="2">
+
+$`\mathbb{E}[Y(1)-Y(0)]`$
+
+</td>
+<td>0.10888711551018415</td>
+</tr>
+<tr>
+<td>L2</td>
+<td>0.0</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Source population; original bridge-function derivation remains available.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** L1, L2
+
+ATE = E[0.5+3X1−5X2+c4 W]。
+
+[Open raw scientific record (JSON)](./proximal-qi-2024-linear-itr-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** ATE
 

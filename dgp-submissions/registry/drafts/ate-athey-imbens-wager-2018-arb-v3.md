@@ -137,16 +137,67 @@ Y_i(w)=X_i^T beta_Y+0.5 w+epsilon_i2; ATE=E[Y_i(1)-Y_i(0)]=0.5.
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| prop_very_sparse_bw1_by1 | ATE | E[Y(1)-Y(0)] under interventions setting W=1 versus W=0 in the superpopulation defined by the sparse two-stage DGP; use the same pre-treatment X and epsilon_2 for both potential outcomes. | 0.5 |
-| prop_very_sparse_bw1_by4 | ATE | E[Y(1)-Y(0)] under interventions setting W=1 versus W=0 in the superpopulation defined by the sparse two-stage DGP; use the same pre-treatment X and epsilon_2 for both potential outcomes. | 0.5 |
-| prop_very_sparse_bw4_by1 | ATE | E[Y(1)-Y(0)] under interventions setting W=1 versus W=0 in the superpopulation defined by the sparse two-stage DGP; use the same pre-treatment X and epsilon_2 for both potential outcomes. | 0.5 |
-| prop_very_sparse_bw4_by4 | ATE | E[Y(1)-Y(0)] under interventions setting W=1 versus W=0 in the superpopulation defined by the sparse two-stage DGP; use the same pre-treatment X and epsilon_2 for both potential outcomes. | 0.5 |
-| prop_dense_bw1_by1 | ATE | E[Y(1)-Y(0)] under interventions setting W=1 versus W=0 in the superpopulation defined by the sparse two-stage DGP; use the same pre-treatment X and epsilon_2 for both potential outcomes. | 0.5 |
-| prop_dense_bw1_by4 | ATE | E[Y(1)-Y(0)] under interventions setting W=1 versus W=0 in the superpopulation defined by the sparse two-stage DGP; use the same pre-treatment X and epsilon_2 for both potential outcomes. | 0.5 |
-| prop_dense_bw4_by1 | ATE | E[Y(1)-Y(0)] under interventions setting W=1 versus W=0 in the superpopulation defined by the sparse two-stage DGP; use the same pre-treatment X and epsilon_2 for both potential outcomes. | 0.5 |
-| prop_dense_bw4_by4 | ATE | E[Y(1)-Y(0)] under interventions setting W=1 versus W=0 in the superpopulation defined by the sparse two-stage DGP; use the same pre-treatment X and epsilon_2 for both potential outcomes. | 0.5 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>prop_very_sparse_bw1_by1</td>
+<td rowspan="8">ATE</td>
+<td rowspan="8">
+
+$`\mathbb{E}[Y(1)-Y(0)]`$
+
+</td>
+<td>0.5</td>
+</tr>
+<tr>
+<td>prop_very_sparse_bw1_by4</td>
+<td>0.5</td>
+</tr>
+<tr>
+<td>prop_very_sparse_bw4_by1</td>
+<td>0.5</td>
+</tr>
+<tr>
+<td>prop_very_sparse_bw4_by4</td>
+<td>0.5</td>
+</tr>
+<tr>
+<td>prop_dense_bw1_by1</td>
+<td>0.5</td>
+</tr>
+<tr>
+<td>prop_dense_bw1_by4</td>
+<td>0.5</td>
+</tr>
+<tr>
+<td>prop_dense_bw4_by1</td>
+<td>0.5</td>
+</tr>
+<tr>
+<td>prop_dense_bw4_by4</td>
+<td>0.5</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Population ATE; expectation is over the DGP's full population.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** prop_very_sparse_bw1_by1, prop_very_sparse_bw1_by4, prop_very_sparse_bw4_by1, prop_very_sparse_bw4_by4, prop_dense_bw1_by1, prop_dense_bw1_by4, prop_dense_bw4_by1, prop_dense_bw4_by4
+
+E[Y(1)-Y(0)] under interventions setting W=1 versus W=0 in the superpopulation defined by the sparse two-stage DGP; use the same pre-treatment X and epsilon_2 for both potential outcomes.
+
+[Open raw scientific record (JSON)](./ate-athey-imbens-wager-2018-arb-v3.json).
+
+</details>
+
 
 **Original submitted target notation:** ATE
 

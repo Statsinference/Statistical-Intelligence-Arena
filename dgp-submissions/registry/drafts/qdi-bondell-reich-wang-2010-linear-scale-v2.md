@@ -66,9 +66,35 @@ Q_\tau(x)=1+\sum_{j=1}^4x_j+\left(1+0.1\sum_{j=1}^4x_j\right)\Phi^{-1}(\tau)
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| source_law_fixed_query | Conditional quantile | Conditional 0.9 quantile at X=(0.5,0.5,0.5,0.5) in source Example 1. | 4.537861878653521 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>source_law_fixed_query</td>
+<td rowspan="1">Conditional quantile</td>
+<td rowspan="1">
+
+$`Q_{0.9}(Y\mid X=(0.5,0.5,0.5,0.5))`$
+
+</td>
+<td>4.537861878653521</td>
+</tr>
+</tbody>
+</table>
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** source_law_fixed_query
+
+Conditional 0.9 quantile at X=(0.5,0.5,0.5,0.5) in source Example 1.
+
+[Open raw scientific record (JSON)](./qdi-bondell-reich-wang-2010-linear-scale-v2.json).
+
+</details>
+
 
 **Original submitted target notation:** Q_{0.9}(x_query)
 

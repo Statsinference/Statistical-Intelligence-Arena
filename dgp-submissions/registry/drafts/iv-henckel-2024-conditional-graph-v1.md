@@ -126,10 +126,43 @@ tau_YX = coefficient[Y,X] + coefficient[M,X]*coefficient[Y,M].
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| frozen_gaussian | Population total causal effect | Population total effect d E[Y\|do(X=x)]/dx, equivalently E[Y\|do(X=1)]-E[Y\|do(X=0)], including X-&gt;M-&gt;Y. | -0.018451871582129575 |
-| frozen_uniform | Population total causal effect | Population total effect d E[Y\|do(X=x)]/dx, equivalently E[Y\|do(X=1)]-E[Y\|do(X=0)], including X-&gt;M-&gt;Y. | -0.018451871582129575 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>frozen_gaussian</td>
+<td rowspan="2">Population total causal effect</td>
+<td rowspan="2">
+
+$`\frac{d}{dx}\mathbb{E}[Y\mid\operatorname{do}(X=x)]`$
+
+</td>
+<td>-0.018451871582129575</td>
+</tr>
+<tr>
+<td>frozen_uniform</td>
+<td>-0.018451871582129575</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Population total causal effect, including mediated pathways.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** frozen_gaussian, frozen_uniform
+
+Population total effect d E[Y\|do(X=x)]/dx, equivalently E[Y\|do(X=1)]-E[Y\|do(X=0)], including X-&gt;M-&gt;Y.
+
+[Open raw scientific record (JSON)](./iv-henckel-2024-conditional-graph-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** tau_YX
 

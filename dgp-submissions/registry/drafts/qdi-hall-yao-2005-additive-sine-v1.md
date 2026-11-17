@@ -64,9 +64,35 @@ F_{Y\mid X}(y\mid x)=\Phi\!\left(y-\frac12\sum_{j=1}^4\sin x_j\right)
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| source_law_fixed_query | Conditional cumulative distribution function | Conditional CDF P(Y&lt;=0.5 \| X=(0.5,0.25,-0.5,1)); conditioning is on the full four-dimensional X, not on the fitted index. | 0.4822778463878529 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>source_law_fixed_query</td>
+<td rowspan="1">Conditional cumulative distribution function</td>
+<td rowspan="1">
+
+$`\Pr(Y\le 0.5\mid X=(0.5,0.25,-0.5,1))`$
+
+</td>
+<td>0.4822778463878529</td>
+</tr>
+</tbody>
+</table>
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** source_law_fixed_query
+
+Conditional CDF P(Y&lt;=0.5 \| X=(0.5,0.25,-0.5,1)); conditioning is on the full four-dimensional X, not on the fitted index.
+
+[Open raw scientific record (JSON)](./qdi-hall-yao-2005-additive-sine-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** F_{Y\|X}(0.5\|x_query)
 

@@ -78,9 +78,35 @@ Two independent samples from the same population: source_n_labeled rows with obs
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| original | Population outcome mean | Population mean of Y, aided by the observed discrete prediction. | 0.6666666666666666 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>original</td>
+<td rowspan="1">Population outcome mean</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y]`$
+
+</td>
+<td>0.6666666666666666</td>
+</tr>
+</tbody>
+</table>
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** original
+
+Population mean of Y, aided by the observed discrete prediction.
+
+[Open raw scientific record (JSON)](./sspi-ji-2026-discrete-surrogate-mean-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** E[Y]
 

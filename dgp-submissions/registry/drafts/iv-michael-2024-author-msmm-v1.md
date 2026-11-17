@@ -93,9 +93,35 @@ Y=\sum_{t=1}^{3}U_{t}/\sqrt{3}+\sum_{t=1}^{3}(L_{t}-m_{t})/\sqrt{3}+\sum_{t=1}^{
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| author_T3 | Final-period marginal structural mean effect | English description not yet supplied; consult the original scientific record (JSON). | 1.0 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>author_T3</td>
+<td rowspan="1">Final-period marginal structural mean effect</td>
+<td rowspan="1">
+
+Definition needs review; see the submitted definition below.
+
+</td>
+<td>1.0</td>
+</tr>
+</tbody>
+</table>
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** author_T3
+
+Original-language definition is available in the raw scientific record (JSON).
+
+[Open raw scientific record (JSON)](./iv-michael-2024-author-msmm-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** beta_T
 

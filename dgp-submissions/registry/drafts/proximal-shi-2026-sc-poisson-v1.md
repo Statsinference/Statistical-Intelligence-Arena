@@ -63,9 +63,39 @@ All source loadings equal one in this configuration.
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| journal_r1_no_covariates | Causal log mean ratio | Beta = log(E[Y_t(1)] / E[Y_t(0)]) = -2; the mean ratio is exp(-2). | -2.0 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>journal_r1_no_covariates</td>
+<td rowspan="1">Causal log mean ratio</td>
+<td rowspan="1">
+
+$`\log\{\mathbb{E}[Y_t(1)]/\mathbb{E}[Y_t(0)]\}`$
+
+</td>
+<td>-2.0</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Treated unit; post-period marginal means.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** journal_r1_no_covariates
+
+Original-language definition is available in the raw scientific record (JSON).
+
+[Open raw scientific record (JSON)](./proximal-shi-2026-sc-poisson-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** theta
 

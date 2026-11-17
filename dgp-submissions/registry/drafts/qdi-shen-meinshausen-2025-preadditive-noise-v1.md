@@ -133,12 +133,51 @@ q_s=inf{y:P_eta(g_s(0.5+eta)&lt;=y)&gt;=0.5}; (q_softplus,q_square,q_cubic,q_log
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| softplus | Conditional quantile | For each scenario s, q_s(0.5;0.5)=inf{y:F_s(y;0.5)&gt;=0.5}, F_s(y;x)=P_eta[g_s(x+eta)&lt;=y], eta~N(0,sigma_s^2). A scalar conditional median at an interior covariate point; not a marginal quantile, causal effect, prediction interval or simultaneous band. | 0.9740769841801067 |
-| square | Conditional quantile | For each scenario s, q_s(0.5;0.5)=inf{y:F_s(y;0.5)&gt;=0.5}, F_s(y;x)=P_eta[g_s(x+eta)&lt;=y], eta~N(0,sigma_s^2). A scalar conditional median at an interior covariate point; not a marginal quantile, causal effect, prediction interval or simultaneous band. | 0.125 |
-| cubic | Conditional quantile | For each scenario s, q_s(0.5;0.5)=inf{y:F_s(y;0.5)&gt;=0.5}, F_s(y;x)=P_eta[g_s(x+eta)&lt;=y], eta~N(0,sigma_s^2). A scalar conditional median at an interior covariate point; not a marginal quantile, causal effect, prediction interval or simultaneous band. | 0.041666666666666664 |
-| log | Conditional quantile | For each scenario s, q_s(0.5;0.5)=inf{y:F_s(y;0.5)&gt;=0.5}, F_s(y;x)=P_eta[g_s(x+eta)&lt;=y], eta~N(0,sigma_s^2). A scalar conditional median at an interior covariate point; not a marginal quantile, causal effect, prediction interval or simultaneous band. | 0.5986122886681097 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>softplus</td>
+<td rowspan="4">Conditional quantile</td>
+<td rowspan="4">
+
+$`Q_{0.5}(Y\mid X=0.5)`$
+
+</td>
+<td>0.9740769841801067</td>
+</tr>
+<tr>
+<td>square</td>
+<td>0.125</td>
+</tr>
+<tr>
+<td>cubic</td>
+<td>0.041666666666666664</td>
+</tr>
+<tr>
+<td>log</td>
+<td>0.5986122886681097</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Under the scenario-specific conditional law.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** softplus, square, cubic, log
+
+For each scenario s, q_s(0.5;0.5)=inf{y:F_s(y;0.5)&gt;=0.5}, F_s(y;x)=P_eta[g_s(x+eta)&lt;=y], eta~N(0,sigma_s^2). A scalar conditional median at an interior covariate point; not a marginal quantile, causal effect, prediction interval or simultaneous band.
+
+[Open raw scientific record (JSON)](./qdi-shen-meinshausen-2025-preadditive-noise-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** q_s(0.5;0.5)
 

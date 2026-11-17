@@ -127,12 +127,51 @@ Settings S1/S2/S3 counts are 100/0/0,60/20/20,10/90/0,10/0/90. Frozen realized c
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| setting1_valid | Population unit-change structural mean effect ⚠ review | Population constant causal slope dE[Y\|do(A=a)]/da=0.4, equivalently unit contrast E[Y\|do(A=1)]-E[Y\|do(A=0)], in the frozen SNP coefficient population. | 0.4 |
-| setting2_mixed40 | Population unit-change structural mean effect ⚠ review | Population constant causal slope dE[Y\|do(A=a)]/da=0.4, equivalently unit contrast E[Y\|do(A=1)]-E[Y\|do(A=0)], in the frozen SNP coefficient population. | 0.4 |
-| setting3_inside90 | Population unit-change structural mean effect ⚠ review | Population constant causal slope dE[Y\|do(A=a)]/da=0.4, equivalently unit contrast E[Y\|do(A=1)]-E[Y\|do(A=0)], in the frozen SNP coefficient population. | 0.4 |
-| setting4_correlated90 | Population unit-change structural mean effect ⚠ review | Population constant causal slope dE[Y\|do(A=a)]/da=0.4, equivalently unit contrast E[Y\|do(A=1)]-E[Y\|do(A=0)], in the frozen SNP coefficient population. | 0.4 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>setting1_valid</td>
+<td rowspan="4">Population unit-change structural mean effect ⚠ review</td>
+<td rowspan="4">
+
+$`\frac{d}{da}\mathbb{E}[Y\mid\operatorname{do}(A=a)]`$
+
+</td>
+<td>0.4</td>
+</tr>
+<tr>
+<td>setting2_mixed40</td>
+<td>0.4</td>
+</tr>
+<tr>
+<td>setting3_inside90</td>
+<td>0.4</td>
+</tr>
+<tr>
+<td>setting4_correlated90</td>
+<td>0.4</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Frozen SNP coefficient population; duplicate-ID conflict still needs review.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** setting1_valid, setting2_mixed40, setting3_inside90, setting4_correlated90
+
+Population constant causal slope dE[Y\|do(A=a)]/da=0.4, equivalently unit contrast E[Y\|do(A=1)]-E[Y\|do(A=0)], in the frozen SNP coefficient population.
+
+[Open raw scientific record (JSON)](./iv-ye-2024-genius-heteroskedastic-v1-conflict-8dd1770580.json).
+
+</details>
+
 
 **Original submitted target notation:** beta
 

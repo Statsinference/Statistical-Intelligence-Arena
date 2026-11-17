@@ -87,9 +87,39 @@ Y | M, D, Z, X ~ N(210 + 1.5 Z - D + M + [27.4, 13.7, 13.7, 13.7]^T X, 1)
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| original | NDE | Intention-to-treat natural direct effect of the randomized treatment Z with mediator M, in a design that also contains a post-treatment event D (for example noncompliance). Setting Z = z lets the post-treatment event take D(z), while the mediator is held at M(0). This is NOT the principal-stratum quantity theta^(10)_10 that the source plots, NOT an indirect effect, and NOT a complier average causal effect. | 1.180857104770165 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>original</td>
+<td rowspan="1">NDE</td>
+<td rowspan="1">
+
+$`\mathbb{E}\!\left[Y\{1,M(0)\}-Y\{0,M(0)\}\right]`$
+
+</td>
+<td>1.180857104770165</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: The 1/0 intervention refers to randomized assignment Z; the post-treatment event follows its treatment-specific value D(z). This ITT natural direct effect is not the principal-stratum figure target.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** original
+
+Intention-to-treat natural direct effect of the randomized treatment Z with mediator M, in a design that also contains a post-treatment event D (for example noncompliance). Setting Z = z lets the post-treatment event take D(z), while the mediator is held at M(0). This is NOT the principal-stratum quantity theta^(10)_10 that the source plots, NOT an indirect effect, and NOT a complier average causal effect.
+
+[Open raw scientific record (JSON)](./mediation-cheng-li-2025-principal-strata-kang-schafer-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** ITT-NDE = E[Y_{1 M_0}] - E[Y_{0 M_0}]
 

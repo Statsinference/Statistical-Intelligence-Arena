@@ -99,9 +99,39 @@ NDE=E_X[3+3{pC(1,X)-pC(0,X)}+4pC(1,X)+2pM(0,X)]
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| section_4_1_binary | NDE | E[Y(1,M(0))-Y(0,M(0))] under the specified binary copula structural model, with C following the treatment in each outcome potential. | 5.4954757582156875 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>section_4_1_binary</td>
+<td rowspan="1">NDE</td>
+<td rowspan="1">
+
+$`\mathbb{E}\!\left[Y\{1,M(0)\}-Y\{0,M(0)\}\right]`$
+
+</td>
+<td>5.4954757582156875</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: The treatment-induced C follows its treatment-specific value in each outcome potential.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** section_4_1_binary
+
+E[Y(1,M(0))-Y(0,M(0))] under the specified binary copula structural model, with C following the treatment in each outcome potential.
+
+[Open raw scientific record (JSON)](./mediation-xia-chan-2023-binary-plackett-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** NDE
 

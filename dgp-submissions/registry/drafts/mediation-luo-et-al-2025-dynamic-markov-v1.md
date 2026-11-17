@@ -101,9 +101,39 @@ eta_1^(10)= [E sum R_t|do A=1 - E sum R_t|do A=0] - [E sum R_t|do A=1,M_t1=0 - E
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| finite_T10_seeded_coefficients | Dynamic mediation effect | For ten time points, contrast E[sum_t R_t\|do(A_s=1)]-E[sum_t R_t\|do(A_s=0)] and subtract the same contrast with do(M_{s,1}=0) for all s. | -0.02804345470955405 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>finite_T10_seeded_coefficients</td>
+<td rowspan="1">Dynamic mediation effect</td>
+<td rowspan="1">
+
+$`\Delta-\Delta_{M_1=0}`$
+
+</td>
+<td>-0.02804345470955405</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: $`\Delta=\mathbb{E}_{\mathrm{do}(A_{1:10}=\mathbf{1})}[\sum_{t=1}^{10}R_t]-\mathbb{E}_{\mathrm{do}(A_{1:10}=\mathbf{0})}[\sum_{t=1}^{10}R_t]`$ The second term in the definition is the same contrast with the first mediator set to zero at every time point.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** finite_T10_seeded_coefficients
+
+For ten time points, contrast E[sum_t R_t\|do(A_s=1)]-E[sum_t R_t\|do(A_s=0)] and subtract the same contrast with do(M_{s,1}=0) for all s.
+
+[Open raw scientific record (JSON)](./mediation-luo-et-al-2025-dynamic-markov-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** eta_1^(10)
 

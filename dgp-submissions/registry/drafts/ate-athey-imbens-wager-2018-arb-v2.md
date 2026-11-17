@@ -177,16 +177,67 @@ Structural interpretation for w in {0,1}: Y_i(w)=X_i^T beta+w+epsilon_i, so ATE=
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| eta_01_dense | ATE | Superpopulation average effect of the intervention setting W from 0 to 1, holding the pretreatment covariate vector X fixed in the potential outcomes, under the many-cluster DGP. This is a population ATE, not an estimator RMSE or finite-sample treatment-group contrast. | 1.0 |
-| eta_01_harmonic | ATE | Superpopulation average effect of the intervention setting W from 0 to 1, holding the pretreatment covariate vector X fixed in the potential outcomes, under the many-cluster DGP. This is a population ATE, not an estimator RMSE or finite-sample treatment-group contrast. | 1.0 |
-| eta_01_moderately_sparse | ATE | Superpopulation average effect of the intervention setting W from 0 to 1, holding the pretreatment covariate vector X fixed in the potential outcomes, under the many-cluster DGP. This is a population ATE, not an estimator RMSE or finite-sample treatment-group contrast. | 1.0 |
-| eta_01_very_sparse | ATE | Superpopulation average effect of the intervention setting W from 0 to 1, holding the pretreatment covariate vector X fixed in the potential outcomes, under the many-cluster DGP. This is a population ATE, not an estimator RMSE or finite-sample treatment-group contrast. | 1.0 |
-| eta_025_dense | ATE | Superpopulation average effect of the intervention setting W from 0 to 1, holding the pretreatment covariate vector X fixed in the potential outcomes, under the many-cluster DGP. This is a population ATE, not an estimator RMSE or finite-sample treatment-group contrast. | 1.0 |
-| eta_025_harmonic | ATE | Superpopulation average effect of the intervention setting W from 0 to 1, holding the pretreatment covariate vector X fixed in the potential outcomes, under the many-cluster DGP. This is a population ATE, not an estimator RMSE or finite-sample treatment-group contrast. | 1.0 |
-| eta_025_moderately_sparse | ATE | Superpopulation average effect of the intervention setting W from 0 to 1, holding the pretreatment covariate vector X fixed in the potential outcomes, under the many-cluster DGP. This is a population ATE, not an estimator RMSE or finite-sample treatment-group contrast. | 1.0 |
-| eta_025_very_sparse | ATE | Superpopulation average effect of the intervention setting W from 0 to 1, holding the pretreatment covariate vector X fixed in the potential outcomes, under the many-cluster DGP. This is a population ATE, not an estimator RMSE or finite-sample treatment-group contrast. | 1.0 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>eta_01_dense</td>
+<td rowspan="8">ATE</td>
+<td rowspan="8">
+
+$`\mathbb{E}[Y(1)-Y(0)]`$
+
+</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>eta_01_harmonic</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>eta_01_moderately_sparse</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>eta_01_very_sparse</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>eta_025_dense</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>eta_025_harmonic</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>eta_025_moderately_sparse</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>eta_025_very_sparse</td>
+<td>1.0</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Population ATE; expectation is over the DGP's full population.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** eta_01_dense, eta_01_harmonic, eta_01_moderately_sparse, eta_01_very_sparse, eta_025_dense, eta_025_harmonic, eta_025_moderately_sparse, eta_025_very_sparse
+
+Superpopulation average effect of the intervention setting W from 0 to 1, holding the pretreatment covariate vector X fixed in the potential outcomes, under the many-cluster DGP. This is a population ATE, not an estimator RMSE or finite-sample treatment-group contrast.
+
+[Open raw scientific record (JSON)](./ate-athey-imbens-wager-2018-arb-v2.json).
+
+</details>
+
 
 **Original submitted target notation:** ATE = E[Y(1)-Y(0)]
 

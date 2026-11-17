@@ -86,9 +86,39 @@ Independent units and independent outcome noise. Two iid samples from the same p
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| source_fixed | Population outcome mean | Superpopulation mean theta=E[Y] under the declared fixed mechanism, shared by labeled and unlabeled samples. | 0.625 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>source_fixed</td>
+<td rowspan="1">Population outcome mean</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y]`$
+
+</td>
+<td>0.625</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Mean in the common labeled/unlabeled population.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** source_fixed
+
+Superpopulation mean theta=E[Y] under the declared fixed mechanism, shared by labeled and unlabeled samples.
+
+[Open raw scientific record (JSON)](./sspi-zhang-bradic-202206-interaction-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** theta = E[Y]
 

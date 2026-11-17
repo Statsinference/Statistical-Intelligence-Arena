@@ -87,9 +87,39 @@ Y = m(X) + A tau(X) + eps, eps ~ Normal(0,1)
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| original | CATE | Conditional average treatment effect at the declared query point; in this design it is identically zero for every x, which makes it a null-effect control for bias and interval coverage under confounding. | 0.0 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>original</td>
+<td rowspan="1">CATE</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y(1)-Y(0)\mid X=x_0]`$
+
+</td>
+<td>0.0</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Primary query x_0=(0.5,0.5,0.5,0.5,0.5); recovered from the original submission truth.py. The CATE is 0 at every query point.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** original
+
+Conditional average treatment effect at the declared query point; in this design it is identically zero for every x, which makes it a null-effect control for bias and interval coverage under confounding.
+
+[Open raw scientific record (JSON)](./cate-wager-2018-null-confounded-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** tau(x0) = E[Y(1) - Y(0) \| X = x0]
 

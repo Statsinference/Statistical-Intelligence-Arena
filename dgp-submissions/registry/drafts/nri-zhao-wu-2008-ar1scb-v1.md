@@ -97,10 +97,49 @@ Return (X_i,Y_i)=(Y_(burn_in+i-1),Y_(burn_in+i)), i=1..n. Deterministic export i
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| original-s04 | Pointwise conditional mean | Pointwise conditional mean of the Markov regression at a single fixed query point x0 inside the source design interval T = [-1.1,1.1]; a scalar quantity, not a simultaneous confidence band and not a coverage probability. | 0.4314829847437827 |
-| interior-anchor | Pointwise conditional mean | Pointwise conditional mean of the Markov regression at a single fixed query point x0 inside the source design interval T = [-1.1,1.1]; a scalar quantity, not a simultaneous confidence band and not a coverage probability. | 0.0 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>original-s04</td>
+<td rowspan="1">Pointwise conditional mean</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y_i\mid X_i=0.5]`$
+
+</td>
+<td>0.4314829847437827</td>
+</tr>
+<tr>
+<td>interior-anchor</td>
+<td rowspan="1">Pointwise conditional mean</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y_i\mid X_i=0]`$
+
+</td>
+<td>0.0</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Pointwise mean of the Markov regression.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** original-s04, interior-anchor
+
+Pointwise conditional mean of the Markov regression at a single fixed query point x0 inside the source design interval T = [-1.1,1.1]; a scalar quantity, not a simultaneous confidence band and not a coverage probability.
+
+[Open raw scientific record (JSON)](./nri-zhao-wu-2008-ar1scb-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** mu(x0) = E[Y_i \| X_i = x0] = 0.9*sin(x0)
 

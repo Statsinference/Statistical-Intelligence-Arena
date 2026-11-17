@@ -98,10 +98,39 @@ E &= 1\{T\leq C\}.
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| source_G | Conditional complier median causal effect | English description not yet supplied; consult the original scientific record (JSON). | 0.5 |
-| source_H | Conditional complier median causal effect | English description not yet supplied; consult the original scientific record (JSON). | 0.5809171213641415 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>source_G</td>
+<td rowspan="2">Conditional complier median causal effect</td>
+<td rowspan="2">
+
+Definition needs review; see the submitted definition below.
+
+</td>
+<td>0.5</td>
+</tr>
+<tr>
+<td>source_H</td>
+<td>0.5809171213641415</td>
+</tr>
+</tbody>
+</table>
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** source_G, source_H
+
+Original-language definition is available in the raw scientific record (JSON).
+
+[Open raw scientific record (JSON)](./iv-wei-2021-censored-quantile-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** CQCE(.5)
 

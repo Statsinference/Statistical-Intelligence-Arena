@@ -94,9 +94,39 @@ Y=100+(10+P)*S*psi(T)-2*P+e
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| paper_raw_rho08 | Population structural mean price contrast | Population structural mean contrast of a one-unit price intervention, averaging independent T~Uniform(0,10) and S~DiscreteUniform(1,...,7); nuisance latent errors retain their marginal distribution. | -11.624351792971128 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>paper_raw_rho08</td>
+<td rowspan="1">Population structural mean price contrast</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y(21)-Y(20)]`$
+
+</td>
+<td>-11.624351792971128</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Intervention on price P, averaged over T and S.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** paper_raw_rho08
+
+Population structural mean contrast of a one-unit price intervention, averaging independent T~Uniform(0,10) and S~DiscreteUniform(1,...,7); nuisance latent errors retain their marginal distribution.
+
+[Open raw scientific record (JSON)](./iv-hartford-2017-demand-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** theta_IV = E[Y(do(P=21))-Y(do(P=20))]
 

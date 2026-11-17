@@ -79,9 +79,39 @@ h(W,A,X)=2+2A+4W+0.25s
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| original | ATE | ATE = E[Y(1) - Y(0)] = 2. | 2.0 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>original</td>
+<td rowspan="1">ATE</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y(1)-Y(0)]`$
+
+</td>
+<td>2.0</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Source population; original bridge-function derivation remains available.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** original
+
+ATE = E[Y(1)−Y(0)] = 2。
+
+[Open raw scientific record (JSON)](./proximal-cui-2024-linear-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** ATE
 

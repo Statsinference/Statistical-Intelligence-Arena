@@ -80,9 +80,39 @@ theta=E(Y)=0.454648713412841
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| original | Full-data population outcome mean | Full-data superpopulation response mean before outcome masking. | 0.45464871341284085 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>original</td>
+<td rowspan="1">Full-data population outcome mean</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y]`$
+
+</td>
+<td>0.45464871341284085</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Full-data superpopulation mean before outcome masking.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** original
+
+Full-data superpopulation response mean before outcome masking.
+
+[Open raw scientific record (JSON)](./mdi-mueller-2009-cosine-mean-mar-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** theta = E(Y)
 

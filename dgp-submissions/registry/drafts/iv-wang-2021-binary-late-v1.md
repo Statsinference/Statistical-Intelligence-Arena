@@ -97,9 +97,39 @@ p_{1}=(n(1-\phi_{3}),\ n\phi_{3},\ a(1-\phi_{4})+c(1-q_{1}),\ a\phi_{4}+c q_{1})
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| source_additive | Conditional LATE curve transformed-slope parameter | Slope alpha1 in atanh(delta_L(x))=alpha0+alpha1*x, where delta_L(x)=E[Y(1)-Y(0)\|D(1)&gt;D(0),x]. Potential outcomes contrast D=1 versus D=0 among conditional compliers. Equivalently [atanh(delta_L(0.5))-atanh(delta_L(-0.5))]/1.0 under the declared curve model. This parameter is not a risk difference itself and is not the population ATE. | -1.0 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>source_additive</td>
+<td rowspan="1">Conditional LATE curve transformed-slope parameter</td>
+<td rowspan="1">
+
+$`\alpha_1=\frac{d}{dx}\operatorname{atanh}\{\delta_L(x)\},\quad \delta_L(x)=\mathbb{E}[Y(1)-Y(0)\mid D(1)\gt D(0),X=x]`$
+
+</td>
+<td>-1.0</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: The slope alpha_1 of the transformed conditional complier-effect curve, not the conditional or population LATE itself.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** source_additive
+
+Slope alpha1 in atanh(delta_L(x))=alpha0+alpha1*x, where delta_L(x)=E[Y(1)-Y(0)\|D(1)&gt;D(0),x]. Potential outcomes contrast D=1 versus D=0 among conditional compliers. Equivalently [atanh(delta_L(0.5))-atanh(delta_L(-0.5))]/1.0 under the declared curve model. This parameter is not a risk difference itself and is not the population ATE.
+
+[Open raw scientific record (JSON)](./iv-wang-2021-binary-late-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** alpha1
 

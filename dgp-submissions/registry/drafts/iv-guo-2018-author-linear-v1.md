@@ -86,9 +86,39 @@ Y=-0.5+\beta D+\sum_{j=1}^{10} \pi_{j}Z_{j}+\varepsilon_{Y}
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| author_lowdim | Population unit-change structural mean effect | English description not yet supplied; consult the original scientific record (JSON). | 1.0 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>author_lowdim</td>
+<td rowspan="1">Population unit-change structural mean effect</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y(d+1)-Y(d)]`$
+
+</td>
+<td>1.0</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Structural unit intervention on D; superpopulation.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** author_lowdim
+
+Original-language definition is available in the raw scientific record (JSON).
+
+[Open raw scientific record (JSON)](./iv-guo-2018-author-linear-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** beta
 

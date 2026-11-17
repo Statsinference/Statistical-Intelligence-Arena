@@ -98,9 +98,39 @@ NIE_1=sum_j alpha_j beta_j=2
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| simulation_b_n200_p100_rho05 | NIE | E[Y(1,M(1))-Y(1,M(0))] for the full 100-vector mediator under the additive structural equations. | 2.0 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>simulation_b_n200_p100_rho05</td>
+<td rowspan="1">NIE</td>
+<td rowspan="1">
+
+$`\mathbb{E}\!\left[Y\{1,M(1)\}-Y\{1,M(0)\}\right]`$
+
+</td>
+<td>2.0</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: M is the full 100-dimensional mediator vector.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** simulation_b_n200_p100_rho05
+
+E[Y(1,M(1))-Y(1,M(0))] for the full 100-vector mediator under the additive structural equations.
+
+[Open raw scientific record (JSON)](./mediation-jones-et-al-2025-correlated-sparse-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** NIE_1
 

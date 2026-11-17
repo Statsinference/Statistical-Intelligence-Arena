@@ -78,9 +78,35 @@ h(W)&=W_1/3+(W_2+W_3+W_4+W_5)/6\\
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| journal_r5_stationary | Needs review | ETT = E[Y_t(1)-Y_t(0)] = 2, also when averaged over post-treatment periods. | 2.0 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>journal_r5_stationary</td>
+<td rowspan="1">Needs review</td>
+<td rowspan="1">
+
+Definition needs review; see the submitted definition below.
+
+</td>
+<td>2.0</td>
+</tr>
+</tbody>
+</table>
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** journal_r5_stationary
+
+Original-language definition is available in the raw scientific record (JSON).
+
+[Open raw scientific record (JSON)](./proximal-shi-2026-sc-gaussian-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** ETT
 

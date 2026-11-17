@@ -108,10 +108,43 @@ Y_i = beta*D_i + Z_i^T alpha + epsilon_i. Only Z1,...,Z21,D,Y are observed outpu
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| code_case_2 | Population unit-change structural mean effect | Homogeneous structural coefficient: E[Y(do(D=d+1))-Y(do(D=d))]=beta for the specified superpopulation; both scenarios beta=1. Not LATE. | 1.0 |
-| code_case_1 | Population unit-change structural mean effect | Homogeneous structural coefficient: E[Y(do(D=d+1))-Y(do(D=d))]=beta for the specified superpopulation; both scenarios beta=1. Not LATE. | 1.0 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>code_case_2</td>
+<td rowspan="2">Population unit-change structural mean effect</td>
+<td rowspan="2">
+
+$`\mathbb{E}[Y(d+1)-Y(d)]`$
+
+</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>code_case_1</td>
+<td>1.0</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Structural unit intervention on D; superpopulation.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** code_case_2, code_case_1
+
+Homogeneous structural coefficient: E[Y(do(D=d+1))-Y(do(D=d))]=beta for the specified superpopulation; both scenarios beta=1. Not LATE.
+
+[Open raw scientific record (JSON)](./iv-lin-2024-wit-code-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** beta
 

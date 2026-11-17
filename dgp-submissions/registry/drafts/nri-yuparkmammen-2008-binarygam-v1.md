@@ -122,10 +122,43 @@ Y|X~Bernoulli(m) or Poisson(m); Bernoulli inversion or Knuth product sampler; re
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| original-bernoulli | Pointwise conditional mean | Conditional mean of the response at the fixed query point x0 = (0.5, 0.5) in the superpopulation defined by the fixed DGP: m(x0) = expit(eta(x0)) in scenario original-bernoulli (a classification probability) and m(x0) = exp(eta(x0)) in scenario original-poisson (a conditional count mean), with eta(x) = sin(pi x1) + 0.5 [x2 + sin(pi x2)]. A pointwise scalar query only; it is not a simultaneous confidence band over the covariate region. | 0.8519528019683106 |
-| original-poisson | Pointwise conditional mean | Conditional mean of the response at the fixed query point x0 = (0.5, 0.5) in the superpopulation defined by the fixed DGP: m(x0) = expit(eta(x0)) in scenario original-bernoulli (a classification probability) and m(x0) = exp(eta(x0)) in scenario original-poisson (a conditional count mean), with eta(x) = sin(pi x1) + 0.5 [x2 + sin(pi x2)]. A pointwise scalar query only; it is not a simultaneous confidence band over the covariate region. | 5.754602676005731 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>original-bernoulli</td>
+<td rowspan="2">Pointwise conditional mean</td>
+<td rowspan="2">
+
+$`\mathbb{E}[Y\mid X=(0.5,0.5)]`$
+
+</td>
+<td>0.8519528019683106</td>
+</tr>
+<tr>
+<td>original-poisson</td>
+<td>5.754602676005731</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Under the scenario-specific data law.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** original-bernoulli, original-poisson
+
+Conditional mean of the response at the fixed query point x0 = (0.5, 0.5) in the superpopulation defined by the fixed DGP: m(x0) = expit(eta(x0)) in scenario original-bernoulli (a classification probability) and m(x0) = exp(eta(x0)) in scenario original-poisson (a conditional count mean), with eta(x) = sin(pi x1) + 0.5 [x2 + sin(pi x2)]. A pointwise scalar query only; it is not a simultaneous confidence band over the covariate region.
+
+[Open raw scientific record (JSON)](./nri-yuparkmammen-2008-binarygam-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** m(x0) = E[Y \| X = x0]
 

@@ -77,9 +77,39 @@ Population ATT4=1; finite-sample cross-world coupling unspecified
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| baseline | ATT | Population mean treatment effect at final period4 conditional on treated group, source-declared att[4]=1; not finite-sample SATT. | 1.0 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>baseline</td>
+<td rowspan="1">ATT</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y_4(1)-Y_4(0)\mid G=\mathrm{trt}]`$
+
+</td>
+<td>1.0</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Final period, treated group.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** baseline
+
+Population mean treatment effect at final period4 conditional on treated group, source-declared att[4]=1; not finite-sample SATT.
+
+[Open raw scientific record (JSON)](./did-ye-2024-code-case2-gaussian-bracketing-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** ATT_4
 

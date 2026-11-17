@@ -169,9 +169,39 @@ Delta_W=integral_{-1}^{-0.5} tanh(0.1+0.5x) dx + integral_{0.5}^{1} tanh(0.1+0.5
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| source_section5 | ATE | Population causal ATE E[Y(1)-Y(0)] in the explicitly adapted algebraic causal completion = E[tanh(0.1+0.5 X2)] = average conditional Wald ratio. Binary intervention a=1 versus a=0, full iid superpopulation; not a LATE. | 0.08670199394664552 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>source_section5</td>
+<td rowspan="1">ATE</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y(1)-Y(0)]`$
+
+</td>
+<td>0.08670199394664552</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: ATE in explicitly adapted algebraic causal completion.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** source_section5
+
+Population causal ATE E[Y(1)-Y(0)] in the explicitly adapted algebraic causal completion = E[tanh(0.1+0.5 X2)] = average conditional Wald ratio. Binary intervention a=1 versus a=0, full iid superpopulation; not a LATE.
+
+[Open raw scientific record (JSON)](./iv-wang-2018-average-wald-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** ATE
 

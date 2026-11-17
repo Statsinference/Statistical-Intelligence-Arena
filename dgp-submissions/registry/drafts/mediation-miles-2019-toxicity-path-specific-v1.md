@@ -87,9 +87,39 @@ beta_0 = int int int E(Y|m, c1, a&#x27;, c0) dF(m|c1, a, c0) dF(c1|a&#x27;, c0) 
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| original | Path-specific effect | The path-specific effect of A on Y along the path A -&gt; M -&gt; Y, as defined in Section 2 of the source. It is the CONTRAST of two nested counterfactual means: in both arms the treatment-induced confounder vector C1 and the outcome are held at the reference level a' = 0, and only the exposure level fed to the mediator equation moves, from a' = 0 to a = 1. Writing beta_0 = E(Y[M{a, C1(a')}, C1(a'), a']) for the moved arm and E[Y(a')] for the unmoved arm, P_AMY = beta_0 - E[Y(a')]. beta_0 on its own is a counterfactual MEAN, not an effect, and is registered only as a component; the source's Figure 2 plots beta_0, which is why that figure is used as coding evidence rather than as the target. P_AMY is NOT a natural indirect effect, NOT a natural direct effect and NOT a total effect; keeping C1 at a' inside the mediator counterfactual is what distinguishes it from the standard natural effects. | -0.9180000000000001 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>original</td>
+<td rowspan="1">Path-specific effect</td>
+<td rowspan="1">
+
+$`\mathbb{E}\!\left[Y\{M(1,C_1(0)),C_1(0),0\}-Y(0)\right]`$
+
+</td>
+<td>-0.9180000000000001</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Path-specific effect along A → M → Y; the treatment-induced confounder C1 remains at its reference-treatment value.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** original
+
+The path-specific effect of A on Y along the path A -&gt; M -&gt; Y, as defined in Section 2 of the source. It is the CONTRAST of two nested counterfactual means: in both arms the treatment-induced confounder vector C1 and the outcome are held at the reference level a' = 0, and only the exposure level fed to the mediator equation moves, from a' = 0 to a = 1. Writing beta_0 = E(Y[M{a, C1(a')}, C1(a'), a']) for the moved arm and E[Y(a')] for the unmoved arm, P_AMY = beta_0 - E[Y(a')]. beta_0 on its own is a counterfactual MEAN, not an effect, and is registered only as a component; the source's Figure 2 plots beta_0, which is why that figure is used as coding evidence rather than as the target. P_AMY is NOT a natural indirect effect, NOT a natural direct effect and NOT a total effect; keeping C1 at a' inside the mediator counterfactual is what distinguishes it from the standard natural effects.
+
+[Open raw scientific record (JSON)](./mediation-miles-2019-toxicity-path-specific-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** P_AMY = E(Y[M{a, C1(a')}, C1(a'), a']) - E[Y(a')]
 

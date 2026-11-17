@@ -85,9 +85,39 @@ The newly introduced error terms are mutually independent N(0,0.5²).
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| original | Longitudinal treatment regime mean contrast | E[Y(1,1)-Y(0,0)] = 2. | 1.9999999999999998 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>original</td>
+<td rowspan="1">Longitudinal treatment regime mean contrast</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y(1,1)-Y(0,0)]`$
+
+</td>
+<td>1.9999999999999998</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Two-visit intervention contrast.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** original
+
+E[Y(1,1)−Y(0,0)] = 2。
+
+[Open raw scientific record (JSON)](./proximal-ying-2023-longitudinal-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** theta
 

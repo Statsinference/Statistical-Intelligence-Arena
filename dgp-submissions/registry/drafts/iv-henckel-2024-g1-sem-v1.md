@@ -79,10 +79,43 @@ Y=b_{XY}X+b_{MY}M+b_{CY}C+b_{GY}H_{XY}+\varepsilon_{Y}.
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| G1_gaussian_new_draw | Population total causal effect | English description not yet supplied; consult the original scientific record (JSON). | 0.7324265699272281 |
-| G1_uniform_new_draw | Population total causal effect | English description not yet supplied; consult the original scientific record (JSON). | 0.7324265699272281 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>G1_gaussian_new_draw</td>
+<td rowspan="2">Population total causal effect</td>
+<td rowspan="2">
+
+$`b_{XY}+b_{XM}b_{MY}`$
+
+</td>
+<td>0.7324265699272281</td>
+</tr>
+<tr>
+<td>G1_uniform_new_draw</td>
+<td>0.7324265699272281</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Total structural effect of a one-unit intervention on X.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** G1_gaussian_new_draw, G1_uniform_new_draw
+
+Original-language definition is available in the raw scientific record (JSON).
+
+[Open raw scientific record (JSON)](./iv-henckel-2024-g1-sem-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** tau_YX
 

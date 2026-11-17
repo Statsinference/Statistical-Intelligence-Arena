@@ -85,9 +85,39 @@ log(E[Y_t(1)]/E[Y_t(0)])=-2
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| baseline | Treated-unit population log mean ratio | For the treated unit at any post period, log(E[Y_t(1)]/E[Y_t(0)]) over the truncated-normal factor and Poisson population; equals -2. This is neither the impossible printed negative rate ratio nor an additive ATT nor finite-sample SATT. | -2.0 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>baseline</td>
+<td rowspan="1">Treated-unit population log mean ratio</td>
+<td rowspan="1">
+
+$`\log\{\mathbb{E}[Y_t(1)]/\mathbb{E}[Y_t(0)]\}`$
+
+</td>
+<td>-2.0</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Fixed treated unit, any post-treatment period; population means.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** baseline
+
+For the treated unit at any post period, log(E[Y_t(1)]/E[Y_t(0)]) over the truncated-normal factor and Poisson population; equals -2. This is neither the impossible printed negative rate ratio nor an additive ATT nor finite-sample SATT.
+
+[Open raw scientific record (JSON)](./did-shi-2026-poisson-proxy-logrr-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** log_RR_pop
 

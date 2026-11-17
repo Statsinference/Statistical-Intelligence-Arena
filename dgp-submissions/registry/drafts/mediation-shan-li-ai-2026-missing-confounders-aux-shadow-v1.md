@@ -103,9 +103,39 @@ theta = E[Y(1, M(0))] = 3.192275262794844
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| dgp1_auxiliary_shadow | Cross-world mediation functional | Mediation functional: the mean potential outcome when treatment is set to 1 while the mediator is set to the value it would have taken under treatment 0, theta = E[Y(1, M(0))]. The source calls this the fundamental quantity and derives the natural indirect effect xi(1) = E[Y(1,M(1))] - theta, the natural direct effect zeta(0) = theta - E[Y(0,M(0))] and the total effect tau = xi(1) + zeta(0) from it. theta is a cross-world mean and is NOT an indirect effect, NOT a direct effect and NOT a total effect. | 3.192275262794844 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>dgp1_auxiliary_shadow</td>
+<td rowspan="1">Cross-world mediation functional</td>
+<td rowspan="1">
+
+$`\mathbb{E}\!\left[Y\{1,M(0)\}\right]`$
+
+</td>
+<td>3.192275262794844</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: A cross-world potential outcome mean, not an indirect or direct effect.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** dgp1_auxiliary_shadow
+
+Mediation functional: the mean potential outcome when treatment is set to 1 while the mediator is set to the value it would have taken under treatment 0, theta = E[Y(1, M(0))]. The source calls this the fundamental quantity and derives the natural indirect effect xi(1) = E[Y(1,M(1))] - theta, the natural direct effect zeta(0) = theta - E[Y(0,M(0))] and the total effect tau = xi(1) + zeta(0) from it. theta is a cross-world mean and is NOT an indirect effect, NOT a direct effect and NOT a total effect.
+
+[Open raw scientific record (JSON)](./mediation-shan-li-ai-2026-missing-confounders-aux-shadow-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** MF theta = E[Y(1, M(0))]
 

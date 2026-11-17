@@ -97,9 +97,39 @@ Y=m(X)+(A-0.5)*tau(X)+epsilon; epsilon~Normal(0,1), independent of X and assignm
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| source_d5_sigma1 | ATE | Superpopulation average effect of A=1 versus A=0, integrating over iid Uniform covariates; not a sample average or observed treated-control mean difference. | 0.0 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>source_d5_sigma1</td>
+<td rowspan="1">ATE</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y(1)-Y(0)]`$
+
+</td>
+<td>0.0</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Population ATE; expectation is over the DGP's full population.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** source_d5_sigma1
+
+Superpopulation average effect of A=1 versus A=0, integrating over iid Uniform covariates; not a sample average or observed treated-control mean difference.
+
+[Open raw scientific record (JSON)](./ate-wager-athey-2018-confounded-null-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** theta_ATE=E[Y(1)-Y(0)]
 

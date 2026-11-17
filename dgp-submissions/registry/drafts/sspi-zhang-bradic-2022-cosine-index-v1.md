@@ -85,9 +85,39 @@ Two independent samples from the same population: source_n_labeled rows with obs
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| original | Population outcome mean | Population mean of Y in the common labeled/unlabeled population. | 0.6693904804452895 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>original</td>
+<td rowspan="1">Population outcome mean</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y]`$
+
+</td>
+<td>0.6693904804452895</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Mean in the common labeled/unlabeled population.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** original
+
+Population mean of Y in the common labeled/unlabeled population.
+
+[Open raw scientific record (JSON)](./sspi-zhang-bradic-2022-cosine-index-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** E[Y]
 

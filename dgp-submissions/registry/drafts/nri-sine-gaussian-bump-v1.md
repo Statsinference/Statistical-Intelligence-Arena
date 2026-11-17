@@ -86,13 +86,79 @@ m(x) + m(-x) = 4*exp(-64*x^2)  (sin cancels as odd; bump doubles as even)
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| m1_x0_neg2o3 | Pointwise conditional mean | Conditional mean of Y given X = x0 at a fixed query point x0 from the grid {-2/3,-1/3,0,1/3,2/3}, in the superpopulation defined by Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1). Model 1: m(x)=sin(4x)+2*exp(-64*x^2), a sine oscillation plus a sharp Gaussian bump centered at x=0. Each query point is a separate pointwise inference target; the five points are not a simultaneous confidence band. | -0.4572726266349253 |
-| m1_x0_neg1o3 | Pointwise conditional mean | Conditional mean of Y given X = x0 at a fixed query point x0 from the grid {-2/3,-1/3,0,1/3,2/3}, in the superpopulation defined by Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1). Model 1: m(x)=sin(4x)+2*exp(-64*x^2), a sine oscillation plus a sharp Gaussian bump centered at x=0. Each query point is a separate pointwise inference target; the five points are not a simultaneous confidence band. | -0.9703059256931684 |
-| m1_x0_0 | Pointwise conditional mean | Conditional mean of Y given X = x0 at a fixed query point x0 from the grid {-2/3,-1/3,0,1/3,2/3}, in the superpopulation defined by Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1). Model 1: m(x)=sin(4x)+2*exp(-64*x^2), a sine oscillation plus a sharp Gaussian bump centered at x=0. Each query point is a separate pointwise inference target; the five points are not a simultaneous confidence band. | 2.0 |
-| m1_x0_1o3 | Pointwise conditional mean | Conditional mean of Y given X = x0 at a fixed query point x0 from the grid {-2/3,-1/3,0,1/3,2/3}, in the superpopulation defined by Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1). Model 1: m(x)=sin(4x)+2*exp(-64*x^2), a sine oscillation plus a sharp Gaussian bump centered at x=0. Each query point is a separate pointwise inference target; the five points are not a simultaneous confidence band. | 0.973569877033457 |
-| m1_x0_2o3 | Pointwise conditional mean | Conditional mean of Y given X = x0 at a fixed query point x0 from the grid {-2/3,-1/3,0,1/3,2/3}, in the superpopulation defined by Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1). Model 1: m(x)=sin(4x)+2*exp(-64*x^2), a sine oscillation plus a sharp Gaussian bump centered at x=0. Each query point is a separate pointwise inference target; the five points are not a simultaneous confidence band. | 0.45727262663669865 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>m1_x0_neg2o3</td>
+<td rowspan="1">Pointwise conditional mean</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y\mid X=-2/3]`$
+
+</td>
+<td>-0.4572726266349253</td>
+</tr>
+<tr>
+<td>m1_x0_neg1o3</td>
+<td rowspan="1">Pointwise conditional mean</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y\mid X=-1/3]`$
+
+</td>
+<td>-0.9703059256931684</td>
+</tr>
+<tr>
+<td>m1_x0_0</td>
+<td rowspan="1">Pointwise conditional mean</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y\mid X=0]`$
+
+</td>
+<td>2.0</td>
+</tr>
+<tr>
+<td>m1_x0_1o3</td>
+<td rowspan="1">Pointwise conditional mean</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y\mid X=1/3]`$
+
+</td>
+<td>0.973569877033457</td>
+</tr>
+<tr>
+<td>m1_x0_2o3</td>
+<td rowspan="1">Pointwise conditional mean</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y\mid X=2/3]`$
+
+</td>
+<td>0.45727262663669865</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Under the scenario-specific data law.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** m1_x0_neg2o3, m1_x0_neg1o3, m1_x0_0, m1_x0_1o3, m1_x0_2o3
+
+Conditional mean of Y given X = x0 at a fixed query point x0 from the grid {-2/3,-1/3,0,1/3,2/3}, in the superpopulation defined by Y = m(X) + eps, X ~ U[-1,1], eps ~ N(0,1). Model 1: m(x)=sin(4x)+2*exp(-64*x^2), a sine oscillation plus a sharp Gaussian bump centered at x=0. Each query point is a separate pointwise inference target; the five points are not a simultaneous confidence band.
+
+[Open raw scientific record (JSON)](./nri-sine-gaussian-bump-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** m(x0) = E[Y \| X = x0]
 

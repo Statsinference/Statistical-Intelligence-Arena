@@ -118,13 +118,55 @@ Y_i=f_k(X1_i,X2_i)+epsilon_i; return X1,X2,Y. No latent surface or oracle column
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| original-f1 | Pointwise conditional mean | Pointwise conditional mean of Y at the fixed query point x0 = (query_x1, query_x2) = (0.5, 0.5) under the declared Section 5.2 law, for the regression function f_k selected by the scenario. This is a scalar pointwise query, not a simultaneous confidence band and not a coverage probability. | 1.0 |
-| original-f2 | Pointwise conditional mean | Pointwise conditional mean of Y at the fixed query point x0 = (query_x1, query_x2) = (0.5, 0.5) under the declared Section 5.2 law, for the regression function f_k selected by the scenario. This is a scalar pointwise query, not a simultaneous confidence band and not a coverage probability. | 1.0 |
-| original-f3 | Pointwise conditional mean | Pointwise conditional mean of Y at the fixed query point x0 = (query_x1, query_x2) = (0.5, 0.5) under the declared Section 5.2 law, for the regression function f_k selected by the scenario. This is a scalar pointwise query, not a simultaneous confidence band and not a coverage probability. | 0.25 |
-| original-f4 | Pointwise conditional mean | Pointwise conditional mean of Y at the fixed query point x0 = (query_x1, query_x2) = (0.5, 0.5) under the declared Section 5.2 law, for the regression function f_k selected by the scenario. This is a scalar pointwise query, not a simultaneous confidence band and not a coverage probability. | 2.718281828459045 |
-| original-f5 | Pointwise conditional mean | Pointwise conditional mean of Y at the fixed query point x0 = (query_x1, query_x2) = (0.5, 0.5) under the declared Section 5.2 law, for the regression function f_k selected by the scenario. This is a scalar pointwise query, not a simultaneous confidence band and not a coverage probability. | 1.2840254166877414 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>original-f1</td>
+<td rowspan="5">Pointwise conditional mean</td>
+<td rowspan="5">
+
+$`\mathbb{E}[Y\mid X=(0.5,0.5)]`$
+
+</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>original-f2</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>original-f3</td>
+<td>0.25</td>
+</tr>
+<tr>
+<td>original-f4</td>
+<td>2.718281828459045</td>
+</tr>
+<tr>
+<td>original-f5</td>
+<td>1.2840254166877414</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Under the scenario-specific data law.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** original-f1, original-f2, original-f3, original-f4, original-f5
+
+Pointwise conditional mean of Y at the fixed query point x0 = (query_x1, query_x2) = (0.5, 0.5) under the declared Section 5.2 law, for the regression function f_k selected by the scenario. This is a scalar pointwise query, not a simultaneous confidence band and not a coverage probability.
+
+[Open raw scientific record (JSON)](./nri-wangghosal-2023-isotonic-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** f_k(x0) = E[Y \| X = x0]
 

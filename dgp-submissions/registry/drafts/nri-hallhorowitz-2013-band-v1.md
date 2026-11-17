@@ -103,11 +103,59 @@ Y_i=g_j(X_i)+epsilon_i; return X,Y. No extra noise, latent mean or oracle column
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| g1-sigma1 | Pointwise conditional mean | The value of the conditional mean function at one fixed interior design point x0 specified per scenario, in the superpopulation defined by the declared regression model with X uniform on [-1,1] and additive N(0, sigma^2) noise. This is a pointwise scalar query, not a simultaneous confidence band and not a coverage claim over any interval. | 1.9947114020071635 |
-| g2-sigma05 | Pointwise conditional mean | The value of the conditional mean function at one fixed interior design point x0 specified per scenario, in the superpopulation defined by the declared regression model with X uniform on [-1,1] and additive N(0, sigma^2) noise. This is a pointwise scalar query, not a simultaneous confidence band and not a coverage claim over any interval. | 0.23294536334790983 |
-| g3-sigma02 | Pointwise conditional mean | The value of the conditional mean function at one fixed interior design point x0 specified per scenario, in the superpopulation defined by the declared regression model with X uniform on [-1,1] and additive N(0, sigma^2) noise. This is a pointwise scalar query, not a simultaneous confidence band and not a coverage claim over any interval. | 0.3535533905932738 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>g1-sigma1</td>
+<td rowspan="1">Pointwise conditional mean</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y\mid X=0]`$
+
+</td>
+<td>1.9947114020071635</td>
+</tr>
+<tr>
+<td>g2-sigma05</td>
+<td rowspan="1">Pointwise conditional mean</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y\mid X=0.3]`$
+
+</td>
+<td>0.23294536334790983</td>
+</tr>
+<tr>
+<td>g3-sigma02</td>
+<td rowspan="1">Pointwise conditional mean</td>
+<td rowspan="1">
+
+$`\mathbb{E}[Y\mid X=0.5]`$
+
+</td>
+<td>0.3535533905932738</td>
+</tr>
+</tbody>
+</table>
+
+**Definition notes**
+
+- All scenarios: Under the scenario-specific data law.
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** g1-sigma1, g2-sigma05, g3-sigma02
+
+The value of the conditional mean function at one fixed interior design point x0 specified per scenario, in the superpopulation defined by the declared regression model with X uniform on [-1,1] and additive N(0, sigma^2) noise. This is a pointwise scalar query, not a simultaneous confidence band and not a coverage claim over any interval.
+
+[Open raw scientific record (JSON)](./nri-hallhorowitz-2013-band-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** m(x0) = E[Y \| X = x0] = g_j(x0)
 

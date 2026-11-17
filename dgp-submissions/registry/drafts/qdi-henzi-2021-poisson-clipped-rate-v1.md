@@ -94,9 +94,35 @@ theta=Integral_5^infinity t^3*exp(-t)/6 dt (Gamma/Erlang survival)
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| original_poisson_qdi | Conditional cumulative distribution function | P(Y&lt;=3 \| X=5) in the source synthetic superpopulation, using its continuous-in-x conditional probability kernel. Inclusive CDF threshold y=3, fixed covariate query x=5, scalar probability in [0,1]. This is conditional, not marginal, and not a quantile or a causal effect. | 0.2650259152973617 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>original_poisson_qdi</td>
+<td rowspan="1">Conditional cumulative distribution function</td>
+<td rowspan="1">
+
+$`\Pr(Y\le 3\mid X=5)`$
+
+</td>
+<td>0.2650259152973617</td>
+</tr>
+</tbody>
+</table>
+
+<details>
+<summary>Submitted estimand definitions</summary>
+
+Submitted English definitions appear below; other original-language definitions remain in the linked JSON. Concise formulas above are display interpretations and still require scientific review.
+
+**Scenario(s):** original_poisson_qdi
+
+P(Y&lt;=3 \| X=5) in the source synthetic superpopulation, using its continuous-in-x conditional probability kernel. Inclusive CDF threshold y=3, fixed covariate query x=5, scalar probability in [0,1]. This is conditional, not marginal, and not a quantile or a causal effect.
+
+[Open raw scientific record (JSON)](./qdi-henzi-2021-poisson-clipped-rate-v1.json).
+
+</details>
+
 
 **Original submitted target notation:** theta = F_{Y\|X=5}(3)
 
