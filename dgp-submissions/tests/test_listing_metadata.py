@@ -107,12 +107,24 @@ def test_explicit_custom_keywords_and_unknown_data():
 def test_panel_data_is_not_interference():
     r=record({'nonlinear':False})
     r['mechanism']['sampling']={'unit':'one panel experiment; a row is a time point'}
-    assert keywords(r)==['Linearity','Panel data']
+    assert keywords(r)==['Panel data']
+
+
+
+def test_linearity_requires_explicit_evidence():
+    assert 'Linearity' not in keywords(record({'nonlinear': False}))
+    assert 'Linearity' not in keywords(record({'linear': False}))
+    assert 'Linearity' not in keywords(record({}))
+    assert keywords(record({'linear': True})) == ['Linearity']
+    assert keywords(record({'keywords': ['linear']})) == ['Linearity']
+    assert keywords(record({'keywords': ['linearity']})) == ['Linearity']
+    assert 'Linearity' not in keywords(record({'linear': True, 'nonlinear': True}))
+    assert 'Linearity' not in keywords(record({'linear': False, 'keywords': ['linear']}))
 
 
 def test_title_only_plus_venue_and_keywords_remain_separate():
     a=record({'interactions':True,'nonlinear':True},name='Alpha',venue='JASA')
-    b=record({'nonlinear':False},name='Beta',venue='JASA')
+    b=record({'linear':True},name='Beta',venue='JASA')
     a['record_id']='alpha';b['record_id']='beta'
     assert paper_title(a)=='An unrelated paper title'
     page='\n'.join(paper_list_tables([a,b]))
