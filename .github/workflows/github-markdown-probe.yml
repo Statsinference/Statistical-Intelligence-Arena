@@ -1,0 +1,18 @@
+name: Markdown API probe
+on:
+  push:
+    branches: [codex/github-md-probe-20261117]
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Probe actual GitHub Markdown API
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          node - <<'JS'
+          const sample='```math\n\\mathrm{N}_{10}=\\#\\{i:Y_i(1)=1,Y_i(0)=0\\}\n```';
+          fetch('https://api.github.com/markdown',{method:'POST',headers:{'Authorization':'Bearer '+process.env.GH_TOKEN,'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28','Content-Type':'application/json'},body:JSON.stringify({text:sample,mode:'gfm',context:'Statsinference/stats-inference-arena'})}).then(async r=>{let s=await r.text();console.log('status',r.status,'html',s);if(!r.ok)process.exitCode=1}).catch(e=>{console.error(e);process.exitCode=1});
+          JS
