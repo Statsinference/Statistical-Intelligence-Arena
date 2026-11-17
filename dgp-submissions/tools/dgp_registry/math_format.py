@@ -124,7 +124,7 @@ def _safe_latex(latex):
         return None
     # Distribution names historically use mathrm in this repository. Do not
     # rewrite starred operators: their limit placement carries meaning.
-    return re.sub(r'\\operatorname\{(Bernoulli|Poisson|Uniform|Normal|expit)\}',
+    return re.sub(r'\\operatorname\{(Bernoulli|Poisson|Uniform|Normal|expit|Exp|sinc)\}',
                   lambda m: r'\mathrm{' + m[1] + '}', latex)
 
 def _balanced(s):
