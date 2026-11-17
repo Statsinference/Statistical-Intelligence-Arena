@@ -1,5 +1,7 @@
 """Create browsable six-area DGP draft pages from unverified records."""
 from collections import Counter, defaultdict
+from itertools import groupby
+from html import escape
 from pathlib import Path
 import json
 import re
@@ -111,16 +113,27 @@ def detail(rec):
     lines.extend(equation_markdown(mech.get('generation_equations') or [], include_source=not translated,
                                   source_entries=(source_rec.get('mechanism') or {}).get('generation_equations') or []))
     lines.extend(['','## Parameter scenarios, estimands and truth','',
-                  '| Scenario | Estimand | Definition | Reported value |',
-                  '|---|---|---|---|'])
+                  '<table>', '<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>', '<tbody>'])
+    rows = []
     for s, source_s in zip(rec.get('scenarios') or [], source_rec.get('scenarios') or []):
-        e=s.get('estimand') or rec.get('estimand') or {}; t=s.get('truth') or {}
-        concise = concise_definition(source_rec, source_s, CONCISE_DEFINITIONS)
-        # The formula is curated and checked by concise_definition; the other
-        # cells continue to be escaped as untrusted source text.
-        lines.append('| ' + cell(s.get('id')) + ' | ' +
-                     cell(target_name(source_rec, TARGET_LABELS) if not s.get('estimand') or s.get('estimand') == source_rec.get('estimand') else 'Needs review') +
-                     ' | ' + concise + ' | ' + cell(display_truth_value(t)) + ' |')
+        name = target_name(source_rec, TARGET_LABELS) if not source_s.get('estimand') or source_s.get('estimand') == source_rec.get('estimand') else 'Needs review'
+        formula = concise_definition(source_rec, source_s, CONCISE_DEFINITIONS)
+        note = definition_note(source_rec, source_s, CONCISE_DEFINITIONS)
+        rows.append(((name, formula, note), s.get('id'), display_truth_value(s.get('truth') or {})))
+    for (name, formula, note), group_iter in groupby(rows, key=lambda row: row[0]):
+        group = list(group_iter)
+        for index, (_, scenario, value) in enumerate(group):
+            lines.extend(['<tr>', '<td>' + escape(str(scenario if scenario is not None else '—')) + '</td>'])
+            if index == 0:
+                span = str(len(group))
+                lines.append('<td rowspan="' + span + '">' + escape(str(name)) + '</td>')
+                lines.append('<td rowspan="' + span + '">')
+                # GitHub parses inline math within HTML cells only when the
+                # expression is isolated by blank lines. Escape entities, but
+                # keep the trusted math delimiters and TeX intact.
+                lines.extend(['', escape(str(formula)), '', '</td>'])
+            lines.extend(['<td>' + escape(str(value if value is not None else '—')) + '</td>', '</tr>'])
+    lines.extend(['</tbody>', '</table>'])
     notes = {}
     for source_s in source_rec.get('scenarios') or []:
         note = definition_note(source_rec, source_s, CONCISE_DEFINITIONS)
@@ -128,10 +141,12 @@ def detail(rec):
             notes.setdefault(note, []).append(str(source_s.get('id') or 'Unnamed scenario'))
     if notes:
         lines.extend(['', '**Definition notes**', ''])
+        all_scenarios = [str(s.get('id') or 'Unnamed scenario') for s in source_rec.get('scenarios') or []]
         for (note, math), scenarios in notes.items():
             formula = ('$`' + math + '`$') if math else ''
             text = ' '.join(part for part in (formula, cell(note) if note else '') if part)
-            lines.append('- ' + cell(', '.join(scenarios)) + ': ' + text)
+            label = 'All scenarios' if scenarios == all_scenarios else ', '.join(scenarios)
+            lines.append('- ' + cell(label) + ': ' + text)
     originals = {}
     for source_s in source_rec.get('scenarios') or []:
         source_e = source_s.get('estimand') or source_rec.get('estimand') or {}

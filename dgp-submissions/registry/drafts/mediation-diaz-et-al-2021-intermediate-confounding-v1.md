@@ -80,13 +80,25 @@ Y|M,Z,A,W~Bern(expit((A-Z+M-AZ)/(sum(W)+1)))
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| section_5 | IIE | $`\mathbb{E}\!\left[Y(1,G_1)-Y(1,G_0)\right]`$ | 0.03026875404999696 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>section_5</td>
+<td rowspan="1">IIE</td>
+<td rowspan="1">
+
+$`\mathbb{E}\!\left[Y(1,G_1)-Y(1,G_0)\right]`$
+
+</td>
+<td>0.03026875404999696</td>
+</tr>
+</tbody>
+</table>
 
 **Definition notes**
 
-- section_5: G_a is an independent draw from M(a) conditional on W, marginalizing post-treatment Z under a.
+- All scenarios: G_a is an independent draw from M(a) conditional on W, marginalizing post-treatment Z under a.
 
 <details>
 <summary>Submitted estimand definitions</summary>

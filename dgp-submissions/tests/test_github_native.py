@@ -28,7 +28,7 @@ def test_research_area_catalog_from_one_zip(tmp_path):
     assert '| Needs review | 1 | Needs scientific review |' in text
     assert '| 1 | Needs scientific review |' in text
     detail=(tmp_path/'registry/drafts/example-ate-1.md').read_text(encoding='utf-8')
-    assert '| original |' in detail and '| 2.0 |' in detail
+    assert '<td>original</td>' in detail and '<td>2.0</td>' in detail
     assert (tmp_path/'registry/drafts/example-ate-1.json').exists()
     assert 'Unverified' in (tmp_path/'registry/drafts/example-ate-1.md').read_text()
     assert len(list((tmp_path/'registry/by-domain').glob('*.md'))) == len(DOMAINS)
@@ -58,3 +58,4 @@ def test_unstructured_zip_is_reported_without_global_failure(tmp_path):
     result=ingest(d,tmp_path/'registry')
     assert result['mechanisms']==0 and result['failure_count']==1
     assert 'no structured collection.json' in (tmp_path/'registry/INTAKE_REPORT.md').read_text()
+

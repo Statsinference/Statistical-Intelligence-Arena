@@ -97,13 +97,25 @@ p_{1}=(n(1-\phi_{3}),\ n\phi_{3},\ a(1-\phi_{4})+c(1-q_{1}),\ a\phi_{4}+c q_{1})
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| source_additive | Conditional LATE curve transformed-slope parameter | $`\alpha_1=\frac{d}{dx}\operatorname{atanh}\{\delta_L(x)\},\quad \delta_L(x)=\mathbb{E}[Y(1)-Y(0)\mid D(1)\gt D(0),X=x]`$ | -1 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>source_additive</td>
+<td rowspan="1">Conditional LATE curve transformed-slope parameter</td>
+<td rowspan="1">
+
+$`\alpha_1=\frac{d}{dx}\operatorname{atanh}\{\delta_L(x)\},\quad \delta_L(x)=\mathbb{E}[Y(1)-Y(0)\mid D(1)\gt D(0),X=x]`$
+
+</td>
+<td>-1</td>
+</tr>
+</tbody>
+</table>
 
 **Definition notes**
 
-- source_additive: The slope alpha_1 of the transformed conditional complier-effect curve, not the conditional or population LATE itself.
+- All scenarios: The slope alpha_1 of the transformed conditional complier-effect curve, not the conditional or population LATE itself.
 
 <details>
 <summary>Submitted estimand definitions</summary>

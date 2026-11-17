@@ -95,24 +95,69 @@ tau=N^{-1} sum_i[Y_i(1)-Y_i(0)]=(N10-N01)/N.
 
 ## Parameter scenarios, estimands and truth
 
-| Scenario | Estimand | Definition | Reported value |
-|---|---|---|---|
-| case01_independent_null | ATE | $`\frac{1}{N}\sum_{i=1}^{N}\{Y_i(1)-Y_i(0)\}`$ | 0 |
-| case02_independent_positive | ATE | $`\frac{1}{N}\sum_{i=1}^{N}\{Y_i(1)-Y_i(0)\}`$ | 0.2 |
-| case03_independent_positive | ATE | $`\frac{1}{N}\sum_{i=1}^{N}\{Y_i(1)-Y_i(0)\}`$ | 0.35 |
-| case04_independent_negative | ATE | $`\frac{1}{N}\sum_{i=1}^{N}\{Y_i(1)-Y_i(0)\}`$ | -0.3 |
-| case05_independent_negative | ATE | $`\frac{1}{N}\sum_{i=1}^{N}\{Y_i(1)-Y_i(0)\}`$ | -0.35 |
-| case06_positive_association_null | ATE | $`\frac{1}{N}\sum_{i=1}^{N}\{Y_i(1)-Y_i(0)\}`$ | 0 |
-| case07_positive_association | ATE | $`\frac{1}{N}\sum_{i=1}^{N}\{Y_i(1)-Y_i(0)\}`$ | 0.1 |
-| case08_positive_association | ATE | $`\frac{1}{N}\sum_{i=1}^{N}\{Y_i(1)-Y_i(0)\}`$ | 0.2 |
-| case09_positive_association | ATE | $`\frac{1}{N}\sum_{i=1}^{N}\{Y_i(1)-Y_i(0)\}`$ | 0.5 |
-| case10_positive_association_negative | ATE | $`\frac{1}{N}\sum_{i=1}^{N}\{Y_i(1)-Y_i(0)\}`$ | -0.1 |
-| case11_positive_association_negative | ATE | $`\frac{1}{N}\sum_{i=1}^{N}\{Y_i(1)-Y_i(0)\}`$ | -0.2 |
-| case12_positive_association_negative | ATE | $`\frac{1}{N}\sum_{i=1}^{N}\{Y_i(1)-Y_i(0)\}`$ | -0.5 |
+<table>
+<thead><tr><th>Scenario</th><th>Estimand</th><th>Definition</th><th>Reported value</th></tr></thead>
+<tbody>
+<tr>
+<td>case01_independent_null</td>
+<td rowspan="12">ATE</td>
+<td rowspan="12">
+
+$`\frac{1}{N}\sum_{i=1}^{N}\{Y_i(1)-Y_i(0)\}`$
+
+</td>
+<td>0</td>
+</tr>
+<tr>
+<td>case02_independent_positive</td>
+<td>0.2</td>
+</tr>
+<tr>
+<td>case03_independent_positive</td>
+<td>0.35</td>
+</tr>
+<tr>
+<td>case04_independent_negative</td>
+<td>-0.3</td>
+</tr>
+<tr>
+<td>case05_independent_negative</td>
+<td>-0.35</td>
+</tr>
+<tr>
+<td>case06_positive_association_null</td>
+<td>0</td>
+</tr>
+<tr>
+<td>case07_positive_association</td>
+<td>0.1</td>
+</tr>
+<tr>
+<td>case08_positive_association</td>
+<td>0.2</td>
+</tr>
+<tr>
+<td>case09_positive_association</td>
+<td>0.5</td>
+</tr>
+<tr>
+<td>case10_positive_association_negative</td>
+<td>-0.1</td>
+</tr>
+<tr>
+<td>case11_positive_association_negative</td>
+<td>-0.2</td>
+</tr>
+<tr>
+<td>case12_positive_association_negative</td>
+<td>-0.5</td>
+</tr>
+</tbody>
+</table>
 
 **Definition notes**
 
-- case01_independent_null, case02_independent_positive, case03_independent_positive, case04_independent_negative, case05_independent_negative, case06_positive_association_null, case07_positive_association, case08_positive_association, case09_positive_association, case10_positive_association_negative, case11_positive_association_negative, case12_positive_association_negative: Fixed finite population, N=200; the package draws a subset as an implementation adaptation.
+- All scenarios: Fixed finite population, N=200; the package draws a subset as an implementation adaptation.
 
 <details>
 <summary>Submitted estimand definitions</summary>
