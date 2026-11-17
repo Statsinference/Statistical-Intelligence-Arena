@@ -133,9 +133,17 @@ def keyword_entries(record: dict[str, Any]) -> list[dict[str, Any]]:
             if explicit:
                 add(label, "mechanism.properties.keywords", explicit, "submitted_keyword")
 
-    nonlinear_false = _has_flag(props, ("nonlinear", "nonlinearity"), False)
-    if nonlinear_false and not _has_flag(props, ("nonlinear", "nonlinearity"), True):
-        add("Linearity", "mechanism.properties." + nonlinear_false, False, "explicit_boolean")
+    # A lack of declared nonlinearity does not establish a linear model.
+    # Only publish a linearity tag when the source explicitly supplies one.
+    linear_positive = _has_flag(props, ("linear", "linearity"), True)
+    linear_negative = _has_flag(props, ("linear", "linearity"), False)
+    nonlinear_positive = _has_flag(props, ("nonlinear", "nonlinearity"), True)
+    linear_keyword = next((supplied[a] for a in ("linear", "linearity") if a in supplied), None)
+    if not linear_negative and not nonlinear_positive:
+        if linear_positive:
+            add("Linearity", "mechanism.properties." + linear_positive, True, "explicit_boolean")
+        elif linear_keyword:
+            add("Linearity", "mechanism.properties.keywords", linear_keyword, "submitted_keyword")
 
     # Effect heterogeneity is not inferred from CATE/ATE/IV labels, the paper's
     # title, interaction flags, or the number of scenarios. Accept only explicit
