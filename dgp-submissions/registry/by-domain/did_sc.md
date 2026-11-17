@@ -1,4 +1,6 @@
-# DiD / Synthetic Control
+# Legacy DiD / Synthetic Control — classification needed
+
+> These historical entries have not been assigned to either of the new design categories; a researcher must classify each one.
 
 **11 submitted DGP mechanism(s) · draft / unverified.**
 
