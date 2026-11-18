@@ -12,11 +12,11 @@
   <a href="https://statsinference.github.io/" title="Open the StatsArena leaderboard website">
     <img src="docs/assets/badge-leaderboard.svg" alt="Leaderboard" height="36" />
   </a>
-  <a href="#getting-started-for-students" title="Student onboarding steps">
-    <img src="docs/assets/badge-start.svg" alt="Getting Started for Students" height="36" />
+  <a href="method-submissions/README.md" title="Contribute a method">
+    <img src="docs/assets/badge-method.svg" alt="Contribute Method" height="36" />
   </a>
-  <a href="CONTRIBUTING.md" title="Contribution requirements">
-    <img src="docs/assets/badge-contribute.svg" alt="Contribute a Task" height="36" />
+  <a href="dgp-submissions/README.md" title="Contribute a DGP or data">
+    <img src="docs/assets/badge-data.svg" alt="Contribute Data" height="36" />
   </a>
 </p>
 

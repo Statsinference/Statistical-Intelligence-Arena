@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="214" height="42" viewBox="0 0 214 42" role="img" aria-label="CONTRIBUTE METHOD">
+  <rect width="214" height="42" rx="8" fill="#122744" />
+  <rect x="1" y="1" width="212" height="40" rx="7" fill="none" stroke="#355a73" stroke-width="1"/>
+  <g transform="translate(9 3) scale(.72)" fill="none" stroke="#80F4D0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14h8a3 3 0 0 1 3 3v10h-8a3 3 0 0 0-3 1V14zm0 0H8a3 3 0 0 0-3 3v10h7a3 3 0 0 1 3 1V14z" transform="translate(3 -1)"/></g>
+  <text x="38" y="26" fill="#fff8e9" font-family="Arial, Helvetica, sans-serif" font-size="12.5" font-weight="700" letter-spacing="0.9">CONTRIBUTE METHOD</text>
+</svg>
