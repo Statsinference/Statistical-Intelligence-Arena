@@ -56,12 +56,40 @@
     </tr>
     <tr><th colspan="4" align="left">Method Contributors</th></tr>
     <tr>
-      <td>Suo Li<br><small><sub>Shanghai University of Finance and Economics</sub></small></td><td></td><td></td><td></td>
+      <td>Suo Li<br><small><sub>Shanghai University of Finance and Economics</sub></small></td>
+      <td>Yao Fu<br><small><sub>Southern University of Science and Technology</sub></small></td>
+      <td>Kongchang Zhou<br><small><sub>Southern University of Science and Technology</sub></small></td>
+      <td></td>
     </tr>
     <tr><th colspan="4" align="left">Data Contributors</th></tr>
+    <tr>
+      <td>Cong Wang<br><small><sub>Shanghai University of Finance and Economics</sub></small></td>
+      <td>Hangfei Wu<br><small><sub>Shanghai University of Finance and Economics</sub></small></td>
+      <td>Jianying Su<br><small><sub>Shanghai University of Finance and Economics</sub></small></td>
+      <td>Jiayi Zhang<br><small><sub>Shanghai University of Finance and Economics</sub></small></td>
+    </tr>
+    <tr>
+      <td>Junhong Zheng<br><small><sub>Shanghai University of Finance and Economics</sub></small></td>
+      <td>Qimiao Xu<br><small><sub>Shanghai University of Finance and Economics</sub></small></td>
+      <td>Ruihan Huang<br><small><sub>Shanghai University of Finance and Economics</sub></small></td>
+      <td>Weibo Zhang<br><small><sub>Shanghai University of Finance and Economics</sub></small></td>
+    </tr>
+    <tr>
+      <td>Xuyuxin Ma<br><small><sub>Shanghai University of Finance and Economics</sub></small></td>
+      <td>Yidan Xu<br><small><sub>Shanghai University of Finance and Economics</sub></small></td>
+      <td>Yuan Zhong<br><small><sub>Shanghai University of Finance and Economics</sub></small></td>
+      <td>Zhiyuan Ma<br><small><sub>Shanghai University of Finance and Economics</sub></small></td>
+    </tr>
+    <tr>
+      <td>Zhuoxin Yan<br><small><sub>Shanghai University of Finance and Economics</sub></small></td>
+      <td>Ziyang Huang<br><small><sub>Shanghai University of Finance and Economics</sub></small></td>
+      <td></td>
+      <td></td>
+    </tr>
     <tr><th colspan="4" align="left">Advisors</th></tr>
   </tbody>
 </table>
+
 
 ## Citation
 
