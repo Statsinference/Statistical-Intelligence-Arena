@@ -1,11 +1,12 @@
 
 <h1 align="center">
-  <img src="docs/assets/statsarena-logo.jpg" width="66" height="66" alt="StatsArena logo" />
-  Statistical Inference Arena
+  <img src="docs/assets/statsarena-logo.jpg" width="66" height="66" alt="StatArena logo" />
+  StatArena
 </h1>
 
 <p align="center">
-  <strong>Benchmarking reliable causal inference and uncertainty quantification for tabular foundation models.</strong>
+  <strong>The Statistical Intelligence Arena</strong><br />
+  <em>From Inference to Decision</em>
 </p>
 
 <p align="center">
