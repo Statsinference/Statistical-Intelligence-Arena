@@ -5,12 +5,11 @@
 </h1>
 
 <p align="center">
-  <strong>The Statistical Intelligence Arena</strong><br />
-  <em>From Inference to Decision</em>
+  <strong>The Statistical Intelligence Arena</strong>
 </p>
 
 <p align="center">
-  <a href="https://statsinference.github.io/" title="Open the StatsArena leaderboard website">
+  <a href="https://statsinference.github.io/" title="Open the StatArena leaderboard website">
     <img src="docs/assets/badge-leaderboard.svg" alt="Leaderboard" height="36" />
   </a>
   <a href="method-submissions/README.md" title="Contribute a method">
@@ -25,7 +24,7 @@
 
 **StatArena (The Statistical Intelligence Arena)** is an open academic benchmark and research collaboration dedicated to evaluating statistical methods and advancing statistical intelligence in AI. Beginning with causal inference and expanding to broader statistical problems, StatArena brings together diverse statistical tasks, data-generating processes (DGPs), and standardized evaluation protocols. It provides a common framework for comparing statistical foundation models and established methods across estimation accuracy, bias, variance, confidence interval length, coverage, uncertainty calibration, and computational efficiency, with broader evaluation of hypothesis testing and statistical decision-making as the benchmark evolves.
 
-Prior-Data Fitted Networks (PFNs) suggest an alternative to fitting statistical models from scratch for each dataset: learning reusable statistical patterns through pretraining on diverse tasks. Building on more than a century of statistical research, StatArena explores a fundamental question: **what statistical capabilities can foundation models acquire through pretraining, and which of these capabilities can generalize across tasks?** Through open contributions of statistical methods, tasks, and data-generating processes, together with continuously updated leaderboards, StatArena aims to connect the statistical research community with advances in foundation models, enabling researchers to compare, evaluate, and build upon one another's methods. Our broader vision is to advance statistical intelligence in AI, **from inference to decision**.
+Prior-Data Fitted Networks (PFNs) suggest an alternative to fitting statistical models from scratch for each dataset: learning reusable statistical patterns through pretraining on diverse tasks. Building on more than a century of statistical research, StatArena explores a fundamental question: **what statistical capabilities can foundation models acquire through pretraining, and which of these capabilities can generalize across tasks?** Through open contributions of statistical methods, tasks, and data-generating processes, together with continuously updated leaderboards, StatArena aims to connect the statistical research community with advances in foundation models, enabling researchers to compare, evaluate, and build upon one another's methods. Our broader vision is to advance statistical intelligence in AI.
 
 ## Domain Coverage
 
@@ -109,4 +108,4 @@ The repository includes the [Apache License 2.0](LICENSE). Please see [NOTICE.md
 
 ## Acknowledgements
 
-[Statistical Inference Arena (StatsArena)](https://statsinference.github.io/) is an open academic collaboration jointly led by [Shanghai University of Finance and Economics](https://www.sufe.edu.cn/) and [Boston University](https://www.bu.edu/).
+[StatArena (The Statistical Intelligence Arena)](https://statsinference.github.io/) is an open academic collaboration jointly led by [Shanghai University of Finance and Economics](https://www.sufe.edu.cn/) and [Boston University](https://www.bu.edu/).
