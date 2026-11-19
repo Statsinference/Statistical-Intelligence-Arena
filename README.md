@@ -1,6 +1,6 @@
 
 <h1 align="center">
-  <img src="docs/assets/statsarena-logo.jpg" width="66" height="66" alt="StatArena logo" />
+  <img src="docs/assets/statsarena-logo.jpg" width="66" height="44" alt="StatArena logo" />
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="docs/assets/statarena-wordmark-dark.svg" />
     <img src="docs/assets/statarena-wordmark-light.svg" width="317" height="66" alt="StatArena" />
