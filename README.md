@@ -102,7 +102,7 @@ The available domains are `ate`, `cate`, `mediation`, `iv`, `proximal`, and `did
       <td>Ruihan Huang<br><small><sub>Shanghai University of Finance and Economics</sub></small></td>
       <td>Ziyang Huang<br><small><sub>Shanghai University of Finance and Economics</sub></small></td>
       <td>Xuyuxin Ma<br><small><sub>Shanghai University of Finance and Economics</sub></small></td>
-      <td>Zhiyuan Ma<br><small><sub>Beijing Jiaotong University</sub></small></td>
+      <td>Mingyuan Ma<br><small><sub>Beijing Jiaotong University</sub></small></td>
     </tr>
     <tr>
       <td>Jianying Su<br><small><sub>Shanghai University of Finance and Economics</sub></small></td>
