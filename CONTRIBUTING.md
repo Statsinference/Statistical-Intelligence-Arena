@@ -15,4 +15,4 @@ Use your proposal to share the research question, estimand and references. If a 
 
 ## Existing benchmark documentation
 
-The DGP collection service does not change the benchmark protocol, website, or starter code. See the [project README](README.md), [student guide](docs/student_guide_en.md), [scientific requirements](docs/contribution_en.md), and [starter](starter/README.md).
+The DGP collection service does not change the benchmark protocol, website, or starter code. See the [project README](README.md), [scientific requirements](docs/contribution_en.md), and [starter](starter/README.md).

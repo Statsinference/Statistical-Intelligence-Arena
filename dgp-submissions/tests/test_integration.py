@@ -58,6 +58,7 @@ def test_contribution_pages_keep_catalog_details_internal():
         HOME/"docs/REAL_DATA_PROBLEM.md",
     ):
         text=path.read_text(encoding="utf-8")
+        assert not re.search(r"\bstudents?\b", text, re.IGNORECASE), path
         assert "Paper list by research area" not in text, path
         assert "STATSARENA_PAPER_LIST" not in text, path
         assert "registry/" not in text, path

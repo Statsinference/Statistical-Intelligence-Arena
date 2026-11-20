@@ -31,7 +31,7 @@ def render(source: str) -> str:
     source = source.replace("`incoming/`", "`dgp-submissions/incoming/`")
     return source.rstrip() + "\n\n## Existing benchmark documentation\n\n" + (
         "The DGP collection service does not change the benchmark protocol, website, or starter code. "
-        "See the [project README](README.md), [student guide](docs/student_guide_en.md), "
+        "See the [project README](README.md), "
         "[scientific requirements](docs/contribution_en.md), and [starter](starter/README.md).\n"
     )
 

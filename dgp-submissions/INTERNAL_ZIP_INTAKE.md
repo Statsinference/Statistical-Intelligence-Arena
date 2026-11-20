@@ -17,7 +17,7 @@ Collaborators who already have a structured literature DGP ZIP can use the exist
 
 Maintainers with upstream Write permission may commit ZIPs directly to the upstream repository instead. **Outside collaborators do not need upstream Write permission.** Do not use an upstream upload URL from inside your fork.
 
-The ZIP's `collection.json` already identifies its research family, so **students do not need a separate dropdown**. A missing or unknown family is flagged for human classification, never guessed.
+The ZIP's `collection.json` already identifies its research family, so **contributors do not need to select it again**. A missing or unknown family is flagged for human classification, never guessed.
 
 > **Important:** This is a private research intake. Each contribution becomes an **unverified draft** until a researcher checks the original paper. This software does not prove true values or equations correct.
 

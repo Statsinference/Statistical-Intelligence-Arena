@@ -62,16 +62,16 @@ The available domains are `ate`, `cate`, `mediation`, `iv`, `proximal`, and `did
 
 | Research domain | DGPs | Methods |
 | :--- | :--- | :--- |
-| [Average Treatment Effect](dgp-submissions/registry/by-domain/ate.md) | `▰▰▰▰▰▰▰▰▰▰▰` **22** | `▰▰` **2** |
-| [Conditional Average Treatment Effect](dgp-submissions/registry/by-domain/cate.md) | `▰▰▰▰▰▰` **12** | `▰▰` **2** |
-| [Causal Mediation](dgp-submissions/registry/by-domain/mediation.md) | `▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰` **31** | `▰▰` **2** |
-| [Instrumental Variables](dgp-submissions/registry/by-domain/iv.md) | `▰▰▰▰▰▰▰▰▰▰▰` **21** | `▰▰` **2** |
-| [Proximal Causal Inference](dgp-submissions/registry/by-domain/proximal.md) | `▰▰▰▰▰▰▰▰` **15** | `▰▰` **2** |
-| [Difference-in-Differences](dgp-submissions/registry/by-domain/did_sc.md) | `▰▰▰▰▰▰` **11** | `▰▰` **2** |
-| [Nonparametric Regression](dgp-submissions/registry/by-domain/nonparametric_regression.md) | `▰▰▰▰▰▰▰▰▰▰` **20** | — **0** |
-| [Quantile Inference](dgp-submissions/registry/by-domain/quantile.md) | `▰▰▰▰▰▰▰▰▰▰▰▰▰▰` **27** | — **0** |
-| [Semi-Supervised Inference](dgp-submissions/registry/by-domain/semi_supervised.md) | `▰▰▰▰▰▰▰▰` **16** | — **0** |
-| [Missing Data](dgp-submissions/registry/by-domain/missing_data.md) | `▰▰▰▰` **8** | — **0** |
+| Average Treatment Effect | `▰▰▰▰▰▰▰▰▰▰▰` **22** | `▰▰` **2** |
+| Conditional Average Treatment Effect | `▰▰▰▰▰▰` **12** | `▰▰` **2** |
+| Causal Mediation | `▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰` **31** | `▰▰` **2** |
+| Instrumental Variables | `▰▰▰▰▰▰▰▰▰▰▰` **21** | `▰▰` **2** |
+| Proximal Causal Inference | `▰▰▰▰▰▰▰▰` **15** | `▰▰` **2** |
+| Difference-in-Differences | `▰▰▰▰▰▰` **11** | `▰▰` **2** |
+| Nonparametric Regression | `▰▰▰▰▰▰▰▰▰▰` **20** | — **0** |
+| Quantile Inference | `▰▰▰▰▰▰▰▰▰▰▰▰▰▰` **27** | — **0** |
+| Semi-Supervised Inference | `▰▰▰▰▰▰▰▰` **16** | — **0** |
+| Missing Data | `▰▰▰▰` **8** | — **0** |
 
 
 
@@ -102,7 +102,7 @@ The available domains are `ate`, `cate`, `mediation`, `iv`, `proximal`, and `did
       <td>Ruihan Huang<br><small><sub>Shanghai University of Finance and Economics</sub></small></td>
       <td>Ziyang Huang<br><small><sub>Shanghai University of Finance and Economics</sub></small></td>
       <td>Xuyuxin Ma<br><small><sub>Shanghai University of Finance and Economics</sub></small></td>
-      <td>Zhiyuan Ma<br><small><sub>Beijing Jiaotong University</sub></small></td>
+      <td>Mingyuan Ma<br><small><sub>Beijing Jiaotong University</sub></small></td>
     </tr>
     <tr>
       <td>Jianying Su<br><small><sub>Shanghai University of Finance and Economics</sub></small></td>
