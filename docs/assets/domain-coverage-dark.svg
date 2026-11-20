@@ -3,7 +3,7 @@
   <desc id="coverage-desc">Average Treatment Effect: 22 DGPs, 2 methods. Conditional Average Treatment Effect: 12 DGPs, 2 methods. Causal Mediation Analysis: 31 DGPs, 2 methods. Instrumental Variables: 21 DGPs, 2 methods. Proximal Causal Inference: 15 DGPs, 2 methods. Difference-in-Differences: 11 DGPs, 2 methods. Nonparametric Regression: 20 DGPs, 0 methods. Quantile Inference: 27 DGPs, 0 methods. Semi-Supervised Inference: 16 DGPs, 0 methods. Missing Data: 8 DGPs, 0 methods.</desc>
   <rect x=".5" y=".5" width="855" height="487" rx="16" fill="#0d1827" stroke="#2c455c"/>
   <path d="M16 1H840a15 15 0 0 1 15 15v47H1V16A15 15 0 0 1 16 1Z" fill="#14263b"/>
-  <g font-family="system-ui, -apple-system, Segoe UI, Arial, sans-serif">
+  <g font-family="Arial">
     <g fill="#ecf4ff" font-size="16" font-weight="650">
       <text x="24" y="37">Research domain</text>
       <text x="365" y="30">Data-generating processes</text>
