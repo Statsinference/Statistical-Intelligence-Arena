@@ -46,6 +46,23 @@ class MarkdownTests(unittest.TestCase):
             with self.assertRaises(ValidationError):
                 validate_markdown((directory / "TEMPLATE.md").read_bytes(), track)
 
+    def test_track_guides_contain_the_canonical_copyable_template(self):
+        for track in (SIMULATED, REAL):
+            with self.subTest(track=track):
+                directory = SITE / "data-submissions" / track
+                guide = (directory / "README.md").read_text(encoding="utf-8")
+                template = (directory / "TEMPLATE.md").read_text(encoding="utf-8")
+                self.assertEqual(guide.count("```markdown\n"), 1)
+                _, _, fence_and_rest = guide.partition("```markdown\n")
+                embedded, close, _ = fence_and_rest.partition("\n```\n")
+                self.assertTrue(close, "The template code fence must close")
+                self.assertEqual(embedded + "\n", template)
+                self.assertEqual(
+                    tuple(line.removeprefix("## ") for line in embedded.splitlines()
+                          if line.startswith("## ")),
+                    required_sections(track),
+                )
+
     def test_empty_placeholder_wrong_track_and_duplicate_heading(self):
         unfinished = proposal().replace(b"A short explanation", b"[TODO: add this]")
         empty = proposal().replace(b"A short explanation with [a source](https://example.com).", b"<!-- blank -->")

@@ -10,6 +10,7 @@ on:
       - tests/test_data_contribution.py
       - data-submissions/*/EXAMPLE.md
       - data-submissions/*/TEMPLATE.md
+      - data-submissions/*/README.md
 
 permissions:
   contents: read

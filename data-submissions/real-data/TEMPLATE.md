@@ -2,24 +2,31 @@
 
 ## Research question
 
-[TODO: State the applied question, target population and proposed statistical task.]
+- **Question and population.** [TODO: Define the units and target population, intervention or exposure, comparison, outcome and time horizon.]
+- **Intended use.** [TODO: Explain the applied question and what comparing methods on this case would establish.]
 
 ## Study design and data source
 
-[TODO: Cite the study, give the dataset version or source, describe the sampling or assignment process and the timing of covariates and outcomes. Document the unit of observation, column roles and required data preparation.]
+- **Source and version.** [TODO: Cite the study, data release and codebook or official access instructions.]
+- **Design and timing.** [TODO: Describe sampling or assignment and when covariates, treatment and outcomes are measured.]
+- **Analysis table.** [TODO: State row grain, column roles, inclusion criteria, preprocessing, missingness and clustering where relevant.]
 
 ## DAG and identification
 
-[TODO: Describe the assumptions that support the proposed interpretation. Include a DAG or prose description when useful. Map nodes to columns and identify unmeasured variables or other plausible threats.]
+- **Causal structure.** [TODO: Match variables to their roles in a DAG or text description, and identify plausible unmeasured causes or selection.]
+- **Assumptions and checks.** [TODO: State the assumptions the design requires, how you would check what is observable, and what remains uncertain.]
 
 ## Target estimand and reference estimate
 
-[TODO: Define the estimand, comparison, population and units. Report a relevant reference estimate and uncertainty when available, with a citation or reproducible calculation. State when a suitable reference is unavailable and what can still be evaluated.]
+- **Estimand.** [TODO: Define the contrast, population, scale and units.]
+- **Reference or alternative evaluation.** [TODO: Give a matching reference estimate, its uncertainty and a reproducible source when available. If unavailable, say so and describe what evidence reviewers can use instead.]
 
 ## Benchmark comparison
 
-[TODO: State the method output, the comparator or baseline, the common analysis sample and proposed metrics. Explain what reviewers should conclude from the comparison.]
+- **Inputs, outputs and baseline.** [TODO: Specify the shared analysis sample, method inputs, expected output and baseline.]
+- **Comparisons and limits.** [TODO: State the metrics or sensitivity checks, how exclusions and failures are handled, and what the results can support.]
 
 ## Materials and access
 
-[TODO: Link authorized data or access instructions, the codebook and reproducibility materials. State the relevant permissions or restrictions. Share restricted files only through an agreed private route.]
+- **Permissions.** [TODO: Link the public source or authorized access process and state any restrictions.]
+- **Reproducibility.** [TODO: Link a shareable preparation and analysis recipe with relevant versions or commands. Arrange a private review route for restricted files.]
