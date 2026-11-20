@@ -1,6 +1,15 @@
-# Statistical Inference Arena · DGP Submission
+# Contribute data to StatArena
 
-**100% GitHub-native · Structured ZIP → automatic DGP catalog · No Issue · No LLM API · No other website**
+Choose the guide that fits your contribution. Each guide includes a template, a filled example and instructions for submitting a pull request.
+
+| Contribution | What to submit |
+|---|---|
+| [Simulated DGP](docs/SIMULATED_DGP.md) | A data-generating process with a scientific motivation, a defined estimand, a verifiable reference value and enough detail to reproduce the simulation. |
+| [Real-data problem](docs/REAL_DATA_PROBLEM.md) | A causal question, a documented dataset or access route, and a plan for comparing estimates. Include a reference estimate when one is available. |
+
+## Private literature DGP catalog
+
+Collaborators who already have a structured literature DGP ZIP can use the existing upload and catalog below. This route requires access to the private research repository.
 
 <p align="center">
   <a href="/../../upload/main/dgp-submissions/incoming"><img alt="Upload a DGP ZIP directly to this repository" src="https://img.shields.io/badge/Submit_DGP-Upload_ZIP-1677C8?style=for-the-badge" /></a>
@@ -8,11 +17,11 @@
   <a href="CONTRIBUTING.md"><img alt="Contribution instructions" src="https://img.shields.io/badge/How_to_Contribute-Read_Guide-007F73?style=for-the-badge" /></a>
 </p>
 
-## For students — 3 steps, all on GitHub
+### Submit a structured ZIP
 
-1. **Outside collaborators (Read):** first fork the private repository into your own GitHub account. Open **your fork**, then click **Submit DGP**. The button opens GitHub's **file-upload page directly**, targeting `incoming/` on the `main` branch **of the repository you are viewing**. Check that the repository owner in the URL is your username, not `Statsinference`.
+1. **Collaborators with read access:** first fork the private repository into your own GitHub account. Open **your fork**, then click **Submit DGP**. The button opens GitHub's **file-upload page directly**, targeting `incoming/` on the `main` branch **of the repository you are viewing**. Check that the repository owner in the URL is your username, not `Statsinference`.
 2. **Drag and drop your structured `.zip`, or click “choose your files”.** Click **Commit changes** to save it to your fork. Your fork's `main` is separate from the upstream repository's `main`; uploading here does not submit or merge anything upstream.
-3. In your fork, choose **Contribute → Open pull request** and target `Statsinference/stats-inference-arena:main`. The **DGP ZIP-only** check runs before a maintainer reviews and merges; the catalog updates only after merging.
+3. In your fork, choose **Contribute → Open pull request** and target `Statsinference/Statistical-Intelligence-Arena:main`. The **DGP ZIP-only** check runs before a maintainer reviews and merges; the catalog updates only after merging.
 
 **Already have a fork?** Use **Sync fork → Update branch** to obtain this updated upload button, then reopen this page in your fork. The button follows the repository you are viewing; it does not automatically find your fork when clicked on the upstream page.
 
@@ -299,4 +308,3 @@ The downloadable [`examples/proximal_10_dgps.zip`](examples/proximal_10_dgps.zip
 Submitted ZIPs are treated as **data only**, never executed. The catalog shows extracted text and submitted truth values with **Needs scientific review** labels. The archive format requires structured `collection.json` and `config.json`. If the ZIP only contains a raw PDF or random Python code, deterministic extraction is not possible without additional author-supplied structure.
 
 **GitHub-native limitation:** This is GitHub's normal file-upload page, not a custom domain-selection form. DGP area comes from the ZIP's `collection.json` `family` field. Automatic indexing requires the checked-in `../.github/workflows/dgp-submissions.yml` workflow and Actions permission to write generated draft catalog files.
-
