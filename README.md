@@ -29,6 +29,35 @@
 
 Prior-Data Fitted Networks (PFNs) suggest an alternative to fitting statistical models from scratch for each dataset: learning reusable statistical patterns through pretraining on diverse tasks. Building on more than a century of statistical research, StatArena explores a fundamental question: **what statistical capabilities can foundation models acquire through pretraining, and which of these capabilities can generalize across tasks?** Through open contributions of statistical methods, tasks, and data-generating processes, together with continuously updated leaderboards, StatArena aims to connect the statistical research community with advances in foundation models, enabling researchers to compare, evaluate, and build upon one another's methods. Our broader vision is to advance statistical intelligence in AI.
 
+## Running the Benchmark
+
+Run StatArena Lite locally with Python 3.10 or later. The first run for each domain downloads its pinned public starter from Hugging Face. Start with the IV baseline on the 16-study development split.
+
+```bash
+git clone https://github.com/Statsinference/Statistical-Intelligence-Arena.git
+cd Statistical-Intelligence-Arena
+python -m pip install -e ./lite
+statarena-lite list
+statarena-lite run --domain iv --split dev --method baseline
+```
+
+The command prints a JSON report and saves a predictions CSV. The IV development baseline gives an RMSE of about 1.144 and 95% interval coverage of 68.75%.
+
+To run your own method, copy the example, replace its estimator and pass the file to `--method`. The example implements an unadjusted IV Wald estimator.
+
+```bash
+cp lite/examples/my_method.py my_method.py
+statarena-lite run --domain iv --split dev --method ./my_method.py
+```
+
+Each method receives one observed study at a time and returns a point estimate and a 95% confidence interval. To score predictions from your own pipeline, use `statarena-lite score`.
+
+```bash
+statarena-lite score --domain iv --split dev --predictions lite-results/iv-dev-my_method.csv
+```
+
+The available domains are `ate`, `cate`, `mediation`, `iv`, `proximal`, and `did`. Use `dev` while developing and `test` to evaluate a fixed method on the 32-study public reference split. See the [Lite guide](lite/README.md) for input schemas, the prediction format and dataset access.
+
 ## Domain Coverage
 
 | Research domain | DGPs | Methods |
