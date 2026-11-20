@@ -18,14 +18,13 @@ sync=importlib.util.module_from_spec(spec);spec.loader.exec_module(sync)
 UPLOAD_LINK = "/../../upload/main/dgp-submissions/incoming"
 
 
-def test_contributing_uses_current_destination_upload():
-    text=(ROOT/"CONTRIBUTING.md").read_text(encoding="utf-8")
+def test_internal_intake_uses_current_destination_upload():
+    text=(HOME/"INTERNAL_ZIP_INTAKE.md").read_text(encoding="utf-8")
     assert f'href="{UPLOAD_LINK}"' in text
     assert 'Submit_DGP-Upload_ZIP-' in text
     assert 'href="dgp-submissions/incoming/"' not in text
     assert "Statsinference/stats-inference-arena/upload/main" not in text
     assert "Statsinference/submission_test/upload" not in text
-    assert "| Paper Title | DGPs | DGP Mechanisms | Estimand | Keywords |" in text
 
 
 def test_every_root_contributing_link_resolves():
@@ -50,6 +49,28 @@ def test_sync_is_idempotent_and_cannot_modify_root_readme():
     assert expected==(ROOT/"CONTRIBUTING.md").read_text(encoding="utf-8")
 
 
+def test_contribution_pages_keep_catalog_details_internal():
+    for path in (
+        ROOT/"CONTRIBUTING.md",
+        HOME/"README.md",
+        HOME/"CONTRIBUTING.md",
+        HOME/"docs/SIMULATED_DGP.md",
+        HOME/"docs/REAL_DATA_PROBLEM.md",
+    ):
+        text=path.read_text(encoding="utf-8")
+        assert "Paper list by research area" not in text, path
+        assert "STATSARENA_PAPER_LIST" not in text, path
+        assert "registry/" not in text, path
+        assert "dgp-submissions/incoming" not in text, path
+
+    index=(HOME/"registry/INDEX.md").read_text(encoding="utf-8")
+    assert "## Paper list by research area" in index
+    assert "| Paper Title | DGPs | DGP Mechanisms | Estimand | Keywords |" in index
+
+    workflow=(ROOT/".github/workflows/dgp-submissions.yml").read_text(encoding="utf-8")
+    assert "dgp_registry.paper_list" not in workflow
+
+
 def test_generated_catalog_links_are_within_isolated_service():
     import json
     data=json.loads((HOME/"registry/catalog.json").read_text(encoding="utf-8"))
@@ -60,15 +81,13 @@ def test_generated_catalog_links_are_within_isolated_service():
 
 def test_fork_safe_submission_links():
     """All entry points keep the upload interaction without an upstream owner."""
-    main=(HOME/"README.md").read_text(encoding="utf-8")
-    guide=(HOME/"CONTRIBUTING.md").read_text(encoding="utf-8")
-    for source in (main,guide,sync.render(main)):
-        assert f'href="{UPLOAD_LINK}"' in source
-        assert "Statsinference/stats-inference-arena/upload/main" not in source
-        assert "Statsinference/submission_test/upload" not in source
-        assert 'href="incoming/"' not in source
-        assert 'href="dgp-submissions/incoming/"' not in source
-        assert "choose your files" in source
+    guide=(HOME/"INTERNAL_ZIP_INTAKE.md").read_text(encoding="utf-8")
+    assert f'href="{UPLOAD_LINK}"' in guide
+    assert "Statsinference/stats-inference-arena/upload/main" not in guide
+    assert "Statsinference/submission_test/upload" not in guide
+    assert 'href="incoming/"' not in guide
+    assert 'href="dgp-submissions/incoming/"' not in guide
+    assert "choose your files" in guide
     assert sync.root_link(UPLOAD_LINK) == UPLOAD_LINK
 
 

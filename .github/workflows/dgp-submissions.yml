@@ -54,7 +54,6 @@ jobs:
         run: |
           python -m tools.dgp_registry.github_intake --incoming incoming --output registry
           python integration/zip_only_gate.py verify-report
-          python -m tools.dgp_registry.paper_list --catalog registry/catalog.json --readme README.md
           python integration/sync_contributing.py
           python -m pytest tests/test_integration.py -q
           python integration/verify_isolation.py verify
@@ -101,9 +100,8 @@ jobs:
           python -m tools.dgp_registry.github_intake --incoming incoming --output registry
           cat registry/PR_SUMMARY.md >> "$GITHUB_STEP_SUMMARY"
           cat registry/INTAKE_REPORT.md >> "$GITHUB_STEP_SUMMARY"
-      - name: Refresh Contributing without changing the project README
+      - name: Synchronize the contribution landing and verify registry output
         run: |
-          python -m tools.dgp_registry.paper_list --catalog registry/catalog.json --readme README.md
           python integration/sync_contributing.py
           python -m pytest tests/test_integration.py -q
           python integration/verify_isolation.py verify
@@ -112,14 +110,14 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -- CONTRIBUTING.md dgp-submissions/README.md dgp-submissions/registry
+          git add -- CONTRIBUTING.md dgp-submissions/registry
           if git diff --cached --quiet; then
             echo 'The DGP catalog and Contributing page are current.'
           else
             python - <<'PY'
           import subprocess
           changed=subprocess.check_output(['git','diff','--cached','--name-only','-z']).decode().split('\0')
-          allowed=lambda p: p=='CONTRIBUTING.md' or p=='dgp-submissions/README.md' or p.startswith('dgp-submissions/registry/')
+          allowed=lambda p: p=='CONTRIBUTING.md' or p.startswith('dgp-submissions/registry/')
           invalid=[p for p in changed if p and not allowed(p)]
           if invalid: raise SystemExit('Refusing changes outside DGP output: '+repr(invalid))
           PY
