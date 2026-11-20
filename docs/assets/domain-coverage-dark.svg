@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="856" height="488" viewBox="0 0 856 488" role="img" aria-labelledby="coverage-title coverage-desc">
+  <title id="coverage-title">StatArena domain coverage</title>
+  <desc id="coverage-desc">Average Treatment Effect: 22 DGPs, 2 methods. Conditional Average Treatment Effect: 12 DGPs, 2 methods. Causal Mediation Analysis: 31 DGPs, 2 methods. Instrumental Variables: 21 DGPs, 2 methods. Proximal Causal Inference: 15 DGPs, 2 methods. Difference-in-Differences: 11 DGPs, 2 methods. Nonparametric Regression: 20 DGPs, 0 methods. Quantile Inference: 27 DGPs, 0 methods. Semi-Supervised Inference: 16 DGPs, 0 methods. Missing Data: 8 DGPs, 0 methods.</desc>
+  <rect x=".5" y=".5" width="855" height="487" rx="16" fill="#0d1827" stroke="#2c455c"/>
+  <path d="M16 1H840a15 15 0 0 1 15 15v47H1V16A15 15 0 0 1 16 1Z" fill="#14263b"/>
+  <g font-family="system-ui, -apple-system, Segoe UI, Arial, sans-serif">
+    <g fill="#ecf4ff" font-size="16" font-weight="650">
+      <text x="24" y="37">Research domain</text>
+      <text x="365" y="30">Data-generating processes</text>
+      <text x="790" y="37" text-anchor="middle">Methods</text>
+    </g>
+    <g fill="#a9bdd1" font-size="12" text-anchor="middle">
+      <text x="365" y="53">0</text>
+      <text x="471" y="53">10</text>
+      <text x="577" y="53">20</text>
+      <text x="683" y="53">30</text>
+    </g>
+    <g stroke="#31475d" stroke-width="1">
+      <path d="M365 63v384"/>
+      <path d="M471 63v384"/>
+      <path d="M577 63v384"/>
+      <path d="M683 63v384"/>
+    </g>
+    <g>
+      <path d="M24 108H832" stroke="#20354a"/>
+      <text x="24" y="94.5" fill="#ecf4ff" font-size="17" font-weight="530">Average Treatment Effect</text>
+      <path d="M365 89H598.2" fill="none" stroke="#4db5a8" stroke-width="3.5" stroke-linecap="round"/>
+      <circle cx="598.2" cy="89" r="6" fill="#8df1d7" stroke="#0d1827" stroke-width="1.25"/>
+      <text x="730" y="94.5" text-anchor="end" fill="#ecf4ff" font-size="17" font-weight="700">22</text>
+      <rect x="771" y="77" width="38" height="24" rx="12" fill="#163d40"/>
+      <text x="790" y="94" text-anchor="middle" fill="#a0f4de" font-size="15" font-weight="700">2</text>
+    </g>
+    <g>
+      <path d="M24 146H832" stroke="#20354a"/>
+      <text x="24" y="132.5" fill="#ecf4ff" font-size="17" font-weight="530">Conditional Average Treatment Effect</text>
+      <path d="M365 127H492.2" fill="none" stroke="#4db5a8" stroke-width="3.5" stroke-linecap="round"/>
+      <circle cx="492.2" cy="127" r="6" fill="#8df1d7" stroke="#0d1827" stroke-width="1.25"/>
+      <text x="730" y="132.5" text-anchor="end" fill="#ecf4ff" font-size="17" font-weight="700">12</text>
+      <rect x="771" y="115" width="38" height="24" rx="12" fill="#163d40"/>
+      <text x="790" y="132" text-anchor="middle" fill="#a0f4de" font-size="15" font-weight="700">2</text>
+    </g>
+    <g>
+      <path d="M24 184H832" stroke="#20354a"/>
+      <text x="24" y="170.5" fill="#ecf4ff" font-size="17" font-weight="530">Causal Mediation Analysis</text>
+      <path d="M365 165H693.6" fill="none" stroke="#4db5a8" stroke-width="3.5" stroke-linecap="round"/>
+      <circle cx="693.6" cy="165" r="6" fill="#8df1d7" stroke="#0d1827" stroke-width="1.25"/>
+      <text x="730" y="170.5" text-anchor="end" fill="#ecf4ff" font-size="17" font-weight="700">31</text>
+      <rect x="771" y="153" width="38" height="24" rx="12" fill="#163d40"/>
+      <text x="790" y="170" text-anchor="middle" fill="#a0f4de" font-size="15" font-weight="700">2</text>
+    </g>
+    <g>
+      <path d="M24 222H832" stroke="#20354a"/>
+      <text x="24" y="208.5" fill="#ecf4ff" font-size="17" font-weight="530">Instrumental Variables</text>
+      <path d="M365 203H587.6" fill="none" stroke="#4db5a8" stroke-width="3.5" stroke-linecap="round"/>
+      <circle cx="587.6" cy="203" r="6" fill="#8df1d7" stroke="#0d1827" stroke-width="1.25"/>
+      <text x="730" y="208.5" text-anchor="end" fill="#ecf4ff" font-size="17" font-weight="700">21</text>
+      <rect x="771" y="191" width="38" height="24" rx="12" fill="#163d40"/>
+      <text x="790" y="208" text-anchor="middle" fill="#a0f4de" font-size="15" font-weight="700">2</text>
+    </g>
+    <g>
+      <path d="M24 260H832" stroke="#20354a"/>
+      <text x="24" y="246.5" fill="#ecf4ff" font-size="17" font-weight="530">Proximal Causal Inference</text>
+      <path d="M365 241H524.0" fill="none" stroke="#4db5a8" stroke-width="3.5" stroke-linecap="round"/>
+      <circle cx="524.0" cy="241" r="6" fill="#8df1d7" stroke="#0d1827" stroke-width="1.25"/>
+      <text x="730" y="246.5" text-anchor="end" fill="#ecf4ff" font-size="17" font-weight="700">15</text>
+      <rect x="771" y="229" width="38" height="24" rx="12" fill="#163d40"/>
+      <text x="790" y="246" text-anchor="middle" fill="#a0f4de" font-size="15" font-weight="700">2</text>
+    </g>
+    <g>
+      <path d="M24 298H832" stroke="#20354a"/>
+      <text x="24" y="284.5" fill="#ecf4ff" font-size="17" font-weight="530">Difference-in-Differences</text>
+      <path d="M365 279H481.6" fill="none" stroke="#4db5a8" stroke-width="3.5" stroke-linecap="round"/>
+      <circle cx="481.6" cy="279" r="6" fill="#8df1d7" stroke="#0d1827" stroke-width="1.25"/>
+      <text x="730" y="284.5" text-anchor="end" fill="#ecf4ff" font-size="17" font-weight="700">11</text>
+      <rect x="771" y="267" width="38" height="24" rx="12" fill="#163d40"/>
+      <text x="790" y="284" text-anchor="middle" fill="#a0f4de" font-size="15" font-weight="700">2</text>
+    </g>
+    <g>
+      <path d="M24 336H832" stroke="#20354a"/>
+      <text x="24" y="322.5" fill="#ecf4ff" font-size="17" font-weight="530">Nonparametric Regression</text>
+      <path d="M365 317H577.0" fill="none" stroke="#4db5a8" stroke-width="3.5" stroke-linecap="round"/>
+      <circle cx="577.0" cy="317" r="6" fill="#8df1d7" stroke="#0d1827" stroke-width="1.25"/>
+      <text x="730" y="322.5" text-anchor="end" fill="#ecf4ff" font-size="17" font-weight="700">20</text>
+      <rect x="771" y="305" width="38" height="24" rx="12" fill="#263b53"/>
+      <text x="790" y="322" text-anchor="middle" fill="#c2d2e1" font-size="15" font-weight="700">0</text>
+    </g>
+    <g>
+      <path d="M24 374H832" stroke="#20354a"/>
+      <text x="24" y="360.5" fill="#ecf4ff" font-size="17" font-weight="530">Quantile Inference</text>
+      <path d="M365 355H651.2" fill="none" stroke="#4db5a8" stroke-width="3.5" stroke-linecap="round"/>
+      <circle cx="651.2" cy="355" r="6" fill="#8df1d7" stroke="#0d1827" stroke-width="1.25"/>
+      <text x="730" y="360.5" text-anchor="end" fill="#ecf4ff" font-size="17" font-weight="700">27</text>
+      <rect x="771" y="343" width="38" height="24" rx="12" fill="#263b53"/>
+      <text x="790" y="360" text-anchor="middle" fill="#c2d2e1" font-size="15" font-weight="700">0</text>
+    </g>
+    <g>
+      <path d="M24 412H832" stroke="#20354a"/>
+      <text x="24" y="398.5" fill="#ecf4ff" font-size="17" font-weight="530">Semi-Supervised Inference</text>
+      <path d="M365 393H534.6" fill="none" stroke="#4db5a8" stroke-width="3.5" stroke-linecap="round"/>
+      <circle cx="534.6" cy="393" r="6" fill="#8df1d7" stroke="#0d1827" stroke-width="1.25"/>
+      <text x="730" y="398.5" text-anchor="end" fill="#ecf4ff" font-size="17" font-weight="700">16</text>
+      <rect x="771" y="381" width="38" height="24" rx="12" fill="#263b53"/>
+      <text x="790" y="398" text-anchor="middle" fill="#c2d2e1" font-size="15" font-weight="700">0</text>
+    </g>
+    <g>
+      <text x="24" y="436.5" fill="#ecf4ff" font-size="17" font-weight="530">Missing Data</text>
+      <path d="M365 431H449.8" fill="none" stroke="#4db5a8" stroke-width="3.5" stroke-linecap="round"/>
+      <circle cx="449.8" cy="431" r="6" fill="#8df1d7" stroke="#0d1827" stroke-width="1.25"/>
+      <text x="730" y="436.5" text-anchor="end" fill="#ecf4ff" font-size="17" font-weight="700">8</text>
+      <rect x="771" y="419" width="38" height="24" rx="12" fill="#263b53"/>
+      <text x="790" y="436" text-anchor="middle" fill="#c2d2e1" font-size="15" font-weight="700">0</text>
+    </g>
+  </g>
+</svg>

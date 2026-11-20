@@ -60,20 +60,32 @@ Run `statarena-lite list` to see all supported domains. Use `dev` to develop a m
 
 ## Domain Coverage
 
+**183 DGPs** across **10 research domains**. **6 domains** list methods.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/domain-coverage-dark.svg" />
+  <img src="docs/assets/domain-coverage-light.svg" width="856" alt="StatArena domain coverage. The table below lists the exact DGP and method counts." />
+</picture>
+
+<details>
+<summary>View the data table</summary>
+
 | Research domain | DGPs | Methods |
-| :--- | :--- | :--- |
-| Average Treatment Effect | `▰▰▰▰▰▰▰▰▰▰▰` **22** | `▰▰` **2** |
-| Conditional Average Treatment Effect | `▰▰▰▰▰▰` **12** | `▰▰` **2** |
-| Causal Mediation | `▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰` **31** | `▰▰` **2** |
-| Instrumental Variables | `▰▰▰▰▰▰▰▰▰▰▰` **21** | `▰▰` **2** |
-| Proximal Causal Inference | `▰▰▰▰▰▰▰▰` **15** | `▰▰` **2** |
-| Difference-in-Differences | `▰▰▰▰▰▰` **11** | `▰▰` **2** |
-| Nonparametric Regression | `▰▰▰▰▰▰▰▰▰▰` **20** | — **0** |
-| Quantile Inference | `▰▰▰▰▰▰▰▰▰▰▰▰▰▰` **27** | — **0** |
-| Semi-Supervised Inference | `▰▰▰▰▰▰▰▰` **16** | — **0** |
-| Missing Data | `▰▰▰▰` **8** | — **0** |
+| :--- | ---: | ---: |
+| Average Treatment Effect | 22 | 2 |
+| Conditional Average Treatment Effect | 12 | 2 |
+| Causal Mediation Analysis | 31 | 2 |
+| Instrumental Variables | 21 | 2 |
+| Proximal Causal Inference | 15 | 2 |
+| Difference-in-Differences | 11 | 2 |
+| Nonparametric Regression | 20 | 0 |
+| Quantile Inference | 27 | 0 |
+| Semi-Supervised Inference | 16 | 0 |
+| Missing Data | 8 | 0 |
 
+</details>
 
+The Difference-in-Differences count includes Synthetic Control DGPs.
 
 ## Contributing DGPs / Methods
 

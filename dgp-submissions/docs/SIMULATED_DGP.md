@@ -31,7 +31,7 @@ Public teaching examples can link authorized code and settings. Summaries for pr
 
 ## 3. Copy the Markdown template
 
-Copy the block into `data-submissions/simulated-dgp/submissions/<slug>.md`. Use a lowercase, hyphenated slug, keep the six section headings in order and replace all placeholders. The same text is available as [TEMPLATE.md](https://github.com/Statsinference/statsinference.github.io/blob/32448a3da741bbf1a26a709b7f7b8d44366b6ad4/data-submissions/simulated-dgp/TEMPLATE.md).
+Copy the block into `data-submissions/simulated-dgp/submissions/<slug>.md`. Use a lowercase, hyphenated slug, keep the six section headings in order and replace all placeholders. The same text is available as [TEMPLATE.md](https://github.com/Statsinference/statsinference.github.io/blob/be6691cb365e8319ae50e009cf37d2b8658c5c94/data-submissions/simulated-dgp/TEMPLATE.md).
 
 ```markdown
 # [TODO: Case title]
@@ -79,10 +79,10 @@ Copy the block into `data-submissions/simulated-dgp/submissions/<slug>.md`. Use 
    python scripts/check_data_contribution.py --track simulated-dgp --local-file data-submissions/simulated-dgp/submissions/your-design.md
    ```
 
-4. Open a pull request to the website repository's `main` and complete the [submission checklist](https://github.com/Statsinference/statsinference.github.io/blob/32448a3da741bbf1a26a709b7f7b8d44366b6ad4/.github/PULL_REQUEST_TEMPLATE/data-contribution.md). Use the same PR for revisions. The automated check verifies the file and headings. A reviewer checks the design, the truth calculation and reproducibility. Evaluation inclusion is a separate curator decision.
+4. Open a pull request to the website repository's `main` and complete the [submission checklist](https://github.com/Statsinference/statsinference.github.io/blob/be6691cb365e8319ae50e009cf37d2b8658c5c94/.github/PULL_REQUEST_TEMPLATE/data-contribution.md). Use the same PR for revisions. The automated check verifies the file and headings. A reviewer checks the design, the truth calculation and reproducibility. Evaluation inclusion is a separate curator decision.
 
 ## Worked public example
 
-The childhood-trauma example models a methylation profile and derives the joint indirect effect on cortisol reactivity. It includes a shareable causal diagram, the inputs given to methods and an independently checkable reference calculation. [Read the example](https://github.com/Statsinference/statsinference.github.io/blob/32448a3da741bbf1a26a709b7f7b8d44366b6ad4/data-submissions/simulated-dgp/EXAMPLE.md)
+The childhood-trauma example models a methylation profile and derives the joint indirect effect on cortisol reactivity. It includes a shareable causal diagram, the inputs given to methods and an independently checkable reference calculation. [Read the example](https://github.com/Statsinference/statsinference.github.io/blob/be6691cb365e8319ae50e009cf37d2b8658c5c94/data-submissions/simulated-dgp/EXAMPLE.md)
 
-[All contribution tracks](../README.md) · [Reviewer checklist](https://github.com/Statsinference/statsinference.github.io/blob/32448a3da741bbf1a26a709b7f7b8d44366b6ad4/data-submissions/REVIEWING.md)
+[All contribution tracks](../README.md) · [Reviewer checklist](https://github.com/Statsinference/statsinference.github.io/blob/be6691cb365e8319ae50e009cf37d2b8658c5c94/data-submissions/REVIEWING.md)

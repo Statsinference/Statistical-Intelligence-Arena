@@ -28,7 +28,7 @@ Propose one statistically answerable question about an existing dataset. A revie
 
 ## 3. Copy the Markdown template
 
-Copy only the contents of the block into `data-submissions/real-data/submissions/<slug>.md`. Use a lowercase, hyphenated slug and keep the six section headings in order. Replace every placeholder with your own proposal. The same text is available as [TEMPLATE.md](https://github.com/Statsinference/statsinference.github.io/blob/32448a3da741bbf1a26a709b7f7b8d44366b6ad4/data-submissions/real-data/TEMPLATE.md).
+Copy only the contents of the block into `data-submissions/real-data/submissions/<slug>.md`. Use a lowercase, hyphenated slug and keep the six section headings in order. Replace every placeholder with your own proposal. The same text is available as [TEMPLATE.md](https://github.com/Statsinference/statsinference.github.io/blob/be6691cb365e8319ae50e009cf37d2b8658c5c94/data-submissions/real-data/TEMPLATE.md).
 
 ```markdown
 # [TODO: Case title]
@@ -75,10 +75,10 @@ Copy only the contents of the block into `data-submissions/real-data/submissions
    python scripts/check_data_contribution.py --track real-data --local-file data-submissions/real-data/submissions/your-study.md
    ```
 
-4. Open a pull request to the website repository's `main`, complete the [submission checklist](https://github.com/Statsinference/statsinference.github.io/blob/32448a3da741bbf1a26a709b7f7b8d44366b6ad4/.github/PULL_REQUEST_TEMPLATE/data-contribution.md), and address check failures or reviewer feedback in that PR. The automated check validates structure. A reviewer assesses the design, the proposed comparison and reproducibility. Evaluation inclusion is a separate curator decision.
+4. Open a pull request to the website repository's `main`, complete the [submission checklist](https://github.com/Statsinference/statsinference.github.io/blob/be6691cb365e8319ae50e009cf37d2b8658c5c94/.github/PULL_REQUEST_TEMPLATE/data-contribution.md), and address check failures or reviewer feedback in that PR. The automated check validates structure. A reviewer assesses the design, the proposed comparison and reproducibility. Evaluation inclusion is a separate curator decision.
 
 ## Worked public example
 
-The National Supported Work example uses the experimental RE74 sample to ask how program assignment affected 1978 earnings. The worked submission specifies the eligibility rules and column roles, names the causal assumptions, and provides code to reproduce the randomized reference estimate and interval. [Read the example](https://github.com/Statsinference/statsinference.github.io/blob/32448a3da741bbf1a26a709b7f7b8d44366b6ad4/data-submissions/real-data/EXAMPLE.md)
+The National Supported Work example uses the experimental RE74 sample to ask how program assignment affected 1978 earnings. The worked submission specifies the eligibility rules and column roles, names the causal assumptions, and provides code to reproduce the randomized reference estimate and interval. [Read the example](https://github.com/Statsinference/statsinference.github.io/blob/be6691cb365e8319ae50e009cf37d2b8658c5c94/data-submissions/real-data/EXAMPLE.md)
 
-[All contribution tracks](../README.md) · [Reviewer checklist](https://github.com/Statsinference/statsinference.github.io/blob/32448a3da741bbf1a26a709b7f7b8d44366b6ad4/data-submissions/REVIEWING.md)
+[All contribution tracks](../README.md) · [Reviewer checklist](https://github.com/Statsinference/statsinference.github.io/blob/be6691cb365e8319ae50e009cf37d2b8658c5c94/data-submissions/REVIEWING.md)
