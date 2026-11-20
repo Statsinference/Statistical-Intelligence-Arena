@@ -14,13 +14,13 @@
 <section class="track-hero">
 <h1>Conditional Average Treatment Effect</h1>
 <p>How much does treatment change the outcome at a given covariate profile? For each simulated study, estimate the conditional average treatment effect at its supplied query and return a two-sided 95% confidence interval.</p>
-<span class="target-formula" aria-label="Conditional average treatment effect at the query equals the expected difference between potential outcomes under treatment and control given the query covariates">CATE(<i>x</i><sub>★</sub>) = <i>E</i>[<i>Y</i><sup>(1)</sup> − <i>Y</i><sup>(0)</sup> ∣ <i>X</i> = <i>x</i><sub>★</sub>]</span>
+<span class="target-formula" aria-label="Conditional average treatment effect at the query equals the expected difference between potential outcomes under treatment and control given the query covariates">CATE(<i>x</i><sub>0</sub>) = <i>E</i>[<i>Y</i><sup>(1)</sup> − <i>Y</i><sup>(0)</sup> ∣ <i>X</i> = <i>x</i><sub>0</sub>]</span>
 <div class="track-actions"><a class="primary" href="https://huggingface.co/datasets/fuyao11/StatsInference-Arena-ATE-CATE/resolve/v1.2.2/ate-cate-starter-v1.zip">Download starter kit</a><a href="https://huggingface.co/datasets/fuyao11/StatsInference-Arena-ATE-CATE/tree/v1.2.2">Hugging Face dataset</a><a href="#submit">Submission format</a></div>
 </section>
 <nav aria-label="Benchmark card sections"><a href="#data">Data and splits</a><a href="#run">Run a baseline</a><a href="#evaluation">Official evaluation</a><a href="#submit">Submission format</a></nav>
 
 <section id="data" class="track-section"><h2>Data and splits</h2>
-<p>Each simulated study has 500 observations with baseline covariates <i>X</i>, binary treatment <i>T</i> and outcome <i>Y</i>. Each study also supplies one query <i>x</i><sub>★</sub>, which gives the covariate values at which to estimate the effect. Report effects in outcome units, or as probability differences for binary outcomes.</p>
+<p>Each simulated study has 500 observations with baseline covariates <i>X</i>, binary treatment <i>T</i> and outcome <i>Y</i>. Each study also supplies one query <i>x</i><sub>0</sub>, which gives the covariate values at which to estimate the effect. Report effects in outcome units, or as probability differences for binary outcomes.</p>
 <div class="datasets">
 <article><h3>Public starter kit</h3><p>48 training, 16 development and 32 reference test studies with labeled effects, a generator, starter baseline, scoring script and example predictions.</p><a href="https://huggingface.co/datasets/fuyao11/StatsInference-Arena-ATE-CATE/resolve/v1.2.2/ate-cate-starter-v1.zip">Download starter ZIP</a></article>
 <article><h3>Official reference inputs</h3><p>2,000 observed studies with variable types, CATE queries and CATE-specific five-fold assignments, and a blank CATE prediction template.</p><a href="https://huggingface.co/datasets/fuyao11/StatsInference-Arena-ATE-CATE/resolve/v1.2.2/ate-cate-official-inputs-v1.zip">Download official inputs ZIP</a></article>
