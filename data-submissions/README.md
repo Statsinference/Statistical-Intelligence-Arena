@@ -21,5 +21,3 @@ Every file and discussion in this repository is public. The PR can include a sha
 ## Review
 
 The automated check verifies the submission path, one-file scope and required sections. A human reviewer examines the scientific design, reference values and reproducibility before a maintainer decides whether to merge. A merged proposal records the contribution for the community. Evaluation inclusion is a separate curator decision. [Reviewer checklist](REVIEWING.md)
-
-This workflow draws on the proposal, pull request and review process used by Terminal-Bench Science. [Contribution guide](https://github.com/harbor-framework/terminal-bench-science/blob/main/CONTRIBUTING.md) · [Review guide](https://github.com/harbor-framework/terminal-bench-science/blob/main/REVIEWING.md)
