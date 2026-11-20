@@ -29,34 +29,34 @@
 
 Prior-Data Fitted Networks (PFNs) suggest an alternative to fitting statistical models from scratch for each dataset: learning reusable statistical patterns through pretraining on diverse tasks. Building on more than a century of statistical research, StatArena explores a fundamental question: **what statistical capabilities can foundation models acquire through pretraining, and which of these capabilities can generalize across tasks?** Through open contributions of statistical methods, tasks, and data-generating processes, together with continuously updated leaderboards, StatArena aims to connect the statistical research community with advances in foundation models, enabling researchers to compare, evaluate, and build upon one another's methods. Our broader vision is to advance statistical intelligence in AI.
 
-## Running the Benchmark
+## Run an IV example with StatArena Lite
 
-Run StatArena Lite locally with Python 3.10 or later. The first run for each domain downloads its pinned public starter from Hugging Face. Start with the IV baseline on the 16-study development split.
+This quickstart runs the built-in instrumental variables (IV) baseline on **16 simulated studies in the public development split**. The target is the local average treatment effect (LATE). For each study, the method returns a point estimate and a nominal 95% confidence interval. For the official leaderboard, see the [submission workflow](method-submissions/README.md).
+
+### 1. Run the built-in baseline
+
+Use Python 3.10 or later. On the first run, Lite downloads and verifies the pinned IV starter from Hugging Face.
 
 ```bash
 git clone https://github.com/Statsinference/Statistical-Intelligence-Arena.git
 cd Statistical-Intelligence-Arena
 python -m pip install -e ./lite
-statarena-lite list
 statarena-lite run --domain iv --split dev --method baseline
 ```
 
-The command prints a JSON report and saves a predictions CSV. The IV development baseline gives an RMSE of about 1.144 and 95% interval coverage of 68.75%.
+Lite saves one prediction per study to `lite-results/iv-dev-baseline.csv`, scores the predictions against the starter's reference values and prints the metrics as JSON. For this example, expect an RMSE of about **1.144** and coverage of **68.75%** (reported as `0.6875` in the JSON).
 
-To run your own method, copy the example, replace its estimator and pass the file to `--method`. The example implements an unadjusted IV Wald estimator.
+### 2. Try a bundled Python method
 
-```bash
-cp lite/examples/my_method.py my_method.py
-statarena-lite run --domain iv --split dev --method ./my_method.py
-```
-
-Each method receives one observed study at a time and returns a point estimate and a 95% confidence interval. To score predictions from your own pipeline, use `statarena-lite score`.
+The runnable example implements an unadjusted IV Wald estimator. Pass the file directly to `--method`, or copy it and edit `estimate(study)` to try your own estimator.
 
 ```bash
-statarena-lite score --domain iv --split dev --predictions lite-results/iv-dev-my_method.csv
+statarena-lite run --domain iv --split dev --method ./lite/examples/my_method.py
 ```
 
-The available domains are `ate`, `cate`, `mediation`, `iv`, `proximal`, and `did`. Use `dev` while developing and `test` to evaluate a fixed method on the 32-study public reference split. See the [Lite guide](lite/README.md) for input schemas, the prediction format and dataset access.
+This run writes `lite-results/iv-dev-my_method.csv` and scores it automatically. If you already have predictions from another pipeline, use `statarena-lite score` with the matching domain and split.
+
+Run `statarena-lite list` to see all supported domains. Use `dev` to develop a method and `test` to evaluate a fixed method on the 32-study public reference split. See the [Lite guide](lite/README.md) for input schemas, CSV format and scoring commands.
 
 ## Domain Coverage
 
