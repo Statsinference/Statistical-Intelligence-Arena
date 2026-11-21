@@ -504,9 +504,10 @@ with sync_playwright() as p:
         assert sorted(page.locator('#leaderboard .mname').all_inner_texts()) == sorted(r['method'] for r in suite['rows'])
         assert all(' + bootstrap' not in row['method'] for row in suite['rows'])
         if domain == 'mediation':
-            partial = page.locator('#leaderboard tr[data-method="CatBoost-TD"]')
-            assert '1,992 / 2,000 tables' in partial.inner_text()
-            assert partial.locator('.rank-cell').inner_text() == '—'
+            catboost = page.locator('#leaderboard tr[data-method="CatBoost-TD"]')
+            assert catboost.locator('.mname').inner_text() == 'CatBoost-TD'
+            assert catboost.locator('.org').count() == 0
+            assert catboost.locator('.rank-cell').inner_text().strip().isdigit()
         check_chart(page, 'rmse-time-chart', domain, 'time_s', 'rmse', suite)
         check_chart(page, 'coverage-length-chart', domain, 'length', 'coverage', suite)
         for key in KEYS:
