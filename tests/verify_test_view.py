@@ -479,7 +479,7 @@ with sync_playwright() as p:
         assert page.locator('.domain-intro h1').inner_text() == page.locator(f'#tab-{domain}').inner_text()
         summary = page.locator('.domain-intro').bounding_box()
         illustration_box = page.locator('#domain-illustration').bounding_box()
-        assert summary and illustration_box and summary['x'] >= illustration_box['x'] + illustration_box['width']
+        assert summary and illustration_box and summary['x'] + summary['width'] <= illustration_box['x']
         assert_counterfactual_notation(page, domain)
         if domain == 'proximal':
             illustration = page.locator('#domain-illustration svg')

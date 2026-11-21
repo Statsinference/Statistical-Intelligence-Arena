@@ -1,5 +1,5 @@
 /* Theme-aware schematic cards. Styles are scoped to this new component. */
-.domain-heading{display:grid;grid-template-columns:minmax(210px,32%) minmax(0,1fr);grid-template-areas:"figure intro";gap:clamp(20px,4vw,54px);align-items:center;padding:30px 0 22px}
+.domain-heading{display:grid;grid-template-columns:minmax(0,1fr) minmax(210px,32%);grid-template-areas:"intro figure";gap:clamp(20px,4vw,54px);align-items:start;padding:30px 0 22px}
 .domain-intro{grid-area:intro;min-width:0}
 .domain-intro h1{font:400 clamp(28px,3.2vw,44px)/1.12 var(--display);letter-spacing:-.025em}
 .domain-intro p{font-size:14px}
