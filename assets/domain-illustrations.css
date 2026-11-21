@@ -1,9 +1,10 @@
 /* Theme-aware schematic cards. Styles are scoped to this new component. */
-.page-heading.with-domain-illustration{display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,360px);gap:24px;align-items:center;padding:27px 0 18px}
-.page-heading.with-domain-illustration h1{margin:8px 0;line-height:1.06}
+.domain-heading{display:grid;grid-template-columns:minmax(210px,32%) minmax(0,1fr);grid-template-areas:"figure intro";gap:clamp(20px,4vw,54px);align-items:center;padding:30px 0 22px}
+.domain-intro{grid-area:intro;min-width:0}
+.domain-intro h1{font:400 clamp(28px,3.2vw,44px)/1.12 var(--display);letter-spacing:-.025em}
+.domain-intro p{font-size:14px}
 .domain-figure{margin:0;width:100%;min-width:0;padding:14px 18px 10px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--fg);--di-ink:var(--muted);--di-accent:var(--pfn);--di-node:var(--bg)}
-.domain-figure-title{font:500 18px/1.2 var(--display);letter-spacing:-.3px;margin:0 0 9px;max-width:100%}
-.domain-figure-title::after{content:'';display:block;width:25px;height:2px;background:var(--di-accent);opacity:.75;margin-top:9px}
+.domain-heading .domain-figure{grid-area:figure}
 .domain-figure svg{display:block;width:100%;height:auto;overflow:visible}
 .domain-figure svg text{fill:var(--fg);font:11px var(--body)}
 .domain-figure svg .di-small{font-size:10px}
@@ -27,8 +28,7 @@
 .domain-figure .di-open-dot{fill:var(--surface);stroke:var(--di-accent);stroke-width:1}
 .domain-figure .di-scatter{fill:var(--di-accent);opacity:.32}
 .domain-figure .di-missing-cell{fill:var(--surface);stroke:var(--line-strong);stroke-dasharray:3 3}
-@media(max-width:1100px){.page-heading.with-domain-illustration{grid-template-columns:minmax(0,1fr) minmax(240px,330px);gap:20px}.domain-figure{padding:13px 15px 9px}.domain-figure-title{font-size:17px}}
-@media(min-width:861px) and (max-width:1000px){.page-heading.with-domain-illustration h1{font-size:34px}}
-@media(max-width:700px){.page-heading.with-domain-illustration{grid-template-columns:1fr;gap:14px;padding:23px 0 15px}.page-heading.with-domain-illustration h1{margin:0}.domain-figure{max-width:360px;justify-self:start}.domain-figure-title{font-size:17px}}
+@media(max-width:1100px){.domain-figure{padding:13px 15px 9px}}
+@media(max-width:700px){.domain-heading{grid-template-columns:minmax(0,1fr);grid-template-areas:"intro" "figure";gap:18px;padding:22px 0 14px}.domain-intro p{font-size:13px}.domain-figure{max-width:360px;justify-self:start}}
 @media print{.domain-figure{break-inside:avoid}}
 

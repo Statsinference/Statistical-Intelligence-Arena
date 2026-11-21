@@ -475,6 +475,11 @@ with sync_playwright() as p:
         page.wait_for_function('(domain)=>document.querySelector("#domain-illustration")?.dataset.domain===domain', arg=domain)
         assert page.locator('#domain-illustration svg').get_attribute('role') == 'img'
         assert page.locator('#domain-illustration svg desc').text_content()
+        assert page.locator('#domain-view h1').count() == 1
+        assert page.locator('.domain-intro h1').inner_text() == page.locator(f'#tab-{domain}').inner_text()
+        summary = page.locator('.domain-intro').bounding_box()
+        illustration_box = page.locator('#domain-illustration').bounding_box()
+        assert summary and illustration_box and summary['x'] >= illustration_box['x'] + illustration_box['width']
         assert_counterfactual_notation(page, domain)
         if domain == 'proximal':
             illustration = page.locator('#domain-illustration svg')
@@ -497,6 +502,7 @@ with sync_playwright() as p:
         assert page.locator('#leaderboard tbody tr[data-method]').count() == len(suite['rows'])
         assert page.locator('#leaderboard tbody .method-details-row').count() == 0
         assert sorted(page.locator('#leaderboard .mname').all_inner_texts()) == sorted(r['method'] for r in suite['rows'])
+        assert all(' + bootstrap' not in row['method'] for row in suite['rows'])
         if domain == 'mediation':
             partial = page.locator('#leaderboard tr[data-method="CatBoost-TD"]')
             assert '1,992 / 2,000 tables' in partial.inner_text()
@@ -616,7 +622,7 @@ with sync_playwright() as p:
     assert 'not specified' not in page.locator('#domain-definition').inner_text().lower()
     page.locator('[data-fam="classical"]').click()
     assert page.locator('#leaderboard tbody tr[data-method]').count() == 4
-    for method in ('Random Forest', 'CatBoost-TD + bootstrap', 'XGB-TD + bootstrap'):
+    for method in ('Random Forest', 'CatBoost-TD', 'XGB-TD'):
         toggle = page.get_by_role('button', name=method, exact=True)
         toggle.click()
         baseline_detail = page.locator('#' + toggle.get_attribute('aria-controls'))
@@ -646,7 +652,7 @@ with sync_playwright() as p:
         exported = list(csv.DictReader(f))
     assert [[float(r[k]) for k in KEYS] for r in exported] == sorted(EXPECTED['iv'] + EXTRA_BASELINES['iv'], key=lambda r: r[2])
     assert [r['method'] for r in exported] == [
-        'IV-PFN', 'Linear + bootstrap', 'Random Forest', 'XGB-TD + bootstrap', 'CatBoost-TD + bootstrap'
+        'IV-PFN', 'Linear', 'Random Forest', 'XGB-TD', 'CatBoost-TD'
     ]
     assert exported[2]['source_method'] == 'RF trim + bootstrap'
     page.locator('#theme-btn').click()
@@ -663,6 +669,9 @@ with sync_playwright() as p:
     mobile.locator('[data-t="proximal"]').click()
     assert mobile.locator('#menu-btn').get_attribute('aria-expanded') == 'false'
     assert mobile.evaluate('document.documentElement.scrollWidth<=innerWidth+1')
+    summary = mobile.locator('.domain-intro').bounding_box()
+    illustration_box = mobile.locator('#domain-illustration').bounding_box()
+    assert summary and illustration_box and summary['y'] + summary['height'] <= illustration_box['y']
     mobile.wait_for_function('document.querySelector("#rmse-time-chart")?.dataset.domain==="proximal" && document.querySelector("#rmse-time-chart svg")')
     mobile.evaluate('async()=>{await document.fonts.ready}')
     for chart_id in ('rmse-time-chart', 'coverage-length-chart'):
@@ -699,7 +708,7 @@ with sync_playwright() as p:
             points = host.locator('.chart-point')
             for index in range(points.count()):
                 point = points.nth(index)
-                point.focus()
+                point.evaluate('(node) => node.focus({preventScroll:true})')
                 tip = host.locator('.chart-tooltip')
                 assert tip.is_visible(), (domain, chart_id, index)
                 assert tip.locator('.chart-tooltip-title').inner_text() == point.get_attribute('data-method')

@@ -51,7 +51,7 @@ function aggregateRows(rows,varianceKind){
  return out;
 }
 function displayIdentity(domain,r){
- if(r.family==='classical')return {method:'RF + bootstrap',configuration:domain==='iv'?(r.method==='RF trim'?'Trimmed variant':'Untrimmed variant'):domain==='proximal'?'B = 200 · source configuration':domain==='ate'||domain==='cate'?'B = 100 · source configuration':''};
+ if(r.family==='classical')return {method:'Random Forest',configuration:domain==='iv'?(r.method==='RF trim'?'Trimmed variant':'Untrimmed variant'):domain==='proximal'?'B = 200 · source configuration':domain==='ate'||domain==='cate'?'B = 100 · source configuration':''};
  if(domain==='iv')return {method:'IV-PFN',configuration:'v0.2 · source name: PFN'};
  const seed=r.method.match(/ S([12])$/);
  return {method:seed?r.method.replace(/ S[12]$/,''):r.method,configuration:seed?'Training seed '+seed[1]:''};
@@ -106,7 +106,7 @@ function buildTestSuites(raw,med,updates,iv,reviewed){
   }
   if(s.domain==='iv')s.notes.push('Pooled Variance is pending: v0.2 does not specify whether the supplied variances are within-mechanism or cross-table. They are preserved in the source file, not silently averaged. Both RF variants remain distinct configurations.');
   if(s.domain==='did_sc'){
-   s.rows.push({method:'RF + bootstrap',source_method:'RF + bootstrap',configuration:'Not evaluated in this report',family:'classical',group:'Test',status:'not_reported',tables:2000,approximate_metrics:[],...Object.fromEntries(metricKeys.map(k=>[k,null]))});
+   s.rows.push({method:'Random Forest',source_method:'RF + bootstrap',configuration:'Not evaluated in this report',family:'classical',group:'Test',status:'not_reported',tables:2000,approximate_metrics:[],...Object.fromEntries(metricKeys.map(k=>[k,null]))});
    s.notes.push('RF + bootstrap was not run in this report. The historical RF-DR-DiD used influence-function intervals; its numbers are preserved in the source data, not relabeled as bootstrap. Training seeds remain separate; no ensemble is formed.');
   }
   result.push(s);

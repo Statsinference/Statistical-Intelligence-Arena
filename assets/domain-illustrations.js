@@ -97,7 +97,7 @@
     if (!Object.prototype.hasOwnProperty.call(diagrams,domain)) { host.hidden=true; return; }
     if (domain === last) return;
     last=domain;host.hidden=false;host.dataset.domain=domain;
-    const title=document.createElement('h3');title.className='domain-figure-title';title.id='domain-figure-title';title.textContent=titles[domain];
+    const title=document.createElement('figcaption');title.className='sr-only';title.id='domain-figure-title';title.textContent=titles[domain];
     const graphic=document.createElementNS('http://www.w3.org/2000/svg','svg');
     graphic.setAttribute('viewBox','0 0 400 184');graphic.setAttribute('role','img');
     graphic.setAttribute('aria-labelledby','domain-figure-title domain-figure-desc');

@@ -64,7 +64,7 @@
       }
     },
     {
-      "method": "Linear + bootstrap",
+      "method": "Linear",
       "source_method": "Linear + bootstrap",
       "family": "classical",
       "group": "Test",
@@ -94,7 +94,7 @@
       }
     },
     {
-      "method": "XGB-TD + bootstrap",
+      "method": "XGB-TD",
       "source_method": "XGB-TD + bootstrap",
       "family": "classical",
       "group": "Test",
@@ -124,7 +124,7 @@
       }
     },
     {
-      "method": "CatBoost-TD + bootstrap",
+      "method": "CatBoost-TD",
       "source_method": "CatBoost-TD + bootstrap",
       "family": "classical",
       "group": "Test",
