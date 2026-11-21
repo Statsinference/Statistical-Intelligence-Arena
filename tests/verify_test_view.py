@@ -281,16 +281,10 @@ def assert_centered_guides_when_clear(svg, xguide, yguide, chart_id):
             assert abs(actual_mid-plot_mid) <= max(1,step), (chart_id, axis, current[index], plot)
 
 
-def assert_navigation_groups(page):
-    groups = page.locator('#tabs .domain-group')
-    assert groups.count() == 2
-    names = [group.locator('.domain-group-heading').text_content().strip() for group in groups.all()]
-    assert names == ['Causal Inference', 'Others'], names
-    for group, expected in zip(groups.all(), (DOMAINS[:6], DOMAINS[6:])):
-        assert group.get_attribute('role') == 'group'
-        heading = group.locator('.domain-group-heading')
-        assert group.get_attribute('aria-labelledby') == heading.get_attribute('id')
-        assert group.locator('[role="tab"][data-t]').evaluate_all('nodes=>nodes.map(n=>n.dataset.t)') == expected
+def assert_domain_navigation(page):
+    tabs = page.locator('#tabs > [role="tab"][data-t]')
+    assert tabs.evaluate_all('nodes=>nodes.map(n=>n.dataset.t)') == DOMAINS
+    assert page.locator('#tabs > *').count() == len(DOMAINS)
 
 
 def assert_overview(page, suites):
@@ -447,7 +441,7 @@ with sync_playwright() as p:
         'https://github.com/Statsinference/Statistical-Intelligence-Arena/blob/main/CONTRIBUTING.md'
     )
     assert page.locator('#tabs [data-t]').count() == 10
-    assert_navigation_groups(page)
+    assert_domain_navigation(page)
     suites = page.evaluate('ArenaTestView.getSuites()')
     assert len(suites) == 6
     page.wait_for_function('document.querySelector("[data-overview-stat=estimand-types]")?.textContent.trim() !== "—" && document.querySelector("[data-overview-stat=registered-dgps]")?.textContent.trim() !== "—"')
@@ -666,7 +660,7 @@ with sync_playwright() as p:
     load(mobile, 'domain=iv')
     assert mobile.evaluate('document.documentElement.scrollWidth<=innerWidth+1')
     mobile.locator('#menu-btn').click()
-    assert_navigation_groups(mobile)
+    assert_domain_navigation(mobile)
     mobile.locator('[data-t="proximal"]').click()
     assert mobile.locator('#menu-btn').get_attribute('aria-expanded') == 'false'
     assert mobile.evaluate('document.documentElement.scrollWidth<=innerWidth+1')

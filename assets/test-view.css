@@ -22,9 +22,6 @@
 #leaderboard .rank-medal-disc{fill:var(--medal-fill);stroke:var(--medal-edge);stroke-width:1}
 #leaderboard .rank-medal-ring{fill:none;stroke:var(--medal-edge);stroke-width:.6;opacity:.65}
 #leaderboard .rank-medal text{fill:var(--medal-ink);font:700 9px var(--body)}
-.domain-group-heading{margin:15px 14px 5px;color:var(--quiet);font:600 10px var(--body);letter-spacing:.075em;text-transform:uppercase}
-.domain-group:first-child .domain-group-heading{margin-top:5px}
-.domain-group+.domain-group{margin-top:12px}
 #leaderboard .method-cell{width:210px;text-align:left;white-space:normal}
 #leaderboard tbody .method-cell{font:400 12px var(--body);color:var(--fg);background:transparent}
 #leaderboard .num{font:11px var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}

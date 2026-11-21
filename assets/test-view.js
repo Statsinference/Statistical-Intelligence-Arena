@@ -337,8 +337,7 @@ function chooseTask(id){
  task=id;pageMode='domain';family='all';query='';$('#q').value='';
  writeHash();render();window.scrollTo({top:0,behavior:'instant'});
 }
-const domainGroups=[{id:'causal',label:'Causal Inference',domains:DOMAINS.slice(0,6)},{id:'other',label:'Others',domains:DOMAINS.slice(6)}];
-$('#tabs').innerHTML=domainGroups.map(g=>`<div class="domain-group" role="group" aria-labelledby="domain-group-${g.id}"><div id="domain-group-${g.id}" class="domain-group-heading">${esc(g.label)}</div>${g.domains.map(d=>`<button class="tab" id="tab-${d.id}" data-t="${d.id}" role="tab" aria-controls="main-panel" aria-selected="false" tabindex="-1">${esc(d.name)}</button>`).join('')}</div>`).join('');
+$('#tabs').innerHTML=DOMAINS.map(d=>`<button class="tab" id="tab-${d.id}" data-t="${d.id}" role="tab" aria-controls="main-panel" aria-selected="false" tabindex="-1">${esc(d.name)}</button>`).join('');
 $('#tabs').addEventListener('click',e=>{const b=e.target.closest('[data-t]');if(b)chooseTask(b.dataset.t);});
 $('#fam-chips').addEventListener('click',e=>{const b=e.target.closest('[data-fam]');if(b){family=b.dataset.fam;render();}});
 $('#q').addEventListener('input',e=>{query=e.target.value.trim().toLowerCase();renderMetrics();});
