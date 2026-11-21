@@ -570,7 +570,8 @@ with sync_playwright() as p:
     for domain in EXPECTED:
         page.locator(f'[data-t="{domain}"]').click()
         page.locator('[data-fam="classical"]').click()
-        toggle = page.get_by_role('button', name=re.compile(r'^Random Forest \+'))
+        name = 'Random Forest + GMM' if domain == 'proximal' else 'Random Forest'
+        toggle = page.locator('#leaderboard').get_by_role('button', name=name, exact=True)
         if toggle.get_attribute('aria-expanded') == 'false':
             toggle.click()
         detail = page.locator('#' + toggle.get_attribute('aria-controls'))
@@ -615,7 +616,7 @@ with sync_playwright() as p:
     assert 'not specified' not in page.locator('#domain-definition').inner_text().lower()
     page.locator('[data-fam="classical"]').click()
     assert page.locator('#leaderboard tbody tr[data-method]').count() == 4
-    for method in ('Random Forest + bootstrap', 'CatBoost-TD + bootstrap', 'XGB-TD + bootstrap'):
+    for method in ('Random Forest', 'CatBoost-TD + bootstrap', 'XGB-TD + bootstrap'):
         toggle = page.get_by_role('button', name=method, exact=True)
         toggle.click()
         baseline_detail = page.locator('#' + toggle.get_attribute('aria-controls'))
@@ -645,7 +646,7 @@ with sync_playwright() as p:
         exported = list(csv.DictReader(f))
     assert [[float(r[k]) for k in KEYS] for r in exported] == sorted(EXPECTED['iv'] + EXTRA_BASELINES['iv'], key=lambda r: r[2])
     assert [r['method'] for r in exported] == [
-        'IV-PFN', 'Linear + bootstrap', 'Random Forest + bootstrap', 'XGB-TD + bootstrap', 'CatBoost-TD + bootstrap'
+        'IV-PFN', 'Linear + bootstrap', 'Random Forest', 'XGB-TD + bootstrap', 'CatBoost-TD + bootstrap'
     ]
     assert exported[2]['source_method'] == 'RF trim + bootstrap'
     page.locator('#theme-btn').click()
@@ -686,7 +687,7 @@ with sync_playwright() as p:
     # on both charts in all six populated domains, using actual screen bounds.
     narrow = browser.new_page(viewport={'width': 320, 'height': 844})
     narrow.on('pageerror', lambda e: errors.append(str(e)))
-    load(narrow)
+    load(narrow, 'domain=ate')
     for domain in EXPECTED:
         if domain != 'ate':
             narrow.locator('#menu-btn').click()
@@ -698,9 +699,10 @@ with sync_playwright() as p:
             points = host.locator('.chart-point')
             for index in range(points.count()):
                 point = points.nth(index)
-                point.hover()
+                point.focus()
                 tip = host.locator('.chart-tooltip')
                 assert tip.is_visible(), (domain, chart_id, index)
+                assert tip.locator('.chart-tooltip-title').inner_text() == point.get_attribute('data-method')
                 tooltip, area = tip.bounding_box(), host.bounding_box()
                 assert tooltip and area
                 assert tooltip['x'] >= area['x'] - 1 and tooltip['y'] >= area['y'] - 1
@@ -712,7 +714,7 @@ with sync_playwright() as p:
                     ox = min(tooltip['x']+tooltip['width'],guide['x']+guide['width']) - max(tooltip['x'],guide['x'])
                     oy = min(tooltip['y']+tooltip['height'],guide['y']+guide['height']) - max(tooltip['y'],guide['y'])
                     assert not (ox > 1 and oy > 1), (domain, chart_id, index, tooltip, guide)
-                narrow.mouse.move(0, 0)
+                narrow.keyboard.press('Escape')
                 assert tip.is_hidden()
 
     assert not errors, errors

@@ -45,7 +45,7 @@
       "approximate_metrics": []
     },
     {
-      "method": "Random Forest + bootstrap",
+      "method": "Random Forest",
       "source_method": "RF trim + bootstrap",
       "family": "classical",
       "configuration": "",

@@ -176,7 +176,6 @@ function methodCell(r,index){
 function methodDetails(r,index){
  const s=current(),ref=ArenaMethodReferences.lookup(task,r),facts=methodFacts(r,s).map(([label,value])=>[label,s?.domain==='iv'&&/\bnot reported\b/i.test(String(value))?'—':value]);
  const references=[];
- if(r.source?.file)references.push(`<div><strong>Result source</strong><p>${esc(r.source.file)} · ${esc(r.source.locators)}</p></div>`);
  if(r.status==='reviewed'){
   const url=ArenaMethodReferences.safeURL(r.method_url,'method');
   if(url)references.push(`<div><strong>Method</strong> <a class="method-reference-link" href="${esc(url)}" target="_blank" rel="noopener noreferrer">Code or method card ↗</a></div>`);
