@@ -27,9 +27,7 @@
 
 **StatArena** is an open platform for benchmarking and research across the full statistical research workflow. Study design determines how data are collected. Researchers can use data directly for prediction or inference, or first explore patterns and select variables or models. Prediction and inference both inform decisions, and diagnostics are used throughout the workflow.
 
-**StatArena Inference** is our current focus. It covers parameter estimation, confidence intervals, and causal inference. For a policy intervention, these methods help answer the question “How large was the policy's effect, and how reliable is that estimate?”
-
-StatArena will gradually expand its benchmarks to other stages of the research workflow, including hypothesis testing, policy learning, experimental design, multi-armed bandits, and sequential decision-making. **StatArena Decision** will evaluate how models choose actions under uncertainty and adapt their decisions as new evidence arrives.
+**StatArena Inference** is our current focus. It covers parameter estimation, confidence intervals, and causal inference. For a policy intervention, these methods help answer the question “How large was the policy's effect, and how reliable is that estimate?” StatArena will gradually expand its benchmarks to other stages of the research workflow, including hypothesis testing, policy learning, experimental design, multi-armed bandits, and sequential decision-making. **StatArena Decision** will evaluate how models choose actions under uncertainty and adapt their decisions as new evidence arrives.
 
 ## Run an IV example with StatArena Lite
 
