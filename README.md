@@ -142,6 +142,16 @@ The Difference-in-Differences count includes Synthetic Control DGPs.
 
 ## Citation
 
+The Statistical Intelligence Arena team. (2026, November 22). *StatArena: The Statistical Intelligence Arena* (v0.1.0) [Software]. [GitHub repository](https://github.com/Statsinference/Statistical-Intelligence-Arena).
+
+See the [citation metadata](CITATION.cff) and the [StatArena leaderboard](https://statsinference.github.io/). The following public dataset revisions match the StatArena Lite runner.
+
+- [ATE and CATE](https://huggingface.co/datasets/fuyao11/StatsInference-Arena-ATE-CATE/tree/6de515dae59a4b502d6ceb66a03180fd08a46a59)
+- [Mediation](https://huggingface.co/datasets/shibo769/StatsInference-Arena-Mediation/tree/f70008b2eb4dd82fa9d981d3759ea4dcf5983e33)
+- [IV](https://huggingface.co/datasets/Brownight/StatsInference-Arena-IV/tree/f4d6f68c73f745872b46d919a156c2c300476308)
+- [Proximal](https://huggingface.co/datasets/wytzzka/StatsInference-Arena-Proximal/tree/2027f348fa54db3db9dd006e2f4d7dcf55282b22)
+- [DiD](https://huggingface.co/datasets/lisuo/StatsInference-Arena-DiD/tree/ac97ca41e0a8c4797a8fa33d2d0d47c02ce6a87c)
+
 ## Contact
 
 For questions and feedback, please contact the project leads: [Shi Bo](mailto:shibo@bu.edu) · [Jiaming Hu](mailto:jh7453@bu.edu) · [Zhiheng Zhang](mailto:zhangzhiheng@mail.shufe.edu.cn)
