@@ -37,7 +37,7 @@ def render(source: str) -> str:
         "1. **Test locally.** Use [StatArena Lite](lite/README.md) to run your method on public data and check its results.\n"
         "2. **Submit for evaluation.** Follow the "
         "[method submission guide](https://github.com/Statsinference/statsinference.github.io/blob/main/method-submissions/README.md) "
-        "for the requirements and submission route for your task. "
+        "to provide your method link, choose a research domain, and submit the completed Markdown checklist. "
         "The StatArena team reviews submissions and evaluates eligible methods for the official leaderboard.\n\n"
         "## Contribute Data\n\n"
         f"{data_guide.rstrip()}\n\n"

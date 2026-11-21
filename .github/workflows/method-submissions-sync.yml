@@ -27,15 +27,15 @@ jobs:
           import hashlib
           import pathlib
           import urllib.request
-          url = 'https://raw.githubusercontent.com/Statsinference/statsinference.github.io/3cbfacdf35a2744dbceb85e6f21bf7addb72cf13/method-submissions/sync.py'
+          url = 'https://raw.githubusercontent.com/Statsinference/statsinference.github.io/caee2422415fecefdbaa6be7c6131711fb2a5440/method-submissions/sync.py'
           with urllib.request.urlopen(url, timeout=30) as response:
               content = response.read()
-          expected = 'a37d8c6bafe1e824ec31baf7643ca643ed4b294881b1d482b87def35af45fc3f'
+          expected = 'db572ffda839c6b9bfbb65f9d5311ccab24f21d55331eb094135c497ff6fc6c9'
           if hashlib.sha256(content).hexdigest() != expected:
               raise RuntimeError('Intake parser fingerprint mismatch')
           pathlib.Path('method-submissions/sync.py').write_bytes(content)
           PY
-      - name: Import public model links
+      - name: Import public method submissions
         run: python3 method-submissions/sync.py
       - name: Save the submission list
         shell: bash
