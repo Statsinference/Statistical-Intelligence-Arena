@@ -21,7 +21,7 @@ METRICS = {
 def make_row(submission, scores, family):
     if not isinstance(submission, dict) or not isinstance(scores, dict):
         raise ValueError("Expected JSON objects for the archived submission and its official score")
-    if (submission.get("domain") != "mediation" or submission.get("schema_version") != 2
+    if (submission.get("domain") != "mediation" or submission.get("schema_version") not in (2, 3)
             or submission.get("is_test") is not False):
         raise ValueError("Expected an archived mediation submission from received/")
     number = submission.get("issue_number")

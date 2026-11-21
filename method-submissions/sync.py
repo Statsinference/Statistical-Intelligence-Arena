@@ -11,6 +11,24 @@ from pathlib import Path
 SOURCE = 'Statsinference/statsinference.github.io'
 ROOT = Path(__file__).resolve().parent
 DOMAINS = {'ate', 'cate', 'mediation', 'iv', 'proximal', 'did_sc', 'nonparametric_regression', 'quantile', 'semi_supervised', 'missing_data', 'unspecified'}
+DOMAIN_LABELS = {
+    'Average Treatment Effect': 'ate',
+    'Conditional Average Treatment Effect': 'cate',
+    'Causal Mediation Analysis': 'mediation',
+    'Instrumental Variables': 'iv',
+    'Proximal Causal Inference': 'proximal',
+    'Difference-in-Differences': 'did_sc',
+    'Nonparametric Regression': 'nonparametric_regression',
+    'Quantile Inference': 'quantile',
+    'Semi-Supervised Inference': 'semi_supervised',
+    'Missing Data': 'missing_data',
+}
+METHOD_FORM = re.compile(
+    r'\A### Method link[ \t]*\n+([^\n]+)\n+'
+    r'### Research domain[ \t]*\n+([^\n]+)\n+'
+    r'### Completed checklist[ \t]*\n+(.+)\Z',
+    re.DOTALL,
+)
 URL_RE = re.compile(r'https://huggingface\.co/[A-Za-z0-9][A-Za-z0-9_-]*/[A-Za-z0-9][A-Za-z0-9._-]*(?:/tree/[A-Za-z0-9][A-Za-z0-9._-]*)?/?\Z')
 RESERVED = {'spaces', 'datasets', 'organizations', 'api', 'settings', 'collections', 'join', 'login'}
 MARKER = '<!-- arena-method-submission:v1 -->'
@@ -48,6 +66,35 @@ def public_web_link(value: str) -> bool:
         return False
 
 
+def parse_method_form(body: str) -> dict | None:
+    match = METHOD_FORM.fullmatch(body)
+    if not match:
+        return None
+    url, label, checklist = (value.strip() for value in match.groups())
+    domain = DOMAIN_LABELS.get(label)
+    if not domain or not public_web_link(url) or not checklist or checklist == '_No response_':
+        return None
+
+    location = urlsplit(url)
+    name = re.search(r'^Method name:[ \t]*(\S[^\n]*)$', checklist, re.M)
+    fields = {
+        'schema_version': 3,
+        'domain': domain,
+        'method_url': url,
+        'method_name': name[1].strip() if name else location.hostname,
+        'checklist_markdown': checklist,
+    }
+    for key, pattern in (
+        ('version', r'^Version:[ \t]*(\S[^\n]*)$'),
+        ('estimator', r'^## Method description[ \t]*\n+([\s\S]+?)(?=^## |\Z)'),
+    ):
+        if value := re.search(pattern, checklist, re.M):
+            fields[key] = value[1].strip()
+    if hf := canonical_url(url):
+        fields['huggingface_url'] = hf
+    return fields
+
+
 def parse_mediation_form(body: str) -> dict | None:
     headings = '|'.join(map(re.escape, MEDIATION_FIELDS))
     sections = re.split(rf'^### ({headings})[ \t]*\n', body, flags=re.M)
@@ -77,6 +124,8 @@ def parse_mediation_form(body: str) -> dict | None:
 
 
 def submission_fields(body: str) -> dict | None:
+    if body.lstrip().startswith('### Method link\n'):
+        return parse_method_form(body.lstrip())
     if MARKER not in body:
         return parse_mediation_form(body)
     match = re.search(r'^### Hugging Face model link\n+([^\n]+)\s*\n', body, re.M)
@@ -150,7 +199,7 @@ def write_archive(issues: list[dict], root: Path = ROOT) -> int:
     saved.sort(key=lambda r: r['issue_number'], reverse=True)
     lines = ['# Method submissions', '', '| Method | Domain | Submitted by | Date | Status | Submission |', '| --- | --- | --- | --- | --- | --- |']
     for r in saved:
-        if r['schema_version'] == 2:
+        if r['schema_version'] in (2, 3):
             # Keep submitted names and URL punctuation inside one Markdown cell.
             name = re.sub(r'([\\|\[\]`*_~])', r'\\\1', escape(' '.join(r['method_name'].split())))
             link = quote(r['method_url'], safe=':/?#@!$&*+,;=%-._~')

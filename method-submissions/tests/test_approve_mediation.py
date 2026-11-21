@@ -6,6 +6,7 @@ import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from approve_mediation import RELEASE, make_row, record_approval
+from sync import submission_fields
 
 
 class MediationApprovalTests(unittest.TestCase):
@@ -45,6 +46,18 @@ class MediationApprovalTests(unittest.TestCase):
                       {"method_url": "javascript:alert(1)"}, {"version": ""}):
             with self.subTest(patch=patch), self.assertRaises(ValueError):
                 make_row({**self.submission, **patch}, self.scores, "other")
+
+    def test_general_form_mediation_submission_can_be_published(self):
+        fields = submission_fields(
+            "### Method link\n\nhttps://github.com/example/mediation\n\n"
+            "### Research domain\n\nCausal Mediation Analysis\n\n"
+            "### Completed checklist\n\n## Method name and version\n\n"
+            "Method name: Path product\n\nVersion: v1.2\n\n"
+            "## Method description\n\nOLS with bootstrap intervals\n\n## How to run\n\nRscript run.R"
+        )
+        row = make_row({**fields, "issue_number": 5, "is_test": False}, self.scores, "other")
+        self.assertEqual((row["method"], row["version"], row["estimator"]),
+                         ("Path product", "v1.2", "OLS with bootstrap intervals"))
 
     def test_invalid_scores(self):
         for patch in ({"release": "future"}, {"tables": 16}, {"paired_mechanisms": 8},

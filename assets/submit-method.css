@@ -1,6 +1,8 @@
 /* Additive submission UI. Existing leaderboard selectors are not restyled. */
-.method-submit-button{border:1px solid #000;border-radius:4px;padding:6px 12px;font-size:11px;white-space:nowrap;color:#fff;background:#000}
-.method-submit-button:hover{border-color:#000;background:#111}
+.contribution-link{border:1px solid #000;border-radius:4px;padding:6px 12px;font-size:11px;white-space:nowrap;color:#fff;background:#000}
+.contribution-link:hover{background:#111;text-decoration:none}
+#submit-method-btn{padding:0}
+#submit-method-btn:hover{text-decoration:underline;text-underline-offset:4px}
 #method-submit-dialog{width:min(480px,calc(100vw - 32px));max-height:calc(100dvh - 40px);padding:28px;border:1px solid var(--line-strong);border-radius:10px;background:var(--surface);color:var(--fg);box-shadow:0 24px 90px #0003}
 #method-submit-dialog::backdrop{background:#15151566}
 #method-submit-dialog .ms-heading{display:flex;align-items:start;justify-content:space-between;gap:16px;margin-bottom:12px}
@@ -17,6 +19,5 @@
 #method-submit-dialog .ms-cancel{padding:9px 8px;font-size:12px;color:var(--muted)}
 #method-submit-dialog .ms-challenge{margin-top:12px;min-height:0}
 #method-submit-dialog .ms-honeypot{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
-@media(max-width:380px){.method-submit-button{padding:6px 8px}#method-submit-dialog{padding:21px}}
-@media print{#method-submit-dialog,.method-submit-button{display:none!important}}
-@media(max-width:380px){.topbar:has(#submit-method-btn){gap:6px}.topbar-actions:has(#submit-method-btn){gap:4px}.method-submit-button{padding:6px 5px}}
+@media(max-width:380px){.topbar{gap:6px}.topbar-actions{gap:4px}.contribution-link{padding:6px 5px}#method-submit-dialog{padding:21px}}
+@media print{#method-submit-dialog,#submit-method-btn,.contribution-link{display:none!important}}

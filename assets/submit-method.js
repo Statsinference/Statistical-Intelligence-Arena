@@ -8,10 +8,9 @@
   const dialog = document.createElement('dialog');
   dialog.id = 'method-submit-dialog';
   dialog.setAttribute('aria-labelledby', 'ms-title');
-  dialog.setAttribute('aria-describedby', 'ms-intro');
-  dialog.innerHTML = `<div class="ms-heading"><h2 id="ms-title">Submit your method</h2><button type="button" class="ms-close" aria-label="Close submission form">×</button></div>
-    <p class="ms-intro" id="ms-intro">Submit a Hugging Face model link.</p>
+  dialog.innerHTML = `<div class="ms-heading"><h2 id="ms-title">Submit a method</h2><button type="button" class="ms-close" aria-label="Close submission form">×</button></div>
     <form id="method-submit-form" novalidate>
+      <p class="ms-intro">Submit a Hugging Face model link.</p>
       <label for="ms-url">Hugging Face model link</label>
       <input id="ms-url" type="url" required maxlength="1024" placeholder="https://huggingface.co/owner/model" autocomplete="off" spellcheck="false" aria-describedby="ms-help ms-status">
       <p class="ms-status" id="ms-help">Confirm your submission on GitHub. A GitHub account is required; submitted links are public.</p>
@@ -41,7 +40,9 @@
       return;
     }
     message(''); updateSend();
-    dialog.showModal(); trigger.setAttribute('aria-expanded', 'true'); input.focus();
+    dialog.showModal();
+    trigger.setAttribute('aria-expanded', 'true');
+    input.focus();
   });
   dialog.querySelector('.ms-close').addEventListener('click', () => dialog.close());
   dialog.querySelector('.ms-cancel').addEventListener('click', () => dialog.close());
