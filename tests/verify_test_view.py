@@ -434,7 +434,10 @@ with sync_playwright() as p:
     page.evaluate('async()=>{await document.fonts.ready}')
     assert page.title() == 'StatArena — The Statistical Intelligence Arena'
     assert page.locator('#home').is_visible()
-    assert page.locator('#home .home-contribute').get_attribute('href') == 'contribute-data/'
+    assert page.get_by_role('link', name='Contribute data', exact=True).count() == 0
+    assert page.get_by_role('link', name='Contribute to StatArena', exact=True).get_attribute('href') == (
+        'https://github.com/Statsinference/Statistical-Intelligence-Arena/blob/main/CONTRIBUTING.md'
+    )
     assert page.locator('#tabs [data-t]').count() == 10
     assert_navigation_groups(page)
     suites = page.evaluate('ArenaTestView.getSuites()')
@@ -457,6 +460,7 @@ with sync_playwright() as p:
     for domain in DOMAINS:
         page.locator(f'[data-t="{domain}"]').click()
         assert page.locator(f'#tab-{domain}').get_attribute('aria-selected') == 'true'
+        assert page.get_by_role('button', name='Submit a method', exact=True).count() == 0
         benchmark_card = page.locator('#benchmark-card-link')
         assert benchmark_card.is_visible() == (domain in BENCHMARK_CARDS)
         assert benchmark_card.get_attribute('href') == BENCHMARK_CARDS.get(domain)
