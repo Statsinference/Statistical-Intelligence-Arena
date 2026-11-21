@@ -7,7 +7,7 @@ from pathlib import Path
 import sys
 from urllib.parse import urlsplit
 
-from playwright.sync_api import sync_playwright
+from playwright.sync_api import expect, sync_playwright
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "method-submissions"))
@@ -61,7 +61,7 @@ def check_reviewed_mediation(browser, scores=None):
     for chart in ("rmse-time-chart", "coverage-length-chart"):
         point = page.locator(f'#{chart} .chart-point[data-method="{name}"]')
         point.wait_for(state="visible")
-        assert page.locator(f"#{chart} .chart-point").count() == 1
+        expect(page.locator(f"#{chart} .chart-point")).to_have_count(1)
     page.locator("#q").fill("unknown method")
     assert historical.count() == 0
     page.locator("#q").fill("new")
