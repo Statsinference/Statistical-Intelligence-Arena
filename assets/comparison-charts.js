@@ -10,8 +10,65 @@
     {id:'coverage-length-chart', x:'length', y:'coverage', xLabel:'Mean interval length (log scale)', yLabel:'Coverage (%, log scale)', xDetail:'Mean interval length', yDetail:'Coverage', title:'Coverage vs Mean Interval Length'}
   ];
   const numeric = value => typeof value === 'number' && Number.isFinite(value);
-  const familyClass = row => ['pfn','classical'].includes(row.family) ? row.family : 'other';
   const methodName = row => row.method;
+  const markerPalette = [
+    {shape:'circle', light:'#267a73', dark:'#58b6a9'},
+    {shape:'square', light:'#3767a2', dark:'#86b2ee'},
+    {shape:'triangle', light:'#a6631a', dark:'#f1b971'},
+    {shape:'diamond', light:'#76529b', dark:'#c7a6e8'},
+    {shape:'hexagon', light:'#a54360', dark:'#ed9bb8'},
+    {shape:'cross', light:'#557318', dark:'#b2cf74'},
+    {shape:'pentagon', light:'#88652c', dark:'#d6bf83'},
+    {shape:'triangle-down', light:'#46617e', dark:'#a1c3d8'}
+  ];
+  const methodPaletteIndex = new Map([
+    ['causalpfn',0], ['medipfn',0], ['iv-pfn',0], ['proximalfm',0], ['pfn-did',0], ['pfn',0],
+    ['random forest',1], ['rf',1], ['rf + bootstrap',1],
+    ['catboost-td',2], ['xgb-td',3], ['linear',4]
+  ]);
+  const markerPaths = {
+    square:'M -5 -5 H 5 V 5 H -5 Z',
+    triangle:'M 0 -6.8 L 6.2 4.5 H -6.2 Z',
+    diamond:'M 0 -7 L 6 0 L 0 7 L -6 0 Z',
+    hexagon:'M -3.2 -5.5 H 3.2 L 6.4 0 L 3.2 5.5 H -3.2 L -6.4 0 Z',
+    cross:'M -2.3 -6 H 2.3 V -2.3 H 6 V 2.3 H 2.3 V 6 H -2.3 V 2.3 H -6 V -2.3 H -2.3 Z',
+    pentagon:'M 0 -6.5 L 6 -2 L 3.7 5 H -3.7 L -6 -2 Z',
+    'triangle-down':'M -6.2 -4.5 H 6.2 L 0 6.8 Z'
+  };
+  function markerStyle(index) {
+    if (index < markerPalette.length) return markerPalette[index];
+    // Space additional hues apart while keeping the light and dark theme contrast.
+    const hue = Math.round((index-markerPalette.length+1)*137.508)%360;
+    return {shape:markerPalette[index%markerPalette.length].shape, light:`hsl(${hue}, 55%, 34%)`, dark:`hsl(${hue}, 68%, 74%)`};
+  }
+  function methodMarkerStyles(rows) {
+    const rowKey = row => [row.method, row.source_method, row.configuration].join('\n');
+    const ordered = [...rows].sort((a,b) => rowKey(a).localeCompare(rowKey(b),'en'));
+    const styles = new Map(), used = new Set();
+    // Assign named methods first so their visual identity persists across domains.
+    for (const row of ordered) {
+      const name = methodName(row).toLowerCase().replace(/\s*\+\s*gmm$/,'').trim();
+      const index = methodPaletteIndex.get(name);
+      if (index === undefined || used.has(index)) continue;
+      styles.set(row, markerStyle(index));
+      used.add(index);
+    }
+    // Use the full suite rather than the filtered rows to keep the assignment
+    // stable even if a method is hidden or only appears on one of the plots.
+    let index = 0;
+    for (const row of ordered) {
+      if (styles.has(row)) continue;
+      while (used.has(index)) index++;
+      styles.set(row, markerStyle(index++));
+    }
+    return styles;
+  }
+  function glyph(shape) {
+    const attrs = {class:'chart-marker','aria-hidden':'true'};
+    return shape === 'circle'
+      ? svgElement('circle', {...attrs,r:5.5})
+      : svgElement('path', {...attrs,d:markerPaths[shape]});
+  }
   let activeTip = null;
   function closeTip() {
     if (!activeTip) return;
@@ -141,11 +198,9 @@
   function tick(value) {
     return formatNumber(value);
   }
-  function renderChart(config) {
+  function renderChart(config, suite, candidates, styles) {
     const host = document.getElementById(config.id);
     if (!host) return;
-    const suite = current();
-    const candidates = visibleRows().filter(row => row.status !== 'partial');
     const usable = row => numeric(row[config.x]) && numeric(row[config.y]) && (config.y !== 'coverage' || row.coverage <= 1);
     const rows = candidates.filter(row => usable(row) && row[config.x] > 0 && row[config.y] > 0);
     const nonpositive = candidates.filter(row => usable(row) && (row[config.x] <= 0 || row[config.y] <= 0)).length;
@@ -215,8 +270,10 @@
     tooltip.hidden = true;
     for (const row of rows) {
       const cx = x(row[config.x]), cy = y(yValue(row));
+      const marker = styles.get(row);
+      const markerColors = `--chart-marker-light:${marker.light};--chart-marker-dark:${marker.dark}`;
       const label = `${methodName(row)}${row.configuration ? ', '+row.configuration : ''}. ${config.xDetail}: ${detailValue(row,config.x,suite)}. ${config.yDetail}: ${detailValue(row,config.y,suite)}.`;
-      const point = svgElement('g',{class:'chart-point '+familyClass(row),tabindex:0,role:'button','aria-label':label,'aria-controls':tooltip.id,'aria-expanded':'false','data-method':methodName(row),'data-x':row[config.x],'data-y':yValue(row),transform:`translate(${cx} ${cy})`});
+      const point = svgElement('g',{class:'chart-point',tabindex:0,role:'button','aria-label':label,'aria-controls':tooltip.id,'aria-expanded':'false','data-method':methodName(row),'data-x':row[config.x],'data-y':yValue(row),style:markerColors,transform:`translate(${cx} ${cy})`});
       function populateTooltip() {
         const title = document.createElement('strong');
         title.className = 'chart-tooltip-title'; title.textContent = methodName(row);
@@ -248,11 +305,12 @@
         if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); toggle(); }
       });
       point.append(svgElement('circle',{r:9,class:'chart-focus-ring'}));
-      point.append(row.family === 'classical' ? svgElement('path',{d:'M 0 -6 L 6 0 L 0 6 L -6 0 Z',class:'chart-marker'}) : svgElement('circle',{r:5.5,class:'chart-marker'}));
+      point.append(glyph(marker.shape));
       svg.append(point);
       const item = document.createElement('span');item.className='chart-legend-item';
-      const marker = document.createElement('i');marker.className='chart-legend-marker '+familyClass(row);marker.setAttribute('aria-hidden','true');
-      item.append(marker,document.createTextNode(methodName(row)));legend.append(item);
+      const swatch = svgElement('svg',{class:'chart-legend-marker',viewBox:'-8 -8 16 16',style:markerColors,'aria-hidden':'true'});
+      swatch.append(glyph(marker.shape));
+      item.append(swatch,document.createTextNode(methodName(row)));legend.append(item);
     }
     host.append(svg,legend,tooltip);
     if (nonpositive || unavailable) {
@@ -265,7 +323,13 @@
   let frame = 0;
   function schedule() {
     if (frame) return;
-    frame = requestAnimationFrame(() => { frame=0;charts.forEach(renderChart); });
+    frame = requestAnimationFrame(() => {
+      frame=0;
+      const suite = current();
+      const candidates = visibleRows().filter(row => row.status !== 'partial');
+      const styles = methodMarkerStyles(suite?.rows || candidates);
+      charts.forEach(config => renderChart(config, suite, candidates, styles));
+    });
   }
   // Existing render calls replace the table on data load, domain selection, filters and sorting.
   new MutationObserver(schedule).observe(table,{childList:true});

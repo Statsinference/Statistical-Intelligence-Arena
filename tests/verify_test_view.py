@@ -33,7 +33,7 @@ BENCHMARK_CARDS = {'ate': 'ate/', 'cate': 'cate/', 'mediation': 'mediation/',
 EXPECTED = {
     'ate': [[.0119,.0097,.1114,.2599,.7763,1.089],[-.0167,.0137,.1284,.5897,.9675,90.490]],
     'cate': [[.0143,.0480,.2966,5.8471,1.,.219],[-.0139,.1560,.5522,1.2689,.8484,55.501]],
-    'mediation': [[.0219,.3303,.5891,1.2654,.973,1.5],[-.1098,4.0148,2.0533,4.3238,.949,439.39]],
+    'mediation': [[.0117,.2303,.5291,1.0326,.951,1.5],[-.1098,4.0148,2.0533,4.3238,.949,439.39]],
     'iv': [[.012,.072,.268,.875,.9565,.366],[.022,.099,.316,1.111,.9025,179.9]],
     'proximal': [[.0219,.0146,.1229,.4447,.965,.997],[.0161,.6718,.8196,.8475,.9735,80.873]],
     'did_sc': [[.001012,.018648,.136526,.466152,.9485,.135786],[-.014595,.083437,.289151,.826107,.9565,89.779984]]
@@ -179,7 +179,7 @@ def assert_axis_labels_do_not_overlap(host):
 
 def assert_guidance_inside_plot(host, chart_id, nominal):
     """Guides must track their axes without hiding data or each other."""
-    svg = host.locator('svg')
+    svg = host.locator('svg[data-plot-width]')
     groups = svg.locator('.chart-guidance')
     assert groups.count() == 2
     xguide = svg.locator('.chart-guidance[data-axis="x"]')
@@ -406,6 +406,14 @@ def check_chart(page, chart_id, domain, xkey, ykey, suite):
         assert math.isclose(float(point.get_attribute('data-x')), row[xkey], rel_tol=1e-12)
         assert math.isclose(float(point.get_attribute('data-y')), row[ykey] * (100 if ykey == 'coverage' else 1), rel_tol=1e-12)
         assert point.get_attribute('aria-label') and point.get_attribute('tabindex') == '0'
+    read_marks = """nodes => nodes.map(node => [
+        getComputedStyle(node).fill, node.localName, node.getAttribute('d')
+    ])"""
+    marks = host.locator('.chart-point .chart-marker').evaluate_all(read_marks)
+    legend_marks = host.locator('.chart-legend-item .chart-marker').evaluate_all(read_marks)
+    assert marks == legend_marks
+    assert len({mark[0] for mark in marks}) == len(marks)
+    assert len({tuple(mark[1:]) for mark in marks}) == len(marks)
     assert 'logarithmic' in host.locator('svg desc').text_content().lower()
     axes = host.locator('.chart-axis-title').all_text_contents()
     assert len(axes) == 2 and all('log scale' in a.lower() for a in axes), axes
@@ -537,6 +545,7 @@ with sync_playwright() as p:
         assert detail.locator('.method-detail-grid > div > strong').all_text_contents() == [
             'Method', 'Estimator / model', 'Folds / contexts', 'Bootstrap', 'Configuration']
         assert detail.locator('.method-detail-extra').count() == 1
+        assert detail.locator('.method-settings tbody th[scope="row"]').count() >= 1
         assert row.locator('td[data-metric]').all_inner_texts() == before
         row.locator('.method-toggle').click()
         assert page.locator('#leaderboard tbody .method-details-row').count() == 0
@@ -560,6 +569,15 @@ with sync_playwright() as p:
 
     # Display just NIE while retaining the treatment-1 natural indirect effect.
     page.locator('[data-t="mediation"]').click()
+    linear_toggle = page.locator('#leaderboard').get_by_role('button', name='Linear', exact=True)
+    linear_toggle.click()
+    linear_settings = page.locator('.method-details-row .method-settings')
+    for label, value in [('Treatment propensity clipping', '[0.01, 0.99]'),
+                         ('Confidence level', '95%'), ('Bootstrap refits', '50 whole-row resamples')]:
+        assert linear_settings.get_by_role('row').filter(
+            has=page.get_by_role('rowheader', name=label, exact=True)
+        ).locator('td').inner_text() == value
+    linear_toggle.click()
     mediation_math = page.locator('#domain-definition math')
     assert mediation_math.get_attribute('aria-label') == 'Natural indirect effect at treatment level one'
     assert mediation_math.locator('mi').first.text_content() == 'NIE'

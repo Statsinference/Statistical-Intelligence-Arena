@@ -11,17 +11,15 @@
 .comparison-charts .chart-reference{stroke:var(--muted);stroke-width:1.1;stroke-dasharray:5 4}
 .comparison-charts .chart-reference-label{fill:var(--muted);font:10px var(--mono)}
 .comparison-charts .chart-point{outline:none;cursor:pointer}
-.comparison-charts .chart-marker{stroke:var(--surface);stroke-width:1.5}
-.comparison-charts .chart-point.pfn{fill:var(--pfn)}
-.comparison-charts .chart-point.classical{fill:var(--classical)}
-.comparison-charts .chart-point.other{fill:var(--fg)}
+.comparison-charts .chart-marker{fill:var(--chart-marker-light,var(--fg));stroke:var(--surface);stroke-width:1.35}
+:root[data-theme=dark] .comparison-charts .chart-marker{fill:var(--chart-marker-dark,var(--fg))}
 .comparison-charts .chart-focus-ring{fill:none;stroke:currentColor;stroke-width:1.5;opacity:0}
 .comparison-charts .chart-point:hover .chart-focus-ring,.comparison-charts .chart-point:focus-visible .chart-focus-ring{opacity:1}
 .comparison-charts .chart-legend{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 20px;margin-top:8px;min-height:18px;color:var(--muted);font:11px/1.6 var(--body)}
 .comparison-charts .chart-legend-item{display:inline-flex;align-items:center;gap:7px;overflow-wrap:anywhere}
-.comparison-charts .chart-legend-marker{display:inline-block;flex:0 0 7px;width:7px;height:7px;background:var(--fg);border-radius:50%}
-.comparison-charts .chart-legend-marker.pfn{background:var(--pfn)}
-.comparison-charts .chart-legend-marker.classical{background:var(--classical);border-radius:0;transform:rotate(45deg)}
+.comparison-charts .chart-legend-marker{flex:0 0 15px;width:15px;height:15px;overflow:hidden}
+.comparison-charts .chart-legend-marker .chart-marker{stroke-width:.55}
+@media(forced-colors:active){.comparison-charts .chart-marker,:root[data-theme=dark] .comparison-charts .chart-marker{fill:CanvasText;stroke:Canvas}}
 .comparison-charts .chart-empty{display:grid;place-items:center;min-height:275px;color:var(--quiet);font-size:12px;text-align:center}
 .comparison-charts .chart-note{margin:8px 0 0;color:var(--muted);font:11px/1.5 var(--body);text-align:center}
 .comparison-charts .chart-tooltip{position:absolute;z-index:5;max-width:min(240px,calc(100% - 8px));padding:10px 12px;border:1px solid var(--line-strong);border-radius:8px;background:var(--surface);box-shadow:0 6px 22px rgba(0,0,0,.13);color:var(--fg);font:12px/1.5 var(--body);overflow-wrap:anywhere;pointer-events:none}

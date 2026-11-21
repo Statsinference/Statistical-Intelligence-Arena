@@ -86,7 +86,25 @@
         "estimator": "Linear nuisance models",
         "folds": "Not reported",
         "bootstrap": "Not reported",
-        "configuration": "Bootstrap intervals."
+        "configuration": "Bootstrap intervals.",
+        "settings": [
+          [
+            "Learner",
+            "Linear nuisance models"
+          ],
+          [
+            "Confidence level",
+            "95%"
+          ],
+          [
+            "Interval construction",
+            "Bootstrap interval"
+          ],
+          [
+            "Bootstrap design",
+            "Resample count and quantile rule unreported"
+          ]
+        ]
       },
       "timing": "Reported mean seconds per table.",
       "display_precision": {
@@ -116,7 +134,29 @@
         "estimator": "XGB-TD nuisance models",
         "folds": "Not reported",
         "bootstrap": "Not reported",
-        "configuration": "Trimming clips the fitted instrument propensity e(X) to [0.05, 0.95] using predictions from the same fit. Bootstrap intervals."
+        "configuration": "Trimming clips the fitted instrument propensity e(X) to [0.05, 0.95] using predictions from the same fit. Bootstrap intervals.",
+        "settings": [
+          [
+            "Learner",
+            "XGB-TD nuisance models"
+          ],
+          [
+            "Instrument propensity clipping",
+            "[0.05, 0.95], using predictions from the same fit"
+          ],
+          [
+            "Confidence level",
+            "95%"
+          ],
+          [
+            "Interval construction",
+            "Bootstrap interval"
+          ],
+          [
+            "Bootstrap design",
+            "Resample count and quantile rule unreported"
+          ]
+        ]
       },
       "timing": "Reported mean seconds per table.",
       "display_precision": {
@@ -146,7 +186,29 @@
         "estimator": "CatBoost-TD nuisance models",
         "folds": "Not reported",
         "bootstrap": "Not reported",
-        "configuration": "Trimming clips the fitted instrument propensity e(X) to [0.05, 0.95] using predictions from the same fit. Bootstrap intervals."
+        "configuration": "Trimming clips the fitted instrument propensity e(X) to [0.05, 0.95] using predictions from the same fit. Bootstrap intervals.",
+        "settings": [
+          [
+            "Learner",
+            "CatBoost-TD nuisance models"
+          ],
+          [
+            "Instrument propensity clipping",
+            "[0.05, 0.95], using predictions from the same fit"
+          ],
+          [
+            "Confidence level",
+            "95%"
+          ],
+          [
+            "Interval construction",
+            "Bootstrap interval"
+          ],
+          [
+            "Bootstrap design",
+            "Resample count and quantile rule unreported"
+          ]
+        ]
       },
       "timing": "Reported mean seconds per table.",
       "display_precision": {

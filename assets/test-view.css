@@ -9,7 +9,7 @@
 .rank-control select{font-size:11px;min-width:100px;padding:6px 28px 6px 9px;color:var(--fg)}
 .test-controls .search{margin-left:auto}
 .test-controls .export{margin-left:0}
-.leaderboard-wrap{width:100%;overflow-x:auto;border:1px solid var(--line);border-radius:6px;background:var(--surface)}
+.leaderboard-wrap{width:100%;overflow-x:auto;border:1px solid var(--line);border-radius:6px;background:var(--surface);container-type:inline-size}
 #leaderboard{width:100%;min-width:890px;table-layout:fixed}
 #leaderboard th,#leaderboard td{padding:13px 11px;vertical-align:middle}
 #leaderboard thead th{font:500 11px var(--body);height:44px;padding-top:10px;padding-bottom:10px}
@@ -46,17 +46,31 @@
 .coming-soon p{margin-top:7px;color:var(--muted);font-size:12px}
 #leaderboard .method-toggle{display:inline-flex;align-items:center;gap:8px;text-align:left;padding:3px 0;color:var(--fg);line-height:1.45}
 #leaderboard .method-toggle:hover .mname{text-decoration:underline;text-underline-offset:3px}
+#leaderboard .method-toggle[aria-expanded="true"] .mname{color:var(--accent)}
 #leaderboard .method-chevron{font-size:14px;color:var(--accent)}
 #leaderboard .method-details-row>td{padding:0;white-space:normal;background:var(--surface)}
 #leaderboard .method-details-row:hover{background:transparent}
-#leaderboard .method-details{padding:17px 25px 19px 66px;border-top:1px solid var(--line);border-left:3px solid var(--accent);white-space:normal}
-#leaderboard .method-detail-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px 24px;max-width:950px}
-#leaderboard .method-detail-extra{grid-column:1/-1}
-#leaderboard .method-detail-grid strong{display:block;font:500 10px/1.4 var(--body);color:var(--quiet);text-transform:uppercase;letter-spacing:.04em}
-#leaderboard .method-detail-grid p{margin:5px 0 0;font:12px/1.55 var(--body);color:var(--fg);overflow-wrap:anywhere}
+#leaderboard .method-details{width:min(100%,100cqw);padding:19px 26px 21px 66px;border-top:1px solid var(--line);border-left:3px solid var(--accent);white-space:normal}
+#leaderboard .method-detail-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:17px 24px;max-width:980px}
+#leaderboard .method-detail-extra{grid-column:1/-1;display:grid;gap:7px}
+#leaderboard .method-detail-grid strong{display:block;font:600 10px/1.4 var(--body);color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+#leaderboard .method-detail-grid p{margin:4px 0 0;font:13px/1.5 var(--body);color:var(--fg);overflow-wrap:anywhere}
+#leaderboard .method-config-box{width:100%;max-width:770px;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+#leaderboard .method-settings{width:100%;min-width:0;table-layout:fixed;background:var(--surface)}
+#leaderboard .method-settings th,#leaderboard .method-settings td{padding:7px 12px;vertical-align:top;white-space:normal;overflow-wrap:anywhere;font:12px/1.5 var(--body)}
+#leaderboard .method-settings th{width:30%;background:var(--bg);border-right:1px solid var(--line);color:var(--muted);font-weight:550}
+#leaderboard .method-settings td{color:var(--fg);background:var(--surface)}
+#leaderboard .method-settings tr:last-child>*{border-bottom:0}
 #leaderboard .method-reference-links{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:14px}
 #leaderboard .method-reference-link{color:var(--accent);font:500 11px/1.5 var(--body);text-decoration:underline;text-underline-offset:3px;overflow-wrap:anywhere}
 @media(max-width:1100px){.test-controls .search{max-width:150px}.test-controls .search input{width:125px}}
-@media(max-width:680px){.test-controls{gap:10px}.test-controls .search{margin-left:0;max-width:170px;flex:1}.test-controls .export{margin-left:auto}.rank-control{margin-right:auto}#leaderboard{min-width:850px}#leaderboard .method-cell{width:180px}#leaderboard .rank-cell{width:48px}#leaderboard .method-details{padding:16px 20px 18px 22px}#leaderboard .method-detail-grid{grid-template-columns:repeat(2,minmax(140px,1fr))}.domain-definition{font-size:15px}.coming-soon{padding:24px}}
+@media(max-width:680px){
+ .test-controls{gap:10px}.test-controls .search{margin-left:0;max-width:170px;flex:1}.test-controls .export{margin-left:auto}.rank-control{margin-right:auto}#leaderboard{min-width:850px}#leaderboard .method-cell{width:180px}#leaderboard .rank-cell{width:48px}
+ #leaderboard .method-details{padding:15px 12px 17px}
+ #leaderboard .method-detail-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+ #leaderboard .method-settings th,#leaderboard .method-settings td{padding:6px 8px}
+ #leaderboard .method-settings th{width:38%}
+ .domain-definition{font-size:15px}.coming-soon{padding:24px}
+}
 @media print{.leaderboard-wrap{overflow:visible}#leaderboard{min-width:0}.test-controls{display:none}}
 
