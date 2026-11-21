@@ -1,13 +1,4 @@
-# Contribute to StatArena
-
-## Contribute a Method
-
-Submit a statistical method or model for evaluation on a supported StatArena task.
-
-1. **Test locally.** Use [StatArena Lite](lite/README.md) to run your method on public data and check its results.
-2. **Submit for evaluation.** Follow the [method submission guide](https://github.com/Statsinference/statsinference.github.io/blob/main/method-submissions/README.md) for the requirements and submission route for your task. The StatArena team reviews submissions and evaluates eligible methods for the official leaderboard.
-
-## Contribute Data
+# Contribute data to StatArena
 
 Choose the guide that fits your contribution. Each guide includes a template, a filled example and instructions for submitting a pull request.
 
@@ -16,12 +7,12 @@ Choose the guide that fits your contribution. Each guide includes a template, a 
 | [Simulated DGP](dgp-submissions/docs/SIMULATED_DGP.md) | A data-generating process with a scientific motivation, a defined estimand, a verifiable reference value and enough detail to reproduce the simulation. |
 | [Real-data problem](dgp-submissions/docs/REAL_DATA_PROBLEM.md) | A causal question, a documented dataset or access route, and a plan for comparing estimates. Include a reference estimate when one is available. |
 
-### Submit a proposal
+## Submit a proposal
 
 Choose one track and open a pull request with one completed Markdown proposal in the website repository. The track guides include the template, a filled example and the corresponding submission path.
 
 Use your proposal to share the research question, estimand and references. If a simulation is intended for official evaluation or the data have restricted access, arrange private review of the full materials with a maintainer. The worked examples illustrate the submission format.
 
-### Existing benchmark documentation
+## Existing benchmark documentation
 
 The DGP collection service does not change the benchmark protocol, website, or starter code. See the [project README](README.md), [scientific requirements](docs/contribution_en.md), and [starter](starter/README.md).
