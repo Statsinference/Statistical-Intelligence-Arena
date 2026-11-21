@@ -1,4 +1,4 @@
-"""Publish the isolated DGP landing page to root CONTRIBUTING.md, never README.md."""
+"""Generate the root contribution guide for methods and data."""
 from __future__ import annotations
 import re
 from pathlib import Path
@@ -24,12 +24,24 @@ def render(source: str) -> str:
     )
     source = MARKDOWN_URL.sub(lambda m: root_link(m.group()), source)
     source = HTML_URL.sub(lambda m: m.group(1) + m.group(2) + root_link(m.group(3)) + m.group(4), source)
-    source = source.replace("# Statistical Inference Arena · DGP Submission", "# Contributing to Statistical Inference Arena", 1)
     source = source.replace("**Actions → Extract DGP ZIPs**", "**Actions → DGP submissions**")
     source = source.replace("`.github/workflows/dgp-zip-intake.yml`", "`.github/workflows/dgp-submissions.yml`")
     source = source.replace("`../.github/workflows/dgp-submissions.yml`", "`.github/workflows/dgp-submissions.yml`")
     source = source.replace("`incoming/`", "`dgp-submissions/incoming/`")
-    return source.rstrip() + "\n\n## Existing benchmark documentation\n\n" + (
+    data_guide = re.sub(r"\A# [^\n]*\n*", "", source, count=1)
+    data_guide = re.sub(r"^(#{2,5}) ", r"#\1 ", data_guide, flags=re.MULTILINE)
+    return (
+        "# Contribute to StatArena\n\n"
+        "## Contribute a Method\n\n"
+        "Submit a statistical method or model for evaluation on a supported StatArena task.\n\n"
+        "1. **Test locally.** Use [StatArena Lite](lite/README.md) to run your method on public data and check its results.\n"
+        "2. **Submit for evaluation.** Follow the "
+        "[method submission guide](https://github.com/Statsinference/statsinference.github.io/blob/main/method-submissions/README.md) "
+        "for the requirements and submission route for your task. "
+        "The StatArena team reviews submissions and evaluates eligible methods for the official leaderboard.\n\n"
+        "## Contribute Data\n\n"
+        f"{data_guide.rstrip()}\n\n"
+        "### Existing benchmark documentation\n\n"
         "The DGP collection service does not change the benchmark protocol, website, or starter code. "
         "See the [project README](README.md), "
         "[scientific requirements](docs/contribution_en.md), and [starter](starter/README.md).\n"

@@ -43,6 +43,7 @@ def test_every_root_contributing_link_resolves():
 def test_sync_is_idempotent_and_cannot_modify_root_readme():
     before=(ROOT/"README.md").read_bytes()
     expected=sync.render((HOME/"README.md").read_text(encoding="utf-8"))
+    assert re.findall(r"^## (.+)$", expected, re.MULTILINE) == ["Contribute a Method", "Contribute Data"]
     assert expected==(ROOT/"CONTRIBUTING.md").read_text(encoding="utf-8")
     sync.main();sync.main()
     assert (ROOT/"README.md").read_bytes()==before
