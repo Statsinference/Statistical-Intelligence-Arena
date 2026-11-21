@@ -41,12 +41,13 @@ def check_reviewed_mediation(browser, scores=None):
     page.goto("https://arena.example/#domain=mediation")
     historical = page.locator("#leaderboard tbody tr[data-method]")
     page.wait_for_function("document.body.dataset.testView === 'ready'")
-    assert historical.count() == 2
-    rank = 1 + sum(value < scores["rmse"] for value in page.evaluate("current().rows.map(r => r.rmse)"))
+    initial_count = historical.count()
+    rank = 1 + sum(value < scores["rmse"] for value in page.evaluate(
+        "current().rows.filter(r => r.status !== 'partial').map(r => r.rmse)"))
     rows.append(make_row(submission, scores, "other"))
     page.reload()
     page.wait_for_function("document.body.dataset.testView === 'ready'")
-    assert historical.count() == 3
+    assert historical.count() == initial_count + 1
     approved = historical.nth(rank - 1)
     assert approved.locator(".mname").inner_text() == name and not approved.locator("study").count()
     assert approved.locator(".rank-medal").get_attribute("aria-label").startswith(f"Rank {rank} (")

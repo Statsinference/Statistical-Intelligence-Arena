@@ -129,8 +129,11 @@ function formatMetric(r,k){
 // the submitted evaluation omits a parameter, explicitly say it is unreported.
 function methodFacts(r,s){
  if(r.status==='reviewed')return [['Method',r.method],['Estimator / model',r.estimator],['Version',r.version],['Evaluation',r.tables.toLocaleString('en-US')+' official tables'],['Configuration','See the linked submission for fitting and interval settings.']];
+ if(r.details){
+  const {estimator,folds,bootstrap,configuration}=r.details;
+  return [['Method',r.method],['Estimator / model',estimator],['Folds / contexts',folds],['Bootstrap',bootstrap],['Configuration',configuration]];
+ }
  const baseline=r.family==='classical';
- const name=baseline?(s.id==='proximal-unified-2026-11-16-normalized'?'Random forest–based proximal baseline':'Random forest'):r.method;
  let estimator=baseline?'Random forest':r.method,folds='Not reported',bootstrap='Not reported',configuration='';
  if(['ate-fixed-collection-report','cate-fixed-collection-report'].includes(s.id)){
   if(baseline){
@@ -150,7 +153,7 @@ function methodFacts(r,s){
   folds='5';
   if(baseline){
    estimator='Trimmed random forest + bootstrap';bootstrap='50';
-   configuration='200 trees per forest, minimum leaf size 5, instrument propensity clipping to [0.05, 0.95], whole-row bootstrap refits and a 95% percentile interval';
+   configuration='200 trees per forest; minimum leaf size 5. Trimming clips the fitted instrument propensity e(X) to [0.05, 0.95] using predictions from the same fit. Whole-row bootstrap refits and a 95% percentile interval.';
   }else{
    estimator='IV-PFN v0.3';configuration='95% interval using influence-function standard errors';
   }
@@ -162,17 +165,18 @@ function methodFacts(r,s){
   if(baseline){estimator='Proximal series-IV / sieve-GMM with RF nuisance models';folds='5-fold out-of-fold E[W, W² | A, X, Z] predictions';bootstrap='50';configuration='RF nuisance and W | X query models: 200 trees; minimum leaf size 5; n_jobs=1; scikit-learn 1.7.2; 20-column quadratic bridge; ridge 10⁻⁴ and instrument ridge 10⁻⁶; full-pipeline resampling; 95% percentile interval';}
   else{folds='Five-context distribution mixture; not nuisance cross-fitting';configuration='Interval: quantiles of the five-context mixture distribution';}
  }else configuration=r.configuration||'';
- return [['Method',name],['Estimator / model',estimator],['Folds / contexts',folds],['Bootstrap',bootstrap],['Configuration',configuration||'Not reported']];
+ return [['Method',r.method],['Estimator / model',estimator],['Folds / contexts',folds],['Bootstrap',bootstrap],['Configuration',configuration||'Not reported']];
 }
 function methodKey(r){return [current()?.id,r.family,r.source_method||r.method,r.configuration||''].join('::');}
 function methodCell(r,index){
- const name=r.family==='classical'?'Baseline':r.method;
  const open=expandedMethods.has(methodKey(r));
- return `<button type="button" class="method-toggle" data-toggle-method="${index}" aria-expanded="${open}" aria-controls="method-details-${index}"><span class="mname">${esc(name)}</span><span class="method-chevron" aria-hidden="true">${open?'⌃':'⌄'}</span></button>`;
+ const sample=r.status==='partial'?`<span class="org">${r.tables.toLocaleString('en-US')} / ${current().tables.toLocaleString('en-US')} tables</span>`:'';
+ return `<button type="button" class="method-toggle" data-toggle-method="${index}" aria-expanded="${open}" aria-controls="method-details-${index}"><span><span class="mname">${esc(r.method)}</span>${sample}</span><span class="method-chevron" aria-hidden="true">${open?'⌃':'⌄'}</span></button>`;
 }
 function methodDetails(r,index){
  const s=current(),ref=ArenaMethodReferences.lookup(task,r),facts=methodFacts(r,s).map(([label,value])=>[label,s?.domain==='iv'&&/\bnot reported\b/i.test(String(value))?'—':value]);
  const references=[];
+ if(r.source?.file)references.push(`<div><strong>Result source</strong><p>${esc(r.source.file)} · ${esc(r.source.locators)}</p></div>`);
  if(r.status==='reviewed'){
   const url=ArenaMethodReferences.safeURL(r.method_url,'method');
   if(url)references.push(`<div><strong>Method</strong> <a class="method-reference-link" href="${esc(url)}" target="_blank" rel="noopener noreferrer">Code or method card ↗</a></div>`);
@@ -190,7 +194,7 @@ function methodDetails(r,index){
 }
 // Rank within the current domain only. Missing results always sort last.
 function metricScore(row,key){
- if(!finite(row[key]))return null;
+ if(row.status==='partial'||!finite(row[key]))return null;
  if(key==='bias')return Math.abs(row[key]);
  if(key==='coverage')return Math.abs(row[key]-(current()?.nominal_coverage??.95));
  return row[key];
@@ -241,6 +245,7 @@ function renderMetrics(){
  $('#export-btn').disabled=!rs.some(r=>r.status!=='not_reported');
  const notes=[];
  if(task==='mediation'&&reviewedError)notes.push('Reviewed submission results are temporarily unavailable.');
+ if(rs.some(r=>r.status==='partial'))notes.push('Partial evaluations appear without ranks and are omitted from the comparison charts.');
  if(rs.some(r=>r.approximate_metrics?.length))notes.push('≈ Approximate value.');
  if(rs.some(r=>metricKeys.some(k=>!finite(r[k]))))notes.push('— Not reported.');
  $('#table-note').textContent=notes.join(' ');$('#table-note').hidden=!notes.length;
@@ -351,9 +356,9 @@ $('#leaderboard-wrap').addEventListener('click',e=>{
 });
 function csvCell(v){let s=String(v??'');if(typeof v==='string'&&/^[=+@\t\r-]/.test(s))s="'"+s;return '"'+s.replace(/"/g,'""')+'"';}
 $('#export-btn').addEventListener('click',()=>{
- const s=current();if(!s)return;const keys=['rank','domain','evaluation','method','configuration','source_method',...metricKeys,'approximate_metrics','tables','source_file','aggregation','variance_definition','timing'];
+ const s=current();if(!s)return;const keys=['rank','domain','evaluation','method','configuration','source_method',...metricKeys,'approximate_metrics','tables','source_file','aggregation','variance_definition','timing','status'];
  const ranks=rankMap();
- const rr=sortedRows().map(r=>({...r,method:r.family==='classical'?'Baseline':r.method,rank:ranks.get(r),domain:task,evaluation:'Test',approximate_metrics:r.approximate_metrics.join(';'),source_file:r.status==='reviewed'?'https://github.com/Statsinference/statsinference.github.io/issues/'+r.issue_number:s.source.file,aggregation:s.aggregation,variance_definition:s.variance_definition,timing:r.status==='reviewed'?(finite(r.time_s)?'Mean per table; protocol in linked submission':'Not reported'):s.timing}));
+ const rr=sortedRows().map(r=>({...r,configuration:r.details?.configuration??r.configuration,rank:ranks.get(r),domain:task,evaluation:'Test',approximate_metrics:r.approximate_metrics.join(';'),source_file:r.status==='reviewed'?'https://github.com/Statsinference/statsinference.github.io/issues/'+r.issue_number:r.source?.file??s.source.file,aggregation:r.aggregation??s.aggregation,variance_definition:r.variance_definition??s.variance_definition,timing:r.status==='reviewed'?(finite(r.time_s)?'Mean per table; protocol in linked submission':'Not reported'):r.timing??s.timing}));
  const text=[keys.join(','),...rr.map(r=>keys.map(k=>csvCell(r[k])).join(','))].join('\r\n');
  const url=URL.createObjectURL(new Blob([text],{type:'text/csv;charset=utf-8'})),a=document.createElement('a');a.href=url;a.download='statarena-'+task+'-test.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
 });

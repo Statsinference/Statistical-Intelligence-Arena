@@ -17,7 +17,7 @@
   },
   "aggregation": "Reported Test rows for one pooled split of 2,000 studies with equal study weights.",
   "variance_definition": "Sample variance of the errors (estimate minus population LATE) across all 2,000 studies, with denominator 1,999.",
-  "protocol": "Both methods use the supplied five-fold split and the same augmented inverse-probability-weighted LATE ratio. IV-PFN uses an influence-function interval. The displayed forest clips instrument propensities to [0.05, 0.95] and uses percentile intervals from 50 whole-row bootstrap refits.",
+  "protocol": "IV-PFN and the Random Forest comparator use the supplied five-fold split and the same augmented inverse-probability-weighted LATE ratio. IV-PFN uses an influence-function interval. The displayed forest clips instrument propensities to [0.05, 0.95] and uses percentile intervals from 50 whole-row bootstrap refits.",
   "timing": "Mean seconds per study for point and interval estimation, including bootstrap and excluding model loading and warm-up. IV-PFN uses BF16 with one process on an NVIDIA L4. The forest uses a single-threaded process per core on AMD EPYC 7B13.",
   "notes": [],
   "display_precision": {
@@ -45,7 +45,7 @@
       "approximate_metrics": []
     },
     {
-      "method": "RF + bootstrap",
+      "method": "Random Forest + bootstrap",
       "source_method": "RF trim + bootstrap",
       "family": "classical",
       "configuration": "",
@@ -61,6 +61,96 @@
       "approximate_metrics": [],
       "display_precision": {
         "time_s": 1
+      }
+    },
+    {
+      "method": "Linear + bootstrap",
+      "source_method": "Linear + bootstrap",
+      "family": "classical",
+      "group": "Test",
+      "status": "reported",
+      "tables": 2000,
+      "approximate_metrics": [],
+      "configuration": "",
+      "bias": 0.011,
+      "variance": 0.073,
+      "rmse": 0.27,
+      "length": 1.015,
+      "coverage": 0.919,
+      "time_s": 29.9,
+      "source": {
+        "file": "User-provided tabpfn-iv Test table",
+        "locators": "Pooled 2,000-table Test results"
+      },
+      "details": {
+        "estimator": "Linear nuisance models",
+        "folds": "Not reported",
+        "bootstrap": "Not reported",
+        "configuration": "Bootstrap intervals."
+      },
+      "timing": "Reported mean seconds per table.",
+      "display_precision": {
+        "time_s": 1
+      }
+    },
+    {
+      "method": "XGB-TD + bootstrap",
+      "source_method": "XGB-TD + bootstrap",
+      "family": "classical",
+      "group": "Test",
+      "status": "reported",
+      "tables": 2000,
+      "approximate_metrics": [],
+      "configuration": "",
+      "bias": -0.061,
+      "variance": 0.591,
+      "rmse": 0.771,
+      "length": 4.01,
+      "coverage": 0.971,
+      "time_s": 187.0,
+      "source": {
+        "file": "User-provided tabpfn-iv Test table",
+        "locators": "Pooled 2,000-table Test results"
+      },
+      "details": {
+        "estimator": "XGB-TD nuisance models",
+        "folds": "Not reported",
+        "bootstrap": "Not reported",
+        "configuration": "Trimming clips the fitted instrument propensity e(X) to [0.05, 0.95] using predictions from the same fit. Bootstrap intervals."
+      },
+      "timing": "Reported mean seconds per table.",
+      "display_precision": {
+        "time_s": 1
+      }
+    },
+    {
+      "method": "CatBoost-TD + bootstrap",
+      "source_method": "CatBoost-TD + bootstrap",
+      "family": "classical",
+      "group": "Test",
+      "status": "reported",
+      "tables": 2000,
+      "approximate_metrics": [],
+      "configuration": "",
+      "bias": -0.103,
+      "variance": 4.298,
+      "rmse": 2.075,
+      "length": 3.122,
+      "coverage": 0.9705,
+      "time_s": 1239,
+      "source": {
+        "file": "User-provided tabpfn-iv Test table",
+        "locators": "Pooled 2,000-table Test results"
+      },
+      "details": {
+        "estimator": "CatBoost-TD nuisance models",
+        "folds": "Not reported",
+        "bootstrap": "Not reported",
+        "configuration": "Trimming clips the fitted instrument propensity e(X) to [0.05, 0.95] using predictions from the same fit. Bootstrap intervals."
+      },
+      "timing": "Reported mean seconds per table.",
+      "display_precision": {
+        "time_s": 0
       }
     }
   ]

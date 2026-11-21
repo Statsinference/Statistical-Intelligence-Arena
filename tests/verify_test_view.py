@@ -38,6 +38,14 @@ EXPECTED = {
     'proximal': [[.0219,.0146,.1229,.4447,.965,.997],[.0161,.6718,.8196,.8475,.9735,80.873]],
     'did_sc': [[.001012,.018648,.136526,.466152,.9485,.135786],[-.014595,.083437,.289151,.826107,.9565,89.779984]]
 }
+EXTRA_BASELINES = {
+    'ate': [[.0139,.4545,.7661,5.6510,.9274,776.326],[.0219,.7897,1.1018,6.8990,.9894,411.673],[.0322,.0124,.1420,.4177,.8421,5.525]],
+    'cate': [[-.0182,.1284,.6466,1.2389,.7529,574.033],[-.0104,.1276,.5560,1.4560,.8813,268.792],[.0077,.0525,.4643,.7441,.6831,1.052]],
+    'mediation': [[.4632,26.8651,6.1143,40.9898,.9955,1428.206],[-2.0049,317.5226,18.6081,138.9683,.9990,392.570],[-.0166,.2562,.5326,1.0439,.92,46.259]],
+    'iv': [[.011,.073,.270,1.015,.919,29.9],[-.061,.591,.771,4.010,.971,187],[-.103,4.298,2.075,3.122,.9705,1239]],
+    'proximal': [[.0521,.2881,.5391,.8922,.98,696.522],[.0340,.2623,.5132,.9215,.9825,88.869],[-.0307,.2498,.5007,1.8594,.9955,.536]],
+    'did_sc': [[-.003906,.170408,.412721,1.171348,.965,121.434517],[-.001799,.141098,.375540,1.042038,.959,55.562834],[-.005250,.064122,.253213,.571373,.943,4.977502]],
+}
 
 
 def data_hashes():
@@ -326,7 +334,7 @@ def assert_overview(page, suites):
 def assert_medals(page, suite, key):
     nominal = suite.get('nominal_coverage', .95)
     score = lambda r: abs(r[key]) if key == 'bias' else abs(r[key] - nominal) if key == 'coverage' else r[key]
-    ordered = sorted((r for r in suite['rows'] if r[key] is not None), key=score)
+    ordered = sorted((r for r in suite['rows'] if r['status'] != 'partial' and r[key] is not None), key=score)
     rank_by_id = {}
     previous, rank = None, 0
     for i, row in enumerate(ordered):
@@ -395,12 +403,12 @@ def check_chart(page, chart_id, domain, xkey, ykey, suite):
     page.wait_for_function('(args)=>{const h=document.getElementById(args.id);return h?.dataset.domain===args.domain && h.querySelector("svg")}',
                            arg={'id': chart_id, 'domain': domain})
     points = host.locator('.chart-point')
-    expected = [r for r in suite['rows'] if isinstance(r.get(xkey), (int, float))
+    expected = [r for r in suite['rows'] if r['status'] != 'partial' and isinstance(r.get(xkey), (int, float))
                 and isinstance(r.get(ykey), (int, float)) and r[xkey] > 0 and r[ykey] > 0
                 and (ykey != 'coverage' or r[ykey] <= 1)]
     assert points.count() == len(expected), (domain, chart_id, points.count(), len(expected))
     for point, row in zip(points.all(), expected):
-        assert point.get_attribute('data-method') == ('Baseline' if row['family'] == 'classical' else row['method'])
+        assert point.get_attribute('data-method') == row['method']
         assert math.isclose(float(point.get_attribute('data-x')), row[xkey], rel_tol=1e-12)
         assert math.isclose(float(point.get_attribute('data-y')), row[ykey] * (100 if ykey == 'coverage' else 1), rel_tol=1e-12)
         assert point.get_attribute('aria-label') and point.get_attribute('tabindex') == '0'
@@ -455,7 +463,7 @@ with sync_playwright() as p:
     for domain, expected_values in EXPECTED.items():
         suite = next(s for s in suites if s['domain'] == domain)
         historical = [r for r in suite['rows'] if r['status'] != 'reviewed']
-        assert [[r[k] for k in KEYS] for r in historical] == expected_values, domain
+        assert [[r[k] for k in KEYS] for r in historical] == expected_values + EXTRA_BASELINES[domain], domain
 
     for domain in DOMAINS:
         page.locator(f'[data-t="{domain}"]').click()
@@ -488,14 +496,17 @@ with sync_playwright() as p:
         assert headers(page) == HEADINGS, (domain, headers(page))
         assert page.locator('#leaderboard tbody tr[data-method]').count() == len(suite['rows'])
         assert page.locator('#leaderboard tbody .method-details-row').count() == 0
-        assert page.locator('#leaderboard .mname').all_inner_texts().count('Baseline') == sum(
-            r['family'] == 'classical' or r['method'] == 'Baseline' for r in suite['rows'])
+        assert sorted(page.locator('#leaderboard .mname').all_inner_texts()) == sorted(r['method'] for r in suite['rows'])
+        if domain == 'mediation':
+            partial = page.locator('#leaderboard tr[data-method="CatBoost-TD"]')
+            assert '1,992 / 2,000 tables' in partial.inner_text()
+            assert partial.locator('.rank-cell').inner_text() == '—'
         check_chart(page, 'rmse-time-chart', domain, 'time_s', 'rmse', suite)
         check_chart(page, 'coverage-length-chart', domain, 'length', 'coverage', suite)
         for key in KEYS:
             page.locator('#rank-metric').select_option(key)
             score = lambda r: abs(r[key]) if key == 'bias' else abs(r[key] - suite['nominal_coverage']) if key == 'coverage' else r[key]
-            ordered = sorted(suite['rows'], key=lambda r: (r[key] is None, score(r) if r[key] is not None else 0))
+            ordered = sorted(suite['rows'], key=lambda r: (1, 0) if r['status'] == 'partial' or r[key] is None else (0, score(r)))
             rows = page.locator('#leaderboard tbody tr[data-method]')
             assert_medals(page, suite, key)
             assert [r.get_attribute('data-method') for r in rows.all()] == [r.get('source_method') or r['method'] for r in ordered], (domain, key)
@@ -555,19 +566,19 @@ with sync_playwright() as p:
     formula = re.sub(r'\s+', '', mediation_math.text_content())
     assert 'Y(1,M(1))' in formula and 'Y(1,M(0))' in formula
 
-    # All six currently reported baselines use 50 bootstrap replicates.
+    # Exercise the original random forest settings in each suite.
     for domain in EXPECTED:
         page.locator(f'[data-t="{domain}"]').click()
         page.locator('[data-fam="classical"]').click()
-        toggle = page.locator('#leaderboard tbody .method-toggle')
+        toggle = page.get_by_role('button', name=re.compile(r'^Random Forest \+'))
         if toggle.get_attribute('aria-expanded') == 'false':
             toggle.click()
-        detail = page.locator('#' + page.locator('#leaderboard tbody .method-toggle').get_attribute('aria-controls'))
+        detail = page.locator('#' + toggle.get_attribute('aria-controls'))
         bootstrap = detail.locator('.method-detail-grid > div').filter(has=page.get_by_text('Bootstrap', exact=True))
         assert bootstrap.count() == 1
         value = bootstrap.locator('p').inner_text().strip()
         assert value == '50', (domain, value)
-        page.locator('#leaderboard tbody .method-toggle').click()
+        toggle.click()
         page.locator('[data-fam="all"]').click()
 
     page.locator('[data-t="mediation"]').click()
@@ -603,14 +614,16 @@ with sync_playwright() as p:
     assert 'late' in iv_target.text_content().lower()
     assert 'not specified' not in page.locator('#domain-definition').inner_text().lower()
     page.locator('[data-fam="classical"]').click()
-    assert page.locator('#leaderboard tbody tr[data-method]').count() == 1
-    assert page.locator('#leaderboard .mname').inner_text() == 'Baseline'
-    page.locator('.method-toggle').click()
-    baseline_detail = page.locator('.method-details-row')
-    assert baseline_detail.is_visible() and 'not reported' not in baseline_detail.inner_text().lower()
-    page.locator('.method-toggle').click()
+    assert page.locator('#leaderboard tbody tr[data-method]').count() == 4
+    for method in ('Random Forest + bootstrap', 'CatBoost-TD + bootstrap', 'XGB-TD + bootstrap'):
+        toggle = page.get_by_role('button', name=method, exact=True)
+        toggle.click()
+        baseline_detail = page.locator('#' + toggle.get_attribute('aria-controls'))
+        details = baseline_detail.inner_text()
+        assert '[0.05, 0.95]' in details and 'predictions from the same fit' in details
+        toggle.click()
     assert_medals(page, next(s for s in suites if s['domain']=='iv'), 'rmse')
-    assert page.locator('#leaderboard .rank-medal').get_attribute('aria-label') == 'Rank 2 (silver medal)'
+    assert page.locator('#leaderboard .rank-medal').first.get_attribute('aria-label') == 'Rank 2 (silver medal)'
     assert not page.locator('#arena-overview-stats').is_visible()
     page.locator('[data-fam="pfn"]').click()
     assert page.locator('#leaderboard tbody tr[data-method]').count() == 1
@@ -630,8 +643,11 @@ with sync_playwright() as p:
     d.value.save_as(OUT / 'iv-test.csv')
     with (OUT / 'iv-test.csv').open(encoding='utf-8', newline='') as f:
         exported = list(csv.DictReader(f))
-    assert [[float(r[k]) for k in KEYS] for r in exported] == EXPECTED['iv']
-    assert exported[1]['source_method'] == 'RF trim + bootstrap'
+    assert [[float(r[k]) for k in KEYS] for r in exported] == sorted(EXPECTED['iv'] + EXTRA_BASELINES['iv'], key=lambda r: r[2])
+    assert [r['method'] for r in exported] == [
+        'IV-PFN', 'Linear + bootstrap', 'Random Forest + bootstrap', 'XGB-TD + bootstrap', 'CatBoost-TD + bootstrap'
+    ]
+    assert exported[2]['source_method'] == 'RF trim + bootstrap'
     page.locator('#theme-btn').click()
     assert page.locator('html').get_attribute('data-theme') == 'dark'
     page.locator('#theme-btn').click()

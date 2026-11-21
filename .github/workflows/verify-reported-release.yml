@@ -32,7 +32,8 @@ jobs:
           from pathlib import Path
           data = Path("data")
           fivefold = json.loads((data / "mediation-fivefold.json").read_bytes())
-          assert len(fivefold["rows"]) == 2
+          assert len(fivefold["rows"]) == 5
+          assert sum(row["tables"] == 2000 for row in fivefold["rows"]) >= 4
           published = [fivefold]
           for filename in ("results.json", "unified-test-2026-11-16.json"):
               suites = json.loads((data / filename).read_bytes())["suites"]

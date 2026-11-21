@@ -11,7 +11,7 @@
   ];
   const numeric = value => typeof value === 'number' && Number.isFinite(value);
   const familyClass = row => ['pfn','classical'].includes(row.family) ? row.family : 'other';
-  const methodName = row => row.family === 'classical' ? 'Baseline' : row.method;
+  const methodName = row => row.method;
   let activeTip = null;
   function closeTip() {
     if (!activeTip) return;
@@ -145,7 +145,7 @@
     const host = document.getElementById(config.id);
     if (!host) return;
     const suite = current();
-    const candidates = visibleRows();
+    const candidates = visibleRows().filter(row => row.status !== 'partial');
     const usable = row => numeric(row[config.x]) && numeric(row[config.y]) && (config.y !== 'coverage' || row.coverage <= 1);
     const rows = candidates.filter(row => usable(row) && row[config.x] > 0 && row[config.y] > 0);
     const nonpositive = candidates.filter(row => usable(row) && (row[config.x] <= 0 || row[config.y] <= 0)).length;
