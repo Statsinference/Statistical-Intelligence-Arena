@@ -25,9 +25,11 @@
 
 ## Overview
 
-**StatArena (The Statistical Intelligence Arena)** is an open academic benchmark and research collaboration dedicated to evaluating statistical methods and advancing statistical intelligence in AI. Beginning with causal inference and expanding to broader statistical problems, StatArena brings together diverse statistical tasks, data-generating processes (DGPs), and standardized evaluation protocols. It provides a common framework for comparing statistical foundation models and established methods across estimation accuracy, bias, variance, confidence interval length, coverage, uncertainty calibration, and computational efficiency, with broader evaluation of hypothesis testing and statistical decision-making as the benchmark evolves.
+**StatArena** is an open platform for benchmarking and research across the full statistical research workflow. Study design determines how data are collected. Researchers can use data directly for prediction or inference, or first explore patterns and select variables or models. Prediction and inference both inform decisions, and diagnostics are used throughout the workflow.
 
-Prior-Data Fitted Networks (PFNs) suggest an alternative to fitting statistical models from scratch for each dataset: learning reusable statistical patterns through pretraining on diverse tasks. Building on more than a century of statistical research, StatArena explores a fundamental question: **what statistical capabilities can foundation models acquire through pretraining, and which of these capabilities can generalize across tasks?** Through open contributions of statistical methods, tasks, and data-generating processes, together with continuously updated leaderboards, StatArena aims to connect the statistical research community with advances in foundation models, enabling researchers to compare, evaluate, and build upon one another's methods. Our broader vision is to advance statistical intelligence in AI.
+**StatArena Inference** is our current focus. It covers parameter estimation, confidence intervals, and causal inference. For a policy intervention, these methods help answer the question “How large was the policy's effect, and how reliable is that estimate?”
+
+StatArena will gradually expand its benchmarks to other stages of the research workflow, including hypothesis testing, policy learning, experimental design, multi-armed bandits, and sequential decision-making. **StatArena Decision** will evaluate how models choose actions under uncertainty and adapt their decisions as new evidence arrives.
 
 ## Run an IV example with StatArena Lite
 
