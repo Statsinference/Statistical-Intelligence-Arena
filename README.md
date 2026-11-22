@@ -18,7 +18,7 @@
   <a href="method-submissions/README.md" title="Contribute a method">
     <img src="docs/assets/badge-method.svg" alt="Contribute Method" height="36" />
   </a>
-  <a href="dgp-submissions/README.md" title="Contribute a DGP or data">
+  <a href="CONTRIBUTING.md#contribute-data" title="Contribute a DGP or data">
     <img src="docs/assets/badge-data.svg" alt="Contribute Data" height="36" />
   </a>
 </p>

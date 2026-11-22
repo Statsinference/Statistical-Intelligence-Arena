@@ -5,9 +5,11 @@
 Submit a statistical method or model for evaluation on a supported StatArena task.
 
 1. **Test locally.** Use [StatArena Lite](lite/README.md) to run your method on public data and check its results.
-2. **Submit for evaluation.** Follow the [method submission guide](https://github.com/Statsinference/statsinference.github.io/blob/main/method-submissions/README.md) to provide your method link, choose a research domain, and submit the completed Markdown checklist. The StatArena team reviews submissions and evaluates eligible methods for the official leaderboard.
+2. **Submit for evaluation.** Follow the [method submission guide](method-submissions/README.md) to provide your method link, choose a research domain, and submit the completed Markdown checklist. The StatArena team reviews submissions and evaluates eligible methods for the official leaderboard.
 
 ## Contribute Data
+
+For a simulated DGP or real-data proposal, use the [Markdown submission guides](website/data-submissions/README.md). The package intake below covers ZIP submissions.
 
 Choose the guide that fits your contribution. Each guide includes a template, a filled example and instructions for submitting a pull request.
 
