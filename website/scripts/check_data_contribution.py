@@ -1,4 +1,4 @@
-"""Validate public contribution Markdown treated solely as data."""
+"""Validate contribution Markdown treated solely as data."""
 
 import argparse
 import base64
@@ -13,6 +13,7 @@ from urllib.request import HTTPRedirectHandler, Request, build_opener
 
 MAX_MARKDOWN_BYTES = 32_768
 MAX_API_BYTES = 16 * 1024 * 1024
+MAX_PR_BODY_LENGTH = 65_536
 TRACK_SECTIONS = {
     "simulated-dgp": ("Variables and data-generating process", "Data-generating process and estimand"),
     "real-data": ("Target estimand and reference estimate",),
@@ -27,9 +28,13 @@ PLACEHOLDER = re.compile(r"\[\s*(?:todo|tbd|replace)\b", re.I)
 DAG_SECTION = "DAG and identification"
 VARIABLES_SECTION = "Variables and data-generating process"
 HEADING = re.compile(r" {0,3}(#{1,6})[ \t]+(.+?)\s*$")
+FENCE = re.compile(r" {0,3}(`{3,}|~{3,})(.*)")
 EDGE_FIELD = re.compile(r" {0,3}-[ \t]+\*\*(DAG edges|Structural parents)\.\*\*(.*)")
 NODE = r"[A-Za-z][A-Za-z0-9_]*"
 DIRECTED_EDGE = re.compile(rf"({NODE})\s*->\s*({NODE})")
+MERMAID_NODE = rf'({NODE})(?:\["([^"\[\]<>`]+)"\])?'
+MERMAID_LINE = re.compile(rf"{MERMAID_NODE}(?:[ \t]*-->[ \t]*{MERMAID_NODE})?")
+PREVIEW_SECTION = "Causal design preview"
 
 
 class ValidationError(ValueError):
@@ -93,7 +98,112 @@ def validate_simulated_structure(seen_structure, populated_structure, declaratio
         raise ValidationError("The declared edge lists must match. " + " ".join(missing))
 
 
-def validate_markdown(raw, track):
+def markdown_items(lines):
+    """Yield visible text lines and fenced Mermaid/math blocks, without rendering."""
+    fence = kind = ""
+    block = []
+    for line in lines:
+        marker = FENCE.fullmatch(line)
+        if fence == "$$":
+            if line.rstrip().endswith("$$"):
+                block.append(line.rstrip()[:-2])
+                yield "math", "\n".join(block)
+                fence = ""
+            else:
+                block.append(line)
+        elif fence:
+            if marker and marker[1].startswith(fence) and not marker[2].strip():
+                yield kind, "\n".join(block)
+                fence = ""
+            else:
+                block.append(line)
+        elif marker:
+            fence, kind = marker[1], marker[2].strip()
+            kind = kind if kind in ("math", "mermaid") else "code"
+            block = []
+        elif re.match(r" {0,3}\$\$", line):
+            content = line.strip()[2:]
+            if content.endswith("$$"):
+                yield "math", content[:-2]
+            else:
+                fence, block = "$$", [content]
+        else:
+            yield "text", line
+    if fence:
+        raise ValidationError("Close the Markdown diagram and Structural equations blocks with matching delimiters.")
+
+
+def parse_preview_dag(graph):
+    lines = [line.strip() for line in graph.splitlines() if line.strip()]
+    if not lines or not re.fullmatch(r"(?:flowchart|graph)\s+(?:LR|RL|TD|TB|BT)", lines[0]):
+        raise ValidationError("Start the Mermaid DAG with `flowchart LR` or another Mermaid direction.")
+    edges = set()
+    has_node = False
+    for line in lines[1:]:
+        match = MERMAID_LINE.fullmatch(line)
+        if not match:
+            raise ValidationError("Use one Mermaid DAG edge per line such as `X --> Y`, or a standalone node.")
+        parent, parent_label, child, child_label = match.groups()
+        for node, label in ((parent, parent_label), (child, child_label)):
+            if label and not re.fullmatch(rf"{node} \([^()]+\)", label):
+                raise ValidationError("Use the same variable ID in each Mermaid DAG label, such as `X[\"X (covariate)\"]`.")
+        has_node = True
+        if child:
+            edges.add((parent, child))
+    if not has_node:
+        raise ValidationError("Include at least one variable in the Mermaid DAG.")
+    return edges
+
+
+def validate_pr_preview(body, case_edges, structural_lines):
+    if not isinstance(body, str) or len(body) > MAX_PR_BODY_LENGTH:
+        raise ValidationError("Use a Markdown PR description that contains the Causal design preview.")
+    text = re.sub(r"<!--.*?(?:-->|\Z)", "", body, flags=re.S)
+    found = False
+    in_preview = False
+    section = None
+    sections = []
+    graphs, formulas = [], []
+    for kind, value in markdown_items(text.splitlines()):
+        if kind == "text" and (heading := HEADING.fullmatch(value)):
+            level, title = heading.groups()
+            title = re.sub(r"\s+#+$", "", title)
+            if len(level) <= 2:
+                in_preview = level == "##" and title == PREVIEW_SECTION
+                section = None
+                if in_preview:
+                    if found:
+                        raise ValidationError("Include one Causal design preview in the PR description.")
+                    found = True
+            elif in_preview and level == "###":
+                section = title
+                sections.append(title)
+        if in_preview and section == "DAG" and kind == "mermaid":
+            graphs.append(value)
+        if in_preview and section == "Structural equations" and kind == "math":
+            formulas.append(" ".join(value.split()))
+
+    if not found:
+        raise ValidationError("Add `## Causal design preview` to the PR description using the Simulated DGP PR template.")
+    if sections != ["DAG", "Structural equations"]:
+        raise ValidationError("In the Causal design preview, include `### DAG` then `### Structural equations` once each.")
+    if len(graphs) != 1:
+        raise ValidationError("Include one visible Mermaid block under the PR preview DAG heading.")
+    graph_edges = parse_preview_dag(graphs[0])
+    if graph_edges != case_edges:
+        missing = ", ".join(f"{src} -> {dst}" for src, dst in sorted(case_edges - graph_edges))
+        extra = ", ".join(f"{src} -> {dst}" for src, dst in sorted(graph_edges - case_edges))
+        raise ValidationError("The PR preview DAG must match the Case file DAG. "
+                              f"Missing arrows: `{missing or 'none'}`. Extra arrows: `{extra or 'none'}`.")
+    expected = [" ".join(value.split()) for kind, value in markdown_items(structural_lines) if kind == "math"]
+    if not expected or not all(expected):
+        raise ValidationError("Write the Case file Structural equations in nonempty display math blocks.")
+    if formulas != expected:
+        raise ValidationError("Copy every display math block from the Case file Structural equations into the PR preview, "
+                              "in the same order and with the same math content.")
+
+
+def validate_markdown(raw, track, *, pr_body=None):
     if len(raw) > MAX_MARKDOWN_BYTES:
         raise ValidationError("Use a Markdown summary of at most 32 KiB.")
     try:
@@ -121,10 +231,11 @@ def validate_markdown(raw, track):
     title_count = 0
     simulated = track == "simulated-dgp"
     in_structure = seen_structure = populated_structure = False
+    structure_start, structure_end = 0, len(lines)
     math_fence = False
     declarations = {}
-    for line in lines:
-        marker = re.match(r" {0,3}(`{3,}|~{3,})(.*)", line)
+    for index, line in enumerate(lines):
+        marker = FENCE.fullmatch(line)
         if marker:
             run, suffix = marker.groups()
             if not fence:
@@ -141,6 +252,8 @@ def validate_markdown(raw, track):
                 level, title = heading.groups()
                 title = re.sub(r"\s+#+$", "", title)
                 if len(level) <= 2:
+                    if in_structure:
+                        structure_end = index
                     if level == "#":
                         title_count += 1
                     current = title if level == "##" and title in required else None
@@ -150,11 +263,14 @@ def validate_markdown(raw, track):
                     continue
                 if simulated:
                     if level == "###":
+                        if in_structure:
+                            structure_end = index
                         in_structure = current == VARIABLES_SECTION and title == "Structural equations"
                         if in_structure:
                             if seen_structure:
                                 raise ValidationError("Use the Structural equations subsection once.")
                             seen_structure = True
+                            structure_start = index + 1
                     continue
             if simulated:
                 declared = EDGE_FIELD.fullmatch(line)
@@ -183,6 +299,8 @@ def validate_markdown(raw, track):
         raise ValidationError("Fill the following sections. " + ", ".join(empty_sections) + ".")
     if simulated:
         validate_simulated_structure(seen_structure, populated_structure, declarations)
+        if pr_body is not None:
+            validate_pr_preview(pr_body, declarations["DAG edges"], lines[structure_start:structure_end])
 
 
 def in_submission_area(path, path_prefix=""):
@@ -204,7 +322,7 @@ def in_submission_area(path, path_prefix=""):
     )
 
 
-def check_changes(changes, read_markdown, *, path_prefix=""):
+def check_changes(changes, read_markdown, *, path_prefix="", pr_body=None):
     touched = any(
         in_submission_area(file.get(field, ""), path_prefix)
         for file in changes
@@ -222,7 +340,7 @@ def check_changes(changes, read_markdown, *, path_prefix=""):
         raise ValidationError(f"Use {path_prefix}data-submissions/<track>/submissions/<lowercase-kebab-case>.md.")
     if file.get("status") not in ("added", "modified") or file.get("previous_filename"):
         raise ValidationError("Add or update one proposal in place.")
-    validate_markdown(read_markdown(file), match.group(1))
+    validate_markdown(read_markdown(file), match.group(1), pr_body=pr_body)
     return True
 
 
@@ -285,7 +403,7 @@ def read_git_markdown(api, repository, head_sha, file):
         raise ValidationError("Could not decode the proposal contents.") from exc
 
 
-def check_pull_request(event, api, *, path_prefix=""):
+def check_pull_request(event, api, *, path_prefix="", require_preview=False):
     repository = repository_name(event["repository"]["full_name"])
     number = event["number"]
     if type(number) is not int or number <= 0:
@@ -303,18 +421,22 @@ def check_pull_request(event, api, *, path_prefix=""):
     for page in range(1, (changed_count + 99) // 100 + 1):
         response = api(f"{endpoint}/files?per_page=100&page={page}")
         changes.extend(response)
-    if len(changes) != changed_count or api(endpoint)["head"]["sha"] != head_sha:
+    latest = api(endpoint)
+    if len(changes) != changed_count or latest["head"]["sha"] != head_sha:
         raise ValidationError("The list of changed files changed during this check. Check the latest run.")
     # PR head objects from external forks are addressable through the destination
     # repository, keeping API calls within the job token's repository scope.
     return check_changes(
-        changes, lambda file: read_git_markdown(api, repository, head_sha, file), path_prefix=path_prefix
+        changes, lambda file: read_git_markdown(api, repository, head_sha, file), path_prefix=path_prefix,
+        pr_body=(latest.get("body") or "") if require_preview else None,
     )
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--local-file", type=Path, help="Check a local proposal against its track template")
+    parser.add_argument("--pr-body-file", type=Path, help="Also check a local simulated DGP PR description")
+    parser.add_argument("--require-pr-preview", action="store_true", help="Require the preview in simulated DGP PRs")
     parser.add_argument("--track", choices=tuple(TRACK_SECTIONS))
     parser.add_argument("--path-prefix", choices=("website/",), default="",
                         help="Check proposal paths under website/ in the research repository.")
@@ -324,17 +446,25 @@ def main():
             if not args.track:
                 parser.error("--local-file requires --track")
             with args.local_file.open("rb") as stream:
-                validate_markdown(stream.read(MAX_MARKDOWN_BYTES + 1), args.track)
+                if args.pr_body_file:
+                    with args.pr_body_file.open(encoding="utf-8-sig") as body_file:
+                        body = body_file.read(MAX_PR_BODY_LENGTH + 1)
+                else:
+                    body = None
+                validate_markdown(stream.read(MAX_MARKDOWN_BYTES + 1), args.track, pr_body=body)
             checked = True
         else:
+            if args.pr_body_file:
+                parser.error("--pr-body-file requires --local-file")
             event = json.loads(Path(os.environ["GITHUB_EVENT_PATH"]).read_bytes())
-            checked = check_pull_request(event, get_api(os.environ.get("GH_TOKEN")), path_prefix=args.path_prefix)
+            checked = check_pull_request(event, get_api(os.environ.get("GH_TOKEN")), path_prefix=args.path_prefix,
+                                         require_preview=args.require_pr_preview)
     except (ValidationError, URLError, OSError, ValueError, KeyError, TypeError) as exc:
         message = str(exc) if isinstance(exc, ValidationError) else "Could not read the pull request or proposal."
         message = "Data contribution precheck failed. " + message
         status = 1
     else:
-        message = ("Proposal path and Markdown structure passed. A maintainer still reviews the study design, "
+        message = ("Proposal path, Markdown structure, and applicable PR preview checks passed. A maintainer still reviews the study design, "
                    "estimand, data access, and reproducibility." if checked else "No data proposal changed.")
         status = 0
     print(message, file=sys.stderr if status else sys.stdout)

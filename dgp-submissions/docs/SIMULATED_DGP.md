@@ -44,7 +44,7 @@ Copy the [current Markdown template](../../website/data-submissions/simulated-dg
    python website/scripts/check_data_contribution.py --track simulated-dgp --local-file website/data-submissions/simulated-dgp/submissions/your-design.md
    ```
 
-4. [Open a pull request](https://github.com/Statsinference/Statistical-Intelligence-Arena/compare) to `main` and complete the [submission checklist](../../website/.github/PULL_REQUEST_TEMPLATE/data-contribution.md). Use the same PR for revisions. The automated check verifies the file, headings and declared edge lists. A reviewer checks the design, the truth calculation and reproducibility. Evaluation inclusion is a separate curator decision.
+4. [Open a pull request](https://github.com/Statsinference/Statistical-Intelligence-Arena/compare) to `main` using the [Simulated DGP PR template](../../.github/PULL_REQUEST_TEMPLATE/simulated-dgp.md). Follow the [preview instructions](../../website/data-submissions/simulated-dgp/README.md#preview-the-causal-design-in-the-pull-request) to show the DAG and every structural equation in the PR description. Use the same PR for revisions. A reviewer checks the design, the truth calculation and reproducibility. Evaluation inclusion is a separate curator decision.
 
 ## Worked public example
 

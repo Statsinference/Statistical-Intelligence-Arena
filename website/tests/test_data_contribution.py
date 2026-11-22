@@ -22,6 +22,14 @@ BASE_REPO = "Statsinference/statsinference.github.io"
 RESEARCH_REPO = "Statsinference/Statistical-Intelligence-Arena"
 PATH = f"data-submissions/{SIMULATED}/submissions/teaching-case.md"
 EDGES = "X -> M, M -> Y, X -> Y"
+EQUATION_PROSE = "M = X + E_M and Y = M + X + E_Y."
+EQUATIONS = ("M = X + E_M", "Y = M + X + E_Y")
+MERMAID = '\n'.join((
+    'flowchart LR',
+    '  X["X (covariate)"] --> M["M (mediator)"]',
+    '  M --> Y["Y (outcome)"]',
+    '  X --> Y',
+))
 
 
 def proposal(track=SIMULATED, dag_edges=EDGES, structural_parents=EDGES):
@@ -32,11 +40,29 @@ def proposal(track=SIMULATED, dag_edges=EDGES, structural_parents=EDGES):
             section += f"\n\n- **DAG edges.** `{dag_edges}`"
         if track == SIMULATED and heading == "Variables and data-generating process":
             section += (
-                "\n\n### Structural equations\n\nM = X + E_M and Y = M + X + E_Y."
+                f"\n\n### Structural equations\n\n{EQUATION_PROSE}"
                 f"\n\n- **Structural parents.** `{structural_parents}`"
             )
         body.append(section)
     return "\n\n".join(body).encode()
+
+
+def math_blocks(equations, opening="$$", closing="$$"):
+    return "\n\n".join(f"{opening}\n{equation}\n{closing}" for equation in equations)
+
+
+def simulated_case_with_math(equations=EQUATIONS):
+    return proposal().replace(EQUATION_PROSE.encode(), math_blocks(equations).encode())
+
+
+def causal_preview(dag=MERMAID, equations=None):
+    if equations is None:
+        equations = math_blocks(EQUATIONS)
+    return (
+        "## Causal design preview\n\n"
+        f"### DAG\n\n```mermaid\n{dag}\n```\n\n"
+        f"### Structural equations\n\n{equations}\n"
+    )
 
 
 class MarkdownTests(unittest.TestCase):
@@ -152,6 +178,61 @@ class MarkdownTests(unittest.TestCase):
                     validate_markdown(draft, SIMULATED)
 
 
+class PreviewTests(unittest.TestCase):
+    def test_preview_accepts_matching_diagram_and_equations(self):
+        spaced = ("M =  X + E_M", "Y = M +\n    X + E_Y")
+        for equations in (math_blocks(EQUATIONS), math_blocks(spaced, "```math", "```")):
+            with self.subTest(equations=equations):
+                validate_markdown(simulated_case_with_math(), SIMULATED, pr_body=causal_preview(equations=equations))
+
+    def test_preview_rejects_wrong_arrow_direction(self):
+        wrong_dag = MERMAID.replace("X --> Y", "Y --> X")
+        with self.assertRaisesRegex(ValidationError, r"DAG"):
+            validate_markdown(simulated_case_with_math(), SIMULATED, pr_body=causal_preview(dag=wrong_dag))
+
+    def test_preview_rejects_mismatched_incomplete_reordered_or_plain_equations(self):
+        for equations in (
+            math_blocks((EQUATIONS[0], "Y = M + 2 X + E_Y")),
+            math_blocks(EQUATIONS[:1]),
+            math_blocks(reversed(EQUATIONS)),
+            "\n\n".join(EQUATIONS),
+        ):
+            with self.subTest(equations=equations), self.assertRaisesRegex(ValidationError, r"Structural equations"):
+                validate_markdown(simulated_case_with_math(), SIMULATED, pr_body=causal_preview(equations=equations))
+
+    def test_preview_rejects_simulated_case_without_display_math(self):
+        with self.assertRaisesRegex(ValidationError, r"Structural equations"):
+            validate_markdown(proposal(), SIMULATED, pr_body=causal_preview())
+
+    def test_preview_rejects_missing_or_hidden_section(self):
+        preview = causal_preview()
+        hidden = causal_preview(dag="flowchart LR\nX")
+        for body in ("", "## Summary\nA new causal design.", f"<!--\n{hidden}-->", f"~~~~markdown\n{preview}~~~~"):
+            with self.subTest(body=body), self.assertRaisesRegex(ValidationError, r"Causal design preview"):
+                validate_markdown(simulated_case_with_math(), SIMULATED, pr_body=body)
+
+    def test_preview_rejects_wrong_or_hidden_diagram_blocks(self):
+        preview = causal_preview()
+        diagram = f"```mermaid\n{MERMAID}\n```"
+        for replacement in (
+            "<!--\n```mermaid\nflowchart LR\nX\n```\n-->",
+            diagram.replace("```mermaid", "```text"),
+            diagram.replace("flowchart LR", "sequenceDiagram"),
+        ):
+            with self.subTest(diagram=replacement), self.assertRaisesRegex(ValidationError, r"DAG"):
+                validate_markdown(simulated_case_with_math(), SIMULATED, pr_body=preview.replace(diagram, replacement))
+
+    def test_preview_rejects_hidden_equations(self):
+        equations = math_blocks(EQUATIONS)
+        with self.assertRaisesRegex(ValidationError, r"Structural equations"):
+            validate_markdown(
+                simulated_case_with_math(), SIMULATED, pr_body=causal_preview(equations=f"<!--\n{equations}\n-->")
+            )
+
+    def test_real_data_case_does_not_require_a_preview(self):
+        validate_markdown(proposal(REAL), REAL, pr_body="## Summary\nA new real-data problem.")
+
+
 class PRPathTests(unittest.TestCase):
     def test_unrelated_pr_can_update_docs_and_website(self):
         guides = ("README.md", "TEMPLATE.md", "EXAMPLE.md")
@@ -212,7 +293,9 @@ class GitHubAdapterTests(unittest.TestCase):
     def setUp(self):
         self.set_case(BASE_REPO, PATH)
 
-    def set_case(self, repository, path):
+    def set_case(self, repository, path, raw=None):
+        if raw is None:
+            raw = proposal()
         self.event = {
             "repository": {"full_name": repository}, "number": 10,
             "pull_request": {"head": {"sha": "a" * 40, "repo": {"full_name": "contributor/fork"}}},
@@ -227,7 +310,7 @@ class GitHubAdapterTests(unittest.TestCase):
             f"repos/{repository}/pulls/10/files?per_page=100&page=1": [self.filename],
             f"repos/{repository}/git/commits/{self.head}": {"tree": {"sha": "0" * 40}},
             f"repos/{repository}/git/blobs/{self.blob}": {
-                "sha": self.blob, "encoding": "base64", "content": base64.b64encode(proposal()).decode(),
+                "sha": self.blob, "encoding": "base64", "content": base64.b64encode(raw).decode(),
             },
         }
         parts = path.split("/")
@@ -236,7 +319,7 @@ class GitHubAdapterTests(unittest.TestCase):
             suffix = str(index) * 40
             self.endpoints[f"repos/{repository}/git/trees/{suffix}"] = {"tree": [{
                 "path": name, "type": "blob" if file else "tree", "mode": "100644" if file else "040000",
-                "sha": self.blob if file else str(index + 1) * 40, "size": len(proposal()),
+                "sha": self.blob if file else str(index + 1) * 40, "size": len(raw),
             }]}
 
     def test_fork_proposal_from_immutable_git_blob(self):
@@ -245,6 +328,28 @@ class GitHubAdapterTests(unittest.TestCase):
     def test_research_repo_proposal_from_immutable_git_blob(self):
         self.set_case(RESEARCH_REPO, "website/" + PATH)
         self.assertTrue(check_pull_request(self.event, self.endpoints.__getitem__, path_prefix="website/"))
+
+    def test_simulated_preview_uses_current_pr_body_instead_of_the_event_snapshot(self):
+        self.set_case(RESEARCH_REPO, "website/" + PATH, simulated_case_with_math())
+        self.event["action"] = "edited"
+        live_pr = self.endpoints[f"repos/{RESEARCH_REPO}/pulls/10"]
+        self.event["pull_request"]["body"] = "Older body with no preview."
+        live_pr["body"] = causal_preview()
+        self.assertTrue(check_pull_request(
+            self.event, self.endpoints.__getitem__, path_prefix="website/", require_preview=True,
+        ))
+
+        self.event["pull_request"]["body"] = causal_preview()
+        live_pr.pop("body")
+        with self.assertRaisesRegex(ValidationError, r"Causal design preview"):
+            check_pull_request(self.event, self.endpoints.__getitem__, path_prefix="website/", require_preview=True)
+
+    def test_real_data_pr_passes_without_preview_when_preview_enforcement_is_enabled(self):
+        path = "website/" + PATH.replace(SIMULATED, REAL)
+        self.set_case(RESEARCH_REPO, path, proposal(REAL))
+        self.assertTrue(check_pull_request(
+            self.event, self.endpoints.__getitem__, path_prefix="website/", require_preview=True,
+        ))
 
     def test_reject_symlink_or_mismatching_blob_without_reading_payload(self):
         leaf = self.endpoints[f"repos/{BASE_REPO}/git/trees/{'3' * 40}"]["tree"][0]

@@ -24,7 +24,7 @@ Propose one reproducible simulation that mirrors a documented study or isolates 
 
 ### Match the DAG to the equations
 
-Use the same short variable IDs in the graph and equations. A diagram is optional. If you include one, show the arrows for the scenario it describes and label nodes with the ID and a short role such as `A (treatment)`, `Y (outcome)` or `U (unobserved confounder)` for a latent common cause. Put definitions and assumptions in the prose.
+Use the same short variable IDs in the graph and equations. In the case file, a diagram is optional. If you include one there, show the arrows for the scenario it describes and label nodes with the ID and a short role such as `A (treatment)`, `Y (outcome)` or `U (unobserved confounder)` for a latent common cause. Put definitions and assumptions in the prose.
 
 List one arrow from every causal parent in an equation to the variable it generates. Include observed and latent parents, including shared latent causes. You may omit a disturbance from the arrow lists if it enters only one equation and you document its independence. Keep its distribution and role in the equations. If scenarios change an edge, list the union in both fields and say which scenarios omit the edge.
 
@@ -101,7 +101,22 @@ Copy the block into `website/data-submissions/simulated-dgp/submissions/<slug>.m
    python website/scripts/check_data_contribution.py --track simulated-dgp --local-file website/data-submissions/simulated-dgp/submissions/your-design.md
    ```
 
-4. [Open a pull request](https://github.com/Statsinference/Statistical-Intelligence-Arena/compare) to `main` and complete the [submission checklist](../../.github/PULL_REQUEST_TEMPLATE/data-contribution.md). Use the same PR for revisions. The automated check verifies the file, headings and declared edge lists. A reviewer checks the design, the truth calculation and reproducibility. Evaluation inclusion is a separate curator decision.
+4. [Open a pull request](https://github.com/Statsinference/Statistical-Intelligence-Arena/compare) to `main` using the [Simulated DGP PR template](../../../.github/PULL_REQUEST_TEMPLATE/simulated-dgp.md). Fill in the causal design preview below. Use the same PR for revisions. A reviewer checks the design, the truth calculation and reproducibility. Evaluation inclusion is a separate curator decision.
+
+### Preview the causal design in the pull request
+
+Copy the PR template into the description, or replace `your-branch` with your branch name in this GitHub comparison URL.
+
+```text
+https://github.com/Statsinference/Statistical-Intelligence-Arena/compare/main...your-branch?template=simulated-dgp.md
+```
+
+Under `## Causal design preview`, complete both subsections.
+
+- **DAG.** Put one fenced `mermaid` block under `### DAG`. Start with `flowchart LR` or `graph LR`. The direction can also be `TD`, `TB`, `RL` or `BT`. Use one arrow per line, such as `X["X (exposure)"] --> Y["Y (outcome)"]` or `X --> Y`. Use standalone declarations for isolated nodes, such as `Z["Z (covariate)"]`. Omit subgraphs and chained arrows. The preview must match both declared edge lists, including the union across scenarios when arrows vary. Explain scenario-specific omissions in the case file.
+- **Structural equations.** Under `### Structural equations`, copy every display-math block from that subsection of the case file. Keep the contents and order. GitHub renders both fenced `math` and `$$` blocks. Keep any protected parameter values symbolic in both places.
+
+The precheck compares the DAG arrows and equation blocks with the case file. To run this check locally, save the PR description as a Markdown file and add `--pr-body-file path/to/pr-description.md` to the command above.
 
 ## Worked public example
 

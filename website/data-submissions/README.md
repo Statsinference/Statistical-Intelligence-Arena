@@ -4,14 +4,14 @@ Propose one simulated design or one real-data problem per pull request. Describe
 
 | Track | What to propose | Start here |
 | --- | --- | --- |
-| Simulated DGP | A data-generating process with a statistical target and a reproducible reference value | [Guide](simulated-dgp/README.md) · [Template](simulated-dgp/TEMPLATE.md) · [JASA example](simulated-dgp/EXAMPLE.md) |
+| Simulated DGP | A data-generating process with a statistical target and a reproducible reference value | [Guide](simulated-dgp/README.md) · [Template](simulated-dgp/TEMPLATE.md) · [JASA example](simulated-dgp/EXAMPLE.md) · [PR template](../../.github/PULL_REQUEST_TEMPLATE/simulated-dgp.md) |
 | Real-data problem | A dataset with a documented source or access route and an answerable statistical question | [Guide](real-data/README.md) · [Template](real-data/TEMPLATE.md) · [JASA example](real-data/EXAMPLE.md) |
 
 ## Open a pull request
 
 1. Create a branch from `main` in the [private StatArena repository](https://github.com/Statsinference/Statistical-Intelligence-Arena).
 2. Copy the template for your track into its `submissions/` directory under `website/data-submissions/`. Create that directory if it is empty. Choose a lowercase, hyphenated filename such as `job-training-earnings.md`. Keep the template headings and replace the prompts with your case.
-3. Commit the single case file. [Open a pull request](https://github.com/Statsinference/Statistical-Intelligence-Arena/compare) with `main` as the base and your branch as the compare branch. Copy the [data contribution PR checklist](../.github/PULL_REQUEST_TEMPLATE/data-contribution.md) into the description.
+3. Commit the single case file. [Open a pull request](https://github.com/Statsinference/Statistical-Intelligence-Arena/compare) with `main` as the base and your branch as the compare branch. For a simulated DGP, use the [Simulated DGP PR template](../../.github/PULL_REQUEST_TEMPLATE/simulated-dgp.md) and fill in the causal design preview. For a real-data problem, copy the [data contribution PR checklist](../.github/PULL_REQUEST_TEMPLATE/data-contribution.md) into the description.
 4. Check the **Website data contribution precheck** result and address any requested revisions in the same PR. A maintainer will assign a reviewer.
 
 ## Materials and access
