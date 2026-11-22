@@ -157,7 +157,7 @@ The Statistical Intelligence Arena team. (2026, November 22). *StatArena: The St
 
 ## Contact
 
-For questions and feedback, please contact the project leads: [Shi Bo](https://github.com/shibo769) · [Jiaming Hu](https://www.linkedin.com/in/jiaming-h-24400a1b8/) · [Zhiheng Zhang](https://zhzhang01.github.io/)
+For questions and feedback, please contact the project leads: [Jiaming Hu](https://www.linkedin.com/in/jiaming-h-24400a1b8/) · [Shi Bo](https://github.com/shibo769) · [Zhiheng Zhang](https://zhzhang01.github.io/)
 
 ## License
 
