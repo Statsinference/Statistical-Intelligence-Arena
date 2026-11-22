@@ -12,7 +12,7 @@
 
 ## DAG and identification
 
-- **Variables and causal structure.** [TODO: Map observed and latent variables to their roles and available columns. If you include a diagram, use short labels such as `A (treatment)` or `U (unobserved confounder)` where applicable. Draw the arrows for the scenario shown and define the variables in prose.]
+- **Variables and causal structure.** [TODO: Map observed and latent variables to their roles and available columns. Use `X` for covariates and confounders and `epsilon` for noise in the graph. Add subscripts when needed. If you include a diagram, use short labels such as `A (treatment)` or `X_latent (unobserved confounder)` where applicable. Draw the arrows for the scenario shown and define the variables in prose.]
 - **DAG edges.** `[TODO: List comma-separated arrows, for example X -> M, M -> Y, X -> Y. Use none for an empty graph.]`
 - **Assumptions.** [TODO: State the assumptions that identify the target or explain which assumption the stress test deliberately violates.]
 

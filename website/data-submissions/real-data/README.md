@@ -21,6 +21,21 @@ Propose one statistically answerable question about an existing dataset. A revie
 | Benchmark comparison | What each method receives and returns, which estimator serves as the baseline, and how sampling, preprocessing, and metrics are shared. State whether the evaluation uses a single study or repeated datasets. |
 | Materials and access | A durable study and data link, a codebook, a script or exact instructions to reproduce the sample, and the conditions for access and reuse. For restricted data, give the official access procedure and arrange the review with a maintainer. |
 
+### Label variables in a causal diagram
+
+Use `A` for the treatment, exposure or assignment, `Y` for the outcome, and `X` for baseline covariates, including measured confounders. For multiple baseline covariates, use indexed IDs such as `X_1` and `X_2`, or named IDs such as `X_age` and `X_earnings`. Give unobserved confounders distinct IDs and short labels such as `X_latent (unobserved confounder)`. If a design has a mediator, use a separate ID such as `M` and explain when it is measured. In the case file, map each observed variable to its actual column or columns and describe its timing.
+
+For an illustrative smoking study, short labels describe the roles directly. The arrows below represent an assumed causal structure.
+
+```mermaid
+flowchart LR
+    X["X (age)"] --> A["A (smoking)"]
+    X --> Y["Y (lung cancer)"]
+    A --> Y
+```
+
+You can include a diagram in the PR description. A written account of the pathways and identification assumptions in the case file is also sufficient.
+
 ### Choose an evaluation that matches the reference
 
 - **A comparable reference estimate exists.** Say how it was obtained and whether it matches the proposed target, population, timing and units. For example, a randomized contrast can anchor a comparison on the corresponding experimental sample. Report its standard error or interval when available.
@@ -46,7 +61,7 @@ Copy only the contents of the block into `website/data-submissions/real-data/sub
 
 ## DAG and identification
 
-- **Causal structure.** [TODO: Match variables to their roles in a DAG or text description, and identify plausible unmeasured causes or selection.]
+- **Causal structure.** [TODO: Describe the relevant pathways in a DAG or in prose. Use `A` for treatment or exposure, `Y` for the outcome and `X` or named `X` variants for baseline covariates. Map variables to dataset columns and identify plausible unmeasured causes or selection.]
 - **Assumptions and checks.** [TODO: State the assumptions the design requires, how you would check what is observable, and what remains uncertain.]
 
 ## Target estimand and reference estimate
@@ -75,7 +90,13 @@ Copy only the contents of the block into `website/data-submissions/real-data/sub
    python website/scripts/check_data_contribution.py --track real-data --local-file website/data-submissions/real-data/submissions/your-study.md
    ```
 
-4. [Open a pull request](https://github.com/Statsinference/Statistical-Intelligence-Arena/compare) to `main`, complete the [submission checklist](../../.github/PULL_REQUEST_TEMPLATE/data-contribution.md), and address check failures or reviewer feedback in that PR. The automated check validates structure. A reviewer assesses the design, the proposed comparison and reproducibility. Evaluation inclusion is a separate curator decision.
+4. [Open a pull request](https://github.com/Statsinference/Statistical-Intelligence-Arena/compare) to `main` using the [Real-data PR template](../../../.github/PULL_REQUEST_TEMPLATE/real-data.md). If you include the optional DAG preview, use the same variables and pathways as in the case file. Address check failures or reviewer feedback in that PR. The automated check validates structure. A reviewer assesses the design, the proposed comparison and reproducibility. Evaluation inclusion is a separate curator decision.
+
+Copy the PR template into the description, or replace `your-branch` with your branch name in this GitHub comparison URL.
+
+```text
+https://github.com/Statsinference/Statistical-Intelligence-Arena/compare/main...your-branch?template=real-data.md
+```
 
 ## Worked public example
 

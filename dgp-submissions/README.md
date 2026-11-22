@@ -12,5 +12,6 @@ Choose the guide that fits your contribution. Each guide includes a template, a 
 Choose one track and [open a pull request](https://github.com/Statsinference/Statistical-Intelligence-Arena/compare) to `main` in the private StatArena repository with one completed Markdown proposal. The track guides include the template, a filled example and the corresponding submission path.
 
 For simulations, use the [Simulated DGP PR template](https://github.com/Statsinference/Statistical-Intelligence-Arena/blob/main/.github/PULL_REQUEST_TEMPLATE/simulated-dgp.md) to show the DAG and structural equations in the PR description.
+For real-data problems, use the [Real-data PR template](https://github.com/Statsinference/Statistical-Intelligence-Arena/blob/main/.github/PULL_REQUEST_TEMPLATE/real-data.md), which includes an optional DAG preview.
 
 Use your proposal to share the research question, estimand and references. If a simulation is intended for official evaluation or the data have restricted access, arrange private review of the full materials with a maintainer. The worked examples illustrate the submission format.

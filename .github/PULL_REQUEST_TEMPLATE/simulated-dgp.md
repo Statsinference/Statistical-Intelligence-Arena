@@ -12,11 +12,14 @@
 
 ### DAG
 
-<!-- Replace the example with your case's DAG arrows. Use the same arrow directions and IDs as both edge lists in the case. -->
+<!-- Replace the example with your case's DAG arrows. Use the same arrow directions and IDs as both edge lists in the case. Use X for covariates and confounders and epsilon for noise. Add subscripts when helpful. -->
 
 ```mermaid
 flowchart LR
-    X["X (exposure)"] --> Y["Y (outcome)"]
+    X["X (confounder)"] --> A["A (treatment)"]
+    X --> Y["Y (outcome)"]
+    A --> Y
+    epsilon_Y["epsilon_Y (noise)"] --> Y
 ```
 
 ### Structural equations
@@ -24,7 +27,12 @@ flowchart LR
 <!-- Replace the example with all display-math blocks from the case's Structural equations subsection. Keep their contents and order. -->
 
 ```math
-Y = f(X, \varepsilon_Y)
+\begin{aligned}
+X &\sim \mathcal N(0,1),\\
+A\mid X &\sim \operatorname{Bernoulli}\{\operatorname{logit}^{-1}(X)\},\\
+\epsilon_Y &\sim \mathcal N(0,1), \quad \epsilon_Y\perp (X,A),\\
+Y &= A+X+\epsilon_Y .
+\end{aligned}
 ```
 
 ## Checklist

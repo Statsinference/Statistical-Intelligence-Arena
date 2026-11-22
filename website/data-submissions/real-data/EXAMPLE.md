@@ -23,12 +23,12 @@ The linked files are whitespace-delimited with no header. Use these names and ro
 
 ```mermaid
 flowchart LR
-    R["Random assignment"] --> A["Program group"]
-    A --> Y["1978 earnings"]
-    X["Baseline earnings and demographics"] --> Y
+    R["R (randomization)"] --> A["A (program assignment)"]
+    A --> Y["Y (1978 earnings)"]
+    X["X (demographics and baseline earnings)"] --> Y
 ```
 
-The program group $A$ is observed in `treat` and the outcome $Y$ in `re78`. The baseline nodes use columns 2–9. Within the pretreatment-defined subset, randomization supports the difference in group means as an estimator of the assignment effect. This interpretation assumes consistency and no interference between participants.
+$R$ represents the mechanism that randomizes assignment. In the analysis table, $A$ is `treat`, $Y$ is `re78`, and $X$ groups the baseline demographic and education columns with pretreatment earnings `re74` and `re75`, all defined above. These covariates are measured before assignment. Within the pretreatment-defined subset, randomization supports the difference in group means as an estimator of the assignment effect. This interpretation assumes consistency and no interference between participants.
 
 ## Target estimand and reference estimate
 

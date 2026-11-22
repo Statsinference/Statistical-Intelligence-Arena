@@ -21,6 +21,8 @@ Propose one statistically answerable question about an existing dataset. A revie
 | Benchmark comparison | What each method receives and returns, which estimator serves as the baseline, and how sampling, preprocessing, and metrics are shared. State whether the evaluation uses a single study or repeated datasets. |
 | Materials and access | A durable study and data link, a codebook, a script or exact instructions to reproduce the sample, and the conditions for access and reuse. For restricted data, give the official access procedure and arrange the review with a maintainer. |
 
+For an optional causal diagram, [use the variable labels in the case guide](../../website/data-submissions/real-data/README.md#label-variables-in-a-causal-diagram) and map observed variables to their dataset columns. You can also explain the pathways and assumptions in prose.
+
 ### Choose an evaluation that matches the reference
 
 - **A comparable reference estimate exists.** Say how it was obtained and whether it matches the proposed target, population, timing and units. For example, a randomized contrast can anchor a comparison on the corresponding experimental sample. Report its standard error or interval when available.
@@ -40,7 +42,7 @@ Copy the [current Markdown template](../../website/data-submissions/real-data/TE
    python website/scripts/check_data_contribution.py --track real-data --local-file website/data-submissions/real-data/submissions/your-study.md
    ```
 
-4. [Open a pull request](https://github.com/Statsinference/Statistical-Intelligence-Arena/compare) to `main`, complete the [submission checklist](../../website/.github/PULL_REQUEST_TEMPLATE/data-contribution.md), and address check failures or reviewer feedback in that PR. The automated check validates structure. A reviewer assesses the design, the proposed comparison and reproducibility. Evaluation inclusion is a separate curator decision.
+4. [Open a pull request](https://github.com/Statsinference/Statistical-Intelligence-Arena/compare) to `main) using the [Real-data PR template](../../.github/PULL_REQUEST_TEMPLATE/real-data.md). You can include a DAG preview in the description when it helps explain the design. Address check failures or reviewer feedback in that PR. The automated check validates structure. A reviewer assesses the design, the proposed comparison and reproducibility. Evaluation inclusion is a separate curator decision.
 
 ## Worked public example
 

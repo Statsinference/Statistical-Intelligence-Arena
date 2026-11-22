@@ -12,33 +12,33 @@ Guo, Li, Liu and Zeng use a DNA methylation study to motivate a semi-synthetic e
 
 ## DAG and identification
 
-- **DAG edges.** `X -> M, M -> Y, X -> Y`
+- **DAG edges.** `A -> M, M -> Y, A -> Y`
 
 ```mermaid
 flowchart LR
-    X["X (exposure)"] --> M["M (mediator)"]
+    A["A (exposure)"] --> M["M (mediator)"]
     M --> Y["Y (outcome)"]
-    X --> Y
+    A --> Y
 ```
 
-The observed exposure is `trauma_z`, the mediator is the vector of methylation probe columns, and the observed outcome is `cortisol_response`. The arrow lists and diagram show the union across scenarios. The zero-effect scenario with $c_1=0$ omits `X -> M`.
+The observed exposure is `trauma_z`, the mediator is the vector of methylation probe columns, and the observed outcome is `cortisol_response`. The arrow lists and diagram show the union across scenarios. The zero-effect scenario with $c_1=0$ omits `A -> M`.
 
 ## Variables and data-generating process
 
-Each row represents one subject. The standardized exposure $X_i=x_i$ is fixed to one of the 85 observed scores in the pinned snapshot. The continuous mediator vector $M_i$ has $p=1008$ probe values, and $Y_i$ is a continuous outcome. Methods receive only the exposure, probe columns and outcome.
+Each row represents one subject. The standardized exposure $A_i=a_i$ is fixed to one of the 85 observed scores in the pinned snapshot. The continuous mediator vector $M_i$ has $p=1008$ probe values, and $Y_i$ is a continuous outcome. Methods receive only the exposure, probe columns and outcome.
 
 ### Structural equations
 
-- **Structural parents.** `X -> M, M -> Y, X -> Y`
+- **Structural parents.** `A -> M, M -> Y, A -> Y`
 
-For every row $i$, draw $U_i$ and $\varepsilon_i$ independently of one another and the fixed exposure design. Each disturbance enters one equation and is omitted from the arrow lists. The draws are independent across rows and across replicate tables. The fixed coefficient vector $\widehat{\Gamma}_X$ and outcome residual standard deviation $\widehat{\sigma}_Y$ come from the pinned snapshot. The code below constructs the outcome coefficient vector $\alpha_M$ using the 11 selected probes.
+For every row $i$, draw $\epsilon_{M,i}$ and $\epsilon_{Y,i}$ independently of one another and the fixed exposure design. Each disturbance enters one equation and is omitted from the arrow lists. The draws are independent across rows and across replicate tables. The fixed coefficient vector $\widehat{\Gamma}_A$ and outcome residual standard deviation $\widehat{\sigma}_Y$ come from the pinned snapshot. The code below constructs the outcome coefficient vector $\alpha_M$ using the 11 selected probes.
 
 $$
 \begin{aligned}
-U_i &\sim \mathcal N_p(0,\Sigma), & \Sigma_{jk}&=0.5^{|j-k|},\qquad 1\le j,k\le p,\\
-\varepsilon_i &\sim \mathcal N(0,\widehat{\sigma}_Y^2),\\
-M_i &= c_1\widehat{\Gamma}_X x_i+U_i,\\
-Y_i &= \alpha_M^{\mathsf T}M_i+0.5x_i+\varepsilon_i .
+\epsilon_{M,i} &\sim \mathcal N_p(0,\Sigma), & \Sigma_{jk}&=0.5^{|j-k|},\qquad 1\le j,k\le p,\\
+\epsilon_{Y,i} &\sim \mathcal N(0,\widehat{\sigma}_Y^2),\\
+M_i &= c_1\widehat{\Gamma}_A a_i+\epsilon_{M,i},\\
+Y_i &= \alpha_M^{\mathsf T}M_i+0.5a_i+\epsilon_{Y,i} .
 \end{aligned}
 $$
 
@@ -49,9 +49,9 @@ The scenarios vary $c_1$ while holding the exposure design, outcome coefficients
 For a one-unit contrast on the standardized exposure scale, the joint natural indirect effect is
 
 $$
-\operatorname{NIE}(x+1,x)
-=\mathbb{E}\{Y(x+1,M(x+1))-Y(x+1,M(x))\}
-=c_1\alpha_M^{\mathsf T}\widehat{\Gamma}_X .
+\operatorname{NIE}(a+1,a)
+=\mathbb{E}\{Y(a+1,M(a+1))-Y(a+1,M(a))\}
+=c_1\alpha_M^{\mathsf T}\widehat{\Gamma}_A .
 $$
 
 | Scenario | Exposure-to-mediator scale | Joint NIE on the outcome scale |
@@ -70,23 +70,24 @@ The pinned simulator snapshot in the authors' repository has 85 exposure observa
 ```r
 inputs <- new.env()
 load("simulation_allS.Rdata", envir = inputs)
-x <- inputs$dt$X
+a <- inputs$dt$X
 gamma <- inputs$coefs$Gamma["trauma", ]
 w <- as.numeric(inputs$coefs$alpha0)
 w[w != 0] <- c(1, .9, .8, -.9, -.8, -.7, .6, .5, .4, .3, .2)
 c1 <- 0.5
-n <- nrow(x)
+n <- nrow(a)
 p <- length(gamma)
 set.seed(1729)
-u <- matrix(0, n, p)
-u[, 1] <- rnorm(n)
+epsilon_m <- matrix(0, n, p)
+epsilon_m[, 1] <- rnorm(n)
 for (j in 2:p) {
-    u[, j] <- 0.5 * u[, j - 1L] + sqrt(0.75) * rnorm(n)
+    epsilon_m[, j] <- 0.5 * epsilon_m[, j - 1L] + sqrt(0.75) * rnorm(n)
 }
-m <- x %*% (c1 * gamma) + u
+m <- a %*% (c1 * gamma) + epsilon_m
 colnames(m) <- colnames(inputs$dt$M)
-y <- m %*% w + 0.5 * x + rnorm(n, sd = inputs$coefs$sigma1)
-observed <- data.frame(trauma_z = c(x), m, cortisol_response = c(y),
+epsilon_y <- rnorm(n, sd = inputs$coefs$sigma1)
+y <- m %*% w + 0.5 * a + epsilon_y
+observed <- data.frame(trauma_z = c(a), m, cortisol_response = c(y),
                        check.names = FALSE)
 print(c1 * sum(gamma * w))
 ```
