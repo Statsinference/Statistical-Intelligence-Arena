@@ -27,7 +27,7 @@
 
 ## Overview
 
-**StatArena** is an open platform for benchmarking and research across the full statistical research workflow. Study design determines how data are collected. Researchers can use data directly for prediction or inference, or first explore patterns and select variables or models. Prediction and inference both inform decisions, and diagnostics are used throughout the workflow. StatArena compares methods under the same conditions by standardizing tasks, data-generating mechanisms, and evaluation criteria such as accuracy, bias, variance, interval length, coverage, statistical power, uncertainty calibration, and computational efficiency. *Building the Bench for Statistical Intelligence.*
+**StatArena** is an open platform for benchmarking and research across the full statistical research workflow. Study design determines how data are collected. Researchers can use data directly for prediction or inference, or first explore patterns and select variables or models. Prediction and inference both inform decisions, and diagnostics are used throughout the workflow. StatArena compares methods under the same conditions by standardizing tasks, data-generating mechanisms, and evaluation criteria such as accuracy, bias, variance, interval length, coverage, statistical power, uncertainty calibration, and computational efficiency. *Building the Foundation for Statistical Intelligence.*
 
 ![StatArena research workflow from design and data through prediction and inference to decision, with discovery and selection as an alternate path. Diagnostics span all stages. Inference is the current focus.](docs/assets/statarena-workflow.svg)
 
