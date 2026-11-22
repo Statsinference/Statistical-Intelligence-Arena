@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="StatArena benchmark card for Average Treatment Effect estimation. Download the data, run the starter baseline and prepare predictions for review.">
+<title>Average Treatment Effect · Benchmark card · StatArena</title>
+<link rel="icon" href="../assets/statsarena-logo.webp">
+<link rel="stylesheet" href="../assets/site.css"><link rel="stylesheet" href="../mediation/card.css">
+<script>try{const t=localStorage.getItem('statsarena-theme-editorial');document.documentElement.dataset.theme=t||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light')}catch(e){}</script>
+</head>
+<body class="track-page">
+<header><div class="wrap"><a class="track-brand" href="../"><img src="../assets/statsarena-logo.webp" alt="">StatArena</a><a class="back" href="../#domain=ate">ATE leaderboard</a></div></header>
+<main class="wrap">
+<section class="track-hero">
+<h1>Average Treatment Effect</h1>
+<p>How much does treatment change the outcome on average? Given one simulated study, estimate its population average treatment effect and return a two-sided 95% confidence interval.</p>
+<span class="target-formula" aria-label="Average treatment effect equals the expected difference between potential outcomes under treatment and control">ATE = <i>E</i>[<i>Y</i><sup>(1)</sup> − <i>Y</i><sup>(0)</sup>]</span>
+<div class="track-actions"><a class="primary" href="https://huggingface.co/datasets/fuyao11/StatsInference-Arena-ATE-CATE/resolve/v1.2.2/ate-cate-starter-v1.zip">Download starter kit</a><a href="https://huggingface.co/datasets/fuyao11/StatsInference-Arena-ATE-CATE/tree/v1.2.2">Hugging Face dataset</a><a href="#submit">Submission format</a></div>
+</section>
+<nav aria-label="Benchmark card sections"><a href="#data">Data and splits</a><a href="#run">Run a baseline</a><a href="#evaluation">Official evaluation</a><a href="#submit">Submission format</a></nav>
+
+<section id="data" class="track-section"><h2>Data and splits</h2>
+<p>Each simulated study has 500 observations with baseline covariates <i>X</i>, binary treatment <i>T</i> and outcome <i>Y</i>. The ATE averages over the population underlying the study. Report effects in outcome units, or as probability differences for binary outcomes.</p>
+<div class="datasets">
+<article><h3>Public starter kit</h3><p>48 training, 16 development and 32 reference test studies with labeled effects, a generator, starter baseline, scoring script and example predictions.</p><a href="https://huggingface.co/datasets/fuyao11/StatsInference-Arena-ATE-CATE/resolve/v1.2.2/ate-cate-starter-v1.zip">Download starter ZIP</a></article>
+<article><h3>Official reference inputs</h3><p>2,000 observed studies with variable types, ATE-specific five-fold assignments, and a blank ATE prediction template.</p><a href="https://huggingface.co/datasets/fuyao11/StatsInference-Arena-ATE-CATE/resolve/v1.2.2/ate-cate-official-inputs-v1.zip">Download official inputs ZIP</a></article>
+<article><h3>Data-generating designs</h3><p>The starter covers a continuous and a binary outcome design. The official suite draws on 13 source families.</p><a href="https://huggingface.co/datasets/fuyao11/StatsInference-Arena-ATE-CATE/blob/v1.2.2/DGP.md">Read the starter mechanism definitions</a></article>
+</div>
+<details><summary>How were the starter studies generated?</summary>
+<p>The starter adapts Nie–Wager Setup A and a Benkeser et al. design. Train, development and test use disjoint parameter configurations. Each configuration yields two independently sampled tables and shares a fixed CATE query across the pair.</p>
+</details>
+</section>
+
+<section id="run" class="track-section"><h2>Run a baseline</h2>
+<p>Extract the starter ZIP and run these commands from its directory. The linear T-learner fits a separate outcome regression in each treatment arm and averages their fitted treatment–control differences over the study’s covariates. The 95% percentile interval uses 200 whole-row bootstrap refits.</p>
+<pre><code>python -m pip install numpy
+python baseline.py --tables dev/tables --task ATE --output dev_predictions_ate.csv
+python score.py --truth dev/truth_ate.csv --predictions dev_predictions_ate.csv --timings dev_predictions_ate.csv.timings.json</code></pre>
+<p>Choose settings on <code>dev/</code>, then run the same commands with <code>test/tables</code> and <code>test/truth_ate.csv</code> to score the public reference test.</p>
+<div class="grid-scroll"><table class="metrics"><caption class="sr-only">Expected starter baseline scores for ATE</caption>
+<thead><tr><th scope="col">Public split</th><th scope="col">Bias</th><th scope="col">RMSE</th><th scope="col">95% coverage</th><th scope="col">Mean interval length</th></tr></thead>
+<tbody><tr><th scope="row">Development · 16 studies</th><td>0.2270</td><td>0.2382</td><td>31.25%</td><td>0.3234</td></tr></tbody>
+</table></div>
+</section>
+
+<section id="evaluation" class="track-section"><h2>Official evaluation</h2>
+<p>Freeze your method before evaluating the 2,000 studies. They come from 1,000 parameter configurations with two independent draws per configuration. Each study has a stable table ID, 2–10 covariates and a continuous or binary outcome. If you cross-fit, use the five treatment-stratified assignments in <code>folds/ATE/</code> and preserve observation order.</p>
+<p>The input ZIP omits population effects, generation parameters and an explicit replicate-pairing map. The same studies and their effect labels appeared in earlier public releases. The current collection is a fixed reference for comparison and reproducibility. <a href="https://huggingface.co/datasets/fuyao11/StatsInference-Arena-ATE-CATE/blob/v1.1/README.md">Read the release history</a></p>
+<p>For submitted predictions, signed bias, RMSE, empirical 95% coverage and mean interval length give each study equal weight. The variance metric uses the paired studies to estimate within-configuration sampling variance. Report inference time as mean seconds per study with the hardware used. Include point estimation and interval construction, including any bootstrap, and exclude model loading and warm-up.</p>
+<p>In the existing leaderboard summary, the original evaluation report gives each of the 13 data-generating families equal weight. <a href="../#domain=ate">View ATE results</a></p>
+</section>
+
+<section id="submit" class="track-section"><h2>Submit a method</h2>
+<p>For ATE, fill <code>predictions_ate_template.csv</code> with one row per official study. Preserve each <code>table_id</code>, use finite numeric values and ensure <code>ci_lower &lt;= ci_upper</code>.</p>
+<pre><code>table_id,estimate,ci_lower,ci_upper</code></pre>
+<p>The release asks for both the completed ATE and CATE prediction CSVs for maintainer scoring. Include your estimator, interval construction, training-data exposure and timing hardware. To submit a method for review, follow the <a href="https://github.com/Statsinference/statsinference.github.io/blob/main/method-submissions/README.md">method submission guide</a>.</p>
+<div class="track-actions"><a class="primary" href="../#domain=ate">Open the ATE leaderboard</a><a href="../cate/#submit">CATE submission instructions</a></div>
+</section>
+<div class="track-foot"><a href="../#domain=ate">Back to the ATE leaderboard</a> · Data release v1.2.2</div>
+</main>
+</body></html>

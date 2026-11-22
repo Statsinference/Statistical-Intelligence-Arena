@@ -1,0 +1,46 @@
+name: Archive method submissions
+on:
+  issues:
+    types: [opened, edited, reopened, closed]
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/method-submissions.yml
+      - method-submissions/sync.py
+      - method-submissions/tests/**
+  workflow_dispatch:
+permissions:
+  contents: write
+  issues: read
+concurrency:
+  group: method-submissions-archive
+  cancel-in-progress: false
+jobs:
+  archive:
+    if: github.event_name != 'issues' || startsWith(github.event.issue.title, '[Method submission] ')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Validate link parser
+        run: python3 -m unittest discover -s method-submissions/tests -v
+      - name: Archive confirmed GitHub submissions
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 method-submissions/sync.py
+      - name: Save links in method-submissions
+        shell: bash
+        run: |
+          mkdir -p method-submissions/received method-submissions/checks
+          git add -- method-submissions/received method-submissions/checks
+          if git diff --cached --quiet; then exit 0; fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'chore: archive method submission links'
+          for attempt in 1 2 3; do
+            if git push origin HEAD:main; then exit 0; fi
+            git pull --rebase origin main
+          done
+          exit 1

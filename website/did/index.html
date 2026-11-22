@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Data, starter code and evaluation protocol for estimating the average treatment effect on the treated in StatArena's Difference-in-Differences benchmark.">
+<title>Difference-in-Differences · Benchmark card · StatArena</title>
+<link rel="icon" href="../assets/statsarena-logo.webp">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="stylesheet" href="../mediation/card.css">
+<script>try{const t=localStorage.getItem('statsarena-theme-editorial');document.documentElement.dataset.theme=t||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light')}catch(e){}</script>
+</head>
+<body class="track-page">
+<header><div class="wrap"><a class="track-brand" href="../"><img src="../assets/statsarena-logo.webp" alt="">StatArena</a><a class="back" href="../#domain=did_sc">Difference-in-Differences leaderboard</a></div></header>
+<main class="wrap">
+<section class="track-hero">
+<h1>Difference-in-Differences</h1>
+<p>Given a simulated two-period panel, estimate the average treatment effect on the treated (ATT) in the post-treatment period and return a two-sided 95% confidence interval.</p>
+<span class="target-formula" aria-label="Average treatment effect on the treated equals the expected post-period outcome difference under treatment and under control, conditional on receiving treatment">ATT = <i>E</i>[<i>Y</i><sub>1</sub>(1) − <i>Y</i><sub>1</sub>(0) | <i>D</i> = 1]</span>
+<div class="track-actions">
+<a class="primary" href="https://huggingface.co/datasets/lisuo/StatsInference-Arena-DiD/resolve/ac97ca41e0a8c4797a8fa33d2d0d47c02ce6a87c/did-starter-v1.zip">Download starter kit</a>
+<a href="https://huggingface.co/datasets/lisuo/StatsInference-Arena-DiD">Hugging Face dataset</a>
+<a href="#submit">Prediction format</a>
+</div>
+</section>
+<nav aria-label="Benchmark card sections"><a href="#data">Data and splits</a><a href="#run">Run a baseline</a><a href="#evaluation">Official evaluation</a><a href="#submit">Prediction format</a></nav>
+
+<section id="data" class="track-section">
+<h2>Data and splits</h2>
+<p>Each study contains 500 units. Its NPZ file supplies baseline covariates <code>X</code>, binary treatment <code>D</code>, and the post-minus-pre outcome change <code>delta_y</code>, in matching row order. Studies without observed covariates supply an <code>X</code> array with shape <code>(500, 0)</code>. Use these three arrays as estimator inputs and return one estimate and one interval in outcome units per study.</p>
+<div class="datasets">
+<article>
+<h3>Historical fitting data</h3>
+<p>10,000 adapter-training studies and 200 checkpoint-selection studies drawn from ten data-generating families, with population ATT labels.</p>
+<a href="https://huggingface.co/datasets/lisuo/StatsInference-Arena-DiD/resolve/ac97ca41e0a8c4797a8fa33d2d0d47c02ce6a87c/adapter-train.zip">Download training archive</a>
+<a href="https://huggingface.co/datasets/lisuo/StatsInference-Arena-DiD/resolve/ac97ca41e0a8c4797a8fa33d2d0d47c02ce6a87c/adapter-validation.zip">Download validation archive</a>
+</article>
+<article>
+<h3>Public starter kit</h3>
+<p>48 training, 16 development and 32 reference test studies, with ATT labels, a baseline and a scorer. Use the development split to choose settings and the starter test split to check them.</p>
+<a href="https://huggingface.co/datasets/lisuo/StatsInference-Arena-DiD/resolve/ac97ca41e0a8c4797a8fa33d2d0d47c02ce6a87c/did-starter-v1.zip">Download starter ZIP</a>
+</article>
+<article>
+<h3>Official evaluation files</h3>
+<p>2,000 observed studies, five-fold assignments and a prediction template. The separate public scoring archive contains the population ATT for each study and the scorer.</p>
+<a href="https://huggingface.co/datasets/lisuo/StatsInference-Arena-DiD/resolve/ac97ca41e0a8c4797a8fa33d2d0d47c02ce6a87c/did-test-inputs-v1.zip">Download evaluation inputs</a>
+<a href="https://huggingface.co/datasets/lisuo/StatsInference-Arena-DiD/resolve/ac97ca41e0a8c4797a8fa33d2d0d47c02ce6a87c/did-test-scoring-v1.zip">Download truth and scorer</a>
+</article>
+</div>
+<details>
+<summary>How the studies were generated</summary>
+<p>The starter and evaluation sets draw from a 13-family prior, which adds three designs to the historical fitting prior. The pooled evaluation independently draws a family uniformly, then draws parameters and samples one study for that draw. The population ATT holds the generating family and parameters fixed and averages the post-period effect among units receiving treatment. <a href="https://huggingface.co/datasets/lisuo/StatsInference-Arena-DiD/blob/ac97ca41e0a8c4797a8fa33d2d0d47c02ce6a87c/DGP.md">Data-generating processes, priors and truth calculations</a></p>
+</details>
+</section>
+
+<section id="run" class="track-section">
+<h2>Run a baseline</h2>
+<p>Extract the starter ZIP and run these commands from the extracted directory. The baseline subtracts the control group's mean outcome change from the treated group's mean outcome change and uses a normal confidence interval. Designs that require covariate adjustment can bias this estimate.</p>
+<pre><code>python -m pip install numpy
+python baseline.py dev/tables &gt; predictions.csv
+python score.py dev/truth.csv predictions.csv</code></pre>
+<p>Replace <code>dev</code> with <code>test</code> in the last two commands to score the starter's reference test split.</p>
+</section>
+
+<section id="evaluation" class="track-section">
+<h2>Official evaluation</h2>
+<p>Freeze the method before opening the public scoring archive. If the method uses cross-fitting, keep the supplied five treatment-stratified folds for the original fit and preserve row order. Row indices start at 0 and fold labels run from 1 to 5.</p>
+<p>The scorer gives each study equal weight. Bias is the mean of estimate minus population ATT, RMSE is the root mean squared error, and error variance is the sample variance of those errors across studies with denominator 1,999. Coverage counts the share of intervals containing the true ATT including either endpoint. Mean interval length averages upper minus lower.</p>
+<p>In the published comparison, PFN-DiD and the random-forest comparator estimate treatment propensities and the mean outcome change under control, then apply the same doubly robust DiD score. PFN-DiD uses an influence-function standard error. The forest uses the standard deviation from 50 full row-bootstrap refits, with new folds in each resample. Both report normal intervals. <a href="https://huggingface.co/lisuo/PFN-DiD/tree/b7ab973ce6142e3bf34e11aa6db66b3bc5fc5c6a">Evaluated PFN-DiD checkpoint</a> · <a href="../#domain=did_sc">View leaderboard results</a></p>
+<p>The checkpoint’s model card reports an earlier ID and Source-OOD evaluation. The downloads and leaderboard here use the pooled test.</p>
+</section>
+
+<section id="submit" class="track-section">
+<h2>Prediction format</h2>
+<p>Fill the prediction template with one row per evaluation study. Keep each table ID. The estimate and interval endpoints must be finite, with the lower endpoint at or below the upper endpoint.</p>
+<pre><code>table_id,estimate,ci_lower,ci_upper</code></pre>
+<p>Extract the scoring archive and run the scorer using its <code>truth.csv</code> and the completed predictions file.</p>
+<pre><code>python score.py truth.csv predictions.csv</code></pre>
+<p>When sharing results, describe your estimator, interval procedure and data exposure. If you report runtime, include the mean estimation time in seconds per study and the hardware. To submit a method for review, follow the <a href="https://github.com/Statsinference/statsinference.github.io/blob/main/method-submissions/README.md">method submission guide</a>. <a href="../#domain=did_sc">Open the DiD leaderboard</a></p>
+</section>
+<div class="track-foot"><a href="../#domain=did_sc">Back to the Difference-in-Differences leaderboard</a> · Data release v1</div>
+</main>
+</body>
+</html>

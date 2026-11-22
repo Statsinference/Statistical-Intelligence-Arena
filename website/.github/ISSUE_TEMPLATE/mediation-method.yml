@@ -1,0 +1,61 @@
+name: Submit a mediation method
+description: Register an estimator for the Causal Mediation Analysis benchmark.
+title: "[Method submission] Mediation"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use the [mediation benchmark card](https://statsinference.github.io/mediation/) to download the development kit and official observed tables. Submit runnable code, or share a public method card and predictions on the official tables. Maintainers review submissions and score official predictions against held-out truths.
+  - type: input
+    id: method
+    attributes:
+      label: Method name
+      placeholder: Name shown on your method card
+    validations:
+      required: true
+  - type: input
+    id: repository
+    attributes:
+      label: Mediation method link
+      description: Paste a public GitHub repository or Hugging Face model URL for a runnable submission. For results-only submissions, link your public method card and provide the official predictions link below.
+      placeholder: https://github.com/owner/repository
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Release or commit
+      description: Give the software release, commit, or method-card version used for the submission.
+    validations:
+      required: true
+  - type: textarea
+    id: usage
+    attributes:
+      label: Run instructions or analysis procedure
+      description: For code, give the install and run commands, output location and hardware requirements. For a results-only entry, summarize the procedure and software used.
+    validations:
+      required: true
+  - type: textarea
+    id: estimator
+    attributes:
+      label: Estimator and interval
+      description: Briefly describe your NIE estimator, 95% interval, cross-fitting or bootstrap settings if used. Add a method card, paper or README link if available.
+    validations:
+      required: true
+  - type: textarea
+    id: exposure
+    attributes:
+      label: Training and data exposure
+      description: Name the data or generators used for training, tuning and calibration, including any Arena data. For a method with no prior training, state that and describe tuning, if any.
+    validations:
+      required: true
+  - type: input
+    id: predictions
+    attributes:
+      label: Public development results
+      description: Optional HTTPS link to predictions or scores on the public development kit.
+  - type: input
+    id: official_predictions
+    attributes:
+      label: Official predictions
+      description: Provide a public HTTPS link to the prediction CSV for the official observed tables (required for results-only entries). Include one row per official table with table_id, estimate, ci_lower and ci_upper.

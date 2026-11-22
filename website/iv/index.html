@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Download the StatArena instrumental variables benchmark, run a baseline and evaluate estimates and confidence intervals for the local average treatment effect.">
+<title>Instrumental Variables · Benchmark card · StatArena</title>
+<link rel="icon" href="../assets/statsarena-logo.webp">
+<link rel="stylesheet" href="../assets/site.css"><link rel="stylesheet" href="../mediation/card.css">
+<script>try{const t=localStorage.getItem('statsarena-theme-editorial');document.documentElement.dataset.theme=t||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light')}catch(e){}</script>
+</head>
+<body class="track-page">
+<header><div class="wrap"><a class="track-brand" href="../"><img src="../assets/statsarena-logo.webp" alt="">StatArena</a><a class="back" href="../#domain=iv">IV leaderboard</a></div></header>
+<main class="wrap">
+<section class="track-hero">
+<h1>Instrumental Variables</h1>
+<p>Estimate the local average treatment effect among people whose treatment changes with a binary instrument. Return one estimate and a two-sided 95% confidence interval for each simulated study.</p>
+<span class="target-formula" aria-label="Local average treatment effect equals the expected difference between outcomes under treatment and control among units with treatment under instrument one greater than treatment under instrument zero">LATE = <i>E</i>[<i>Y</i>(1) − <i>Y</i>(0) | <i>D</i>(1) &gt; <i>D</i>(0)]</span>
+<div class="track-actions">
+<a class="primary" href="https://huggingface.co/datasets/Brownight/StatsInference-Arena-IV/resolve/f4d6f68c73f745872b46d919a156c2c300476308/iv-starter-v1.zip">Download starter kit</a>
+<a href="https://huggingface.co/datasets/Brownight/StatsInference-Arena-IV">Hugging Face dataset</a>
+<a href="https://huggingface.co/Brownight/tabpfn-iv-adapter-v0.3">TabPFN-IV adapter</a>
+</div>
+</section>
+<nav aria-label="Benchmark card sections"><a href="#data">Data and splits</a><a href="#run">Run a baseline</a><a href="#evaluation">Official evaluation</a><a href="#submit">Submission format</a></nav>
+
+<section id="data" class="track-section"><h2>Data and splits</h2>
+<p>Each evaluation study contains 500 observations. Use the baseline covariates <code>X</code>, binary instrument <code>Z</code>, binary treatment <code>D</code> and outcome <code>Y</code> from each NPZ file, preserving row order. In studies without observed covariates, <code>X</code> has shape <code>(500, 0)</code>. Report the effect in outcome units or as a probability difference for binary outcomes.</p>
+<div class="datasets">
+<article><h3>Historical training data</h3><p>Use the original 20,000 adapter-fitting studies and 1,000 checkpoint-selection studies to reproduce the v0.3 data exposure.</p><a href="https://huggingface.co/datasets/Brownight/StatsInference-Arena-IV/resolve/f4d6f68c73f745872b46d919a156c2c300476308/adapter-train.zip">Download training ZIP</a><a href="https://huggingface.co/datasets/Brownight/StatsInference-Arena-IV/resolve/f4d6f68c73f745872b46d919a156c2c300476308/adapter-validation.zip">Download validation ZIP</a></article>
+<article><h3>Public starter kit</h3><p>48 training, 16 development and 32 starter test studies with known effects, a generator, a baseline and a scorer.</p><a href="https://huggingface.co/datasets/Brownight/StatsInference-Arena-IV/resolve/f4d6f68c73f745872b46d919a156c2c300476308/iv-starter-v1.zip">Download starter ZIP</a></article>
+<article><h3>Evaluation inputs and scoring</h3><p>Download the 2,000 observed studies with their fixed folds and prediction template. The separate public scoring archive contains the true effects, scorer and reference predictions.</p><a href="https://huggingface.co/datasets/Brownight/StatsInference-Arena-IV/resolve/f4d6f68c73f745872b46d919a156c2c300476308/iv-test-inputs-v1.zip">Download evaluation inputs ZIP</a><a href="https://huggingface.co/datasets/Brownight/StatsInference-Arena-IV/resolve/f4d6f68c73f745872b46d919a156c2c300476308/iv-test-scoring-v1.zip">Download scoring ZIP</a></article>
+</div>
+<details><summary>How were the studies generated?</summary>
+<p>The fitting, selection and evaluation studies draw from the Ding, Qiu and Kennedy design families. The historical fitting and selection archives have 500 context rows and 64 query rows per study, with analytic nuisance targets for the query rows. The starter provides 96 separately generated studies. The evaluation is one pooled split with 665 Ding, 658 Qiu and 677 Kennedy studies. Each evaluation study has its own parameter draw. <a href="https://huggingface.co/datasets/Brownight/StatsInference-Arena-IV/blob/f4d6f68c73f745872b46d919a156c2c300476308/DGP.md">See the data-generating mechanisms and priors</a>.</p>
+</details>
+<details><summary>Identification assumptions and variable roles</summary>
+<p>Write <i>D</i>(<i>z</i>) for the treatment a unit would receive at instrument level <i>z</i>, and <i>Y</i>(<i>d</i>) for the outcome under treatment <i>d</i>. Compliers satisfy <i>D</i>(1) &gt; <i>D</i>(0). The benchmark designs assume exclusion, monotonicity and instrument independence given the covariates. They give both instrument values positive probability given the covariates and a positive population first stage. The target is the ratio of the covariate-adjusted instrument effects on the outcome and on the treatment.</p>
+</details>
+</section>
+
+<section id="run" class="track-section"><h2>Run a baseline</h2>
+<p>Extract the starter ZIP, open its directory and run the commands below. The unadjusted Wald baseline divides the difference in mean outcomes across instrument groups by the difference in treatment rates. It uses a delta-method normal interval. Covariate-dependent instrument assignment can bias this unadjusted estimate.</p>
+<pre><code>python -m pip install numpy
+python baseline.py dev/tables &gt; predictions.csv
+python score.py dev/truth.csv predictions.csv</code></pre>
+<p>After choosing your settings, replace <code>dev</code> with <code>test</code> in both commands to score the 32 starter test studies.</p>
+<div class="grid-scroll"><table class="metrics"><caption class="sr-only">Expected results from the starter Wald baseline</caption>
+<thead><tr><th scope="col">Starter split</th><th scope="col">Bias</th><th scope="col">RMSE</th><th scope="col">95% coverage</th><th scope="col">Mean interval length</th></tr></thead>
+<tbody><tr><td>Development · 16 studies</td><td>0.4994</td><td>1.1440</td><td>68.75%</td><td>0.7004</td></tr>
+<tr><td>Starter test · 32 studies</td><td>0.2976</td><td>0.7594</td><td>87.50%</td><td>0.6764</td></tr></tbody></table></div>
+</section>
+
+<section id="evaluation" class="track-section"><h2>Official evaluation</h2>
+<p>Freeze your estimator and settings before opening the public scoring archive. For cross-fitting, preserve the supplied five folds. Both reference methods use the same fixed random split of the 500 rows for every study. Row indices start at 0 and fold labels run from 1 to 5.</p>
+<p>Score all 2,000 studies with equal weight. Bias averages the errors, where each error is the estimate minus the population LATE. RMSE is the square root of the mean squared error. Error variance is the sample variance across studies with denominator 1,999. Coverage counts intervals containing the true effect, including either endpoint. Mean interval length averages the differences between upper and lower endpoints.</p>
+<p>TabPFN-IV v0.3 and the leaderboard's Random Forest method use five-fold cross-fitting and the same augmented inverse-probability-weighted LATE ratio. TabPFN-IV constructs an influence-function interval. The displayed forest clips the estimated instrument propensity to [0.05, 0.95] and uses a percentile interval from 50 whole-row bootstrap refits. Both forest variants and their predictions are included in the public scoring archive. <a href="../#domain=iv">View leaderboard results</a>.</p>
+</section>
+
+<section id="submit" class="track-section"><h2>Submission format</h2>
+<p>Fill the prediction template in the evaluation inputs ZIP with one row per study. Keep the original table IDs and column names. Use finite values for the point estimate and endpoints, and put the lower endpoint at or below the upper endpoint.</p>
+<pre><code>table_id,estimate,ci_lower,ci_upper</code></pre>
+<p>Extract the public scoring archive and run the scorer with your predictions file.</p>
+<pre><code>python score.py truth.csv /path/to/predictions.csv</code></pre>
+<p>When reporting runtime, give the mean seconds per study and the hardware. Include the point estimate, confidence interval and any bootstrap work. Exclude model loading and warm-up.</p>
+<p>To submit a method for review, follow the <a href="https://github.com/Statsinference/statsinference.github.io/blob/main/method-submissions/README.md">method submission guide</a>. <a href="../#domain=iv">Open the IV leaderboard</a></p>
+</section>
+<div class="track-foot"><a href="../#domain=iv">Back to the IV leaderboard</a> · IV v0.3</div>
+</main>
+</body></html>

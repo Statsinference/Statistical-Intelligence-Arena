@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Train, test and submit methods for estimating a population natural indirect effect. Official mediation data and the public starter kit for StatArena.">
+<title>Causal Mediation Analysis · Benchmark card · StatArena</title>
+<link rel="icon" href="../assets/statsarena-logo.webp">
+<link rel="stylesheet" href="../assets/site.css"><link rel="stylesheet" href="card.css">
+<script>try{const t=localStorage.getItem('statsarena-theme-editorial');document.documentElement.dataset.theme=t||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light')}catch(e){}</script>
+</head>
+<body class="track-page">
+<header><div class="wrap"><a class="track-brand" href="../"><img src="../assets/statsarena-logo.webp" alt="">StatArena</a><a class="back" href="../#domain=mediation">← Mediation leaderboard</a></div></header>
+<main class="wrap">
+<section class="track-hero">
+<h1>Causal Mediation Analysis</h1>
+<p>How much of a treatment effect passes through the mediators? Given one simulated study at a time, estimate the population natural indirect effect under treatment and return a 95% interval.</p>
+<span class="target-formula" aria-label="Natural indirect effect under treatment equals the expected difference between Y under treatment with the treated mediator and Y under treatment with the control mediator">NIE = <i>E</i>[<i>Y</i><sup>(1, <i>M</i><sup>(1)</sup>)</sup> − <i>Y</i><sup>(1, <i>M</i><sup>(0)</sup>)</sup>]</span>
+<div class="track-actions"><a class="primary" href="https://huggingface.co/datasets/shibo769/StatsInference-Arena-Mediation/resolve/v1.0/mediation-starter-v1.zip">Download starter kit ↓</a><a href="https://huggingface.co/datasets/shibo769/StatsInference-Arena-Mediation">Hugging Face dataset ↗</a></div>
+</section>
+<nav aria-label="Benchmark card sections"><a href="#data">Data and splits</a><a href="#run">Run a baseline</a><a href="#evaluation">Official evaluation</a><a href="#submit">Submission format</a></nav>
+
+<section id="data" class="track-section"><h2>Data and splits</h2>
+<p>Each table contains 500 independent observations. Give the estimator baseline covariates <i>X</i>, binary treatment <i>A</i>, post-treatment mediator(s) <i>M</i> and outcome <i>Y</i>. Each table contributes one estimate in outcome units. When there are several mediators, the intervention shifts their joint distribution.</p>
+<div class="datasets">
+<article><h3>Training data</h3><p>20,000 fitting tables from eight source families, with the population NIE for each table. Use them to train a new method or reproduce the data exposure of the MediPFN Arena run.</p><a href="https://huggingface.co/datasets/shibo769/StatsInference-Arena-Mediation/tree/v1.0/training">Download training stages ↗</a></article>
+<article><h3>Public starter kit</h3><p>48 training, 16 development and 32 public reference test tables. Includes known effects, a generator, baseline, scorer and a filled example submission.</p><a href="https://huggingface.co/datasets/shibo769/StatsInference-Arena-Mediation/resolve/v1.0/mediation-starter-v1.zip">Download starter ZIP ↓</a></article>
+<article><h3>Official test inputs</h3><p>2,000 observed tables, variable types, five-fold assignments and a blank predictions CSV. Maintainers hold the population effects for official scoring.</p><a href="https://huggingface.co/datasets/shibo769/StatsInference-Arena-Mediation/resolve/v1.0/mediation-official-inputs-v1.zip">Download official test ZIP ↓</a></article>
+</div>
+<details class="study-preview"><summary>Preview one labeled study</summary>
+<p>Development study <code>dev_0001</code> contains 500 observations generated from the He–Song–Xu linear mediation model.</p>
+<div class="grid-scroll" role="region" aria-labelledby="study-caption" tabindex="0">
+<table><caption id="study-caption">First three observations</caption>
+<thead><tr><th scope="col">X1</th><th scope="col">X2</th><th scope="col">A</th><th scope="col">M</th><th scope="col">Y</th></tr></thead>
+<tbody>
+<tr><td>0.2103</td><td>1</td><td>0</td><td>3.2559</td><td>2.8887</td></tr>
+<tr><td>0.8381</td><td>0</td><td>0</td><td>3.3208</td><td>3.2593</td></tr>
+<tr><td>−0.1772</td><td>0</td><td>1</td><td>1.2083</td><td>1.8284</td></tr>
+</tbody></table></div>
+<p>The population NIE is <strong>0.0409</strong>. The starter's additive OLS estimate is <strong>0.0511</strong>, with a 95% bootstrap interval of <strong>[0.0212, 0.0831]</strong>.</p>
+<a href="dev_0001.csv" download>Download all 500 observations (CSV)</a>
+</details>
+<details><summary>How were the training and starter tables generated?</summary>
+<p>The historical fitting set has 8,000 adapter tables, 10,000 error-head tables and 2,000 fresh fine-tuning tables. Within a preset, a base scenario is sampled and its structural parameters are drawn before generating observations. The fine-tuning stage also reuses prior fitting tables. Across the whole fit, replay is counted once. Separate development and calibration tables were used for model selection and interval calibration.</p>
+<p>The two-family starter adapts the linear model of <a href="https://doi.org/10.1093/jrsssb/qkad129">He, Song and Xu</a> and the nonlinear model of <a href="https://doi.org/10.1080/01621459.2026.2654218">Shan, Li and Ai</a>. It draws equal numbers of configurations from both families, varies the path coefficients, and draws two independent tables per configuration. Train, development and public test use disjoint configurations. Each split includes negative, zero and positive indirect effects. <a href="https://huggingface.co/datasets/shibo769/StatsInference-Arena-Mediation/blob/v1.0/DGP.md">Equations, parameter distributions and truth calculations ↗</a></p>
+<p>Official test studies include both familiar and held-out designs. The public test archive provides the observed data and fold assignments. The organizers retain the DGP assignment, generating parameters, seeds and true NIE for each official study.</p>
+</details>
+<details><summary>Identification assumptions and variable roles</summary><p>The data generator defines the true effect by intervening on treatment and the mediators. Methods receive only the observed variables and design information. A standard mediation formula for observational data requires consistency, positivity and assumptions about confounding and counterfactuals across treatment levels. In particular, a treatment-induced confounder of the mediator–outcome relationship can invalidate that formula. Describe the assumptions your method uses in its method card.</p></details>
+</section>
+
+<section id="run" class="track-section"><h2>Run a baseline</h2>
+<p>Unzip the starter kit, open its directory and run the commands below. The baseline fits two covariate-adjusted linear regressions, takes the product of the path coefficients, and constructs a 95% interval from 200 row-bootstrap draws. It gives you a file to compare against when integrating your own estimator.</p>
+<pre><code>python -m pip install numpy
+python baseline.py --tables dev/tables --output predictions.csv
+python score.py --truth dev/truth.csv --predictions predictions.csv</code></pre>
+<p>After choosing your settings, replace <code>dev</code> with <code>test</code> in both commands to run the public reference test.</p>
+<div class="grid-scroll"><table class="metrics"><caption class="sr-only">Expected results from the starter's linear baseline</caption><thead><tr><th>Public split</th><th>Bias</th><th>RMSE</th><th>95% coverage</th><th>Mean interval length</th></tr></thead>
+<tbody><tr><td>Development · 16 tables</td><td>−0.3154</td><td>0.6645</td><td>75.00%</td><td>0.1626</td></tr><tr><td>Reference test · 32 tables</td><td>−0.4144</td><td>0.8596</td><td>75.00%</td><td>0.3751</td></tr></tbody></table></div>
+<p>The additive baseline omits the interactions in the nonlinear family. The official leaderboard includes a separate random-forest baseline. <a href="https://huggingface.co/shibo769/MediPFN#run-one-example">Run MediPFN and the forest on a worked example ↗</a></p>
+</section>
+
+<section id="evaluation" class="track-section"><h2>Official evaluation</h2>
+<p>Fix your method before running the official test. Each of the 1,000 parameter configurations generates two independent studies with the same population NIE. The ZIP contains observed CSVs in <code>tables/</code> and matching, row-aligned assignments in <code>folds/</code>. Cross-fitted methods should use the supplied five outer folds. Each CSV column is described by role and type in the archive.</p>
+<p>Each of the 2,000 studies gets equal weight. For each study, subtract its true effect from its estimate. Bias is the average of these errors. RMSE is the square root of their mean square. Coverage is the share of 95% intervals that contain the true effect. Mean interval length is the average width of those intervals.</p>
+<p>The leaderboard also reports within-mechanism sampling variance. For each of the 1,000 mechanisms, we square the difference between its two independent estimates and divide by two, then average these values over mechanisms. The public starter scorer reports bias, RMSE, coverage and mean interval length. If you report runtime, include the mean seconds per study, hardware and what the timing covers. <a href="../#domain=mediation">View official results →</a></p>
+</section>
+
+<section id="submit" class="track-section"><h2>Submit a method</h2>
+<p>Fill the provided <code>predictions_template.csv</code> with one row per official table. Keep the opaque table IDs and the four column names below. The point estimate and both interval endpoints must be finite, with the lower endpoint at or below the upper endpoint.</p>
+<pre><code>table_id,estimate,ci_lower,ci_upper</code></pre>
+<p>Use the GitHub form to send a versioned code repository or Hugging Face model with run instructions, or a public method card with your official predictions CSV. Describe your estimator, interval construction and training-data exposure. A classical method can specify "no prior training."</p>
+<p>Submitting opens a public issue for review. Once maintainers validate all 2,000 predictions and score them against the private effects, they publish the approved method and its aggregate scores on the <a href="../#domain=mediation">mediation leaderboard</a>. If you submit code alone, it must produce the official predictions before the method can be ranked.</p>
+<div class="track-actions"><a class="primary" href="https://github.com/Statsinference/statsinference.github.io/issues/new?template=mediation-method.yml">Open submission form ↗</a><a href="method-card.md" download>Download method-card template ↓</a></div>
+</section>
+<div class="track-foot"><a href="../#domain=mediation">Back to the mediation leaderboard</a> · Data release v1.0</div>
+</main>
+</body></html>

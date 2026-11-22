@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Estimate a query-point treatment effect with observed confounding proxies. Download the Proximal Causal Inference starter kit and evaluation inputs for StatArena.">
+<title>Proximal Causal Inference · Benchmark card · StatArena</title>
+<link rel="icon" href="../assets/statsarena-logo.webp">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="stylesheet" href="../mediation/card.css">
+<script>try{const t=localStorage.getItem('statsarena-theme-editorial');document.documentElement.dataset.theme=t||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light')}catch(e){}</script>
+</head>
+<body class="track-page">
+<header>
+  <div class="wrap">
+    <a class="track-brand" href="../"><img src="../assets/statsarena-logo.webp" alt="">StatArena</a>
+    <a class="back" href="../#domain=proximal">← Proximal leaderboard</a>
+  </div>
+</header>
+<main class="wrap">
+  <section class="track-hero">
+    <h1>Proximal Causal Inference</h1>
+    <p>Given one observational study with proxies for an unmeasured confounder, estimate the conditional average treatment effect (CATE) at a supplied covariate query. Return one point estimate and a two-sided 95% interval per study.</p>
+    <span class="target-formula" aria-label="The treatment effect at x star is the expected difference between treated and untreated outcomes conditional on X equaling x star">τ(<i>x</i><sup>*</sup>) = <i>E</i>[<i>Y</i>(1) − <i>Y</i>(0) | <i>X</i> = <i>x</i><sup>*</sup>]</span>
+    <div class="track-actions">
+      <a class="primary" href="https://huggingface.co/datasets/wytzzka/StatsInference-Arena-Proximal/resolve/2027f348fa54db3db9dd006e2f4d7dcf55282b22/proximal-starter-v1.zip">Download starter kit</a>
+      <a href="https://huggingface.co/datasets/wytzzka/StatsInference-Arena-Proximal">Hugging Face dataset</a>
+      <a href="#submit">Submission format</a>
+    </div>
+  </section>
+  <nav aria-label="Benchmark card sections">
+    <a href="#data">Data and splits</a>
+    <a href="#run">Run a baseline</a>
+    <a href="#evaluation">Official evaluation</a>
+    <a href="#submit">Submission format</a>
+  </nav>
+
+  <section id="data" class="track-section">
+    <h2>Data and splits</h2>
+    <p>Each study contains 500 observations. The input columns are baseline covariates <code>X1</code> and <code>X2</code>, the treatment-confounding proxy <code>Z</code>, the outcome-confounding proxy <code>W</code>, binary treatment <code>A</code> and continuous outcome <code>Y</code>. Each entry in <code>queries.csv</code> supplies an independent target point using <code>X1</code> and <code>X2</code>.</p>
+    <div class="datasets">
+      <article>
+        <h3>Public starter kit</h3>
+        <p>48 training, 16 development and 32 public reference test tables, with known effects, queries, a generator, a baseline and a scorer. All 96 studies were generated for this starter kit.</p>
+        <a href="https://huggingface.co/datasets/wytzzka/StatsInference-Arena-Proximal/resolve/2027f348fa54db3db9dd006e2f4d7dcf55282b22/proximal-starter-v1.zip">Download starter ZIP</a>
+      </article>
+      <article>
+        <h3>Official test inputs</h3>
+        <p>2,000 observed tables in one pooled test collection, with query points, variable types, five-fold assignments and a blank predictions CSV. Maintainers retain the population effects in a separate scoring package.</p>
+        <a href="https://huggingface.co/datasets/wytzzka/StatsInference-Arena-Proximal/resolve/2027f348fa54db3db9dd006e2f4d7dcf55282b22/proximal-official-inputs-v1.zip">Download official test ZIP</a>
+      </article>
+      <article>
+        <h3>Data-generating mechanisms</h3>
+        <p>Four design families vary confounding and treatment-effect heterogeneity, from linear bridge models to quadratic and trigonometric effect functions.</p>
+        <a href="https://huggingface.co/datasets/wytzzka/StatsInference-Arena-Proximal/blob/2027f348fa54db3db9dd006e2f4d7dcf55282b22/DGP.md">Read the equations and priors</a>
+      </article>
+    </div>
+    <details>
+      <summary>Identification and variable roles</summary>
+      <p>The target averages the effect over the natural distribution of the outcome-confounding proxy <i>W</i> at the supplied covariate point. The confounder itself is latent. A proximal bridge estimator needs assumptions about the roles of both proxies and conditions that identify the bridge, including completeness. Describe the assumptions your method uses.</p>
+    </details>
+  </section>
+
+  <section id="run" class="track-section">
+    <h2>Run a baseline</h2>
+    <p>Extract the starter kit, open its directory and run these commands. The starter fits a linear S-learner on covariates and treatment, with treatment-by-covariate interactions. It forms a 95% interval from 50 whole-row bootstrap refits. The fit uses only <code>X1</code>, <code>X2</code> and <code>A</code> as predictors, so an unmeasured confounder can bias its estimate.</p>
+    <pre><code>python -m pip install numpy
+python baseline.py --tables dev/tables --queries dev/queries.csv --output dev_predictions.csv
+python score.py --truth dev/truth.csv --predictions dev_predictions.csv</code></pre>
+    <p>Use the public <code>test</code> split for a final local check after choosing your settings on <code>dev</code>.</p>
+    <div class="grid-scroll">
+      <table class="metrics">
+        <caption class="sr-only">Expected results from the starter baseline</caption>
+        <thead><tr><th scope="col">Public split</th><th scope="col">Bias</th><th scope="col">RMSE</th><th scope="col">95% coverage</th><th scope="col">Mean interval length</th></tr></thead>
+        <tbody><tr><td>Development · 16 tables</td><td>0.637534</td><td>1.024240</td><td>62.5%</td><td>1.911591</td></tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="evaluation" class="track-section">
+    <h2>Official evaluation</h2>
+    <p>Fix your method before using the official inputs. The release preserves the 2,000 studies from the November 16 evaluation. Each study has its own sampled configuration and query. Cross-fitted methods and methods using context partitions should preserve row order and use the supplied treatment-stratified assignments in <code>folds/&lt;table_id&gt;.csv</code>.</p>
+    <p>Each study gets equal weight. Bias and RMSE use the signed point-estimation errors. Variance is the sample variance of those errors across studies, with denominator 1,999. Coverage is the fraction of intervals containing the true effect. Mean interval length averages the difference between upper and lower bounds.</p>
+    <p>The leaderboard displays normalized error and interval length metrics. Divide each study’s error and interval length by the sample standard deviation of its observed outcome before aggregation. The published source data also include results in original outcome units. Coverage and time have the same values at both scales. Report warm runtime per study, including point estimation and interval construction with all bootstrap refits. Include the hardware used. <a href="https://github.com/Statsinference/statsinference.github.io/blob/main/data/unified-test-2026-11-16.json">View results in original units</a></p>
+    <p>The reported reference comparison uses the frozen ProximalFM checkpoint and a random forest–based proximal bridge estimator with bootstrap intervals. <a href="../#domain=proximal">View published results</a> · <a href="https://huggingface.co/christophemuller/ProximalFM">ProximalFM checkpoint</a></p>
+  </section>
+
+  <section id="submit" class="track-section">
+    <h2>Submission format</h2>
+    <p>Fill <code>predictions_template.csv</code> with one row for each official study. Keep the supplied IDs and return the effect and interval endpoints in original outcome units. Use finite values, with the lower endpoint at or below the upper endpoint.</p>
+    <pre><code>table_id,estimate,ci_lower,ci_upper</code></pre>
+    <p>Maintainers score predictions against the retained effects. Include the estimator, interval construction, training-data exposure and any timing details when sharing predictions. To submit a method for review, follow the <a href="https://github.com/Statsinference/statsinference.github.io/blob/main/method-submissions/README.md">method submission guide</a>.</p>
+  </section>
+  <div class="track-foot"><a href="../#domain=proximal">Back to the proximal leaderboard</a></div>
+</main>
+</body>
+</html>

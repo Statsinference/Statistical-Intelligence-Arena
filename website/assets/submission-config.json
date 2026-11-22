@@ -1,0 +1,6 @@
+{
+  "enabled": true,
+  "mode": "github-issue",
+  "repository": "Statsinference/statsinference.github.io",
+  "folder": "method-submissions/received"
+}

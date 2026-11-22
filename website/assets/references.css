@@ -1,0 +1,13 @@
+/* Small source links; reuse the existing editorial palette and typography. */
+.method-ref-name {text-decoration:underline;text-decoration-color:var(--line-strong);text-underline-offset:3px}
+.method-ref-label {display:inline-block;margin-left:8px;font:9px/1.4 var(--body);color:var(--accent);white-space:nowrap;vertical-align:middle}
+.reference-pending {font-size:8px;color:var(--quiet)}
+.method-references {margin-top:16px;border-top:1px solid var(--line);padding-top:12px;font-size:11px}
+.method-references summary {cursor:pointer;color:var(--muted);font-weight:500}
+.reference-list {padding:12px 0 0;max-width:900px}
+.reference-entry {padding:0 0 13px;display:flex;flex-direction:column;align-items:flex-start;gap:3px;overflow-wrap:anywhere}
+.reference-entry strong {font-size:11px;font-weight:550}
+.reference-title {font-size:11px;color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+.reference-entry p,.reference-note {font-size:10px;color:var(--muted);line-height:1.65}
+.reference-secondary {font-size:10px;color:var(--accent)}
+.reference-note {padding-top:5px;max-width:85ch}

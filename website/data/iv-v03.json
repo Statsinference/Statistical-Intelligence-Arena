@@ -1,0 +1,219 @@
+{
+  "id": "iv-v03-test",
+  "domain": "iv",
+  "label": "IV-PFN v0.3 · Test",
+  "target": "Local average treatment effect among compliers",
+  "sample_size": 500,
+  "tables": 2000,
+  "nominal_coverage": 0.95,
+  "metric_scale": "original",
+  "derived": false,
+  "summary_kind": "Reported Test results",
+  "source": {
+    "title": "User-supplied IV-PFN v0.3 Test results",
+    "file": "User-provided result table",
+    "type": "user_supplied_table",
+    "url": "https://huggingface.co/datasets/Brownight/StatsInference-Arena-IV/blob/f4d6f68c73f745872b46d919a156c2c300476308/README.md"
+  },
+  "aggregation": "Reported Test rows for one pooled split of 2,000 studies with equal study weights.",
+  "variance_definition": "Sample variance of the errors (estimate minus population LATE) across all 2,000 studies, with denominator 1,999.",
+  "protocol": "IV-PFN and the Random Forest comparator use the supplied five-fold split and the same augmented inverse-probability-weighted LATE ratio. IV-PFN uses an influence-function interval. The displayed forest clips instrument propensities to [0.05, 0.95] and uses percentile intervals from 50 whole-row bootstrap refits.",
+  "timing": "Mean seconds per study for point and interval estimation, including bootstrap and excluding model loading and warm-up. IV-PFN uses BF16 with one process on an NVIDIA L4. The forest uses a single-threaded process per core on AMD EPYC 7B13.",
+  "notes": [],
+  "display_precision": {
+    "bias": 3,
+    "variance": 3,
+    "rmse": 3,
+    "length": 3,
+    "time_s": 3
+  },
+  "rows": [
+    {
+      "method": "IV-PFN",
+      "source_method": "PFN",
+      "family": "pfn",
+      "configuration": "5-fold · v0.3",
+      "group": "Test",
+      "status": "reported",
+      "bias": 0.012,
+      "variance": 0.072,
+      "rmse": 0.268,
+      "length": 0.875,
+      "coverage": 0.9565,
+      "time_s": 0.366,
+      "tables": 2000,
+      "approximate_metrics": []
+    },
+    {
+      "method": "Random Forest",
+      "source_method": "RF trim + bootstrap",
+      "family": "classical",
+      "configuration": "",
+      "group": "Test",
+      "status": "reported",
+      "bias": 0.022,
+      "variance": 0.099,
+      "rmse": 0.316,
+      "length": 1.111,
+      "coverage": 0.9025,
+      "time_s": 179.9,
+      "tables": 2000,
+      "approximate_metrics": [],
+      "display_precision": {
+        "time_s": 1
+      }
+    },
+    {
+      "method": "Linear",
+      "source_method": "Linear + bootstrap",
+      "family": "classical",
+      "group": "Test",
+      "status": "reported",
+      "tables": 2000,
+      "approximate_metrics": [],
+      "configuration": "",
+      "bias": 0.011,
+      "variance": 0.073,
+      "rmse": 0.27,
+      "length": 1.015,
+      "coverage": 0.919,
+      "time_s": 29.9,
+      "source": {
+        "file": "User-provided tabpfn-iv Test table",
+        "locators": "Pooled 2,000-table Test results"
+      },
+      "details": {
+        "estimator": "Linear nuisance models",
+        "folds": "Not reported",
+        "bootstrap": "Not reported",
+        "configuration": "Bootstrap intervals.",
+        "settings": [
+          [
+            "Learner",
+            "Linear nuisance models"
+          ],
+          [
+            "Confidence level",
+            "95%"
+          ],
+          [
+            "Interval construction",
+            "Bootstrap interval"
+          ],
+          [
+            "Bootstrap design",
+            "Resample count and quantile rule unreported"
+          ]
+        ]
+      },
+      "timing": "Reported mean seconds per table.",
+      "display_precision": {
+        "time_s": 1
+      }
+    },
+    {
+      "method": "XGB-TD",
+      "source_method": "XGB-TD + bootstrap",
+      "family": "classical",
+      "group": "Test",
+      "status": "reported",
+      "tables": 2000,
+      "approximate_metrics": [],
+      "configuration": "",
+      "bias": -0.061,
+      "variance": 0.591,
+      "rmse": 0.771,
+      "length": 4.01,
+      "coverage": 0.971,
+      "time_s": 187.0,
+      "source": {
+        "file": "User-provided tabpfn-iv Test table",
+        "locators": "Pooled 2,000-table Test results"
+      },
+      "details": {
+        "estimator": "XGB-TD nuisance models",
+        "folds": "Not reported",
+        "bootstrap": "Not reported",
+        "configuration": "Trimming clips the fitted instrument propensity e(X) to [0.05, 0.95] using predictions from the same fit. Bootstrap intervals.",
+        "settings": [
+          [
+            "Learner",
+            "XGB-TD nuisance models"
+          ],
+          [
+            "Instrument propensity clipping",
+            "[0.05, 0.95], using predictions from the same fit"
+          ],
+          [
+            "Confidence level",
+            "95%"
+          ],
+          [
+            "Interval construction",
+            "Bootstrap interval"
+          ],
+          [
+            "Bootstrap design",
+            "Resample count and quantile rule unreported"
+          ]
+        ]
+      },
+      "timing": "Reported mean seconds per table.",
+      "display_precision": {
+        "time_s": 1
+      }
+    },
+    {
+      "method": "CatBoost-TD",
+      "source_method": "CatBoost-TD + bootstrap",
+      "family": "classical",
+      "group": "Test",
+      "status": "reported",
+      "tables": 2000,
+      "approximate_metrics": [],
+      "configuration": "",
+      "bias": -0.103,
+      "variance": 4.298,
+      "rmse": 2.075,
+      "length": 3.122,
+      "coverage": 0.9705,
+      "time_s": 1239,
+      "source": {
+        "file": "User-provided tabpfn-iv Test table",
+        "locators": "Pooled 2,000-table Test results"
+      },
+      "details": {
+        "estimator": "CatBoost-TD nuisance models",
+        "folds": "Not reported",
+        "bootstrap": "Not reported",
+        "configuration": "Trimming clips the fitted instrument propensity e(X) to [0.05, 0.95] using predictions from the same fit. Bootstrap intervals.",
+        "settings": [
+          [
+            "Learner",
+            "CatBoost-TD nuisance models"
+          ],
+          [
+            "Instrument propensity clipping",
+            "[0.05, 0.95], using predictions from the same fit"
+          ],
+          [
+            "Confidence level",
+            "95%"
+          ],
+          [
+            "Interval construction",
+            "Bootstrap interval"
+          ],
+          [
+            "Bootstrap design",
+            "Resample count and quantile rule unreported"
+          ]
+        ]
+      },
+      "timing": "Reported mean seconds per table.",
+      "display_precision": {
+        "time_s": 0
+      }
+    }
+  ]
+}

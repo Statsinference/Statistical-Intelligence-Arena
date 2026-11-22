@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f5f1ec">
+<meta name="description" content="StatArena — The Statistical Intelligence Arena. Statistical inference benchmarks across ten research domains.">
+<meta property="og:title" content="StatArena — The Statistical Intelligence Arena">
+<meta property="og:description" content="Accuracy, uncertainty and efficiency. Independent statistical inference leaderboards across ten domains.">
+<meta property="og:image" content="https://statsinference.github.io/assets/statsarena-logo.webp">
+<meta property="og:url" content="https://statsinference.github.io/">
+<title>StatArena — The Statistical Intelligence Arena</title>
+<link rel="canonical" href="https://statsinference.github.io/">
+<link rel="icon" type="image/webp" href="assets/statsarena-logo.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;450;500;550;600;650&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css?v=data-contribution-20261120">
+<link rel="stylesheet" href="assets/release.css?v=counterfactual-notation-20261117">
+<link rel="stylesheet" href="assets/references.css?v=counterfactual-notation-20261117">
+<link rel="stylesheet" href="assets/test-view.css?v=pareto-and-methods-20261122">
+<link rel="stylesheet" href="assets/submit-method.css?v=direct-contribution-guide">
+<link rel="stylesheet" href="assets/comparison-charts.css?v=method-markers-20261122">
+<link rel="stylesheet" href="assets/domain-illustrations.css?v=domain-heading-left-20261121">
+<link rel="stylesheet" href="assets/arena-overview.css?v=counterfactual-notation-20261117">
+<link rel="stylesheet" href="assets/home.css?v=statarena-hero-20261121">
+</head>
+<body>
+<a class="skip" href="#content-start">Skip to content</a>
+<button class="scrim" id="menu-scrim" aria-label="Close navigation" hidden></button>
+<aside class="sidebar" id="sidebar" aria-label="Site navigation">
+<a class="brand" href="#home"><img class="brand-logo" src="assets/statsarena-logo.webp" alt="StatArena logo" width="42" height="42"><span class="brand-name">StatArena<small>STATISTICAL INTELLIGENCE</small></span></a>
+<a class="side-home" id="sidebar-home" href="#home"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V9m6 10V4m6 15v-7M2 21h20"/></svg>Homepage<span>↗</span></a>
+<div class="nav-caption">RESEARCH DOMAINS <span>10</span></div>
+<div id="tabs" role="tablist" aria-label="Research domains" aria-orientation="vertical"></div>
+<div class="sidebar-bottom"><div class="nav-caption">RESOURCES</div>
+<a href="https://github.com/Statsinference/statsinference.github.io" target="_blank" rel="noopener noreferrer"><span>Website on GitHub</span><span>↗</span></a>
+<div class="sidebar-foot"><span>StatArena</span><span>Research benchmark</span></div>
+</div></aside>
+<div class="page">
+<header class="topbar"><div class="topbar-left"><button class="menu-button" id="menu-btn" aria-label="Open navigation" aria-controls="sidebar" aria-expanded="false">☰</button><span id="topbar-section">Homepage</span><span class="breadcrumb-sep">/</span><span class="muted" id="topbar-context">StatArena</span></div><div class="topbar-actions"><button class="theme-toggle" id="theme-btn" aria-label="Switch to dark theme" title="Switch color theme">◐</button><a class="contribution-link" href="https://github.com/Statsinference/Statistical-Intelligence-Arena/blob/main/CONTRIBUTING.md">Contribute to StatArena</a></div></header>
+<div class="content" id="content-start" tabindex="-1">
+<section id="home" class="home-panel" aria-labelledby="home-title" tabindex="-1">
+<svg class="home-ambient" viewBox="0 0 1280 740" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+  <g class="home-wave home-wave-a">
+    <path id="home-wave-line-a" class="home-wave-line" d="M -80 235 C 85 155 185 360 345 252 S 605 156 765 242 S 1060 351 1375 222"><animate attributeName="d" dur="11.5s" begin="-2s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.25;0.5;0.75;1" keySplines="0.37 0 0.63 1;0.37 0 0.63 1;0.37 0 0.63 1;0.37 0 0.63 1" values="M -80 235 C 85 155 185 360 345 252 S 605 156 765 242 S 1060 351 1375 222;M -80 248 C 85 65 215 415 345 258 S 630 75 765 225 S 1090 415 1375 213;M -80 221 C 100 315 195 98 345 232 S 635 385 765 274 S 1120 85 1375 240;M -80 240 C 65 110 228 383 345 249 S 583 143 765 218 S 1060 401 1375 230;M -80 235 C 85 155 185 360 345 252 S 605 156 765 242 S 1060 351 1375 222" /></path>
+    <circle class="home-moving-dot home-moving-dot-a" r="4"><animateMotion dur="23s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="linear"><mpath href="#home-wave-line-a" /></animateMotion></circle>
+    <circle class="home-moving-dot home-moving-dot-faint" r="2.5"><animateMotion dur="31s" begin="-16s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="linear"><mpath href="#home-wave-line-a" /></animateMotion></circle>
+  </g>
+  <g class="home-wave home-wave-b">
+    <path id="home-wave-line-b" class="home-wave-line" d="M -80 350 C 140 445 220 205 405 333 S 682 427 868 317 S 1135 229 1375 361"><animate attributeName="d" dur="14s" begin="-6s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.25;0.5;0.75;1" keySplines="0.37 0 0.63 1;0.37 0 0.63 1;0.37 0 0.63 1;0.37 0 0.63 1" values="M -80 350 C 140 445 220 205 405 333 S 682 427 868 317 S 1135 229 1375 361;M -80 369 C 100 205 228 490 405 357 S 693 215 868 341 S 1140 456 1375 344;M -80 330 C 145 505 257 120 405 312 S 660 530 868 291 S 1120 164 1375 380;M -80 355 C 95 265 260 430 405 356 S 670 155 868 336 S 1140 414 1375 348;M -80 350 C 140 445 220 205 405 333 S 682 427 868 317 S 1135 229 1375 361" /></path>
+    <circle class="home-moving-dot home-moving-dot-b" r="3.3"><animateMotion dur="27s" begin="-9s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="linear"><mpath href="#home-wave-line-b" /></animateMotion></circle>
+  </g>
+  <g class="home-wave home-wave-c">
+    <path id="home-wave-line-c" class="home-wave-line" d="M -80 470 C 100 350 254 555 426 455 S 685 377 853 466 S 1111 548 1375 431"><animate attributeName="d" dur="17s" begin="-10s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.25;0.5;0.75;1" keySplines="0.37 0 0.63 1;0.37 0 0.63 1;0.37 0 0.63 1;0.37 0 0.63 1" values="M -80 470 C 100 350 254 555 426 455 S 685 377 853 466 S 1111 548 1375 431;M -80 480 C 105 560 241 310 426 481 S 675 582 853 436 S 1155 342 1375 454;M -80 450 C 90 288 267 612 426 437 S 701 290 853 492 S 1143 603 1375 408;M -80 469 C 126 540 248 370 426 470 S 688 566 853 436 S 1133 361 1375 449;M -80 470 C 100 350 254 555 426 455 S 685 377 853 466 S 1111 548 1375 431" /></path>
+    <circle class="home-moving-dot home-moving-dot-c" r="3.5"><animateMotion dur="34s" begin="-17s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="linear"><mpath href="#home-wave-line-c" /></animateMotion></circle>
+  </g>
+  <g class="home-scatter" fill="currentColor">
+    <circle cx="150" cy="166" r="2.5"/><circle cx="245" cy="393" r="2"/><circle cx="370" cy="137" r="2.3"/>
+    <circle cx="545" cy="301" r="2"/><circle cx="620" cy="174" r="2.7"/><circle cx="743" cy="404" r="2.2"/>
+    <circle cx="889" cy="164" r="2"/><circle cx="994" cy="381" r="2.5"/><circle cx="1095" cy="227" r="2.2"/>
+    <circle cx="1198" cy="507" r="2.6"/><circle cx="320" cy="562" r="2.4"/><circle cx="683" cy="601" r="2"/>
+  </g>
+</svg>
+<div class="home-hero">
+  <div class="home-kicker">THE STATISTICAL INTELLIGENCE ARENA</div>
+  <h1 id="home-title">StatArena</h1>
+  <div class="home-hero-copy">
+    <p class="home-lead">An open academic benchmark for evaluating statistical intelligence in the AI era.</p>
+    <p class="home-description">StatArena compares methods under the same conditions by standardizing tasks, data-generating mechanisms, and evaluation criteria such as accuracy, bias, variance, interval length, coverage, statistical power, uncertainty calibration, and computational efficiency. <em>Building the Bench for Statistical Intelligence.</em></p>
+  </div>
+  <div class="home-mark" aria-hidden="true"><img src="assets/statsarena-logo.webp" alt="" width="160" height="160"></div>
+</div>
+<section class="arena-overview" aria-label="Current leaderboard overview">
+<div id="arena-overview-stats" class="arena-stat-grid" aria-live="polite">
+<article class="arena-stat"><strong data-overview-stat="domains">—</strong><span>Research areas</span></article>
+<article class="arena-stat" data-dgp-snapshot><strong data-overview-stat="registered-dgps">—</strong><span>Registered DGPs</span></article>
+<article class="arena-stat"><strong data-overview-stat="estimand-types">—</strong><span>Estimands</span></article>
+<article class="arena-stat"><strong data-overview-stat="metrics">—</strong><span>Inference metrics</span></article>
+</div>
+</section>
+<div class="home-universities" aria-label="University affiliations">
+  <a class="home-university" href="https://www.sufe.edu.cn/" target="_blank" rel="noopener noreferrer" aria-label="Shanghai University of Finance and Economics" title="Shanghai University of Finance and Economics"><img src="https://hrweb.sufe.edu.cn/_upload/site/00/51/81/logo.png" alt="Shanghai University of Finance and Economics logo" loading="lazy" decoding="async"></a>
+  <a class="home-university" href="https://www.bu.edu/" target="_blank" rel="noopener noreferrer" aria-label="Boston University" title="Boston University"><img src="https://upload.wikimedia.org/wikipedia/commons/3/31/Boston_University_wordmark.svg" alt="Boston University logo" loading="lazy" decoding="async"></a>
+  <a class="home-university" href="https://www.lse.ac.uk/" target="_blank" rel="noopener noreferrer" aria-label="London School of Economics and Political Science" title="London School of Economics and Political Science"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/LSE_Logo.svg" alt="London School of Economics and Political Science logo" loading="lazy" decoding="async"></a>
+  <a class="home-university" href="https://www.gbu.edu.cn/" target="_blank" rel="noopener noreferrer" aria-label="Great Bay University" title="Great Bay University"><img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Great_Bay_University_logo.svg" alt="Great Bay University logo" loading="lazy" decoding="async"></a>
+  <a class="home-university" href="https://www.sustech.edu.cn/" target="_blank" rel="noopener noreferrer" aria-label="Southern University of Science and Technology" title="Southern University of Science and Technology"><img src="https://upload.wikimedia.org/wikipedia/commons/3/38/Sustech_logo.png" alt="Southern University of Science and Technology logo" loading="lazy" decoding="async"></a>
+</div>
+</section>
+<div id="domain-view" hidden>
+<span id="release-status" hidden></span>
+<p id="release-description" role="status" hidden></p>
+<main id="main-panel" role="tabpanel" aria-labelledby="tab-ate" tabindex="-1">
+<header class="domain-heading">
+  <div class="domain-intro">
+    <h1 id="hero-title">Average Treatment Effect</h1>
+    <p id="hero-sub">Point estimates and confidence intervals for average treatment effects.</p>
+    <div id="domain-definition" class="domain-definition" aria-label="Target definition"></div>
+    <div class="domain-actions">
+      <a id="benchmark-card-link" class="benchmark-card-link" hidden>Benchmark card &amp; data <span aria-hidden="true">→</span></a>
+      <a href="#table" class="text-link">Full leaderboard <span>↘</span></a>
+    </div>
+  </div>
+  <figure id="domain-illustration" class="domain-figure" aria-labelledby="domain-figure-title" hidden></figure>
+</header>
+<section id="coming-soon" class="coming-soon" role="status" hidden><h3>Coming soon</h3><p>Results for this research area are being prepared.</p></section>
+<section class="view-bar test-controls" aria-label="Leaderboard controls">
+<div class="chips" id="fam-chips" role="group" aria-label="Method family"><button class="chip on" data-fam="all" aria-pressed="true">All methods</button><button class="chip" data-fam="pfn" aria-pressed="false">RFN</button><button class="chip" data-fam="classical" aria-pressed="false">Baseline</button></div>
+<label class="rank-control" for="rank-metric">Rank by <select id="rank-metric" aria-label="Rank by metric"><option value="bias">Bias</option><option value="variance">Variance</option><option value="rmse" selected>RMSE</option><option value="length">Mean interval length</option><option value="coverage">Coverage</option><option value="time_s">Time</option></select></label>
+<label class="search"><input id="q" type="search" placeholder="Search methods" aria-label="Search methods"></label>
+<button class="export" id="export-btn" disabled>Export CSV ↓</button>
+</section>
+<section id="table" aria-label="Leaderboard"><div id="leaderboard-wrap" class="leaderboard-wrap" tabindex="0" role="region" aria-label="Scrollable leaderboard" aria-live="polite"></div><p class="table-note" id="table-note"></p></section>
+</main>
+<section id="methodology" class="comparison-charts" aria-label="Result comparisons">
+<article class="comparison-card" aria-labelledby="rmse-time-title"><h3 id="rmse-time-title">RMSE vs Time</h3><div id="rmse-time-chart" class="comparison-plot"></div></article>
+<article class="comparison-card" aria-labelledby="coverage-length-title"><h3 id="coverage-length-title">Coverage vs Mean Interval Length</h3><div id="coverage-length-chart" class="comparison-plot"></div></article>
+</section>
+</div>
+<footer><a class="footer-brand" href="#home"><img src="assets/statsarena-logo.webp" alt="" width="24" height="24">StatArena</a><a href="https://github.com/Statsinference/statsinference.github.io" target="_blank" rel="noopener noreferrer">Website source ↗</a></footer>
+</div></div>
+<div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+<noscript><p class="noscript">Enable JavaScript to view the domain leaderboards. Source-reported results are available for Average Treatment Effect, Conditional Average Treatment Effect, Causal Mediation Analysis, Instrumental Variables, Proximal Causal Inference and Difference-in-Differences. <a href="data/results.json">Read the results data</a>.</p></noscript>
+<script src="assets/test-references.js?v=counterfactual-notation-20261117"></script>
+<script src="assets/test-view.js?v=pareto-and-methods-20261122"></script>
+<script src="assets/arena-overview.js?v=stat-cards-20261117"></script>
+<script src="assets/layout.js?v=statarena-home-20261119"></script>
+<script src="assets/comparison-charts.js?v=method-markers-20261122"></script>
+<script src="assets/domain-illustrations.js?v=domain-heading-20261121"></script>
+<script src="assets/home-motion.js?v=statarena-wave-morph-20261119"></script>
+</body></html>
+
+

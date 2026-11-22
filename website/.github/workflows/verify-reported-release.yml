@@ -1,0 +1,55 @@
+name: Verify reported release
+on:
+  push:
+    branches: [main]
+    paths:
+      - index.html
+      - assets/**
+      - data/**
+      - tests/**
+      - .github/workflows/verify-reported-release.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate Test view assets and source data
+        run: |
+          node --check assets/test-view.js
+          node --check assets/test-references.js
+          node --check assets/comparison-charts.js
+          node --check assets/domain-illustrations.js
+          node tests/verify_log_charts.cjs
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          data = Path("data")
+          fivefold = json.loads((data / "mediation-fivefold.json").read_bytes())
+          assert len(fivefold["rows"]) == 5
+          assert sum(row["tables"] == 2000 for row in fivefold["rows"]) >= 4
+          published = [fivefold]
+          for filename in ("results.json", "unified-test-2026-11-16.json"):
+              suites = json.loads((data / filename).read_bytes())["suites"]
+              published.extend(s for s in suites if s["domain"] == "mediation")
+          assert all("dgp_results" not in s for s in published)
+          PY
+      - name: Install browser verification tools
+        run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Check deployed Test tables, names, references and source values
+        run: python tests/verify_test_view.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-view-verification
+          path: verification/
+          retention-days: 3
+

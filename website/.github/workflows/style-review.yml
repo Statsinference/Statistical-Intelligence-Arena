@@ -1,0 +1,60 @@
+name: Website style review
+on:
+  push:
+    branches: [style/arena-layout]
+permissions:
+  contents: read
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Install browser inspection tools
+        run: |
+          python -m pip install playwright
+          python -m playwright install chromium
+      - name: Inspect reference and capture current website
+        run: |
+          mkdir -p review/current
+          cp index.html review/current/
+          cp -R assets data review/current/
+          python - <<'PY'
+          import json, pathlib
+          from playwright.sync_api import sync_playwright
+          root = pathlib.Path('review')
+          with sync_playwright() as p:
+              browser=p.chromium.launch(headless=True, args=['--no-sandbox'])
+              page=browser.new_page(viewport={'width':1440,'height':1100},device_scale_factor=1,color_scheme='light')
+              try:
+                  response=page.goto('https://arena.ai/leaderboard',wait_until='domcontentloaded',timeout=60000)
+                  page.wait_for_timeout(8000)
+                  (root/'reference.html').write_text(page.content())
+                  page.screenshot(path=str(root/'reference.png'),full_page=True)
+                  info=page.evaluate('''() => {
+                    const style = el => {const s=getComputedStyle(el),r=el.getBoundingClientRect();return {text:el.innerText?.slice(0,160),tag:el.tagName,cls:el.className,font:s.fontFamily,size:s.fontSize,weight:s.fontWeight,line:s.lineHeight,spacing:s.letterSpacing,color:s.color,bg:s.backgroundColor,border:s.borderColor,radius:s.borderRadius,x:r.x,y:r.y,w:r.width,h:r.height}};
+                    return {title:document.title,url:location.href,body:style(document.body),headings:[...document.querySelectorAll('h1,h2,h3')].slice(0,24).map(style),controls:[...document.querySelectorAll('a,button')].filter(e=>e.getBoundingClientRect().width>0).slice(0,30).map(style),stylesheets:[...document.styleSheets].map(s=>s.href),fonts:[...document.fonts].map(f=>({family:f.family,status:f.status,weight:f.weight})),variables:[...getComputedStyle(document.documentElement)].filter(n=>n.startsWith('--')).reduce((a,n)=>(a[n]=getComputedStyle(document.documentElement).getPropertyValue(n),a),{})};
+                  }''')
+                  info['status']=response.status if response else None
+                  (root/'reference_styles.json').write_text(json.dumps(info,indent=2))
+                  for i,url in enumerate(info['stylesheets']):
+                      if url:
+                          try:
+                              r=page.request.get(url,timeout=20000)
+                              if r.ok:(root/f'reference_{i}.css').write_text(r.text())
+                          except Exception:pass
+              except Exception as e:
+                  (root/'reference_error.txt').write_text(str(e))
+              try:
+                  page.goto('https://statsinference.github.io/',wait_until='networkidle',timeout=45000)
+                  page.screenshot(path=str(root/'live_before.png'),full_page=True)
+              except Exception as e:(root/'live_error.txt').write_text(str(e))
+              browser.close()
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: style-reference-review
+          path: review/
+          retention-days: 2

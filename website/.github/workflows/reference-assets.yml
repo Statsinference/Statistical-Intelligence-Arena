@@ -1,0 +1,23 @@
+name: Public reference assets
+on:
+  push:
+    branches: [style/arena-layout]
+    paths: [.github/workflows/reference-assets.yml]
+permissions:
+  contents: read
+jobs:
+  reference:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Fetch published brand illustrations
+        run: |
+          mkdir reference-assets
+          curl --fail --max-time 30 'https://cdn.sanity.io/images/ybjf12mv/migration/65da42da22d65f26c4e2810ad3772b19e6c70388-3840x2160.png' -o reference-assets/palette.png
+          curl --fail --max-time 30 'https://cdn.sanity.io/images/ybjf12mv/migration/4b1de39e70088b4a041d7f556f6c8a5797a50a91-2000x1444.jpg' -o reference-assets/interface.jpg
+          curl --fail --max-time 30 'https://cdn.sanity.io/images/ybjf12mv/migration/83b5127dd95098bb69580fd9f67f8824c8504feb-2000x548.jpg' -o reference-assets/typography.jpg
+      - uses: actions/upload-artifact@v4
+        with:
+          name: public-brand-reference
+          path: reference-assets/
+          retention-days: 1

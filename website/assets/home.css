@@ -1,0 +1,53 @@
+/* Home-only layout; the existing domain leaderboards and theme palette stay unchanged. */
+.home-panel{position:relative;isolation:isolate;overflow:hidden;min-height:calc(100vh - 150px);padding:56px 0 30px}
+.home-hero{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"kicker mark" "title mark" "copy mark";align-items:center;column-gap:clamp(12px,2vw,34px);padding:18px 0 36px}
+.home-hero>.home-kicker{grid-area:kicker}
+.home-hero-copy{grid-area:copy;min-width:0;max-width:670px}
+.home-kicker,.home-next>span{display:block;font:10px/1.6 var(--mono);letter-spacing:.075em;color:var(--quiet)}
+.home-hero h1{grid-area:title;font:400 clamp(56px,6vw,90px)/1.1 var(--display);letter-spacing:-2.5px;margin:12px 0 18px}
+.home-lead{max-width:40rem;font:400 clamp(19px,2.1vw,25px)/1.45 var(--display);color:var(--fg)}
+.home-description{max-width:40rem;margin:14px 0 0;font:13px/1.85 var(--body);color:var(--muted)}
+.home-mark{grid-area:mark;justify-self:end;width:212px;height:212px;display:flex;justify-content:center;align-items:center;border:1px solid var(--line);border-radius:18px;background:var(--surface)}
+.home-mark img{width:160px;height:160px;object-fit:contain;border-radius:14px}
+.home-panel .arena-overview{padding-top:20px;border-top:1px solid var(--line)}
+.home-next{padding:28px 0 15px;margin-top:20px;border-top:1px solid var(--line)}
+.home-next p{font:13px/1.75 var(--body);color:var(--muted);margin-top:8px;max-width:50rem}
+.side-home.on{background:var(--hover);border-color:var(--line-strong);font-weight:600}
+@media(max-width:1050px){.home-mark{width:150px;height:150px}.home-mark img{width:116px;height:116px}}
+@media(max-width:860px){.home-panel{padding-top:28px;min-height:calc(100vh - 100px)}.home-hero{padding-bottom:26px}}
+@media(max-width:560px){.home-kicker{font-size:9px}.home-hero h1{font-size:clamp(40px,12vw,50px);letter-spacing:-1.8px;margin:8px 0 12px}.home-lead{font-size:20px}.home-description{font-size:12px}.home-mark{width:70px;height:70px;border-radius:12px}.home-mark img{width:56px;height:56px;border-radius:8px}.home-panel{padding-top:30px}.home-next{margin-top:12px}}
+
+/* Institutional logo strip on Home only. Preserve marks without recoloring. */
+.home-universities{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin:22px 0 4px}
+.home-university{display:flex;align-items:center;justify-content:center;min-width:0;min-height:90px;padding:8px 12px;border:0;border-radius:0;background:transparent;transition:opacity .18s,transform .18s}
+.home-university:hover{opacity:.78;transform:translateY(-2px)}
+.home-university img{display:block;width:auto;max-width:100%;height:auto;max-height:62px;object-fit:contain}
+.home-university:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+@media(max-width:860px){.home-universities{gap:9px}.home-university{min-height:84px;padding:11px}.home-university img{max-height:55px}}
+@media(max-width:560px){.home-universities{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.home-university{min-height:76px;padding:10px}.home-university img{max-height:52px}}
+
+/* Subtle ambient statistical curves — decorative and scoped to the Home route. */
+.home-panel .home-ambient{position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none;overflow:hidden;color:var(--accent);opacity:.85}
+.home-panel>.home-hero,.home-panel>.arena-overview,.home-panel>.home-next,.home-panel>.home-universities{position:relative;z-index:1}
+.home-ambient .home-wave-line{fill:none;stroke:currentColor;stroke-width:1.55;stroke-linecap:round;opacity:.32;vector-effect:non-scaling-stroke}
+.home-ambient .home-wave-b .home-wave-line{opacity:.24;stroke-width:1.3}
+.home-ambient .home-wave-c .home-wave-line{opacity:.20;stroke-width:1.35}
+.home-ambient .home-moving-dot{fill:currentColor;opacity:.45}
+.home-ambient .home-moving-dot-faint{opacity:.22}
+.home-ambient .home-scatter{opacity:.19;animation:home-point-float 17s ease-in-out infinite alternate}
+.home-ambient .home-wave-a{animation:home-wave-drift-a 19s ease-in-out infinite alternate}
+.home-ambient .home-wave-b{animation:home-wave-drift-b 23s ease-in-out infinite alternate}
+.home-ambient .home-wave-c{animation:home-wave-drift-c 27s ease-in-out infinite alternate}
+:root[data-theme=dark] .home-panel .home-ambient{opacity:.78}
+:root[data-theme=dark] .home-ambient .home-wave-line{stroke-width:1.4;opacity:.34}
+:root[data-theme=dark] .home-ambient .home-scatter{opacity:.26}
+@keyframes home-wave-drift-a{from{transform:translate(0,7px)}to{transform:translate(17px,-12px)}}
+@keyframes home-wave-drift-b{from{transform:translate(-11px,-8px)}to{transform:translate(9px,13px)}}
+@keyframes home-wave-drift-c{from{transform:translate(6px,11px)}to{transform:translate(-12px,-6px)}}
+@keyframes home-point-float{from{transform:translate(0,0);opacity:.15}to{transform:translate(-8px,13px);opacity:.27}}
+@media(max-width:700px){.home-hero{grid-template-areas:"kicker mark" "title mark" "copy copy"}.home-panel .home-ambient{opacity:.56}}
+@media(max-width:560px){.home-panel .home-ambient{opacity:.42}}
+@media(prefers-reduced-motion:reduce){
+ .home-ambient .home-wave,.home-ambient .home-scatter{animation:none!important}
+ .home-ambient .home-moving-dot{display:none}
+}
