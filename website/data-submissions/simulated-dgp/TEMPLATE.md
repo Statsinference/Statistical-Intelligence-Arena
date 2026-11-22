@@ -25,6 +25,7 @@
 
 - **Structural parents.** `[TODO: List parent -> child arrows among substantive variables implied by the equations. Match the DAG edges and describe any scenario-specific changes.]`
 - **Symbols.** [TODO: Define the variables, indices, functions, parameters and disturbances used in the equations. Write disturbances as $\epsilon$ with subscripts as needed.]
+- **Parameter settings.** [TODO: For each coefficient and distribution parameter, give its fixed value or scenario grid, if shareable, and explain its source or calibration. For each randomly drawn parameter, specify the distribution, hyperparameter values, support or truncation, draw level, dependencies and where the draw is shared. Distinguish published source settings from the settings used in your run. Provide exact protected settings through private review.]
 
 [TODO: Write the complete mathematical equations or conditional sampling distributions for all generated variables in draw order. Include deterministic transformations, link functions, error distributions and dependencies. Define every symbol and give time or cluster indices where relevant. Use named parameters for protected values and supply their exact settings in private review.]
 

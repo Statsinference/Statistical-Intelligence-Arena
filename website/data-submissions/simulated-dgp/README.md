@@ -35,11 +35,14 @@ Write each field on one line. Use variable IDs that start with an ASCII letter a
 
 ### Document generation and truth
 
-- **Generation.** Define all variables and write the full structural equations or conditional sampling distributions. Include noise distributions, dependence, timing and the level of each draw where relevant. Document parameter constraints and scenario changes. Report how seeds are assigned, how many tables are generated and what each table contains. Provide a small run a reviewer can reproduce with a pinned code version or environment.
+- **Generation.** Define all variables and write the full structural equations or conditional sampling distributions. Include noise distributions, dependence, timing and the level of each draw where relevant. Report how seeds are assigned, how many tables are generated and what each table contains. Provide a small run a reviewer can reproduce with a pinned code version or environment.
+- **Parameter settings.** Give the actual fixed values or scenario grid for each coefficient and each distribution parameter when shareable. Explain whether each setting comes from a paper, a calibration from data or a design choice. For a randomly drawn parameter, give its distribution with numerical hyperparameters, support and any truncation. State whether it is drawn per row, table or scenario, which units share a draw and how draws depend on other parameters or disturbances.
 - **Truth.** Tie the reference value to the exact estimand and scenario. Show an analytical calculation or give a reproducible numerical procedure. For Monte Carlo truth, document draw size and precision and check that approximation error is small enough for the proposed comparison.
 - **Comparison.** Use the same observed inputs and replicate tables across methods. Point-estimation tasks can use bias and RMSE. If methods return intervals, state the nominal level and report empirical coverage and interval length across replicates. Explain exclusions and report failures alongside the metrics.
 
-Public teaching examples can link authorized code and settings. For protected evaluation candidates, present complete symbolic equations and use named parameters for protected values. Give the full generator, exact parameters and seeds, official test tables, and scenario-specific truths to maintainers through the agreed private channel.
+For example, a scenario grid can fix $c$ at $0$ or $0.5$ throughout each scenario. For a random coefficient, draw $\beta_t \sim \operatorname{Beta}(2,5)$ on $(0,1)$ once per table $t$, independently across tables and of the row-level disturbances. All rows in a table use that table's draw.
+
+Public teaching examples can link authorized code and settings. Cite settings reported in a source paper and label them separately from the settings used for your run. For protected evaluation candidates, use named parameters for protected values in the complete equations. Give the full generator, exact run settings and seeds, official test tables, and scenario-specific truths to maintainers through the agreed private channel.
 
 ## 3. Copy the Markdown template
 
@@ -73,6 +76,7 @@ Copy the block into `website/data-submissions/simulated-dgp/submissions/<slug>.m
 
 - **Structural parents.** `[TODO: List parent -> child arrows among substantive variables implied by the equations. Match the DAG edges and describe any scenario-specific changes.]`
 - **Symbols.** [TODO: Define the variables, indices, functions, parameters and disturbances used in the equations. Write disturbances as $\epsilon$ with subscripts as needed.]
+- **Parameter settings.** [TODO: For each coefficient and distribution parameter, give its fixed value or scenario grid, if shareable, and explain its source or calibration. For each randomly drawn parameter, specify the distribution, hyperparameter values, support or truncation, draw level, dependencies and where the draw is shared. Distinguish published source settings from the settings used in your run. Provide exact protected settings through private review.]
 
 [TODO: Write the complete mathematical equations or conditional sampling distributions for all generated variables in draw order. Include deterministic transformations, link functions, error distributions and dependencies. Define every symbol and give time or cluster indices where relevant. Use named parameters for protected values and supply their exact settings in private review.]
 
@@ -116,7 +120,7 @@ Under `## Causal design preview`, complete both subsections.
 
 - **DAG.** Put one fenced `mermaid` block under `### DAG`. For a three-node triangle, use `block-beta` with `columns 3`. Put the baseline covariate or mediator in the upper center and `A` and `Y` on the bottom row. Use `space` for empty cells and `space:3` for an empty row. Enter the causal arrows one per line, matching both edge lists in the case. Include `X --> A` only if the design makes treatment depend on `X`.
 - **Larger DAGs.** Use `flowchart LR` or `graph LR`, with `TD`, `TB`, `RL` or `BT` as alternatives to `LR`. Use a line such as `X["X (covariate)"] --> Y["Y (outcome)"]` or `X --> Y` for each edge. Use standalone declarations for isolated nodes. Omit subgraphs and chained arrows. Explain scenario-specific omissions in the case file and show the union in the PR preview when arrows vary.
-- **Structural equations.** Under `### Structural equations`, copy every display-math block from that subsection of the case file and include a **Symbols.** line defining variables, indices, functions, parameters and disturbances. Keep the contents and order of all equation blocks. GitHub renders both fenced `math` and `$$` blocks. Keep any protected parameter values symbolic in both places.
+- **Structural equations.** Under `### Structural equations`, copy every display-math block from that subsection of the case file. Keep the contents and order of all equation blocks. Include **Symbols.** and **Parameter settings.** with the same definitions, shareable values and draw rules as the case file. GitHub renders both fenced `math` and `$$` blocks. Keep any protected parameter values symbolic in both places.
 
 [Mermaid block diagrams](https://mermaid.js.org/syntax/block.html) · [GitHub mathematical expressions](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/writing-mathematical-expressions)
 
