@@ -10,8 +10,6 @@
 .comparison-charts .chart-axis-title{fill:var(--muted);font:11px var(--body)}
 .comparison-charts .chart-reference{stroke:var(--muted);stroke-width:1.1;stroke-dasharray:5 4}
 .comparison-charts .chart-reference-label{fill:var(--muted);font:500 10px var(--body);paint-order:stroke;stroke:var(--surface);stroke-width:3px;stroke-linejoin:round}
-.comparison-charts .chart-pareto-path{fill:none;stroke:var(--accent);stroke-width:1.45;stroke-dasharray:5 4;stroke-linejoin:round;pointer-events:none}
-.comparison-charts .chart-pareto-ring{fill:none;stroke:var(--accent);stroke-width:1.25;pointer-events:none}
 .comparison-charts .chart-point{outline:none;cursor:pointer}
 .comparison-charts .chart-marker{fill:var(--chart-marker-light,var(--fg));stroke:var(--surface);stroke-width:1.35}
 :root[data-theme=dark] .comparison-charts .chart-marker{fill:var(--chart-marker-dark,var(--fg))}
@@ -21,11 +19,6 @@
 .comparison-charts .chart-legend-item{display:inline-flex;align-items:center;gap:7px;overflow-wrap:anywhere}
 .comparison-charts .chart-legend-marker{flex:0 0 15px;width:15px;height:15px;overflow:hidden}
 .comparison-charts .chart-legend-marker .chart-marker{stroke-width:.55}
-.comparison-charts .chart-pareto-caption{display:flex;align-items:baseline;gap:8px;margin:12px 0 0;padding-top:10px;border-top:1px solid var(--line);color:var(--muted);font:11px/1.5 var(--body)}
-.comparison-charts .chart-pareto-caption strong{font-weight:600;color:var(--fg)}
-.comparison-charts .chart-pareto-key{align-self:flex-start;flex:none;color:var(--accent)}
-.comparison-charts .chart-pareto-key-line{width:18px;margin-top:7px;border-top:1.5px dashed currentColor}
-.comparison-charts .chart-pareto-key-ring{width:11px;height:11px;margin:3px 3.5px 0;border:1.5px solid currentColor;border-radius:50%}
 @media(forced-colors:active){.comparison-charts .chart-marker,:root[data-theme=dark] .comparison-charts .chart-marker{fill:CanvasText;stroke:Canvas}}
 .comparison-charts .chart-empty{display:grid;place-items:center;min-height:275px;color:var(--quiet);font-size:12px;text-align:center}
 .comparison-charts .chart-note{margin:8px 0 0;color:var(--muted);font:11px/1.5 var(--body);text-align:center}

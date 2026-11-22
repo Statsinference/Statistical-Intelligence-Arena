@@ -413,23 +413,11 @@ def check_chart(page, chart_id, domain, xkey, ykey, suite):
                 and isinstance(r.get(ykey), (int, float)) and r[xkey] > 0 and r[ykey] > 0
                 and (ykey != 'coverage' or r[ykey] <= 1)]
     assert points.count() == len(expected), (domain, chart_id, points.count(), len(expected))
-    def objective(row):
-        value = row[ykey]
-        return abs(value - suite['nominal_coverage']) if ykey == 'coverage' else value
-
     for point, row in zip(points.all(), expected):
         assert point.get_attribute('data-method') == row['method']
         assert math.isclose(float(point.get_attribute('data-x')), row[xkey], rel_tol=1e-12)
         assert math.isclose(float(point.get_attribute('data-y')), row[ykey] * (100 if ykey == 'coverage' else 1), rel_tol=1e-12)
         assert point.get_attribute('aria-label') and point.get_attribute('tabindex') == '0'
-        efficient = not any(other[xkey] <= row[xkey] and objective(other) <= objective(row)
-                            and (other[xkey] < row[xkey] or objective(other) < objective(row))
-                            for other in expected)
-        assert point.get_attribute('data-pareto') == str(efficient).lower(), (domain, row['method'])
-    if ykey == 'coverage':
-        assert host.locator('.chart-pareto-ring').count() == host.locator('.chart-point[data-pareto="true"]').count()
-    else:
-        assert host.locator('.chart-pareto-path').count() == 1
     read_marks = """nodes => nodes.map(node => [
         getComputedStyle(node).fill, node.localName, node.getAttribute('d')
     ])"""
