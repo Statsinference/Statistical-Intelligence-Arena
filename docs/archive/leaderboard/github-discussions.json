@@ -1,0 +1,794 @@
+{
+  "schema_version": 1,
+  "captured_at_utc": "2026-11-22T05:21:06+00:00",
+  "source": {
+    "repository": "Statsinference/statsinference.github.io",
+    "url": "https://github.com/Statsinference/statsinference.github.io",
+    "default_branch": "main",
+    "default_branch_sha": "356e6cf7dcdb371bb5b55e9e46130b200725b907"
+  },
+  "pull_requests": [
+    {
+      "number": 1,
+      "title": "Style/arena layout",
+      "body": null,
+      "state": "closed",
+      "draft": false,
+      "html_url": "https://github.com/Statsinference/statsinference.github.io/pull/1",
+      "created_at": "2026-11-16T01:00:42Z",
+      "updated_at": "2026-11-16T01:00:53Z",
+      "closed_at": "2026-11-16T01:00:52Z",
+      "merged_at": "2026-11-16T01:00:52Z",
+      "merge_commit_sha": "4a81705370e3c7b79df090c5dadb85a1d3b42bcd",
+      "changed_files": 3,
+      "author": "brownight",
+      "head": {
+        "ref": "style/arena-layout",
+        "sha": "a295eab3102fcf2aa1310da76554f79c10b349de",
+        "repository": "Statsinference/statsinference.github.io"
+      },
+      "base": {
+        "ref": "main",
+        "sha": "739c657240a39b0c99992e32547b8e02b98d69c5",
+        "repository": "Statsinference/statsinference.github.io"
+      },
+      "commits": [
+        "176b9d7befcc1d21ff5e33055a887c7769b95c78",
+        "6ff6f5abce076e5e1561c03c4fa0e35f000f5eb7",
+        "a295eab3102fcf2aa1310da76554f79c10b349de"
+      ],
+      "files": [
+        {
+          "filename": ".github/workflows/live-style-check.yml",
+          "status": "added",
+          "sha": "d9e3990cb481b4ce1ad3452e8672b7517cdc7713",
+          "additions": 74,
+          "deletions": 0,
+          "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/a295eab3102fcf2aa1310da76554f79c10b349de/.github%2Fworkflows%2Flive-style-check.yml"
+        },
+        {
+          "filename": ".github/workflows/reference-assets.yml",
+          "status": "added",
+          "sha": "692484fc01101d217f1ecbe2a854526e53ced76f",
+          "additions": 23,
+          "deletions": 0,
+          "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/a295eab3102fcf2aa1310da76554f79c10b349de/.github%2Fworkflows%2Freference-assets.yml"
+        },
+        {
+          "filename": ".github/workflows/style-review.yml",
+          "status": "added",
+          "sha": "931943fb1b5f57c6edc8b7335b2918169d57ee4b",
+          "additions": 60,
+          "deletions": 0,
+          "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/a295eab3102fcf2aa1310da76554f79c10b349de/.github%2Fworkflows%2Fstyle-review.yml"
+        }
+      ],
+      "comments": [],
+      "reviews": [],
+      "inline_comments": []
+    },
+    {
+      "number": 2,
+      "title": "Simplify leaderboard copy and expand domain names",
+      "body": "Remove the introductory accuracy/uncertainty/efficiency paragraph and the six-metrics status description. Display Average Treatment Effect, Conditional Average Treatment Effect, and Difference-in-Differences / Synthetic Control in the navigation and domain headings, and expand the no-JavaScript fallback names.\n\nPreserve loading-error messages, result data, method names, references, and table behavior. Update the existing mobile title checks.\n\nValidation: JavaScript syntax, Python compilation, and DOM rendering checks across all 10 domains passed; table and reference markup match the previous version exactly.",
+      "state": "closed",
+      "draft": false,
+      "html_url": "https://github.com/Statsinference/statsinference.github.io/pull/2",
+      "created_at": "2026-11-17T00:50:34Z",
+      "updated_at": "2026-11-17T00:50:43Z",
+      "closed_at": "2026-11-17T00:50:43Z",
+      "merged_at": "2026-11-17T00:50:43Z",
+      "merge_commit_sha": "7b4a56b3d232cd080ab9c5a3647a86f51372bad5",
+      "changed_files": 3,
+      "author": "brownight",
+      "head": {
+        "ref": "codex/expand-domain-names-remove-intro",
+        "sha": "8428cd907320ab51f10c8628bc6b1bca782d4296",
+        "repository": "Statsinference/statsinference.github.io"
+      },
+      "base": {
+        "ref": "main",
+        "sha": "c6d3999853b61d3a1e9f178bbc5b75ddff0445e7",
+        "repository": "Statsinference/statsinference.github.io"
+      },
+      "commits": [
+        "f15ace65456245d9a11a14c0ea9fe074b295d106",
+        "7ebe787e716fbacbc54f40ea5fe39c0bcf339ce2",
+        "8428cd907320ab51f10c8628bc6b1bca782d4296"
+      ],
+      "files": [
+        {
+          "filename": "assets/test-view.js",
+          "status": "modified",
+          "sha": "628a8d1be7c4472ccc5bca2e93cf599b13d18705",
+          "additions": 5,
+          "deletions": 4,
+          "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/8428cd907320ab51f10c8628bc6b1bca782d4296/assets%2Ftest-view.js"
+        },
+        {
+          "filename": "index.html",
+          "status": "modified",
+          "sha": "cab578a3d9ac4f24e01955860284923773e8e0c0",
+          "additions": 5,
+          "deletions": 4,
+          "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/8428cd907320ab51f10c8628bc6b1bca782d4296/index.html"
+        },
+        {
+          "filename": "tests/verify_test_view.py",
+          "status": "modified",
+          "sha": "3cb626f075d83fbcd7cea7326670144dd3408cba",
+          "additions": 2,
+          "deletions": 1,
+          "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/8428cd907320ab51f10c8628bc6b1bca782d4296/tests%2Fverify_test_view.py"
+        }
+      ],
+      "comments": [],
+      "reviews": [],
+      "inline_comments": []
+    },
+    {
+      "number": 4,
+      "title": "Add benchmark cards for five StatArena domains",
+      "body": "## Changes\n\n- Add benchmark cards for ATE, CATE, Instrumental Variables, Proximal Causal Inference, and Difference-in-Differences. Each card describes the estimand, data downloads, baseline commands, evaluation metrics, and prediction format.\n- Link each card from its domain leaderboard and include all five directories in the GitHub Pages build.\n- Document that ATE and CATE labels were previously published, that IV and DiD provide public scoring archives, and that Proximal scoring uses separately held labels.\n\n## Verification\n\n- Checked the navigation states for all ten domains, staged page routes and anchors, Hugging Face release paths, JavaScript syntax, and the chart regression.\n- Ran the IV starter baseline and scorer on both development and reference test studies.\n- The browser suite could not launch Chromium in this environment. The existing reported-release test fails on its homepage-title assertion on both the base commit and this branch.",
+      "state": "closed",
+      "draft": false,
+      "html_url": "https://github.com/Statsinference/statsinference.github.io/pull/4",
+      "created_at": "2026-11-20T00:34:11Z",
+      "updated_at": "2026-11-20T01:54:07Z",
+      "closed_at": "2026-11-20T01:54:06Z",
+      "merged_at": "2026-11-20T01:54:06Z",
+      "merge_commit_sha": "d355e78819a2575419e1f8e6ec4d9d7ef9b48cbe",
+      "changed_files": 9,
+      "author": "brownight",
+      "head": {
+        "ref": "codex/benchmark-cards",
+        "sha": "f017ca14b0b3c8bfd0160faf57c821491e5096b3",
+        "repository": "Statsinference/statsinference.github.io"
+      },
+      "base": {
+        "ref": "main",
+        "sha": "6ce973f77a1b784b0b49789368b57b66f425e012",
+        "repository": "Statsinference/statsinference.github.io"
+      },
+      "commits": [
+        "f017ca14b0b3c8bfd0160faf57c821491e5096b3"
+      ],
+      "files": [
+        {
+          "filename": ".github/workflows/pages.yml",
+          "status": "modified",
+          "sha": "38508979a227cf7783ad36bd332a4509f09be8d9",
+          "additions": 1,
+          "deletions": 1,
+          "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/f017ca14b0b3c8bfd0160faf57c821491e5096b3/.github%2Fworkflows%2Fpages.yml"
+        },
+        {
+          "filename": "assets/test-view.js",
+          "status": "modified",
+          "sha": "4af2e02f744cbb9a3a037179c4046744e746b3dc",
+          "additions": 6,
+          "deletions": 1,
+          "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/f017ca14b0b3c8bfd0160faf57c821491e5096b3/assets%2Ftest-view.js"
+        },
+        {
+          "filename": "ate/index.html",
+          "status": "added",
+          "sha": "b338168232414a36865101314861d77940c5cbc2",
+          "additions": 61,
+          "deletions": 0,
+          "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/f017ca14b0b3c8bfd0160faf57c821491e5096b3/ate%2Findex.html"
+        },
+        {
+          "filename": "cate/index.html",
+          "status": "added",
+          "sha": "76188277c674ff943892a8c2f97115331e68d101",
+          "additions": 61,
+          "deletions": 0,
+          "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/f017ca14b0b3c8bfd0160faf57c821491e5096b3/cate%2Findex.html"
+        },
+        {
+          "filename": "did/index.html",
+          "status": "added",
+          "sha": "49ba6e1b4a35709fdb231638900d0211942b7362",
+          "additions": 83,
+          "deletions": 0,
+          "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/f017ca14b0b3c8bfd0160faf57c821491e5096b3/did%2Findex.html"
+        },
+        {
+          "filename": "index.html",
+          "status": "modified",
+          "sha": "0d38a7089a98c625f77652932c8d18937768eaa9",
+          "additions": 2,
+          "deletions": 2,
+          "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/f017ca14b0b3c8bfd0160faf57c821491e5096b3/index.html"
+        },
+        {
+          "filename": "iv/index.html",
+          "status": "added",
+          "sha": "96194c20e7e4cabd8a43ec91b1527088344a0485",
+          "additions": 69,
+          "deletions": 0,
+          "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/f017ca14b0b3c8bfd0160faf57c821491e5096b3/iv%2Findex.html"
+        },
+        {
+          "filename": "proximal/index.html",
+          "status": "added",
+          "sha": "f4b0ae543b24970d52bf5355dbce2293621c64e2",
+          "additions": 97,
+          "deletions": 0,
+          "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/f017ca14b0b3c8bfd0160faf57c821491e5096b3/proximal%2Findex.html"
+        },
+        {
+          "filename": "tests/verify_test_view.py",
+          "status": "modified",
+          "sha": "f6a647016d0dcfaec1eee7fef8590c1dc976cedb",
+          "additions": 5,
+          "deletions": 3,
+          "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/f017ca14b0b3c8bfd0160faf57c821491e5096b3/tests%2Fverify_test_view.py"
+        }
+      ],
+      "comments": [],
+      "reviews": [],
+      "inline_comments": []
+    },
+    {
+      "number": 5,
+      "title": "Clarify benchmark card protocols and IV release details",
+      "body": "## Changes\n\n- Clarify the ATE/CATE pairing metadata, prior disclosure, starter-only DGP documentation, and two-file scoring instructions.\n- Clarify the Proximal leaderboard display scale and link original-unit results.\n- Document DiD bootstrap resplitting and the evaluation reported in the linked checkpoint's model card.\n- Pin the IV dataset revision. Sync the card and leaderboard protocol with the v0.3 release, including the two interval constructions, 2,000 studies, and 50 random-forest refits. All displayed score values are preserved.\n- Describe how to confirm the public GitHub issue for a model link.\n\n## Verification\n\n- Re-ran the five starter tasks on their development and reference-test splits, checked official input and submission files, and matched reference metrics for IV against the leaderboard.\n- Verified that the deployed cards matched the initial merge, and checked the revised card anchors, IV release links, JavaScript syntax, IV method details, and chart regression.",
+      "state": "closed",
+      "draft": false,
+      "html_url": "https://github.com/Statsinference/statsinference.github.io/pull/5",
+      "created_at": "2026-11-20T02:07:53Z",
+      "updated_at": "2026-11-20T02:08:29Z",
+      "closed_at": "2026-11-20T02:08:29Z",
+      "merged_at": "2026-11-20T02:08:28Z",
+      "merge_commit_sha": "09173a0ce6629127282ddc3444f1db793d0e2e37",
+      "changed_files": 9,
+      "author": "brownight",
+      "head": {
+        "ref": "codex/benchmark-card-details",
+        "sha": "16e37d24647b0ffa973bd9dee49f31c9c9692bfe",
+        "repository": "Statsinference/statsinference.github.io"
+      },
+      "base": {
+        "ref": "main",
+        "sha": "d355e78819a2575419e1f8e6ec4d9d7ef9b48cbe",
+        "repository": "Statsinference/statsinference.github.io"
+      },
+      "commits": [
+        "16e37d24647b0ffa973bd9dee49f31c9c9692bfe"
+      ],
+      "files": [
+        {
+          "filename": "assets/test-view.js",
+          "status": "modified",
+          "sha": "15b92cf082635126939971152778e9148a58c1ab",
+          "additions": 7,
+          "deletions": 3,
+          "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/16e37d24647b0ffa973bd9dee49f31c9c9692bfe/assets%2Ftest-view.js"
+        },
+        {
+          "filename": "ate/index.html",
+          "status": "modified",
+          "sha": "3a41a4a87cbfe1f670a20bf3e7eabbcad2c46647",
+          "additions": 3,
+          "deletions": 3,
+          "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/16e37d24647b0ffa973bd9dee49f31c9c9692bfe/ate%2Findex.html"
+        },
+        {
+          "filename": "cate/index.html",
+          "status": "modified",
+          "sha": "127953d20cdedbf45f1e40788433c582e0f9a649",
+          "additions": 3,
+          "deletions": 3,
+          "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/16e37d24647b0ffa973bd9dee49f31c9c9692bfe/cate%2Findex.html"
+        },
+        {
+          "filename": "data/iv-v03.json",
+          "status": "modified",
+          "sha": "be09ea7f71c55623c218593f2aaf58f453afba6f",
+          "additions": 10,
+          "deletions": 10,
+          "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/16e37d24647b0ffa973bd9dee49f31c9c9692bfe/data%2Fiv-v03.json"
+        },
+        {
+          "filename": "did/index.html",
+          "status": "modified",
+          "sha": "bca5b5a40661911f8b3860b48e8d1a781e2a251f",
+          "additions": 3,
+          "deletions": 2,
+          "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/16e37d24647b0ffa973bd9dee49f31c9c9692bfe/did%2Findex.html"
+        },
+        {
+          "filename": "index.html",
+          "status": "modified",
+          "sha": "32837c4aae6610c7a7a0c13dae3acf4379330741",
+          "additions": 1,
+          "deletions": 1,
+          "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/16e37d24647b0ffa973bd9dee49f31c9c9692bfe/index.html"
+        },
+        {
+          "filename": "iv/index.html",
+          "status": "modified",
+          "sha": "d4eec4fe4a14d6977ece49ccd8fcdb4a0de6d1aa",
+          "additions": 8,
+          "deletions": 8,
+          "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/16e37d24647b0ffa973bd9dee49f31c9c9692bfe/iv%2Findex.html"
+        },
+        {
+          "filename": "proximal/index.html",
+          "status": "modified",
+          "sha": "af216a3de0d48e0e85dc6a30974da5860586dab7",
+          "additions": 3,
+          "deletions": 3,
+          "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/16e37d24647b0ffa973bd9dee49f31c9c9692bfe/proximal%2Findex.html"
+        },
+        {
+          "filename": "tests/verify_test_view.py",
+          "status": "modified",
+          "sha": "b0dfbd7e64347f7fb5ff264dd4b2aaf236f9c549",
+          "additions": 1,
+          "deletions": 2,
+          "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/16e37d24647b0ffa973bd9dee49f31c9c9692bfe/tests%2Fverify_test_view.py"
+        }
+      ],
+      "comments": [],
+      "reviews": [],
+      "inline_comments": []
+    },
+    {
+      "number": 6,
+      "title": "Add pull request intake for StatArena data contributions",
+      "body": "## What this adds\n\n- A public Contribute data page with two routes: Simulated DGP and Real-data problem. Each route has a Markdown template and a filled JASA example with a DAG, estimand and reproducibility details.\n- One proposal per GitHub pull request, a PR checklist, and a reviewer guide. Private evaluation or restricted materials are handled separately with a maintainer.\n- An automated structural check for new submissions and scoped CODEOWNERS for review routing. The fork check reads the proposed Markdown from GitHub using the trusted base revision. The rollout PR runs the validator's self-tests.\n\n## Validation\n\n- Exercised the homepage and both template links in Chromium at desktop and mobile widths.\n- Ran 10 validator unit tests. Both completed examples pass, while the unfilled templates and invalid fixtures are rejected.\n- Ran the R snippets for both examples using the public source material and checked the reported outputs.\n- Matched the existing site regression expectations to the current homepage and IV baseline.\n\nPublic Pages deployment follows maintainer review and merge.",
+      "state": "closed",
+      "draft": false,
+      "html_url": "https://github.com/Statsinference/statsinference.github.io/pull/6",
+      "created_at": "2026-11-20T05:13:24Z",
+      "updated_at": "2026-11-21T14:16:09Z",
+      "closed_at": "2026-11-21T14:16:09Z",
+      "merged_at": "2026-11-21T14:16:09Z",
+      "merge_commit_sha": "c3bb5a8f1a0ecc7cee97e0e0b697785699a4a298",
+      "changed_files": 24,
+      "author": "shibo769",
+      "head": {
+        "ref": "codex/data-contribution-prs",
+        "sha": "632a51fb399081f985b75f3b399b7406357d1bac",
+        "repository": "Statsinference/statsinference.github.io"
+      },
+      "base": {
+        "ref": "main",
+        "sha": "caee2422415fecefdbaa6be7c6131711fb2a5440",
+        "repository": "Statsinference/statsinference.github.io"
+      },
+      "commits": [
+        "5e174c855669b16bef0a459e1b8587fdec892e56",
+        "3e8599e10e08b86b317017e3a40251689eb80fc9",
+        "2590cb750c320a9ed508cbf16f4e8686a871f029",
+        "32448a3da741bbf1a26a709b7f7b8d44366b6ad4",
+        "be6691cb365e8319ae50e009cf37d2b8658c5c94",
+        "632a51fb399081f985b75f3b399b7406357d1bac"
+      ],
+      "files": [
+        {
+          "filename": ".github/CODEOWNERS",
+          "status": "added",
+          "sha": "27a58ef0c4c038af55abf386ca9dbcc0b527c717",
+          "additions": 7,
+          "deletions": 0,
+          "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/632a51fb399081f985b75f3b399b7406357d1bac/.github%2FCODEOWNERS"
+        },
+        {
+          "filename": ".github/PULL_REQUEST_TEMPLATE/data-contribution.md",
+          "status": "added",
+          "sha": "b274d21d7ceaf8881a58d4064cc83612f5ec7c2f",
+          "additions": 15,
+          "deletions": 0,
+          "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/632a51fb399081f985b75f3b399b7406357d1bac/.github%2FPULL_REQUEST_TEMPLATE%2Fdata-contribution.md"
+        },
+        {
+          "filename": ".github/workflows/data-contributions.yml",
+          "status": "added",
+          "sha": "a30e5c333819e67a95c93d36c6a058c97917fe6b",
+          "additions": 55,
+          "deletions": 0,
+          "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/632a51fb399081f985b75f3b399b7406357d1bac/.github%2Fworkflows%2Fdata-contributions.yml"
+        },
+        {
+          "filename": ".github/workflows/pages.yml",
+          "status": "modified",
+          "sha": "e04b3308b96c88dc7640ceab8b8c0676d6dfb797",
+          "additions": 1,
+          "deletions": 1,
+          "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/632a51fb399081f985b75f3b399b7406357d1bac/.github%2Fworkflows%2Fpages.yml"
+        },
+        {
+          "filename": "README.md",
+          "status": "modified",
+          "sha": "b19a1fdd4e78a723b9f325261021c0b61424afe3",
+          "additions": 2,
+          "deletions": 0,
+          "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/632a51fb399081f985b75f3b399b7406357d1bac/README.md"
+        },
+        {
+          "filename": "assets/app.js",
+          "status": "modified",
+          "sha": "aa7b8a74800b7d080c0edccd15132f7bcbb49b1c",
+          "additions": 1,
+          "deletions": 1,
+          "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/632a51fb399081f985b75f3b399b7406357d1bac/assets%2Fapp.js"
+        },
+        {
+          "filename": "assets/home.css",
+          "status": "modified",
+          "sha": "f2d6bf22f32bf81ef7d4aacb9bc29fb49ef6d5b6",
+          "additions": 13,
+          "deletions": 0,
+          "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/632a51fb399081f985b75f3b399b7406357d1bac/assets%2Fhome.css"
+        },
+        {
+          "filename": "assets/site.css",
+          "status": "modified",
+          "sha": "b0e325d29a75959705d41a075e1d1f2d57383d83",
+          "additions": 1,
+          "deletions": 1,
+          "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/632a51fb399081f985b75f3b399b7406357d1bac/assets%2Fsite.css"
+        },
+        {
+          "filename": "assets/test-view.css",
+          "status": "modified",
+          "sha": "565e485caeceb9efb0ee50648b6172ab636f6394",
+          "additions": 0,
+          "deletions": 1,
+          "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/632a51fb399081f985b75f3b399b7406357d1bac/assets%2Ftest-view.css"
+        },
+        {
+          "filename": "assets/test-view.js",
+          "status": "modified",
+          "sha": "d54c95eec3db12b22a3c0ea7ab0eff4cd4d61e12",
+          "additions": 0,
+          "deletions": 1,
+          "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/632a51fb399081f985b75f3b399b7406357d1bac/assets%2Ftest-view.js"
+        },
+        {
+          "filename": "contribute-data/contributions.css",
+          "status": "added",
+          "sha": "ac225563fea366cd4e47ef9c042164e73c63506a",
+          "additions": 134,
+          "deletions": 0,
+          "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/632a51fb399081f985b75f3b399b7406357d1bac/contribute-data%2Fcontributions.css"
+        },
+        {
+          "filename": "contribute-data/index.html",
+          "status": "added",
+          "sha": "61a1b75df1e0800629a3b66eb130b7091e3031b9",
+          "additions": 64,
+          "deletions": 0,
+          "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/632a51fb399081f985b75f3b399b7406357d1bac/contribute-data%2Findex.html"
+        },
+        {
+          "filename": "data-submissions/README.md",
+          "status": "added",
+          "sha": "47a1076a222e6e7c5d50fa1841a8c21450cb16a4",
+          "additions": 23,
+          "deletions": 0,
+          "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/632a51fb399081f985b75f3b399b7406357d1bac/data-submissions%2FREADME.md"
+        },
+        {
+          "filename": "data-submissions/REVIEWING.md",
+          "status": "added",
+          "sha": "fcdc4988d5889c57245ecae9dce21b43dc75c741",
+          "additions": 20,
+          "deletions": 0,
+          "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/632a51fb399081f985b75f3b399b7406357d1bac/data-submissions%2FREVIEWING.md"
+        },
+        {
+          "filename": "data-submissions/real-data/EXAMPLE.md",
+          "status": "added",
+          "sha": "f0b4692797816dc4aec55e203d871b248d5d5d7c",
+          "additions": 62,
+          "deletions": 0,
+          "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/632a51fb399081f985b75f3b399b7406357d1bac/data-submissions%2Freal-data%2FEXAMPLE.md"
+        },
+        {
+          "filename": "data-submissions/real-data/README.md",
+          "status": "added",
+          "sha": "beabbf65f5ff4a6459ecc3b57a70d01f221fe13c",
+          "additions": 84,
+          "deletions": 0,
+          "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/632a51fb399081f985b75f3b399b7406357d1bac/data-submissions%2Freal-data%2FREADME.md"
+        },
+        {
+          "filename": "data-submissions/real-data/TEMPLATE.md",
+          "status": "added",
+          "sha": "0ad40adcbd5950d9b25b30001d22d0ecf41c272b",
+          "additions": 32,
+          "deletions": 0,
+          "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/632a51fb399081f985b75f3b399b7406357d1bac/data-submissions%2Freal-data%2FTEMPLATE.md"
+        },
+        {
+          "filename": "data-submissions/simulated-dgp/EXAMPLE.md",
+          "status": "added",
+          "sha": "149636735d02551325ac47311b0fb9aa1721f80b",
+          "additions": 76,
+          "deletions": 0,
+          "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/632a51fb399081f985b75f3b399b7406357d1bac/data-submissions%2Fsimulated-dgp%2FEXAMPLE.md"
+        },
+        {
+          "filename": "data-submissions/simulated-dgp/README.md",
+          "status": "added",
+          "sha": "b1617c64816c4103eb59b3816c41b65d26fd48ad",
+          "additions": 88,
+          "deletions": 0,
+          "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/632a51fb399081f985b75f3b399b7406357d1bac/data-submissions%2Fsimulated-dgp%2FREADME.md"
+        },
+        {
+          "filename": "data-submissions/simulated-dgp/TEMPLATE.md",
+          "status": "added",
+          "sha": "3d8d8ce8b82d6eebeb64f282e54a75b021603e04",
+          "additions": 33,
+          "deletions": 0,
+          "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/632a51fb399081f985b75f3b399b7406357d1bac/data-submissions%2Fsimulated-dgp%2FTEMPLATE.md"
+        },
+        {
+          "filename": "index.html",
+          "status": "modified",
+          "sha": "a9a88ee75f544ed7fc17ba8f4b67382340bd7f57",
+          "additions": 7,
+          "deletions": 6,
+          "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/632a51fb399081f985b75f3b399b7406357d1bac/index.html"
+        },
+        {
+          "filename": "scripts/check_data_contribution.py",
+          "status": "added",
+          "sha": "49d3a3290fc71768756c0f7f29cf9e4828bf2b9d",
+          "additions": 251,
+          "deletions": 0,
+          "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/632a51fb399081f985b75f3b399b7406357d1bac/scripts%2Fcheck_data_contribution.py"
+        },
+        {
+          "filename": "tests/test_data_contribution.py",
+          "status": "added",
+          "sha": "fa7554ac7a1ced05b2f7dbf4fe89c368ce69a735",
+          "additions": 163,
+          "deletions": 0,
+          "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/632a51fb399081f985b75f3b399b7406357d1bac/tests%2Ftest_data_contribution.py"
+        },
+        {
+          "filename": "tests/verify_test_view.py",
+          "status": "modified",
+          "sha": "c1302c1f825b192356d86fc6b73a2161833aa548",
+          "additions": 10,
+          "deletions": 8,
+          "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/632a51fb399081f985b75f3b399b7406357d1bac/tests%2Fverify_test_view.py"
+        }
+      ],
+      "comments": [],
+      "reviews": [],
+      "inline_comments": []
+    },
+    {
+      "number": 7,
+      "title": "Add a unified Contribute to StatArena entry point",
+      "body": "## Changes\n\n- Rename the top-right button to **Contribute to StatArena** and offer **Submit a method** and **Contribute data**.\n- Link the data choice to the public contribution guide. Keep the existing domain-aware method submission destinations, including the dedicated Mediation form.\n- Update the Benchmark Cards and method guide to use the new button labels.\n\n## Verification\n\n- Passed JavaScript syntax and whitespace checks.\n- Checked route selection, Hugging Face link validation, GitHub issue prefilling, and the Back and close controls in a JavaScript test harness.",
+      "state": "closed",
+      "draft": false,
+      "html_url": "https://github.com/Statsinference/statsinference.github.io/pull/7",
+      "created_at": "2026-11-21T07:45:52Z",
+      "updated_at": "2026-11-21T07:46:08Z",
+      "closed_at": "2026-11-21T07:46:08Z",
+      "merged_at": "2026-11-21T07:46:08Z",
+      "merge_commit_sha": "d764b1788325b1e18452802d04e9e7ff386768a8",
+      "changed_files": 9,
+      "author": "brownight",
+      "head": {
+        "ref": "codex/contribute-to-statarena",
+        "sha": "80c09f2827f8ebed579696cbe50bd42ca7f70873",
+        "repository": "Statsinference/statsinference.github.io"
+      },
+      "base": {
+        "ref": "main",
+        "sha": "792ada398a7026298783267ceb32843229e6f29b",
+        "repository": "Statsinference/statsinference.github.io"
+      },
+      "commits": [
+        "80c09f2827f8ebed579696cbe50bd42ca7f70873"
+      ],
+      "files": [
+        {
+          "filename": "assets/submit-method.css",
+          "status": "modified",
+          "sha": "71267cd5426b13dfbd412a0f2c833352c29d1136",
+          "additions": 4,
+          "deletions": 1,
+          "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/80c09f2827f8ebed579696cbe50bd42ca7f70873/assets%2Fsubmit-method.css"
+        },
+        {
+          "filename": "assets/submit-method.js",
+          "status": "modified",
+          "sha": "d7d72a70d13612e6fba4f5219bb0e6da8010b9cb",
+          "additions": 30,
+          "deletions": 7,
+          "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/80c09f2827f8ebed579696cbe50bd42ca7f70873/assets%2Fsubmit-method.js"
+        },
+        {
+          "filename": "ate/index.html",
+          "status": "modified",
+          "sha": "fdde227f538ab6c8a9a896ee9936edc37ac153bc",
+          "additions": 1,
+          "deletions": 1,
+          "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/80c09f2827f8ebed579696cbe50bd42ca7f70873/ate%2Findex.html"
+        },
+        {
+          "filename": "cate/index.html",
+          "status": "modified",
+          "sha": "15eb5b0756ceacee1ba1b4f24ade497593b93963",
+          "additions": 1,
+          "deletions": 1,
+          "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/80c09f2827f8ebed579696cbe50bd42ca7f70873/cate%2Findex.html"
+        },
+        {
+          "filename": "did/index.html",
+          "status": "modified",
+          "sha": "92e7deba7a0d3a83e8ad7b8347d35ce710aca033",
+          "additions": 1,
+          "deletions": 1,
+          "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/80c09f2827f8ebed579696cbe50bd42ca7f70873/did%2Findex.html"
+        },
+        {
+          "filename": "index.html",
+          "status": "modified",
+          "sha": "0e09f44e891eac95cede22515266723ae256cf2e",
+          "additions": 3,
+          "deletions": 3,
+          "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/80c09f2827f8ebed579696cbe50bd42ca7f70873/index.html"
+        },
+        {
+          "filename": "iv/index.html",
+          "status": "modified",
+          "sha": "48bf76297fb47ef29f0a23503bbca097dfefdbdb",
+          "additions": 1,
+          "deletions": 1,
+          "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/80c09f2827f8ebed579696cbe50bd42ca7f70873/iv%2Findex.html"
+        },
+        {
+          "filename": "method-submissions/README.md",
+          "status": "modified",
+          "sha": "66b6033658d5823bad43070d0ae8ace364d4ea6e",
+          "additions": 1,
+          "deletions": 1,
+          "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/80c09f2827f8ebed579696cbe50bd42ca7f70873/method-submissions%2FREADME.md"
+        },
+        {
+          "filename": "proximal/index.html",
+          "status": "modified",
+          "sha": "242c94d8bda22011f222a12aa5db49a125e564d0",
+          "additions": 1,
+          "deletions": 1,
+          "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/80c09f2827f8ebed579696cbe50bd42ca7f70873/proximal%2Findex.html"
+        }
+      ],
+      "comments": [],
+      "reviews": [],
+      "inline_comments": []
+    },
+    {
+      "number": 8,
+      "title": "Propose a proximal linear-bridge simulation (workflow pilot)",
+      "body": "## StatArena data contribution\n\n**Track** · Simulated DGP\n\n**Case file** · `data-submissions/simulated-dgp/submissions/proximal-linear-bridge.md`\n\n**Summary** · A literature-based proximal linear-bridge scenario with latent confounding, observable proxies and an analytic constant CATE reference. This is a contribution/reviewer workflow pilot for a mechanism already represented in the earlier internal collection, not a claim of a new catalog mechanism or new model scores.\n\n**Materials** · [Cui et al., open manuscript v4](https://arxiv.org/pdf/2011.08411v4), Section 5.1, equation (13), Appendix H; [journal DOI](https://doi.org/10.1080/01621459.2023.2191817). Full generator, exact parameters/seeds, reference derivation, provenance and local verification receipt are prepared for private maintainer/reviewer review. Please confirm the private handoff route and assign a proximal reviewer. No protected implementation or per-task reference is attached publicly.\n\n## Checklist\n\n- [ ] This PR adds or updates one case under the corresponding track's `submissions/` directory.\n- [ ] The case follows the track template and describes its assumptions, data source and evaluation target.\n- [ ] I checked what can be shared in this public PR and kept restricted materials in the agreed private review channel.\n",
+      "state": "open",
+      "draft": false,
+      "html_url": "https://github.com/Statsinference/statsinference.github.io/pull/8",
+      "created_at": "2026-11-21T08:32:42Z",
+      "updated_at": "2026-11-21T08:32:42Z",
+      "closed_at": null,
+      "merged_at": null,
+      "merge_commit_sha": "add6318224801b258594bc6e347e66ff5a72f42b",
+      "changed_files": 1,
+      "author": "QingFengXiao214",
+      "head": {
+        "ref": "propose-proximal-linear-bridge",
+        "sha": "ac718fed84ecfe554a5bcf8f5bd48bab8f947362",
+        "repository": "QingFengXiao214/statsinference.github.io"
+      },
+      "base": {
+        "ref": "main",
+        "sha": "caee2422415fecefdbaa6be7c6131711fb2a5440",
+        "repository": "Statsinference/statsinference.github.io"
+      },
+      "commits": [
+        "ac718fed84ecfe554a5bcf8f5bd48bab8f947362"
+      ],
+      "files": [
+        {
+          "filename": "data-submissions/simulated-dgp/submissions/proximal-linear-bridge.md",
+          "status": "added",
+          "sha": "255e455e856d19002148d9ed2a12a6ae50b7a354",
+          "additions": 33,
+          "deletions": 0,
+          "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/ac718fed84ecfe554a5bcf8f5bd48bab8f947362/data-submissions%2Fsimulated-dgp%2Fsubmissions%2Fproximal-linear-bridge.md"
+        }
+      ],
+      "comments": [],
+      "reviews": [],
+      "inline_comments": [],
+      "checks": []
+    },
+    {
+      "number": 9,
+      "title": "datasubmission test",
+      "body": "This PR adds a simulation proposal for estimating pointwise CATE when treatment effects are strongly localized despite a simple marginal outcome regression. Opposite-signed Gaussian bumps in the treatment-arm means create heterogeneous effects that disappear when the arms are averaged.\n\nThe mechanism comes from Section 5.2 of Rolling and Yang (2014), *Model selection for estimating treatment effects*, **JRSS-B**, 76(4), 749–769. Public sources: [[paper DOI](https://doi.org/10.1111/rssb.12043)](https://doi.org/10.1111/rssb.12043) and [[publisher article](https://academic.oup.com/jrsssb/article/76/4/749/7076033)](https://academic.oup.com/jrsssb/article/76/4/749/7076033). Selecting a fixed CATE query and implementing the collection interface are documented adaptations.\n\nMethods receive the baseline effect modifier `U`, randomized treatment `A`, continuous outcome `Y` and the same query metadata.\n\n```mermaid\ngraph LR\n    U[\"Pretreatment effect modifier U\"] --> Y[\"Outcome Y\"]\n    A[\"Randomized treatment A\"] --> Y\n```\n\nIdentification assumes independent individuals, consistency, no interference, randomized assignment and positivity. The target is the conditional treatment-versus-control mean difference at the declared query.\n\nThe complete generator, exact settings, selected query, seeds, analytical reference and independent numerical checks are available for agreed private review. Local generation, reproducibility and truth checks have passed. The proposed method comparison has not been run; scientific review and evaluation inclusion remain pending.",
+      "state": "open",
+      "draft": false,
+      "html_url": "https://github.com/Statsinference/statsinference.github.io/pull/9",
+      "created_at": "2026-11-22T04:38:43Z",
+      "updated_at": "2026-11-22T04:38:44Z",
+      "closed_at": null,
+      "merged_at": null,
+      "merge_commit_sha": "d7bdafe9867a292e033674dddd3a17df459b3a09",
+      "changed_files": 1,
+      "author": "lisuo33",
+      "head": {
+        "ref": "main",
+        "sha": "8a2989c913581f36c31ee24cb74e2655ea65debf",
+        "repository": "lisuo33/dgpstatsinference.github.io"
+      },
+      "base": {
+        "ref": "main",
+        "sha": "3dfda59067e0afc306af6eb666c757e96fc49bd7",
+        "repository": "Statsinference/statsinference.github.io"
+      },
+      "commits": [
+        "8a2989c913581f36c31ee24cb74e2655ea65debf"
+      ],
+      "files": [
+        {
+          "filename": "data-submissions/simulated-dgp/cate-rolling-yang-2014-gaussian-bump-v1.md",
+          "status": "added",
+          "sha": "83e1002c8a93af3675f8b6fde924a3f9802c182f",
+          "additions": 33,
+          "deletions": 0,
+          "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/8a2989c913581f36c31ee24cb74e2655ea65debf/data-submissions%2Fsimulated-dgp%2Fcate-rolling-yang-2014-gaussian-bump-v1.md"
+        }
+      ],
+      "comments": [],
+      "reviews": [],
+      "inline_comments": [],
+      "checks": [
+        {
+          "bucket": "pass",
+          "completedAt": "2026-11-22T04:38:55Z",
+          "link": "https://github.com/Statsinference/statsinference.github.io/actions/runs/44985965203/job/137096468769",
+          "name": "check",
+          "startedAt": "2026-11-22T04:38:50Z",
+          "state": "SUCCESS",
+          "workflow": "Data contribution precheck"
+        },
+        {
+          "bucket": "skipping",
+          "completedAt": "2026-11-22T04:38:48Z",
+          "link": "https://github.com/Statsinference/statsinference.github.io/actions/runs/44985965203/job/137096469553",
+          "name": "self-test",
+          "startedAt": "2026-11-22T04:38:48Z",
+          "state": "SKIPPED",
+          "workflow": "Data contribution precheck"
+        }
+      ]
+    }
+  ],
+  "issues": [
+    {
+      "number": 3,
+      "title": "[Method submission] [TEST] Brownight/tabpfn-iv-adapter-v0.3",
+      "body": "### Hugging Face model link\nhttps://huggingface.co/Brownight/tabpfn-iv-adapter-v0.3\n\n### Research domain\niv\n\n<!-- arena-method-submission:v1 -->\n\nIntegration check of the submission-to-folder workflow using the owner's existing public checkpoint. This is a test record, not a new leaderboard entry. The archive stores it separately under method-submissions/checks/.",
+      "state": "closed",
+      "state_reason": "completed",
+      "html_url": "https://github.com/Statsinference/statsinference.github.io/issues/3",
+      "created_at": "2026-11-17T02:45:27Z",
+      "updated_at": "2026-11-17T02:47:21Z",
+      "closed_at": "2026-11-17T02:47:21Z",
+      "author": "brownight",
+      "labels": [],
+      "comments": []
+    }
+  ]
+}
