@@ -95,8 +95,8 @@ Run `statarena-lite list` to see all supported domains. Use `dev` to develop a m
   </thead>
   <tbody>
     <tr>
-      <td width="25%"><a href="https://www.linkedin.com/in/jiaming-h-24400a1b8/">Jiaming Hu</a><br><small><sub>Boston University</sub></small></td>
       <td width="25%"><a href="https://github.com/shibo769">Shi Bo</a><br><small><sub>Boston University</sub></small></td>
+      <td width="25%"><a href="https://www.linkedin.com/in/jiaming-h-24400a1b8/">Jiaming Hu</a><br><small><sub>Boston University</sub></small></td>
       <td width="25%"><a href="https://zhzhang01.github.io/">Zhiheng Zhang</a><br><small><sub>Shanghai University of Finance and Economics</sub></small></td>
       <td width="25%"></td>
     </tr>
@@ -152,12 +152,12 @@ Run `statarena-lite list` to see all supported domains. Use `dev` to develop a m
 
 ## Citation
 
-The Statistical Intelligence Arena team. (2026, November 22). *StatArena: The Statistical Intelligence Arena* (v0.1.0) [Software]. [GitHub repository](https://github.com/Statsinference/Statistical-Intelligence-Arena).
+The Statistical Intelligence Arena Team. (2026, November). *The Statistical Intelligence Arena: Building the Foundation for Statistical Intelligence* [Software documentation]. Zenodo. [https://doi.org/10.5281/zenodo.24443872](https://doi.org/10.5281/zenodo.24443872)
 
 
 ## Contact
 
-For questions and feedback, please contact the project leads: [Jiaming Hu](https://www.linkedin.com/in/jiaming-h-24400a1b8/) · [Shi Bo](https://github.com/shibo769) · [Zhiheng Zhang](https://zhzhang01.github.io/)
+For questions and feedback, please contact the project leads: [Shi Bo](https://github.com/shibo769) · [Jiaming Hu](https://www.linkedin.com/in/jiaming-h-24400a1b8/) · [Zhiheng Zhang](https://zhzhang01.github.io/)
 
 ## License
 
