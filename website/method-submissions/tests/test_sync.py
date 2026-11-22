@@ -99,11 +99,38 @@ class ArchiveTests(unittest.TestCase):
     def test_archive_idempotency_and_edit(self):
         with tempfile.TemporaryDirectory() as d:
             root=Path(d);i=issue();m.write_archive([i],root)
-            before={p.name:p.read_bytes() for p in (root/'received').iterdir()}
-            m.write_archive([i],root);self.assertEqual(before,{p.name:p.read_bytes() for p in (root/'received').iterdir()})
+            before={p.relative_to(root): p.read_bytes() for p in (root / 'received').rglob('*') if p.is_file()}
+            m.write_archive([i],root);self.assertEqual(before,{p.relative_to(root): p.read_bytes() for p in (root / 'received').rglob('*') if p.is_file()})
             i['state']='closed';m.write_archive([i],root)
             self.assertEqual(json.loads((root/'received/issue-000001.json').read_text())['status'],'closed')
             m.write_archive([],root);self.assertIn('Brownight/tabpfn', (root/'received/README.md').read_text())
+    def test_domain_indexes_follow_archived_issues(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            received = root / 'received'
+            iv = received / 'iv'
+            iv.mkdir(parents=True)
+            direct_list = iv / 'README.md'
+            direct_list.write_text('Existing direct intake list\n')
+            first = issue(1)
+            second = issue(2)
+            second['body'] = second['body'].replace('\niv\n', '\ndid_sc\n')
+            test = {**issue(3), 'title': '[Method submission] [TEST] Synthetic check'}
+            m.write_archive([first, second, test], root)
+            iv_issues = iv / 'ISSUES.md'
+            did_issues = received / 'did_sc' / 'ISSUES.md'
+            self.assertIn('[#1]', iv_issues.read_text())
+            self.assertNotIn('[#2]', iv_issues.read_text())
+            self.assertNotIn('[#3]', iv_issues.read_text())
+            self.assertIn('[#2]', did_issues.read_text())
+            self.assertEqual(direct_list.read_text(), 'Existing direct intake list\n')
+
+            second['body'] = second['body'].replace('\ndid_sc\n', '\niv\n')
+            m.write_archive([second], root)
+            self.assertIn('No method submissions yet.', did_issues.read_text())
+            self.assertIn('[#1]', iv_issues.read_text())
+            self.assertIn('[#2]', iv_issues.read_text())
+
     def test_test_record_separate(self):
         with tempfile.TemporaryDirectory() as d:
             i=issue();i['title']='[Method submission] [TEST] Brownight/tabpfn-iv-adapter-v0.3';root=Path(d);m.write_archive([i],root)
