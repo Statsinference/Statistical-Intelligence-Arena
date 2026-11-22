@@ -189,6 +189,13 @@ def fetch_issues() -> list[dict]:
         page += 1
 
 
+def write_index(path: Path, title: str, rows: list[str]) -> None:
+    lines = [title, '', '| Method | Domain | Submitted by | Date | Status | Submission |', '| --- | --- | --- | --- | --- | --- |']
+    lines.extend(rows or ['', 'No method submissions yet.'])
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text('\n'.join(lines) + '\n', encoding='utf-8')
+
+
 def write_archive(issues: list[dict], root: Path = ROOT) -> int:
     records = [r for issue in issues if (r := parse_issue(issue)) is not None]
     for record in records:
@@ -201,7 +208,8 @@ def write_archive(issues: list[dict], root: Path = ROOT) -> int:
     # Retain previously received submissions even if their source issue is subsequently deleted.
     saved = [json.loads(p.read_text(encoding='utf-8')) for p in received.glob('issue-*.json')]
     saved.sort(key=lambda r: r['issue_number'], reverse=True)
-    lines = ['# Method submissions', '', '| Method | Domain | Submitted by | Date | Status | Submission |', '| --- | --- | --- | --- | --- | --- |']
+    rows = []
+    by_domain = {domain: [] for domain in DOMAIN_LABELS.values()}
     for r in saved:
         if r['schema_version'] in (2, 3):
             # Keep submitted names and URL punctuation inside one Markdown cell.
@@ -209,10 +217,14 @@ def write_archive(issues: list[dict], root: Path = ROOT) -> int:
             link = quote(r['method_url'], safe=':/?#@!$&*+,;=%-._~')
         else:
             name, link = r['model'], r['huggingface_url']
-        lines.append(f"| [{name}]({link}) | {r['domain']} | {r['submitted_by']} | {r['created_at'][:10]} | {r['status']} | [#{r['issue_number']}]({r['issue_url']}) |")
-    if not saved:
-        lines += ['', 'No method submissions yet.']
-    (received / 'README.md').write_text('\n'.join(lines) + '\n', encoding='utf-8')
+        domain = r['domain']
+        row = f"| [{name}]({link}) | {domain} | {r['submitted_by']} | {r['created_at'][:10]} | {r['status']} | [#{r['issue_number']}]({r['issue_url']}) |"
+        rows.append(row)
+        if domain in by_domain:
+            by_domain[domain].append(row)
+    write_index(received / 'README.md', '# Method submissions', rows)
+    for label, domain in DOMAIN_LABELS.items():
+        write_index(received / domain / 'ISSUES.md', f'# {label} — method submissions', by_domain[domain])
     return len(records)
 
 

@@ -72,7 +72,9 @@ class StageReviewsTests(unittest.TestCase):
         self.assertEqual(self.calls, ['method-submissions/issue-1', 'method-submissions/issue-2'])
         self.assertEqual(len(review.review_branches()), 2)
         self.assertEqual(self.repo('diff', '--name-only', 'main', first_head).splitlines(), [
-            'method-submissions/received/README.md', 'method-submissions/received/issue-000001.json',
+            'method-submissions/received/README.md',
+            'method-submissions/received/issue-000001.json',
+            'method-submissions/received/iv/ISSUES.md',
         ])
 
         self.stage(first, second)

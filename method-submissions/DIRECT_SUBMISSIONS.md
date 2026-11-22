@@ -4,7 +4,7 @@
 
 The receiver and ten domain-specific collection lists are implemented. The website form is prepared on `feature/direct-domain-submissions` in `Statsinference/statsinference.github.io`. **The receiver has not been deployed or given a GitHub write credential, and the new form is not enabled on the live website.** Existing Issue-based intake remains unchanged until this direct route is tested end to end.
 
-The requested flow is: choose one top-level research domain, paste a Hugging Face model link, submit on the website. No submitter GitHub account, Issue or pull request. No subdomains. The receiver uses the team's server-side credential to append a link, UTC receipt time and receipt identifier to `method-submissions/received/<domain>/README.md`. [Browse the ten lists](BY_DOMAIN.md).
+The requested flow is: choose one top-level research domain, paste a Hugging Face model link, submit on the website. No submitter GitHub account, Issue or pull request. No subdomains. The receiver uses the team's server-side credential to append a link, UTC receipt time and receipt identifier to `method-submissions/received/<domain>/README.md`. [Browse the legacy list folders](received/).
 
 ## One-time activation by a maintainer
 
