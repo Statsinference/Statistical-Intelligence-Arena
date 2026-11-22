@@ -1,9 +1,12 @@
 name: DGP submissions
 on:
-  # Trusted base workflow; no path filter: code-only PRs must also be rejected.
+  # Website Markdown proposals have their own precheck. Mixed PRs and PRs
+  # outside that directory still run the ZIP-only gate.
   pull_request_target:
     branches: [main]
     types: [opened, synchronize, reopened, ready_for_review, edited]
+    paths-ignore:
+      - 'website/data-submissions/**'
   push:
     branches: [main]
     paths:

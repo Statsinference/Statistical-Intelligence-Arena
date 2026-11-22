@@ -1,11 +1,13 @@
 {
-  "schema_version": 1,
-  "captured_at_utc": "2026-11-22T05:21:06+00:00",
+  "schema_version": 2,
+  "capture_start_utc": "2026-11-22T05:41:13+00:00",
+  "captured_at_utc": "2026-11-22T05:41:30+00:00",
   "source": {
     "repository": "Statsinference/statsinference.github.io",
     "url": "https://github.com/Statsinference/statsinference.github.io",
     "default_branch": "main",
-    "default_branch_sha": "356e6cf7dcdb371bb5b55e9e46130b200725b907"
+    "default_branch_sha": "919cb9305b885b3f7ae11ff6dc7e603a9135b2d0",
+    "default_branch_sha_at_capture_start": "919cb9305b885b3f7ae11ff6dc7e603a9135b2d0"
   },
   "pull_requests": [
     {
@@ -21,6 +23,7 @@
       "merged_at": "2026-11-16T01:00:52Z",
       "merge_commit_sha": "4a81705370e3c7b79df090c5dadb85a1d3b42bcd",
       "changed_files": 3,
+      "locked": false,
       "author": "brownight",
       "head": {
         "ref": "style/arena-layout",
@@ -63,6 +66,136 @@
           "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/a295eab3102fcf2aa1310da76554f79c10b349de/.github%2Fworkflows%2Fstyle-review.yml"
         }
       ],
+      "timeline": [
+        {
+          "sha": "176b9d7befcc1d21ff5e33055a887c7769b95c78",
+          "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/git/commits/176b9d7befcc1d21ff5e33055a887c7769b95c78",
+          "html_url": "https://github.com/Statsinference/statsinference.github.io/commit/176b9d7befcc1d21ff5e33055a887c7769b95c78",
+          "author": {
+            "name": "Jiaming Hu",
+            "date": "2026-11-16T00:44:51Z"
+          },
+          "committer": {
+            "name": "Jiaming Hu",
+            "date": "2026-11-16T00:44:51Z"
+          },
+          "tree": {
+            "sha": "d5666d51e2a1c367f698ce70ed2d546db88ac8bc",
+            "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/git/trees/d5666d51e2a1c367f698ce70ed2d546db88ac8bc"
+          },
+          "message": "test: inspect public layout reference on isolated styling branch",
+          "parents": [
+            {
+              "sha": "37d0133bd728db2545e7a1d090ff7e1d007ee440",
+              "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/git/commits/37d0133bd728db2545e7a1d090ff7e1d007ee440",
+              "html_url": "https://github.com/Statsinference/statsinference.github.io/commit/37d0133bd728db2545e7a1d090ff7e1d007ee440"
+            }
+          ],
+          "verification": {
+            "verified": false,
+            "reason": "unsigned",
+            "signature": null,
+            "payload": null,
+            "verified_at": null
+          },
+          "event": "committed"
+        },
+        {
+          "sha": "6ff6f5abce076e5e1561c03c4fa0e35f000f5eb7",
+          "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/git/commits/6ff6f5abce076e5e1561c03c4fa0e35f000f5eb7",
+          "html_url": "https://github.com/Statsinference/statsinference.github.io/commit/6ff6f5abce076e5e1561c03c4fa0e35f000f5eb7",
+          "author": {
+            "name": "Jiaming Hu",
+            "date": "2026-11-16T00:47:19Z"
+          },
+          "committer": {
+            "name": "Jiaming Hu",
+            "date": "2026-11-16T00:47:19Z"
+          },
+          "tree": {
+            "sha": "dbc9adbf455b216d03facc88445a2f37e0306d2b",
+            "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/git/trees/dbc9adbf455b216d03facc88445a2f37e0306d2b"
+          },
+          "message": "test: inspect public Arena brand palette without changing the live site",
+          "parents": [
+            {
+              "sha": "176b9d7befcc1d21ff5e33055a887c7769b95c78",
+              "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/git/commits/176b9d7befcc1d21ff5e33055a887c7769b95c78",
+              "html_url": "https://github.com/Statsinference/statsinference.github.io/commit/176b9d7befcc1d21ff5e33055a887c7769b95c78"
+            }
+          ],
+          "verification": {
+            "verified": false,
+            "reason": "unsigned",
+            "signature": null,
+            "payload": null,
+            "verified_at": null
+          },
+          "event": "committed"
+        },
+        {
+          "sha": "a295eab3102fcf2aa1310da76554f79c10b349de",
+          "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/git/commits/a295eab3102fcf2aa1310da76554f79c10b349de",
+          "html_url": "https://github.com/Statsinference/statsinference.github.io/commit/a295eab3102fcf2aa1310da76554f79c10b349de",
+          "author": {
+            "name": "Jiaming Hu",
+            "date": "2026-11-16T00:58:19Z"
+          },
+          "committer": {
+            "name": "Jiaming Hu",
+            "date": "2026-11-16T00:58:19Z"
+          },
+          "tree": {
+            "sha": "7ca4e12d870c18200ac790d809ce86817e0207b5",
+            "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/git/trees/7ca4e12d870c18200ac790d809ce86817e0207b5"
+          },
+          "message": "test: verify deployed editorial website and original logo in a real browser",
+          "parents": [
+            {
+              "sha": "6ff6f5abce076e5e1561c03c4fa0e35f000f5eb7",
+              "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/git/commits/6ff6f5abce076e5e1561c03c4fa0e35f000f5eb7",
+              "html_url": "https://github.com/Statsinference/statsinference.github.io/commit/6ff6f5abce076e5e1561c03c4fa0e35f000f5eb7"
+            }
+          ],
+          "verification": {
+            "verified": false,
+            "reason": "unsigned",
+            "signature": null,
+            "payload": null,
+            "verified_at": null
+          },
+          "event": "committed"
+        },
+        {
+          "id": 36226331832,
+          "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/issues/events/36226331832",
+          "actor": {
+            "login": "brownight",
+            "type": "User"
+          },
+          "event": "merged",
+          "commit_id": "4a81705370e3c7b79df090c5dadb85a1d3b42bcd",
+          "commit_url": "https://api.github.com/repos/Statsinference/statsinference.github.io/commits/4a81705370e3c7b79df090c5dadb85a1d3b42bcd",
+          "created_at": "2026-11-16T01:00:52Z",
+          "performed_via_github_app": null
+        },
+        {
+          "id": 36226331932,
+          "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/issues/events/36226331932",
+          "actor": {
+            "login": "brownight",
+            "type": "User"
+          },
+          "event": "closed",
+          "commit_id": null,
+          "commit_url": null,
+          "created_at": "2026-11-16T01:00:52Z",
+          "state_reason": null,
+          "intent": null,
+          "performed_via_github_app": null
+        }
+      ],
+      "reactions": [],
       "comments": [],
       "reviews": [],
       "inline_comments": []
@@ -80,6 +213,7 @@
       "merged_at": "2026-11-17T00:50:43Z",
       "merge_commit_sha": "7b4a56b3d232cd080ab9c5a3647a86f51372bad5",
       "changed_files": 3,
+      "locked": false,
       "author": "brownight",
       "head": {
         "ref": "codex/expand-domain-names-remove-intro",
@@ -122,6 +256,136 @@
           "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/8428cd907320ab51f10c8628bc6b1bca782d4296/tests%2Fverify_test_view.py"
         }
       ],
+      "timeline": [
+        {
+          "sha": "f15ace65456245d9a11a14c0ea9fe074b295d106",
+          "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/git/commits/f15ace65456245d9a11a14c0ea9fe074b295d106",
+          "html_url": "https://github.com/Statsinference/statsinference.github.io/commit/f15ace65456245d9a11a14c0ea9fe074b295d106",
+          "author": {
+            "name": "Jiaming Hu",
+            "date": "2026-11-17T00:50:19Z"
+          },
+          "committer": {
+            "name": "Jiaming Hu",
+            "date": "2026-11-17T00:50:19Z"
+          },
+          "tree": {
+            "sha": "995918ad24d32d5788aca1cf0ee6672c516b5b52",
+            "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/git/trees/995918ad24d32d5788aca1cf0ee6672c516b5b52"
+          },
+          "message": "Remove redundant leaderboard introduction copy",
+          "parents": [
+            {
+              "sha": "c6d3999853b61d3a1e9f178bbc5b75ddff0445e7",
+              "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/git/commits/c6d3999853b61d3a1e9f178bbc5b75ddff0445e7",
+              "html_url": "https://github.com/Statsinference/statsinference.github.io/commit/c6d3999853b61d3a1e9f178bbc5b75ddff0445e7"
+            }
+          ],
+          "verification": {
+            "verified": false,
+            "reason": "unsigned",
+            "signature": null,
+            "payload": null,
+            "verified_at": null
+          },
+          "event": "committed"
+        },
+        {
+          "sha": "7ebe787e716fbacbc54f40ea5fe39c0bcf339ce2",
+          "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/git/commits/7ebe787e716fbacbc54f40ea5fe39c0bcf339ce2",
+          "html_url": "https://github.com/Statsinference/statsinference.github.io/commit/7ebe787e716fbacbc54f40ea5fe39c0bcf339ce2",
+          "author": {
+            "name": "Jiaming Hu",
+            "date": "2026-11-17T00:50:20Z"
+          },
+          "committer": {
+            "name": "Jiaming Hu",
+            "date": "2026-11-17T00:50:20Z"
+          },
+          "tree": {
+            "sha": "7b37918acdcb737ba7b84135f52342a9249fee65",
+            "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/git/trees/7b37918acdcb737ba7b84135f52342a9249fee65"
+          },
+          "message": "Use full causal domain names in navigation and headings",
+          "parents": [
+            {
+              "sha": "f15ace65456245d9a11a14c0ea9fe074b295d106",
+              "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/git/commits/f15ace65456245d9a11a14c0ea9fe074b295d106",
+              "html_url": "https://github.com/Statsinference/statsinference.github.io/commit/f15ace65456245d9a11a14c0ea9fe074b295d106"
+            }
+          ],
+          "verification": {
+            "verified": false,
+            "reason": "unsigned",
+            "signature": null,
+            "payload": null,
+            "verified_at": null
+          },
+          "event": "committed"
+        },
+        {
+          "sha": "8428cd907320ab51f10c8628bc6b1bca782d4296",
+          "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/git/commits/8428cd907320ab51f10c8628bc6b1bca782d4296",
+          "html_url": "https://github.com/Statsinference/statsinference.github.io/commit/8428cd907320ab51f10c8628bc6b1bca782d4296",
+          "author": {
+            "name": "Jiaming Hu",
+            "date": "2026-11-17T00:50:21Z"
+          },
+          "committer": {
+            "name": "Jiaming Hu",
+            "date": "2026-11-17T00:50:21Z"
+          },
+          "tree": {
+            "sha": "58ab3293aa873844a31afe6e0b3c37dac30e9050",
+            "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/git/trees/58ab3293aa873844a31afe6e0b3c37dac30e9050"
+          },
+          "message": "Update mobile verification for full domain names",
+          "parents": [
+            {
+              "sha": "7ebe787e716fbacbc54f40ea5fe39c0bcf339ce2",
+              "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/git/commits/7ebe787e716fbacbc54f40ea5fe39c0bcf339ce2",
+              "html_url": "https://github.com/Statsinference/statsinference.github.io/commit/7ebe787e716fbacbc54f40ea5fe39c0bcf339ce2"
+            }
+          ],
+          "verification": {
+            "verified": false,
+            "reason": "unsigned",
+            "signature": null,
+            "payload": null,
+            "verified_at": null
+          },
+          "event": "committed"
+        },
+        {
+          "id": 36347062460,
+          "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/issues/events/36347062460",
+          "actor": {
+            "login": "brownight",
+            "type": "User"
+          },
+          "event": "merged",
+          "commit_id": "7b4a56b3d232cd080ab9c5a3647a86f51372bad5",
+          "commit_url": "https://api.github.com/repos/Statsinference/statsinference.github.io/commits/7b4a56b3d232cd080ab9c5a3647a86f51372bad5",
+          "created_at": "2026-11-17T00:50:43Z",
+          "performed_via_github_app": null
+        },
+        {
+          "id": 36347062638,
+          "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/issues/events/36347062638",
+          "actor": {
+            "login": "brownight",
+            "type": "User"
+          },
+          "event": "closed",
+          "commit_id": null,
+          "commit_url": null,
+          "created_at": "2026-11-17T00:50:43Z",
+          "state_reason": null,
+          "intent": null,
+          "performed_via_github_app": null
+        }
+      ],
+      "reactions": [],
       "comments": [],
       "reviews": [],
       "inline_comments": []
@@ -139,6 +403,7 @@
       "merged_at": "2026-11-20T01:54:06Z",
       "merge_commit_sha": "d355e78819a2575419e1f8e6ec4d9d7ef9b48cbe",
       "changed_files": 9,
+      "locked": false,
       "author": "brownight",
       "head": {
         "ref": "codex/benchmark-cards",
@@ -227,6 +492,83 @@
           "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/f017ca14b0b3c8bfd0160faf57c821491e5096b3/tests%2Fverify_test_view.py"
         }
       ],
+      "timeline": [
+        {
+          "sha": "f017ca14b0b3c8bfd0160faf57c821491e5096b3",
+          "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/git/commits/f017ca14b0b3c8bfd0160faf57c821491e5096b3",
+          "html_url": "https://github.com/Statsinference/statsinference.github.io/commit/f017ca14b0b3c8bfd0160faf57c821491e5096b3",
+          "author": {
+            "name": "Jiaming Hu",
+            "date": "2026-11-20T00:33:49Z"
+          },
+          "committer": {
+            "name": "Jiaming Hu",
+            "date": "2026-11-20T00:33:49Z"
+          },
+          "tree": {
+            "sha": "ed113337bd4799f64fbfa656368c3caff93833ca",
+            "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/git/trees/ed113337bd4799f64fbfa656368c3caff93833ca"
+          },
+          "message": "Add benchmark cards for five StatArena domains",
+          "parents": [
+            {
+              "sha": "6ce973f77a1b784b0b49789368b57b66f425e012",
+              "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/git/commits/6ce973f77a1b784b0b49789368b57b66f425e012",
+              "html_url": "https://github.com/Statsinference/statsinference.github.io/commit/6ce973f77a1b784b0b49789368b57b66f425e012"
+            }
+          ],
+          "verification": {
+            "verified": false,
+            "reason": "unsigned",
+            "signature": null,
+            "payload": null,
+            "verified_at": null
+          },
+          "event": "committed"
+        },
+        {
+          "id": 36722517687,
+          "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/issues/events/36722517687",
+          "actor": {
+            "login": "brownight",
+            "type": "User"
+          },
+          "event": "ready_for_review",
+          "commit_id": null,
+          "commit_url": null,
+          "created_at": "2026-11-20T01:53:48Z",
+          "performed_via_github_app": null
+        },
+        {
+          "id": 36722537360,
+          "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/issues/events/36722537360",
+          "actor": {
+            "login": "brownight",
+            "type": "User"
+          },
+          "event": "merged",
+          "commit_id": "d355e78819a2575419e1f8e6ec4d9d7ef9b48cbe",
+          "commit_url": "https://api.github.com/repos/Statsinference/statsinference.github.io/commits/d355e78819a2575419e1f8e6ec4d9d7ef9b48cbe",
+          "created_at": "2026-11-20T01:54:06Z",
+          "performed_via_github_app": null
+        },
+        {
+          "id": 36722537509,
+          "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/issues/events/36722537509",
+          "actor": {
+            "login": "brownight",
+            "type": "User"
+          },
+          "event": "closed",
+          "commit_id": null,
+          "commit_url": null,
+          "created_at": "2026-11-20T01:54:06Z",
+          "state_reason": null,
+          "intent": null,
+          "performed_via_github_app": null
+        }
+      ],
+      "reactions": [],
       "comments": [],
       "reviews": [],
       "inline_comments": []
@@ -244,6 +586,7 @@
       "merged_at": "2026-11-20T02:08:28Z",
       "merge_commit_sha": "09173a0ce6629127282ddc3444f1db793d0e2e37",
       "changed_files": 9,
+      "locked": false,
       "author": "brownight",
       "head": {
         "ref": "codex/benchmark-card-details",
@@ -332,6 +675,70 @@
           "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/16e37d24647b0ffa973bd9dee49f31c9c9692bfe/tests%2Fverify_test_view.py"
         }
       ],
+      "timeline": [
+        {
+          "sha": "16e37d24647b0ffa973bd9dee49f31c9c9692bfe",
+          "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/git/commits/16e37d24647b0ffa973bd9dee49f31c9c9692bfe",
+          "html_url": "https://github.com/Statsinference/statsinference.github.io/commit/16e37d24647b0ffa973bd9dee49f31c9c9692bfe",
+          "author": {
+            "name": "Jiaming Hu",
+            "date": "2026-11-20T02:07:40Z"
+          },
+          "committer": {
+            "name": "Jiaming Hu",
+            "date": "2026-11-20T02:07:40Z"
+          },
+          "tree": {
+            "sha": "29553497126f06c0bdc71bc80abf24b94df25390",
+            "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/git/trees/29553497126f06c0bdc71bc80abf24b94df25390"
+          },
+          "message": "Clarify benchmark card protocols and IV release details",
+          "parents": [
+            {
+              "sha": "d355e78819a2575419e1f8e6ec4d9d7ef9b48cbe",
+              "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/git/commits/d355e78819a2575419e1f8e6ec4d9d7ef9b48cbe",
+              "html_url": "https://github.com/Statsinference/statsinference.github.io/commit/d355e78819a2575419e1f8e6ec4d9d7ef9b48cbe"
+            }
+          ],
+          "verification": {
+            "verified": false,
+            "reason": "unsigned",
+            "signature": null,
+            "payload": null,
+            "verified_at": null
+          },
+          "event": "committed"
+        },
+        {
+          "id": 36723428343,
+          "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/issues/events/36723428343",
+          "actor": {
+            "login": "brownight",
+            "type": "User"
+          },
+          "event": "merged",
+          "commit_id": "09173a0ce6629127282ddc3444f1db793d0e2e37",
+          "commit_url": "https://api.github.com/repos/Statsinference/statsinference.github.io/commits/09173a0ce6629127282ddc3444f1db793d0e2e37",
+          "created_at": "2026-11-20T02:08:28Z",
+          "performed_via_github_app": null
+        },
+        {
+          "id": 36723428454,
+          "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/issues/events/36723428454",
+          "actor": {
+            "login": "brownight",
+            "type": "User"
+          },
+          "event": "closed",
+          "commit_id": null,
+          "commit_url": null,
+          "created_at": "2026-11-20T02:08:29Z",
+          "state_reason": null,
+          "intent": null,
+          "performed_via_github_app": null
+        }
+      ],
+      "reactions": [],
       "comments": [],
       "reviews": [],
       "inline_comments": []
@@ -349,6 +756,7 @@
       "merged_at": "2026-11-21T14:16:09Z",
       "merge_commit_sha": "c3bb5a8f1a0ecc7cee97e0e0b697785699a4a298",
       "changed_files": 24,
+      "locked": false,
       "author": "shibo769",
       "head": {
         "ref": "codex/data-contribution-prs",
@@ -562,6 +970,492 @@
           "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/632a51fb399081f985b75f3b399b7406357d1bac/tests%2Fverify_test_view.py"
         }
       ],
+      "timeline": [
+        {
+          "sha": "5e174c855669b16bef0a459e1b8587fdec892e56",
+          "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/git/commits/5e174c855669b16bef0a459e1b8587fdec892e56",
+          "html_url": "https://github.com/Statsinference/statsinference.github.io/commit/5e174c855669b16bef0a459e1b8587fdec892e56",
+          "author": {
+            "name": "Shi Bo",
+            "date": "2026-11-20T05:13:10Z"
+          },
+          "committer": {
+            "name": "Shi Bo",
+            "date": "2026-11-20T05:13:10Z"
+          },
+          "tree": {
+            "sha": "7880fa18c0f0d11d6eed0eb773a677e04b3350f4",
+            "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/git/trees/7880fa18c0f0d11d6eed0eb773a677e04b3350f4"
+          },
+          "message": "Open StatArena data contributions through reviewed pull requests",
+          "parents": [
+            {
+              "sha": "9cc6417647e795c30515df6b9e626fed4fec7908",
+              "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/git/commits/9cc6417647e795c30515df6b9e626fed4fec7908",
+              "html_url": "https://github.com/Statsinference/statsinference.github.io/commit/9cc6417647e795c30515df6b9e626fed4fec7908"
+            }
+          ],
+          "verification": {
+            "verified": false,
+            "reason": "unsigned",
+            "signature": null,
+            "payload": null,
+            "verified_at": null
+          },
+          "event": "committed"
+        },
+        {
+          "id": 36734600154,
+          "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/issues/events/36734600154",
+          "actor": {
+            "login": "shibo769",
+            "type": "User"
+          },
+          "event": "review_requested",
+          "commit_id": null,
+          "commit_url": null,
+          "created_at": "2026-11-20T05:13:33Z",
+          "review_requester": {
+            "login": "shibo769",
+            "type": "User"
+          },
+          "requested_reviewer": {
+            "login": "brownight",
+            "type": "User"
+          },
+          "performed_via_github_app": null
+        },
+        {
+          "actor": {
+            "login": "shibo769",
+            "type": "User"
+          },
+          "created_at": "2026-11-20T14:48:21Z",
+          "updated_at": "2026-11-20T14:48:21Z",
+          "source": {
+            "type": "issue",
+            "issue": {
+              "url": "https://api.github.com/repos/Statsinference/Statistical-Intelligence-Arena/issues/31",
+              "repository_url": "https://api.github.com/repos/Statsinference/Statistical-Intelligence-Arena",
+              "labels_url": "https://api.github.com/repos/Statsinference/Statistical-Intelligence-Arena/issues/31/labels{/name}",
+              "comments_url": "https://api.github.com/repos/Statsinference/Statistical-Intelligence-Arena/issues/31/comments",
+              "events_url": "https://api.github.com/repos/Statsinference/Statistical-Intelligence-Arena/issues/31/events",
+              "html_url": "https://github.com/Statsinference/Statistical-Intelligence-Arena/pull/31",
+              "id": 6513719300,
+              "number": 31,
+              "title": "Show both data contribution tracks in the research repository",
+              "user": {
+                "login": "shibo769",
+                "type": "User"
+              },
+              "labels": [],
+              "state": "closed",
+              "locked": false,
+              "assignees": [],
+              "milestone": null,
+              "comments": 0,
+              "created_at": "2026-11-20T14:48:20Z",
+              "updated_at": "2026-11-20T17:03:29Z",
+              "closed_at": "2026-11-20T17:03:29Z",
+              "assignee": null,
+              "author_association": "MEMBER",
+              "issue_field_values": [],
+              "type": null,
+              "active_lock_reason": null,
+              "draft": false,
+              "repository": {
+                "redacted": "Private repository outside the archived source."
+              },
+              "pull_request": {
+                "url": "https://api.github.com/repos/Statsinference/Statistical-Intelligence-Arena/pulls/31",
+                "html_url": "https://github.com/Statsinference/Statistical-Intelligence-Arena/pull/31",
+                "diff_url": "https://github.com/Statsinference/Statistical-Intelligence-Arena/pull/31.diff",
+                "patch_url": "https://github.com/Statsinference/Statistical-Intelligence-Arena/pull/31.patch",
+                "merged_at": "2026-11-20T17:03:29Z"
+              },
+              "body": "## Changes\n\n- Put the Simulated DGP and Real-data problem guides first on the existing contribution landing. Each guide links to a template, a public worked example and the proposal PR destination.\n- Remove detailed literature tables, case links and internal upload links from the contributor-facing Markdown pages. Keep the full catalog and ZIP instructions available inside the private research repository.\n- Stop the intake workflow from embedding the paper tables into the contribution README. Intake continues to build the internal registry and synchronize the root contribution landing.\n\nThe companion [website PR](https://github.com/Statsinference/statsinference.github.io/pull/6) provides the website's contribution page and removes its direct link to the internal catalog. Merge the website PR first to make the public submission route available.\n\n## Validation\n\nVerified the contribution Markdown, relative links, synchronized root output and both workflow steps against the updated GitHub revision. The internal index contents and all 183 catalog records are preserved. The updated integration test checks that the catalog stays off the contribution pages.\n\nThe private repository currently runs its ZIP-only intake check on every PR. That check rejects this maintenance PR because it changes documentation and workflow files.",
+              "reactions": {
+                "url": "https://api.github.com/repos/Statsinference/Statistical-Intelligence-Arena/issues/31/reactions",
+                "total_count": 0,
+                "+1": 0,
+                "-1": 0,
+                "laugh": 0,
+                "hooray": 0,
+                "confused": 0,
+                "heart": 0,
+                "rocket": 0,
+                "eyes": 0
+              },
+              "timeline_url": "https://api.github.com/repos/Statsinference/Statistical-Intelligence-Arena/issues/31/timeline",
+              "performed_via_github_app": {
+                "id": 1144995,
+                "client_id": "Iv23liVemv8A9if9v0F2",
+                "slug": "chatgpt-codex-connector",
+                "owner": {
+                  "login": "openai",
+                  "type": "Organization"
+                },
+                "name": "ChatGPT Codex Connector",
+                "description": "Bring ChatGPT and Codex to your GitHub repositories.",
+                "external_url": "https://www.chatgpt.com",
+                "html_url": "https://github.com/apps/chatgpt-codex-connector",
+                "created_at": "2025-02-14T01:37:05Z",
+                "updated_at": "2026-09-23T18:52:59Z",
+                "permissions": {
+                  "actions": "write",
+                  "checks": "read",
+                  "contents": "write",
+                  "emails": "read",
+                  "issues": "write",
+                  "metadata": "read",
+                  "pull_requests": "write",
+                  "statuses": "read",
+                  "workflows": "write"
+                },
+                "events": [
+                  "check_run",
+                  "check_suite",
+                  "commit_comment",
+                  "issues",
+                  "issue_comment",
+                  "pull_request",
+                  "pull_request_review",
+                  "pull_request_review_comment",
+                  "pull_request_review_thread",
+                  "repository",
+                  "status",
+                  "sub_issues"
+                ]
+              },
+              "state_reason": null
+            }
+          },
+          "event": "cross-referenced"
+        },
+        {
+          "sha": "3e8599e10e08b86b317017e3a40251689eb80fc9",
+          "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/git/commits/3e8599e10e08b86b317017e3a40251689eb80fc9",
+          "html_url": "https://github.com/Statsinference/statsinference.github.io/commit/3e8599e10e08b86b317017e3a40251689eb80fc9",
+          "author": {
+            "name": "Shi Bo",
+            "date": "2026-11-20T14:48:54Z"
+          },
+          "committer": {
+            "name": "Shi Bo",
+            "date": "2026-11-20T14:48:54Z"
+          },
+          "tree": {
+            "sha": "241634291def634a184b2c426c6dad60ae11d484",
+            "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/git/trees/241634291def634a184b2c426c6dad60ae11d484"
+          },
+          "message": "Merge main into data contribution PR",
+          "parents": [
+            {
+              "sha": "5e174c855669b16bef0a459e1b8587fdec892e56",
+              "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/git/commits/5e174c855669b16bef0a459e1b8587fdec892e56",
+              "html_url": "https://github.com/Statsinference/statsinference.github.io/commit/5e174c855669b16bef0a459e1b8587fdec892e56"
+            },
+            {
+              "sha": "792ada398a7026298783267ceb32843229e6f29b",
+              "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/git/commits/792ada398a7026298783267ceb32843229e6f29b",
+              "html_url": "https://github.com/Statsinference/statsinference.github.io/commit/792ada398a7026298783267ceb32843229e6f29b"
+            }
+          ],
+          "verification": {
+            "verified": false,
+            "reason": "unsigned",
+            "signature": null,
+            "payload": null,
+            "verified_at": null
+          },
+          "event": "committed"
+        },
+        {
+          "sha": "2590cb750c320a9ed508cbf16f4e8686a871f029",
+          "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/git/commits/2590cb750c320a9ed508cbf16f4e8686a871f029",
+          "html_url": "https://github.com/Statsinference/statsinference.github.io/commit/2590cb750c320a9ed508cbf16f4e8686a871f029",
+          "author": {
+            "name": "Shi Bo",
+            "date": "2026-11-20T14:59:27Z"
+          },
+          "committer": {
+            "name": "Shi Bo",
+            "date": "2026-11-20T14:59:27Z"
+          },
+          "tree": {
+            "sha": "523d7ad45224863f0c52e4c8f241f2dc07663591",
+            "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/git/trees/523d7ad45224863f0c52e4c8f241f2dc07663591"
+          },
+          "message": "Remove internal catalog navigation from public leaderboards",
+          "parents": [
+            {
+              "sha": "3e8599e10e08b86b317017e3a40251689eb80fc9",
+              "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/git/commits/3e8599e10e08b86b317017e3a40251689eb80fc9",
+              "html_url": "https://github.com/Statsinference/statsinference.github.io/commit/3e8599e10e08b86b317017e3a40251689eb80fc9"
+            }
+          ],
+          "verification": {
+            "verified": false,
+            "reason": "unsigned",
+            "signature": null,
+            "payload": null,
+            "verified_at": null
+          },
+          "event": "committed"
+        },
+        {
+          "sha": "32448a3da741bbf1a26a709b7f7b8d44366b6ad4",
+          "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/git/commits/32448a3da741bbf1a26a709b7f7b8d44366b6ad4",
+          "html_url": "https://github.com/Statsinference/statsinference.github.io/commit/32448a3da741bbf1a26a709b7f7b8d44366b6ad4",
+          "author": {
+            "name": "Shi Bo",
+            "date": "2026-11-20T15:34:56Z"
+          },
+          "committer": {
+            "name": "Shi Bo",
+            "date": "2026-11-20T15:34:56Z"
+          },
+          "tree": {
+            "sha": "d6da69680bfe1e88536eaf19ae1733025f1e0301",
+            "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/git/trees/d6da69680bfe1e88536eaf19ae1733025f1e0301"
+          },
+          "message": "Embed the full data proposal templates in the track guides",
+          "parents": [
+            {
+              "sha": "2590cb750c320a9ed508cbf16f4e8686a871f029",
+              "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/git/commits/2590cb750c320a9ed508cbf16f4e8686a871f029",
+              "html_url": "https://github.com/Statsinference/statsinference.github.io/commit/2590cb750c320a9ed508cbf16f4e8686a871f029"
+            }
+          ],
+          "verification": {
+            "verified": false,
+            "reason": "unsigned",
+            "signature": null,
+            "payload": null,
+            "verified_at": null
+          },
+          "event": "committed"
+        },
+        {
+          "sha": "be6691cb365e8319ae50e009cf37d2b8658c5c94",
+          "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/git/commits/be6691cb365e8319ae50e009cf37d2b8658c5c94",
+          "html_url": "https://github.com/Statsinference/statsinference.github.io/commit/be6691cb365e8319ae50e009cf37d2b8658c5c94",
+          "author": {
+            "name": "Shi Bo",
+            "date": "2026-11-20T17:05:27Z"
+          },
+          "committer": {
+            "name": "Shi Bo",
+            "date": "2026-11-20T17:05:27Z"
+          },
+          "tree": {
+            "sha": "1b1d4bea5c0c904d04cfa0d12c9c57d4c2861c6a",
+            "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/git/trees/1b1d4bea5c0c904d04cfa0d12c9c57d4c2861c6a"
+          },
+          "message": "Remove external workflow references from contribution guide",
+          "parents": [
+            {
+              "sha": "32448a3da741bbf1a26a709b7f7b8d44366b6ad4",
+              "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/git/commits/32448a3da741bbf1a26a709b7f7b8d44366b6ad4",
+              "html_url": "https://github.com/Statsinference/statsinference.github.io/commit/32448a3da741bbf1a26a709b7f7b8d44366b6ad4"
+            }
+          ],
+          "verification": {
+            "verified": false,
+            "reason": "unsigned",
+            "signature": null,
+            "payload": null,
+            "verified_at": null
+          },
+          "event": "committed"
+        },
+        {
+          "id": 36862098915,
+          "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/issues/events/36862098915",
+          "actor": {
+            "login": "lisuo33",
+            "type": "User"
+          },
+          "event": "review_requested",
+          "commit_id": null,
+          "commit_url": null,
+          "created_at": "2026-11-21T13:43:05Z",
+          "review_requester": {
+            "login": "lisuo33",
+            "type": "User"
+          },
+          "requested_reviewer": {
+            "login": "lisuo33",
+            "type": "User"
+          },
+          "performed_via_github_app": null
+        },
+        {
+          "id": 36862099014,
+          "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/issues/events/36862099014",
+          "actor": {
+            "login": "lisuo33",
+            "type": "User"
+          },
+          "event": "review_requested",
+          "commit_id": null,
+          "commit_url": null,
+          "created_at": "2026-11-21T13:43:05Z",
+          "review_requester": {
+            "login": "lisuo33",
+            "type": "User"
+          },
+          "requested_reviewer": {
+            "login": "ZHzhang01",
+            "type": "User"
+          },
+          "performed_via_github_app": null
+        },
+        {
+          "id": 36862138530,
+          "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/issues/events/36862138530",
+          "actor": {
+            "login": "lisuo33",
+            "type": "User"
+          },
+          "event": "review_request_removed",
+          "commit_id": null,
+          "commit_url": null,
+          "created_at": "2026-11-21T13:43:49Z",
+          "review_requester": {
+            "login": "lisuo33",
+            "type": "User"
+          },
+          "requested_reviewer": {
+            "login": "ZHzhang01",
+            "type": "User"
+          },
+          "performed_via_github_app": null
+        },
+        {
+          "id": 36862138600,
+          "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/issues/events/36862138600",
+          "actor": {
+            "login": "lisuo33",
+            "type": "User"
+          },
+          "event": "review_request_removed",
+          "commit_id": null,
+          "commit_url": null,
+          "created_at": "2026-11-21T13:43:50Z",
+          "review_requester": {
+            "login": "lisuo33",
+            "type": "User"
+          },
+          "requested_reviewer": {
+            "login": "lisuo33",
+            "type": "User"
+          },
+          "performed_via_github_app": null
+        },
+        {
+          "id": 36862288857,
+          "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/issues/events/36862288857",
+          "actor": {
+            "login": "lisuo33",
+            "type": "User"
+          },
+          "event": "assigned",
+          "commit_id": null,
+          "commit_url": null,
+          "created_at": "2026-11-21T13:46:38Z",
+          "assignee": {
+            "login": "shibo769",
+            "type": "User"
+          },
+          "intent": null,
+          "performed_via_github_app": null
+        },
+        {
+          "id": 36862319579,
+          "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/issues/events/36862319579",
+          "actor": {
+            "login": "lisuo33",
+            "type": "User"
+          },
+          "event": "unassigned",
+          "commit_id": null,
+          "commit_url": null,
+          "created_at": "2026-11-21T13:47:11Z",
+          "assignee": {
+            "login": "shibo769",
+            "type": "User"
+          },
+          "performed_via_github_app": null
+        },
+        {
+          "sha": "632a51fb399081f985b75f3b399b7406357d1bac",
+          "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/git/commits/632a51fb399081f985b75f3b399b7406357d1bac",
+          "html_url": "https://github.com/Statsinference/statsinference.github.io/commit/632a51fb399081f985b75f3b399b7406357d1bac",
+          "author": {
+            "name": "Jiaming Hu",
+            "date": "2026-11-21T14:15:56Z"
+          },
+          "committer": {
+            "name": "GitHub",
+            "date": "2026-11-21T14:15:56Z"
+          },
+          "tree": {
+            "sha": "a16e58a0b4be7f89b572f966529a5f1ab1c0fe77",
+            "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/git/trees/a16e58a0b4be7f89b572f966529a5f1ab1c0fe77"
+          },
+          "message": "Merge branch 'main' into codex/data-contribution-prs",
+          "parents": [
+            {
+              "sha": "be6691cb365e8319ae50e009cf37d2b8658c5c94",
+              "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/git/commits/be6691cb365e8319ae50e009cf37d2b8658c5c94",
+              "html_url": "https://github.com/Statsinference/statsinference.github.io/commit/be6691cb365e8319ae50e009cf37d2b8658c5c94"
+            },
+            {
+              "sha": "caee2422415fecefdbaa6be7c6131711fb2a5440",
+              "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/git/commits/caee2422415fecefdbaa6be7c6131711fb2a5440",
+              "html_url": "https://github.com/Statsinference/statsinference.github.io/commit/caee2422415fecefdbaa6be7c6131711fb2a5440"
+            }
+          ],
+          "verification": {
+            "verified": true,
+            "reason": "valid",
+            "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsFcBAABCAAQBQJrAaecCRC1aQ7uu5UhlAAAQ58QAJPxZvyOsATAnBC7n08eOBC3\n1e/xD60McGoZ/vsOujVBWXIx31dlV7GUFS3jPxja3mkARmnVeCX6XgMnQf8s7ISV\ndpiYpu2RhrJ4dv2plxIeQviGbHKCGupG3AhfXu9l4AohsiX62b27kt+TA3HR3eoP\nTWGi6udAV9q5Qu4VD840jlcLUueKtaCCgvEUYKhwizMRCJTT5XdrCJq9l9yqnADE\nBFfCttSzx8WStacJ3LgH3uXoHwjvNgg0SB8I+U3X5lVBQL5lTt3RWh/TsRWbR0NB\nzhtpTHvpYqQUhHbW7Er7o+SrEi++cHRLe6msh/NChuBBhiVoMjsaiTAeNPaWFWEe\nJdi1YFqzKGOa5ydRX+sbEP78+qbaFBEVJf6Tj1RAs/0Gs0WwellXixhe1Yc3Boqx\npAhEH/s4ncIMbnZ7XtHdQTZMdfhq6lyJqt2OuoymT+mCqlGlOSJ8znwKO8nhWxfh\nwFLOO61UtPiqz6hsz0fCxLPe8bYER5SicwSPYR1H6e+psTnLOFmit0ZudP4Jpci+\n3T+e93wgvw+sR75BHSOmVUbPXHPq1QtN6ok8y/7t+Vuol/5nvreMLED2FpdAuDay\nEMNL7awPOobNCxAt9bgLhEyW3xaUpUw/dGTeK2q0Km71R3WdHe9jiqa7ZY2qqZLd\nz7DRa6b/2NzXw3WmWWsI\n=9vHZ\n-----END PGP SIGNATURE-----\n",
+            "payload": "tree a16e58a0b4be7f89b572f966529a5f1ab1c0fe77\nparent be6691cb365e8319ae50e009cf37d2b8658c5c94\nparent caee2422415fecefdbaa6be7c6131711fb2a5440\nauthor Jiaming Hu <102068025+brownight@users.noreply.github.com> 1795270556 -0500\ncommitter GitHub <noreply@github.com> 1795270556 -0500\n\nMerge branch 'main' into codex/data-contribution-prs",
+            "verified_at": "2026-11-21T14:15:57Z"
+          },
+          "event": "committed"
+        },
+        {
+          "id": 36863947127,
+          "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/issues/events/36863947127",
+          "actor": {
+            "login": "brownight",
+            "type": "User"
+          },
+          "event": "merged",
+          "commit_id": "c3bb5a8f1a0ecc7cee97e0e0b697785699a4a298",
+          "commit_url": "https://api.github.com/repos/Statsinference/statsinference.github.io/commits/c3bb5a8f1a0ecc7cee97e0e0b697785699a4a298",
+          "created_at": "2026-11-21T14:16:09Z",
+          "performed_via_github_app": null
+        },
+        {
+          "id": 36863947220,
+          "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/issues/events/36863947220",
+          "actor": {
+            "login": "brownight",
+            "type": "User"
+          },
+          "event": "closed",
+          "commit_id": null,
+          "commit_url": null,
+          "created_at": "2026-11-21T14:16:09Z",
+          "state_reason": null,
+          "intent": null,
+          "performed_via_github_app": null
+        }
+      ],
+      "reactions": [],
       "comments": [],
       "reviews": [],
       "inline_comments": []
@@ -579,6 +1473,7 @@
       "merged_at": "2026-11-21T07:46:08Z",
       "merge_commit_sha": "d764b1788325b1e18452802d04e9e7ff386768a8",
       "changed_files": 9,
+      "locked": false,
       "author": "brownight",
       "head": {
         "ref": "codex/contribute-to-statarena",
@@ -667,6 +1562,70 @@
           "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/80c09f2827f8ebed579696cbe50bd42ca7f70873/proximal%2Findex.html"
         }
       ],
+      "timeline": [
+        {
+          "sha": "80c09f2827f8ebed579696cbe50bd42ca7f70873",
+          "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/git/commits/80c09f2827f8ebed579696cbe50bd42ca7f70873",
+          "html_url": "https://github.com/Statsinference/statsinference.github.io/commit/80c09f2827f8ebed579696cbe50bd42ca7f70873",
+          "author": {
+            "name": "Jiaming Hu",
+            "date": "2026-11-21T07:45:39Z"
+          },
+          "committer": {
+            "name": "Jiaming Hu",
+            "date": "2026-11-21T07:45:39Z"
+          },
+          "tree": {
+            "sha": "162fa3b7729e3af537e66a34521debbdd13bcd3c",
+            "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/git/trees/162fa3b7729e3af537e66a34521debbdd13bcd3c"
+          },
+          "message": "Add a unified Contribute to StatArena entry point",
+          "parents": [
+            {
+              "sha": "792ada398a7026298783267ceb32843229e6f29b",
+              "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/git/commits/792ada398a7026298783267ceb32843229e6f29b",
+              "html_url": "https://github.com/Statsinference/statsinference.github.io/commit/792ada398a7026298783267ceb32843229e6f29b"
+            }
+          ],
+          "verification": {
+            "verified": false,
+            "reason": "unsigned",
+            "signature": null,
+            "payload": null,
+            "verified_at": null
+          },
+          "event": "committed"
+        },
+        {
+          "id": 36846178444,
+          "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/issues/events/36846178444",
+          "actor": {
+            "login": "brownight",
+            "type": "User"
+          },
+          "event": "merged",
+          "commit_id": "d764b1788325b1e18452802d04e9e7ff386768a8",
+          "commit_url": "https://api.github.com/repos/Statsinference/statsinference.github.io/commits/d764b1788325b1e18452802d04e9e7ff386768a8",
+          "created_at": "2026-11-21T07:46:08Z",
+          "performed_via_github_app": null
+        },
+        {
+          "id": 36846178532,
+          "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/issues/events/36846178532",
+          "actor": {
+            "login": "brownight",
+            "type": "User"
+          },
+          "event": "closed",
+          "commit_id": null,
+          "commit_url": null,
+          "created_at": "2026-11-21T07:46:08Z",
+          "state_reason": null,
+          "intent": null,
+          "performed_via_github_app": null
+        }
+      ],
+      "reactions": [],
       "comments": [],
       "reviews": [],
       "inline_comments": []
@@ -684,6 +1643,7 @@
       "merged_at": null,
       "merge_commit_sha": "add6318224801b258594bc6e347e66ff5a72f42b",
       "changed_files": 1,
+      "locked": false,
       "author": "QingFengXiao214",
       "head": {
         "ref": "propose-proximal-linear-bridge",
@@ -708,6 +1668,42 @@
           "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/ac718fed84ecfe554a5bcf8f5bd48bab8f947362/data-submissions%2Fsimulated-dgp%2Fsubmissions%2Fproximal-linear-bridge.md"
         }
       ],
+      "timeline": [
+        {
+          "sha": "ac718fed84ecfe554a5bcf8f5bd48bab8f947362",
+          "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/git/commits/ac718fed84ecfe554a5bcf8f5bd48bab8f947362",
+          "html_url": "https://github.com/Statsinference/statsinference.github.io/commit/ac718fed84ecfe554a5bcf8f5bd48bab8f947362",
+          "author": {
+            "name": "QingFengXiao214",
+            "date": "2026-11-21T08:27:07Z"
+          },
+          "committer": {
+            "name": "GitHub",
+            "date": "2026-11-21T08:27:07Z"
+          },
+          "tree": {
+            "sha": "eabee4e5355a647abe9f782f24a1a789faac02e8",
+            "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/git/trees/eabee4e5355a647abe9f782f24a1a789faac02e8"
+          },
+          "message": "Create documentation for proximal linear bridge workflow\n\nAdd proximal linear-bridge simulation proposal",
+          "parents": [
+            {
+              "sha": "caee2422415fecefdbaa6be7c6131711fb2a5440",
+              "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/git/commits/caee2422415fecefdbaa6be7c6131711fb2a5440",
+              "html_url": "https://github.com/Statsinference/statsinference.github.io/commit/caee2422415fecefdbaa6be7c6131711fb2a5440"
+            }
+          ],
+          "verification": {
+            "verified": true,
+            "reason": "valid",
+            "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsFcBAABCAAQBQJrAVXbCRC1aQ7uu5UhlAAAGT8QAJZvtXamHijiPDh9edBItgHW\njKduGuVfWT1S4++nr2UAiGAfiAgOunqF3RsKGrJOF+wHfTl8FFRlXWxAgnVDLKcW\nIpMLc102v+O8iOtLPdygbYCqT51CgcY+fRKof9Tz0FebeaVfJoIabI1ptBglKY0O\nTXVp45vhDcEXZ2JhWqaTTOHVvjQPX01yNFRs7lwe4JYgs8Uo0BDmrml6Pk9E3KDL\n0O6JHP/qVXw/8GzCwWmvqu5n79wBj2ZnI3pd9JYpYFTPuT4HYTAcjFFi1aila32m\nV9j3SfJhqxrN4tHPDENVG5WzNT5ox9HD1uDwZy3e0fX+uBOu1PNu6pTrjTovhf6Y\nEXVp1qQGLswaEQdhhS/jdm4fYkyUKD+cv69K9YkdOHXyL3MQw2lwPCxqtGOgjvQ/\nzdIni3/PLUZlMhIpeTnieRbbUSPkTnyjl9bOCAPoE/QEH8gJzdpTJEKYwlH1pRSZ\nM239hc6BVfUVn7vEp++DvC0sGKYlpQRTIO2e7JTpN5WRjNt1SVcbz+ZDPJ7nWxSl\nkBh+hsAhJKAhUZm3lZsM2n9FpjEhQJG2Weg9DBRLdG0htAMbROZyXWpGLTX8EEi0\nZ6yzlPe2yNyuxUqbhz5w0F8SsQbDvVsZhD0Q+kUYUc2hIhNfkQKT+5wVjFTUGl8a\nligbbVuRNNkOW1njls4a\n=awE5\n-----END PGP SIGNATURE-----\n",
+            "payload": "tree eabee4e5355a647abe9f782f24a1a789faac02e8\nparent caee2422415fecefdbaa6be7c6131711fb2a5440\nauthor QingFengXiao214 <145120766+QingFengXiao214@users.noreply.github.com> 1795249627 +0800\ncommitter GitHub <noreply@github.com> 1795249627 +0800\n\nCreate documentation for proximal linear bridge workflow\n\nAdd proximal linear-bridge simulation proposal",
+            "verified_at": "2026-11-21T08:27:08Z"
+          },
+          "event": "committed"
+        }
+      ],
+      "reactions": [],
       "comments": [],
       "reviews": [],
       "inline_comments": [],
@@ -721,11 +1717,12 @@
       "draft": false,
       "html_url": "https://github.com/Statsinference/statsinference.github.io/pull/9",
       "created_at": "2026-11-22T04:38:43Z",
-      "updated_at": "2026-11-22T04:38:44Z",
+      "updated_at": "2026-11-22T05:27:21Z",
       "closed_at": null,
       "merged_at": null,
       "merge_commit_sha": "d7bdafe9867a292e033674dddd3a17df459b3a09",
       "changed_files": 1,
+      "locked": false,
       "author": "lisuo33",
       "head": {
         "ref": "main",
@@ -750,8 +1747,122 @@
           "blob_url": "https://github.com/Statsinference/statsinference.github.io/blob/8a2989c913581f36c31ee24cb74e2655ea65debf/data-submissions%2Fsimulated-dgp%2Fcate-rolling-yang-2014-gaussian-bump-v1.md"
         }
       ],
+      "timeline": [
+        {
+          "sha": "8a2989c913581f36c31ee24cb74e2655ea65debf",
+          "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/git/commits/8a2989c913581f36c31ee24cb74e2655ea65debf",
+          "html_url": "https://github.com/Statsinference/statsinference.github.io/commit/8a2989c913581f36c31ee24cb74e2655ea65debf",
+          "author": {
+            "name": "李桫",
+            "date": "2026-11-22T04:30:24Z"
+          },
+          "committer": {
+            "name": "李桫",
+            "date": "2026-11-22T04:30:24Z"
+          },
+          "tree": {
+            "sha": "b275790de9ab767181f9cf6390a5c0cbc513ba4d",
+            "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/git/trees/b275790de9ab767181f9cf6390a5c0cbc513ba4d"
+          },
+          "message": "datasubmission test",
+          "parents": [
+            {
+              "sha": "3dfda59067e0afc306af6eb666c757e96fc49bd7",
+              "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/git/commits/3dfda59067e0afc306af6eb666c757e96fc49bd7",
+              "html_url": "https://github.com/Statsinference/statsinference.github.io/commit/3dfda59067e0afc306af6eb666c757e96fc49bd7"
+            }
+          ],
+          "verification": {
+            "verified": false,
+            "reason": "unsigned",
+            "signature": null,
+            "payload": null,
+            "verified_at": null
+          },
+          "event": "committed"
+        },
+        {
+          "id": 36904568122,
+          "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/issues/events/36904568122",
+          "actor": {
+            "login": "lisuo33",
+            "type": "User"
+          },
+          "event": "review_requested",
+          "commit_id": null,
+          "commit_url": null,
+          "created_at": "2026-11-22T04:38:44Z",
+          "review_requester": {
+            "login": "lisuo33",
+            "type": "User"
+          },
+          "requested_reviewer": {
+            "login": "shibo769",
+            "type": "User"
+          },
+          "performed_via_github_app": null
+        },
+        {
+          "id": 36904568175,
+          "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/issues/events/36904568175",
+          "actor": {
+            "login": "lisuo33",
+            "type": "User"
+          },
+          "event": "review_requested",
+          "commit_id": null,
+          "commit_url": null,
+          "created_at": "2026-11-22T04:38:44Z",
+          "review_requester": {
+            "login": "lisuo33",
+            "type": "User"
+          },
+          "requested_reviewer": {
+            "login": "brownight",
+            "type": "User"
+          },
+          "performed_via_github_app": null
+        },
+        {
+          "id": 6010543481,
+          "user": {
+            "login": "shibo769",
+            "type": "User"
+          },
+          "body": "Thanks for grounding this proposal in Rolling and Yang's Section 5.2 and documenting the fixed-query adaptation. Please push a new commit to this PR addressing the following items.\n\n1. Move the proposal to `data-submissions/simulated-dgp/submissions/cate-rolling-yang-2014-gaussian-bump-v1.md`. The existing check reported “No data proposal changed” because the file was one directory above the submissions folder.\n2. Add **Variables and data-generating process** from the [updated simulated DGP template](https://github.com/Statsinference/statsinference.github.io/blob/main/data-submissions/simulated-dgp/TEMPLATE.md). Define the observed columns and latent noise. Under **Structural equations**, give the distribution of the covariate and treatment, the assignment and error independence assumptions, and the outcome equation. Define both arm means and the Gaussian bump function explicitly so a reviewer can follow how the localized CATE arises. Please distinguish the source equations from any adaptations.\n3. Write the reference estimand as `tau(u_star) = mu_1(u_star) - mu_0(u_star)` using the defined arm means. Please share the private review bundle with a maintainer, including the exact query and parameters, seeds, reference value, and one bounded command that generates an observed table and checks its truth. Keep protected evaluation settings in the private review materials.\n\nA new commit on this PR is sufficient. Thank you.\r\n",
+          "commit_id": "8a2989c913581f36c31ee24cb74e2655ea65debf",
+          "state": "changes_requested",
+          "html_url": "https://github.com/Statsinference/statsinference.github.io/pull/9#pullrequestreview-6010543481",
+          "pull_request_url": "https://api.github.com/repos/Statsinference/statsinference.github.io/pulls/9",
+          "_links": {
+            "html": {
+              "href": "https://github.com/Statsinference/statsinference.github.io/pull/9#pullrequestreview-6010543481"
+            },
+            "pull_request": {
+              "href": "https://api.github.com/repos/Statsinference/statsinference.github.io/pulls/9"
+            }
+          },
+          "submitted_at": "2026-11-22T05:27:21Z",
+          "updated_at": "2026-11-22T05:27:21Z",
+          "author_association": "MEMBER",
+          "event": "reviewed"
+        }
+      ],
+      "reactions": [],
       "comments": [],
-      "reviews": [],
+      "reviews": [
+        {
+          "id": 6010543481,
+          "html_url": "https://github.com/Statsinference/statsinference.github.io/pull/9#pullrequestreview-6010543481",
+          "body": "Thanks for grounding this proposal in Rolling and Yang's Section 5.2 and documenting the fixed-query adaptation. Please push a new commit to this PR addressing the following items.\n\n1. Move the proposal to `data-submissions/simulated-dgp/submissions/cate-rolling-yang-2014-gaussian-bump-v1.md`. The existing check reported “No data proposal changed” because the file was one directory above the submissions folder.\n2. Add **Variables and data-generating process** from the [updated simulated DGP template](https://github.com/Statsinference/statsinference.github.io/blob/main/data-submissions/simulated-dgp/TEMPLATE.md). Define the observed columns and latent noise. Under **Structural equations**, give the distribution of the covariate and treatment, the assignment and error independence assumptions, and the outcome equation. Define both arm means and the Gaussian bump function explicitly so a reviewer can follow how the localized CATE arises. Please distinguish the source equations from any adaptations.\n3. Write the reference estimand as `tau(u_star) = mu_1(u_star) - mu_0(u_star)` using the defined arm means. Please share the private review bundle with a maintainer, including the exact query and parameters, seeds, reference value, and one bounded command that generates an observed table and checks its truth. Keep protected evaluation settings in the private review materials.\n\nA new commit on this PR is sufficient. Thank you.\r\n",
+          "author_association": "MEMBER",
+          "author": "shibo769",
+          "state": "CHANGES_REQUESTED",
+          "submitted_at": "2026-11-22T05:27:21Z",
+          "commit_id": "8a2989c913581f36c31ee24cb74e2655ea65debf",
+          "reactions": []
+        }
+      ],
       "inline_comments": [],
       "checks": [
         {
@@ -786,8 +1897,27 @@
       "created_at": "2026-11-17T02:45:27Z",
       "updated_at": "2026-11-17T02:47:21Z",
       "closed_at": "2026-11-17T02:47:21Z",
+      "locked": false,
       "author": "brownight",
       "labels": [],
+      "timeline": [
+        {
+          "id": 36356176507,
+          "url": "https://api.github.com/repos/Statsinference/statsinference.github.io/issues/events/36356176507",
+          "actor": {
+            "login": "brownight",
+            "type": "User"
+          },
+          "event": "closed",
+          "commit_id": null,
+          "commit_url": null,
+          "created_at": "2026-11-17T02:47:21Z",
+          "state_reason": null,
+          "intent": null,
+          "performed_via_github_app": null
+        }
+      ],
+      "reactions": [],
       "comments": []
     }
   ]

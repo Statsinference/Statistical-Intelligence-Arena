@@ -1,0 +1,34 @@
+name: Website data contribution precheck
+
+on:
+  pull_request_target:
+    branches: [main]
+    types: [opened, synchronize, reopened, ready_for_review, edited]
+    paths:
+      - 'website/data-submissions/**'
+
+permissions:
+  contents: read
+  pull-requests: read
+
+concurrency:
+  group: website-data-contribution-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      # The checker reads PR metadata and the immutable Markdown blob through
+      # the API. The workspace contains only trusted base code.
+      - name: Check out trusted validator
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: ${{ github.repository }}
+          ref: ${{ github.event.pull_request.base.sha }}
+          persist-credentials: false
+      - name: Validate contribution structure
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 website/scripts/check_data_contribution.py --path-prefix website/
