@@ -1,0 +1,37 @@
+name: Submit a method
+description: Submit a statistical method or model for evaluation on StatArena.
+title: "[Method submission] Method"
+body:
+  - type: input
+    id: method_link
+    attributes:
+      label: Method link
+      description: Provide a public link to a runnable implementation or model.
+      placeholder: https://github.com/owner/repository
+    validations:
+      required: true
+  - type: dropdown
+    id: domain
+    attributes:
+      label: Research domain
+      description: Choose the domain you want the method evaluated on.
+      options:
+        - Average Treatment Effect
+        - Conditional Average Treatment Effect
+        - Causal Mediation Analysis
+        - Instrumental Variables
+        - Proximal Causal Inference
+        - Difference-in-Differences
+        - Nonparametric Regression
+        - Quantile Inference
+        - Semi-Supervised Inference
+        - Missing Data
+    validations:
+      required: true
+  - type: textarea
+    id: checklist
+    attributes:
+      label: Completed checklist
+      description: Fill out the [method checklist](https://github.com/Statsinference/Statistical-Intelligence-Arena/blob/main/website/method-submissions/method-checklist.md) and paste the completed Markdown here.
+    validations:
+      required: true

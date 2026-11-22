@@ -2,13 +2,17 @@ name: Sync method submissions
 on:
   schedule:
     - cron: '7,17,27,37,47,57 * * * *'
+  issues:
+    types: [opened, edited, reopened, closed]
   push:
     branches: [main]
     paths:
       - .github/workflows/method-submissions-sync.yml
+      - website/method-submissions/sync.py
   workflow_dispatch:
 permissions:
   contents: write
+  issues: read
 concurrency:
   group: method-submissions-sync
   cancel-in-progress: false
@@ -20,23 +24,13 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: main
-          sparse-checkout: method-submissions
-      - name: Fetch the pinned public intake parser
-        run: |
-          python3 - <<'PY'
-          import hashlib
-          import pathlib
-          import urllib.request
-          url = 'https://raw.githubusercontent.com/Statsinference/statsinference.github.io/caee2422415fecefdbaa6be7c6131711fb2a5440/method-submissions/sync.py'
-          with urllib.request.urlopen(url, timeout=30) as response:
-              content = response.read()
-          expected = 'db572ffda839c6b9bfbb65f9d5311ccab24f21d55331eb094135c497ff6fc6c9'
-          if hashlib.sha256(content).hexdigest() != expected:
-              raise RuntimeError('Intake parser fingerprint mismatch')
-          pathlib.Path('method-submissions/sync.py').write_bytes(content)
-          PY
-      - name: Import public method submissions
-        run: python3 method-submissions/sync.py
+          sparse-checkout: |
+            method-submissions
+            website/method-submissions
+      - name: Archive private method submissions
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 website/method-submissions/sync.py
       - name: Save the submission list
         shell: bash
         run: |

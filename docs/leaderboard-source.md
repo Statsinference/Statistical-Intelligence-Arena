@@ -12,15 +12,9 @@ python -m http.server 8000 --bind 127.0.0.1 --directory website
 
 Open [the local leaderboard](http://127.0.0.1:8000/) after starting the server.
 
-The [live leaderboard](https://statsinference.github.io/) is published by GitHub Pages from the [deployment repository](https://github.com/Statsinference/statsinference.github.io). That repository also receives the public contribution proposals and method issues.
+The [live leaderboard](https://statsinference.github.io/) is published by GitHub Pages from the [deployment repository](https://github.com/Statsinference/statsinference.github.io). Maintain `website/` in the private repository. Submit data proposals and method issues there through the [contribution guide](../CONTRIBUTING.md).
 
-On a clean working branch, bring in approved updates from the deployment repository before making changes in `website/`.
-
-```sh
-git subtree pull --prefix=website https://github.com/Statsinference/statsinference.github.io.git main
-```
-
-To deploy a reviewed revision from the private repository, publish the `website/` subtree to the deployment repository's `main` branch.
+To deploy a reviewed revision from the private repository, publish only the `website/` subtree to the deployment repository's `main` branch.
 
 ```sh
 git subtree push --prefix=website https://github.com/Statsinference/statsinference.github.io.git main
@@ -28,8 +22,10 @@ git subtree push --prefix=website https://github.com/Statsinference/statsinferen
 
 ## Previous repository records
 
+- Continue review in the private repository at [PR #32](https://github.com/Statsinference/Statistical-Intelligence-Arena/pull/32) and [PR #33](https://github.com/Statsinference/Statistical-Intelligence-Arena/pull/33). The original proposal files and commit authors are preserved.
 - [Git history bundle](archive/leaderboard/public-pages-history.bundle) contains all 26 branch heads and the available pull request refs, including the submitted commits for PRs #8 and #9.
 - [GitHub discussion snapshot](archive/leaderboard/github-discussions.json) contains the eight pull requests and issue #3, including their states, descriptions, changed files and recorded discussions at capture time. PRs #8 and #9 were open at capture time and await review.
+- [Repository inventory](archive/leaderboard/github-repository-inventory.json) records deployment and workflow metadata. The [Actions archive](archive/leaderboard/statarena-pages-actions.zip) includes the available logs and build artifacts with a [SHA-256 checksum](archive/leaderboard/statarena-pages-actions.sha256).
 
 To browse a submission from the archived Git refs, clone the bundle into a separate directory.
 

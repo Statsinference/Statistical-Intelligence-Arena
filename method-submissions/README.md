@@ -1,11 +1,11 @@
 # Method submissions
 
-[View submitted methods](received/README.md) · [Public intake](https://github.com/Statsinference/statsinference.github.io/issues?q=is%3Aissue+in%3Atitle+%22%5BMethod+submission%5D%22)
+[View submitted methods](received/README.md) · [Submit a method](https://github.com/Statsinference/Statistical-Intelligence-Arena/issues/new?template=method-submission.yml)
 
-Authors follow the [method submission guide](https://github.com/Statsinference/statsinference.github.io/blob/main/method-submissions/README.md) to submit a method link, research domain, and completed Markdown checklist in a public GitHub issue.
+Authors with repository access can submit a method link, research domain and completed Markdown checklist in a private GitHub issue. Use the [method submission guide](../website/method-submissions/README.md) to prepare the materials. Contact a maintainer if you need access.
 
-The submission sync workflow copies confirmed submissions into `method-submissions/received/` and updates the list above. It runs every ten minutes, on workflow updates, and on manual dispatch. GitHub may delay scheduled runs. Integration checks are stored separately in `checks/` and do not appear as genuine submissions.
+The submission sync workflow copies valid submissions into `method-submissions/received/` and updates the list above. It runs after issue changes, on a schedule and on manual dispatch. Integration checks are stored separately in `checks/`.
 
-The workflow uses a pinned and SHA-256-verified copy of the public intake parser. It reads public issues and writes only this submission folder using this repository's built-in Actions token. It does not read, change, publish or execute any DGP or submitted model.
+The workflow reads issues in this repository using its built-in Actions token. Each submission remains available for maintainer review.
 
 The earlier `service/` backend is unused by this GitHub-native flow. No Vercel deployment, personal access token or Turnstile key is required.
