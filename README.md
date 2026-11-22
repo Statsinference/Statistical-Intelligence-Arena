@@ -87,8 +87,6 @@ Run `statarena-lite list` to see all supported domains. Use `dev` to develop a m
 
 </details>
 
-## Contributing DGPs / Methods
-
 ## Contributors
 
 <table>
@@ -97,9 +95,9 @@ Run `statarena-lite list` to see all supported domains. Use `dev` to develop a m
   </thead>
   <tbody>
     <tr>
-      <td width="25%"><a href="mailto:shibo@bu.edu">Shi Bo</a><br><small><sub>Boston University</sub></small></td>
-      <td width="25%"><a href="mailto:jh7453@bu.edu">Jiaming Hu</a><br><small><sub>Boston University</sub></small></td>
-      <td width="25%"><a href="mailto:zhangzhiheng@mail.shufe.edu.cn">Zhiheng Zhang</a><br><small><sub>Shanghai University of Finance and Economics</sub></small></td>
+      <td width="25%"><a href="https://github.com/shibo769">Shi Bo</a><br><small><sub>Boston University</sub></small></td>
+      <td width="25%"><a href="https://www.linkedin.com/in/jiaming-h-24400a1b8/">Jiaming Hu</a><br><small><sub>Boston University</sub></small></td>
+      <td width="25%"><a href="https://zhzhang01.github.io/">Zhiheng Zhang</a><br><small><sub>Shanghai University of Finance and Economics</sub></small></td>
       <td width="25%"></td>
     </tr>
     <tr><th colspan="4" align="left">Method Contributors (Alphabetical Order)</th></tr>
@@ -135,6 +133,18 @@ Run `statarena-lite list` to see all supported domains. Use `dev` to develop a m
       <td></td>
     </tr>
     <tr><th colspan="4" align="left">Advisors</th></tr>
+    <tr>
+      <td><a href="https://ssds.sufe.edu.cn/ssds_en/03/30/c20066a262960/page.htm">Xingdong Feng</a><br><small><sub>Shanghai University of Finance and Economics</sub></small></td>
+      <td><a href="https://www.gbu.edu.cn/sz_details_g7yU_92/791.html">Yiyan Huang</a><br><small><sub>Great Bay University</sub></small></td>
+      <td><a href="https://sustech.edu.cn/en/faculties/fangkong.html">Fang Kong</a><br><small><sub>Southern University of Science and Technology</sub></small></td>
+      <td><a href="https://ssds.sufe.edu.cn/ssds_en/03/1b/c20064a262939/page.htm">Ting Li</a><br><small><sub>Shanghai University of Finance and Economics</sub></small></td>
+    </tr>
+    <tr>
+      <td><a href="https://www.lse.ac.uk/people/chengchun-shi">Chengchun Shi</a><br><small><sub>The London School of Economics and Political Science</sub></small></td>
+      <td><a href="https://ssds.sufe.edu.cn/ssds_en/03/3e/c20066a262974/page.htm">Fan Zhou</a><br><small><sub>Shanghai University of Finance and Economics</sub></small></td>
+      <td></td>
+      <td></td>
+    </tr>
   </tbody>
 </table>
 
