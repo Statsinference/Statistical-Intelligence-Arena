@@ -74,20 +74,18 @@ Run `statarena-lite list` to see all supported domains. Use `dev` to develop a m
 
 | Research domain | DGPs | Methods |
 | :--- | ---: | ---: |
-| Average Treatment Effect | 22 | 2 |
-| Conditional Average Treatment Effect | 12 | 2 |
-| Causal Mediation Analysis | 31 | 2 |
-| Instrumental Variables | 21 | 2 |
-| Proximal Causal Inference | 15 | 2 |
-| Difference-in-Differences | 11 | 2 |
+| Average Treatment Effect | 22 | 5 |
+| Conditional Average Treatment Effect | 12 | 5 |
+| Causal Mediation Analysis | 31 | 5 |
+| Instrumental Variables | 21 | 5 |
+| Proximal Causal Inference | 15 | 5 |
+| Difference-in-Differences | 11 | 5 |
 | Nonparametric Regression | 20 | 0 |
 | Quantile Inference | 27 | 0 |
 | Semi-Supervised Inference | 16 | 0 |
 | Missing Data | 8 | 0 |
 
 </details>
-
-The Difference-in-Differences count includes Synthetic Control DGPs.
 
 ## Contributing DGPs / Methods
 
@@ -157,4 +155,4 @@ The repository includes the [Apache License 2.0](LICENSE). Please see [NOTICE.md
 
 ## Acknowledgements
 
-[StatArena (The Statistical Intelligence Arena)](https://statsinference.github.io/) is an open academic collaboration jointly led by [Shanghai University of Finance and Economics](https://www.sufe.edu.cn/) and [Boston University](https://www.bu.edu/).
+[StatArena (The Statistical Intelligence Arena)](https://statsinference.github.io/) is an open academic collaboration jointly led by staff from [Shanghai University of Finance and Economics](https://www.sufe.edu.cn/) and [Boston University](https://www.bu.edu/).

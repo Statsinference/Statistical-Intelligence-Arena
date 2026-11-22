@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="856" height="488" viewBox="0 0 856 488" role="img" aria-labelledby="coverage-title coverage-desc">
   <title id="coverage-title">StatArena domain coverage</title>
-  <desc id="coverage-desc">Average Treatment Effect: 22 DGPs, 2 methods. Conditional Average Treatment Effect: 12 DGPs, 2 methods. Causal Mediation Analysis: 31 DGPs, 2 methods. Instrumental Variables: 21 DGPs, 2 methods. Proximal Causal Inference: 15 DGPs, 2 methods. Difference-in-Differences: 11 DGPs, 2 methods. Nonparametric Regression: 20 DGPs, 0 methods. Quantile Inference: 27 DGPs, 0 methods. Semi-Supervised Inference: 16 DGPs, 0 methods. Missing Data: 8 DGPs, 0 methods.</desc>
+  <desc id="coverage-desc">Average Treatment Effect: 22 DGPs, 5 methods. Conditional Average Treatment Effect: 12 DGPs, 5 methods. Causal Mediation Analysis: 31 DGPs, 5 methods. Instrumental Variables: 21 DGPs, 5 methods. Proximal Causal Inference: 15 DGPs, 5 methods. Difference-in-Differences: 11 DGPs, 5 methods. Nonparametric Regression: 20 DGPs, 0 methods. Quantile Inference: 27 DGPs, 0 methods. Semi-Supervised Inference: 16 DGPs, 0 methods. Missing Data: 8 DGPs, 0 methods.</desc>
   <rect x=".5" y=".5" width="855" height="487" rx="16" fill="#ffffff" stroke="#d8e1e8"/>
   <path d="M16 1H840a15 15 0 0 1 15 15v47H1V16A15 15 0 0 1 16 1Z" fill="#f3f7fa"/>
   <g font-family="Arial">
@@ -29,7 +29,7 @@
       <circle cx="598.2" cy="89" r="6" fill="#2867c3" stroke="#ffffff" stroke-width="1.25"/>
       <text x="730" y="94.5" text-anchor="end" fill="#142b45" font-size="17" font-weight="700">22</text>
       <rect x="771" y="77" width="38" height="24" rx="12" fill="#e1f4ef"/>
-      <text x="790" y="94" text-anchor="middle" fill="#00665c" font-size="15" font-weight="700">2</text>
+      <text x="790" y="94" text-anchor="middle" fill="#00665c" font-size="15" font-weight="700">5</text>
     </g>
     <g>
       <path d="M24 146H832" stroke="#edf2f6"/>
@@ -39,7 +39,7 @@
       <circle cx="492.2" cy="127" r="6" fill="#08796d" stroke="#ffffff" stroke-width="1.25"/>
       <text x="730" y="132.5" text-anchor="end" fill="#142b45" font-size="17" font-weight="700">12</text>
       <rect x="771" y="115" width="38" height="24" rx="12" fill="#e1f4ef"/>
-      <text x="790" y="132" text-anchor="middle" fill="#00665c" font-size="15" font-weight="700">2</text>
+      <text x="790" y="132" text-anchor="middle" fill="#00665c" font-size="15" font-weight="700">5</text>
     </g>
     <g>
       <path d="M24 184H832" stroke="#edf2f6"/>
@@ -49,7 +49,7 @@
       <circle cx="693.6" cy="165" r="6" fill="#7948bd" stroke="#ffffff" stroke-width="1.25"/>
       <text x="730" y="170.5" text-anchor="end" fill="#142b45" font-size="17" font-weight="700">31</text>
       <rect x="771" y="153" width="38" height="24" rx="12" fill="#e1f4ef"/>
-      <text x="790" y="170" text-anchor="middle" fill="#00665c" font-size="15" font-weight="700">2</text>
+      <text x="790" y="170" text-anchor="middle" fill="#00665c" font-size="15" font-weight="700">5</text>
     </g>
     <g>
       <path d="M24 222H832" stroke="#edf2f6"/>
@@ -59,7 +59,7 @@
       <circle cx="587.6" cy="203" r="6" fill="#9c5c08" stroke="#ffffff" stroke-width="1.25"/>
       <text x="730" y="208.5" text-anchor="end" fill="#142b45" font-size="17" font-weight="700">21</text>
       <rect x="771" y="191" width="38" height="24" rx="12" fill="#e1f4ef"/>
-      <text x="790" y="208" text-anchor="middle" fill="#00665c" font-size="15" font-weight="700">2</text>
+      <text x="790" y="208" text-anchor="middle" fill="#00665c" font-size="15" font-weight="700">5</text>
     </g>
     <g>
       <path d="M24 260H832" stroke="#edf2f6"/>
@@ -69,7 +69,7 @@
       <circle cx="524.0" cy="241" r="6" fill="#ac3c76" stroke="#ffffff" stroke-width="1.25"/>
       <text x="730" y="246.5" text-anchor="end" fill="#142b45" font-size="17" font-weight="700">15</text>
       <rect x="771" y="229" width="38" height="24" rx="12" fill="#e1f4ef"/>
-      <text x="790" y="246" text-anchor="middle" fill="#00665c" font-size="15" font-weight="700">2</text>
+      <text x="790" y="246" text-anchor="middle" fill="#00665c" font-size="15" font-weight="700">5</text>
     </g>
     <g>
       <path d="M24 298H832" stroke="#edf2f6"/>
@@ -79,7 +79,7 @@
       <circle cx="481.6" cy="279" r="6" fill="#087597" stroke="#ffffff" stroke-width="1.25"/>
       <text x="730" y="284.5" text-anchor="end" fill="#142b45" font-size="17" font-weight="700">11</text>
       <rect x="771" y="267" width="38" height="24" rx="12" fill="#e1f4ef"/>
-      <text x="790" y="284" text-anchor="middle" fill="#00665c" font-size="15" font-weight="700">2</text>
+      <text x="790" y="284" text-anchor="middle" fill="#00665c" font-size="15" font-weight="700">5</text>
     </g>
     <g>
       <path d="M24 336H832" stroke="#edf2f6"/>
