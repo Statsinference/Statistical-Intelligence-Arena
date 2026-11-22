@@ -1,7 +1,7 @@
 /* Scoped to the two comparison charts; table, navigation and submission styles are unchanged. */
-#methodology.comparison-charts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin:36px 0 0;scroll-margin-top:80px}
-.comparison-charts .comparison-card{min-width:0;border:1px solid var(--line);border-radius:8px;background:var(--surface);padding:20px 18px 14px}
-.comparison-charts h3{font:550 14px/1.5 var(--body);margin:0 0 12px}
+#methodology.comparison-charts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin:36px 0 0;scroll-margin-top:80px}
+.comparison-charts .comparison-card{min-width:0;border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:20px 20px 16px;box-shadow:0 1px 3px #0000000a}
+.comparison-charts h3{font:620 15px/1.5 var(--body);margin:0 0 10px;letter-spacing:-.015em}
 .comparison-charts .comparison-plot{position:relative;min-width:0;min-height:290px}
 .comparison-charts svg{display:block;width:100%;height:auto;overflow:visible;font-family:var(--body)}
 .comparison-charts .chart-grid{stroke:var(--line);stroke-width:1;stroke-dasharray:2 4}
@@ -9,16 +9,23 @@
 .comparison-charts .chart-tick{fill:var(--muted);font:10px var(--mono);font-variant-numeric:tabular-nums}
 .comparison-charts .chart-axis-title{fill:var(--muted);font:11px var(--body)}
 .comparison-charts .chart-reference{stroke:var(--muted);stroke-width:1.1;stroke-dasharray:5 4}
-.comparison-charts .chart-reference-label{fill:var(--muted);font:10px var(--mono)}
+.comparison-charts .chart-reference-label{fill:var(--muted);font:500 10px var(--body);paint-order:stroke;stroke:var(--surface);stroke-width:3px;stroke-linejoin:round}
+.comparison-charts .chart-pareto-path{fill:none;stroke:var(--accent);stroke-width:1.45;stroke-dasharray:5 4;stroke-linejoin:round;pointer-events:none}
+.comparison-charts .chart-pareto-ring{fill:none;stroke:var(--accent);stroke-width:1.25;pointer-events:none}
 .comparison-charts .chart-point{outline:none;cursor:pointer}
 .comparison-charts .chart-marker{fill:var(--chart-marker-light,var(--fg));stroke:var(--surface);stroke-width:1.35}
 :root[data-theme=dark] .comparison-charts .chart-marker{fill:var(--chart-marker-dark,var(--fg))}
 .comparison-charts .chart-focus-ring{fill:none;stroke:currentColor;stroke-width:1.5;opacity:0}
 .comparison-charts .chart-point:hover .chart-focus-ring,.comparison-charts .chart-point:focus-visible .chart-focus-ring{opacity:1}
-.comparison-charts .chart-legend{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 20px;margin-top:8px;min-height:18px;color:var(--muted);font:11px/1.6 var(--body)}
+.comparison-charts .chart-legend{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 17px;margin-top:8px;min-height:18px;color:var(--muted);font:11px/1.6 var(--body)}
 .comparison-charts .chart-legend-item{display:inline-flex;align-items:center;gap:7px;overflow-wrap:anywhere}
 .comparison-charts .chart-legend-marker{flex:0 0 15px;width:15px;height:15px;overflow:hidden}
 .comparison-charts .chart-legend-marker .chart-marker{stroke-width:.55}
+.comparison-charts .chart-pareto-caption{display:flex;align-items:baseline;gap:8px;margin:12px 0 0;padding-top:10px;border-top:1px solid var(--line);color:var(--muted);font:11px/1.5 var(--body)}
+.comparison-charts .chart-pareto-caption strong{font-weight:600;color:var(--fg)}
+.comparison-charts .chart-pareto-key{align-self:flex-start;flex:none;color:var(--accent)}
+.comparison-charts .chart-pareto-key-line{width:18px;margin-top:7px;border-top:1.5px dashed currentColor}
+.comparison-charts .chart-pareto-key-ring{width:11px;height:11px;margin:3px 3.5px 0;border:1.5px solid currentColor;border-radius:50%}
 @media(forced-colors:active){.comparison-charts .chart-marker,:root[data-theme=dark] .comparison-charts .chart-marker{fill:CanvasText;stroke:Canvas}}
 .comparison-charts .chart-empty{display:grid;place-items:center;min-height:275px;color:var(--quiet);font-size:12px;text-align:center}
 .comparison-charts .chart-note{margin:8px 0 0;color:var(--muted);font:11px/1.5 var(--body);text-align:center}

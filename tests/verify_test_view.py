@@ -349,6 +349,18 @@ def assert_medals(page, suite, key):
             assert medal.count() == 0
 
 
+def display_method(name):
+    return {
+        'Linear': 'Regularized Linear',
+        'Linear + GMM': 'Regularized Linear',
+        'CatBoost-TD': 'CatBoost',
+        'CatBoost-TD + GMM': 'CatBoost',
+        'XGB-TD': 'XGBoost',
+        'XGB-TD + GMM': 'XGBoost',
+        'Random Forest + GMM': 'Random Forest',
+    }.get(name, name)
+
+
 def check_chart_tooltip(page, host):
     point = host.locator('.chart-point').first
     tip = host.locator('.chart-tooltip')
@@ -359,7 +371,7 @@ def check_chart_tooltip(page, host):
     assert point.get_attribute('role') == 'button'
     assert point.get_attribute('aria-expanded') == 'true'
     assert point.get_attribute('aria-controls') == tip.get_attribute('id')
-    assert tip.locator('.chart-tooltip-title').inner_text() == point.get_attribute('data-method')
+    assert tip.locator('.chart-tooltip-title').inner_text() == display_method(point.get_attribute('data-method'))
     assert tip.locator('.chart-tooltip-row').count() == 2
     assert_at_most_four_decimals(tip.inner_text())
     assert 'original units' not in tip.inner_text().lower()
@@ -401,11 +413,23 @@ def check_chart(page, chart_id, domain, xkey, ykey, suite):
                 and isinstance(r.get(ykey), (int, float)) and r[xkey] > 0 and r[ykey] > 0
                 and (ykey != 'coverage' or r[ykey] <= 1)]
     assert points.count() == len(expected), (domain, chart_id, points.count(), len(expected))
+    def objective(row):
+        value = row[ykey]
+        return abs(value - suite['nominal_coverage']) if ykey == 'coverage' else value
+
     for point, row in zip(points.all(), expected):
         assert point.get_attribute('data-method') == row['method']
         assert math.isclose(float(point.get_attribute('data-x')), row[xkey], rel_tol=1e-12)
         assert math.isclose(float(point.get_attribute('data-y')), row[ykey] * (100 if ykey == 'coverage' else 1), rel_tol=1e-12)
         assert point.get_attribute('aria-label') and point.get_attribute('tabindex') == '0'
+        efficient = not any(other[xkey] <= row[xkey] and objective(other) <= objective(row)
+                            and (other[xkey] < row[xkey] or objective(other) < objective(row))
+                            for other in expected)
+        assert point.get_attribute('data-pareto') == str(efficient).lower(), (domain, row['method'])
+    if ykey == 'coverage':
+        assert host.locator('.chart-pareto-ring').count() == host.locator('.chart-point[data-pareto="true"]').count()
+    else:
+        assert host.locator('.chart-pareto-path').count() == 1
     read_marks = """nodes => nodes.map(node => [
         getComputedStyle(node).fill, node.localName, node.getAttribute('d')
     ])"""
@@ -503,11 +527,11 @@ with sync_playwright() as p:
         assert headers(page) == HEADINGS, (domain, headers(page))
         assert page.locator('#leaderboard tbody tr[data-method]').count() == len(suite['rows'])
         assert page.locator('#leaderboard tbody .method-details-row').count() == 0
-        assert sorted(page.locator('#leaderboard .mname').all_inner_texts()) == sorted(r['method'] for r in suite['rows'])
+        assert sorted(page.locator('#leaderboard .mname').all_inner_texts()) == sorted(display_method(r['method']) for r in suite['rows'])
         assert all(' + bootstrap' not in row['method'] for row in suite['rows'])
         if domain == 'mediation':
             catboost = page.locator('#leaderboard tr[data-method="CatBoost-TD"]')
-            assert catboost.locator('.mname').inner_text() == 'CatBoost-TD'
+            assert catboost.locator('.mname').inner_text() == 'CatBoost'
             assert catboost.locator('.org').count() == 0
             assert catboost.locator('.rank-cell').inner_text().strip().isdigit()
         check_chart(page, 'rmse-time-chart', domain, 'time_s', 'rmse', suite)
@@ -569,9 +593,22 @@ with sync_playwright() as p:
 
     # Display just NIE while retaining the treatment-1 natural indirect effect.
     page.locator('[data-t="mediation"]').click()
-    linear_toggle = page.locator('#leaderboard').get_by_role('button', name='Linear', exact=True)
+    linear_toggle = page.locator('#leaderboard').get_by_role('button', name='Regularized Linear', exact=True)
     linear_toggle.click()
     linear_settings = page.locator('.method-details-row .method-settings')
+    assert page.locator('.method-details-row .method-detail-grid > div').nth(1).locator('p').inner_text() == 'Influence-function based estimator'
+    fold_help = page.locator('.method-details-row .method-fold-toggle')
+    fold_tip = page.locator('.method-details-row .method-fold-tooltip')
+    assert fold_help.count() == 1 and fold_tip.is_hidden()
+    fold_help.hover()
+    assert fold_tip.is_visible() and 'treatment-stratified outer folds' in fold_tip.inner_text()
+    page.mouse.move(0, 0)
+    linear_toggle.focus()
+    page.keyboard.press('Tab')
+    assert fold_help.evaluate('(button) => button === document.activeElement')
+    assert fold_tip.is_visible()
+    page.keyboard.press('Escape')
+    assert fold_tip.is_hidden()
     for label, value in [('Treatment propensity clipping', '[0.01, 0.99]'),
                          ('Confidence level', '95%'), ('Bootstrap refits', '50 whole-row resamples')]:
         assert linear_settings.get_by_role('row').filter(
@@ -589,15 +626,15 @@ with sync_playwright() as p:
     for domain in EXPECTED:
         page.locator(f'[data-t="{domain}"]').click()
         page.locator('[data-fam="classical"]').click()
-        name = 'Random Forest + GMM' if domain == 'proximal' else 'Random Forest'
-        toggle = page.locator('#leaderboard').get_by_role('button', name=name, exact=True)
+        toggle = page.locator('#leaderboard').get_by_role('button', name='Random Forest', exact=True)
         if toggle.get_attribute('aria-expanded') == 'false':
             toggle.click()
         detail = page.locator('#' + toggle.get_attribute('aria-controls'))
         bootstrap = detail.locator('.method-detail-grid > div').filter(has=page.get_by_text('Bootstrap', exact=True))
         assert bootstrap.count() == 1
         value = bootstrap.locator('p').inner_text().strip()
-        assert value == '50', (domain, value)
+        assert value == 'Used', (domain, value)
+        assert re.search(r'\b50\b', detail.locator('.method-settings').inner_text())
         toggle.click()
         page.locator('[data-fam="all"]').click()
 
@@ -635,7 +672,7 @@ with sync_playwright() as p:
     assert 'not specified' not in page.locator('#domain-definition').inner_text().lower()
     page.locator('[data-fam="classical"]').click()
     assert page.locator('#leaderboard tbody tr[data-method]').count() == 4
-    for method in ('Random Forest', 'CatBoost-TD', 'XGB-TD'):
+    for method in ('Random Forest', 'CatBoost', 'XGBoost'):
         toggle = page.get_by_role('button', name=method, exact=True)
         toggle.click()
         baseline_detail = page.locator('#' + toggle.get_attribute('aria-controls'))
@@ -724,7 +761,7 @@ with sync_playwright() as p:
                 point.evaluate('(node) => node.focus({preventScroll:true})')
                 tip = host.locator('.chart-tooltip')
                 assert tip.is_visible(), (domain, chart_id, index)
-                assert tip.locator('.chart-tooltip-title').inner_text() == point.get_attribute('data-method')
+                assert tip.locator('.chart-tooltip-title').inner_text() == display_method(point.get_attribute('data-method'))
                 tooltip, area = tip.bounding_box(), host.bounding_box()
                 assert tooltip and area
                 assert tooltip['x'] >= area['x'] - 1 and tooltip['y'] >= area['y'] - 1

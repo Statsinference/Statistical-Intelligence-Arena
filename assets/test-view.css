@@ -55,6 +55,13 @@
 #leaderboard .method-detail-extra{grid-column:1/-1;display:grid;gap:7px}
 #leaderboard .method-detail-grid strong{display:block;font:600 10px/1.4 var(--body);color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
 #leaderboard .method-detail-grid p{margin:4px 0 0;font:13px/1.5 var(--body);color:var(--fg);overflow-wrap:anywhere}
+#leaderboard .method-fold-help{position:relative;display:inline-flex;align-items:center;margin-inline-start:6px;vertical-align:middle}
+#leaderboard .method-fold-toggle{width:17px;height:17px;padding:0;border:1px solid var(--line-strong);border-radius:50%;color:var(--muted);font:600 10px/1 var(--body);text-align:center}
+#leaderboard .method-fold-tooltip{position:absolute;z-index:2;inset-block-start:100%;inset-inline-start:-12px;display:block;visibility:hidden;width:max-content;max-width:min(238px,63cqw);padding:8px 10px;border:1px solid var(--line-strong);border-radius:5px;background:var(--surface);color:var(--fg);font:12px/1.4 var(--body);box-shadow:0 4px 12px #0002}
+#leaderboard .method-fold-help.is-pinned .method-fold-tooltip,#leaderboard .method-fold-help:not([data-dismissed]) .method-fold-toggle:focus-visible + .method-fold-tooltip{visibility:visible}
+@media(hover:hover){
+ #leaderboard .method-fold-help:not([data-dismissed]):hover .method-fold-tooltip{visibility:visible}
+}
 #leaderboard .method-config-box{width:100%;max-width:770px;border:1px solid var(--line);border-radius:6px;overflow:hidden}
 #leaderboard .method-settings{width:100%;min-width:0;table-layout:fixed;background:var(--surface)}
 #leaderboard .method-settings th,#leaderboard .method-settings td{padding:7px 12px;vertical-align:top;white-space:normal;overflow-wrap:anywhere;font:12px/1.5 var(--body)}

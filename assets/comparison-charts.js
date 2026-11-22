@@ -11,6 +11,7 @@
   ];
   const numeric = value => typeof value === 'number' && Number.isFinite(value);
   const methodName = row => row.method;
+  const methodLabel = row => typeof displayMethodName === 'function' ? displayMethodName(row) : methodName(row);
   const markerPalette = [
     {shape:'circle', light:'#267a73', dark:'#58b6a9'},
     {shape:'square', light:'#3767a2', dark:'#86b2ee'},
@@ -120,9 +121,9 @@
     tooltip.style.top = `${top}px`;
   }
   // Place separate directional indicators beside their respective axes.
-  // Search jointly so neither indicator obscures points, the target line or
+  // Search jointly so neither indicator obscures points, chart guides or
   // the other indicator. Narrow viewports use the same SVG coordinates.
-  function drawGuidance(svg, host, box, plotW, plotH, positions, nominalY, nominal, width) {
+  function drawGuidance(svg, host, box, plotW, plotH, positions, nominalY, nominal, width, staircase) {
     const xW = Math.min(96, Math.max(84, plotW - 12)), xH = 20;
     const yLabel = nominalY == null ? 'Lower RMSE' : `Toward ${formatNumber(nominal)}%`;
     // The rotated label and its arrow occupy separate vertical bands.
@@ -133,6 +134,13 @@
     }
     function collidesTarget(r) {
       return nominalY != null && nominalY >= r.y - 4 && nominalY <= r.y + r.h + 4;
+    }
+    function collidesFrontier(r) {
+      return staircase.slice(1).some(([x2,y2],index) => {
+        const [x1,y1] = staircase[index];
+        return Math.min(x1,x2) < r.x+r.w+3 && Math.max(x1,x2) > r.x-3 &&
+               Math.min(y1,y2) < r.y+r.h+3 && Math.max(y1,y2) > r.y-3;
+      });
     }
     function overlap(a,b) {
       return a.x < b.x + b.w + 4 && a.x + a.w + 4 > b.x && a.y < b.y + b.h + 4 && a.y + a.h + 4 > b.y;
@@ -145,13 +153,14 @@
                   y:box.top+plotH-xH-4-Math.min(76,plotH-xH-8)*k/10,w:xW,h:xH};
       const yr = {x:box.left+4+Math.min(90,Math.max(0,plotW-yW-8))*k/10,
                   y:box.top+4+Math.max(0,plotH-yH-8)*j/10,w:yW,h:yH};
-      if (!collidesTarget(xr)) xs.push({...xr, bad:collidesPoint(xr), distance:k, along:Math.abs(j-5)});
-      if (!collidesTarget(yr)) ys.push({...yr, bad:collidesPoint(yr), distance:k, along:Math.abs(j-5)});
+      if (!collidesTarget(xr)) xs.push({...xr, bad:collidesPoint(xr), crosses:collidesFrontier(xr), distance:k, along:Math.abs(j-5)});
+      if (!collidesTarget(yr)) ys.push({...yr, bad:collidesPoint(yr), crosses:collidesFrontier(yr), distance:k, along:Math.abs(j-5)});
     }
     let best = null;
     for (const xr of xs) for (const yr of ys) {
       const score = (Number(xr.bad)+Number(yr.bad))*10000 +
-                    Number(overlap(xr,yr))*10000 + xr.distance + yr.distance + 2*(xr.along + yr.along);
+                    Number(overlap(xr,yr))*10000 + (Number(xr.crosses)+Number(yr.crosses))*1000 +
+                    xr.distance + yr.distance + 2*(xr.along + yr.along);
       if (!best || score < best.score) best = {xr,yr,score};
     }
     if (!best) return; // impossible geometry must not obscure reference data
@@ -198,6 +207,28 @@
   function tick(value) {
     return formatNumber(value);
   }
+  function paretoFrontier(rows, xCost, yCost) {
+    const costs = rows.map(row => ({row, x:xCost(row), y:yCost(row)}));
+    return costs.filter(point => !costs.some(other =>
+      other.x <= point.x && other.y <= point.y && (other.x < point.x || other.y < point.y)
+    )).sort((a,b) => a.x-b.x).map(point => point.row);
+  }
+  function paretoCaption(nominal) {
+    const caption = document.createElement('p');
+    caption.className = 'chart-pareto-caption';
+    const symbol = document.createElement('span');
+    symbol.className = nominal == null ? 'chart-pareto-key chart-pareto-key-line' : 'chart-pareto-key chart-pareto-key-ring';
+    symbol.setAttribute('aria-hidden', 'true');
+    const text = document.createElement('span');
+    const title = document.createElement('strong');
+    title.textContent = 'Pareto frontier';
+    const description = nominal == null
+      ? 'Lowest observed RMSE within each time budget.'
+      : `Shorter intervals and coverage closer to ${formatNumber(nominal)}%.`;
+    text.append(title, document.createTextNode('. ' + description));
+    caption.append(symbol, text);
+    return caption;
+  }
   function renderChart(config, suite, candidates, styles) {
     const host = document.getElementById(config.id);
     if (!host) return;
@@ -237,10 +268,15 @@
     const plotH = height - box.top - box.bottom;
     const x = value => box.left + (Math.log10(value) - xAxis.min) / (xAxis.max-xAxis.min) * plotW;
     const y = value => box.top + (1 - (Math.log10(value) - yAxis.min) / (yAxis.max-yAxis.min)) * plotH;
+    const yCost = nominal == null ? yValue : row => Math.abs(row.coverage - nominal/100);
+    const frontier = paretoFrontier(rows, row => row[config.x], yCost);
+    const frontierMembers = new Set(frontier);
     const svg = svgElement('svg', {viewBox:`0 0 ${width} ${height}`, role:'group', 'aria-labelledby':config.id+'-title', 'aria-describedby':config.id+'-desc', 'data-domain':suite.domain, 'data-plot-left':box.left, 'data-plot-top':box.top, 'data-plot-width':plotW, 'data-plot-height':plotH});
     svg.append(svgElement('title', {id:config.id+'-title'}, config.title));
-    const guidanceDescription = config.y === 'coverage' ? `Shorter intervals are preferred, and coverage should be closer to ${formatNumber(nominal)} percent.` : 'Shorter time and lower RMSE are preferred.';
-    svg.append(svgElement('desc', {id:config.id+'-desc'}, `${document.getElementById('hero-title').textContent}. Results for ${rows.map(methodName).join(' and ')}. Both axes use a logarithmic scale. ${guidanceDescription}`));
+    const guidanceDescription = nominal == null
+      ? 'The dashed staircase marks the lowest observed RMSE within each time budget.'
+      : `Rings mark the Pareto frontier for interval length and distance from ${formatNumber(nominal)} percent coverage.`;
+    svg.append(svgElement('desc', {id:config.id+'-desc'}, `${document.getElementById('hero-title').textContent}. Results for ${rows.map(methodLabel).join(' and ')}. Both axes use a logarithmic scale. ${guidanceDescription}`));
     for (const value of yAxis.ticks) {
       svg.append(svgElement('line',{x1:box.left,y1:y(value),x2:width-box.right,y2:y(value),class:'chart-grid'}));
       svg.append(svgElement('text',{x:box.left-10,y:y(value)+3.5,'text-anchor':'end',class:'chart-tick'},tick(value)));
@@ -252,15 +288,24 @@
     svg.append(svgElement('path',{d:`M ${box.left} ${box.top} V ${height-box.bottom} H ${width-box.right}`,fill:'none',class:'chart-axis'}));
     svg.append(svgElement('text',{x:box.left+plotW/2,y:height-8,'text-anchor':'middle',class:'chart-axis-title'},config.xLabel));
     svg.append(svgElement('text',{transform:`translate(12 ${box.top+plotH/2}) rotate(-90)`,'text-anchor':'middle',class:'chart-axis-title'},config.yLabel));
-    if (config.y === 'coverage') {
-      if (nominal > 0 && nominal <= 100) {
-        svg.append(svgElement('line',{x1:box.left,y1:y(nominal),x2:width-box.right,y2:y(nominal),class:'chart-reference','data-value':nominal}));
-        svg.append(svgElement('text',{x:width-box.right,y:y(nominal)-6,'text-anchor':'end',class:'chart-reference-label'},tick(nominal)+'%'));
+    const staircase = [];
+    if (nominal == null) {
+      const [first, ...remaining] = frontier;
+      staircase.push([x(first[config.x]),y(yValue(first))]);
+      for (const row of remaining) {
+        const nextX = x(row[config.x]), previousY = staircase.at(-1)[1];
+        staircase.push([nextX,previousY],[nextX,y(yValue(row))]);
       }
+      staircase.push([width-box.right,staircase.at(-1)[1]]);
+      const path = staircase.map(([cx,cy],i) => `${i?'L':'M'} ${cx} ${cy}`).join(' ');
+      svg.append(svgElement('path',{class:'chart-pareto-path',d:path,'aria-hidden':'true'}));
+    } else {
+      svg.append(svgElement('line',{x1:box.left,y1:y(nominal),x2:width-box.right,y2:y(nominal),class:'chart-reference','data-value':nominal}));
+      svg.append(svgElement('text',{x:width-box.right,y:y(nominal)-6,'text-anchor':'end',class:'chart-reference-label'},tick(nominal)+'% target'));
     }
     drawGuidance(svg, host, box, plotW, plotH,
       rows.map(row => ({x:x(row[config.x]), y:y(yValue(row))})),
-      nominal == null ? null : y(nominal), nominal, width);
+      nominal == null ? null : y(nominal), nominal, width, staircase);
     const legend = document.createElement('div');
     legend.className = 'chart-legend';
     const tooltip = document.createElement('div');
@@ -272,17 +317,21 @@
       const cx = x(row[config.x]), cy = y(yValue(row));
       const marker = styles.get(row);
       const markerColors = `--chart-marker-light:${marker.light};--chart-marker-dark:${marker.dark}`;
-      const label = `${methodName(row)}${row.configuration ? ', '+row.configuration : ''}. ${config.xDetail}: ${detailValue(row,config.x,suite)}. ${config.yDetail}: ${detailValue(row,config.y,suite)}.`;
-      const point = svgElement('g',{class:'chart-point',tabindex:0,role:'button','aria-label':label,'aria-controls':tooltip.id,'aria-expanded':'false','data-method':methodName(row),'data-x':row[config.x],'data-y':yValue(row),style:markerColors,transform:`translate(${cx} ${cy})`});
+      const name = methodLabel(row);
+      const efficient = frontierMembers.has(row);
+      const label = `${name}${row.configuration ? ', '+row.configuration : ''}. ${config.xDetail}: ${detailValue(row,config.x,suite)}. ${config.yDetail}: ${detailValue(row,config.y,suite)}.${efficient ? ' On the Pareto frontier.' : ''}`;
+      const point = svgElement('g',{class:'chart-point',tabindex:0,role:'button','aria-label':label,'aria-controls':tooltip.id,'aria-expanded':'false','data-method':methodName(row),'data-x':row[config.x],'data-y':yValue(row),'data-pareto':efficient,style:markerColors,transform:`translate(${cx} ${cy})`});
       function populateTooltip() {
         const title = document.createElement('strong');
-        title.className = 'chart-tooltip-title'; title.textContent = methodName(row);
+        title.className = 'chart-tooltip-title'; title.textContent = name;
         const description = document.createElement('div');
         description.className = 'chart-tooltip-configuration'; description.textContent = row.configuration || '';
         const xline = document.createElement('div');
         xline.className = 'chart-tooltip-row'; xline.textContent = `${config.xDetail}: ${detailValue(row,config.x,suite)}`;
+        xline.dataset.value = row[config.x];
         const yline = document.createElement('div');
         yline.className = 'chart-tooltip-row'; yline.textContent = `${config.yDetail}: ${detailValue(row,config.y,suite)}`;
+        yline.dataset.value = row[config.y];
         tooltip.replaceChildren(...(row.configuration ? [title, description, xline, yline] : [title, xline, yline]));
       }
       function show(pinned = false) {
@@ -304,15 +353,16 @@
       point.addEventListener('keydown', event => {
         if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); toggle(); }
       });
-      point.append(svgElement('circle',{r:9,class:'chart-focus-ring'}));
+      point.append(svgElement('circle',{r:10.5,class:'chart-focus-ring','aria-hidden':'true'}));
+      if (nominal != null && efficient) point.append(svgElement('circle',{r:8.5,class:'chart-pareto-ring','aria-hidden':'true'}));
       point.append(glyph(marker.shape));
       svg.append(point);
       const item = document.createElement('span');item.className='chart-legend-item';
       const swatch = svgElement('svg',{class:'chart-legend-marker',viewBox:'-8 -8 16 16',style:markerColors,'aria-hidden':'true'});
       swatch.append(glyph(marker.shape));
-      item.append(swatch,document.createTextNode(methodName(row)));legend.append(item);
+      item.append(swatch,document.createTextNode(name));legend.append(item);
     }
-    host.append(svg,legend,tooltip);
+    host.append(svg,legend,tooltip,paretoCaption(nominal));
     if (nonpositive || unavailable) {
       const note = document.createElement('p');
       note.className = 'chart-note';

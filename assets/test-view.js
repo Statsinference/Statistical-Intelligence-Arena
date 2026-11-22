@@ -33,7 +33,15 @@ const expandedMethods=new Set();
 const domainSuites=()=>testSuites.filter(s=>s.domain===task);
 const current=()=>domainSuites()[0]||null;
 const familyNames={pfn:'RFN',classical:'Baseline',other:'Other methods'};
-const visibleRows=()=> (current()?.rows||[]).filter(r=>(family==='all'||r.family===family)&&(!query||[familyNames[r.family],r.method,r.configuration,r.source_method].join(' ').toLowerCase().includes(query)));
+function displayMethodName(row){
+ if(row.family!=='classical')return row.method;
+ const name=row.method.replace(/ \+ GMM$/,'');
+ if(name==='Linear')return 'Regularized Linear';
+ if(name==='CatBoost-TD')return 'CatBoost';
+ if(name==='XGB-TD')return 'XGBoost';
+ return name;
+}
+const visibleRows=()=> (current()?.rows||[]).filter(r=>(family==='all'||r.family===family)&&(!query||[familyNames[r.family],displayMethodName(r),r.method,r.configuration,r.source_method].join(' ').toLowerCase().includes(query)));
 
 // All pooling is explicit and approximate because its inputs are rounded report summaries.
 // Mean metrics use counts. RMSE pools squared errors. Error variance includes between-group means.
@@ -145,14 +153,14 @@ function methodFacts(r,s){
  if(['ate-fixed-collection-report','cate-fixed-collection-report'].includes(s.id)){
   if(forest)return {
    estimator:s.domain==='ate'?'AIPW with treatment-stratified cross-fitting':'T-learner ensemble',
-   folds:'5',
+   folds:s.domain==='ate'?'5 treatment-stratified cross-fitting folds':'5 folds for the T-learner ensemble',
    bootstrap:'50',
    settings:[
     ['Learner','Random Forest (scikit-learn 1.7.2)'],
     ['Forest settings','200 trees; minimum leaf size 5; one worker'],
     s.domain==='ate'?['Propensity clipping','[0.01, 0.99]']:['CATE query','Fixed across refits'],
     level,percentile,
-    ['Bootstrap refits','Whole-row resampling; new grouped, treatment-stratified splits']
+    ['Bootstrap refits','50 whole-row resamples; new grouped, treatment-stratified splits']
    ]
   };
   if(r.method==='CausalPFN')return {
@@ -172,7 +180,7 @@ function methodFacts(r,s){
     ['Forest settings','200 trees; minimum leaf size 5; one worker'],
     ['Treatment propensity clipping','[0.01, 0.99]'],
     level,percentile,
-    ['Bootstrap refits','Whole-row resampling; fresh five-fold splits']
+    ['Bootstrap refits','50 whole-row resamples; fresh five-fold splits']
    ]
   };
   if(r.method==='MediPFN')return {
@@ -191,17 +199,17 @@ function methodFacts(r,s){
  if(s.id==='iv-v03-test'){
   if(forest)return {
    estimator:'Augmented inverse-probability-weighted LATE ratio with Random Forest',
-   folds:'5',
+   folds:'5 shared folds for the AIPW LATE ratio',
    bootstrap:'50',
    settings:[
     ['Forest settings','200 trees; minimum leaf size 5'],
     ['Instrument propensity clipping','[0.05, 0.95]; predictions from the same fit'],
-    level,percentile,['Bootstrap refits','Whole-row resampling']
+    level,percentile,['Bootstrap refits','50 whole-row resamples']
    ]
   };
   if(r.method==='IV-PFN')return {
    estimator:'IV-PFN v0.3',
-   folds:'5',
+   folds:'5 shared folds for the AIPW LATE ratio',
    bootstrap:'Not used',
    settings:[level,['Interval construction','Influence-function standard errors']]
   };
@@ -209,18 +217,18 @@ function methodFacts(r,s){
  if(s.id==='did-test-2026-11-16'){
   if(forest)return {
    estimator:'Normalized DR-DiD score',
-   folds:'5',
+   folds:'5 shared folds for the normalized DR-DiD score',
    bootstrap:'50',
    settings:[
     ['Learner','Random Forest for propensity classification and untreated outcome-change regression'],
     ['Forest settings','200 trees; minimum leaf size 5'],
     level,['Interval construction','Normal interval with bootstrap standard errors'],
-    ['Bootstrap refits','Whole-row resampling with new splits']
+    ['Bootstrap refits','50 whole-row resamples with new splits']
    ]
   };
   if(r.method==='PFN-DiD')return {
    estimator:'Normalized DR-DiD score',
-   folds:'5',
+   folds:'5 shared folds for the normalized DR-DiD score',
    bootstrap:'Not used',
    settings:[
     ['Learner','Frozen TabPFN-3.5 with residual adapters'],
@@ -238,7 +246,7 @@ function methodFacts(r,s){
     ['Forest settings','200 trees; minimum leaf size 5; one worker'],
     ['Confounding bridge','20-column quadratic bridge'],
     ['Regularization','Bridge ridge 10⁻⁴; instrument ridge 10⁻⁶'],
-    level,percentile,['Bootstrap refits','Whole-row resampling with full pipeline refits and new splits']
+    level,percentile,['Bootstrap refits','50 whole-row resamples with full pipeline refits and new splits']
    ]
   };
   if(r.method==='ProximalFM')return {
@@ -251,11 +259,39 @@ function methodFacts(r,s){
  }
  return {configuration:r.configuration};
 }
+function estimatorSummary(r,s,detail){
+ if(r.status==='reviewed'||!detail.estimator)return detail.estimator;
+ if(s.domain==='mediation'&&detail.estimator.startsWith('Cross-fitted EIF for NIE'))return 'Influence-function based estimator';
+ if(s.domain==='ate')return r.method==='CausalPFN'?'CausalPFN':'AIPW';
+ if(s.domain==='cate')return r.method==='CausalPFN'?'CausalPFN':'T-learner';
+ if(s.domain==='did_sc')return 'Doubly robust DiD';
+ if(s.domain==='proximal')return r.method==='ProximalFM'?'ProximalFM':'Proximal GMM';
+ if(s.domain==='iv'&&['IV-PFN','Random Forest'].includes(r.method))return 'AIPW LATE ratio';
+ return detail.estimator;
+}
+function foldsSummary(full,index){
+ const outerInner=full.match(/^(\d+) [^;]*outer folds;\s*(\d+) inner(?: pseudo-label)? folds/);
+ const count=full.match(/^(\d+)\b/);
+ let short=full;
+ if(outerInner)short=`${outerInner[1]} outer / ${outerInner[2]} inner`;
+ else if(count)short=count[1]+' folds';
+ else if(full.startsWith('Five 400-row contexts'))short='5 contexts';
+ else if(full.startsWith('Native workflow'))short='Native workflow';
+ const tooltipId='method-folds-'+index;
+ const help=short!==full?`<span class="method-fold-help"><button type="button" class="method-fold-toggle" aria-label="Fold and context details" aria-describedby="${tooltipId}">?</button><span id="${tooltipId}" class="method-fold-tooltip" role="tooltip">${esc(full)}</span></span>`:'';
+ return `<p><span class="method-fold-summary">${esc(short)}</span>${help}</p>`;
+}
+function bootstrapSummary(detail){
+ const count=String(detail.bootstrap??'').trim();
+ const bootInterval=detail.settings?.some(([label,value])=>label==='Interval construction'&&/\bbootstrap\b/i.test(value));
+ if(/^\d+$/.test(count)||bootInterval)return 'Used';
+ return count;
+}
 function methodKey(r){return [current()?.id,r.family,r.source_method||r.method,r.configuration||''].join('::');}
 function methodCell(r,index){
  const open=expandedMethods.has(methodKey(r));
  const sample=r.status==='partial'?`<span class="org">${r.tables.toLocaleString('en-US')} / ${current().tables.toLocaleString('en-US')} tables</span>`:'';
- return `<button type="button" class="method-toggle" data-toggle-method="${index}" aria-expanded="${open}" aria-controls="method-details-${index}"><span><span class="mname">${esc(r.method)}</span>${sample}</span><span class="method-chevron" aria-hidden="true">${open?'⌃':'⌄'}</span></button>`;
+ return `<button type="button" class="method-toggle" data-toggle-method="${index}" aria-expanded="${open}" aria-controls="method-details-${index}"><span><span class="mname">${esc(displayMethodName(r))}</span>${sample}</span><span class="method-chevron" aria-hidden="true">${open?'⌃':'⌄'}</span></button>`;
 }
 function methodDetails(r,index){
  const s=current(),ref=ArenaMethodReferences.lookup(task,r),detail=methodFacts(r,s);
@@ -263,10 +299,18 @@ function methodDetails(r,index){
   const text=String(value??'').trim()||'Not reported';
   return s.domain==='iv'&&text==='Not reported'?'—':text;
  };
- const facts=[['Method',r.method],['Estimator / model',detail.estimator],['Folds / contexts',detail.folds],['Bootstrap',detail.bootstrap]];
+ const estimator=estimatorSummary(r,s,detail);
+ const fact=value=>`<p>${esc(detailValue(value))}</p>`;
+ const facts=[
+  ['Method',fact(displayMethodName(r))],
+  ['Estimator / model',fact(estimator)],
+  ['Folds / contexts',foldsSummary(detailValue(detail.folds),index)],
+  ['Bootstrap',fact(bootstrapSummary(detail))]
+ ];
  const provided=detail.settings??r.settings;
  const settings=Array.isArray(provided)?provided.filter(row=>Array.isArray(row)&&row.length===2&&row[0]&&row[1]):[];
  if(!settings.length)settings.push(['Settings',detail.configuration]);
+ if(detail.estimator&&estimator!==detail.estimator)settings.unshift(['Estimator details',detail.estimator]);
  const configId='method-config-'+index;
  const configRows=settings.map(([label,value])=>`<tr><th scope="row">${esc(label)}</th><td>${esc(detailValue(value))}</td></tr>`).join('');
  const configuration=`<div class="method-detail-extra"><strong id="${configId}">Configuration</strong><div class="method-config-box"><table class="method-settings" aria-labelledby="${configId}"><tbody>${configRows}</tbody></table></div></div>`;
@@ -284,7 +328,7 @@ function methodDetails(r,index){
  if(modelURL)references.push(`<div><strong>Model</strong> <a class="method-reference-link" href="${esc(modelURL)}" target="_blank" rel="noopener noreferrer">Hugging Face ↗</a></div>`);
  if(s.domain==='mediation')references.push('<div><strong>Benchmark</strong> <a class="method-reference-link" href="mediation/">Causal Mediation Analysis task and data →</a></div>');
  const referenceSection=references.length?`<div class="method-reference-links">${references.join('')}</div>`:'';
- return `<tr class="method-details-row" id="method-details-${index}"><td colspan="8"><div class="method-details"><div class="method-detail-grid">${facts.map(([label,value])=>`<div><strong>${esc(label)}</strong><p>${esc(detailValue(value))}</p></div>`).join('')}${configuration}</div>${referenceSection}</div></td></tr>`;
+ return `<tr class="method-details-row" id="method-details-${index}"><td colspan="8"><div class="method-details"><div class="method-detail-grid">${facts.map(([label,body])=>`<div><strong>${esc(label)}</strong>${body}</div>`).join('')}${configuration}</div>${referenceSection}</div></td></tr>`;
 }
 // Rank within the current domain only. Missing results always sort last.
 function metricScore(row,key){
@@ -438,6 +482,15 @@ $('#fam-chips').addEventListener('click',e=>{const b=e.target.closest('[data-fam
 $('#q').addEventListener('input',e=>{query=e.target.value.trim().toLowerCase();renderMetrics();});
 $('#rank-metric').addEventListener('change',e=>setRanking(e.target.value));
 $('#leaderboard-wrap').addEventListener('click',e=>{
+ const help=e.target.closest('.method-fold-help');
+ for(const open of e.currentTarget.querySelectorAll('.method-fold-help.is-pinned')){
+  if(open!==help)open.classList.remove('is-pinned');
+ }
+ if(e.target.closest('.method-fold-toggle')){
+  help.removeAttribute('data-dismissed');
+  help.classList.toggle('is-pinned');
+  return;
+ }
  const toggle=e.target.closest('[data-toggle-method]');
  if(toggle){
   const index=Number(toggle.dataset.toggleMethod),row=sortedRows()[index];
@@ -446,6 +499,16 @@ $('#leaderboard-wrap').addEventListener('click',e=>{
   renderMetrics();$('#leaderboard-wrap').querySelector(`[data-toggle-method="${index}"]`)?.focus();return;
  }
  const b=e.target.closest('[data-sort]');if(b)setRanking(b.dataset.sort,true);
+});
+$('#leaderboard-wrap').addEventListener('keydown',e=>{
+ const help=e.target.closest('.method-fold-help');
+ if(e.key==='Escape'&&help){
+  help.classList.remove('is-pinned');
+  help.setAttribute('data-dismissed','');
+ }
+});
+$('#leaderboard-wrap').addEventListener('focusout',e=>{
+ e.target.closest('.method-fold-help')?.removeAttribute('data-dismissed');
 });
 function csvCell(v){let s=String(v??'');if(typeof v==='string'&&/^[=+@\t\r-]/.test(s))s="'"+s;return '"'+s.replace(/"/g,'""')+'"';}
 $('#export-btn').addEventListener('click',()=>{
