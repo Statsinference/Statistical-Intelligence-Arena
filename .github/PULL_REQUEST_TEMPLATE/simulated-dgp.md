@@ -12,19 +12,22 @@
 
 ### DAG
 
-<!-- Replace the example with your case's DAG arrows. Use the same arrow directions and IDs as both edge lists in the case. Use X for covariates and confounders and epsilon for noise. Add subscripts when helpful. -->
+<!-- Replace the example with your case's DAG arrows. Match both edge lists in the case. Here X -> A is present because the equations make treatment depend on X. Describe disturbances in the equations. -->
 
 ```mermaid
-flowchart LR
-    X["X (confounder)"] --> A["A (treatment)"]
-    X --> Y["Y (outcome)"]
-    A --> Y
-    epsilon_Y["epsilon_Y (noise)"] --> Y
+block-beta
+  columns 3
+  space X("X (confounder)") space
+  space:3
+  A("A (treatment)") space Y("Y (outcome)")
+  A --> Y
+  X --> Y
+  X --> A
 ```
 
 ### Structural equations
 
-<!-- Replace the example with all display-math blocks from the case's Structural equations subsection. Keep their contents and order. -->
+<!-- Replace the example equations and symbol definitions with those from the case's Structural equations subsection. Keep the contents and order of the display-math blocks. -->
 
 ```math
 \begin{aligned}
@@ -35,9 +38,11 @@ Y &= A+X+\epsilon_Y .
 \end{aligned}
 ```
 
+- **Symbols.** $X$ is the confounder, $A$ is the binary treatment, $Y$ is the outcome, $\epsilon_Y$ is the independent outcome disturbance, and $\operatorname{logit}^{-1}$ turns the treatment log-odds into a probability.
+
 ## Checklist
 
 - [ ] This PR adds or updates one Markdown proposal under `website/data-submissions/simulated-dgp/submissions/`.
 - [ ] The preview DAG shows the same arrows as the case's DAG edges and structural parents.
-- [ ] The preview contains every structural equation from the case in the same order.
+- [ ] The preview contains every structural equation from the case in the same order and defines the symbols used.
 - [ ] I checked sharing permissions and kept protected values in the agreed review channel.

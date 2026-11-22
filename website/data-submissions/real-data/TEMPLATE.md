@@ -13,7 +13,7 @@
 
 ## DAG and identification
 
-- **Causal structure.** [TODO: Describe the relevant pathways in a DAG or in prose. Use `A` for treatment or exposure, `Y` for the outcome and `X` or named `X` variants for baseline covariates. Map variables to dataset columns and identify plausible unmeasured causes or selection.]
+- **Causal structure.** [TODO: Describe the relevant pathways in a DAG or in prose. Use `A` for treatment or exposure, `Y` for the outcome and `X` or named `X` variants for baseline covariates. Label substantive variables with their meanings and map them to dataset columns. Describe plausible unmeasured causes or selection separately from random disturbances.]
 - **Assumptions and checks.** [TODO: State the assumptions the design requires, how you would check what is observable, and what remains uncertain.]
 
 ## Target estimand and reference estimate

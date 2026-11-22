@@ -13,10 +13,14 @@
 <!-- Replace the illustrative smoking diagram with your study's variables and arrows, or omit this section if you explain identification in the case file. -->
 
 ```mermaid
-flowchart LR
-    X["X (age)"] --> A["A (smoking)"]
-    X --> Y["Y (lung cancer)"]
-    A --> Y
+block-beta
+  columns 3
+  space X("X (age)") space
+  space:3
+  A("A (smoking)") space Y("Y (lung cancer)")
+  A --> Y
+  X --> Y
+  X --> A
 ```
 
 ## Checklist

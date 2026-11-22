@@ -15,10 +15,14 @@ Guo, Li, Liu and Zeng use a DNA methylation study to motivate a semi-synthetic e
 - **DAG edges.** `A -> M, M -> Y, A -> Y`
 
 ```mermaid
-flowchart LR
-    A["A (exposure)"] --> M["M (mediator)"]
-    M --> Y["Y (outcome)"]
-    A --> Y
+block-beta
+  columns 3
+  space M("M (methylation profile)") space
+  space:3
+  A("A (trauma score)") space Y("Y (cortisol response)")
+  A --> Y
+  A --> M
+  M --> Y
 ```
 
 The observed exposure is `trauma_z`, the mediator is the vector of methylation probe columns, and the observed outcome is `cortisol_response`. The arrow lists and diagram show the union across scenarios. The zero-effect scenario with $c_1=0$ omits `A -> M`.
@@ -30,8 +34,9 @@ Each row represents one subject. The standardized exposure $A_i=a_i$ is fixed to
 ### Structural equations
 
 - **Structural parents.** `A -> M, M -> Y, A -> Y`
+- **Symbols.** The index $i$ denotes a subject, and $j,k$ index the $p$ methylation probes. The fixed exposure is $a_i$, the mediator vector is $M_i$, and the outcome is $Y_i$. The parameter $c_1$ scales the exposure-to-mediator coefficient vector $\widehat{\Gamma}_A$. The vector $\alpha_M$ gives the mediator-to-outcome coefficients. The disturbances $\epsilon_{M,i}$ and $\epsilon_{Y,i}$ have covariance $\Sigma$ and variance $\widehat{\sigma}_Y^2$, respectively. The two constants of $0.5$ specify the residual AR(1) correlation and the direct exposure coefficient.
 
-For every row $i$, draw $\epsilon_{M,i}$ and $\epsilon_{Y,i}$ independently of one another and the fixed exposure design. Each disturbance enters one equation and is omitted from the arrow lists. The draws are independent across rows and across replicate tables. The fixed coefficient vector $\widehat{\Gamma}_A$ and outcome residual standard deviation $\widehat{\sigma}_Y$ come from the pinned snapshot. The code below constructs the outcome coefficient vector $\alpha_M$ using the 11 selected probes.
+For every row $i$, draw $\epsilon_{M,i}$ and $\epsilon_{Y,i}$ independently of one another and the fixed exposure design. The draws are independent across rows and across replicate tables. The fixed coefficient vector $\widehat{\Gamma}_A$ and outcome residual standard deviation $\widehat{\sigma}_Y$ come from the pinned snapshot. The code below constructs the outcome coefficient vector $\alpha_M$ using the 11 selected probes.
 
 $$
 \begin{aligned}

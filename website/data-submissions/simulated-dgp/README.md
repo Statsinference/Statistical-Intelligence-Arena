@@ -24,14 +24,14 @@ Propose one reproducible simulation that mirrors a documented study or isolates 
 
 ### Match the DAG to the equations
 
-Use the same short variable IDs in the graph and equations. Use `X` for covariates and confounders (such as `X_1` or `X_latent`) and `A` for treatment or exposure. Use `epsilon` or `epsilon_Y` as graph IDs for noise and $\epsilon$ or $\epsilon_Y$ in the equations. In the case file, a diagram is optional. If you include one there, show the arrows for the scenario it describes and label nodes with the ID and a short role such as `A (treatment)`, `Y (outcome)` or `X_latent (unobserved confounder)` for a latent common cause. Put definitions and assumptions in the prose.
+Use the same short variable IDs in the graph and equations. Use `A` for treatment or exposure, `Y` for the outcome, and `X` for covariates and confounders, with variants such as `X_1` or `X_latent`. In the case file, a diagram is optional. If you include one, show the arrows for the scenario it describes and label each node with its ID and a short meaning such as `A (treatment)`. Put definitions and assumptions in the prose.
 
-List one arrow from every causal parent in an equation to the variable it generates. Include observed and latent parents, including shared latent causes. You may omit a disturbance from the arrow lists if it enters only one equation and you document its independence. Keep its distribution and role in the equations. If scenarios change an edge, list the union in both fields and say which scenarios omit the edge.
+List arrows between substantive variables, including observed and shared latent causes. Use a variable such as `X_latent (unobserved confounder)` for a shared latent cause. Write disturbances as $\epsilon$ or $\epsilon_Y$ in the equations and specify their distributions and dependencies. Keep them out of the diagram and both edge lists. If scenarios change an edge, list the union in both fields and say which scenarios omit the edge.
 
 Write each field on one line. Use variable IDs that start with an ASCII letter and contain only letters, digits or underscores. Use short aliases for longer column names. Put the comma-separated arrows inside backticks, use `parent -> child` for each arrow, and use `none` when there are no arrows. The two lists should match.
 
-- **DAG edges.** `X -> M, M -> Y, X -> Y`
-- **Structural parents.** `X -> M, M -> Y, X -> Y`
+- **DAG edges.** `A -> M, M -> Y, A -> Y`
+- **Structural parents.** `A -> M, M -> Y, A -> Y`
 
 ### Document generation and truth
 
@@ -60,8 +60,8 @@ Copy the block into `website/data-submissions/simulated-dgp/submissions/<slug>.m
 
 ## DAG and identification
 
-- **Variables and causal structure.** [TODO: Map observed and latent variables to their roles and available columns. Use `X` for covariates and confounders and `epsilon` for noise in the graph. Add subscripts when needed. If you include a diagram, use short labels such as `A (treatment)` or `X_latent (unobserved confounder)` where applicable. Draw the arrows for the scenario shown and define the variables in prose.]
-- **DAG edges.** `[TODO: List comma-separated arrows, for example X -> M, M -> Y, X -> Y. Use none for an empty graph.]`
+- **Variables and causal structure.** [TODO: Map observed and latent variables to their roles and available columns. Use `X` for covariates or confounders, with named or indexed variants as needed. Label diagram nodes with the variable and a short meaning such as `A (treatment)` or `X_latent (unobserved confounder)`. Keep disturbances in the equations and state the scenario represented by any diagram.]
+- **DAG edges.** `[TODO: List comma-separated arrows for the substantive variables, for example A -> M, M -> Y, A -> Y. Use none for an empty graph.]`
 - **Assumptions.** [TODO: State the assumptions that identify the target or explain which assumption the stress test deliberately violates.]
 
 ## Variables and data-generating process
@@ -71,7 +71,8 @@ Copy the block into `website/data-submissions/simulated-dgp/submissions/<slug>.m
 
 ### Structural equations
 
-- **Structural parents.** `[TODO: List parent -> child arrows implied by the equations, using the same IDs and format as DAG edges. State any scenario-specific edge changes in prose.]`
+- **Structural parents.** `[TODO: List parent -> child arrows among substantive variables implied by the equations. Match the DAG edges and describe any scenario-specific changes.]`
+- **Symbols.** [TODO: Define the variables, indices, functions, parameters and disturbances used in the equations. Write disturbances as $\epsilon$ with subscripts as needed.]
 
 [TODO: Write the complete mathematical equations or conditional sampling distributions for all generated variables in draw order. Include deterministic transformations, link functions, error distributions and dependencies. Define every symbol and give time or cluster indices where relevant. Use named parameters for protected values and supply their exact settings in private review.]
 
@@ -113,8 +114,11 @@ https://github.com/Statsinference/Statistical-Intelligence-Arena/compare/main...
 
 Under `## Causal design preview`, complete both subsections.
 
-- **DAG.** Put one fenced `mermaid` block under `### DAG`. Start with `flowchart LR` or `graph LR`. The direction can also be `TD`, `TB`, `RL` or `BT`. Use one arrow per line, such as `X["X (covariate)"] --> Y["Y (outcome)"]` or `X --> Y`. Use standalone declarations for isolated nodes, such as `X_2["X_2 (covariate)"]`. Omit subgraphs and chained arrows. The preview must match both declared edge lists, including the union across scenarios when arrows vary. Explain scenario-specific omissions in the case file.
-- **Structural equations.** Under `### Structural equations`, copy every display-math block from that subsection of the case file. Keep the contents and order. GitHub renders both fenced `math` and `$$` blocks. Keep any protected parameter values symbolic in both places.
+- **DAG.** Put one fenced `mermaid` block under `### DAG`. For a three-node triangle, use `block-beta` with `columns 3`. Put the baseline covariate or mediator in the upper center and `A` and `Y` on the bottom row. Use `space` for empty cells and `space:3` for an empty row. Enter the causal arrows one per line, matching both edge lists in the case. Include `X --> A` only if the design makes treatment depend on `X`.
+- **Larger DAGs.** Use `flowchart LR` or `graph LR`, with `TD`, `TB`, `RL` or `BT` as alternatives to `LR`. Use a line such as `X["X (covariate)"] --> Y["Y (outcome)"]` or `X --> Y` for each edge. Use standalone declarations for isolated nodes. Omit subgraphs and chained arrows. Explain scenario-specific omissions in the case file and show the union in the PR preview when arrows vary.
+- **Structural equations.** Under `### Structural equations`, copy every display-math block from that subsection of the case file and include a **Symbols.** line defining variables, indices, functions, parameters and disturbances. Keep the contents and order of all equation blocks. GitHub renders both fenced `math` and `$$` blocks. Keep any protected parameter values symbolic in both places.
+
+[Mermaid block diagrams](https://mermaid.js.org/syntax/block.html) · [GitHub mathematical expressions](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/writing-mathematical-expressions)
 
 The precheck compares the DAG arrows and equation blocks with the case file. To run this check locally, save the PR description as a Markdown file and add `--pr-body-file path/to/pr-description.md` to the command above.
 

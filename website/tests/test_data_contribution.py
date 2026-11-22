@@ -10,6 +10,7 @@ from check_data_contribution import (  # noqa: E402
     ValidationError,
     check_changes,
     check_pull_request,
+    parse_preview_dag,
     read_git_markdown,
     required_sections,
     validate_markdown,
@@ -30,6 +31,27 @@ MERMAID = '\n'.join((
     '  M --> Y["Y (outcome)"]',
     '  X --> Y',
 ))
+BLOCK_DAG = '''block-beta
+  columns 3
+  space X("X (covariate)") space
+  space:3
+  A("A (treatment)") space Y("Y (outcome)")
+  X --> Y
+  A --> Y'''
+LEGACY_EDGES = "U -> Y, A -> Y, E -> Y"
+NOTATION = "U -> X, E -> epsilon, U_i -> X_i, E_i -> epsilon_i, u -> x"
+LEGACY_EQUATIONS = (
+    r"U_i \sim \mathrm{Uniform}(0,1), \qquad A_i \sim \mathrm{Bernoulli}(1/2), "
+    r"\qquad E_i \sim \mathcal{N}(0,\sigma^2).",
+    r"\mu_1(u) = d + \beta u + g(u).",
+    r"Y_i = (1-A_i)\mu_0(U_i) + A_i\mu_1(U_i) + E_i.",
+)
+NORMALIZED_EQUATIONS = (
+    r"X_i \sim \mathrm{Uniform}(0,1), \qquad A_i \sim \mathrm{Bernoulli}(1/2), "
+    r"\qquad \epsilon_i \sim \mathcal{N}(0,\sigma^2).",
+    r"\mu_1(x) = d + \beta x + g(x).",
+    r"Y_i = (1-A_i)\mu_0(X_i) + A_i\mu_1(X_i) + \epsilon_i.",
+)
 
 
 def proposal(track=SIMULATED, dag_edges=EDGES, structural_parents=EDGES):
@@ -51,15 +73,19 @@ def math_blocks(equations, opening="$$", closing="$$"):
     return "\n\n".join(f"{opening}\n{equation}\n{closing}" for equation in equations)
 
 
-def simulated_case_with_math(equations=EQUATIONS):
-    return proposal().replace(EQUATION_PROSE.encode(), math_blocks(equations).encode())
+def simulated_case_with_math(equations=EQUATIONS, edges=EDGES):
+    return proposal(dag_edges=edges, structural_parents=edges).replace(
+        EQUATION_PROSE.encode(), math_blocks(equations).encode(),
+    )
 
 
-def causal_preview(dag=MERMAID, equations=None):
+def causal_preview(dag=MERMAID, equations=None, notation=None):
     if equations is None:
         equations = math_blocks(EQUATIONS)
+    notation_line = f"**Case file notation.** `{notation}`\n\n" if notation else ""
     return (
         "## Causal design preview\n\n"
+        f"{notation_line}"
         f"### DAG\n\n```mermaid\n{dag}\n```\n\n"
         f"### Structural equations\n\n{equations}\n"
     )
@@ -231,6 +257,71 @@ class PreviewTests(unittest.TestCase):
 
     def test_real_data_case_does_not_require_a_preview(self):
         validate_markdown(proposal(REAL), REAL, pr_body="## Summary\nA new real-data problem.")
+
+
+class PreviewNotationTests(unittest.TestCase):
+    def setUp(self):
+        self.legacy_case = simulated_case_with_math(LEGACY_EQUATIONS, LEGACY_EDGES)
+
+    def test_positioned_diagram_and_explicit_notation_match_the_legacy_case(self):
+        validate_markdown(self.legacy_case, SIMULATED)
+        self.assertEqual(parse_preview_dag(BLOCK_DAG), {("X", "Y"), ("A", "Y")})
+        preview = causal_preview(BLOCK_DAG, math_blocks(NORMALIZED_EQUATIONS), NOTATION)
+        validate_markdown(self.legacy_case, SIMULATED, pr_body=preview)
+
+    def test_shared_raw_notation_remains_the_default_with_no_aliases(self):
+        case = simulated_case_with_math(NORMALIZED_EQUATIONS, "X -> Y, A -> Y")
+        preview = causal_preview(BLOCK_DAG, math_blocks(NORMALIZED_EQUATIONS))
+        validate_markdown(case, SIMULATED, pr_body=preview)
+        with self.assertRaisesRegex(ValidationError, r"DAG"):
+            validate_markdown(self.legacy_case, SIMULATED, pr_body=preview)
+
+    def test_notation_does_not_authorize_new_edges_or_changed_coefficients(self):
+        new_edge = BLOCK_DAG + "\n  X --> A"
+        changed_coefficient = (
+            NORMALIZED_EQUATIONS[0], r"\mu_1(x) = d + 2\beta x + g(x).", NORMALIZED_EQUATIONS[2],
+        )
+        for dag, equations, error in (
+            (new_edge, NORMALIZED_EQUATIONS, r"DAG"),
+            (BLOCK_DAG, changed_coefficient, r"Structural equations"),
+        ):
+            with self.subTest(error=error), self.assertRaisesRegex(ValidationError, error):
+                preview = causal_preview(dag, math_blocks(equations), NOTATION)
+                validate_markdown(self.legacy_case, SIMULATED, pr_body=preview)
+
+    def test_notation_requires_one_to_one_aliases(self):
+        for extra_alias in ("A -> X", "U -> Z"):
+            with self.subTest(alias=extra_alias), self.assertRaisesRegex(ValidationError, r"(?i)notation|alias"):
+                preview = causal_preview(BLOCK_DAG, math_blocks(NORMALIZED_EQUATIONS), f"{NOTATION}, {extra_alias}")
+                validate_markdown(self.legacy_case, SIMULATED, pr_body=preview)
+
+    def test_notation_preserves_sources_other_than_single_target_root_disturbances(self):
+        preview = causal_preview(BLOCK_DAG, math_blocks(NORMALIZED_EQUATIONS), NOTATION)
+        for added_edge in ("A -> E", "E -> A"):
+            with self.subTest(edge=added_edge), self.assertRaisesRegex(ValidationError, r"(?i)DAG|disturbance|noise"):
+                legacy_case = simulated_case_with_math(LEGACY_EQUATIONS, f"{LEGACY_EDGES}, {added_edge}")
+                validate_markdown(legacy_case, SIMULATED, pr_body=preview)
+
+    def test_positioned_diagram_rejects_malformed_grid_and_undeclared_nodes(self):
+        for diagram in (
+            BLOCK_DAG.replace("  columns 3\n", ""),
+            BLOCK_DAG.replace("  columns 3", "  columns 2"),
+            BLOCK_DAG.replace("  columns 3", "  columns three"),
+            BLOCK_DAG.replace("  space:3", "  no such grid item"),
+            BLOCK_DAG.replace("  X --> Y", "  Z --> Y"),
+        ):
+            with self.subTest(diagram=diagram), self.assertRaises(ValidationError):
+                parse_preview_dag(diagram)
+
+    def test_preview_diagram_rejects_disturbance_symbols_and_noise_labels(self):
+        for diagram in (
+            MERMAID + '\n  epsilon["epsilon (variable)"]',
+            MERMAID + '\n  epsilon_Y["epsilon_Y (variable)"]',
+            MERMAID + '\n  E["E (noise)"]',
+            BLOCK_DAG.replace('X("X (covariate)")', 'X("X (noise)")'),
+        ):
+            with self.subTest(diagram=diagram), self.assertRaises(ValidationError):
+                parse_preview_dag(diagram)
 
 
 class PRPathTests(unittest.TestCase):

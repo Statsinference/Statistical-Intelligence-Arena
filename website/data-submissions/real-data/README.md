@@ -28,13 +28,19 @@ Use `A` for the treatment, exposure or assignment, `Y` for the outcome, and `X` 
 For an illustrative smoking study, short labels describe the roles directly. The arrows below represent an assumed causal structure.
 
 ```mermaid
-flowchart LR
-    X["X (age)"] --> A["A (smoking)"]
-    X --> Y["Y (lung cancer)"]
-    A --> Y
+block-beta
+  columns 3
+  space X("X (age)") space
+  space:3
+  A("A (smoking)") space Y("Y (lung cancer)")
+  A --> Y
+  X --> Y
+  X --> A
 ```
 
-You can include a diagram in the PR description. A written account of the pathways and identification assumptions in the case file is also sufficient.
+The three-column grid keeps the baseline covariate above treatment and outcome. Draw `X --> A` only when the study's causal assumptions include that relationship. Keep the diagram focused on substantive variables. Larger designs can use `flowchart LR`.
+
+You can include a diagram in the PR description. A written account of the pathways and identification assumptions in the case file is also sufficient. [Mermaid block diagrams](https://mermaid.js.org/syntax/block.html)
 
 ### Choose an evaluation that matches the reference
 
@@ -61,7 +67,7 @@ Copy only the contents of the block into `website/data-submissions/real-data/sub
 
 ## DAG and identification
 
-- **Causal structure.** [TODO: Describe the relevant pathways in a DAG or in prose. Use `A` for treatment or exposure, `Y` for the outcome and `X` or named `X` variants for baseline covariates. Map variables to dataset columns and identify plausible unmeasured causes or selection.]
+- **Causal structure.** [TODO: Describe the relevant pathways in a DAG or in prose. Use `A` for treatment or exposure, `Y` for the outcome and `X` or named `X` variants for baseline covariates. Label substantive variables with their meanings and map them to dataset columns. Describe plausible unmeasured causes or selection separately from random disturbances.]
 - **Assumptions and checks.** [TODO: State the assumptions the design requires, how you would check what is observable, and what remains uncertain.]
 
 ## Target estimand and reference estimate

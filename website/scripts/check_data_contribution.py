@@ -34,6 +34,13 @@ NODE = r"[A-Za-z][A-Za-z0-9_]*"
 DIRECTED_EDGE = re.compile(rf"({NODE})\s*->\s*({NODE})")
 MERMAID_NODE = rf'({NODE})(?:\["([^"\[\]<>`]+)"\])?'
 MERMAID_LINE = re.compile(rf"{MERMAID_NODE}(?:[ \t]*-->[ \t]*{MERMAID_NODE})?")
+BLOCK_EDGE = re.compile(rf"({NODE})[ \t]+-->[ \t]+({NODE})")
+BLOCK_ITEM = r'(?:space(?::([1-3]))?|(' + NODE + r')\("([^"\[\]<>]+)"\))'
+BLOCK_ROW = re.compile(rf"{BLOCK_ITEM}(?:[ \t]+{BLOCK_ITEM})*")
+BLOCK_CELL = re.compile(BLOCK_ITEM)
+CASE_NOTATION = re.compile(r"\*\*Case file notation\.\*\*[ \t]+(.+)")
+MATH_TOKEN = re.compile(rf"\\[A-Za-z]+|{NODE}")
+NOISE_ID = re.compile(r"epsilon(?:_.*)?$", re.I)
 PREVIEW_SECTION = "Causal design preview"
 
 
@@ -133,10 +140,45 @@ def markdown_items(lines):
         raise ValidationError("Close the Markdown diagram and Structural equations blocks with matching delimiters.")
 
 
+def check_dag_node(node, label):
+    if NOISE_ID.fullmatch(node) or (label and label.lower().endswith("(noise)")):
+        raise ValidationError("Keep noise terms in Structural equations and omit them from the DAG.")
+    if label and not re.fullmatch(rf"{node} \([^()]+\)", label):
+        raise ValidationError("Use the same variable ID in each Mermaid DAG label, such as 'X (covariate)'.")
+
+
+def parse_dag_grid(lines):
+    if not lines or lines[0] != "columns 3":
+        raise ValidationError("Start the Mermaid DAG grid with 'columns 3'.")
+    nodes, edges = set(), set()
+    for line in lines[1:]:
+        if edge := BLOCK_EDGE.fullmatch(line):
+            edges.add(edge.groups())
+            continue
+        if edges or not BLOCK_ROW.fullmatch(line):
+            raise ValidationError("In the Mermaid DAG grid, place each node or spacer before the arrow list.")
+        width = 0
+        for cell in BLOCK_CELL.finditer(line):
+            span, node, label = cell.groups()
+            width += int(span or 1)
+            if node:
+                check_dag_node(node, label)
+                if node in nodes:
+                    raise ValidationError("Declare each Mermaid DAG node once in the grid.")
+                nodes.add(node)
+        if width != 3:
+            raise ValidationError("Fill three columns in every Mermaid DAG grid row with nodes or spacers.")
+    if not nodes or any(parent not in nodes or child not in nodes for parent, child in edges):
+        raise ValidationError("Declare at least one Mermaid DAG node and declare both endpoints of every arrow.")
+    return edges
+
+
 def parse_preview_dag(graph):
     lines = [line.strip() for line in graph.splitlines() if line.strip()]
+    if lines and lines[0] == "block-beta":
+        return parse_dag_grid(lines[1:])
     if not lines or not re.fullmatch(r"(?:flowchart|graph)\s+(?:LR|RL|TD|TB|BT)", lines[0]):
-        raise ValidationError("Start the Mermaid DAG with `flowchart LR` or another Mermaid direction.")
+        raise ValidationError("Start the Mermaid DAG with 'block-beta' or a flowchart direction.")
     edges = set()
     has_node = False
     for line in lines[1:]:
@@ -144,15 +186,47 @@ def parse_preview_dag(graph):
         if not match:
             raise ValidationError("Use one Mermaid DAG edge per line such as `X --> Y`, or a standalone node.")
         parent, parent_label, child, child_label = match.groups()
-        for node, label in ((parent, parent_label), (child, child_label)):
-            if label and not re.fullmatch(rf"{node} \([^()]+\)", label):
-                raise ValidationError("Use the same variable ID in each Mermaid DAG label, such as `X[\"X (covariate)\"]`.")
+        check_dag_node(parent, parent_label)
+        if child:
+            check_dag_node(child, child_label)
         has_node = True
         if child:
             edges.add((parent, child))
     if not has_node:
         raise ValidationError("Include at least one variable in the Mermaid DAG.")
     return edges
+
+
+def translate_case_notation(edges, equations, aliases):
+    """Project existing notation onto the PR's convention without changing the equations."""
+    renames = dict(aliases)
+    case_symbols = {symbol for edge in edges for symbol in edge}
+    case_symbols.update(
+        token for equation in equations for token in MATH_TOKEN.findall(equation) if not token.startswith("\\")
+    )
+    translated = {renames.get(symbol, symbol) for symbol in case_symbols}
+    if len(renames) != len(aliases) or not renames.keys() <= case_symbols or len(translated) != len(case_symbols):
+        raise ValidationError("Case file notation must map existing symbols one-to-one.")
+
+    graph = {(renames.get(parent, parent), renames.get(child, child)) for parent, child in edges}
+    for noise in {parent for parent, _ in graph if NOISE_ID.fullmatch(parent)}:
+        if any(child == noise for _, child in graph) or sum(parent == noise for parent, _ in graph) != 1:
+            raise ValidationError("Only omit a noise source with a single outgoing edge from the DAG.")
+    graph = {(parent, child) for parent, child in graph if not NOISE_ID.fullmatch(parent)}
+
+    def math_replace(match):
+        original = match[0]
+        renamed = renames.get(original)
+        if renamed is None:
+            return original
+        if NOISE_ID.fullmatch(renamed):
+            _, separator, index = renamed.partition("_")
+            if "_" in index:
+                index = "{" + index + "}"
+            return rf"\epsilon{separator}{index}"
+        return renamed
+
+    return graph, [MATH_TOKEN.sub(math_replace, equation) for equation in equations]
 
 
 def validate_pr_preview(body, case_edges, structural_lines):
@@ -164,6 +238,7 @@ def validate_pr_preview(body, case_edges, structural_lines):
     section = None
     sections = []
     graphs, formulas = [], []
+    aliases = None
     for kind, value in markdown_items(text.splitlines()):
         if kind == "text" and (heading := HEADING.fullmatch(value)):
             level, title = heading.groups()
@@ -178,6 +253,10 @@ def validate_pr_preview(body, case_edges, structural_lines):
             elif in_preview and level == "###":
                 section = title
                 sections.append(title)
+        if in_preview and section is None and kind == "text" and (alias := CASE_NOTATION.fullmatch(value.strip())):
+            if aliases is not None:
+                raise ValidationError("Declare Case file notation at most once.")
+            aliases = parse_declared_edges(alias[1], "Case file notation")
         if in_preview and section == "DAG" and kind == "mermaid":
             graphs.append(value)
         if in_preview and section == "Structural equations" and kind == "math":
@@ -190,14 +269,16 @@ def validate_pr_preview(body, case_edges, structural_lines):
     if len(graphs) != 1:
         raise ValidationError("Include one visible Mermaid block under the PR preview DAG heading.")
     graph_edges = parse_preview_dag(graphs[0])
+    expected = [" ".join(value.split()) for kind, value in markdown_items(structural_lines) if kind == "math"]
+    if not expected or not all(expected):
+        raise ValidationError("Write the Case file Structural equations in nonempty display math blocks.")
+    if aliases:
+        case_edges, expected = translate_case_notation(case_edges, expected, aliases)
     if graph_edges != case_edges:
         missing = ", ".join(f"{src} -> {dst}" for src, dst in sorted(case_edges - graph_edges))
         extra = ", ".join(f"{src} -> {dst}" for src, dst in sorted(graph_edges - case_edges))
         raise ValidationError("The PR preview DAG must match the Case file DAG. "
                               f"Missing arrows: `{missing or 'none'}`. Extra arrows: `{extra or 'none'}`.")
-    expected = [" ".join(value.split()) for kind, value in markdown_items(structural_lines) if kind == "math"]
-    if not expected or not all(expected):
-        raise ValidationError("Write the Case file Structural equations in nonempty display math blocks.")
     if formulas != expected:
         raise ValidationError("Copy every display math block from the Case file Structural equations into the PR preview, "
                               "in the same order and with the same math content.")

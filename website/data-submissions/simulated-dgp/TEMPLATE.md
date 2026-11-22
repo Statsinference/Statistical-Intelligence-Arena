@@ -12,8 +12,8 @@
 
 ## DAG and identification
 
-- **Variables and causal structure.** [TODO: Map observed and latent variables to their roles and available columns. Use `X` for covariates and confounders and `epsilon` for noise in the graph. Add subscripts when needed. If you include a diagram, use short labels such as `A (treatment)` or `X_latent (unobserved confounder)` where applicable. Draw the arrows for the scenario shown and define the variables in prose.]
-- **DAG edges.** `[TODO: List comma-separated arrows, for example X -> M, M -> Y, X -> Y. Use none for an empty graph.]`
+- **Variables and causal structure.** [TODO: Map observed and latent variables to their roles and available columns. Use `X` for covariates or confounders, with named or indexed variants as needed. Label diagram nodes with the variable and a short meaning such as `A (treatment)` or `X_latent (unobserved confounder)`. Keep disturbances in the equations and state the scenario represented by any diagram.]
+- **DAG edges.** `[TODO: List comma-separated arrows for the substantive variables, for example A -> M, M -> Y, A -> Y. Use none for an empty graph.]`
 - **Assumptions.** [TODO: State the assumptions that identify the target or explain which assumption the stress test deliberately violates.]
 
 ## Variables and data-generating process
@@ -23,7 +23,8 @@
 
 ### Structural equations
 
-- **Structural parents.** `[TODO: List parent -> child arrows implied by the equations, using the same IDs and format as DAG edges. State any scenario-specific edge changes in prose.]`
+- **Structural parents.** `[TODO: List parent -> child arrows among substantive variables implied by the equations. Match the DAG edges and describe any scenario-specific changes.]`
+- **Symbols.** [TODO: Define the variables, indices, functions, parameters and disturbances used in the equations. Write disturbances as $\epsilon$ with subscripts as needed.]
 
 [TODO: Write the complete mathematical equations or conditional sampling distributions for all generated variables in draw order. Include deterministic transformations, link functions, error distributions and dependencies. Define every symbol and give time or cluster indices where relevant. Use named parameters for protected values and supply their exact settings in private review.]
 
