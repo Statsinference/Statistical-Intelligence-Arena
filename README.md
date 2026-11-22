@@ -91,12 +91,12 @@ Run `statarena-lite list` to see all supported domains. Use `dev` to develop a m
 
 <table>
   <thead>
-    <tr><th colspan="4" align="left">Project Leadership</th></tr>
+    <tr><th colspan="4" align="left">Project Leadership (Alphabetical Order)</th></tr>
   </thead>
   <tbody>
     <tr>
-      <td width="25%"><a href="https://github.com/shibo769">Shi Bo</a><br><small><sub>Boston University</sub></small></td>
       <td width="25%"><a href="https://www.linkedin.com/in/jiaming-h-24400a1b8/">Jiaming Hu</a><br><small><sub>Boston University</sub></small></td>
+      <td width="25%"><a href="https://github.com/shibo769">Shi Bo</a><br><small><sub>Boston University</sub></small></td>
       <td width="25%"><a href="https://zhzhang01.github.io/">Zhiheng Zhang</a><br><small><sub>Shanghai University of Finance and Economics</sub></small></td>
       <td width="25%"></td>
     </tr>
@@ -132,7 +132,7 @@ Run `statarena-lite list` to see all supported domains. Use `dev` to develop a m
       <td></td>
       <td></td>
     </tr>
-    <tr><th colspan="4" align="left">Advisors</th></tr>
+    <tr><th colspan="4" align="left">Advisors (Alphabetical Order)</th></tr>
     <tr>
       <td><a href="https://ssds.sufe.edu.cn/ssds_en/03/30/c20066a262960/page.htm">Xingdong Feng</a><br><small><sub>Shanghai University of Finance and Economics</sub></small></td>
       <td><a href="https://www.gbu.edu.cn/sz_details_g7yU_92/791.html">Yiyan Huang</a><br><small><sub>Great Bay University</sub></small></td>
