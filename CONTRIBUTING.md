@@ -9,8 +9,6 @@ Submit a statistical method or model for evaluation on a supported StatArena tas
 
 ## Contribute Data
 
-For a simulated DGP or real-data proposal, use the [Markdown submission guides](website/data-submissions/README.md). The package intake below covers ZIP submissions.
-
 Choose the guide that fits your contribution. Each guide includes a template, a filled example and instructions for submitting a pull request.
 
 | Contribution | What to submit |
@@ -20,7 +18,7 @@ Choose the guide that fits your contribution. Each guide includes a template, a 
 
 ### Submit a proposal
 
-Choose one track and open a pull request with one completed Markdown proposal in the website repository. The track guides include the template, a filled example and the corresponding submission path.
+Choose one track and [open a pull request](https://github.com/Statsinference/Statistical-Intelligence-Arena/compare) to `main` in the private StatArena repository with one completed Markdown proposal. The track guides include the template, a filled example and the corresponding submission path.
 
 Use your proposal to share the research question, estimand and references. If a simulation is intended for official evaluation or the data have restricted access, arrange private review of the full materials with a maintainer. The worked examples illustrate the submission format.
 

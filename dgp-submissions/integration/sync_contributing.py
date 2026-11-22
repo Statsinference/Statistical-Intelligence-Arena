@@ -40,8 +40,6 @@ def render(source: str) -> str:
         "to provide your method link, choose a research domain, and submit the completed Markdown checklist. "
         "The StatArena team reviews submissions and evaluates eligible methods for the official leaderboard.\n\n"
         "## Contribute Data\n\n"
-        "For a simulated DGP or real-data proposal, use the [Markdown submission guides](website/data-submissions/README.md). "
-        "The package intake below covers ZIP submissions.\n\n"
         f"{data_guide.rstrip()}\n\n"
         "### Existing benchmark documentation\n\n"
         "The DGP collection service does not change the benchmark protocol, website, or starter code. "

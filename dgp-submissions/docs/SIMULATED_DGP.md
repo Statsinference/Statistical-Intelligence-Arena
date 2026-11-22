@@ -17,7 +17,8 @@ Propose one reproducible simulation that mirrors a documented study or isolates 
 | Research question | The statistical target, intended use and behavior under test. Explain why this question is worth adding to the benchmark. |
 | Study design and data source | The population or setting, unit of observation, relevant references and which settings are calibrated or introduced. Include the sampling structure and proposed table sizes. |
 | DAG and identification | Observed and latent variable roles, time ordering and identification assumptions. Use a DAG or describe who causes what. Document any intentional violations. |
-| Data-generating process and estimand | The table schema, generation steps, treatment or contrast, estimand and its units. Document what varies across scenarios and how the truth can be checked. |
+| Variables and data-generating process | The table schema, full structural equations, sampling order and scenario settings. Follow the [DAG and structural equation instructions](../../website/data-submissions/simulated-dgp/README.md#match-the-dag-to-the-equations). |
+| Data-generating process and estimand | The treatment or contrast, estimand and its units, and how the truth can be checked. |
 | Benchmark comparison | Expected outputs, a baseline, shared inputs and scoring. Specify the number of attempted replicates, scenario weighting if relevant, and the treatment of failures. |
 | Materials and access | Shareable references and reproducibility instructions. For official evaluation candidates, identify the files available for private review. |
 
@@ -31,58 +32,22 @@ Public teaching examples can link authorized code and settings. Summaries for pr
 
 ## 3. Copy the Markdown template
 
-Copy the block into `data-submissions/simulated-dgp/submissions/<slug>.md`. Use a lowercase, hyphenated slug, keep the six section headings in order and replace all placeholders. The same text is available as [TEMPLATE.md](https://github.com/Statsinference/statsinference.github.io/blob/be6691cb365e8319ae50e009cf37d2b8658c5c94/data-submissions/simulated-dgp/TEMPLATE.md).
-
-```markdown
-# [TODO: Case title]
-
-## Research question
-
-- **Question and intended use.** [TODO: State the statistical question and whether this is a teaching example or a candidate for evaluation.]
-- **Behavior under test.** [TODO: Explain the scientific or statistical behavior methods should recover, and why it matters.]
-
-## Study design and data source
-
-- **Motivation and references.** [TODO: Cite the study, data or methodological work that motivates the setting. Describe which design choices come from the reference and which you introduce.]
-- **Population and sampling.** [TODO: Define the units, sampling design, dependence and sample sizes or ranges that can be shared.]
-
-## DAG and identification
-
-- **Variables and causal structure.** [TODO: Map observed and latent variables to their roles and available columns. Add a DAG or describe the directed relationships in text.]
-- **Assumptions.** [TODO: State the assumptions that identify the target or explain which assumption the stress test deliberately violates.]
-
-## Data-generating process and estimand
-
-- **Observed input.** [TODO: Specify the table grain, column roles, and what the estimator receives.]
-- **Generator and scenarios.** [TODO: Summarize sampling, equations and scenario families at a shareable level, including what is varied and why.]
-- **Estimand.** [TODO: Define the contrast, scale, population and time horizon where relevant.]
-- **Truth check.** [TODO: Describe the analytical, numerical or Monte Carlo calculation reviewers can use to verify the reference value. Keep protected case-specific values and settings in private review.]
-
-## Benchmark comparison
-
-- **Output and comparator.** [TODO: State the expected outputs and a baseline or comparison method with the same observable inputs.]
-- **Scoring and replication.** [TODO: State the metrics, how replicate tables and scenarios are aggregated, and how failed or missing runs are counted.]
-
-## Materials and access
-
-- **Public materials.** [TODO: Link approved sources, code, documentation or teaching materials and state their sharing terms.]
-- **Reproduction and protected materials.** [TODO: State how a reviewer can rerun one check. Name any full generator, configs, seeds, generated tables or truth calculations reserved for private review.]
-```
+Copy the [current Markdown template](../../website/data-submissions/simulated-dgp/TEMPLATE.md) to `website/data-submissions/simulated-dgp/submissions/<slug>.md`. Use a lowercase, hyphenated slug, keep the section headings in order and replace all placeholders.
 
 ## 4. Check and open the pull request
 
-1. [Fork the website repository](https://github.com/Statsinference/statsinference.github.io/fork) and create a branch from `main`. Add the single Markdown proposal.
-2. Check that the generation recipe reproduces the table schema and that the reference calculation produces the intended target. Verify that the public proposal contains only shareable materials.
+1. Create a branch from `main` in the [private StatArena repository](https://github.com/Statsinference/Statistical-Intelligence-Arena). Add the single Markdown proposal.
+2. Check that the generation recipe reproduces the table schema and that the reference calculation produces the intended target. Check the sharing terms of any materials you link or include.
 3. Run the format check from the repository root. Replace `your-design` with your file's slug.
 
    ```bash
-   python scripts/check_data_contribution.py --track simulated-dgp --local-file data-submissions/simulated-dgp/submissions/your-design.md
+   python website/scripts/check_data_contribution.py --track simulated-dgp --local-file website/data-submissions/simulated-dgp/submissions/your-design.md
    ```
 
-4. Open a pull request to the website repository's `main` and complete the [submission checklist](https://github.com/Statsinference/statsinference.github.io/blob/be6691cb365e8319ae50e009cf37d2b8658c5c94/.github/PULL_REQUEST_TEMPLATE/data-contribution.md). Use the same PR for revisions. The automated check verifies the file and headings. A reviewer checks the design, the truth calculation and reproducibility. Evaluation inclusion is a separate curator decision.
+4. [Open a pull request](https://github.com/Statsinference/Statistical-Intelligence-Arena/compare) to `main` and complete the [submission checklist](../../website/.github/PULL_REQUEST_TEMPLATE/data-contribution.md). Use the same PR for revisions. The automated check verifies the file, headings and declared edge lists. A reviewer checks the design, the truth calculation and reproducibility. Evaluation inclusion is a separate curator decision.
 
 ## Worked public example
 
-The childhood-trauma example models a methylation profile and derives the joint indirect effect on cortisol reactivity. It includes a shareable causal diagram, the inputs given to methods and an independently checkable reference calculation. [Read the example](https://github.com/Statsinference/statsinference.github.io/blob/be6691cb365e8319ae50e009cf37d2b8658c5c94/data-submissions/simulated-dgp/EXAMPLE.md)
+The childhood-trauma example models a methylation profile and derives the joint indirect effect on cortisol reactivity. It includes a shareable causal diagram, the inputs given to methods and an independently checkable reference calculation. [Read the example](../../website/data-submissions/simulated-dgp/EXAMPLE.md)
 
-[All contribution tracks](../README.md) · [Reviewer checklist](https://github.com/Statsinference/statsinference.github.io/blob/be6691cb365e8319ae50e009cf37d2b8658c5c94/data-submissions/REVIEWING.md)
+[All contribution tracks](../README.md) · [Reviewer checklist](../../website/data-submissions/REVIEWING.md)
