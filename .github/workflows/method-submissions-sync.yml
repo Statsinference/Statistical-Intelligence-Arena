@@ -9,17 +9,25 @@ on:
     paths:
       - .github/workflows/method-submissions-sync.yml
       - website/method-submissions/sync.py
+      - website/method-submissions/stage_reviews.py
+      - method-submissions/received/**
+      - method-submissions/checks/**
   workflow_dispatch:
 permissions:
   contents: write
   issues: read
+  pull-requests: write
 concurrency:
   group: method-submissions-sync
   cancel-in-progress: false
 jobs:
   sync:
+    if: >-
+      github.event_name != 'issues' ||
+      startsWith(github.event.issue.title, '[Method submission] ') ||
+      startsWith(github.event.changes.title.from, '[Method submission] ')
     runs-on: ubuntu-24.04
-    timeout-minutes: 5
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
         with:
@@ -27,21 +35,12 @@ jobs:
           sparse-checkout: |
             method-submissions
             website/method-submissions
-      - name: Archive private method submissions
+      - name: Prepare method submissions for review
         env:
           GITHUB_TOKEN: ${{ github.token }}
-        run: python3 website/method-submissions/sync.py
-      - name: Save the submission list
-        shell: bash
-        run: |
-          mkdir -p method-submissions/received method-submissions/checks
-          git add -- method-submissions/received method-submissions/checks
-          if git diff --cached --quiet; then exit 0; fi
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'chore: sync method submission links'
-          for attempt in 1 2 3; do
-            if git push origin HEAD:main; then exit 0; fi
-            git pull --rebase origin main
-          done
-          exit 1
+          GH_TOKEN: ${{ github.token }}
+          GIT_AUTHOR_NAME: github-actions[bot]
+          GIT_AUTHOR_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
+          GIT_COMMITTER_NAME: github-actions[bot]
+          GIT_COMMITTER_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
+        run: python3 -B website/method-submissions/stage_reviews.py

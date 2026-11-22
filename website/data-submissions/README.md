@@ -9,7 +9,7 @@ Propose one simulated design or one real-data problem per pull request. Describe
 
 ## Open a pull request
 
-1. Create a branch from `main` in the [private StatArena repository](https://github.com/Statsinference/Statistical-Intelligence-Arena).
+1. Create a branch from `main` in your fork of the [StatArena repository](https://github.com/Statsinference/Statistical-Intelligence-Arena). If you have write access, you can create the branch in StatArena directly.
 2. Copy the template for your track into its `submissions/` directory under `website/data-submissions/`. Create that directory if it is empty. Choose a lowercase, hyphenated filename such as `job-training-earnings.md`. Keep the template headings and replace the prompts with your case.
 3. Commit the single case file. [Open a pull request](https://github.com/Statsinference/Statistical-Intelligence-Arena/compare) with `main` as the base and your branch as the compare branch. Copy the [data contribution PR checklist](../.github/PULL_REQUEST_TEMPLATE/data-contribution.md) into the description.
 4. Check the **Website data contribution precheck** result and address any requested revisions in the same PR. A maintainer will assign a reviewer.

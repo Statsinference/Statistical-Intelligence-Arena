@@ -67,7 +67,7 @@ Copy only the contents of the block into `website/data-submissions/real-data/sub
 
 ## 4. Check and open the pull request
 
-1. Create a branch from `main` in the [private StatArena repository](https://github.com/Statsinference/Statistical-Intelligence-Arena). Add the single Markdown proposal.
+1. Create a branch from `main` in your fork of the [StatArena repository](https://github.com/Statsinference/Statistical-Intelligence-Arena). If you have write access, you can create the branch in StatArena directly. Add the single Markdown proposal.
 2. Check the section headings and follow the preparation steps from the cited data source. Verify sample counts and the reference calculation, if supplied. Keep restricted records, credentials, and links that require temporary access out of the PR.
 3. Run the format check locally from the repository root. Replace `your-study` with your file slug.
 
