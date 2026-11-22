@@ -152,7 +152,19 @@ Run `statarena-lite list` to see all supported domains. Use `dev` to develop a m
 
 ## Citation
 
-The Statistical Intelligence Arena Team. (2026, November). *The Statistical Intelligence Arena: Building the Foundation for Statistical Intelligence* [Software documentation]. Zenodo. [https://doi.org/10.5281/zenodo.24443872](https://doi.org/10.5281/zenodo.24443872)
+If you use StatArena in your research, please cite the documentation below. GitHub's **Cite this repository** button uses the same reference from [CITATION.cff](CITATION.cff). The DOI below identifies [this version on Zenodo](https://doi.org/10.5281/zenodo.24443872). Use the [concept DOI](https://doi.org/10.5281/zenodo.24443871) to cite the documentation across versions.
+
+```bibtex
+@misc{StatArena_2026,
+  author = {{The Statistical Intelligence Arena Team}},
+  doi = {10.5281/zenodo.24443872},
+  month = {11},
+  publisher = {Zenodo},
+  title = {{The Statistical Intelligence Arena: Building the Foundation for Statistical Intelligence}},
+  url = {https://doi.org/10.5281/zenodo.24443872},
+  year = {2026}
+}
+```
 
 
 ## Contact
