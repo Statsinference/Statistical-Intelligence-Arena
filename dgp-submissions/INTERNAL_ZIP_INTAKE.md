@@ -1,21 +1,12 @@
 # Internal literature DGP intake
 
-Collaborators who already have a structured literature DGP ZIP can use the existing upload and catalog below. This route requires access to the private research repository.
-
-<p align="center">
-  <a href="/../../upload/main/dgp-submissions/incoming"><img alt="Upload a DGP ZIP directly to this repository" src="https://img.shields.io/badge/Submit_DGP-Upload_ZIP-1677C8?style=for-the-badge" /></a>
-  <a href="registry/INDEX.md"><img alt="Browse research areas" src="https://img.shields.io/badge/Browse-DGP_Research_Areas-444444?style=for-the-badge" /></a>
-</p>
+Collaborators who already have a structured literature DGP ZIP can contribute it through a pull request. [Browse the DGP catalog](registry/INDEX.md).
 
 ### Submit a structured ZIP
 
-1. **Collaborators with read access:** first fork the private repository into your own GitHub account. Open **your fork**, then click **Submit DGP**. The button opens GitHub's **file-upload page directly**, targeting `incoming/` on the `main` branch **of the repository you are viewing**. Check that the repository owner in the URL is your username, not `Statsinference`.
-2. **Drag and drop your structured `.zip`, or click “choose your files”.** Click **Commit changes** to save it to your fork. Your fork's `main` is separate from the upstream repository's `main`; uploading here does not submit or merge anything upstream.
-3. In your fork, choose **Contribute → Open pull request** and target `Statsinference/Statistical-Intelligence-Arena:main`. The **DGP ZIP-only** check runs before a maintainer reviews and merges; the catalog updates only after merging.
-
-**Already have a fork?** Use **Sync fork → Update branch** to obtain this updated upload button, then reopen this page in your fork. The button follows the repository you are viewing; it does not automatically find your fork when clicked on the upstream page.
-
-Maintainers with upstream Write permission may commit ZIPs directly to the upstream repository instead. **Outside collaborators do not need upstream Write permission.** Do not use an upstream upload URL from inside your fork.
+1. Create a branch from `main` in your fork. If you have write access, you can create the branch in StatArena directly.
+2. Upload the structured `.zip` to `dgp-submissions/incoming/` on that branch and commit the file there.
+3. Open a pull request to `Statsinference/Statistical-Intelligence-Arena:main`. The **DGP ZIP-only** check validates the submission and produces a catalog preview for a maintainer to review before merging.
 
 The ZIP's `collection.json` already identifies its research family, so **contributors do not need to select it again**. A missing or unknown family is flagged for human classification, never guessed.
 
@@ -99,7 +90,7 @@ Before submitting, verify that the target's name, definition, population, source
 [ATE](registry/by-domain/ate.md) · [CATE](registry/by-domain/cate.md) · [Mediation](registry/by-domain/mediation.md) · [IV](registry/by-domain/iv.md) · [Proximal Causal Inference](registry/by-domain/proximal.md) · [DiD](registry/by-domain/did.md) · [Synthetic Control](registry/by-domain/synthetic_control.md) · [Nonparametric Regression](registry/by-domain/nonparametric_regression.md) · [Quantile Inference](registry/by-domain/quantile.md) · [Semi-Supervised Inference](registry/by-domain/semi_supervised.md) · [Missing Data](registry/by-domain/missing_data.md)
 
 
-After the ZIP commit, see **Actions → DGP submissions**. The bot updates [`registry/INDEX.md`](registry/INDEX.md) and the research area catalogs on successful runs; no deployment or model key is involved.
+After the submission PR merges, **Actions → DGP submissions** prepares updates to [`registry/INDEX.md`](registry/INDEX.md) and the research area catalogs in a separate pull request. A maintainer reviews and merges the catalog update. If the workflow cannot open the pull request, the run summary links to the catalog branch comparison.
 
 ## Example and format
 
@@ -109,4 +100,4 @@ The downloadable [`examples/proximal_10_dgps.zip`](examples/proximal_10_dgps.zip
 
 Submitted ZIPs are treated as **data only**, never executed. The catalog shows extracted text and submitted truth values with **Needs scientific review** labels. The archive format requires structured `collection.json` and `config.json`. If the ZIP only contains a raw PDF or random Python code, deterministic extraction is not possible without additional author-supplied structure.
 
-**GitHub-native limitation:** This is GitHub's normal file-upload page, not a custom domain-selection form. DGP area comes from the ZIP's `collection.json` `family` field. Automatic indexing requires the checked-in `../.github/workflows/dgp-submissions.yml` workflow and Actions permission to write generated draft catalog files.
+DGP area comes from the ZIP's `collection.json` `family` field.

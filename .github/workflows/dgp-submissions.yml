@@ -1,12 +1,12 @@
 name: DGP submissions
 on:
-  # Website Markdown proposals have their own precheck. Mixed PRs and PRs
-  # outside that directory still run the ZIP-only gate.
+  # A ZIP submission is checked in full, including any other changed paths.
+  # Website Markdown submissions have their own precheck.
   pull_request_target:
     branches: [main]
     types: [opened, synchronize, reopened, ready_for_review, edited]
-    paths-ignore:
-      - 'website/data-submissions/**'
+    paths:
+      - 'dgp-submissions/incoming/**'
   push:
     branches: [main]
     paths:
@@ -76,10 +76,12 @@ jobs:
           JOB_STATUS: ${{ job.status }}
         run: python integration/zip_only_gate.py finish
   publish:
+    name: Prepare DGP catalog pull request
     if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      pull-requests: write
     timeout-minutes: 15
     defaults:
       run:
@@ -108,22 +110,68 @@ jobs:
           python integration/sync_contributing.py
           python -m pytest tests/test_integration.py -q
           python integration/verify_isolation.py verify
-      - name: Commit only the Contributing landing page and DGP catalog
+      - name: Stage the generated DGP catalog for review
         working-directory: .
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -- CONTRIBUTING.md dgp-submissions/registry
           if git diff --cached --quiet; then
             echo 'The DGP catalog and Contributing page are current.'
-          else
-            python - <<'PY'
-          import subprocess
-          changed=subprocess.check_output(['git','diff','--cached','--name-only','-z']).decode().split('\0')
-          allowed=lambda p: p=='CONTRIBUTING.md' or p.startswith('dgp-submissions/registry/')
-          invalid=[p for p in changed if p and not allowed(p)]
-          if invalid: raise SystemExit('Refusing changes outside DGP output: '+repr(invalid))
-          PY
-            git commit -m 'chore: refresh DGP Contributing catalog'
-            git push origin HEAD:main
+            exit 0
           fi
+          python - <<'PY'
+          import subprocess
+          changed = subprocess.check_output(['git', 'diff', '--cached', '--name-only', '-z']).decode().split('\0')
+          invalid = [p for p in changed if p and p != 'CONTRIBUTING.md' and not p.startswith('dgp-submissions/registry/')]
+          if invalid:
+              raise SystemExit('Refusing changes outside DGP output: ' + repr(invalid))
+          PY
+
+          git fetch --no-tags origin refs/heads/main
+          base=$(git rev-parse HEAD)
+          if [[ $(git rev-parse FETCH_HEAD) != "$base" ]]; then
+            echo '::error::main changed during generation. Rerun this workflow against the latest main.'
+            exit 1
+          fi
+
+          branch=submissions/data-catalog
+          ref=refs/heads/$branch
+          tree=$(git write-tree)
+          previous=$(git ls-remote origin "$ref" | cut -f1)
+          parents=(-p "$base")
+          needs_push=true
+          if [[ -n "$previous" ]]; then
+            git fetch --no-tags origin "$ref"
+            if [[ $(git rev-parse FETCH_HEAD) != "$previous" ]]; then
+              echo '::error::The catalog review branch changed during preparation. Rerun this workflow.'
+              exit 1
+            fi
+            if [[ "$tree" == $(git rev-parse "$previous^{tree}") ]]; then
+              echo 'The generated catalog is already on the review branch.'
+              needs_push=false
+            elif ! git merge-base --is-ancestor "$previous" "$base"; then
+              # Preserve the previous review head so the branch update is fast-forward.
+              parents+=(-p "$previous")
+            fi
+          fi
+          if [[ "$needs_push" == true ]]; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            commit=$(git commit-tree "$tree" "${parents[@]}" -m 'chore: refresh DGP Contributing catalog')
+            git push origin "$commit:$ref"
+          fi
+
+          pr_url=$(gh api --method GET "repos/$GITHUB_REPOSITORY/pulls" \
+            -f base=main -f head="$GITHUB_REPOSITORY_OWNER:$branch" -f state=open \
+            --jq '.[0].html_url // empty')
+          if [[ -z "$pr_url" ]]; then
+            if ! pr_url=$(gh pr create --repo "$GITHUB_REPOSITORY" --head "$branch" --base main \
+              --title 'Refresh the DGP contribution catalog' \
+              --body 'Regenerated the contribution guide and catalog from the ZIPs already merged into main. Please review the generated changes before merging.'); then
+              pr_url="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/compare/main...$branch?expand=1"
+              echo '::warning::GitHub did not create the catalog PR. Open it from the workflow summary.'
+            fi
+          fi
+          printf '\nDGP catalog review: %s\n' "$pr_url" >> "$GITHUB_STEP_SUMMARY"

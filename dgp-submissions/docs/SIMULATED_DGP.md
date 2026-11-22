@@ -37,7 +37,7 @@ Copy the [current Markdown template](../../website/data-submissions/simulated-dg
 
 ## 4. Check and open the pull request
 
-1. Create a branch from `main` in the [private StatArena repository](https://github.com/Statsinference/Statistical-Intelligence-Arena). Add the single Markdown proposal.
+1. Create a branch from `main` in your fork of the [StatArena repository](https://github.com/Statsinference/Statistical-Intelligence-Arena). If you have write access, you can create the branch in StatArena directly. Add the single Markdown proposal.
 2. Check that the generation recipe reproduces the table schema and that the reference calculation produces the intended target. Check the sharing terms of any materials you link or include.
 3. Run the format check from the repository root. Replace `your-design` with your file's slug.
 
