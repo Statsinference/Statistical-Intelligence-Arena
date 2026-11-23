@@ -177,4 +177,4 @@ The repository includes the [Apache License 2.0](LICENSE). Please see [NOTICE.md
 
 ## Acknowledgements
 
-[StatArena (The Statistical Intelligence Arena)](https://statsinference.github.io/) is an open academic collaboration jointly led by staff from [Shanghai University of Finance and Economics](https://www.sufe.edu.cn/) and [Boston University](https://www.bu.edu/).
+**StatArena is an open academic benchmark developed by researchers and students affiliated with several institutions, including Shanghai University of Finance and Economics and Boston University.**
