@@ -9,8 +9,8 @@
   "estimator": "The target is the average treatment effect on the treated (ATT) in a two-period panel. For each study, subtract the control group's mean outcome change from the treated group's mean outcome change. Identification assumes no anticipation and unconditional parallel trends. The estimator does not adjust for covariates, so trends that are parallel only conditional on covariates can lead to bias.\n\nThe nominal two-sided 95% interval uses the unpooled standard error of the difference in mean changes and the Welch\u2013Satterthwaite t critical value. Inference assumes independent units; it does not account for common cluster shocks. If both groups have zero sample variance, the reported interval has zero width.",
   "submitted_by": "lisuo33",
   "created_at": "2026-11-22T16:15:51Z",
-  "updated_at": "2026-11-22T16:15:51Z",
-  "status": "open",
+  "updated_at": "2026-11-23T02:37:27Z",
+  "status": "closed",
   "issue_url": "https://github.com/Statsinference/Statistical-Intelligence-Arena/issues/40",
   "is_test": false
 }
