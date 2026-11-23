@@ -95,7 +95,7 @@ Run `statarena-lite list` to see all supported domains. Use `dev` to develop a m
   </thead>
   <tbody>
     <tr>
-      <td width="25%"><a href="https://github.com/shibo769">Shi Bo</a><br><small><sub>Boston University</sub></small></td>
+      <td width="25%"><a href="mailto:shibo@bu.edu">Shi Bo</a><br><small><sub>Boston University</sub></small></td>
       <td width="25%"><a href="https://www.linkedin.com/in/jiaming-h-24400a1b8/">Jiaming Hu</a><br><small><sub>Boston University</sub></small></td>
       <td width="25%"><a href="https://zhzhang01.github.io/">Zhiheng Zhang</a><br><small><sub>Shanghai University of Finance and Economics</sub></small></td>
       <td width="25%"></td>
@@ -169,7 +169,7 @@ If you use StatArena in your research, please cite the documentation below. GitH
 
 ## Contact
 
-For questions and feedback, please contact the project leads: [Shi Bo](https://github.com/shibo769) · [Jiaming Hu](https://www.linkedin.com/in/jiaming-h-24400a1b8/) · [Zhiheng Zhang](https://zhzhang01.github.io/)
+For questions and feedback, please contact the project leads: [Shi Bo](mailto:shibo@bu.edu) · [Jiaming Hu](https://www.linkedin.com/in/jiaming-h-24400a1b8/) · [Zhiheng Zhang](https://zhzhang01.github.io/)
 
 ## License
 
