@@ -35,10 +35,10 @@ flowchart LR
 
 ```math
 \begin{aligned}
-X_{ij} &\overset{\mathrm{iid}}{\sim} \operatorname{Uniform}[-1,1],
+X_{ij} &\overset{\mathrm{iid}}{\sim} \mathrm{Uniform}[-1,1],
 && i=1,\ldots,n,\quad j=1,\ldots,p,\quad n=100,\quad p=50,\\
 X_i &= (X_{i1},\ldots,X_{ip}),\\
-A_i &\sim \operatorname{Bernoulli}(1/2),
+A_i &\sim \mathrm{Bernoulli}(1/2),
 && A_i\perp X_i,\\
 \epsilon_{Y,i} &\sim \mathcal N(0,1),
 && \epsilon_{Y,i}\perp (X_i,A_i),\\
@@ -58,9 +58,9 @@ All random draws are independent across individuals and tables. The factor $2A_i
 | --- | --- | --- |
 | $i,n$ | Individual index and table size | $i=1,\ldots,n$; fixed total $n=100$ in the proposed evaluation. |
 | $j,p$ | Covariate index and dimension | $j=1,\ldots,p$; fixed $p=50$ from the source. |
-| $X_{ij},X_i$ | Observed baseline coordinates and vector | Independent $\operatorname{Uniform}[-1,1]$ draws; coordinate $j$ is column `Xj`. Only coordinates 1, 2 and 3 enter the outcome equation. |
+| $X_{ij},X_i$ | Observed baseline coordinates and vector | Independent $\mathrm{Uniform}[-1,1]$ draws; coordinate $j$ is column `Xj`. Only coordinates 1, 2 and 3 enter the outcome equation. |
 | $x,x_j$ | Covariate argument and coordinate | $x\in[-1,1]^{50}$ is a realization of the baseline vector; $x_j$ is its $j$th coordinate. |
-| $A_i$ | Observed binary treatment | Column `A`; independent $\operatorname{Bernoulli}(1/2)$. The propensity is the constant $1/2$ for every baseline vector. |
+| $A_i$ | Observed binary treatment | Column `A`; independent $\mathrm{Bernoulli}(1/2)$. The propensity is the constant $1/2$ for every baseline vector. |
 | $2A_i-1$ | Source treatment encoding | Equals $-1$ under control and $+1$ under treatment; a deterministic recoding, not an additional draw or table column. |
 | $\epsilon_{Y,i}$ | Unobserved outcome disturbance | Independent normal noise with fixed mean 0 and variance 1; not supplied to methods. |
 | $r(x)$ | Squared radial coordinate | $r(x)=x_1^2+x_2^2$; deterministic, with support $[0,2]$. |
