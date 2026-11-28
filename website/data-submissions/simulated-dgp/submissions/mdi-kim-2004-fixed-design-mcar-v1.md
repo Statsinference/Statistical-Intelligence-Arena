@@ -26,13 +26,13 @@ flowchart LR
 ## Variables and data-generating process
 
 - **Variables and observed input.** Each row corresponds to one study unit. Every method receives the three columns `X`, `R`, and `Y_obs`. The column `X` takes fixed values strictly inside $(5, 15)$, `R` is binary ($`1`$ for observed, $0$ for missing), and `Y_obs` equals $`Y_i`$ when $`R_i = 1`$ and finite placeholder `0` (serialized as float `0.0`) when $`R_i = 0`$. Estimators must read `Y_obs` only where `R == 1`. Unobserved $`Y_i`$ values ($`R_i = 0`$), disturbances $`\epsilon_i`$, and reference truths are excluded from estimator inputs.
-- **Draw order and scenarios.** Under the single source scenario `original` ($`n = 200`$, $`r = 120`$): (1) construct the deterministic interior grid $`x_i = 5 + 10i/(n + 1)`$; (2) draw independent standard normal errors $`\epsilon_i`$ and compute $`Y_i = 2 + 4x_i + \epsilon_i`$; (3) draw a uniform subset $S$ of size $r$ without replacement from $\{1, \ldots, n\}$ and set $`R_i = \mathbf{1}\{i \in S\}`$; (4) mask outcomes as $`Y_{\mathrm{obs},i} = R_i Y_i`$. All parameters remain fixed across replicate tables.
+- **Draw order and scenarios.** Under the single source scenario `original` ($`n = 200`$, $`r = 120`$): (1) construct the deterministic interior grid $`x_i = 5 + 10i/(n + 1)`$; (2) draw independent standard normal errors $`\epsilon_i`$ and compute $`Y_i = 2 + 4x_i + \epsilon_i`$; (3) draw a uniform subset $S$ of size $r$ without replacement from $`\{1, \ldots, n\}`$ and set $`R_i = \mathbf{1}\{i \in S\}`$; (4) mask outcomes as $`Y_{\mathrm{obs},i} = R_i Y_i`$. All parameters remain fixed across replicate tables.
 
 ### Structural equations
 
 - **Structural parents.** `X -> Y, Y -> Y_obs, R -> Y_obs`
 
-$$
+```math
 \begin{aligned}
 x_i &= 5 + \frac{10i}{n + 1}, && i = 1, \ldots, n, \quad n = 200, \\
 \epsilon_i &\overset{\mathrm{iid}}{\sim} \mathcal{N}(0, 1), && i = 1, \ldots, n, \\
@@ -40,7 +40,7 @@ Y_i &= 2 + 4x_i + \epsilon_i, && \\
 S &\sim \mathrm{Uniform}\bigl\{A \subseteq \{1, \ldots, n\} : |A| = r\bigr\}, && r = 120, \\
 R_i &= \mathbf{1}\{i \in S\}, \qquad Y_{\mathrm{obs},i} = R_i Y_i.
 \end{aligned}
-$$
+```
 
 The fixed covariates $`x_i`$ lie strictly inside $(5, 15)$ symmetrically around $10$ (from $5 + 10/201$ to $`15 - 10/201`$), errors $`\epsilon_i`$ are mutually independent of $S$, and missing rows ($`R_i = 0`$) carry finite placeholder $`Y_{\mathrm{obs},i} = 0`$.
 
