@@ -40,32 +40,32 @@ flowchart LR
 
 - **Structural parents.** `Z -> A, Z -> Y`
 
-$$
+```math
 \begin{aligned}
 C_f&=\frac{\pi^2}{7\zeta(3)},\qquad 0<a,z<1,\\
 f_{AZ}(a,z)&=2C_f\sum_{j=1}^{\infty}\frac{(-1)^{j+1}}{j}\sin(j\pi a)\sin(j\pi z)\\
 &=C_f\log\left\{\frac{\cos(\pi(a-z)/2)}{|\cos(\pi(a+z)/2)|}\right\},\\
-S(z)&=\operatorname{Im}\operatorname{Li}_2(e^{i\pi z})-\tfrac14\operatorname{Im}\operatorname{Li}_2(e^{2i\pi z}),\qquad
+S(z)&=\mathrm{Im}\mathrm{Li}_2(e^{i\pi z})-\tfrac14\mathrm{Im}\mathrm{Li}_2(e^{2i\pi z}),\qquad
 f_Z(z)=\frac{4C_f}{\pi}S(z),\\
 Z&\sim f_Z,\qquad A\mid Z=z\sim f_{AZ}(a,z)/f_Z(z).
 \end{aligned}
-$$
+```
 
-$$
+```math
 \begin{aligned}
 g(a)&=\sqrt2\sum_{j=1}^{\infty}\frac{(-1)^{j+1}}{j^2}\sin(j\pi a),\\
 r(z)&=\frac{\sqrt2\pi^4z(1-z)(2-z)}{48S(z)},\qquad
 \epsilon_Y\sim N(0,.1^2),\qquad Y=r(Z)+\epsilon_Y,\\
 E\{Y-g(A)\mid Z\}&=0.
 \end{aligned}
-$$
+```
 
 | Symbol | Meaning | Definition or setting |
 | --- | --- | --- |
 | $A,Z,a,z$ | Endogenous regressor, instrument coordinates and arguments | Columns `X,W` in the code correspond to A,Z, respectively; both continuous on (0,1). No baseline covariates: dimension/effective dimension 0/0. |
 | $f_{AZ},f_Z,C_f$ | Joint density, instrument marginal density and normalization | Explicit infinite-law formulas above; log density has an integrable singularity on a+z=1. Conditional density divides joint by the positive marginal. |
 | $j,\pi,\zeta$ | Series index, circle constant and Riemann zeta function | j is positive integer; normalization uses zeta(3); constants are not table-level draws. |
-| $S,\operatorname{Li}_2,\operatorname{Im},i$ | Odd dilogarithmic sine sum, dilogarithm, imaginary part and imaginary unit | Complex dilogarithm on the unit circle, standard analytic branch; i squared=-1. |
+| $S,\mathrm{Li}_2,\mathrm{Im},i$ | Odd dilogarithmic sine sum, dilogarithm, imaginary part and imaginary unit | Complex dilogarithm on the unit circle, standard analytic branch; i squared=-1. |
 | $g,r$ | Structural moment solution and conditional response mean | Fully specified infinite sine series and rational/special-function expression above. These are not observed nuisance columns. |
 | $Y,\epsilon_Y$ | Observed response and equation-only noise | Column `Y`; independent normal noise with SD .1, independent of the joint (A,Z) draw and across rows. |
 | $a^*,G_{\rm Cat}$ | Query and Catalan constant | a*=.5; $G_{\rm Cat}=\int_0^1\arctan(t)/t\,dt$, with continuous integrand limit at t=0. |
