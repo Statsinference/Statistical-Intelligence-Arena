@@ -2,6 +2,8 @@
 
 ## Research question
 
+- **Primary domain.** `cate`
+- **Keywords.** Randomized treatment; Effect heterogeneity; Quadratic effect; Model misspecification; Irrelevant covariates
 - **Question and intended use.** Propose a candidate for scalar CATE evaluation at one prespecified interior covariate query: the conditional mean response under treatment minus that under control.
 - **Behavior under test.** The efficacy effect is quadratic, positive inside the quarter circle $x_1^2+x_2^2=1$ and negative outside, with a large range (from $-16$ to $16$) relative to unit noise. A linear prognostic baseline sits alongside seven inert covariates. Linear interaction models are misspecified. A single fixed query assesses local accuracy, not recovery of the whole effect surface.
 

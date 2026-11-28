@@ -2,6 +2,8 @@
 
 ## Research question
 
+- **Primary domain.** `cate`
+- **Keywords.** Confounding; Correlated covariates; Poisson outcome; Random follow-up; Folded log rates
 - **Question and intended use.** Propose a source-grounded evaluation candidate for one scalar fixed-query CATE and an optional 95% pointwise interval. Clipped block-correlated covariates, folded log rates and Poisson counts with observed random exposure are absent from the public CATE inventory. Other rate settings are not counted separately.
 - **Behavior under test.** Preserve the source joint observed law and explicitly define the additive intervention contrast. Family membership is based on structural form; seeds and parameter variants are not additional contributions.
 

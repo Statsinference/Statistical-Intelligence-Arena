@@ -2,6 +2,8 @@
 
 ## Research question
 
+- **Primary domain.** `cate`
+- **Keywords.** Randomized treatment; Effect heterogeneity; Linear effect; Irrelevant covariates
 - **Question and intended use.** Propose a candidate for scalar CATE evaluation at one prespecified interior covariate query: the conditional mean response under treatment minus that under control.
 - **Behavior under test.** The efficacy effect is linear in $X_1$ and $X_2$ and changes sign on the line $x_1+x_2=1$, the diagonal of the unit square, so about half the population benefits. $X_3$ is prognostic only and seven of the ten covariates are inert. A linear interaction model is correctly specified. A single fixed query assesses local accuracy, not recovery of the whole effect surface.
 

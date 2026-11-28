@@ -2,6 +2,8 @@
 
 ## Research question
 
+- **Primary domain.** `cate`
+- **Keywords.** Randomized treatment; Effect heterogeneity; Discontinuous effect; Model misspecification
 - **Question and intended use.** Propose a candidate for scalar CATE evaluation at one prespecified interior covariate query: the conditional mean response under treatment minus that under control.
 - **Behavior under test.** The effect depends on $X_1$ alone through $\operatorname{sign}(x_1)(1-x_1)^2$: it jumps from about $-0.892$ to $+0.892$ at $x_1=0$ and vanishes at $x_1=1$. The source uses it as the case where a linear interaction working model is misspecified. It tests CATE estimation for a discontinuous, nonmonotone effect with a medium effect size. A single fixed query assesses local accuracy, not recovery of the whole effect surface.
 

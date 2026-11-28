@@ -2,6 +2,8 @@
 
 ## Research question
 
+- **Primary domain.** `cate`
+- **Keywords.** Confounding; Binary outcome; Effect heterogeneity; Piecewise cubic effect; Zero-effect region
 - **Question and intended use.** Propose a candidate for scalar CATE evaluation on the probability scale at one prespecified covariate value, in an observational design with a single measured confounder.
 - **Behavior under test.** The effect of treatment on a binary outcome is a smooth cubic of one uniform covariate that is exactly zero on $[-1/2,1/3]$, positive below and negative above. Treatment probability depends on the covariate (0.4 to 0.6). This is the source's exceptional law: on a set of positive probability the treatment has no effect. The design tests pointwise CATE estimation for a small, locally flat effect on the probability scale with mild confounding.
 

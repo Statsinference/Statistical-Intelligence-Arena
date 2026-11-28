@@ -1,0 +1,136 @@
+name: Simulated DGP proposal catalog
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'website/data-submissions/simulated-dgp/submissions/*.md'
+      - 'website/scripts/build_proposal_catalog.py'
+      - 'website/scripts/check_data_contribution.py'
+      - 'website/tests/test_proposal_catalog.py'
+      - 'website/tests/test_data_contribution.py'
+      - 'website/tests/test_proposal_catalog_workflow.py'
+      - 'website/data-submissions/**/README.md'
+      - 'website/data-submissions/**/TEMPLATE.md'
+      - 'website/data-submissions/**/EXAMPLE.md'
+      - '!website/data-submissions/simulated-dgp/by-domain/**'
+      - '.github/workflows/simulated-dgp-catalog.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: simulated-dgp-proposal-catalog
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    name: Prepare simulated DGP catalog pull request
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Check out current main
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test proposal format and catalog generation
+        run: python3 -m unittest discover -s website/tests -p 'test_*.py' -v
+      - name: Generate proposal lists
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 website/scripts/build_proposal_catalog.py | tee "$RUNNER_TEMP/proposal-catalog.log"
+          {
+            echo '### Proposal catalog generation'
+            echo ''
+            echo '```text'
+            cat "$RUNNER_TEMP/proposal-catalog.log"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+      - name: Create or update catalog PR
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          git add -A -- website/data-submissions/simulated-dgp/by-domain
+          python - <<'PY'
+          import subprocess
+          changed = subprocess.check_output(['git', 'diff', '--cached', '--name-only', '-z']).decode().split('\0')
+          invalid = [p for p in changed if p and not p.startswith('website/data-submissions/simulated-dgp/by-domain/')]
+          if invalid:
+              raise SystemExit('Refusing changes outside DGP output: ' + repr(invalid))
+          PY
+
+          git fetch --no-tags origin refs/heads/main
+          base=$(git rev-parse HEAD)
+          if [[ $(git rev-parse FETCH_HEAD) != "$base" ]]; then
+            echo '::error::main changed during generation. Rerun this workflow against the latest main.'
+            exit 1
+          fi
+
+          branch=submissions/simulated-dgp-catalog
+          ref=refs/heads/$branch
+          pr_url=$(gh api --method GET "repos/$GITHUB_REPOSITORY/pulls" \
+            -f base=main -f head="$GITHUB_REPOSITORY_OWNER:$branch" -f state=open \
+            --jq '.[0].html_url // empty')
+          if git diff --cached --quiet; then
+            # A reverted proposal can make an outstanding catalog PR obsolete.
+            if [[ -n "$pr_url" ]]; then
+              gh pr close "$pr_url" --repo "$GITHUB_REPOSITORY"
+            fi
+            echo 'The simulated DGP proposal lists are current; no catalog PR is needed.' >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+
+          tree=$(git write-tree)
+          previous=$(git ls-remote origin "$ref" | cut -f1)
+          parents=(-p "$base")
+          needs_push=true
+          if [[ -n "$previous" ]]; then
+            git fetch --no-tags origin "$ref"
+            if [[ $(git rev-parse FETCH_HEAD) != "$previous" ]]; then
+              echo '::error::The catalog review branch changed during preparation. Rerun this workflow.'
+              exit 1
+            fi
+            if [[ "$tree" == $(git rev-parse "$previous^{tree}") ]]; then
+              needs_push=false
+            elif ! git merge-base --is-ancestor "$previous" "$base"; then
+              # Preserve the previous review head so updates never need a force-push.
+              parents+=(-p "$previous")
+            fi
+          fi
+          if [[ "$needs_push" == true ]]; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            commit=$(git commit-tree "$tree" "${parents[@]}" -m 'chore: refresh simulated DGP proposal catalog')
+            git push origin "$commit:$ref"
+          fi
+
+          if [[ -z "$pr_url" ]]; then
+            cat > "$RUNNER_TEMP/proposal-catalog-pr.md" <<'MD'
+          Regenerated the domain lists from the Markdown proposals already merged into `main`.
+
+          Only `website/data-submissions/simulated-dgp/by-domain/` is updated. Proposal format and catalog tests passed before generation.
+
+          A reviewer should check the source links, domain grouping, keywords and estimand names, then approve this PR. A maintainer with merge permission should merge it manually once all branch rules are satisfied. Fix metadata in the original proposals or the generator, rather than editing these generated lists.
+          MD
+            if ! pr_url=$(gh pr create --repo "$GITHUB_REPOSITORY" --head "$branch" --base main \
+              --title 'Refresh the simulated DGP proposal catalog' \
+              --body-file "$RUNNER_TEMP/proposal-catalog-pr.md"); then
+              echo '::error::Could not create the catalog PR. Check Actions PR permissions.'
+              echo 'PR creation failed. Allow GitHub Actions to create pull requests, then rerun on main.' >> "$GITHUB_STEP_SUMMARY"
+              exit 1
+            fi
+          fi
+          printf '\nCatalog review: %s\n' "$pr_url" >> "$GITHUB_STEP_SUMMARY"
+          echo 'Awaiting reviewer approval and manual merge by a maintainer.' >> "$GITHUB_STEP_SUMMARY"
