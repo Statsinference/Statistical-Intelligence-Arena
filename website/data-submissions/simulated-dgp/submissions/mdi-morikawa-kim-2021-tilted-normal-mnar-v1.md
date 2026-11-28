@@ -3,7 +3,7 @@
 ## Research question
 
 - **Question and intended use.** Estimate the full-population outcome mean $\theta = \mathbb{E}[Y] \approx -0.0002555$ and construct a nominal 95% confidence interval when response depends directly on the unobserved continuous outcome (MNAR), without any excluded instrumental or shadow variable. This design is proposed as an evaluation benchmark candidate for semiparametric nonignorable missing-data inference.
-- **Behavior under test.** Because response propensity $\pi(x, y)$ declines with larger $Y$, both the complete-case sample mean (asymptotic limit $`\approx -0.06281`$) and MAR standardization using the respondent mean $\mathbb{E}[m(X)] = -0.0225$ are biased downward. Identification relies on the interaction term $`0.6 x_1 x_2`$ in the respondent outcome regression $m(x)$ inducing an observable interaction coefficient $`-0.6\gamma x_1 x_2 = +0.18 x_1 x_2`$ in the marginal nonresponse log-odds $\mathrm{logit}\{q(x)\}$. The case evaluates whether estimators exploit this nonlinear structural identification and approach the semiparametric efficiency bound (under the paper's smoothness, moment, and nonsingularity conditions).
+- **Behavior under test.** Because response propensity $\pi(x, y)$ declines with larger $Y$, both the complete-case sample mean (asymptotic limit $`\approx -0.06281`$) and MAR standardization using the respondent mean $\mathbb{E}[m(X)] = -0.0225$ are biased downward. Identification relies on the interaction term $`0.6 x_1 x_2`$ in the respondent outcome regression $m(x)$ inducing an observable interaction coefficient $`-0.6\gamma x_1 x_2 = +0.18 x_1 x_2`$ in the marginal nonresponse log-odds $`\mathrm{logit}\{q(x)\}`$. The case evaluates whether estimators exploit this nonlinear structural identification and approach the semiparametric efficiency bound (under the paper's smoothness, moment, and nonsingularity conditions).
 
 ## Study design and data source
 
@@ -14,7 +14,7 @@
 
 - **Variables and causal structure.** $`X = (X_1, X_2)`$ (`X1`, `X2`) is the fully observed bivariate covariate vector, $R$ (`R`) is the response indicator, $Y$ is the latent complete outcome, and $`Y_{\mathrm{obs}}`$ (`Y_obs`) is the masked observed outcome. The DAG below depicts the generative pattern-mixture sampling factorization $P(X)P(R \mid X)P(Y \mid X, R)$ (so `R -> Y` reflects the sampling order; under the equivalent joint selection factorization $P(X)P(Y \mid X)P(R \mid X, Y)$ with $\Pr(R = 1 \mid X, Y) = \pi(X, Y)$, the selection arrow runs `Y -> R`).
 - **DAG edges.** `X -> R, X -> Y, R -> Y, Y -> Y_obs, R -> Y_obs`
-- **Assumptions.** Units are i.i.d. with positive respondent probability and full-support bivariate Gaussian covariates ($`\det \Sigma_X = 1/8 > 0`$, making $`\{1, x_1, x_2, x_1 x_2\}`$ linearly independent); the response-logit selection model $`\pi(x, y) = \mathrm{expit}(\alpha_0 + \alpha_1 x_1 + \alpha_2 x_2 + \gamma y)`$ is additive in $`(x_1, x_2, y)`$ (excluding any $`x_1 x_2`$ term); and the respondent distribution $Y \mid (X = x, R = 1) \sim \mathcal{N}(m(x), \sigma^2)$ has constant within-pattern variance $\sigma^2 = 1/4$ and nonzero interaction $`0.6 x_1 x_2`$. By Bayes' rule and the Gaussian moment-generating function, writing $`a(x) = \alpha_0 + \alpha_1 x_1 + \alpha_2 x_2`$ yields $`\mathrm{logit}\{q(x)\} = -a(x) - \gamma m(x) + \gamma^2\sigma^2/2 = -0.8695 + 0.62 x_1 + 0.62 x_2 + 0.18 x_1 x_2`$. The observable respondent law identifies $(m, \sigma^2)$, the observable interaction coefficient in $\mathrm{logit}\{q(x)\}$ is $-0.6\gamma = +0.18$ and uniquely identifies $\gamma = -0.18/0.6 = -0.3$, and the remaining linear and constant terms identify $`(\alpha_0, \alpha_1, \alpha_2)`$ and $\theta$.
+- **Assumptions.** Units are i.i.d. with positive respondent probability and full-support bivariate Gaussian covariates ($`\det \Sigma_X = 1/8 > 0`$, making $`\{1, x_1, x_2, x_1 x_2\}`$ linearly independent); the response-logit selection model $`\pi(x, y) = \mathrm{expit}(\alpha_0 + \alpha_1 x_1 + \alpha_2 x_2 + \gamma y)`$ is additive in $`(x_1, x_2, y)`$ (excluding any $`x_1 x_2`$ term); and the respondent distribution $Y \mid (X = x, R = 1) \sim \mathcal{N}(m(x), \sigma^2)$ has constant within-pattern variance $\sigma^2 = 1/4$ and nonzero interaction $`0.6 x_1 x_2`$. By Bayes' rule and the Gaussian moment-generating function, writing $`a(x) = \alpha_0 + \alpha_1 x_1 + \alpha_2 x_2`$ yields $`\mathrm{logit}\{q(x)\} = -a(x) - \gamma m(x) + \gamma^2\sigma^2/2 = -0.8695 + 0.62 x_1 + 0.62 x_2 + 0.18 x_1 x_2`$. The observable respondent law identifies $(m, \sigma^2)$, the observable interaction coefficient in $`\mathrm{logit}\{q(x)\}`$ is $-0.6\gamma = +0.18$ and uniquely identifies $\gamma = -0.18/0.6 = -0.3$, and the remaining linear and constant terms identify $`(\alpha_0, \alpha_1, \alpha_2)`$ and $\theta$.
 
 ```mermaid
 flowchart LR
@@ -34,7 +34,7 @@ flowchart LR
 
 - **Structural parents.** `X -> R, X -> Y, R -> Y, Y -> Y_obs, R -> Y_obs`
 
-$$
+```math
 \begin{aligned}
 X_{i1} &\overset{\mathrm{iid}}{\sim} \mathcal{N}(0, 1/2), \qquad X_{i2} \mid (X_{i1} = x_1) \sim \mathcal{N}(-x_1 / 3, 1/4), && i = 1, \ldots, n, \quad n = 500, \\
 m(x) &= 0.0775 + 0.4 x_1 + 0.4 x_2 + 0.6 x_1 x_2, && \\
@@ -44,9 +44,9 @@ R_i \mid (X_i = x) &\sim \mathrm{Bernoulli}\{1 - q(x)\}, && \\
 \epsilon_i &\overset{\mathrm{iid}}{\sim} \mathcal{N}(0, 1/4), && \epsilon_i \perp (X_i, R_i), \\
 Y_i &= m(X_i) + (1 - R_i)\frac{0.3}{4} + \epsilon_i, \qquad Y_{\mathrm{obs},i} = R_i Y_i.
 \end{aligned}
-$$
+```
 
-By Bayes' rule and the Gaussian moment-generating function, writing $`a(x) = \alpha_0 + \alpha_1 x_1 + \alpha_2 x_2`$ and $\gamma = -0.3$ gives $`\mathrm{logit}\{q(x)\} = -a(x) - \gamma m(x) + \gamma^2\sigma^2/2 = -0.8695 + 0.62 x_1 + 0.62 x_2 + 0.18 x_1 x_2`$ (with interaction $`-0.6\gamma x_1 x_2 = +0.18 x_1 x_2`$) and nonrespondent shift $-\gamma\sigma^2 = +0.075$. Within-pattern variance $\mathrm{Var}(Y \mid X, R) = 1/4$ is constant, while full-data $\mathrm{Var}(Y \mid X) = 1/4 + 0.075^2 q(X)\{1 - q(X)\}$ varies with $X$.
+By Bayes' rule and the Gaussian moment-generating function, writing $`a(x) = \alpha_0 + \alpha_1 x_1 + \alpha_2 x_2`$ and $\gamma = -0.3$ gives $`\mathrm{logit}\{q(x)\} = -a(x) - \gamma m(x) + \gamma^2\sigma^2/2 = -0.8695 + 0.62 x_1 + 0.62 x_2 + 0.18 x_1 x_2`$ (with interaction $`-0.6\gamma x_1 x_2 = +0.18 x_1 x_2`$) and nonrespondent shift $-\gamma\sigma^2 = +0.075$. Within-pattern variance $\mathrm{Var}(Y \mid X, R) = 1/4$ is constant, while full-data $`\mathrm{Var}(Y \mid X) = 1/4 + 0.075^2 q(X)\{1 - q(X)\}`$ varies with $X$.
 
 | Symbol | Meaning | Definition or setting |
 | --- | --- | --- |
@@ -58,12 +58,12 @@ By Bayes' rule and the Gaussian moment-generating function, writing $`a(x) = \al
 | $`R_i`$ | Response indicator | Drawn from $`\mathrm{Bernoulli}\{1 - q(X_i)\}`$; column `R`. |
 | $`\epsilon_i`$ | Pattern-mixture disturbance | Independent $\mathcal{N}(0, 1/4)$ noise (constant within-pattern variance $\sigma^2 = 1/4$, SD $`0.5`$), independent of $`(X_i, R_i)`$; latent. |
 | $`Y_i, Y_{\mathrm{obs},i}`$ | Complete and masked outcomes | $`Y_i = m(X_i) + 0.075(1 - R_i) + \epsilon_i`$ (exponential tilt shift $-\gamma\sigma^2 = +0.075$ for nonrespondents); `Y_obs` $`= R_i Y_i`$ with placeholder `0` when $`R_i = 0`$. |
-| $\theta$ | Full-population outcome mean | $\theta = \mathbb{E}[Y] = 0.0775 - 0.1 + 0.075\,\mathbb{E}[q(X)] \approx -0.0002554579$. |
+| $\theta$ | Full-population outcome mean | $`\theta = \mathbb{E}[Y] = 0.0775 - 0.1 + 0.075\,\mathbb{E}[q(X)] \approx -0.0002554579`$. |
 
 ## Data-generating process and estimand
 
-- **Estimand.** The scalar target is the full-population outcome mean $\theta = \mathbb{E}[Y] = \mathbb{E}[m(X)] + (0.3/4)\,\mathbb{E}[q(X)] \approx -0.0002554579$ in response units. Using the printed source coefficients at full precision (calibrated near zero), $\mathbb{E}[m(X)] = 0.0775 + 0.6(-1/6) = -0.0225$ and $\theta \approx -0.00025545787650235394$.
-- **Truth check.** `truth.py` evaluates $\mathbb{E}[q(X)]$ via tensor Gauss–Hermite quadrature on the standardized bivariate Gaussian coordinates and combines it with the exact cross-moment $`\mathbb{E}[X_1 X_2] = -1/6`$. Independent verification in `verify.py` integrates $\mathbb{E}[m(X) + 0.075 q(X)]$ adaptively in 2D (matching within $`10^{-12}`$), recovers the interaction coefficient $+0.18 = -0.6\gamma$ via a four-point mixed difference of the implemented $\mathrm{logit}\{q(x)\}$, reconstructs response odds from $`(f_1, f_0, q)`$ across multiple $(x, y)$ points, and checks generated respondent conditional moments.
+- **Estimand.** The scalar target is the full-population outcome mean $`\theta = \mathbb{E}[Y] = \mathbb{E}[m(X)] + (0.3/4)\,\mathbb{E}[q(X)] \approx -0.0002554579`$ in response units. Using the printed source coefficients at full precision (calibrated near zero), $\mathbb{E}[m(X)] = 0.0775 + 0.6(-1/6) = -0.0225$ and $\theta \approx -0.00025545787650235394$.
+- **Truth check.** `truth.py` evaluates $\mathbb{E}[q(X)]$ via tensor Gauss–Hermite quadrature on the standardized bivariate Gaussian coordinates and combines it with the exact cross-moment $`\mathbb{E}[X_1 X_2] = -1/6`$. Independent verification in `verify.py` integrates $\mathbb{E}[m(X) + 0.075 q(X)]$ adaptively in 2D (matching within $`10^{-12}`$), recovers the interaction coefficient $+0.18 = -0.6\gamma$ via a four-point mixed difference of the implemented $`\mathrm{logit}\{q(x)\}`$, reconstructs response odds from $`(f_1, f_0, q)`$ across multiple $(x, y)$ points, and checks generated respondent conditional moments.
 
 ## Benchmark comparison
 
