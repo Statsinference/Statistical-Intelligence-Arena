@@ -32,7 +32,7 @@ flowchart LR
 
 - **Structural parents.** `X -> Y, Y -> Y_obs, R -> Y_obs`
 
-$$
+```math
 \begin{aligned}
 X_i &\overset{\mathrm{iid}}{\sim} \mathcal{N}_4\bigl(\mathbf{0}_4,\, 0.3 I_4 + 0.7 \mathbf{1}_4 \mathbf{1}_4^{\top}\bigr), && i = 1, \ldots, n, \\
 \epsilon_i &\overset{\mathrm{iid}}{\sim} \mathcal{N}(0, 1), && \epsilon_i \perp X_i, \\
@@ -40,7 +40,7 @@ Y_i &= 0.5 + \sin(5 X_{i1}) + \sin(3 X_{i2}) + 0.3 \epsilon_i, && \\
 n_{\mathrm{L}} &= 500, \qquad n_{\mathrm{U}} = 10000, && n = n_{\mathrm{L}} + n_{\mathrm{U}} = 10500, \\
 R_i &= \mathbf{1}\{i \le n_{\mathrm{L}}\}, \qquad Y_{\mathrm{obs},i} = R_i Y_i.
 \end{aligned}
-$$
+```
 
 All $n = 10,500$ rows are i.i.d. draws from the identical joint population $(X, Y)$ with fixed-index labeling $`R_i = \mathbf{1}\{i \le 500\}`$; unlabeled rows ($`R_i = 0`$) store finite placeholder $`Y_{\mathrm{obs},i} = 0`$.
 
