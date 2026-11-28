@@ -14,7 +14,7 @@
 
 - **Variables and causal structure.** $U$ (`U`) is an observed covariate affecting both $Y$ and $R$, $Z$ (`Z`) is the correlated partial shadow covariate affecting $Y$ and excluded from $R$ conditional on $(U, Y)$ (note $Z$ remains marginally associated with $R$ through $Y$ and $`U`$), $Y$ is the latent complete binary outcome, $R$ (`R`) is the response indicator, and $`Y_{\mathrm{obs}}`$ (`Y_obs`) is the masked observed outcome. The arrow `U -> Z` represents the exact bivariate Gaussian dependence factorization.
 - **DAG edges.** `U -> Z, U -> Y, Z -> Y, U -> R, Y -> R, Y -> Y_obs, R -> Y_obs`
-- **Assumptions.** Units are i.i.d., $`r_y(u) = \Pr(R = 1 \mid U = u, Y = y) \in (0, 1)`$ for $y \in \{0, 1\}$, and partial shadow exclusion $R \perp Z \mid (U, Y)$ holds with $\mathrm{Var}(Z \mid U) = 0.75 > 0$ and $`\beta_Z \neq 0`$. Defining observable subprobabilities $`a(z) = \Pr(R = 1, Y_{\mathrm{obs}} = 1 \mid u, z)`$ and $`b(z) = \Pr(R = 1, Y_{\mathrm{obs}} = 0 \mid u, z)`$, the identity $`a(z)/r_1(u) + b(z)/r_0(u) = 1`$ evaluated at two distinct $z$ values forms a nonsingular rank-2 system (since $\Pr(Y = 1 \mid u, z)$ varies with $`z`$), identifying $`(r_0(u), r_1(u))`$ and hence the full-data logistic vector $`(\beta_U, \beta_Z)`$ without parametric restrictions on $`r_y(u)`$. Note that the paper's formal partial-shadow theorem imposes compact-support and bounded-score conditions not literally satisfied by unbounded Gaussian covariates.
+- **Assumptions.** Units are i.i.d., $`r_y(u) = \Pr(R = 1 \mid U = u, Y = y) \in (0, 1)`$ for $`y \in \{0, 1\}`$, and partial shadow exclusion $R \perp Z \mid (U, Y)$ holds with $\mathrm{Var}(Z \mid U) = 0.75 > 0$ and $`\beta_Z \neq 0`$. Defining observable subprobabilities $`a(z) = \Pr(R = 1, Y_{\mathrm{obs}} = 1 \mid u, z)`$ and $`b(z) = \Pr(R = 1, Y_{\mathrm{obs}} = 0 \mid u, z)`$, the identity $`a(z)/r_1(u) + b(z)/r_0(u) = 1`$ evaluated at two distinct $z$ values forms a nonsingular rank-2 system (since $\Pr(Y = 1 \mid u, z)$ varies with $`z`$), identifying $`(r_0(u), r_1(u))`$ and hence the full-data logistic vector $`(\beta_U, \beta_Z)`$ without parametric restrictions on $`r_y(u)`$. Note that the paper's formal partial-shadow theorem imposes compact-support and bounded-score conditions not literally satisfied by unbounded Gaussian covariates.
 
 ```mermaid
 flowchart LR
@@ -36,14 +36,14 @@ flowchart LR
 
 - **Structural parents.** `U -> Z, U -> Y, Z -> Y, U -> R, Y -> R, Y -> Y_obs, R -> Y_obs`
 
-$$
+```math
 \begin{aligned}
 (U_i, Z_i)^{\top} &\overset{\mathrm{iid}}{\sim} \mathcal{N}_2\!\left(\mathbf{0}_2,\, \begin{pmatrix} 1 & 0.5 \\ 0.5 & 1 \end{pmatrix}\right), && i = 1, \ldots, n, \quad n = 1000, \\
 Y_i \mid (U_i, Z_i) &\sim \mathrm{Bernoulli}\bigl\{\mathrm{expit}(0.3 U_i - 0.3 Z_i)\bigr\}, && \\
 R_i \mid (U_i, Z_i, Y_i) &\sim \mathrm{Bernoulli}\bigl\{\mathrm{expit}(1 + Y_i + U_i)\bigr\}, && \\
 Y_{\mathrm{obs},i} &= R_i Y_i.
 \end{aligned}
-$$
+```
 
 Rows are i.i.d. across units and tables; equivalently $`U_i \sim \mathcal{N}(0, 1)`$ and $`Z_i = 0.5 U_i + \sqrt{0.75}\,\epsilon_{Z,i}`$ with $`\epsilon_{Z,i} \sim \mathcal{N}(0, 1)`$ independent of $`U_i`$, and $\mathrm{expit}(t) = (1 + e^{-t})^{-1}$.
 
@@ -61,7 +61,7 @@ Rows are i.i.d. across units and tables; equivalently $`U_i \sim \mathcal{N}(0, 
 ## Data-generating process and estimand
 
 - **Estimand.** The scalar target is the conditional log-odds slope $`\beta_Z = \frac{\partial}{\partial z}\mathrm{logit}\Pr(Y = 1 \mid U = u, Z = z) = -0.3`$ (log-odds per unit of $`Z`$).
-- **Truth check.** The logistic model directly gives $`\beta_Z = -0.3`$. Independent verification in `verify.py` evaluates the fixed-$`U`$ complete-case log-odds contrast at $u \in \{-1, 0, 1\}$ (confirming $-0.3$ within $`10^{-12}`$), verifies rank-2 recovery of $`(r_0(u), r_1(u))`$ from the observable $2 \times 2$ subprobability system, checks the expected response rate $0.76835154$ by adaptive integration, checks binary outcome domain, and verifies generated respondent outcome calibration.
+- **Truth check.** The logistic model directly gives $`\beta_Z = -0.3`$. Independent verification in `verify.py` evaluates the fixed-$`U`$ complete-case log-odds contrast at $`u \in \{-1, 0, 1\}`$ (confirming $-0.3$ within $`10^{-12}`$), verifies rank-2 recovery of $`(r_0(u), r_1(u))`$ from the observable $2 \times 2$ subprobability system, checks the expected response rate $0.76835154$ by adaptive integration, checks binary outcome domain, and verifies generated respondent outcome calibration.
 
 ## Benchmark comparison
 
