@@ -2,6 +2,8 @@
 
 ## Research question
 
+- **Primary domain.** `cate`
+- **Keywords.** Confounding; Nonlinearity; Effect heterogeneity; Cosine effect
 - **Question and intended use.** Propose a source-grounded evaluation candidate for one scalar fixed-query CATE and an optional 95% pointwise interval. The periodic effect changes sign at multiple boundaries, unlike public linear, circular and parabolic sign rules.
 - **Behavior under test.** Preserve the source joint observed law and explicitly define the additive intervention contrast. Family membership is based on structural form; seeds and parameter variants are not additional contributions.
 

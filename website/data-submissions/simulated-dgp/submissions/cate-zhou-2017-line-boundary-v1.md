@@ -2,6 +2,8 @@
 
 ## Research question
 
+- **Primary domain.** `cate`
+- **Keywords.** Randomized treatment; Effect heterogeneity; Linear effect; Linear decision boundary
 - **Question and intended use.** Propose a candidate for scalar CATE evaluation at one prespecified interior covariate query: the conditional mean response under treatment minus that under control.
 - **Behavior under test.** The effect is linear in $X_1$ and $X_2$ and changes sign on the line $x_1+x_2=0.3$; $X_3$, $X_4$ are prognostic only and $X_5$ is inert. The source sets $c=1.8$ for a medium Cohen's $d$. A linear interaction model is correctly specified. A single fixed query assesses local accuracy, not recovery of the whole effect surface.
 

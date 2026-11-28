@@ -2,6 +2,8 @@
 
 ## Research question
 
+- **Primary domain.** `cate`
+- **Keywords.** Randomized treatment; Null treatment effect; Linear prognostic function; Irrelevant covariates
 - **Question and intended use.** Propose a candidate for scalar CATE evaluation at one prespecified interior covariate query: the conditional mean response under treatment minus that under control.
 - **Behavior under test.** The treatment has no effect while the outcome has a strong linear prognostic signal in $X_1$, $X_2$ and $X_3$. This tests whether a method returns an estimate near zero at the query instead of leaking prognostic variation into the contrast, and whether its intervals keep nominal coverage under the null. A single fixed query assesses local accuracy, not recovery of the whole effect surface.
 

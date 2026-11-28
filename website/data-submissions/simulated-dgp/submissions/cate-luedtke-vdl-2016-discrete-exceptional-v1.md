@@ -2,6 +2,8 @@
 
 ## Research question
 
+- **Primary domain.** `cate`
+- **Keywords.** Confounding; Binary outcome; Discrete covariate; Effect heterogeneity; Zero-effect strata
 - **Question and intended use.** Propose a candidate for scalar CATE evaluation on the probability scale at one prespecified covariate value, in an observational design with a single measured confounder.
 - **Behavior under test.** The covariate has four equally likely levels. Treatment probability rises with the level (0.5 to 0.8), so the arm comparison is confounded, while the effect is 0.2 at level 0 and exactly zero at levels 1 to 3. This is the source's exceptional law: for three of four strata the treatment has no effect, so the optimal rule is not unique. The design tests covariate adjustment and pointwise inference for a binary outcome when most strata carry no effect.
 

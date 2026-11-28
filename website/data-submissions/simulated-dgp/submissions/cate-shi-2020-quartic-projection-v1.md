@@ -2,6 +2,8 @@
 
 ## Research question
 
+- **Primary domain.** `cate`
+- **Keywords.** Randomized treatment; High-dimensionality; Effect heterogeneity; Interactions; Quartic effect
 - **Question and intended use.** Propose a source-grounded evaluation candidate for one scalar fixed-query CATE and an optional 95% pointwise interval. The effect is a fourth-degree product of a difference of squared projections and a third squared projection, involving 25 active coordinates. This cannot be reduced to the public quadratic, sigmoid or two-coordinate radial-annulus designs.
 - **Behavior under test.** Preserve the source joint observed law and explicitly define the additive intervention contrast. Family membership is based on structural form; seeds and parameter variants are not additional contributions.
 

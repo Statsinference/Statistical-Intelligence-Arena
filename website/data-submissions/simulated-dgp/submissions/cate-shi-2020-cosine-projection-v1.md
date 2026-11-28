@@ -2,6 +2,8 @@
 
 ## Research question
 
+- **Primary domain.** `cate`
+- **Keywords.** Randomized treatment; High-dimensionality; Effect heterogeneity; Interactions; Cosine effect
 - **Question and intended use.** Propose a source-grounded evaluation candidate for one scalar fixed-query CATE and an optional 95% pointwise interval. A cosine of a two-coordinate projection is multiplied by the square of a disjoint five-coordinate projection. Unlike a fixed-amplitude univariate cosine, its amplitude varies with a disjoint covariate block and is unbounded; unlike a quartic projection product, its surface is non-polynomial. It is not a scalar amplitude or dimension variant of either mechanism.
 - **Behavior under test.** Preserve the source joint observed law and explicitly define the additive intervention contrast. Family membership is based on structural form; seeds and parameter variants are not additional contributions.
 

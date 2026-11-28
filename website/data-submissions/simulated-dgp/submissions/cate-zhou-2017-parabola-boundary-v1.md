@@ -2,6 +2,8 @@
 
 ## Research question
 
+- **Primary domain.** `cate`
+- **Keywords.** Randomized treatment; Effect heterogeneity; Quadratic effect; Parabolic decision boundary; Model misspecification
 - **Question and intended use.** Propose a candidate for scalar CATE evaluation at one prespecified interior covariate query: the conditional mean response under treatment minus that under control.
 - **Behavior under test.** The effect is quadratic in $X_1$ and linear in $X_2$ and changes sign on the parabola $x_2=2x_1^2-0.3$, under a linear prognostic baseline. A linear interaction model is misspecified through $x_1^2$. The source sets $c=1.3$ for a medium Cohen's $d$. A single fixed query assesses local accuracy, not recovery of the whole effect surface.
 

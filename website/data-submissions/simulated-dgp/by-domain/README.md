@@ -6,7 +6,7 @@ Browse the proposal lists below. Edit the original proposal to update its listin
 | Domain | Proposals |
 | --- | ---: |
 | [Average Treatment Effect](ate.md) | 0 |
-| [Conditional Average Treatment Effect](cate.md) | 0 |
+| [Conditional Average Treatment Effect](cate.md) | 20 |
 | [Causal Mediation Analysis](mediation.md) | 0 |
 | [Instrumental Variables](iv.md) | 0 |
 | [Proximal Causal Inference](proximal.md) | 0 |
@@ -16,7 +16,7 @@ Browse the proposal lists below. Edit the original proposal to update its listin
 | [Quantile Inference](quantile.md) | 0 |
 | [Semi-Supervised Inference](semi_supervised.md) | 0 |
 | [Missing Data](missing_data.md) | 0 |
-| [Needs classification](unclassified.md) | 10 |
+| [Needs classification](unclassified.md) | 0 |
 
 Missing or ambiguous domains appear under Needs classification. Missing keywords appear as Not specified; unresolved estimand names appear as Name pending.
 

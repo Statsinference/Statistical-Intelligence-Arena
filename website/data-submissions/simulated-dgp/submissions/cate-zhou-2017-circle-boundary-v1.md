@@ -2,6 +2,8 @@
 
 ## Research question
 
+- **Primary domain.** `cate`
+- **Keywords.** Randomized treatment; Effect heterogeneity; Quadratic effect; Circular decision boundary; Nonlinear prognostic function
 - **Question and intended use.** Propose a candidate for scalar CATE evaluation at one prespecified interior covariate query: the conditional mean response under treatment minus that under control.
 - **Behavior under test.** Both the prognostic baseline and the effect are quadratic. The effect is positive inside the circle $x_1^2+x_2^2=0.8$ and negative outside, ranging from about $-9.1$ to $6.1$. Methods linear in $X$ are misspecified for both parts. The source sets $c=3.8$ for a medium Cohen's $d$. A single fixed query assesses local accuracy, not recovery of the whole effect surface.
 

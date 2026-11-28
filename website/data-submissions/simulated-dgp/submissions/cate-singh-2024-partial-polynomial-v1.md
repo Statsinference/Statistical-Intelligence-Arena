@@ -2,6 +2,8 @@
 
 ## Research question
 
+- **Primary domain.** `cate`
+- **Keywords.** Confounding; Correlated covariates; Polynomial effect; Interactions; Heteroskedasticity
 - **Question and intended use.** Propose a source-grounded evaluation candidate for one scalar fixed-query CATE and an optional 95% pointwise interval. The estimand conditions on $V$ only while identification adjusts for $V$,$X_{1}$,$X_{2}$,$X_{3}$ and integrates out $X$. Its truth is a fifth-degree polynomial, not the full-covariate product.
 - **Behavior under test.** Preserve the source joint observed law and explicitly define the additive intervention contrast. Family membership is based on structural form; seeds and parameter variants are not additional contributions.
 
