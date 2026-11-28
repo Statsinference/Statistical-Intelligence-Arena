@@ -46,21 +46,21 @@ flowchart LR
 
 - **Structural parents.** `X -> A, X_latent -> A, Z -> A, X -> Y, X_latent -> Y, A -> Y`
 
-$$
-X_j\sim\operatorname{Uniform}(-1,1),\quad j=1,\ldots,5,\quad
+```math
+X_j\sim\mathrm{Uniform}(-1,1),\quad j=1,\ldots,5,\quad
 P(Z=-1)=P(Z=1)=1/2,\quad X_{\mathrm{latent}}\sim f_U(u)=\{2\pi\cosh(u/2)\}^{-1},\quad
-\epsilon_A\sim\operatorname{Uniform}(0,1),\quad\epsilon_Y\sim N(0,1).
-$$
+\epsilon_A\sim\mathrm{Uniform}(0,1),\quad\epsilon_Y\sim N(0,1).
+```
 
-$$
+```math
 \begin{aligned}
 X&=(X_1,\ldots,X_5),\quad
-A=2\mathbf1\{\epsilon_A<\operatorname{expit}(2X_1+2.5Z-.5X_{\mathrm{latent}})\}-1,\\
+A=2\mathbf{1}\{\epsilon_A<\mathrm{expit}(2X_1+2.5Z-.5X_{\mathrm{latent}})\}-1,\\
 h(x)&=.5+.5x_1+.8x_2+.3x_3-.5x_4+.7x_5,\\
 q(x)&=.2-.6x_1-.8x_2,\\
 Y&=h(X)+q(X)A+.5X_{\mathrm{latent}}+\epsilon_Y.
 \end{aligned}
-$$
+```
 
 | Symbol | Meaning | Definition or setting |
 | --- | --- | --- |
@@ -70,7 +70,7 @@ $$
 | $A,Y$ | Signed treatment and continuous outcome | Columns `A,Y`; treatment is -1 or +1; response is real-valued. |
 | $h,q$ | Baseline mean and treatment slope functions | Numeric coefficients substituted above. q is a slope per unit of signed A, not the -1 to +1 treatment contrast. |
 | $\epsilon_A,\epsilon_Y$ | Unit disturbances | Independent uniform(0,1) and standard normal; independent of all roots and between subjects. |
-| $\operatorname{expit},\mathbf1$ | Logistic link and indicator | Standard logistic link and event indicator. |
+| $\mathrm{expit},\mathbf{1}$ | Logistic link and indicator | Standard logistic link and event indicator. |
 | $x^*$ | Fixed query | Five-dimensional zero vector; $q(x^*)=.2$ and contrast $2q(x^*)=.4$. |
 | Numeric coefficients | Fixed adaptation/source settings | All displayed h and q coefficients are from source scenario 2; .5 is the latent outcome coefficient and 2.5 the signed instrument coefficient. |
 | $\theta$ | Registered scalar target | $\theta=E\{Y(+1)-Y(-1)\mid X=x^*\}=2q(0)=.4$. Reporting the IV slope .2 as this contrast would be a factor-of-two error. |
