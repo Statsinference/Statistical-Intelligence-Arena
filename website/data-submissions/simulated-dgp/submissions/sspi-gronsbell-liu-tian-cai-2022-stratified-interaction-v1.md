@@ -14,7 +14,7 @@
 
 - **Variables and causal structure.** $`X = (X_1, X_2)`$ (`X1`, `X2`) are the observed predictors, $Z$ is the latent third AR(1) Gaussian coordinate correlated with $X$, $S$ (`S`) is the observed sampling stratum determined by $Z \ge 1$, $R$ (`R`) is the stratified label indicator determined by $S$, $Y$ is the latent complete binary outcome driven by both $X$ and $S$, and $`Y_{\mathrm{obs}}`$ (`Y_obs`) is the masked label.
 - **DAG edges.** `X -> Z, Z -> S, S -> R, S -> Y, X -> Y, Y -> Y_obs, R -> Y_obs`
-- **Assumptions.** Within each stratum $s \in \{1, 2\}$ of the shared phase-one pool, labeling is simple random sampling without replacement ($`R \perp (X, Y) \mid S`$) with positive stratum probabilities and quotas; the expected working logistic **log-likelihood** under the pre-selection superpopulation $`P_0`$ is strictly concave with negative-definite Hessian $`-\mathbb{E}_{P_0}[\tilde{X}\tilde{X}^{\top} p_\theta(1 - p_\theta)]`$ (where $`\tilde{X} = (1, X_1, X_2)^{\top}`$), so its score equation has a unique zero $`\theta^* = (\theta_0, \theta_1, \theta_2)`$. Thus the pre-selection superpopulation intercept $`\theta_0`$ is well-defined and identified from $`(X, S, R, Y_{\mathrm{obs}})`$ despite working-model misspecification.
+- **Assumptions.** Within each stratum $`s \in \{1, 2\}`$ of the shared phase-one pool, labeling is simple random sampling without replacement ($`R \perp (X, Y) \mid S`$) with positive stratum probabilities and quotas; the expected working logistic **log-likelihood** under the pre-selection superpopulation $`P_0`$ is strictly concave with negative-definite Hessian $`-\mathbb{E}_{P_0}[\tilde{X}\tilde{X}^{\top} p_\theta(1 - p_\theta)]`$ (where $`\tilde{X} = (1, X_1, X_2)^{\top}`$), so its score equation has a unique zero $`\theta^* = (\theta_0, \theta_1, \theta_2)`$. Thus the pre-selection superpopulation intercept $`\theta_0`$ is well-defined and identified from $`(X, S, R, Y_{\mathrm{obs}})`$ despite working-model misspecification.
 
 ```mermaid
 flowchart LR
@@ -29,14 +29,14 @@ flowchart LR
 
 ## Variables and data-generating process
 
-- **Variables and observed input.** Each row represents one unit from the shared phase-one pool. Every method receives the five observed columns `X1`, `X2`, `S`, `R`, and `Y_obs`. `S` takes values in $\{1, 2\}$, `R` is binary, and `Y_obs` equals $`Y_i \in \{0, 1\}`$ when `R == 1` and finite placeholder `0` when `R == 0`. The latent auxiliary variable $`Z_i`$ and unlabeled outcomes $`Y_i`$ ($`R_i = 0`$) are excluded from estimator inputs.
+- **Variables and observed input.** Each row represents one unit from the shared phase-one pool. Every method receives the five observed columns `X1`, `X2`, `S`, `R`, and `Y_obs`. `S` takes values in $`\{1, 2\}`$, `R` is binary, and `Y_obs` equals $`Y_i \in \{0, 1\}`$ when `R == 1` and finite placeholder `0` when `R == 0`. The latent auxiliary variable $`Z_i`$ and unlabeled outcomes $`Y_i`$ ($`R_i = 0`$) are excluded from estimator inputs.
 - **Draw order and scenarios.** Under the single scenario `original` ($`n_{\mathrm{L}} = 400`$, $`n_{\mathrm{U}} = 20,000`$): draw proposed phase-one pools of $20,400$ i.i.d. triples $`(X_{j1}^0, X_{j2}^0, Z_j^0) \sim \mathcal{N}_3(\mathbf{0}_3, C)`$ with $`S_j^0 = 1 + \mathbf{1}\{Z_j^0 \ge 1\}`$ until $`N_1 \ge 200`$ and $`N_2 \ge 200`$; draw uniform without-replacement subsets of size $200$ within each stratum for $R = 1$; reorder labeled rows ahead of the $20,000$ unlabeled complement rows; draw $`Y_i \sim \mathrm{Bernoulli}\{p(X_{i1}, X_{i2}, S_i)\}`$ conditionally on $`(X_i, S_i)`$ (law-equivalent to drawing $Y$ prior to selection because outcomes use independent randomness); and record $`Y_{\mathrm{obs},i} = R_i Y_i`$.
 
 ### Structural equations
 
 - **Structural parents.** `X -> Z, Z -> S, S -> R, S -> Y, X -> Y, Y -> Y_obs, R -> Y_obs`
 
-$$
+```math
 \begin{aligned}
 F_j^0 &= (X_{j1}^0, X_{j2}^0, Z_j^0)^{\top} \overset{\mathrm{iid}}{\sim} \mathcal{N}_3(\mathbf{0}_3,\, C), && C_{ab} = (0.4)^{|a - b|}, \quad j = 1, \ldots, n, \quad n = 20400, \\
 S_j^0 &= 1 + \mathbf{1}\{Z_j^0 \ge 1\}, && N_s = \sum_{j=1}^{n} \mathbf{1}\{S_j^0 = s\}, \quad A = \{N_1 \ge q_1,\; N_2 \ge q_2\}, \\
@@ -45,7 +45,7 @@ q_1 &= q_2 = 200, \qquad n_{\mathrm{L}} = 400, \qquad n_{\mathrm{U}} = 20000, &&
 p(x_1, x_2, s) &= \mathrm{expit}\Bigl(2 x_1 - 2 x_2 + 5\bigl[\mathbf{1}\{s = 1\} - \mathbf{1}\{s = 2\}\bigr] x_1 x_2\Bigr), && Y_j^0 \mid (X_j^0, S_j^0) \sim \mathrm{Bernoulli}\bigl\{p(X_{j1}^0, X_{j2}^0, S_j^0)\bigr\}, \\
 (X_i, S_i, R_i, Y_i) &= (X_{\pi(i)}^0, S_{\pi(i)}^0, R_{\pi(i)}^0, Y_{\pi(i)}^0), && Y_{\mathrm{obs},i} = R_i Y_i.
 \end{aligned}
-$$
+```
 
 The proposed phase-one pool $`F_1^0, \ldots, F_n^0`$ is redrawn until feasibility $`A = \{N_1 \ge q_1, N_2 \ge q_2\}`$ holds (so accepted stratum counts follow a truncated binomial law); uniform size $`q_s`$ labeled subsets are chosen without replacement per stratum, and the deterministic permutation $\pi(i)$ places the $`n_{\mathrm{L}} = 400`$ labeled rows ($`R_i = 1`$) ahead of the $`n_{\mathrm{U}} = 20,000`$ unlabeled complement rows ($`R_i = 0`$, finite placeholder $`Y_{\mathrm{obs},i} = 0`$). Consequently, the unlabeled complement's expected stratum-2 share is $`\mathbb{E}[(N_2 - q_2)/n_{\mathrm{U}} \mid A] \approx 0.151828`$, whereas the pooled table ($`R \in \{0, 1\}`$) reflects the phase-one share $\Phi(-1) \approx 0.158655$.
 
