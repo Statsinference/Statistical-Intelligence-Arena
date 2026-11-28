@@ -42,16 +42,16 @@ flowchart LR
 
 - **Structural parents.** `X_latent -> A, X_latent -> A_selection, X_latent -> Y`
 
-$$
+```math
 \begin{aligned}
 \beta&=.4,\quad n_G=10000,\quad p_{\rm ref}=2000,\quad s_{\rm ref}=200,\quad h^2=.1,\\
 q&=s_{\rm ref}/p_{\rm ref}=.1,\qquad\tau^2=2h^2/s_{\rm ref}=.001,\\
 v_U&=.6(1-h^2)=.54,\qquad v_Y=\beta^2+2\beta v_U+1-h^2=1.492,\\
 \sigma_A^2&=2/n_G=.0002,\qquad\sigma_Y^2=2v_Y/n_G=.0002984,\quad\sigma_{\rm sel}=\sigma_A.
 \end{aligned}
-$$
+```
 
-$$
+```math
 \begin{aligned}
 X_{\mathrm{latent}}&\sim(1-q)\delta_0+qN(0,\tau^2),\qquad
 \epsilon_A,\epsilon_Y,\epsilon_{\rm sel}\sim N(0,1),\\
@@ -59,7 +59,7 @@ A&=X_{\mathrm{latent}}+\sigma_A\epsilon_A,\\
 A_{\mathrm{selection}}&=X_{\mathrm{latent}}+\sigma_{\rm sel}\epsilon_{\rm sel},\\
 Y&=\beta X_{\mathrm{latent}}+\sigma_Y\epsilon_Y.
 \end{aligned}
-$$
+```
 
 | Symbol | Meaning | Definition or setting |
 | --- | --- | --- |
