@@ -33,7 +33,7 @@ flowchart LR
 
 - **Structural parents.** `R -> Y, Y -> P, Y -> Y_obs, R -> Y_obs`
 
-$$
+```math
 \begin{aligned}
 p^{\mathrm{L}} &= (1/5, 1/5, 1/5, 1/5, 1/5)^{\top}, \qquad p^{\mathrm{U}} = (0.20, 0.19, 0.27, 0.27, 0.07)^{\top}, \\
 Y_i \mid R_i = 1 &\sim \mathrm{Cat}(p^{\mathrm{L}}), \qquad Y_i \mid R_i = 0 \sim \mathrm{Cat}(p^{\mathrm{U}}), \\
@@ -48,17 +48,17 @@ G_{ij} \mid (Y_i = k) &\overset{\mathrm{ind}}{\sim} \begin{cases} 0, & M_{kj} = 
 n_{\mathrm{L}} &= 300, \qquad n_{\mathrm{U}} = 1000, \qquad n = n_{\mathrm{L}} + n_{\mathrm{U}} = 1300, \\
 R_i &= \mathbf{1}\{i \le n_{\mathrm{L}}\}, \qquad Y_{\mathrm{obs},i} = R_i Y_i.
 \end{aligned}
-$$
+```
 
 The 300 calibration rows are independent categorical draws from $p^{\mathrm{L}}$ (so realized calibration class counts follow $`\mathrm{Multinomial}(300; 1/5, \ldots, 1/5)`$). Conditional on $`Y_i = k`$, positive coordinates of $`P_i`$ follow a Dirichlet distribution with mean $`M_{k,\cdot}`$ and concentration $5$, preserving exact structural zeros wherever $`M_{kj} = 0`$; unlabeled rows ($`R_i = 0`$) carry integer placeholder $`Y_{\mathrm{obs},i} = 0`$.
 
 | Symbol | Meaning | Definition or setting |
 | --- | --- | --- |
-| $i, j, h, k$ | Unit, score, and class indices | $i = 1, \ldots, n$; $j, h, k \in \{1, 2, 3, 4, 5\}$. |
+| $i, j, h, k$ | Unit, score, and class indices | $i = 1, \ldots, n$; $`j, h, k \in \{1, 2, 3, 4, 5\}`$. |
 | $`n_{\mathrm{L}}, n_{\mathrm{U}}, n`$ | Cohort and total sample sizes | Fixed source sizes $`n_{\mathrm{L}} = 300`$ labeled calibration rows and $`n_{\mathrm{U}} = 1,000`$ unlabeled target rows ($`n = 1,300`$). |
 | $p^{\mathrm{L}}, p^{\mathrm{U}}$ | Cohort class prevalence vectors | Uniform calibration probabilities $p^{\mathrm{L}} = (0.2, 0.2, 0.2, 0.2, 0.2)^{\top}$; target scenario `p1` $p^{\mathrm{U}} = (0.20, 0.19, 0.27, 0.27, 0.07)^{\top}$. |
 | $`R_i`$ | Labeled cohort indicator | Equals $1$ for the $300$ labeled calibration rows and $0$ for the $1,000$ unlabeled target rows; column `R`. |
-| $`Y_i`$ | Complete class label | Categorical draw in $\{1, 2, 3, 4, 5\}$ from $\mathrm{Cat}(p^{\mathrm{L}})$ when $`R_i = 1`$ and $\mathrm{Cat}(p^{\mathrm{U}})$ when $`R_i = 0`$; latent when $`R_i = 0`$. |
+| $`Y_i`$ | Complete class label | Categorical draw in $`\{1, 2, 3, 4, 5\}`$ from $\mathrm{Cat}(p^{\mathrm{L}})$ when $`R_i = 1`$ and $\mathrm{Cat}(p^{\mathrm{U}})$ when $`R_i = 0`$; latent when $`R_i = 0`$. |
 | $`M, M_{kj}`$ | Class-conditional mean score matrix | Row-stochastic $5 \times 5$ matrix from equation (21) with $\det M = 0.0663 \neq 0$; row $k$ gives $`\mathbb{E}[P_i \mid Y_i = k]`$. |
 | $`G_{ij}`$ | Latent unnormalized score draws | Independent $`\mathrm{Gamma}(5 M_{kj}, 1)`$ (shape $`5 M_{kj}`$, scale $`1`$) where $`M_{kj} > 0`$, and identically $0$ where $`M_{kj} = 0`$; latent. |
 | $`P_i, P_{ij}`$ | Observed classifier score composition | Simplex vector $`P_{ij} = G_{ij} / \sum_{h=1}^{5} G_{ih}`$ with $`\sum_{j=1}^{5} P_{ij} = 1`$; columns `P1`–`P5`. |
