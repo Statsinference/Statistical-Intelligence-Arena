@@ -33,7 +33,7 @@ flowchart LR
 
 - **Structural parents.** `R -> Y, Y -> X, Y -> Y_obs, R -> Y_obs`
 
-$$
+```math
 \begin{aligned}
 X_j^0 &\overset{\mathrm{iid}}{\sim} \mathrm{Uniform}(0, 1), && j = 1, \ldots, 5, \qquad S^0 = \sum_{j=1}^{5} X_j^0, \\
 m(x) &= -16 + 6\sum_{j=1}^{5} x_j, && C \mid X^0 \sim \mathrm{Bernoulli}\bigl\{\mathrm{expit}(m(X^0))\bigr\}, \qquad a = \Pr(C = 1), \\
@@ -42,14 +42,14 @@ n_{\mathrm{L}} &= 1250, \qquad n_{\mathrm{U}} = 250, \qquad n = n_{\mathrm{L}} +
 \Pr(Y_i = 1 \mid R_i = 1) &= 1, \qquad Y_i \mid (R_i = 0) \overset{\mathrm{iid}}{\sim} \mathrm{Bernoulli}(\pi_0), && \\
 X_i \mid (Y_i = y) &\sim \mathcal{L}(X^0 \mid C = y), \qquad Y_{\mathrm{obs},i} = R_i Y_i.
 \end{aligned}
-$$
+```
 
 Here $`f_{\mathrm{IH}}(s)`$ is the proposal Irwin–Hall(5) density of $`S^0 = \sum_{j=1}^5 X_j^0`$ on $[0, 5]$, so the log density ratio $`\log\{f_1(x)/f_0(x)\} = -16 + 6\sum_{j=1}^5 x_j + \log\{(1 - a)/a\}`$ is affine in $s$ with unique Bayes threshold $`s^* = [16 + \log\{a(1 - \pi_0)/[(1 - a)\pi_0]\}]/6 \approx 2.672982`$. Unlabeled rows are uniformly permuted conditional on $K$ and store finite placeholder $`Y_{\mathrm{obs},i} = 0`$.
 
 | Symbol | Meaning | Definition or setting |
 | --- | --- | --- |
 | $`i, n, n_{\mathrm{L}}, n_{\mathrm{U}}`$ | Row index and cohort sizes | $i = 1, \ldots, n$; fixed source sizes $`n_{\mathrm{L}} = 1250`$ labeled positives, $`n_{\mathrm{U}} = 250`$ unlabeled target rows, $n = 1500$. |
-| $X^0, S^0, C, a$ | Screening proposal, sum, label, and acceptance rate | $`X_1^0, \ldots, X_5^0 \overset{\mathrm{iid}}{\sim} \mathrm{Uniform}(0, 1)`$, $`S^0 = \sum_{j=1}^5 X_j^0`$ with Irwin–Hall(5) density $`f_{\mathrm{IH}}`$, $C \mid X^0 \sim \mathrm{Bernoulli}\{\mathrm{expit}(m(X^0))\}$, $a = \Pr(C = 1)$. |
+| $X^0, S^0, C, a$ | Screening proposal, sum, label, and acceptance rate | $`X_1^0, \ldots, X_5^0 \overset{\mathrm{iid}}{\sim} \mathrm{Uniform}(0, 1)`$, $`S^0 = \sum_{j=1}^5 X_j^0`$ with Irwin–Hall(5) density $`f_{\mathrm{IH}}`$, $`C \mid X^0 \sim \mathrm{Bernoulli}\{\mathrm{expit}(m(X^0))\}`$, $a = \Pr(C = 1)$. |
 | $m(x)$ | Linear screening log-odds | $`m(x) = -16 + 6\sum_{j=1}^5 x_j`$; fixed source Setting 1 intercept $-16$ and common slope $6$. |
 | $`f_{1,S}, f_{0,S}, s^*`$ | Class-conditional sum densities and Bayes threshold | $`f_{1,S}(s) = f_{\mathrm{IH}}(s)\mathrm{expit}(-16+6s)/a`$, $`f_{0,S}(s) = f_{\mathrm{IH}}(s)\mathrm{expit}(16-6s)/(1-a)`$; threshold $`s^* = [16 + \log\{a(1-\pi_0)/[(1-a)\pi_0]\}]/6 \approx 2.672982`$. |
 | $`K, \pi_0`$ | Unlabeled positive count and prevalence | $`K = \sum_{i:R_i=0} Y_i \sim \mathrm{Binomial}(n_{\mathrm{U}}, \pi_0)`$ with $`\pi_0 = 0.4`$. |
