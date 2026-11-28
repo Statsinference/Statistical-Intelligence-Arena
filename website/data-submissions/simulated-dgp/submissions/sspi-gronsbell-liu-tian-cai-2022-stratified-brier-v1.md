@@ -27,14 +27,14 @@ flowchart LR
 
 ## Variables and data-generating process
 
-- **Variables and observed input.** Each row represents one unit. Every method receives the 13 observed columns `X1,...,X10`, `S`, `R`, and `Y_obs`, where `S` takes values in $\{1, 2\}$, `R` is binary, and `Y_obs` equals $`Y_i \in \{0, 1\}`$ when `R == 1` and finite placeholder `0` when `R == 0`. Unobserved labels ($`R = 0`$), stratum noise $`\epsilon_S^0`$, and oracle risk probabilities $g(X)$ are excluded from estimator inputs.
+- **Variables and observed input.** Each row represents one unit. Every method receives the 13 observed columns `X1,...,X10`, `S`, `R`, and `Y_obs`, where `S` takes values in $`\{1, 2\}`$, `R` is binary, and `Y_obs` equals $`Y_i \in \{0, 1\}`$ when `R == 1` and finite placeholder `0` when `R == 0`. Unobserved labels ($`R = 0`$), stratum noise $`\epsilon_S^0`$, and oracle risk probabilities $g(X)$ are excluded from estimator inputs.
 - **Draw order and scenarios.** Under the single scenario `original` ($`n_{\mathrm{L}} = 200`$, $`n_{\mathrm{U}} = 20,000`$): draw $20,000$ i.i.d. unlabeled units $`(X_j, S_j)`$ from $`P_0`$; separately collect $100$ accepted draws from $`P_0(\cdot \mid S^0 = 1)`$ and $100$ accepted draws from $`P_0(\cdot \mid S^0 = 2)`$; stack the $200$ labeled rows ($`R = 1`$) ahead of the $20,000$ unlabeled rows ($`R = 0`$); draw $`Y_i \mid X_i \sim \mathrm{Bernoulli}\{\mathrm{expit}(-2 + X_{i1} + X_{i2} + 0.5 X_{i3} + 0.5 X_{i4})\}`$ for all rows; and record $`Y_{\mathrm{obs},i} = R_i Y_i`$.
 
 ### Structural equations
 
 - **Structural parents.** `X -> S, S -> R, X -> Y, Y -> Y_obs, R -> Y_obs`
 
-$$
+```math
 \begin{aligned}
 X^0 &\sim \mathcal{N}_{10}(\mathbf{0}_{10},\, \Sigma), && \Sigma_{jk} = 3(0.4)^{|j - k|}, \quad j, k \in \{1, \ldots, 10\}, \\
 \epsilon_S^0 &\sim \mathcal{N}(0, 1), && \epsilon_S^0 \perp X^0, \qquad S^0 = 1 + \mathbf{1}\{X_1^0 + \epsilon_S^0 \le 0.5\}, \\
@@ -42,27 +42,27 @@ g(x) &= \mathrm{expit}(-2 + x_1 + x_2 + 0.5 x_3 + 0.5 x_4), && Y^0 \mid (X^0, S^
 F_j^{\mathrm{U}} &\overset{\mathrm{iid}}{\sim} P_0 \quad (j = 1, \ldots, n_{\mathrm{U}}), && F_{s,j}^{\mathrm{L}} \overset{\mathrm{iid}}{\sim} P_0(\cdot \mid S^0 = s) \quad (s \in \{1, 2\},\; j = 1, \ldots, q_s), \\
 n_{\mathrm{L}} &= q_1 + q_2 = 100 + 100 = 200, \qquad n_{\mathrm{U}} = 20000, && n = n_{\mathrm{L}} + n_{\mathrm{U}} = 20200, \qquad Y_{\mathrm{obs},i} = R_i Y_i.
 \end{aligned}
-$$
+```
 
 Here $`P_0`$ denotes the population joint law of $`F^0 = (X^0, \epsilon_S^0, S^0, Y^0)`$. The exported table stacks three mutually independent blocks: $`q_1 = 100`$ labeled draws from $`P_0(\cdot \mid S^0 = 1)`$, $`q_2 = 100`$ labeled draws from $`P_0(\cdot \mid S^0 = 2)`$ ($`R_i = 1`$), and $`n_{\mathrm{U}} = 20,000`$ unlabeled draws from $`P_0`$ ($`R_i = 0`$). Conditioning on $S^0 = s$ reweights the labeled covariate density (e.g., $`f_{X \mid S=2}(x) = f_X(x)\Phi(0.5 - x_1)/\Phi(0.25)`$) and couples $`(X, \epsilon_S^0)`$ within labeled rows; unlabeled rows store finite placeholder $`Y_{\mathrm{obs},i} = 0`$.
 
 | Symbol | Meaning | Definition or setting |
 | --- | --- | --- |
 | $`F^0, P_0`$ | Population proposal tuple and law | $`F^0 = (X^0, \epsilon_S^0, S^0, Y^0) \sim P_0`$ defining the target superpopulation. |
-| $j, k$ | Coordinate and within-block indices | $j, k \in \{1, \ldots, 10\}$ for covariance entries; $j$ also indexes i.i.d. draws within each cohort block. |
+| $j, k$ | Coordinate and within-block indices | $`j, k \in \{1, \ldots, 10\}`$ for covariance entries; $j$ also indexes i.i.d. draws within each cohort block. |
 | $X^0, \Sigma$ | Population correlated covariates | $`\mathcal{N}_{10}(\mathbf{0}_{10}, \Sigma)`$ with AR(1) covariance $`\Sigma_{jk} = 3(0.4)^{\lvert j-k \rvert}`$; exported in columns `X1`–`X10`. |
 | $`\epsilon_S^0`$ | Population stratum disturbance | Independent $\mathcal{N}(0, 1)$ noise (denoted $D$ in the source), independent of $X^0$ under $`P_0`$; latent. |
 | $`S^0, S_i`$ | Observed sampling stratum | $`S^0 = 1 + \mathbf{1}\{X_1^0 + \epsilon_S^0 \le 0.5\} \in \{1, 2\}`$, with $`P_0(S^0 = 2) = \Phi(0.5/2) \approx 0.5987`$; column `S`. |
 | $g(x)$ | True logistic risk function | $`g(x) = \mathrm{expit}(-2 + x_1 + x_2 + 0.5x_3 + 0.5x_4)`$ depending on the first four coordinates. |
-| $`Y^0, Y_i`$ | Complete binary outcome | Drawn from $\mathrm{Bernoulli}\{g(X)\}$ conditionally independent of $`\epsilon_S^0`$ given $X$; latent when $`R_i = 0`$. |
+| $`Y^0, Y_i`$ | Complete binary outcome | Drawn from $`\mathrm{Bernoulli}\{g(X)\}`$ conditionally independent of $`\epsilon_S^0`$ given $X$; latent when $`R_i = 0`$. |
 | $`F_j^{\mathrm{U}}, F_{s,j}^{\mathrm{L}}`$ | Independent unlabeled and labeled cohort blocks | $`n_{\mathrm{U}} = 20,000`$ i.i.d. unlabeled draws from $`P_0`$ ($`R_i = 0`$) and $`q_1 = q_2 = 100`$ i.i.d. labeled draws from $`P_0(\cdot \mid S^0 = s)`$ ($`R_i = 1`$). |
-| $`i, n, R_i, Y_{\mathrm{obs},i}`$ | Exported row index, size, label flag, masked outcome | $n = 20,200$ stacked rows (labeled first, then unlabeled); `R` $\in \{0, 1\}$; `Y_obs` $`= R_i Y_i`$ with placeholder `0` when $`R_i = 0`$. |
+| $`i, n, R_i, Y_{\mathrm{obs},i}`$ | Exported row index, size, label flag, masked outcome | $n = 20,200$ stacked rows (labeled first, then unlabeled); `R` $`\in \{0, 1\}`$; `Y_obs` $`= R_i Y_i`$ with placeholder `0` when $`R_i = 0`$. |
 | $B$ | Population Brier score | $`B = \sum_{s=1}^2 P_0(S^0 = s)\mathbb{E}_{P_0}[\{Y^0 - g(X^0)\}^2 \mid S^0 = s] = \mathbb{E}_{P_0}[g(X^0)\{1 - g(X^0)\}] \approx 0.0879848583`$. |
 
 ## Data-generating process and estimand
 
 - **Estimand.** The scalar target is the population Brier score $`B = \sum_{s=1}^2 P_0(S^0 = s)\mathbb{E}_{P_0}[\{Y^0 - g(X^0)\}^2 \mid S^0 = s] = \mathbb{E}_{P_0}[g(X^0)\{1 - g(X^0)\}] \approx 0.0879848583`$.
-- **Truth check.** With weight vector $w = (1, 1, 0.5, 0.5)^{\top}$, the population Gaussian linear predictor $`\eta^0 = -2 + w^{\top} X_{1:4}^0`$ follows $\mathcal{N}(-2, v)$ with exact variance $`v = w^{\top}\Sigma_{1:4,1:4} w = 3[2.5 + 2(1.75\cdot 0.4 + 1\cdot 0.4^2 + 0.5\cdot 0.4^3)] = 12.852`$. `truth.py` integrates $\mathrm{expit}(\eta)\{1 - \mathrm{expit}(\eta)\}$ over $\mathcal{N}(-2, 12.852)$, while `verify.py` independently computes the logistic–Gaussian density convolution (agreeing within $`10^{-10}`$), verifies both 100-unit stratum quotas, checks the unlabeled stratum probability $\Phi(0.25) \approx 0.5987$, and validates labeled stratum-conditional covariate moments and signed labeled outcome calibration (ensuring intercept sign flips fail verification).
+- **Truth check.** With weight vector $w = (1, 1, 0.5, 0.5)^{\top}$, the population Gaussian linear predictor $`\eta^0 = -2 + w^{\top} X_{1:4}^0`$ follows $\mathcal{N}(-2, v)$ with exact variance $`v = w^{\top}\Sigma_{1:4,1:4} w = 3[2.5 + 2(1.75\cdot 0.4 + 1\cdot 0.4^2 + 0.5\cdot 0.4^3)] = 12.852`$. `truth.py` integrates $`\mathrm{expit}(\eta)\{1 - \mathrm{expit}(\eta)\}`$ over $\mathcal{N}(-2, 12.852)$, while `verify.py` independently computes the logistic–Gaussian density convolution (agreeing within $`10^{-10}`$), verifies both 100-unit stratum quotas, checks the unlabeled stratum probability $\Phi(0.25) \approx 0.5987$, and validates labeled stratum-conditional covariate moments and signed labeled outcome calibration (ensuring intercept sign flips fail verification).
 
 ## Benchmark comparison
 
