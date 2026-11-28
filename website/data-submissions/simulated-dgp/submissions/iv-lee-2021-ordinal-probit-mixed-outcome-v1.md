@@ -38,7 +38,7 @@ flowchart LR
     Y_star --> Y
 ```
 
-- **Assumptions.** Consistency, no interference, conditional instrument randomization given X, exclusion, and monotonicity under the common treatment error. At X=x, compliers have 1-x<X_latent<3-x. Instrument probabilities are strictly interior at each ordinal level. The standardized shared latent propensity creates treatment-outcome confounding; censoring creates a nonlinear observed effect.
+- **Assumptions.** Consistency, no interference, conditional instrument randomization given X, exclusion, and monotonicity under the common treatment error. At X=x, compliers have 1-x< X_latent<3-x. Instrument probabilities are strictly interior at each ordinal level. The standardized shared latent propensity creates treatment-outcome confounding; censoring creates a nonlinear observed effect.
 
 ## Variables and data-generating process
 
@@ -79,7 +79,7 @@ Y&=\min(0,Y_{\mathrm{star}}).
 ## Data-generating process and estimand
 
 - **Estimand.** $\theta=\beta_{cp}=E\{\min(0,Y_{\mathrm{star}}(1))-\min(0,Y_{\mathrm{star}}(0))\mid A(1)>A(0)\}\approx .4293336071138788$. The effect is for the observed outcome, treatment 0 to 1.
-- **Truth check.** For x and latent e in the complier interval, set m=-3+x+.25x^2+e/sqrt(2), s=1/sqrt(2). The normal negative-part mean F(m)=m*Phi(-m/s)-s*phi(m/s) gives conditional effect F(m+1)-F(m). Sum its integral against phi(e) over 1-x<e<3-x with the four source covariate masses and divide by the total complier probability. Adaptive quadrature error estimate is 4.77e-15, not a universal rigorous bound. Independent Gauss–Legendre integration of a Gaussian-CDF tail identity agrees to machine precision; common SciPy CDF routines remain shared. Zero treatment and uncensored-response special cases are checked.
+- **Truth check.** For x and latent e in the complier interval, set m=-3+x+.25x^2+e/sqrt(2), s=1/sqrt(2). The normal negative-part mean F(m)=m*Phi(-m/s)-s*phi(m/s) gives conditional effect F(m+1)-F(m). Sum its integral against phi(e) over 1-x< e<3-x with the four source covariate masses and divide by the total complier probability. Adaptive quadrature error estimate is 4.77e-15, not a universal rigorous bound. Independent Gauss–Legendre integration of a Gaussian-CDF tail identity agrees to machine precision; common SciPy CDF routines remain shared. Zero treatment and uncensored-response special cases are checked.
 
 ## Benchmark comparison
 
