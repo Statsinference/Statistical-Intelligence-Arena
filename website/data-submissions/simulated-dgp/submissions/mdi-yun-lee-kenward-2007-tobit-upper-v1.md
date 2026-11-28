@@ -33,14 +33,14 @@ flowchart LR
 
 - **Structural parents.** `X -> Y, Y -> R, Y -> Y_obs, R -> Y_obs`
 
-$$
+```math
 \begin{aligned}
 x_i &= -1 + \frac{2i}{n}, && i = 1, \ldots, n, \quad n = 100, \\
 \epsilon_i &\overset{\mathrm{iid}}{\sim} \mathcal{N}(0, 1), && i = 1, \ldots, n, \\
 Y_i &= 1 + 3x_i + \epsilon_i, && \\
 R_i &= \mathbf{1}\{Y_i \le 3\}, \qquad Y_{\mathrm{obs},i} = R_i Y_i.
 \end{aligned}
-$$
+```
 
 Disturbances $`\epsilon_i`$ are i.i.d. standard normal across the fixed design points $`x_1, \ldots, x_{100}`$; censored observations ($`Y_i > 3`$, $`R_i = 0`$) are encoded with finite placeholder $`Y_{\mathrm{obs},i} = 0`$ while retaining the known upper cutoff $c = 3$ (conventional top-coded Tobit input is $`R_i Y_{\mathrm{obs},i} + 3(1 - R_i)`$ paired with $`R_i`$).
 
