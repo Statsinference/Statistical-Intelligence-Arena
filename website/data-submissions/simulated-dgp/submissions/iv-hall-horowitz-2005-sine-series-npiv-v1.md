@@ -42,7 +42,7 @@ flowchart LR
 
 ```math
 \begin{aligned}
-C_f&=\frac{\pi^2}{7\zeta(3)},\qquad 0<a,z<1,\\
+C_f&=\frac{\pi^2}{7\zeta(3)},\qquad (a,z)\in(0,1)^2,\\
 f_{AZ}(a,z)&=2C_f\sum_{j=1}^{\infty}\frac{(-1)^{j+1}}{j}\sin(j\pi a)\sin(j\pi z)\\
 &=C_f\log\left\{\frac{\cos(\pi(a-z)/2)}{|\cos(\pi(a+z)/2)|}\right\},\\
 S(z)&=\mathrm{Im}\mathrm{Li}_2(e^{i\pi z})-\tfrac14\mathrm{Im}\mathrm{Li}_2(e^{2i\pi z}),\qquad
