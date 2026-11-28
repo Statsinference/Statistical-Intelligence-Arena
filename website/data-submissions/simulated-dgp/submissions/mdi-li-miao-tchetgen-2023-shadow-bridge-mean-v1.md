@@ -33,14 +33,14 @@ flowchart LR
 
 - **Structural parents.** `Y -> Z, Y -> R, Y -> Y_obs, R -> Y_obs`
 
-$$
+```math
 \begin{aligned}
 Y_i &\overset{\mathrm{iid}}{\sim} \mathrm{Uniform}(0, 1), && i = 1, \ldots, n, \quad n = 1000, \\
 Z_i \mid Y_i &\sim \mathrm{Bernoulli}(Y_i), && \\
 R_i \mid (Y_i, Z_i) &\sim \mathrm{Bernoulli}\bigl\{4 Y_i^2 (1 - Y_i)\bigr\}, && \\
 Y_{\mathrm{obs},i} &= R_i Y_i.
 \end{aligned}
-$$
+```
 
 Rows are i.i.d. across units and tables; note that $0 < 4y^2(1-y) \le 16/27 < 1$ on $(0, 1)$ (vanishing only at zero-probability endpoints), yielding theoretical response rate $1/3$ (missingness $`2/3`$), and missing outcomes ($`R_i = 0`$) carry finite placeholder $`Y_{\mathrm{obs},i} = 0`$.
 
