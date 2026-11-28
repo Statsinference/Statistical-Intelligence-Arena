@@ -34,7 +34,7 @@ flowchart LR
 
 - **Structural parents.** `G -> Y, X -> Y, X -> R, Y -> Y_obs, R -> Y_obs`
 
-$$
+```math
 \begin{aligned}
 G_i &= 1 + \mathbf{1}\{i > 25\}, && i = 1, \ldots, n, \quad n = 50, \\
 X_i &\overset{\mathrm{iid}}{\sim} \mathcal{N}(0, 1), \qquad \epsilon_i \overset{\mathrm{iid}}{\sim} \mathcal{N}(0, 1), && X_i \perp \epsilon_i, \\
@@ -42,7 +42,7 @@ Y_i &= \mu_{G_i} + X_i + \epsilon_i, && \mu_1 = 1, \quad \mu_2 = -1, \\
 R_i \mid (G_i, X_i, Y_i) &\sim \mathrm{Bernoulli}\bigl\{\mathrm{expit}(-0.5 - 0.2 X_i)\bigr\}, && \\
 Y_{\mathrm{obs},i} &= R_i Y_i.
 \end{aligned}
-$$
+```
 
 Under the fixed balanced group layout ($`25`$ rows in each group), rows are independent with group-specific outcome distributions; $\mathrm{expit}(t) = (1 + e^{-t})^{-1}$, and missing outcomes ($`R_i = 0`$) carry finite placeholder $`Y_{\mathrm{obs},i} = 0`$.
 
@@ -57,7 +57,7 @@ Under the fixed balanced group layout ($`25`$ rows in each group), rows are inde
 | $\mathrm{expit}(t)$ | Logistic response link | $\mathrm{expit}(t) = 1/(1 + e^{-t})$; Mechanism B gives missingness $`\mathrm{expit}(0.5 + 0.2X_i)`$, i.e., response probability $`\mathrm{expit}(-0.5 - 0.2X_i)`$ (expected missingness $`62.13\%`$). |
 | $`R_i`$ | Response indicator | Drawn from $`\mathrm{Bernoulli}\{\mathrm{expit}(-0.5 - 0.2X_i)\}`$ given $`X_i`$; column `R`. |
 | $`Y_{\mathrm{obs},i}`$ | Observed masked outcome | Equals $`Y_i`$ when $`R_i = 1`$ and finite placeholder `0` when $`R_i = 0`$; column `Y_obs`. |
-| $\beta$ | Target common ANCOVA slope | $\beta = \mathrm{Cov}(X, Y \mid G = g)/\mathrm{Var}(X \mid G = g) = 1$ for $g \in \{1, 2\}$. |
+| $\beta$ | Target common ANCOVA slope | $\beta = \mathrm{Cov}(X, Y \mid G = g)/\mathrm{Var}(X \mid G = g) = 1$ for $`g \in \{1, 2\}`$. |
 
 ## Data-generating process and estimand
 
