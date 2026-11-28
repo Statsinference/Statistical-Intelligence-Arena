@@ -28,13 +28,13 @@ flowchart LR
 ## Variables and data-generating process
 
 - **Variables and observed input.** Each row is one unit. Every method receives 16 observed columns in exact schema order: `R1,...,R7`, `R`, `X1_obs,...,X7_obs`, and `Y_obs`. Whenever an indicator equals `0`, its paired `_obs` column holds finite placeholder `0` (serialized as float `0.0`) and must be treated as missing. Complete unobserved entries, disturbances, and oracle parameters are excluded from estimator inputs.
-- **Draw order and scenarios.** Under the single scenario `original` ($`n = 1000`$): draw $`X_i \overset{\mathrm{iid}}{\sim} \mathcal{N}_7(\mathbf{0}_7, \Sigma_X)`$ and $`\epsilon_i \overset{\mathrm{iid}}{\sim} \mathcal{N}(0, 1)`$, compute $`Y_i = -2 + b^{\top} X_i + \epsilon_i`$, draw eight mutually independent uniform subsets $`M_1, \ldots, M_8`$ of exact size $300$ from $\{1, \ldots, 1000\}$, and set indicators and masked columns accordingly.
+- **Draw order and scenarios.** Under the single scenario `original` ($`n = 1000`$): draw $`X_i \overset{\mathrm{iid}}{\sim} \mathcal{N}_7(\mathbf{0}_7, \Sigma_X)`$ and $`\epsilon_i \overset{\mathrm{iid}}{\sim} \mathcal{N}(0, 1)`$, compute $`Y_i = -2 + b^{\top} X_i + \epsilon_i`$, draw eight mutually independent uniform subsets $`M_1, \ldots, M_8`$ of exact size $300$ from $`\{1, \ldots, 1000\}`$, and set indicators and masked columns accordingly.
 
 ### Structural equations
 
 - **Structural parents.** `X -> Y, X -> X_obs, RX -> X_obs, Y -> Y_obs, R -> Y_obs`
 
-$$
+```math
 \begin{aligned}
 X_i &\overset{\mathrm{iid}}{\sim} \mathcal{N}_7\bigl(\mathbf{0}_7,\, 0.6 I_7 + 0.4 \mathbf{1}_7 \mathbf{1}_7^{\top}\bigr), && i = 1, \ldots, n, \quad n = 1000, \\
 \epsilon_i &\overset{\mathrm{iid}}{\sim} \mathcal{N}(0, 1), && \epsilon_i \perp X_i, \\
@@ -43,7 +43,7 @@ M_k &\overset{\mathrm{iid}}{\sim} \mathrm{Uniform}\bigl\{A \subseteq \{1, \ldots
 R_{ij} &= \mathbf{1}\{i \notin M_j\}, \quad X_{\mathrm{obs},ij} = R_{ij} X_{ij}, && j = 1, \ldots, 7, \\
 R_i &= \mathbf{1}\{i \notin M_8\}, \quad Y_{\mathrm{obs},i} = R_i Y_i.
 \end{aligned}
-$$
+```
 
 The eight missing-index subsets $`M_1, \ldots, M_8`$ are mutually independent across columns and independent of $(X, \epsilon)$; within each column $k$, distinct rows have indicator covariance $-0.21/999$ due to the exact quota $m = 300$. Each masked entry uses finite placeholder `0` paired with its binary observation indicator.
 
