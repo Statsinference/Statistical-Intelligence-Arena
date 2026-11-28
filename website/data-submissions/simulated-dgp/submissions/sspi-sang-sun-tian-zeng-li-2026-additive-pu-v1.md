@@ -33,7 +33,7 @@ flowchart LR
 
 - **Structural parents.** `R -> Y, Y -> X, Y -> Y_obs, R -> Y_obs`
 
-$$
+```math
 \begin{aligned}
 X_j^0 &\overset{\mathrm{iid}}{\sim} \mathrm{Uniform}(0, 1), && j = 1, \ldots, 5, \\
 m(x) &= -13 + 6 x_1 + 24(x_2 - 0.3)^2 + \frac{1}{x_3 + 0.1} - 5\cos(5 x_4) + 2\exp(4 x_5 - 2), && \\
@@ -43,14 +43,14 @@ n_{\mathrm{L}} &= 1250, \qquad n_{\mathrm{U}} = 250, \qquad n = n_{\mathrm{L}} +
 \Pr(Y_i = 1 \mid R_i = 1) &= 1, \qquad Y_i \mid (R_i = 0) \overset{\mathrm{iid}}{\sim} \mathrm{Bernoulli}(\pi_0), && \\
 X_i \mid (Y_i = y) &\sim \mathcal{L}(X^0 \mid C = y), \qquad Y_{\mathrm{obs},i} = R_i Y_i.
 \end{aligned}
-$$
+```
 
 The auxiliary proposal pair $(X^0, C)$ defines the class-conditional densities $`f_1(x) = p(x \mid C = 1)`$ and $`f_0(x) = p(x \mid C = 0)`$ with screening acceptance probability $a = \Pr(C = 1)$, distinct from target prevalence $`\pi_0 = 0.4`$. After drawing $`K \sim \mathrm{Binomial}(n_{\mathrm{U}}, 0.4)`$, the $K$ positive and $`n_{\mathrm{U}} - K`$ negative unlabeled rows are uniformly permuted, yielding i.i.d. $\mathrm{Bernoulli}(0.4)$ unlabeled rows; unlabeled rows store finite placeholder $`Y_{\mathrm{obs},i} = 0`$.
 
 | Symbol | Meaning | Definition or setting |
 | --- | --- | --- |
 | $`i, n, n_{\mathrm{L}}, n_{\mathrm{U}}`$ | Row index and cohort sizes | $i = 1, \ldots, n$; fixed source sizes $`n_{\mathrm{L}} = 1250`$ labeled positives, $`n_{\mathrm{U}} = 250`$ unlabeled target rows, $n = 1500$. |
-| $X^0, C, a$ | Screening proposal, label, and acceptance rate | $`X_1^0, \ldots, X_5^0 \overset{\mathrm{iid}}{\sim} \mathrm{Uniform}(0, 1)`$, $C \mid X^0 \sim \mathrm{Bernoulli}\{\mathrm{expit}(m(X^0))\}$, $a = \Pr(C = 1)$ (distinct from $`\pi_0`$). |
+| $X^0, C, a$ | Screening proposal, label, and acceptance rate | $`X_1^0, \ldots, X_5^0 \overset{\mathrm{iid}}{\sim} \mathrm{Uniform}(0, 1)`$, $`C \mid X^0 \sim \mathrm{Bernoulli}\{\mathrm{expit}(m(X^0))\}`$, $a = \Pr(C = 1)$ (distinct from $`\pi_0`$). |
 | $`m(x), m_j, u_j`$ | Generalized additive screening log-odds | $`m(x) = -13 + 6x_1 + 24(x_2 - 0.3)^2 + (x_3 + 0.1)^{-1} - 5\cos(5x_4) + 2\exp(4x_5 - 2)`$; centered additive components $`u_j(x_j) = m_j(x_j) - \int_0^1 m_j(t)\,dt`$ (all five nonconstant). |
 | $`f_1, f_0`$ | Class-conditional feature densities | $`f_1(x) = p(x \mid C = 1)`$ and $`f_0(x) = p(x \mid C = 0)`$ on $[0, 1]^5$, satisfying $`\log\{f_1(x)/f_0(x)\} = m(x) + \log\{(1-a)/a\}`$. |
 | $K$ | Unlabeled positive count | $`K = \sum_{i: R_i = 0} Y_i \sim \mathrm{Binomial}(n_{\mathrm{U}}, 0.4)`$; target rows are uniformly permuted conditional on $K$. |
