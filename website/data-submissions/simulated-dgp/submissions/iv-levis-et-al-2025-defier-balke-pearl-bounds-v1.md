@@ -47,12 +47,12 @@ flowchart LR
 
 - **Structural parents.** `X_1 -> H, X_2 -> H, H -> A, Z -> A, H -> Y, A -> Y`
 
-$$
-X_1\sim\operatorname{Bernoulli}(.7),\quad X_2\sim\operatorname{Uniform}(-1,1),\quad
-Z\sim\operatorname{Bernoulli}(.5),\quad\epsilon_Y\sim\operatorname{Uniform}(0,1).
-$$
+```math
+X_1\sim\mathrm{Bernoulli}(.7),\quad X_2\sim\mathrm{Uniform}(-1,1),\quad
+Z\sim\mathrm{Bernoulli}(.5),\quad\epsilon_Y\sim\mathrm{Uniform}(0,1).
+```
 
-$$
+```math
 \begin{aligned}
 H&=\begin{cases}
 \mathrm{AT},&X_2\geq .99,\\
@@ -60,12 +60,12 @@ H&=\begin{cases}
 \mathrm{DF},&X_1=0\ \text{and}\ -.5<X_2\leq .5,\\
 \mathrm{CP},&\text{otherwise},
 \end{cases}\\
-A&=\mathbf1\{H=\mathrm{AT}\}+(1-Z)\mathbf1\{H=\mathrm{DF}\}+Z\mathbf1\{H=\mathrm{CP}\},\\
+A&=\mathbf{1}\{H=\mathrm{AT}\}+(1-Z)\mathbf{1}\{H=\mathrm{DF}\}+Z\mathbf{1}\{H=\mathrm{CP}\},\\
 (r_{0,h},d_h)_{h=\mathrm{AT},\mathrm{NT},\mathrm{DF},\mathrm{CP}}
 &=((.20,.10),(.90,.05),(.65,.05),(.25,.10)),\\
-r_{a,h}&=r_{0,h}+a d_h,\qquad Y=\mathbf1\{\epsilon_Y<r_{A,H}\}.
+r_{a,h}&=r_{0,h}+a d_h,\qquad Y=\mathbf{1}\{\epsilon_Y<r_{A,H}\}.
 \end{aligned}
-$$
+```
 
 | Symbol | Meaning | Definition or setting |
 | --- | --- | --- |
@@ -73,7 +73,7 @@ $$
 | $Z,A,Y$ | Observed instrument, treatment and outcome | Columns `Z,A,Y`, all binary. Z randomized independently of X and noise. |
 | $H,h$ | Principal stratum and its index | AT always-taker, NT never-taker, DF defier, CP complier; deterministic covariate function, unexported. This is not an unknown random disturbance. |
 | $r_{0,h},r_{a,h},d_h,a$ | Untreated risk, treated/untreated risk function, risk difference and treatment argument | Explicit numeric pairs above; a=0 or 1. Values are fixed across subjects, indexed by stratum. |
-| $\epsilon_Y,\mathbf1$ | Outcome disturbance and indicator | Independent uniform(0,1) per row and event indicator. Only observed-outcome Bernoulli sampling is required; no source-specified joint potential-outcome coupling is asserted. |
+| $\epsilon_Y,\mathbf{1}$ | Outcome disturbance and indicator | Independent uniform(0,1) per row and event indicator. Only observed-outcome Bernoulli sampling is required; no source-specified joint potential-outcome coupling is asserted. |
 | Thresholds and root probabilities | Fixed source values | .99,-.99,-.5,.5 and probabilities .7,.5; boundaries have zero probability for continuous X2. |
 | $L(P),U(P)$ | Covariate-adjusted sharp ATE bound endpoints | Defined under the basic binary IV model conditional on X, without monotonicity or hidden counterfactual-risk restrictions. |
 | $\theta$ | Registered scalar target | $\theta=L(P)=.0835$, the sharp lower endpoint for $E[Y(1)-Y(0)]$ conditional-IV bounds averaged over X. The upper endpoint is .0935; the simulator ATE .09225 is auxiliary and must not replace the lower-bound target. |
