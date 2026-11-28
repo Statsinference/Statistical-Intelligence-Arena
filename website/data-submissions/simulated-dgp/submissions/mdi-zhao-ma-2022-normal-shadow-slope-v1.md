@@ -3,7 +3,7 @@
 ## Research question
 
 - **Question and intended use.** Estimate the full-data linear regression slope $`\beta_1 = -0.5`$ and construct a nominal 95% confidence interval when response depends directly on the unobserved outcome $Y$ (MNAR) and the fully observed predictor $X$ serves as a shadow variable. This design is proposed as an evaluation benchmark candidate for semiparametric MNAR regression inference.
-- **Behavior under test.** Outcome-dependent selection $R \mid Y \sim \mathrm{Bernoulli}\{\mathrm{expit}(1 + Y)\}$ ($`30.49\%`$ expected missingness) distorts the observed conditional distribution of $Y \mid (X, R = 1)$, biasing both complete-case OLS and MAR imputation estimators. Because $R \perp X \mid Y$, the conditional distribution of $X \mid (Y, R = 1)$ matches the full-data $X \mid Y$, enabling consistent estimation of $`\beta_1`$ without specifying the unknown nonignorable propensity score.
+- **Behavior under test.** Outcome-dependent selection $`R \mid Y \sim \mathrm{Bernoulli}\{\mathrm{expit}(1 + Y)\}`$ ($`30.49\%`$ expected missingness) distorts the observed conditional distribution of $Y \mid (X, R = 1)$, biasing both complete-case OLS and MAR imputation estimators. Because $R \perp X \mid Y$, the conditional distribution of $X \mid (Y, R = 1)$ matches the full-data $X \mid Y$, enabling consistent estimation of $`\beta_1`$ without specifying the unknown nonignorable propensity score.
 
 ## Study design and data source
 
@@ -33,7 +33,7 @@ flowchart LR
 
 - **Structural parents.** `X -> Y, Y -> R, Y -> Y_obs, R -> Y_obs`
 
-$$
+```math
 \begin{aligned}
 X_i &\overset{\mathrm{iid}}{\sim} \mathcal{N}(0.5, 0.25), && i = 1, \ldots, n, \quad n = 500, \\
 \epsilon_i &\overset{\mathrm{iid}}{\sim} \mathcal{N}(0, 1), && \epsilon_i \perp X_i, \\
@@ -41,7 +41,7 @@ Y_i &= 0.25 - 0.5 X_i + \epsilon_i, && \\
 R_i \mid (X_i, Y_i) &\sim \mathrm{Bernoulli}\bigl\{\mathrm{expit}(1 + Y_i)\bigr\}, && \\
 Y_{\mathrm{obs},i} &= R_i Y_i.
 \end{aligned}
-$$
+```
 
 Rows are i.i.d. across units and tables; $\mathrm{expit}(t) = (1 + e^{-t})^{-1}$, and unobserved outcomes ($`R_i = 0`$) take finite placeholder $`Y_{\mathrm{obs},i} = 0`$.
 
