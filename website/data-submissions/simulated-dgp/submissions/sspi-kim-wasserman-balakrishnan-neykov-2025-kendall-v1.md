@@ -35,7 +35,7 @@ flowchart LR
 
 - **Structural parents.** `X -> V, V -> Y_obs, R -> Y_obs, X -> W, W -> W_obs, R -> W_obs`
 
-$$
+```math
 \begin{aligned}
 X_i &\overset{\mathrm{iid}}{\sim} \mathcal{N}_2\!\left(\mathbf{0}_2,\, \begin{pmatrix} 1 & 0.02 \\ 0.02 & 1 \end{pmatrix}\right), && i = 1, \ldots, n, \\
 \epsilon_{i1}, \epsilon_{i2} &\overset{\mathrm{iid}}{\sim} \mathcal{N}(0, 1), && (\epsilon_{i1}, \epsilon_{i2}) \perp X_i, \\
@@ -43,7 +43,7 @@ V_i &= X_{i1} + 0.05 \epsilon_{i1}, \qquad W_i = X_{i2} + 0.05 \epsilon_{i2}, &&
 n_{\mathrm{L}} &= 5000, \qquad n_{\mathrm{U}} = 50000, && n = n_{\mathrm{L}} + n_{\mathrm{U}} = 55000, \\
 R_i &= \mathbf{1}\{i \le n_{\mathrm{L}}\}, \qquad Y_{\mathrm{obs},i} = R_i V_i, \qquad W_{\mathrm{obs},i} = R_i W_i.
 \end{aligned}
-$$
+```
 
 All $n = 55,000$ rows are i.i.d. draws from the identical joint population $(X, V, W)$ with fixed-index labeling $`R_i = \mathbf{1}\{i \le 5000\}`$; unlabeled rows ($`R_i = 0`$) carry finite placeholders $`Y_{\mathrm{obs},i} = 0`$ and $`W_{\mathrm{obs},i} = 0`$.
 
