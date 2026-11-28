@@ -14,7 +14,7 @@
 
 - **Variables and causal structure.** $X$ (`X`) is the fully observed exponential covariate, $Y$ is the latent complete outcome, $R$ (`R`) is the binary response indicator governed solely by $X$, and $`Y_{\mathrm{obs}}`$ (`Y_obs`) is the masked observed outcome.
 - **DAG edges.** `X -> Y, X -> R, Y -> Y_obs, R -> Y_obs`
-- **Assumptions.** Units are i.i.d.; missingness satisfies MAR ($`R \perp Y \mid X`$) with pointwise strictly positive response propensity $\pi(x) = \mathrm{expit}(3 - 3x) \in (0, 1)$ for all $x > 0$, nonparametrically identifying $`\eta_2 = \mathbb{E}[\Pr(Y < 0.15 \mid X, R = 1)]`$. **Overlap and regularity qualification:** because $\pi(x) \to 0$ as $x \to \infty$ faster than $e^{-x}$, there is no uniform lower bound on $\pi(x)$ and $\mathbb{E}[1/\pi(X)] = \infty$. Consequently, ordinary normalized IPW for $\mathbf{1}\{Y < 0.15\}$ has an infinite centered second moment and its untrimmed sandwich normal interval has no finite-variance normal justification (evaluated empirically as a stress comparator under the benchmark protocol). By contrast, for this indicator the oracle AIPW residual-variance term $\mathbb{E}[g(X)\{1 - g(X)\}/\pi(X)]$ is finite—though huge ($`\approx 1.34 \times 10^{43}`$), dominated by the Gaussian-tail region—so oracle AIPW uses a nominal normal interval evaluated empirically (while estimating nuisance functions requires separate rate and variance conditions, and any externally trimmed estimator targets a distinct trimmed estimand).
+- **Assumptions.** Units are i.i.d.; missingness satisfies MAR ($`R \perp Y \mid X`$) with pointwise strictly positive response propensity $\pi(x) = \mathrm{expit}(3 - 3x) \in (0, 1)$ for all $x > 0$, nonparametrically identifying $`\eta_2 = \mathbb{E}[\Pr(Y < 0.15 \mid X, R = 1)]`$. **Overlap and regularity qualification:** because $\pi(x) \to 0$ as $x \to \infty$ faster than $e^{-x}$, there is no uniform lower bound on $\pi(x)$ and $\mathbb{E}[1/\pi(X)] = \infty$. Consequently, ordinary normalized IPW for $`\mathbf{1}\{Y < 0.15\}`$ has an infinite centered second moment and its untrimmed sandwich normal interval has no finite-variance normal justification (evaluated empirically as a stress comparator under the benchmark protocol). By contrast, for this indicator the oracle AIPW residual-variance term $`\mathbb{E}[g(X)\{1 - g(X)\}/\pi(X)]`$ is finite—though huge ($`\approx 1.34 \times 10^{43}`$), dominated by the Gaussian-tail region—so oracle AIPW uses a nominal normal interval evaluated empirically (while estimating nuisance functions requires separate rate and variance conditions, and any externally trimmed estimator targets a distinct trimmed estimand).
 
 ```mermaid
 flowchart LR
@@ -26,14 +26,14 @@ flowchart LR
 
 ## Variables and data-generating process
 
-- **Variables and observed input.** Each row represents one independent unit. Methods receive the three observed columns `X` ($`> 0`$), `R` ($`\in \{0, 1\}`$), and `Y_obs` ($`\in \mathbb{R}`$, set to finite placeholder `0` / `0.0` whenever `R == 0`). Estimators must use `Y_obs` only where `R == 1` and preserve the strict indicator $\mathbf{1}\{Y < 0.15\}$. Unobserved outcomes, Gaussian disturbances, and oracle propensities are excluded from estimator inputs.
+- **Variables and observed input.** Each row represents one independent unit. Methods receive the three observed columns `X` ($`> 0`$), `R` ($`\in \{0, 1\}`$), and `Y_obs` ($`\in \mathbb{R}`$, set to finite placeholder `0` / `0.0` whenever `R == 0`). Estimators must use `Y_obs` only where `R == 1` and preserve the strict indicator $`\mathbf{1}\{Y < 0.15\}`$. Unobserved outcomes, Gaussian disturbances, and oracle propensities are excluded from estimator inputs.
 - **Draw order and scenarios.** Under the single scenario `original` ($`n = 2000`$): independently for each row $i = 1, \ldots, n$, draw $`X_i \sim \mathrm{Exp}(1)`$ and $`\epsilon_i \sim \mathcal{N}(0, 0.5)`$, form $`Y_i = 0.1 X_i + \epsilon_i`$, draw $`R_i \mid X_i \sim \mathrm{Bernoulli}\{\mathrm{expit}(3 - 3X_i)\}`$, and set $`Y_{\mathrm{obs},i} = R_i Y_i`$. All parameters stay fixed across replicates.
 
 ### Structural equations
 
 - **Structural parents.** `X -> Y, X -> R, Y -> Y_obs, R -> Y_obs`
 
-$$
+```math
 \begin{aligned}
 X_i &\overset{\mathrm{iid}}{\sim} \mathrm{Exp}(1), && i = 1, \ldots, n, \quad n = 2000, \\
 \epsilon_i &\overset{\mathrm{iid}}{\sim} \mathcal{N}(0, 0.5), && \epsilon_i \perp X_i, \\
@@ -41,7 +41,7 @@ Y_i &= 0.1 X_i + \epsilon_i, && \\
 R_i \mid (X_i, Y_i) &\sim \mathrm{Bernoulli}\bigl\{\mathrm{expit}(3 - 3X_i)\bigr\}, && \\
 Y_{\mathrm{obs},i} &= R_i Y_i.
 \end{aligned}
-$$
+```
 
 All rows are drawn independently across units and replicate tables; $\mathrm{expit}(t) = (1 + e^{-t})^{-1}$ specifies the response probability $`\Pr(R_i = 1 \mid X_i) = \mathrm{expit}(3 - 3X_i)`$ (equivalently missingness $`\Pr(R_i = 0 \mid X_i) = \mathrm{expit}(3X_i - 3)`$), and unobserved outcomes ($`R_i = 0`$) take finite placeholder $`Y_{\mathrm{obs},i} = 0`$.
 
@@ -63,7 +63,7 @@ All rows are drawn independently across units and replicate tables; $\mathrm{exp
 
 ## Benchmark comparison
 
-- **Output and comparator.** Methods produce a scalar estimate of $`\eta_2`$ and a nominal 95% confidence interval where applicable from the identical observed columns `X`, `R`, and `Y_obs`. Comparators follow the untrimmed strict-threshold protocol: (1) complete-case CDF (averaging $\mathbf{1}\{Y < 0.15\}$ over respondents, asymptotic limit $0.557693$, with a 95% Wilson interval), (2) parametric multiple imputation ($`M = 500`$ Bayesian no-intercept Gaussian regression imputations with prior proportional to $\sigma^{-2}$, estimating the strict-threshold CDF in each completed table with Rubin's pooled variance and Table 1 Student $t$ interval using $(M - 1)/\lambda^2$ degrees of freedom), (3) over-imputation with bias-corrected variance (using the same 500 Bayesian regression draws to over-impute both respondents and nonrespondents, with eq. (13) corrected variance and eq. (14) Satterthwaite $t$ degrees of freedom), (4) oracle augmented IPW (averaging $g(X) + R\{\mathbf{1}(Y < 0.15) - g(X)\}/\pi(X)$ using the stated $g$ and $\pi$ with nominal normal interval from the sample SD divided by $\sqrt{n}$, evaluated empirically), and (5) oracle normalized IPW stress comparator ($`\sum R\mathbf{1}\{Y < 0.15\}/\pi(X)`$ divided by $\sum R/\pi(X)$ with nominal sandwich normal interval, reporting point metrics and empirical coverage while noting untrimmed weights have no finite-variance normal justification).
+- **Output and comparator.** Methods produce a scalar estimate of $`\eta_2`$ and a nominal 95% confidence interval where applicable from the identical observed columns `X`, `R`, and `Y_obs`. Comparators follow the untrimmed strict-threshold protocol: (1) complete-case CDF (averaging $`\mathbf{1}\{Y < 0.15\}`$ over respondents, asymptotic limit $0.557693$, with a 95% Wilson interval), (2) parametric multiple imputation ($`M = 500`$ Bayesian no-intercept Gaussian regression imputations with prior proportional to $\sigma^{-2}$, estimating the strict-threshold CDF in each completed table with Rubin's pooled variance and Table 1 Student $t$ interval using $(M - 1)/\lambda^2$ degrees of freedom), (3) over-imputation with bias-corrected variance (using the same 500 Bayesian regression draws to over-impute both respondents and nonrespondents, with eq. (13) corrected variance and eq. (14) Satterthwaite $t$ degrees of freedom), (4) oracle augmented IPW (averaging $`g(X) + R\{\mathbf{1}(Y < 0.15) - g(X)\}/\pi(X)`$ using the stated $g$ and $\pi$ with nominal normal interval from the sample SD divided by $\sqrt{n}$, evaluated empirically), and (5) oracle normalized IPW stress comparator ($`\sum R\mathbf{1}\{Y < 0.15\}/\pi(X)`$ divided by $\sum R/\pi(X)$ with nominal sandwich normal interval, reporting point metrics and empirical coverage while noting untrimmed weights have no finite-variance normal justification).
 - **Scoring and replication.** Evaluate all methods on 1,000 paired independent datasets of size $n = 2000$. Report bias, RMSE, empirical 95% coverage, mean interval length, Monte Carlo uncertainty, valid denominators, and full failure or timeout counts.
 
 ## Materials and access
