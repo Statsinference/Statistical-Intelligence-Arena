@@ -32,7 +32,7 @@ flowchart LR
 
 - **Structural parents.** `X -> Y, Y -> Y_obs, R -> Y_obs`
 
-$$
+```math
 \begin{aligned}
 X_{i1}, X_{i2} &\overset{\mathrm{iid}}{\sim} \mathrm{Uniform}(0, 1), && i = 1, \ldots, n, \\
 g(x_1, x_2) &= -1.70 x_1 x_2 - 6.94 x_1 x_2^2 - 1.35 x_1^2 x_2 + 2.28 x_1^2 x_2^2, && \\
@@ -41,7 +41,7 @@ Y_i &= g(X_{i1}, X_{i2}) + \epsilon_i, && \\
 n_{\mathrm{L}} &= 1000, \qquad n_{\mathrm{U}} = 9000, && n = n_{\mathrm{L}} + n_{\mathrm{U}} = 10000, \quad \gamma = \frac{n_{\mathrm{U}}}{n} = 0.9, \\
 R_i &= \mathbf{1}\{i \le n_{\mathrm{L}}\}, \qquad Y_{\mathrm{obs},i} = R_i Y_i.
 \end{aligned}
-$$
+```
 
 All $n = 10,000$ rows are i.i.d. draws from the identical joint population $`(X_1, X_2, Y)`$ with fixed-index labeling $`R_i = \mathbf{1}\{i \le 1000\}`$; unlabeled rows ($`R_i = 0`$) carry finite placeholder $`Y_{\mathrm{obs},i} = 0`$.
 
