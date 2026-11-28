@@ -49,31 +49,31 @@ flowchart LR
 
 - **Structural parents.** `X -> Z, X -> H, X_latent -> H, Z -> A, H -> A, X_latent -> Y, H -> Y, A -> Y`
 
-$$
+```math
 \begin{aligned}
 X&=(X_1,X_2,X_3,X_4)\sim N_4(0,I_4),\quad X_{\mathrm{latent}},\epsilon_H\sim N(0,1),\\
 \alpha&=(1,1,-1,-1)^\top,\qquad\beta=(1,-1,-1,1)^\top,\qquad\psi=1,\\
-m_Z(x)&=1.5\operatorname{sign}(\alpha^\top x),\quad
-Z\mid X=x\sim\operatorname{TN}_{[-2,2]}(m_Z(x),2^2),\\
-H&=\beta^\top X+X_{\mathrm{latent}}+\epsilon_H,\qquad A=\mathbf1\{Z\geq H\},\\
+m_Z(x)&=1.5\mathrm{sign}(\alpha^\top x),\quad
+Z\mid X=x\sim\mathrm{TN}_{[-2,2]}(m_Z(x),2^2),\\
+H&=\beta^\top X+X_{\mathrm{latent}}+\epsilon_H,\qquad A=\mathbf{1}\{Z\geq H\},\\
 Y&=X_{\mathrm{latent}}+A\psi H.
 \end{aligned}
-$$
+```
 
-$$
-f_Z(z\mid x)=\frac{\phi((z-m_Z(x))/2)}{2\{\Phi((2-m_Z(x))/2)-\Phi((-2-m_Z(x))/2)\}}\mathbf1\{-2\leq z\leq2\}.
-$$
+```math
+f_Z(z\mid x)=\frac{\phi((z-m_Z(x))/2)}{2\{\Phi((2-m_Z(x))/2)-\Phi((-2-m_Z(x))/2)\}}\mathbf{1}\{-2\leq z\leq2\}.
+```
 
 | Symbol | Meaning | Definition or setting |
 | --- | --- | --- |
 | $X,X_j,x,I_4$ | Baseline vector, coordinates, argument and identity matrix | Columns `X1` through `X4`; independent standard normals; total/effective dimension 4/4. |
 | $X_{\mathrm{latent}}$ | Untreated potential outcome | Source Y0; independent standard normal and unobserved, shared by threshold and outcome. |
 | $\alpha,\beta,\psi$ | Instrument-mean vector, threshold vector, effect-curve slope | Fixed values substituted above; beta is not the causal slope. |
-| $m_Z,\operatorname{sign}$ | Truncated-instrument location function and sign | $1.5\operatorname{sign}(\alpha^\top x)$; sign(0)=0, an event of probability zero. |
-| $Z,f_Z,\operatorname{TN}_{[-2,2]}$ | Instrument, conditional density and truncated normal | Column `Z`; location m_Z, pre-truncation SD 2; conditional support [-2,2]. |
+| $m_Z,\mathrm{sign}$ | Truncated-instrument location function and sign | $1.5\mathrm{sign}(\alpha^\top x)$; sign(0)=0, an event of probability zero. |
+| $Z,f_Z,\mathrm{TN}_{[-2,2]}$ | Instrument, conditional density and truncated normal | Column `Z`; location m_Z, pre-truncation SD 2; conditional support [-2,2]. |
 | $H,A,Y$ | Latent threshold, observed treatment and outcome | H is source threshold T, not a time index; columns `A,Y` observed; H never exported. |
 | $\epsilon_H$ | Threshold disturbance | N(0,1), independent of X and latent untreated outcome. The conditional TN instrument draw is independent of both latent roots given X. |
-| $\Phi,\phi,\mathbf1$ | Normal CDF, density and indicator | Standard normal functions and event indicator. |
+| $\Phi,\phi,\mathbf{1}$ | Normal CDF, density and indicator | Standard normal functions and event indicator. |
 | $t$ | Threshold argument in the LIV curve | Within instrument support (-2,2); curve $\gamma(t)=\psi t$. |
 | $\gamma$ | LIV effect-curve function | $\gamma(t)=\psi t$, the conditional treatment contrast at threshold t, not an outcome-regression nuisance. |
 | $\theta$ | Registered scalar target | $\gamma(t)=E\{Y(1)-Y(0)\mid H=t\}=\psi t$, with registered scalar target $\theta=\psi=1$. This is a LIV-curve slope; the unconditional ATE in this simulator is zero and is a different target. |
