@@ -36,14 +36,14 @@ flowchart LR
 
 - **Structural parents.** `X -> Y, X -> S, Y -> S, X -> R, S -> R, Y -> Y_obs, R -> Y_obs`
 
-$$
+```math
 \begin{aligned}
 X_i, E_{Yi}, E_{Si} &\overset{\mathrm{iid}}{\sim} \mathcal{N}(0, 1), && i = 1, \ldots, n, \\
 Y_i &= 1 + 2 X_i + E_{Yi}, \qquad S_i = 1 + 2 Y_i + X_i + E_{Si}, && \\
 w(s, x) &= \mathrm{expit}(-1 + 0.35 s + 0.35 x), && R_i \mid (S_i, X_i, Y_i) \sim \mathrm{Bernoulli}\bigl(w(S_i, X_i)\bigr), \\
 n &= 1000, && Y_{\mathrm{obs},i} = R_i Y_i.
 \end{aligned}
-$$
+```
 
 The total sample size is fixed at $n = 1,000$ while the labeled count $`\sum_{i=1}^{n} R_i`$ is stochastic (exact marginal labeling probability $\approx 0.5071$, i.e., $49.30\%$ missingness); unlabeled rows ($`R_i = 0`$) carry finite placeholder $`Y_{\mathrm{obs},i} = 0`$.
 
