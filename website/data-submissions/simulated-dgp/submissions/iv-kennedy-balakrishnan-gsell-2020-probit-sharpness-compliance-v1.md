@@ -45,24 +45,24 @@ flowchart LR
 
 - **Structural parents.** `X -> C, X -> Z, C -> A, Z -> A, A -> Y`
 
-$$
+```math
 \begin{aligned}
 \mu&=.3,\quad\psi=.2,\quad q=\Phi^{-1}(\mu),\quad c_j=\exp(-2.8+8.3j/9999),\quad j=0,\ldots,9999,\\
 G(b)&=\frac{\int_{-q}^{\infty}\Phi(q\sqrt{1+b^2}+bx)\phi(x)\,dx-\mu^2}{\mu-\mu^2},\\
-j^*&=\operatorname*{arg\,min}_{j\in\{0,\ldots,9999\}}|G(c_j)-\psi|,\quad
+j^*&=\underset{j\in\{0,\ldots,9999\}}{\mathrm{arg\,min}}|G(c_j)-\psi|,\quad
 b_1=c_{j^*},\quad b_0=q\sqrt{1+b_1^2}.
 \end{aligned}
-$$
+```
 
-$$
+```math
 \begin{aligned}
-X&\sim N(0,1),\qquad \epsilon_C,\epsilon_Z,\epsilon_A,\epsilon_0,\epsilon_1\sim\operatorname{Uniform}(0,1),\\
-C&=\mathbf1\{\epsilon_C<\Phi(b_0+b_1X)\},\qquad
-Z=\mathbf1\{\epsilon_Z<\operatorname{expit}(X)\},\\
-A&=CZ+(1-C)\mathbf1\{\epsilon_A<.5\},\\
-Y&=(1-A)\mathbf1\{\epsilon_0<.4\}+A\mathbf1\{\epsilon_1<.6\}.
+X&\sim N(0,1),\qquad \epsilon_C,\epsilon_Z,\epsilon_A,\epsilon_0,\epsilon_1\sim\mathrm{Uniform}(0,1),\\
+C&=\mathbf{1}\{\epsilon_C<\Phi(b_0+b_1X)\},\qquad
+Z=\mathbf{1}\{\epsilon_Z<\mathrm{expit}(X)\},\\
+A&=CZ+(1-C)\mathbf{1}\{\epsilon_A<.5\},\\
+Y&=(1-A)\mathbf{1}\{\epsilon_0<.4\}+A\mathbf{1}\{\epsilon_1<.6\}.
 \end{aligned}
-$$
+```
 
 | Symbol | Meaning | Definition or setting |
 | --- | --- | --- |
@@ -74,7 +74,7 @@ $$
 | $X,C,Z$ | Baseline, compliance and instrument | X and Z are columns `X,Z`; C is latent. Total/effective covariate dimension 1/1. |
 | $A,Y$ | Treatment and observed binary outcome | Columns `A,Y`; noncompliers have a randomized fixed treatment state, and all subjects have outcome risks .4/.6 under treatment 0/1. |
 | $\epsilon_C,\epsilon_Z,\epsilon_A,\epsilon_0,\epsilon_1$ | Unit disturbances | Mutually independent uniform(0,1), independent of X and across subjects. The shared noncomplier treatment draw is held fixed when intervening on Z. |
-| $\operatorname{expit},\mathbf1$ | Logistic link and indicator | Logistic link and event indicator. |
+| $\mathrm{expit},\mathbf{1}$ | Logistic link and indicator | Logistic link and event indicator. |
 | $\theta$ | Registered scalar target | $\theta=E\{Y(1)-Y(0)\mid C=1\}=.6-.4=.2$, an additive risk difference for treatment 0 to 1. |
 
 ## Data-generating process and estimand
