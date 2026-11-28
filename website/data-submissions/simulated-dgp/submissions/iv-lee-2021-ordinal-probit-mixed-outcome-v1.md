@@ -49,19 +49,19 @@ flowchart LR
 
 - **Structural parents.** `X -> Z, X -> A, X_latent -> A, Z -> A, X -> Y_star, X_latent -> Y_star, A -> Y_star, Y_star -> Y`
 
-$$
+```math
 \bigl(P(X=0),P(X=1),P(X=2),P(X=3)\bigr)=(.2,.3,.3,.2),\quad
 X_{\mathrm{latent}},\epsilon_Z,\epsilon_Y\sim N(0,1).
-$$
+```
 
-$$
+```math
 \begin{aligned}
-Z&=\mathbf1\{-3+X+.5X^2+\epsilon_Z>0\},\\
-A&=\mathbf1\{-3+X+2Z+X_{\mathrm{latent}}>0\},\\
+Z&=\mathbf{1}\{-3+X+.5X^2+\epsilon_Z>0\},\\
+A&=\mathbf{1}\{-3+X+2Z+X_{\mathrm{latent}}>0\},\\
 Y_{\mathrm{star}}&=-3+X+.25X^2+A+(X_{\mathrm{latent}}+\epsilon_Y)/\sqrt2,\\
 Y&=\min(0,Y_{\mathrm{star}}).
 \end{aligned}
-$$
+```
 
 | Symbol | Meaning | Definition or setting |
 | --- | --- | --- |
@@ -72,7 +72,7 @@ $$
 | $Y_{\mathrm{star}},Y$ | Unobserved continuous outcome and observed mixed outcome | Y_star is latent; column `Y` equals min(0,Y_star), with mass at zero and continuous negative values. |
 | $\sqrt2$ | Population standardization divisor | Explicit adaptation of source phrase standardized: sum of two independent N(0,1) terms divided by sqrt(2); no sample centering/scaling. |
 | Numeric coefficients | Fixed selected scenario | Probit quadratic coefficient .5; outcome quadratic coefficient .25; treatment coefficient 1; instrument treatment shift 2; intercepts -3. |
-| $\mathbf1,\min$ | Indicator and censoring map | Standard event indicator and deterministic upper censoring at 0. |
+| $\mathbf{1},\min$ | Indicator and censoring map | Standard event indicator and deterministic upper censoring at 0. |
 | $\beta_{cp}$ | Complier observed-outcome effect | Treatment 0-to-1 effect after censoring, conditional on the common-error complier interval; not the latent response coefficient 1. |
 | $\theta$ | Registered scalar target | $\theta=\beta_{cp}=E\{\min(0,Y_{\mathrm{star}}(1))-\min(0,Y_{\mathrm{star}}(0))\mid A(1)>A(0)\}\approx .4293336071138788$. The effect is for the observed outcome, treatment 0 to 1. |
 
