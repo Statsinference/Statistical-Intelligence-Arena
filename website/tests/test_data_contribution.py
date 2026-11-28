@@ -91,6 +91,31 @@ def causal_preview(dag=MERMAID, equations=None, notation=None):
     )
 
 
+class MetadataCompatibilityTests(unittest.TestCase):
+    def test_domain_and_keywords_do_not_add_format_requirements(self):
+        for metadata in (
+            "",
+            "- **Primary domain.** `cate`\n- **Keywords.** Nonlinearity; Effect heterogeneity\n",
+            "- **Primary domain.** NRI\n- **Keywords.**\n",
+            "- **Primary domain.**\n- **Keywords.**\n",
+            "- **Primary domain.** A new research area\n",
+        ):
+            with self.subTest(metadata=metadata):
+                body = proposal().replace(b"## Research question\n", ("## Research question\n" + metadata).encode())
+                validate_markdown(body, SIMULATED)
+                self.assertTrue(check_changes([{"filename": PATH, "status": "added"}], lambda _: body))
+
+    def test_metadata_preserves_existing_placeholder_and_dag_checks(self):
+        metadata = b"- **Primary domain.** cate\n- **Keywords.** Nonlinearity\n"
+        for body in (proposal(structural_parents="none"),
+                     proposal().replace(b"A single benchmark case", b"[TODO: title]")):
+            with self.assertRaises(ValidationError):
+                validate_markdown(body.replace(b"## Research question\n", b"## Research question\n" + metadata), SIMULATED)
+        with self.assertRaises(ValidationError):
+            validate_markdown(proposal().replace(b"## Research question\n",
+                              b"## Research question\n- **Primary domain.** [TODO: domain]\n"), SIMULATED)
+
+
 class MarkdownTests(unittest.TestCase):
     def test_both_tracks_and_dag_fence(self):
         for track in (SIMULATED, REAL):

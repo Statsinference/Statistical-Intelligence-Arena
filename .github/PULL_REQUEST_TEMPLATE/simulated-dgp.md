@@ -56,6 +56,7 @@ The numeric settings in this example are fixed teaching choices.
 ## Checklist
 
 - [ ] This PR adds or updates one Markdown proposal under `website/data-submissions/simulated-dgp/submissions/`.
+- [ ] I supplied a primary domain or left it for reviewer clarification.
 - [ ] The preview DAG shows the same arrows as the case's DAG edges and structural parents.
 - [ ] The preview contains every structural equation from the case in the same order, with one table covering its variables, indices, functions and parameter settings.
 - [ ] I checked sharing permissions and kept protected values in the agreed review channel.

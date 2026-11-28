@@ -14,7 +14,7 @@ Propose one reproducible simulation that mirrors a documented study or isolates 
 
 | Required section | What a reviewer should be able to verify |
 | --- | --- |
-| Research question | The statistical target, intended use and behavior under test. Explain why this question is worth adding to the benchmark. |
+| Research question | The primary domain, optional keywords, statistical target, intended use and behavior under test. Explain why this question is worth adding to the benchmark. |
 | Study design and data source | The population or setting, unit of observation, relevant references and which settings are calibrated or introduced. Include the sampling structure and proposed table sizes. |
 | DAG and identification | Observed and latent variable roles, directed edges, time ordering and identification assumptions. Document any intentional violations. |
 | Variables and data-generating process | Variable definitions and table schema, full structural equations and their parent edges, sampling order, dependencies and scenario settings. |
@@ -48,17 +48,49 @@ Public teaching examples can link authorized code and settings. Cite settings re
 
 Copy the block into `website/data-submissions/simulated-dgp/submissions/<slug>.md`. Use a lowercase, hyphenated slug, keep the seven section headings in order and replace all placeholders. The same text is available as [TEMPLATE.md](TEMPLATE.md).
 
+### Declare the domain and describe the target
+
+Under **Research question**, declare one **Primary domain** using an ID below. Choose the domain that best represents the main evaluation task, considering its target, identification framework and observed-data design. If several areas apply, explain your choice in **Question and intended use**.
+
+| Domain ID | Research area |
+| --- | --- |
+| `ate` | Average Treatment Effect |
+| `cate` | Conditional Average Treatment Effect |
+| `mediation` | Causal Mediation Analysis |
+| `iv` | Instrumental Variables |
+| `proximal` | Proximal Causal Inference |
+| `did` | Difference-in-Differences |
+| `synthetic_control` | Synthetic Control |
+| `nonparametric_regression` | Nonparametric Regression |
+| `quantile` | Quantile Inference |
+| `semi_supervised` | Semi-Supervised Inference |
+| `missing_data` | Missing Data |
+
+Use the standard IDs where possible. A reviewer can clarify missing or unfamiliar domain names in PR comments; update the proposal with the agreed ID. The format check does not validate domain values or keywords, require these fields, or issue metadata warnings.
+
+**Keywords** are optional: list short mechanism features separated by semicolons, such as `Nonlinearity; Effect heterogeneity`. Include features supported by the proposal; leave the field blank when unspecified.
+
+In **Motivation and references**, link each source using its title where possible. A DOI, publisher page, preprint page or official source page is suitable. Identify distinct sources separately.
+
+Begin **Estimand** with a name such as `ATE`, `ATT`, `CATE`, `LATE`, `NIE` or `NDE`, followed by the complete mathematical definition. These examples are not an exhaustive list. Keep the DGP-specific formulas in the proposal.
+
+Continue adding or updating one file directly under `submissions/`; no domain subdirectory is required.
+
 ```markdown
 # [TODO: Case title]
 
 ## Research question
 
+- **Primary domain.**
+<!-- Copy one domain ID from the guide. Leave blank if you need reviewer help. -->
+- **Keywords.**
+<!-- Optional: short mechanism features separated by semicolons, such as Nonlinearity; Effect heterogeneity. -->
 - **Question and intended use.** [TODO: State the statistical question and whether this is a teaching example or a candidate for evaluation.]
 - **Behavior under test.** [TODO: Explain the scientific or statistical behavior methods should recover, and why it matters.]
 
 ## Study design and data source
 
-- **Motivation and references.** [TODO: Cite the study, data or methodological work that motivates the setting. Describe which design choices come from the reference and which you introduce.]
+- **Motivation and references.** [TODO: Cite and link to the study, data or methodological work that motivates the setting. Describe which design choices come from the reference and which you introduce.]
 - **Population and sampling.** [TODO: Define the units, sampling design, dependence and sample sizes or ranges that can be shared.]
 
 ## DAG and identification
@@ -88,7 +120,7 @@ Copy the block into `website/data-submissions/simulated-dgp/submissions/<slug>.m
 
 ## Data-generating process and estimand
 
-- **Estimand.** [TODO: Define the contrast, scale, population and time horizon where relevant.]
+- **Estimand.** [TODO: Begin with the estimand name and acronym where applicable (for example ATE, ATT, CATE, LATE, NIE or NDE), then give its complete mathematical definition. Define the contrast, scale, population and time horizon where relevant.]
 - **Truth check.** [TODO: Describe the analytical, numerical or Monte Carlo calculation reviewers can use to verify the reference value. Keep protected case-specific values and settings in private review.]
 
 ## Benchmark comparison
@@ -111,6 +143,8 @@ Copy the block into `website/data-submissions/simulated-dgp/submissions/<slug>.m
    ```bash
    python website/scripts/check_data_contribution.py --track simulated-dgp --local-file website/data-submissions/simulated-dgp/submissions/your-design.md
    ```
+
+   If the domain is undecided, leave its field blank rather than inserting a TODO placeholder.
 
 4. [Open a pull request](https://github.com/Statsinference/Statistical-Intelligence-Arena/compare) to `main` using the [Simulated DGP PR template](../../../.github/PULL_REQUEST_TEMPLATE/simulated-dgp.md). Fill in the causal design preview below. Use the same PR for revisions. A reviewer checks the design, the truth calculation and reproducibility. Evaluation inclusion is a separate curator decision.
 

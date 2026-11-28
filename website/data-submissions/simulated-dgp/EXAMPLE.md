@@ -4,6 +4,9 @@ Public worked example for the [simulated DGP track](README.md).
 
 ## Research question
 
+- **Primary domain.** `mediation`
+- **Keywords.** Multiple mediators; Correlated mediators
+
 For a one-standard-deviation increase in the childhood trauma score, what is the joint indirect effect through the DNA methylation profile on a continuous cortisol stress-response outcome?
 
 ## Study design and data source

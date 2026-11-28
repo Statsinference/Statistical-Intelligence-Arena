@@ -2,12 +2,16 @@
 
 ## Research question
 
+- **Primary domain.**
+<!-- Copy one domain ID from the guide. Leave blank if you need reviewer help. -->
+- **Keywords.**
+<!-- Optional: short mechanism features separated by semicolons, such as Nonlinearity; Effect heterogeneity. -->
 - **Question and intended use.** [TODO: State the statistical question and whether this is a teaching example or a candidate for evaluation.]
 - **Behavior under test.** [TODO: Explain the scientific or statistical behavior methods should recover, and why it matters.]
 
 ## Study design and data source
 
-- **Motivation and references.** [TODO: Cite the study, data or methodological work that motivates the setting. Describe which design choices come from the reference and which you introduce.]
+- **Motivation and references.** [TODO: Cite and link to the study, data or methodological work that motivates the setting. Describe which design choices come from the reference and which you introduce.]
 - **Population and sampling.** [TODO: Define the units, sampling design, dependence and sample sizes or ranges that can be shared.]
 
 ## DAG and identification
@@ -37,7 +41,7 @@
 
 ## Data-generating process and estimand
 
-- **Estimand.** [TODO: Define the contrast, scale, population and time horizon where relevant.]
+- **Estimand.** [TODO: Begin with the estimand name and acronym where applicable (for example ATE, ATT, CATE, LATE, NIE or NDE), then give its complete mathematical definition. Define the contrast, scale, population and time horizon where relevant.]
 - **Truth check.** [TODO: Describe the analytical, numerical or Monte Carlo calculation reviewers can use to verify the reference value. Keep protected case-specific values and settings in private review.]
 
 ## Benchmark comparison
