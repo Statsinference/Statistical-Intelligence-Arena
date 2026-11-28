@@ -40,7 +40,7 @@ flowchart LR
 
 - **Structural parents.** `X1 -> Y, X2 -> Y, X1 -> R1, X2 -> R1, Y -> R1, X1 -> R, X2 -> R, Y -> R, R1 -> R, Y -> Y_obs, R -> Y_obs`
 
-$$
+```math
 \begin{aligned}
 X_{i1}, X_{i2} &\overset{\mathrm{iid}}{\sim} \mathrm{Uniform}(-1, 1), && i = 1, \ldots, n, \quad n = 5000, \\
 a_1(x) &= -0.35 - 0.5 x_1 + 0.7 x_2, \qquad a_2(x) = -0.5 + 1.8 x_1^2 + x_2^2, && \\
@@ -52,7 +52,7 @@ R_{i1} \mid (X_i, Y_i) &\sim \mathrm{Bernoulli}\bigl\{p_1(Y_i, X_i)\bigr\}, && \
 R_i \mid (R_{i1} = 1, X_i, Y_i) &= 1, \qquad R_i \mid (R_{i1} = 0, X_i, Y_i) \sim \mathrm{Bernoulli}\bigl\{p_2(Y_i, X_i)\bigr\}, && \\
 Y_{\mathrm{obs},i} &= R_i Y_i.
 \end{aligned}
-$$
+```
 
 Expanding the product factor in $f(y \mid x)$ yields an exact mixture of **four Gaussian components, each with variance $4$ (SD $`2`$)** and component means $m(x)$, $m(x)$, $m(x) + 0.48$, and $m(x) - 0.48$ (the full conditional mixture variance is $`4 + 0.48^2[w_+ + w_- - (w_+ - w_-)^2] > 4`$, where $`w_+, w_-`$ are the shifted-component weights). Missing outcomes ($`R_i = 0`$) carry finite placeholder $`Y_{\mathrm{obs},i} = 0`$.
 
@@ -62,7 +62,7 @@ Expanding the product factor in $f(y \mid x)$ yields an exact mixture of **four 
 | $`X_{i1}, X_{i2}, X_i`$ | Survey frame covariates | Independent $\mathrm{Uniform}(-1, 1)$ draws; observed in columns `X1`, `X2`. |
 | $`a_1(x), a_2(x)`$ | Contact baseline log-odds | $`a_1(x) = -0.35 - 0.5x_1 + 0.7x_2`$ (linear first call) and $`a_2(x) = -0.5 + 1.8x_1^2 + x_2^2`$ (quadratic second call). |
 | $`m(x), f_2(y \mid x)`$ | Late-respondent outcome law | Second-call respondent density $\mathcal{N}(m(x), 4)$ with linear mean $`m(x) = -0.8 + 5x_1 + 3.5x_2`$ and variance $4$ (SD $`2`$). |
-| $`p_j(y, x)`$ | Call-specific response probability | $`p_j(y, x) = \mathrm{expit}(a_j(x) + 0.12y)`$ for $j \in \{1, 2\}$, sharing resistance slope $\gamma = 0.12$. |
+| $`p_j(y, x)`$ | Call-specific response probability | $`p_j(y, x) = \mathrm{expit}(a_j(x) + 0.12y)`$ for $`j \in \{1, 2\}`$, sharing resistance slope $\gamma = 0.12$. |
 | $C(x), f(y \mid x)$ | Normalizing constant and full-data outcome density | Exact four-component Gaussian mixture (each component having variance $`4`$) implied by Bayes' rule from $`f_2`$ and $`p_1, p_2`$; expected final missingness $27.07\%$. |
 | $`R_{i1}`$ | First-call response indicator | Drawn from $`\mathrm{Bernoulli}\{p_1(Y_i, X_i)\}`$; observed in column `R1`. |
 | $`R_i`$ | Cumulative two-call response indicator | Equals $1$ if $`R_{i1} = 1`$, else drawn from $`\mathrm{Bernoulli}\{p_2(Y_i, X_i)\}`$ (late-only flag is $`R_i - R_{i1}`$); column `R`. |
