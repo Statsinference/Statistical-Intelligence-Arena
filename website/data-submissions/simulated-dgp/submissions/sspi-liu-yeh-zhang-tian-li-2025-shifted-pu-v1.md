@@ -34,7 +34,7 @@ flowchart LR
 
 - **Structural parents.** `R -> Y, R -> X, Y -> X, Y -> Y_obs, R -> Y_obs`
 
-$$
+```math
 \begin{aligned}
 n_{\mathrm{L}} &= 1000, \qquad n_{\mathrm{U}} = 1000, \qquad n = n_{\mathrm{L}} + n_{\mathrm{U}} = 2000, \\
 \Pr(Y_i = 1 \mid R_i = 1) &= 1, \qquad Y_i \mid (R_i = 0) \overset{\mathrm{iid}}{\sim} \mathrm{Bernoulli}(\pi), \qquad \pi = 0.3 \in (0, 1/2), \\
@@ -42,7 +42,7 @@ X_i \mid (R_i = r, Y_i = y) &\sim \mathcal{N}_{15}(\mu_{r,y},\, I_{15}), \\
 \mu_{1,1} &= \mathbf{0}_{15}, \qquad \mu_{0,1} = (\mathbf{1}_7, \mathbf{0}_8)^{\top}, \qquad \mu_{0,0} = \mathbf{1}_{15}, \\
 Y_{\mathrm{obs},i} &= R_i Y_i.
 \end{aligned}
-$$
+```
 
 The labeled sample consists of $`n_{\mathrm{L}} = 1000`$ independent source positives ($`R_i = 1`$) and the unlabeled sample consists of $`n_{\mathrm{U}} = 1000`$ independent target units ($`R_i = 0`$). Positive-class orientation in the double exponential-tilting mixture model is fixed by the minority-positive condition $0 < \pi < 1/2$. Unlabeled rows carry finite placeholder $`Y_{\mathrm{obs},i} = 0`$.
 
