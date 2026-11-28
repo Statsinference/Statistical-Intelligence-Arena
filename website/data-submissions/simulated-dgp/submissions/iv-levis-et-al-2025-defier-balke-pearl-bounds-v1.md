@@ -57,13 +57,13 @@ Z\sim\mathrm{Bernoulli}(.5),\quad\epsilon_Y\sim\mathrm{Uniform}(0,1).
 H&=\begin{cases}
 \mathrm{AT},&X_2\geq .99,\\
 \mathrm{NT},&X_2\leq -.99,\\
-\mathrm{DF},&X_1=0\ \text{and}\ -.5<X_2\leq .5,\\
+\mathrm{DF},&X_1=0\ \text{and}\ -.5< X_2\leq .5,\\
 \mathrm{CP},&\text{otherwise},
 \end{cases}\\
 A&=\mathbf{1}\{H=\mathrm{AT}\}+(1-Z)\mathbf{1}\{H=\mathrm{DF}\}+Z\mathbf{1}\{H=\mathrm{CP}\},\\
 (r_{0,h},d_h)_{h=\mathrm{AT},\mathrm{NT},\mathrm{DF},\mathrm{CP}}
 &=((.20,.10),(.90,.05),(.65,.05),(.25,.10)),\\
-r_{a,h}&=r_{0,h}+a d_h,\qquad Y=\mathbf{1}\{\epsilon_Y<r_{A,H}\}.
+r_{a,h}&=r_{0,h}+a d_h,\qquad Y=\mathbf{1}\{\epsilon_Y< r_{A,H}\}.
 \end{aligned}
 ```
 
